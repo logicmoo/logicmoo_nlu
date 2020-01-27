@@ -1,0 +1,63 @@
+:- ensure_loaded('earley.pl').
+:- ensure_loaded('pronto_morph_engine.pl').
+:- ensure_loaded('C:\\Documents and Settings\\mattvoss\\My Documents\\NLP\\wordnet\\prolog\\wn_s.pl').
+
+
+
+rule(s,[np(number:N),vp(number:N)]).
+rule(np(number:N),[d(number:N),n(number:N)]).
+rule(vp(number:N),[v(number:N)]).
+
+
+word(d(number:sg),the).
+word(d(number:pl),the).
+word(d(number:sg),an).
+word(d(number:sg),a).
+word(d(number:pl),all).
+word(d(number:sg),every).
+
+
+word(n(number:pl),Word) :-
+   morph_atoms(Word,[[W,-es]]),
+   s(_,_,W,n,_,_)
+   ;
+   fail.
+
+word(n(number:pl),Word) :-
+   morph_atoms(Word,[[W,-s]]),
+   s(_,_,W,n,_,_)
+   ;
+   fail.
+
+word(n(number:pl),Word) :-
+   morph_atoms(Word,[[W,-pl]]),
+   s(_,_,W,n,_,_)
+   ;
+   fail.
+
+
+word(n(number:sg),Word) :-
+   morph_atoms(Word,[[W]]),
+   s(_,_,W,n,_,_)
+   ;
+   fail.
+
+word(v(number:sg),Word) :-
+   morph_atoms(Word,[[W,-s]]),
+   s(_,_,W,v,_,_)
+   ;
+   fail.
+
+word(v(number:sg),Word) :-
+   morph_atoms(Word,[[W,-es]]),
+   s(_,_,W,v,_,_)
+   ;
+   fail.
+
+word(v(number:pl),Word) :-
+   morph_atoms(Word,[[W]]),
+   s(_,_,W,v,_,_)
+   ;
+   fail.
+
+
