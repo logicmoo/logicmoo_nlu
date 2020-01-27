@@ -1,0 +1,11 @@
+#!/bin/bash
+cd /devel/logicmoo/src_modules/candc
+bin/candc --models models/boxer --models models/questions --models models --candc-printer boxer --input $1 --output $2
+bin/boxer_old --integrate --input $2 --output $3
+bin/boxer_old --integrate --input $2 --semantics fol >> $3
+
+
+# after we path gsoap to prevent Detail: setsockopt unset IPV6_V6ONLY failed in soap_bind() we would use
+#bin/soap_client --url http://127.0.0.1:9066  --candc-printer boxer --input $1 --output $2
+#sed -i $2 -e "s|\\\'|-APOS-|g"
+
