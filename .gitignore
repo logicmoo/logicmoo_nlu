@@ -1,0 +1,10 @@
+./prolog/pldata/*/
+*~/
+~*/
+.*/
+*.qlf
+*~.*
+*~
+~*
+*-models.jar
+prolog/candc/
