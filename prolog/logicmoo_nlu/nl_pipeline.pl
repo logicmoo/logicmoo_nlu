@@ -48,9 +48,9 @@
 % :- dynamic(baseKB:installed_converter/2).
 :- shared_parser_data(baseKB:installed_converter/2).
 
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/2).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/3).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/6).
+:- shared_parser_data(talkdb:talk_db/2).
+:- shared_parser_data(talkdb:talk_db/3).
+:- shared_parser_data(talkdb:talk_db/6).
 
 % ==============================================================================
 
@@ -390,19 +390,9 @@ get_it:-
    load_language_file(pldata(nldata_BRN_WSJ_LEXICON)),
    if_defined(baseKB:skip_el_assertions,load_language_file(library(el_holds/el_assertions))),
    load_language_file(pldata(nldata_freq_pdat)),
-   nldata_talk_db_pdat:load_language_file(pldata(talk_db_pdat)),
+   %talkdb:load_language_file(pldata(talk_db)),
+   reexport(pldata(talk_db)),
    load_language_file(pldata(nldata_cycl_pos0))),!.
-
-:-share_mp(kill_talk_db_bad_verbs/0).
-kill_talk_db_bad_verbs:-!.
-kill_talk_db_bad_verbs:-doall(((
-         talk_db(noun1,Sky,Skies),
-         talk_db(tv,Sky,Skies,Skied,Skying,Skied),
-         retract(nldata_talk_db_pdat:talk_db(tv,Sky,Skies,Skied,Skying,Skied)),
-         assert(nldata_talk_db_pdat:talk_db(tv,Skying,Skying,Skied,Skying,Skied)),
-         dmsg(retract_talk_db(tv,Sky,Skies,Skied,Skying,Skied))))).
-
-:-kill_talk_db_bad_verbs.
 
 
 :- set_prolog_flag(qcompile,false).

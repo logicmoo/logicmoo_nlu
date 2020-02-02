@@ -24,7 +24,7 @@
 	]).
 
 :- use_module(parser_sharing).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/3).
+:- shared_parser_data(talkdb:talk_db/3).
 
 /** <module> Interface for the ACE tools (ACE parser, DRS verbalizer, ...)
 
@@ -310,7 +310,7 @@ ace_i_name(A,Plur,AT):-atom(Plur),talk_db(noun1,Sing,Plur),if_defined(i_name(A,S
 ace_i_name(A,T,AT):-atom(T),if_defined(i_name(A,T,AT)),!.
 ace_i_name(_A,T,AT):-AT=T.
 
-:- nldata_talk_db_pdat:load_language_file(library(pldata/nldata_talk_db_pdat)).
+%:- talkdb:load_language_file(pldata(talk_db_pdat)).
 
 :-export(fol_to_kif/2).
 

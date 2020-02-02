@@ -14,7 +14,7 @@
 
 % ==============================================================================
 :- reexport(parser_sharing).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/3).
+:- shared_parser_data(talkdb:talk_db/3).
 
 :- absolute_file_name(logicmoo_nlu_ext('ape/'),Dir,[file_type(directory)]),
    assertz(user:file_search_path(ape,Dir)).

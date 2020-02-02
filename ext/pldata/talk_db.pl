@@ -18,9 +18,13 @@
 
 */
 
-:- module(talkdb, []).
+:- module(talkdb, [getPos/4, talk_db/1]).
+
+
+:- style_check(-(discontiguous)).
+
 decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
-:- decl_talk_db_data(talk_db/1).
+
 :- decl_talk_db_data(talk_db/2).
 :- decl_talk_db_data(talk_db/3).
 :- decl_talk_db_data(talk_db/4).
@@ -28,7 +32,7 @@ decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 :- decl_talk_db_data(talk_db/6).
 :- decl_talk_db_data(talk_db/7).
 
- /*
+/*
 
  setof(F, talk_db([F|_]), O).
 
@@ -41,12 +45,11 @@ decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
   setof(F, talk_db([domain, _, D]), O).
 
 
-   bagof(P, (talk_db([F|X]), length(X, A), functor(P, F, A)), O), writeq(O).
+
+   ?- bagof(P,(talk_db([F|X]),length(X,A),functor(P,F,A)),O),writeq(O).
 
 */
-
 % was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
-talk_db([F,A|List]):-talk_db_argsIsa(F,N,_),length(List,N),apply(talk_db,[F,A|List]).
 
 talk_db_argsIsa(comp,1,adjective(comparative)).
 talk_db_argsIsa(superl,1,adjective(superlative)).
@@ -110,41 +113,53 @@ talk_db_pos_trans(ingform,particple).
 talk_db_pos_trans(ingform,adjectival).
 talk_db_pos_trans(A,A).
 
-:- decl_talk_db_data(talk_db_pos/2).
-talk_db_pos(POS,String):-nonvar(POS),nonvar(String),!,talk_db_t_0(POS,String),!.
-talk_db_pos(POS,String):-talk_db_t_0(POS,String).
-
-talk_db_t_0(POS,String):-talk_db_argsIsa(F,N,POSVV),talk_db_pos(String,POSVV,PPOS,F,N),talk_db_pos_trans(PPOS,POS).
-
-talk_db_pos(String,POSVV,POS,F,0):-!, talk_db(F,String), (F=POSVV -> POS=F ; (POS=POSVV;POS=F)).
-talk_db_pos(String,POSVV,POS,F,N):-nonvar(String),!, length(List,N),Search=[_|List],C=..[talk_db,F|Search],nth0(AT,Search,String,_),C,getPos(AT,F,POSVV,POS).
-talk_db_pos(String,POSVV,POS,F,N):- length(List,N),Search=[_|List],C=..[talk_db,F|Search],C,nth0(AT,Search,String,_),getPos(AT,F,POSVV,POS).
-
 getPos(_,FPOS,_,FPOS).
 getPos(0,_,POSVV,POS):-!,functor(POSVV,POS,_);POS=base.
 getPos(AT,_,POSVV,POS):-arg(AT,POSVV,POS),!.
 
 
 %:- style_check(-discontiguous).
-%:- include(pldata(talk_db_pdat')).
-   
+% :- reexport(pldata(talk_db_pdat)).
+
+:- decl_talk_db_data(talk_db_pos/2).
+talk_db_pos(POS,String):-nonvar(POS),nonvar(String),!,talk_db_t_0(POS,String),!.
+talk_db_pos(POS,String):-talk_db_t_0(POS,String).
+
+talk_db_t_0(POS,String):-talk_db_argsIsa(F,N,POSVV),talk_db_pos(String,POSVV,PPOS,F,N),talk_db_pos_trans(PPOS,POS).
+
+talk_db_pos(String,POSVV,POS,F,0):- !, talk_db(F,String), (F=POSVV -> POS=F ; (POS=POSVV;POS=F)).
+talk_db_pos(String,POSVV,POS,F,N):- nonvar(String),!, length(List,N),Search=[_|List],C=..[talk_db,F|Search],nth0(AT,Search,String,_),C,getPos(AT,F,POSVV,POS).
+talk_db_pos(String,POSVV,POS,F,N):- length(List,N),Search=[_|List],C=..[talk_db,F|Search],C,nth0(AT,Search,String,_),getPos(AT,F,POSVV,POS).
+
+
+:- decl_talk_db_data(talk_db/1).
+talk_db([F,A|List]):-talk_db_argsIsa(F,N,_),length(List,N),apply(talk_db,[F,A|List]).
 
 % =================================
 % some random talk_db/2-7s from the other file (to help see the meanings)
 % =================================
 
+% =================================
+% talk_db/2-7
+% =================================
+
 talk_db(noun1,Sing,Sing):-talk_db(noun2,Sing).
 
-:- absolute_file_name('talk_db.nldata', File, [access(read)]),
-   open(File, read, In),
-   set_stream(In, encoding(iso_latin_1)),
-   repeat,
-   read(In, P),
-   asserta(P),
-   P==end_of_file, !.
+:- include('talk_db.nldata').
 
-% :- include('talk_db.nldata').
+%kill_talk_db_bad_verbs:-!.
+kill_talk_db_bad_verbs:-doall(((
+         talk_db(transitive,Sky,Skies,Skied,Skying,Skied),
+         talk_db(noun1,Sky,Skies),
+         retract(talkdb:talk_db(transitive,Sky,Skies,Skied,Skying,Skied)),
+         assertz(talkdb:talk_db(transitive,Skying,Skies,Skied,Skying,Skied)),
+         assertz(talkdb:talk_db(noun_verb,Sky,Skying)),
+         dmsg(fixed_talkdb_noun_verb(tv,(Sky-->Skies/Skied/Skying))),
+         fail))).
 
+%:-share_mp(kill_talk_db_bad_verbs/0).
+
+:- kill_talk_db_bad_verbs.
 /*
 
 talk_db(adj, aaronic).

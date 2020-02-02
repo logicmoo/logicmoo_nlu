@@ -51,9 +51,9 @@ cycQuery80(Q):- current_predicate(_,Q),call(Q).
 :- retractall(t_l:disable_px).
 :- asserta(t_l:disable_px).
 
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/2).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/3).
-:- shared_parser_data(nldata_talk_db_pdat:talk_db/6).
+:- shared_parser_data(talkdb:talk_db/2).
+:- shared_parser_data(talkdb:talk_db/3).
+:- shared_parser_data(talkdb:talk_db/6).
 :- shared_parser_data(installed_converter/1).
 
 :- shared_parser_data(transitive_subclass/2).

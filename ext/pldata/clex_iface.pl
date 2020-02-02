@@ -113,4 +113,4 @@ clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
 
 :- reexport(clex_nldata).
 
-:- reexport(talk_db_iface).
+:- reexport(talk_db).
