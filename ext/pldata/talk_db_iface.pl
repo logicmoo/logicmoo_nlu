@@ -19,11 +19,7 @@
 */
 
 :- module(talkdb, []).
-
-:- style_check(-(discontiguous)).
-
-decl_talk_db_data(F/A):- dynamic(F/A), multifile(F/A), export(F/A).
-
+decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 :- decl_talk_db_data(talk_db/1).
 :- decl_talk_db_data(talk_db/2).
 :- decl_talk_db_data(talk_db/3).
@@ -49,90 +45,96 @@ decl_talk_db_data(F/A):- dynamic(F/A), multifile(F/A), export(F/A).
 
 */
 
-talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
+% was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
+talk_db([F,A|List]):-talk_db_argsIsa(F,N,_),length(List,N),apply(talk_db,[F,A|List]).
 
-talk_db_argsIsa(comp, 1, adjective(comparative)).
-talk_db_argsIsa(superl, 1, adjective(superlative)).
-talk_db_argsIsa(noun1, 1, singular(plural)).
-talk_db_argsIsa(intransitive, 4, base(pluralverb, imperfect, ingform, past_part)).
-talk_db_argsIsa(transitive, 4, base(pluralverb, imperfect, ingform, past_part)).
-talk_db_argsIsa(adj, 0, (adjective)).
-talk_db_argsIsa(auxiliary, 0, (verb)). % will shall wont
-talk_db_argsIsa(conj, 0, (conjuntion)).
-talk_db_argsIsa(fem, 0, (feminine)).
-talk_db_argsIsa(fem, 0, (noun)).
-talk_db_argsIsa(impersonal, 0, (meseems)).
-talk_db_argsIsa(indef, 0, (indefinate)).
-talk_db_argsIsa(indef, 0, (pronoun)).
-talk_db_argsIsa(interj, 0, (interjection)).
-talk_db_argsIsa(interrog, 0, (whpron)). % only instance
-talk_db_argsIsa(agentive, 0, (noun)).
-talk_db_argsIsa(masc, 0, (masculine)).
-talk_db_argsIsa(masc, 0, (noun)).
-talk_db_argsIsa(ncollect, 0, (massnoun)).
-talk_db_argsIsa(noun2, 0, (noun)).
-talk_db_argsIsa(noun2, 0, (plural)).
-talk_db_argsIsa(noun2, 0, (singular)).
-talk_db_argsIsa(noun_verb, 0, (verb)).
-talk_db_argsIsa(noun_verb, 0, (noun)).
-talk_db_argsIsa(p, 0, (adjective)).
-talk_db_argsIsa(personal, 0, (firstperson)).
-talk_db_argsIsa(pl_pronoun, 0, (plural)).
-talk_db_argsIsa(pl_pronoun, 0, (pronoun)).
-talk_db_argsIsa(possessive, 0, (pronoun)).
-talk_db_argsIsa(preposition, 0, (preposition)).
-talk_db_argsIsa(pres_indic, 0, (verb)).
-talk_db_argsIsa(sing_only, 0, (noun)).
-talk_db_argsIsa(sing_only, 0, (singular)).
-talk_db_argsIsa(verb, 0, (adj_verb)). % verb/nouns maybe
-talk_db_argsIsa(pronoun, 0, (pronoun)).
-talk_db_argsIsa(adverb, 0, (adverb)).
+talk_db_argsIsa(comp,1,adjective(comparative)).
+talk_db_argsIsa(superl,1,adjective(superlative)).
+talk_db_argsIsa(noun1,1,singular(plural)).
+talk_db_argsIsa(intransitive,4,base(pluralverb,imperfect,ingform,past_part)).
+talk_db_argsIsa(transitive,4,base(pluralverb,imperfect,ingform,past_part)).
+talk_db_argsIsa(adj,0,(adjective)).
+talk_db_argsIsa(auxiliary,0,(verb)). % will shall wont
+talk_db_argsIsa(conj,0,(conjuntion)).
+talk_db_argsIsa(fem,0,(feminine)).
+talk_db_argsIsa(fem,0,(noun)).
+talk_db_argsIsa(impersonal,0,(meseems)).
+talk_db_argsIsa(indef,0,(indefinate)).
+talk_db_argsIsa(indef,0,(pronoun)).
+talk_db_argsIsa(interj,0,(interjection)).
+talk_db_argsIsa(interrog,0,(whpron)). % only instance
+talk_db_argsIsa(agentive,0,(noun)).
+talk_db_argsIsa(masc,0,(masculine)).
+talk_db_argsIsa(masc,0,(noun)).
+talk_db_argsIsa(ncollect,0,(massnoun)).
+talk_db_argsIsa(noun2,0,(noun)).
+talk_db_argsIsa(noun2,0,(plural)).
+talk_db_argsIsa(noun2,0,(singular)).
+talk_db_argsIsa(noun_verb,0,(verb)). 
+talk_db_argsIsa(noun_verb,0,(noun)). 
+talk_db_argsIsa(p,0,(adjective)).
+talk_db_argsIsa(personal,0,(firstperson)).
+talk_db_argsIsa(pl_pronoun,0,(plural)).
+talk_db_argsIsa(pl_pronoun,0,(pronoun)).
+talk_db_argsIsa(possessive,0,(pronoun)).
+talk_db_argsIsa(preposition,0,(preposition)).
+talk_db_argsIsa(pres_indic,0,(verb)).
+talk_db_argsIsa(sing_only,0,(noun)).
+talk_db_argsIsa(sing_only,0,(singular)).
+talk_db_argsIsa(verb,0,(adj_verb)). % verb/nouns maybe
+talk_db_argsIsa(pronoun,0,(pronoun)).
+talk_db_argsIsa(adverb,0,(adverb)).
 
 
-talk_db_pos_trans(massnoun, noun).
-talk_db_pos_trans(superlative, adjective).
-talk_db_pos_trans(comparative, adjective).
-talk_db_pos_trans(superl, adj).
-talk_db_pos_trans(comp, adj).
-talk_db_pos_trans(intransitive, verb).
-talk_db_pos_trans(transitive, verb).
-talk_db_pos_trans(imperfect, verb).
-talk_db_pos_trans(imperfect, past).
-talk_db_pos_trans(past_part, verb).
-talk_db_pos_trans(past_part, past).
-talk_db_pos_trans(past_part, particple).
-talk_db_pos_trans(past_part, adjectival).
-talk_db_pos_trans(pluralverb, verb).
-talk_db_pos_trans(pluralverb, plural).
-talk_db_pos_trans(pluralverb, noun).
-talk_db_pos_trans(pluralverb, active).
-talk_db_pos_trans(ingform, verb).
-talk_db_pos_trans(ingform, active).
-talk_db_pos_trans(ingform, pres).
-talk_db_pos_trans(ingform, particple).
-talk_db_pos_trans(ingform, adjectival).
-talk_db_pos_trans(A, A).
+talk_db_pos_trans(massnoun,noun).
+talk_db_pos_trans(superlative,adjective).
+talk_db_pos_trans(comparative,adjective).
+talk_db_pos_trans(superl,adj).
+talk_db_pos_trans(comp,adj).
+talk_db_pos_trans(intransitive,verb).
+talk_db_pos_trans(transitive,verb).
+talk_db_pos_trans(imperfect,verb).
+talk_db_pos_trans(imperfect,past).
+talk_db_pos_trans(past_part,verb).
+talk_db_pos_trans(past_part,past).
+talk_db_pos_trans(past_part,particple).
+talk_db_pos_trans(past_part,adjectival).
+talk_db_pos_trans(pluralverb,verb).
+talk_db_pos_trans(pluralverb,plural).
+talk_db_pos_trans(pluralverb,noun).
+talk_db_pos_trans(pluralverb,active).
+talk_db_pos_trans(ingform,verb).
+talk_db_pos_trans(ingform,active).
+talk_db_pos_trans(ingform,pres).
+talk_db_pos_trans(ingform,particple).
+talk_db_pos_trans(ingform,adjectival).
+talk_db_pos_trans(A,A).
 
 :- decl_talk_db_data(talk_db_pos/2).
-talk_db_pos(POS, String):- nonvar(POS), nonvar(String), !, talk_db_t_0(POS, String), !.
-talk_db_pos(POS, String):- talk_db_t_0(POS, String).
+talk_db_pos(POS,String):-nonvar(POS),nonvar(String),!,talk_db_t_0(POS,String),!.
+talk_db_pos(POS,String):-talk_db_t_0(POS,String).
 
-talk_db_t_0(POS, String):- talk_db_argsIsa(F, N, POSVV), talk_db_pos(String, POSVV, PPOS, F, N), talk_db_pos_trans(PPOS, POS).
+talk_db_t_0(POS,String):-talk_db_argsIsa(F,N,POSVV),talk_db_pos(String,POSVV,PPOS,F,N),talk_db_pos_trans(PPOS,POS).
 
-talk_db_pos(String, POSVV, POS, F, 0):- !, talk_db(F, String), (F=POSVV -> POS=F ; (POS=POSVV;POS=F)).
-talk_db_pos(String, POSVV, POS, F, N):- nonvar(String), !, length(List, N), Search=[_|List], C=..[talk_db, F|Search], nth0(AT, Search, String, _), C, getPos(AT, F, POSVV, POS).
-talk_db_pos(String, POSVV, POS, F, N):- length(List, N), Search=[_|List], C=..[talk_db, F|Search], C, nth0(AT, Search, String, _), getPos(AT, F, POSVV, POS).
+talk_db_pos(String,POSVV,POS,F,0):-!, talk_db(F,String), (F=POSVV -> POS=F ; (POS=POSVV;POS=F)).
+talk_db_pos(String,POSVV,POS,F,N):-nonvar(String),!, length(List,N),Search=[_|List],C=..[talk_db,F|Search],nth0(AT,Search,String,_),C,getPos(AT,F,POSVV,POS).
+talk_db_pos(String,POSVV,POS,F,N):- length(List,N),Search=[_|List],C=..[talk_db,F|Search],C,nth0(AT,Search,String,_),getPos(AT,F,POSVV,POS).
 
-getPos(_, FPOS, _, FPOS).
-getPos(0, _, POSVV, POS):- !, functor(POSVV, POS, _);POS=base.
-getPos(AT, _, POSVV, POS):- arg(AT, POSVV, POS), !.
-
-
-talk_db(noun1, Sing, Sing):- talk_db(noun2, Sing).
+getPos(_,FPOS,_,FPOS).
+getPos(0,_,POSVV,POS):-!,functor(POSVV,POS,_);POS=base.
+getPos(AT,_,POSVV,POS):-arg(AT,POSVV,POS),!.
 
 
 %:- style_check(-discontiguous).
-%:- include(library('nldata/talk_db.pl.dat')).
+%:- include(pldata(talk_db_pdat')).
+   
+
+% =================================
+% some random talk_db/2-7s from the other file (to help see the meanings)
+% =================================
+
+talk_db(noun1,Sing,Sing):-talk_db(noun2,Sing).
+
 :- absolute_file_name('talk_db.nldata', File, [access(read)]),
    open(File, read, In),
    set_stream(In, encoding(iso_latin_1)),
@@ -141,9 +143,8 @@ talk_db(noun1, Sing, Sing):- talk_db(noun2, Sing).
    asserta(P),
    P==end_of_file, !.
 
-% =================================
-% some random talk_db/2-7s from the other file (to help see the meanings)
-% =================================
+% :- include('talk_db.nldata').
+
 /*
 
 talk_db(adj, aaronic).

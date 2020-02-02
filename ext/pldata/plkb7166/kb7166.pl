@@ -33,6 +33,9 @@ from_qlfs:-
     expand_file_name('kb7166_asse*.qlf',QLFS),
     maplist(kb7166:ensure_loaded,QLFS).
 
+needs_mdep(assertion_content_not/3).
+needs_mdep(assertion_content_implies/3).
+
 needs_mdep(assertion_abbreviation/1).
 needs_mdep(assertion_abnormal/1).
 needs_mdep(assertion_asserted/1).

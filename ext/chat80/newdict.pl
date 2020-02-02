@@ -50,11 +50,11 @@
 
 :- style_check(+discontiguous).
 :- style_check(-discontiguous).
-:- op(600,xfy,((--))).
+:- op(600,xfy,(('--'))).
 :- op(450,xfy,((:))).
 :- op(400,xfy,((&))).
 :- op(300,fx,(('`'))).
-:- op(200,xfx,((--))).
+:- op(200,xfx,(('--'))).
 
 :-shared_parser_data((trans_LF/9)).
 
@@ -971,6 +971,7 @@ to_dash_number(X,N):- maybe_freeze(N = X).
 
 maybe_freeze(G):- ground(G),!,call(G).
 maybe_freeze(G):- clpr:{G}.
+
 
 sup_adj_db(Biggest,Big):-plt,talk_db(superl,Big,Biggest).
 

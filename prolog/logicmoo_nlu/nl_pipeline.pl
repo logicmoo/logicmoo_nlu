@@ -390,7 +390,7 @@ get_it:-
    load_language_file(pldata(nldata_BRN_WSJ_LEXICON)),
    if_defined(baseKB:skip_el_assertions,load_language_file(library(el_holds/el_assertions))),
    load_language_file(pldata(nldata_freq_pdat)),
-   nldata_talk_db_pdat:load_language_file(pldata(nldata_talk_db_pdat)),
+   nldata_talk_db_pdat:load_language_file(pldata(talk_db_pdat)),
    load_language_file(pldata(nldata_cycl_pos0))),!.
 
 :-share_mp(kill_talk_db_bad_verbs/0).

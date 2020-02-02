@@ -11,6 +11,7 @@
 
 :- shared_parser_data(in_continent/2).
 
+:- use_module(library(clpr)).
 :- multifile(baseKB:expect_file_mpreds/1).
 :- dynamic(baseKB:expect_file_mpreds/1).
 % WHY DID I HAVE? :- prolog_load_context(file, File),(baseKB:expect_file_mpreds(File)->true;asserta(baseKB:expect_file_mpreds(File))).
@@ -42,7 +43,7 @@
 :-discontiguous(verb_root_db/1).
 :-discontiguous(verb_form_db/4).
 :-discontiguous(trans_LF/9).
-:-kb_shared(ditrans_LF/13).
+:-share_mp(ditrans_LF/13).
 :-discontiguous(regular_pres_db/1).
 :-discontiguous(regular_past_db/2).
 :-discontiguous(noun_form_db/3).
@@ -52,10 +53,10 @@
 % :- ensure_loaded(library(dra/tabling3/swi_toplevel)).
 
 
-:- kb_shared((contains0/2,country/8,city/3,borders/2,in_continent/2)).
-%:- kb_shared contains/2.
+:- share_mp((contains0/2,country/8,city/3,borders/2,in_continent/2)).
+%:- share_mp contains/2.
 
-% :- kb_shared fact_always_true/1.
+% :- share_mp fact_always_true/1.
 
 :- style_check(+discontiguous).
 :- style_check(-discontiguous).
@@ -748,7 +749,7 @@ adj_db(european,restr).
 not_ccw(ok(W)):-must(nonvar(W)),!,not_ccw(W),!.
 not_ccw(W):-not_ccw_db(W),!.
 not_ccw(W):-is_ccw_db(W),!,fail.
-not_ccw(W):-not(tlbugger:ilc(_:'new_dict.pl':_)),!,show_call(not((ccw_db0(W,G),!,ground(G))) -> asserta(not_ccw_db(W)) ; ((asserta(is_ccw_db(W)),!,fail))),!.
+not_ccw(W):- \+ (lmcache:ilc(_,'new_dict_regress.pl':_)),!,show_call(not((ccw_db0(W,G),!,ground(G))) -> asserta(not_ccw_db(W)) ; ((asserta(is_ccw_db(W)),!,fail))),!.
 not_ccw(W):-not((ccw_db0(W,G),!,ground(G))),!.
 % closed class words
 ccw_db(W,C):-loop_check_chat80(no_repeats(ccw_db0(W,C))).
@@ -1012,6 +1013,7 @@ verb_LF(iv,flow,feature&river,X,call(flows,X,Y), [slot(prep(through),feature&pla
 verb_LF(iv,flow,feature&river,X,call(flows,X,Y,Z), [slot(prep(into),feature&place&_,Z,_,free), slot(prep(from),feature&place&_,Y,_,free)],_). 
 
 
+:- import(clex_iface:clex_verb/4).
 
 verb_root_db(Look):- clex_verb(_Formed,Look,_Iv,_Finsg).
 regular_pres_db(Look):- no_loop_check(verb_root_db(Look)).
@@ -1146,8 +1148,20 @@ inverse_db(less,-,more).
 inverse_db(more,-,less).
 inverse_db(X,+,X).
 
-exceeds('--'(X1,U1),'--'(X2,U1)) :- 
-  \+ \+ (U1==U2 -> X1 > X2 ; (ratio_db(U1,U2,M1,M2), X1*M1 > X2*M2)).
+
+exceeds(X1--U1,X2--U2) :- !, (U1==U2 -> maybe_freeze(X1 > X2) ;
+ (ratio_db(U1,U2,M1,M2), maybe_freeze(X1*M1 > X2*M2))).
+exceeds(X1U1,X2U2) :- to_dash_number(X1U1,N1),to_dash_number(X2U2,N2),!,maybe_freeze(N1 > N2).
+
+to_dash_number(X,N):- \+ ground(X), maybe_freeze(N = X).
+to_dash_number(X--thousand,N):- !, maybe_freeze(N = X * 10e+3).
+to_dash_number(X--million,N):- !, maybe_freeze(N = X * 10e+6).
+to_dash_number(X--billion,N):- !, maybe_freeze(N = X * 10e+9).
+to_dash_number(X,N):- maybe_freeze(N = X).
+
+maybe_freeze(G):- ground(G),!,call(G).
+maybe_freeze(G):- clpr:{G}.
+
 
 sup_adj_db(Biggest,Big):-plt2_call(Big,'Adjective',plt2_call(Biggest,'Adjective',talk_db(superl,Big,Biggest))).
 sup_adj_db(Biggest,Big):-plt_call(Big,'Adjective',plt_call(Biggest,'Adjective',adj_itr_sup(Biggest,Big))).
@@ -1227,7 +1241,7 @@ current_dcg_predicate(F/A):-current_predicate(F/A).
 
 toDCPred(Type,Pred,In,Out):-compound(Type),!,functor(Type,F,A),A2 is A + 2,current_dcg_predicate(F/A2),once((length(Args,A),Type=..[F|Args],append(Args,[In,Out],Dargs))),Pred=..[F|Dargs].
 
-toDCPred(Type,Pred,In,Out):-atom(F),current_dcg_predicate(F/A2),A is A2 - 2,once((length(Args,A),Type=..[F|Args],append(Args,[In,Out],Dargs))),Pred=..[F|Dargs].
+toDCPred(Type,Pred,In,Out):-current_dcg_predicate(F/A2),must(atom(F)), A is A2 - 2,once((length(Args,A),Type=..[F|Args],append(Args,[In,Out],Dargs))),Pred=..[F|Dargs].
 
 probeDCG(Left,Content,Right,Type):-length_between(0,1,Left),length_between(0,1,Right),append(Left,Content,Fisrt),append(Fisrt,Right,In),toDCPred(Type,Pred,In,[]),Pred.
 :-export(ph/2).
@@ -1236,7 +1250,7 @@ ph(Type,Content):-show_call(probeDCG(_,Content,_,Type)).
 length_between(S,E,Left):-between(S,E,X),length(Left,X).
 
 
-:-kb_shared(must_test_801/3).
+:-share_mp(must_test_801/3).
 
 must_test_801([what, rivers, are, there, ?], [sent([what, rivers, are, there, ?]), parse(whq(feature&river-B, s(np(3+pl, np_head(int_det(feature&river-B), [], river), []), verb(be, active, pres+fin, [], pos), [void], []))), sem((answer80([A]):-river(A), A^true)), qplan((answer80([B]):-river(B), B^true)), 
 answers([amazon, amu_darya, amur, brahmaputra, colorado, congo_river, cubango, danube, don, elbe, euphrates, ganges, hwang_ho, indus, irrawaddy, lena, limpopo, mackenzie, mekong, mississippi, murray, niger_river, nile, ob, oder, orange, orinoco, parana, rhine, rhone, rio_grande, salween, senegal_river, tagus, vistula, volga, volta, yangtze, yenisei, yukon, zambesi])],[time(0.0)]).

@@ -8,7 +8,7 @@
 :- reexport(tt0_iface).
 :- reexport(ac_xnl_iface).
 :- reexport(clex_iface).
-:- reexport(nldata('../boxer/boxer')).
+% :- ensure_loaded('../candc/src/prolog/boxer/boxer').
 
 		 /*******************************
 		 *          FIND WORDNET	*

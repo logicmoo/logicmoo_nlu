@@ -1,4 +1,4 @@
-:-module(parser_chat80, [chat80/0,test_chat80_regressions/0,t80/0,t10/0,t11/0,t12/0,t13/0,t14/0,satisfy/1,holds_truthvalue/2]).
+:-module(parser_chat80, [chat80/0,test_chat80_regressions/0,t80/0,/*t10/0,t14/0,*/t11/0,t12/0,t13/0,satisfy/1,holds_truthvalue/2]).
 /** <module>
 % Imperitive Sentence Parser (using DCG)
 %
@@ -325,8 +325,8 @@ chat80 :- locally(tracing80,
 % :- retract(t_l:into_form_code).
 
 :- include(logicmoo_nlu_ext(chat80/clotab)).	% attachment tables
-%:- include(logicmoo_nlu_ext(chat80/newdict)).	% syntactic dictionary
-:- include(logicmoo_nlu_ext(chat80/newdict_regress)).	% syntactic dictionary
+:- include(logicmoo_nlu_ext(chat80/newdict)).	% syntactic dictionary
+% :- include(logicmoo_nlu_ext(chat80/newdict_regress)).	% syntactic dictionary
 :- include(logicmoo_nlu_ext(chat80/slots)).	% fits arguments into predicates
 :- include(logicmoo_nlu_ext(chat80/scopes)).	% quantification and scoping
 % :- include(logicmoo_nlu_ext(chat80/templa)).	% semantic dictionary

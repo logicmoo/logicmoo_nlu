@@ -7,9 +7,11 @@
 
 :- if(\+ (exists_file('ac_xnl_7166.qlf'))).
 :- format(user_error,'~NLoading ac_xnl_7166.qlf (this may take 60-120 seconds the very first time) ... ~n',[]).
-:- time(load_files(ac_xnl_7166,[qcompile(auto)])).
+%:- time(load_files(ac_xnl_7166,[qcompile(auto)])).
 :- endif.
 
+:- if(exists_source(ac_xnl_7166)).
 :- reexport(ac_xnl_7166).
+:- endif.
 
 %:- retractall(assertion_content(retainTerm,_,_)).

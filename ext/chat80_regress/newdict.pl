@@ -741,7 +741,7 @@ adj_db(european,restr).
 not_ccw(ok(W)):-must(nonvar(W)),!,not_ccw(W),!.
 not_ccw(W):-not_ccw_db(W),!.
 not_ccw(W):-is_ccw_db(W),!,fail.
-not_ccw(W):-not(tlbugger:ilc(_:'new_dict.pl':_)),!,show_call(not((ccw_db0(W,G),!,ground(G))) -> asserta(not_ccw_db(W)) ; ((asserta(is_ccw_db(W)),!,fail))),!.
+not_ccw(W):-not(lmcache:ilc(_,'new_dict.pl':_)),!,show_call(not((ccw_db0(W,G),!,ground(G))) -> asserta(not_ccw_db(W)) ; ((asserta(is_ccw_db(W)),!,fail))),!.
 not_ccw(W):-not((ccw_db0(W,G),!,ground(G))),!.
 % closed class words
 ccw_db(W,C):-loop_check_chat80(no_repeats(ccw_db0(W,C))).

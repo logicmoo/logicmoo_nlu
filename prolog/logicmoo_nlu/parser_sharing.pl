@@ -66,6 +66,7 @@ share_mp(XY):- pi_p(XY,PI),!,share_mp(PI).
 share_mp(MP):- strip_module(MP,M,P),share_mp(M,P).
 
 import_and_export(CM,M:F/A):- 
+   must(M:export(M:F/A)),
    (CM\==M-> CM:import(M:F/A) ; true),
    CM:export(M:F/A),!.
 
@@ -98,11 +99,12 @@ share_mp(M,P):- functor(P,F,A), MFA=M:F/A,
 shared_parser_data(XY):- assertion(compound(XY)),fail.
 shared_parser_data(XY):- pi_splits(XY,X,Y),!,shared_parser_data(X),shared_parser_data(Y).
 shared_parser_data(XY):- pi_p(XY,PI)-> XY\==PI,!,shared_parser_data(PI).
-shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!,shared_parser_data(M:P),Imp:import(M:P).
-shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_), Imp:import(M:P).
+shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!, functor(P,F,A),M:export(M:F/A),shared_parser_data(M:P),Imp:import(M:P).
+shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_),functor(P,F,A),M:export(M:F/A),Imp:import(M:P).
 % shared_parser_data(P):- each_parser_module(M),predicate_property(M:P,defined), \+ predicate_property(M:P,imported_from(_)),!,shared_parser_data(M:P).
 shared_parser_data(P):- get_query_from(SM),shared_parser_data(SM:P).
 :- share_mp((shared_parser_data)/1).
+
 
 
 :- op(1150,fx,user:(dynamic_multifile_exported)).
