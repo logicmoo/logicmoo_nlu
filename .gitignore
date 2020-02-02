@@ -1,0 +1,14 @@
+ext/kalm-qa/
+ext/learningbyreading/
+ext/candc/models/
+*~/
+~*/
+.*/
+*.qlf
+*~.*
+*~
+~*
+*_cache
+*-models.jar
+ext/kalm-qa/query
+ext/kalm-qa/metaqa
