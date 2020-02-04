@@ -504,9 +504,18 @@ remove_punctuation(W2,W2).
 
 :- endif.
 
+:- set_prolog_flag(subclause_expansion, false).
+
+
 % ================================================================================================
-%:-  load_parser_interface(parser_candc).
+:-  if(load_parser_interface(parser_candc)).
 % ================================================================================================
+
+%:- debug.
+%:- break.
+
+:- endif.
+
 
 % ================================================================================================
 %:-  load_parser_interface(parser_chart89).

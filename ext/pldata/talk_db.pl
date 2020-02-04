@@ -25,12 +25,14 @@
 
 decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 
+:- decl_talk_db_data(talk_db/1).
 :- decl_talk_db_data(talk_db/2).
 :- decl_talk_db_data(talk_db/3).
 :- decl_talk_db_data(talk_db/4).
 :- decl_talk_db_data(talk_db/5).
 :- decl_talk_db_data(talk_db/6).
-:- decl_talk_db_data(talk_db/7).
+:- decl_talk_db_data(talk_db_new/4).
+:- decl_talk_db_data(talk_db_new/6).
 
 /*
 
@@ -54,8 +56,9 @@ decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 talk_db_argsIsa(comp,1,adjective(comparative)).
 talk_db_argsIsa(superl,1,adjective(superlative)).
 talk_db_argsIsa(noun1,1,singular(plural)).
-talk_db_argsIsa(intransitive,4,base(pluralverb,imperfect,ingform,past_part)).
-talk_db_argsIsa(transitive,4,base(pluralverb,imperfect,ingform,past_part)).
+talk_db_argsIsa(intransitive,4,base(activeverb,imperfect,ingform,past_part)).
+talk_db_argsIsa(transitive,4,base(activeverb,imperfect,ingform,past_part)).
+talk_db_argsIsa(noun_or_verb,0,activeverb(ingform,noun)).
 talk_db_argsIsa(adj,0,(adjective)).
 talk_db_argsIsa(auxiliary,0,(verb)). % will shall wont
 talk_db_argsIsa(conj,0,(conjuntion)).
@@ -102,10 +105,10 @@ talk_db_pos_trans(past_part,verb).
 talk_db_pos_trans(past_part,past).
 talk_db_pos_trans(past_part,particple).
 talk_db_pos_trans(past_part,adjectival).
-talk_db_pos_trans(pluralverb,verb).
-talk_db_pos_trans(pluralverb,plural).
-talk_db_pos_trans(pluralverb,noun).
-talk_db_pos_trans(pluralverb,active).
+talk_db_pos_trans(activeverb,verb).
+%talk_db_pos_trans(activeverb,plural).
+%talk_db_pos_trans(activeverb,noun).
+talk_db_pos_trans(activeverb,active).
 talk_db_pos_trans(ingform,verb).
 talk_db_pos_trans(ingform,active).
 talk_db_pos_trans(ingform,pres).
@@ -118,10 +121,8 @@ getPos(0,_,POSVV,POS):-!,functor(POSVV,POS,_);POS=base.
 getPos(AT,_,POSVV,POS):-arg(AT,POSVV,POS),!.
 
 
-%:- style_check(-discontiguous).
-% :- reexport(pldata(talk_db_pdat)).
 
-:- decl_talk_db_data(talk_db_pos/2).
+:- export(talk_db_pos/2).
 talk_db_pos(POS,String):-nonvar(POS),nonvar(String),!,talk_db_t_0(POS,String),!.
 talk_db_pos(POS,String):-talk_db_t_0(POS,String).
 
@@ -131,35 +132,102 @@ talk_db_pos(String,POSVV,POS,F,0):- !, talk_db(F,String), (F=POSVV -> POS=F ; (P
 talk_db_pos(String,POSVV,POS,F,N):- nonvar(String),!, length(List,N),Search=[_|List],C=..[talk_db,F|Search],nth0(AT,Search,String,_),C,getPos(AT,F,POSVV,POS).
 talk_db_pos(String,POSVV,POS,F,N):- length(List,N),Search=[_|List],C=..[talk_db,F|Search],C,nth0(AT,Search,String,_),getPos(AT,F,POSVV,POS).
 
+show_num_clauses(F/A):- (functor(P,F,A),predicate_property(P, number_of_clauses(C)))->format(' ~w~t ~t ',[F/A=C]);format(' ~w~t ',[F/A='(none)']).
+show_size_left(Message):-
+   format('% ~w~t ~t',[Message]),
+   show_num_clauses(talk_db_new/4),show_num_clauses(talk_db/4),
+   show_num_clauses(talk_db_new/6),show_num_clauses(talk_db/6),
+   nl.
 
-:- decl_talk_db_data(talk_db/1).
+use_new_morefile:- fail.
+
+
 talk_db([F,A|List]):-talk_db_argsIsa(F,N,_),length(List,N),apply(talk_db,[F,A|List]).
-
-% =================================
-% some random talk_db/2-7s from the other file (to help see the meanings)
-% =================================
-
-% =================================
-% talk_db/2-7
-% =================================
-
 talk_db(noun1,Sing,Sing):-talk_db(noun2,Sing).
+talk_db(Type,Verb,Fishing,Fish):- talk_db_new(Type,Verb,Fishing,Fish).
+talk_db(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed2):-talk_db_new(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed2).
 
-:- include('talk_db.nldata').
+talk_db(superl, far, aftermost).
+talk_db(superl, close, formest).
+talk_db(superl, far, furthest).
+
+:- show_size_left("Including talk_db.nldata").
+%:- include('talk_db.nldata').
+:- absolute_file_name(pldata('talk_db.nldata'),
+        File, [access(read)]),
+   open(File, read, In),
+   set_stream(In, encoding(iso_latin_1)),
+   repeat,
+   read(In, P),
+   (P= (:- (G)) -> call(G) ; assertz_if_new(P)),
+      P==end_of_file, !.
+
+
 
 %kill_talk_db_bad_verbs:-!.
-kill_talk_db_bad_verbs:-doall(((
-         talk_db(transitive,Sky,Skies,Skied,Skying,Skied),
-         talk_db(noun1,Sky,Skies),
-         retract(talkdb:talk_db(transitive,Sky,Skies,Skied,Skying,Skied)),
-         assertz(talkdb:talk_db(transitive,Skying,Skies,Skied,Skying,Skied)),
-         assertz(talkdb:talk_db(noun_verb,Sky,Skying)),
-         dmsg(fixed_talkdb_noun_verb(tv,(Sky-->Skies/Skied/Skying))),
-         fail))).
+kill_talk_db_bad_verbs:-
+         show_size_left("correcting..."),
+         talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed),
+         \+ \+ talk_db(noun1,Jacket,Jackets),
+         retract(talkdb:talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed)),
+         Verb = Jackets, %Verb = Jacketing,         
+         assertz_if_new(talkdb:talk_db_new(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed)),
+         assertz_if_new(talkdb:talk_db_new(noun_or_verb,Verb,Jacketing,Jacket)),
+        % dmsg(fixed_talkdb_noun_verb(VerbType,(Jacket-->Jackets/Jacketed/Jacketing))),
+         fail.
+kill_talk_db_bad_verbs:-
+         talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished),
+         \+ \+ talk_db(noun2,Fish),
+         retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished)),
+         Verb = Fishes, %Verb = Fishing,         
+         assertz_if_new(talkdb:talk_db_new(VerbType,Verb,Fishes,Fished,Fishing,Fished)),
+         assertz_if_new(talkdb:talk_db_new(noun_or_verb,Verb,Fishing,Fish)),
+         % dmsg(fixed_talkdb_noun_verb(VerbType,(Fish-->Fishes/Fished/Fishing))),
+         fail.
 
-%:-share_mp(kill_talk_db_bad_verbs/0).
+kill_talk_db_bad_verbs:- \+ use_new_morefile, !, show_size_left("Loaded").
+
+kill_talk_db_bad_verbs:-         
+        prolog_load_context(file,This),
+        show_size_left("Saving now..."),
+        save_to_file('talk_db.more',erase_when(clause_from_assert),talk_db_new),   
+        save_to_file('talk_db.prev',clause_not_here(This),talk_db),
+        show_size_left("Saved...").
+
+
+erase_when(When,Ref,Loc):- call(When,Ref,Loc),!,erase(Ref). 
+clause_not_here(This,Ref,_Loc):- (clause_from_assert(Ref,_); \+ clause_belongs(Ref,This)),!.
+clause_belongs(Ref,Loc):- (clause_from_assert(Ref,_);clause_from_file(Ref,Loc)),!.
+
+clause_from_file(Ref,File):- clause_property(Ref,file(Other)), (Other=File;same_file(Other,File)).
+clause_from_assert(Ref, _):- \+ clause_property(Ref,file(_)), \+ clause_property(Ref,source(_)).
+
+save_to_file(Name,Belongs,F):-
+  File = pldata(Name),
+  absolute_file_name(File,Loc),
+  tell(Loc),
+  format(':- style_check(-(discontiguous)).~n:- style_check(-(singleton)). ~n'),
+ forall(current_predicate(F/A),
+ ((functor(P,F,A),
+  format(':- multifile(~q).~n:- dynamic(~q).~n',[(F/A),(F/A)]),
+   forall((clause(P,true,Ref),call(Belongs,Ref,Loc)),
+     (display(P),write('.'),nl))
+           ))),
+      told,
+      dmsg(compete_save_to_file(Name,F)).
 
 :- kill_talk_db_bad_verbs.
+
+:- if(use_new_morefile).
+:- include('talk_db.more').
+:- show_size_left("Loaded talk_db.more").
+:- endif.       
+%:-share_mp(kill_talk_db_bad_verbs/0).
+
+% =================================
+% some random talk_db/2-6 from the other file (to help see the meanings)
+% =================================
+
 /*
 
 talk_db(adj, aaronic).

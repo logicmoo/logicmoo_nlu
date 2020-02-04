@@ -28,7 +28,7 @@
    Load WordNet
 ======================================================================== */
 
-:- [working/wordnet/wordnet].
+% :- [candc(working/wordnet/wordnet)].
 
 %:- [working/wordnet/vanilla_train_s].
 %:- [working/wordnet/vanilla_train_l].

@@ -9,10 +9,15 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
+:- set_prolog_flag(subclause_expansion, false).
 
-:- user:ensure_loaded(library(logicmoo/util/logicmoo_util_all)).
+:- user:ensure_loaded(library(logicmoo_utils_all)).
+
+
 :- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/boxer/boxer.pl')).
-:- user:ensure_loaded(logicmoo_nlu_ext('candc/parser_boxer.pl')).
+
+
+:- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/nutcracker/nutcracker.pl')).
 
 :- user:call(op(0,xfx,'/')).
 :- user:call(op(0,fx,'-')).

@@ -109759,7 +109759,7 @@ talk_db(noun1,zostera,zosteras).
 talk_db(noun1,zosterops,zosteropses).
 talk_db(noun1,zouave,zouaves).
 talk_db(interj,zounds).
-talk_db(transitive,zoutch,zoutches,zoutch,zoutched,zoutching,zoutched).
+talk_db(transitive,zoutch,zoutches,zoutched,zoutching,zoutched).
 talk_db(domain,zoutch,cookery).
 talk_db(noun1,zubr,zubrs).
 talk_db(noun1,zuche,zuches).

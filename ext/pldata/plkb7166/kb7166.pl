@@ -29,7 +29,7 @@ from_qlfs:-
     kb7166:['dir.header'],
     kb7166:export(mdep/1),
     user:import(kb7166:mdep/1),
-    kb7166:[kb7166_assertions_00],
+    kb7166:[kb7166_asse00],
     expand_file_name('kb7166_asse*.qlf',QLFS),
     maplist(kb7166:ensure_loaded,QLFS).
 
@@ -185,7 +185,7 @@ kb7166_qcompile:- kb_dir(From),cd(From),
 % kb7166_qcompile:-!.
 kb7166_qcompile:- 
    kb_dir(From),
-   atom_concat(From,'/src~/kb7166_assertions_*.pl',Filter),  
+   atom_concat(From,'/src~/kb7166_asse*.pl',Filter),  
    expand_file_name(Filter,List),
    writeq(List),
    maplist(qcompile_if_missing(kb7166),List),!.
@@ -196,7 +196,7 @@ kb7166_qcompile:-
 kb7166_qconsult:- lmcache:kb7166_qconsulted,!.
 kb7166_qconsult:- 
    asserta(lmcache:kb7166_qconsulted),
-   kb_dir(From),atom_concat(From,'/src~/kb7166_assertions_*.qlf',Filter),
+   kb_dir(From),atom_concat(From,'/src~/kb7166_asse*.qlf',Filter),
    expand_file_name(Filter,List),
    maplist(qload,List),!.
 

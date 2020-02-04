@@ -6,11 +6,15 @@
    File Search Paths
 ========================================================================*/
 
-file_search_path(semlib,     'src/prolog/lib').
-file_search_path(boxer,      'src/prolog/boxer').
-file_search_path(knowledge,  'src/prolog/boxer/knowledge').
-file_search_path(lex,        'src/prolog/boxer/lex').
-
+:- prolog_load_context(directory,ThisDir),
+   absolute_file_name('../../../',Dir,[relative_from(ThisDir),file_type(directory)]),
+   maplist(asserta_new,
+           [user:file_search_path(candc,   Dir),
+            user:file_search_path(semlib,     candc('src/prolog/lib')),
+            user:file_search_path(boxer,      candc('src/prolog/boxer')),
+            user:file_search_path(knowledge,  candc('src/prolog/boxer/knowledge')),
+            user:file_search_path(lex,        candc('src/prolog/boxer/lex')),
+            user:file_search_path(nutcracker, candc('src/prolog/nutcracker'))]).
 
 /*========================================================================
    Load Modules

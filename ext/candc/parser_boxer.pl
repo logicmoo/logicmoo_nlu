@@ -6,7 +6,7 @@
 
 :- prolog_load_context(directory,ThisDir),
    absolute_file_name('..',Dir,[relative_from(ThisDir),file_type(directory)]),
-   asserta(user:file_search_path(logicmoo,   Dir)).
+   asserta_if_new(user:file_search_path(logicmoo,   Dir)).
 
 
 user:file_search_path(semlib,     logicmoo('candc/src/prolog/lib')).
@@ -18,6 +18,9 @@ user:file_search_path(lex,        logicmoo('candc/src/prolog/boxer/lex')).
 :- thread_local sem/5.
 :- multifile sem/5.
 :- discontiguous sem/5.
+
+
+
 
 :- use_module(boxer(input)).
 :- use_module(library(lists)).
@@ -95,7 +98,8 @@ e2lf(English,LF):-not(is_list(English)),atomic(English),!,
    e2lf(Sents,LF),!. 
 e2lf(English,LF):- !,e2lf(sent(English),LF).
 
-:- e2lf("You find yourself standing by the door of Captain Picard's quarters.
+
+e2lf_test   :- e2lf("You find yourself standing by the door of Captain Picard's quarters.
 He isn't very fond of visitors, but you decide to stay and have a look around . 
 You can see several different ancient artifacts on tables and small pedestals, and a large wooden wardrobe is facing south .
 A comfortable looking recliner with a matching footrest sits beside the door, along with a bright reading lamp and end table .

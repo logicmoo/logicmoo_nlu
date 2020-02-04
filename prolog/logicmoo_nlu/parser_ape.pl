@@ -19,6 +19,8 @@
 :- absolute_file_name(logicmoo_nlu_ext('ape/'),Dir,[file_type(directory)]),
    assertz(user:file_search_path(ape,Dir)).
 
+  virtualize_source
+
 :- reexport(ape(parser/ace_to_drs)).
 :- reexport(ape(get_ape_results)).
 :- reexport(ape(utils/drs_to_drslist)).

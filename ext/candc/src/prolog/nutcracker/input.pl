@@ -1,5 +1,5 @@
 
-:- module(input,[openInput/1,inputDRS/2,lenDRS/2,openModel/3]).
+:- module(input_nc,[openInput/1,inputDRS/2,lenDRS/2,openModel/3]).
 
 :- use_module(semlib(errors),[error/2,warning/2]).
 

@@ -12,9 +12,6 @@
 :- shared_parser_data(in_continent/2).
 
 :- use_module(library(clpr)).
-:- multifile(baseKB:expect_file_mpreds/1).
-:- dynamic(baseKB:expect_file_mpreds/1).
-% WHY DID I HAVE? :- prolog_load_context(file, File),(baseKB:expect_file_mpreds(File)->true;asserta(baseKB:expect_file_mpreds(File))).
 :- install_constant_renamer_until_eof.
 :- set_prolog_flag(do_renames_sumo,never).
 

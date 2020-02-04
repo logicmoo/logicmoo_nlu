@@ -8,6 +8,7 @@
 :- use_module(semlib(options),[option/2]).
 :- use_module(semlib(errors),[warning/2,gold/2]).
 :- use_module(boxer(categories),[att/3]).
+
 :- use_module(knowledge(antecedent),[extractFeaturesAna/2,
                                      extractFeaturesAnt/2,
                                      ana_ant_sort/3,
