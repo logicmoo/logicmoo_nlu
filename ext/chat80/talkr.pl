@@ -74,10 +74,12 @@ answer802((answer80([]):-E),[B]) :- !, holds_truthvalue(E,B).
 answer802((answer80([X]):-E),S) :- !, seto(X,E,S).
 answer802((answer80(X):-E),S) :- seto(X,E,S).
 
-bago(X,E,S):- b_getval(ex_set,ExV),bago2(ExV,X,E,S).
+get_ex_set(ExV):- nb_current(ex_set,ExV);ExV=[].
+
+bago(X,E,S):- get_ex_set(ExV),bago2(ExV,X,E,S).
 bago2(ExV,X,E,Set):- seto2(ExV,X,E,Set).
 
-seto(X,E,S):- b_getval(ex_set,ExV),seto2(ExV,X,E,S).
+seto(X,E,S):- get_ex_set(ExV),seto2(ExV,X,E,S).
 
 
 seto2(ExV,X,G^E,Set):- must(callable(E)), !,seto2(G^ExV,X,E,Set).
