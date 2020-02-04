@@ -7,3 +7,4 @@ maintainer( 'TeamSPoon', 'https://github.com/TeamSPoon/' ).
 home( 'https://github.com/TeamSPoon/logicmoo_nlu' ).
 download( 'https://github.com/TeamSPoon/logicmoo_nlu/release/*.zip' ).
 requires(logicmoo_base).
+requires(dictoo).
