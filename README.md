@@ -1,3 +1,277 @@
+# Installation
+
+Using SWI-Prolog 7.1 or later:
+
+````
+?- pack_install(logicmoo_nlu).
+````
+
+# Starting
+
+````
+nlutest@gitlab:~$ swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 8.1.20)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- ensure_loaded(library(logicmoo_nlu)).
+Installed packages (11):
+
+i dictoo@1.2.111            - Dict-like OO Syntax
+i eggdrop@1.2.111           - Hook up to an existing IRC Client called an Eggdrop
+i gvar_syntax@1.2.111       - Global Variable Syntax
+i instant_prolog_docs@1.2.111 - Magically document prolog source files based on predicate and variable naming conventions
+i logicmoo_base@1.2.111     - LogicMOO - Extends Prolog Programming to support Dynamic Epistemic Logic (DEL) with Constraints
+i logicmoo_nlu@1.2.111      - Various English to Logic Converters - warning: HUGE amount of lexical and test data
+i logicmoo_utils@1.2.111    - Common predicates that are used throughout LogicMOO Software
+i multimodal_dcg@1.2.111    - Reduce floundering of DCGs by constraining and narrowing search
+i pfc@1.2.111               - Pfc -- a package for forward chaining in Prolog
+i predicate_streams@1.2.111 - Implement your own Abstract Predicate Streams
+i s_expression@1.2.111      - Utilities for Handling of S-Expression Lisp/Scheme-Like forms and parsing of KIF, GDL, PDDL, CLIF
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:88
+% SET TOPLEVEL OPTIONS
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:118
+% SETUP KB EXTENSIONS
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:130
+% PACK LOADER
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_packs.pl:21
+% AUTOLOAD PACKAGES
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:137
+% AUTOLOAD PACKAGES
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:171
+% SETTING DEFAULT ARGV!!!!
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:177
+% LOAD PARTS OF SYSTEM EARLY
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_swilib.pl:135
+% Loading logtalk
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_swilib.pl:136
+% Skipping logtalk
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_swilib.pl:137
+% Skipping logtalk
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:201
+% SETUP LOGICMOO OPERATORS
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:223
+% SETUP PATHS FOR PROLOGMUD/LOGICMOO
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:236
+% LOAD LOGICMOO UTILS
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:251
+% LOGICMOO/CYC Alignment util
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo/plarkc/logicmoo_i_cyc_rewriting.pl:1815
+% I am here
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo/plarkc/logicmoo_i_cyc_rewriting.pl:1882
+% no need to makeRenames!?
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_base/prolog/logicmoo_lib.pl:269
+% [Required] Load the Logicmoo Type System
+% dot_cfg:using_dot_type(gvar_syntax,baseKB)
+% dot_cfg:using_dot_type(core,baseKB)
+% /home/nlutest/.local/share/swi-prolog/pack/pfc/prolog/pfc_lib_2_0.pl:141
+% SCAN AUTOLOADING PACKAGES...
+% /home/nlutest/.local/share/swi-prolog/pack/pfc/prolog/pfc_lib_2_0.pl:0
+% .. SCAN AUTOLOADING COMPLETE
+% /home/nlutest/.local/share/swi-prolog/pack/pfc/prolog/pfc_lib_2_0.pl:162
+% cannot_write_autoload_dir('/usr/lib/swi-prolog/library/').
+% created_library_index_for('/home/nlutest/.local/share/swi-prolog/pack/logicmoo_utils/prolog/').
+% created_library_index_for('/home/nlutest/.local/share/swi-prolog/pack/predicate_streams/prolog/').
+% /home/nlutest/.local/share/swi-prolog/pack/pfc/prolog/pfclib/system_base.pfc.pl:60
+% '$def_modules'([clause_expansion/2], [system-[clause_expansion/2]]).
+
+````    
+Quite a bit more output about 123 seconds later will see something like...
+````
+% List of possible data transformations
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_nlu/prolog/logicmoo_nlu/nl_pipeline.pl:592
+% installed_converter(parser_all, input_to_acetext(+input, -acetext)).
+% installed_converter(parser_all, tokens_to_acetext(+tokens, -acetext)).
+% installed_converter(get_ape_results, ace_to_pkif(+acetext, -kif(p))).
+% installed_converter(ace_to_drs, call_tokenizer(+acetext, guess+on, -sentences:set, -sentencesToParse)).
+% installed_converter(ace_to_drs, paragraphs_to_drs(+sentences:list, guess+on, catch+off, startID+1, -sentences, -syntaxTrees, -drs0, -messages, -time)).
+% installed_converter(ace_to_drs, call_parser(+sentences:list, startID+1, -syntaxtrees, -drs0:reversed_set)).
+% installed_converter(ace_to_drs, acetext_to_drs(+acetext, -sentences:set, -syntaxTrees, -drs0, -messages)).
+% installed_converter(tokenizer, tokenize(+input, -tokens)).
+% installed_converter(tokens_to_sentences, tokens_to_sentences(+tokens:set, -sentences:set)).
+% installed_converter(tokens_to_sentences, tokens_to_paragraphs(+tokens:set, -sentences:set)).
+% installed_converter(drs_fol_pnf, drs_pnf(+drs, -fol)).
+% installed_converter(drs_fol_pnf, drs_fol(+drs, -pnf)).
+% installed_converter(get_ape_results, fol_to_pkif(+pnf, -kif(p))).
+% installed_converter(get_ape_results, fol_to_pkif(+fol, -kif(f))).
+% installed_converter(get_ape_results, fol_to_pkif(+drs, -kif(d))).
+% installed_converter(get_ape_results, fol_to_pkif(+sdrs, -kif(s))).
+% installed_converter(drs_to_ace, drs_to_ace(+drs0, -paraphrase:set)).
+% installed_converter(drs_to_drslist, drslist_to_ace(+drs0:list, -paraphrase:set)).
+% installed_converter(drs_to_drslist, drs_to_drslist(+drs0, -drs:set)).
+% installed_converter(drs_to_sdrs, drs_to_sdrs(+drs, -sdrs)).
+% installed_converter(parser_chat80, into_text80(+tokens, -text80)).
+% installed_converter(parser_chat80, sent_to_parsed(+text80, -syntaxTree80)).
+% installed_converter(parser_chat80, i_sentence(+syntaxTree80, -i_sentence)).
+% installed_converter(parser_chat80, clausify80(+i_sentence, -clausify80)).
+% installed_converter(parser_chat80, simplify80(+clausify80, -simplify80)).
+% installed_converter(parser_chat80, qplan(+simplify80, -qplan)).
+% installed_converter(parser_chat80, results80(+qplan, -results80)).
+% /home/nlutest/.local/share/swi-prolog/pack/logicmoo_nlu/prolog/logicmoo_nlu/nl_pipeline.pl:595
+% parser_all_complete.......
+chat80("Which countries have a population exceeding 10 million?").
+chat80("Which countries contain a city?").
+chat80("Which countries contain 2 cities?").
+chat80("Which countries contain 3 cities?").
+chat80("Which countries contain more than 3 cities?").
+chat80("Which countries contain more than 2 cities?").
+chat80("Which continents contain more than 4 cities?").
+chat80("Which asian countries have a population exceeding 10 million?").
+chat80("What is the average area of the countries in each continent?").
+chat80("What is a river?").
+chat80("What is a river that is in asia?").
+chat80("Which rivers are not in asia?").
+chat80("What is a river that is not happy?").
+chat80("does afghanistan border china?").
+chat80("what is the capital of upper_volta?").
+chat80("where is the largest country?").
+chat80("which countries are european?").
+chat80("which country's capital is london?").
+chat80("which is the largest african country?").
+chat80("how large is the smallest american country?").
+chat80("what is the ocean that borders african countries and that borders asian countries?").
+chat80("what are the capitals of the countries bordering the baltic?").
+chat80("how many countries does the danube flow through?").
+chat80("what is the total area of countries south of the equator and not in australasia?").
+chat80("what is the average area of the countries in each continent?").
+chat80("is there more than one country in each continent?").
+chat80("is there some ocean that does not border any country? ").
+chat80("what are the countries from which a river flows into the black_sea?").
+chat80("what are the continents no country in which contains more than two cities whose population exceeds 1 million? ").
+chat80("which country bordering the mediterranean borders a country that is bordered by a country whose population exceeds the population of india?").
+chat80("which countries have a population exceeding 10 million?").
+chat80("which countries with a population exceeding 10 million border the atlantic?").
+chat80("what percentage of countries border each ocean?").
+chat80("what countries are there in europe?").
+chat80([which, is, the, largest, african, country, ?]).
+chat80("which countries are bordered by two seas?", [[egypt, iran, israel, saudi_arabia, turkey]]).
+chat80("How many rivers are not in asia?", 25).
+chat80("How many rivers are in asia?", 16).
+chat80("How many asian countries have a population exceeding 10 million?", 20).
+chat80("How many countries have a population exceeding 10 million?", 50).
+chat80("What are the continents in which no country contains more than 3 cities?", [africa, antarctica, australasia, europe]).
+chat80("What are the continents not containing a country?", [antarctica]).
+chat80("What are the continents no country in which contains more than two cities whose population exceeds 1 million ?", [africa, antarctica, australasia]).
+chat80("What are the continents in which no country contains more than two cities whose population exceeds 1 million?", [africa, antarctica, australasia]).
+chat80("What are the continents containing a country in which contains more than two cities whose population exceeds 1 million?", [america, asia, europe]).
+
+true.
+
+[debug]  ?-
+
+````
+
+You can use one of the canned queries from above
+
+# Running
+
+````
+
+[debug]  ?- chat80("how large is the smallest american country?").
+
+% ============================================BEGIN=============================================================
+
+%                       [how,large,is,the,smallest,american,country,?]
+
+% ---------------------------------------------------------------------------------------------------
+
+Parse:(report4) 0.0010000000000047748 sec(s).
+whq(A, s(np(3+sg, np_head(det(the(sg)), [sup(most, adj(small)), adj(american)], country), []), verb(be, active, pres+fin, [], pos(B)), [varg(pred, value(adj(large), wh(A)))], [])) :-
+    whq(A,
+        s(np(3+sg,
+             np_head(det(the(sg)),
+                     [sup(most, adj(small)), adj(american)],
+                     country),
+             []),
+          verb(be, active, pres+fin, [], pos(B)),
+          [varg(pred, value(adj(large), wh(A)))],
+          [])).
+
+
+iSemantics:(report4) 0.0010000000000047748 sec(s).
+answer80([B]):-C^(D^(setof(E:F,(country(F),areaOf(F,E),american(F)),D),aggregate80(min,D,C)),areaOf(C,B))
+
+
+Reply:(report4) 0.002999999999985903 sec(s).
+[[--(0.133,ksqmiles)]]
+
+
+% ---------------------------------------------------------------------------------------------------
+
+% ---------------------------------------------------------------------------------------------------
+
+%                       [how,large,is,the,smallest,american,country,?]
+
+% ============================================END=============================================================
+~n~n
+true.
+
+[debug]  ?- chat80("what is the smallest american country?").
+
+% ============================================BEGIN=============================================================
+
+%                       [what,is,the,smallest,american,country,?]
+
+% ---------------------------------------------------------------------------------------------------
+
+Parse:(report4) 0.0010000000000047748 sec(s).
+whq(A, s(np(3+sg, wh(A), []), verb(be, active, pres+fin, [], pos(B)), [varg(dir, np(3+sg, np_head(det(the(sg)), [sup(most, adj(small)), adj(american)], country), []))], [])) :-
+    whq(A,
+        s(np(3+sg, wh(A), []),
+          verb(be, active, pres+fin, [], pos(B)),
+
+          [ varg(dir,
+                 np(3+sg,
+                    np_head(det(the(sg)),
+                            [sup(most, adj(small)), adj(american)],
+                            country),
+                    []))
+          ],
+          [])).
+
+
+iSemantics:(report4) 0.0 sec(s).
+answer80([B]):-C^(setof(D:E,(country(E),areaOf(E,D),american(E)),C),aggregate80(min,C,B))
+
+
+Reply:(report4) 0.0030000000000143245 sec(s).
+[[grenada]]
+
+
+% ---------------------------------------------------------------------------------------------------
+
+% ---------------------------------------------------------------------------------------------------
+
+%                       [what,is,the,smallest,american,country,?]
+
+% ============================================END=============================================================
+~n~n
+true.
+
+[debug]  ?-
+
+````
+
+
+
+
+
+
+
+
+
+Source code available and pull requests accepted at
+https://github.com/TeamSPoon/logicmoo_nlu
+
+
+
+
+
+
+
 Initial starter Docs https://github.com/TeamSPoon/PrologMUD/wiki
 
 Installation see.. https://docs.google.com/document/d/1fkOxnmI1LqxadvZuCRS-fGIEweIKyPn6AVGp5Yjse1I/edit
