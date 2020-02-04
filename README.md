@@ -6,7 +6,7 @@ Using SWI-Prolog 7.1 or later:
 ?- pack_install(logicmoo_nlu).
 ````
 
-# Running
+# Starting
 
 ````
 nlutest@gitlab:~$ swipl
@@ -161,10 +161,12 @@ chat80("What are the continents containing a country in which contains more than
 true.
 
 [debug]  ?-
+
 ````
 
 You can use one of the canned queries from above
 
+# Running
 
 ````
 
