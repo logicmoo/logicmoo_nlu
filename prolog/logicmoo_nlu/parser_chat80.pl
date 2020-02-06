@@ -129,7 +129,7 @@ cycQuery80(Q):- current_predicate(_,Q),call(Q).
 :- shared_parser_data(parser_chat80:sentence80/5).
 :- shared_parser_data(parser_chat80:noun/6).
 
-chat80_t(UIn):- chat80_t(UIn,O1,_O2),say(O1).
+chat80_t(UIn):- chat80_t(UIn,O1,_O2),fmt(O1).
 chat80_t(UIn,O1,O2):-
    convert_to_sel_string(fail,a,=,UIn,Mid),!,
    process_run_real(_Callback,_StartParse,Mid,O1,O2),

@@ -393,7 +393,7 @@ get_it:-
    load_language_file(pldata(nldata_freq_pdat)),
    %talkdb:load_language_file(pldata(talk_db)),
    reexport(pldata(talk_db)),
-   load_language_file(pldata(nldata_cycl_pos0))),!.
+   nop(load_language_file(pldata(nldata_cycl_pos0)))),!.
 
 
 :- set_prolog_flag(qcompile,false).

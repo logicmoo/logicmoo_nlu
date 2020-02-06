@@ -1,5 +1,5 @@
 
-:- module(input_box,[openInput/0,
+:- module(input,[openInput/0,
                  preferred/2,     % +ID, -CCG
                  identifyIDs/1]).
 

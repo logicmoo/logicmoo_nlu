@@ -80,4 +80,4 @@
 
 :- reexport(ape('utils/serialize_term')).
 
-:- reexport(ape('utils/owlswrl/get_owl_output')).
+%:- reexport(ape('utils/owlswrl/get_owl_output')).

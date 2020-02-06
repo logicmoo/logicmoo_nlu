@@ -17,7 +17,7 @@
 :- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/boxer/boxer.pl')).
 
 
-:- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/nutcracker/nutcracker.pl')).
+%:- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/nutcracker/nutcracker.pl')).
 
 :- user:call(op(0,xfx,'/')).
 :- user:call(op(0,fx,'-')).

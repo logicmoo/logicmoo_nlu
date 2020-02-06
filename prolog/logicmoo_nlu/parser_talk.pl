@@ -104,8 +104,10 @@ clausify_literal(L,L).
 % Grammar
 % Questions
 
+optionalText1(X) --> { length(X,L),L > 0, L < 33 } , X.
+optionalText1(_) --> [].
 
-q(Q) --> q1(Q), optionalText([?]).
+q(Q) --> q1(Q), optionalText1([?]).
 q(S => answer(S)) --> s(S,nogap),[?].
 
 
