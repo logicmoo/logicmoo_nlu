@@ -285,24 +285,33 @@ deepen_pos(Call):- deepen_pos_0(Call) *->  true ; locally(t_l:useAltPOS,deepen_p
 :-meta_predicate(deepen_pos_0(0)).
 deepen_pos_0(Call):-one_must(Call,locally(t_l:usePlTalk,Call)).
 
+call_until_failed([H,(!)|T]):- !,call_until_failed([(H,!)|T]).
+call_until_failed([H|T]):- !,
+  call(H)*->(call_until_failed(T),!);fmt(failed(H)).
+call_until_failed([]).
 
 % any_to_string("How many countries are there?",X),splt_words(X,Y,Z),vars_to_ucase(Y,Z),maplist(call,Z)
 
+
 :-share_mp(process_run_real/5).
 process_run_real(Callback,StartParse,UIn,MUSTP,WTIME) :-
+  ignore((var(Callback),Callback=report)),
+  ignore((var(StartParse),runtime(StartParse))),!,
+
+  call_until_failed([
    must([sent=(U),parse=(E),sem=(S),qplan=(QP),answers=(Results)]=MUSTP),
    must([time(WholeTime)]=WTIME),
    flag(sentenceTrial,_,0),
-   ignore((var(Callback),Callback=report)),
    must(words_to_w2(UIn,U)),!,
    call(Callback,U,'Sentence'(Callback),0,expr),
-   ignore((var(StartParse),runtime(StartParse))),!,
-   (if_try(nonvar(U),sent_to_parsed(U,E)) *-> ignore((U\==UIn,call(Callback,U,'POS Sentence'(Callback),0,expr))); (call(Callback,U,'Rewire Sentence'(Callback),0,expr),!,fail)),
+   (if_try(nonvar(U),deepen_pos(sent_to_parsed(U,E))) *-> 
+     ignore((U\==UIn,call(Callback,U,'POS Sentence'(Callback),0,expr))); 
+     (call(Callback,U,'Rewire Sentence'(Callback),0,expr),!,fail)),
    (flag(sentenceTrial,TZ,TZ), TZ>5 -> (!) ; true),
    once((
       runtime(StopParse),
       ParseTime is StopParse - StartParse,
-      % call(Callback,E,'Parse',ParseTime,portray),  
+      call(Callback,E,'Parse',ParseTime,portray),  
       (flag(sentenceTrial,TZ2,TZ2+1), TZ2>5 -> (!,fail) ; true),
       runtime(StartSem))),
    once((if_try(nonvar(E),deepen_pos(sent_to_prelogic(E,S))))),
@@ -321,7 +330,7 @@ process_run_real(Callback,StartParse,UIn,MUSTP,WTIME) :-
    TimeAns is StopAns - StartAns,
    call(Callback,Results,'Reply',TimeAns,expr),
    WholeTime is ParseTime + SemTime + TimePlan + TimeAns,
-   p1.
+   p1]).
 
 results80(S1,Results):- nonvar(S1),findall(Res,deepen_pos((answer802(S1,Res),Res\=[])),Results).
 

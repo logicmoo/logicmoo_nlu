@@ -81,28 +81,11 @@ Example:
 %
 tokenize([], []) :- !.
 
-tokenize(String, Tokens) :-  
-   string(String),
-   string_to_atom(String,Atom),!,
-   tokenize(Atom, Tokens).
-
-tokenize(Atom, Tokens) :-
-	atom(Atom),
-	!,
-	atom_codes(Atom, Codes),
-	codes_to_tokens(Codes, Tokens).
-
-tokenize([C | Cs], Tokens) :- 
-        integer(C), maplist(integer,Cs),!,
-	codes_to_tokens([C | Cs], Tokens).
-
-tokenize([NC | NCs], Tokens) :- 
-        is_char_code(NC), maplist(is_char_code,NCs),!,
-        name([NC | NCs],[C | Cs]),
-	codes_to_tokens([C | Cs], Tokens).
-tokenize(List, List):- assertion(is_list(List)),!.
-
-is_char_code(A):- atom(A),atom_length(A,1).
+tokenize(Codes, Tokens) :-  is_codelist(Codes),!,
+   codes_to_tokens(Codes, Tokens),!.
+tokenize(Chars, Tokens) :- (is_charlist(Chars);atom(Chars);string(Chars);number(Chars)), 
+   string_codes(Chars,Codes),!,codes_to_tokens(Codes, Tokens).
+tokenize(S, Tokens) :- any_to_string(S,String), string_codes(String,Codes),!,codes_to_tokens(Codes, Tokens).
 
 
 %% codes_to_tokens(+Codes:list, -Tokens:list) is det.

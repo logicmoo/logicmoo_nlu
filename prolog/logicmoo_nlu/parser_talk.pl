@@ -60,15 +60,15 @@ talkpl(Sentence,Reply) :-
 talkpl(Sentence,error('too difficult'(Sentence))).
 
 % talkpl_reply a question
-talkpl_reply(query,FreeVars,  (answer(Answer) :- Condition),Reply) :-  
-(setof(Answer,FreeVars^req(Condition),Answers)
+talkpl_reply(query,FreeVars, (answer(Answer) :- Condition), Reply) :-  
+(setof(Answer,FreeVars^satisfy(Condition),Answers)
  -> Reply = answer(Answers)
  ; (Answer == yes
  -> Reply = answer([no])
  ; Reply = answer([none]))),!.
  
 % talkpl_reply an assertion
-talkpl_reply(assertion,_,Assertion,asserted(Assertion)) :-  add(Assertion),  !.
+talkpl_reply(assertion,_,Assertion,asserted(Assertion)) :-  ain(Assertion),  !.
 talkpl_reply(_,_,_,error('unknown type')).
 
 

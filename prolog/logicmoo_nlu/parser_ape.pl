@@ -19,7 +19,7 @@
 :- absolute_file_name(logicmoo_nlu_ext('ape/'),Dir,[file_type(directory)]),
    assertz(user:file_search_path(ape,Dir)).
 
-  virtualize_source
+  
 
 :- reexport(ape(parser/ace_to_drs)).
 :- reexport(ape(get_ape_results)).
@@ -49,8 +49,8 @@
 :- set_prolog_flag(float_format, '%.11g' ).
 
 % Import the lexicons
-:- style_check(-singleton).
-:- style_check(-discontiguous).
+:- style_check(-(singleton)).
+:- style_check(-(discontiguous)).
 :- reexport(ape(lexicon/clex)).
 :- reexport(ape(lexicon/ulex)).
 :- style_check(+discontiguous).

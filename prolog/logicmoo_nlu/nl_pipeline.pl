@@ -74,7 +74,7 @@
 % ==============================================================================
 %   
 % APE: Converter Pipeline
-%   acetext, sentences, syntaxTrees, drs, drs0, sdrs, fol, pnf, tokens, 
+%   acetext, sentences, syntaxTrees, drs, drs0, sdrs, fol, pnf, (tokens), 
 %        sentencesToParse, paraphrase
 % 
 % CHAT80:  acetext, text_no_punct, pos_sents_pre,  syntaxTree80, qplan
@@ -86,10 +86,11 @@
 
 %% install_converter(+FunctorArgList).
 %
-%  ?- install_converter(tokens_to_paragraphs(+tokens, -sentences:set)).
+%  ?- install_converter(tokens_to_paragraphs(+(tokens), -sentences:set)).
 %  ?- install_converter(call_parser(+sentences:list, +(startID,1), -syntaxtrees, -(drs0,reversed))).
 %
 :-meta_predicate(install_converter(*)).
+:-share_mp(install_converter/1).
 
 install_converter(M:XY):- !, install_converter(M,XY).
 install_converter(XY):- strip_module(XY,M,CNV),install_converter(M,CNV).
@@ -102,10 +103,10 @@ install_converter(M,CNV):-
   '@'(export(M:F/A),M),
   '@'(import(M:F/A),parser_all),
   '@'(import(M:F/A),baseKB),
+  system:import(M:F/A),
   dmsg(installed_converter(M,CNVLST)),
   must(ainz(installed_converter(M,CNVLST))).
 %install_converter(M,CNV):-strip_module(CNV,M,CNVLST),functor(CNVLST,F,A), '@'(export(M:F/A),M), must(assertz_new(installed_converter(M,CNVLST))).
-:-share_mp(install_converter/1).
 
 
 
@@ -255,7 +256,7 @@ get_pipeline_nvlist(TID,AllNameValues):-
 %
 %  Run a pipeline to yeild NameValues list
 %
-run_pipeline(Text):- run_pipeline(Text,[kif(p)=_,qplan=_,results80=_],O),show_kvs(O).
+run_pipeline(Text):- run_pipeline(Text,[kif(p)=_,lf=_,clause=_,qplan=_,results80=_],O),show_kvs(O).
 
 pipeline_input(X=Text,[X=Text]):-!.
 pipeline_input([X=Text|More],[X=Text|More]):-!.
@@ -411,12 +412,14 @@ load_parser_interface(File):- call(File:ensure_loaded_no_mpreds(File)).
 % ================================================================================================
 :- use_module(ape(parser/ace_to_drs)).
 :- use_module(ape(get_ape_results)).
+:- user:import(get_ape_results:ace_to_pkif/2).
+:- system:import(get_ape_results:ace_to_pkif/2).
 
 
-input_to_acetext(Input,AceText):- tokenize(Input, Tokens),
+input_to_acetext(Input,AceText):- atomic(Input), tokenize(Input, Tokens),
    tokens_to_acetext(Tokens,AceText).
 
-tokens_to_acetext(Tokens,AceText):- notrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).
+tokens_to_acetext(Tokens,AceText):- notrace((into_text80(Tokens,TokensP),is_list(TokensP),tokens_to_acetext0(TokensP,AceText))).
 
 any_nb_to_atom(nb(N),A):- any_to_atom(N,A),!.
 any_nb_to_atom(N,A):- any_to_atom(N,A).
@@ -430,7 +433,7 @@ tokens_to_acetext0([T,P],AceText):- atomic_list_concat([T,P],' ',AceText),!.
 tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
 
 :- install_converter(parser_all:input_to_acetext(+input, -acetext)).
-:- install_converter(parser_all:tokens_to_acetext(+tokens, -acetext)).
+:- install_converter(parser_all:tokens_to_acetext(+(tokens), -acetext)).
 
 
 :- install_converter(get_ape_results:ace_to_pkif(+acetext, -kif(p))).
@@ -438,9 +441,9 @@ tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,to
 :- install_converter(ace_to_drs:paragraphs_to_drs(+sentences:list, +(guess,on), +(catch,off), +(startID,1), -sentences, -syntaxTrees, -drs0, -messages, -time)).
 :- install_converter(ace_to_drs:call_parser(+sentences:list, +(startID,1), -syntaxtrees, - drs0:reversed_set)).
 :- install_converter(ace_to_drs:acetext_to_drs(+acetext, -sentences:set, -syntaxTrees, -drs0, -messages)).
-:- install_converter(tokenizer:tokenize(+input, -tokens)).
-:- install_converter(tokens_to_sentences:tokens_to_sentences(+tokens:set, -sentences:set)).
-:- install_converter(tokens_to_sentences:tokens_to_paragraphs(+tokens:set, -sentences:set)).
+:- install_converter(tokenizer:tokenize(+input, -(tokens))).
+:- install_converter(tokens_to_sentences:tokens_to_sentences(+(tokens):set, -sentences:set)).
+:- install_converter(tokens_to_sentences:tokens_to_paragraphs(+(tokens):set, -sentences:set)).
 :- install_converter(drs_fol_pnf:drs_pnf(+drs, -fol)).
 :- install_converter(drs_fol_pnf:drs_fol(+drs, -pnf)).
 
@@ -478,7 +481,7 @@ remove_punctuation(W2,W2).
 %:- install_converter(parser_all:remove_punctuation(+acetext,-acetext_no_punct)).
 
 %:- install_converter(parser_chat80:words_to_w2(+acetext_no_punct,-pos_sents_pre)).
-:- install_converter(parser_chat80:into_text80(+tokens, -text80)).
+:- install_converter(parser_chat80:into_text80(+(tokens), -text80)).
 :- install_converter(parser_chat80:sent_to_parsed(+text80, -syntaxTree80)).
 :- install_converter(parser_chat80:i_sentence(+syntaxTree80,-i_sentence)).
 :- install_converter(parser_chat80:clausify80(+i_sentence,-clausify80)).
@@ -524,6 +527,16 @@ remove_punctuation(W2,W2).
 % ================================================================================================
 :-  if(load_parser_interface(parser_talk)).
 % ================================================================================================
+
+eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
+   show_call(talkpl_parse(Sentence,LF,Type)),
+   show_call(talkpl_clausify(LF,Clause,FreeVars)),!.
+   
+
+:- install_converter(parser_all,eng_to_talkpl(+(tokens),-lf,-type,-clause,+(freevars))).
+:- install_converter(parser_talk,talkpl_parse(+(tokens),-lf,-type)).
+:- install_converter(parser_talk,talkpl_clausify(+lf,-clause,-(freevars))).
+:- install_converter(parser_talk,talkpl_reply(+type,+(freevars),+clause,-reply)).
 
 %:- debug.
 
@@ -600,12 +613,12 @@ baseKB:sanity_test:- run_pipeline(input='All persons are happy.',[kif(p)=_],O),w
 baseKB:regression_test:- run_pipeline('What are the oceans that border african countries and that border asian countries ?').
 baseKB:regression_test:- run_pipeline('What is the ocean that border african countries and that border asian countries?',[qplan=_],O),wdmsg(O).
 baseKB:regression_test:- run_pipeline(input='what countries are there in europe ?',[qplan=_],O),show_kvs(O).
-baseKB:regression_test:- must_test_80(Tokens,_,_),run_pipeline([tokens=Tokens],[qplan=_],O),show_kvs(O).
+baseKB:regression_test:- must_test_80(Tokens,_,_),run_pipeline([(tokens)=Tokens],[qplan=_],O),show_kvs(O).
 baseKB:regression_test_TODO:- run_pipeline(input='A person who loves all animals is loved by someone.',[kif(p)=_],O),show_kvs(O).
 animals_test:- must_det_l((ace_to_pkif('A person who loves all animals is loved by someone.',X),kif_to_boxlog(X,BOX),portray_clause(user_error,(fol:-BOX)))).
 baseKB:regression_test:- animals_test.
 
-:- baseKB:import(get_ape_results:ace_to_pkif/2).
+:- import(get_ape_results:ace_to_pkif/2).
 :- baseKB:import(get_ape_results:rename_vars/2).
 
 % som3how this next directive changes  -/1 op?
