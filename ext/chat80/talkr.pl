@@ -74,7 +74,7 @@ answer802((answer80([]):-E),[B]) :- !, holds_truthvalue(E,B).
 answer802((answer80([X]):-E),S) :- !, seto(X,E,S).
 answer802((answer80(X):-E),S) :- seto(X,E,S).
 
-get_ex_set(ExV):- nb_current(ex_set,ExV);ExV=[].
+get_ex_set(ExV):- nb_current(ex_set,ExV)->true;ExV=[].
 
 bago(X,E,S):- get_ex_set(ExV),bago2(ExV,X,E,S).
 bago2(ExV,X,E,Set):- seto2(ExV,X,E,Set).
@@ -145,9 +145,9 @@ satisfy(P) :- catch(call(P),E,(dmsg(call(P)-->E),break,fail)).
 
 
 :- module_transparent((^)/2).
-^(X,P) :- b_getval(ex_set,WazV), with_ex_v([X|WazV],satisfy(P)).
+^(X,P) :- get_ex_set(WazV), with_ex_v([X|WazV],satisfy(P)).
 
-ex_satisfy(X,P) :- b_getval(ex_set,WazV), with_ex_v([X|WazV],satisfy(P)).
+ex_satisfy(X,P) :- get_ex_set(WazV), with_ex_v([X|WazV],satisfy(P)).
 % :- system:import((^)/2).
 
 with_ex_v(WazV,G) :- locally(b_setval(ex_set,WazV),G).

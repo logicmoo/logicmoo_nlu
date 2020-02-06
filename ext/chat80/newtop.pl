@@ -180,8 +180,11 @@ get_prev_run_results(U,List,Time):-must_test_80(U,List,Time),!.
 get_prev_run_results(_,[],[]).
 
 :- share_mp(call_in_banner/2).
+call_in_banner(U,Call):- in_terse,!,call(Call).
 call_in_banner(U,Call):- setup_call_cleanup(p2(begin:U),Call,p2(end:U)).
 
+in_terse:- !.
+in_terse:-  current_output(X), \+ stream_property(X,tty(_)).
 
 reportDif(_U,List,BList,_Time,_BTime):- forall(member(N=V,List),
   ignore((member(N=BV,BList), \+ (BV = V), dfmt('~n1) ~q = ~q ~~n2) ~q = ~q ~n',[N,V,N,BV])))).
@@ -299,7 +302,7 @@ process_run_real(Callback,StartParse,UIn,MUSTP,WTIME) :-
    once((
       runtime(StopParse),
       ParseTime is StopParse - StartParse,
-      call(Callback,E,'Parse',ParseTime,portray),  
+      % call(Callback,E,'Parse',ParseTime,portray),  
       (flag(sentenceTrial,TZ2,TZ2+1), TZ2>5 -> (!,fail) ; true),
       runtime(StartSem))),
    once((if_try(nonvar(E),deepen_pos(sent_to_prelogic(E,S))))),
