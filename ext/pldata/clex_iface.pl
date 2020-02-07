@@ -63,7 +63,7 @@ when_chat80(_):- fail.
 % ITD = tv,
 % Info = infpl ;
 
-:- style_check(-discontiguous).
+:- style_check(-(discontiguous)).
 
 clex_pred(F/A):- 
   dynamic(F/A),multifile(F/A),export(F/A),assert_if_new(clex_pred(F,A)).
@@ -137,21 +137,21 @@ clex_noun(Noun, RootNoun, unkown, SG, count):- clex_noun1(Noun, RootNoun, SG), \
 :- clex_pred(clex_adj_prep/4).
 clex_adj_prep(Biggest, Big, Prep, Type):- adj_prep0(Biggest, Big, Prep, Type).
 clex_adj_prep(Biggest, Big, Prep, unknown):- adj_tr(Biggest, Big, Prep), \+ adj_prep0(Biggest, _, Prep, _).
-      adj_prep0(Bigger, Big, Prep, comparitve):- adj_tr_comp(Bigger, Big, Prep).
-      adj_prep0(Biggest, Big, Prep, superlative):- adj_tr_sup(Biggest, Big, Prep).
+      adj_prep0(Bigger, Big, Prep, comparitve):- clex:adj_tr_comp(Bigger, Big, Prep).
+      adj_prep0(Biggest, Big, Prep, superlative):- clex:adj_tr_sup(Biggest, Big, Prep).
 
 
 :- clex_pred(clex_adj/3).
 clex_adj(Biggest, Big, Type):- adj_itr0(Biggest, Big, Type).
 clex_adj(Biggest, Big, unknown):- adj_itr(Biggest, Big), \+ adj_itr0(Biggest, _, _).
-         adj_itr0(Bigger, Big, comparitve):- adj_itr_comp(Bigger, Big).
-         adj_itr0(Biggest, Big, superlative):- adj_itr_sup(Biggest, Big).
+         adj_itr0(Bigger, Big, comparitve):- clex:adj_itr_comp(Bigger, Big).
+         adj_itr0(Biggest, Big, superlative):- clex:adj_itr_sup(Biggest, Big).
 
 :- clex_pred(clex_adv/3).
 clex_adv(Biggest, Big, Type):- adv_itr0(Biggest, Big, Type).
 clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
-         adv_itr0(Bigger, Big, comparitve):- adv_comp(Bigger, Big).
-         adv_itr0(Biggest, Big, superlative):- adv_sup(Biggest, Big).
+         adv_itr0(Bigger, Big, comparitve):- clex:adv_comp(Bigger, Big).
+         adv_itr0(Biggest, Big, superlative):- clex:adv_sup(Biggest, Big).
 
 
 /*
@@ -165,7 +165,6 @@ clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
 %:- style_check(-discontiguous).
 %:- include(pldata('clex_lexicon_user1.nldata')).
 
-
 :- absolute_file_name(pldata('clex_lexicon_user1.nldata'),
         File, [access(read)]),
    open(File, read, In),
@@ -173,7 +172,7 @@ clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
    repeat,
    read(In, P),
    % DMiles: i am putting them in backwards (cuz, the hypens- confuse me if they pop out first in the debugger)
-   (P= (:- (G)) -> call(G) ; asserta_new(P)),
+   (P= (:- (G)) -> call(G) ; asserta_new(clex:P)),
    P==end_of_file, !.
 
 % apply_fixes:- clex_verb(Formed, Verb, dv(Prep), PP)

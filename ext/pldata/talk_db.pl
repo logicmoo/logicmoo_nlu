@@ -31,27 +31,38 @@ decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 :- decl_talk_db_data(talk_db/4).
 :- decl_talk_db_data(talk_db/5).
 :- decl_talk_db_data(talk_db/6).
-:- decl_talk_db_data(talk_db_new/4).
-:- decl_talk_db_data(talk_db_new/6).
+:- decl_talk_db_data(talk_db/4).
+:- decl_talk_db_data(talk_db/6).
 
 /*
 
- setof(F, talk_db([F|_]), O).
-
- [prep, adj, adverb, noun2, pret, verb, interj, superl, conj, sing_only, fem, pronoun, pref, 
-   p, ads, masc, noun, adb, b_t, noun_verb, m, apron, ncollect, pres_indic, comp, 
-     et, aa, na, esp, personal, impersonal, possessive, inerj, indef, singular, auxiliary, 
-      pl_pronoun, obssuperl, ppl, imperative, c, interrog, domain, verb_t, verb_i]
+ ?-  bagof(F, T^talk_db([F|T]), O),list_to_set(O,S),writeq(S).
 
 
-  setof(F, talk_db([domain, _, D]), O).
+[preposition,adj,adv,noun2,verb,interj,superl,conj,sing_only,fem,pronoun,p,
+  masc,noun1,b_t,noun_verb,agentive,ncollect,pres_indic,comp,possessive,
+  m,personal,impersonal,indef,auxiliary,pl_pronoun,interrog,auxilary,
+  domain,noun_or_verb,transitive,intransitive]
 
 
+ ?- bagof(F/A,X^(talk_db([F|X]),length(X,A)),O),list_to_set(O,S),writeq(S).
 
-   ?- bagof(P,(talk_db([F|X]),length(X,A),functor(P,F,A)),O),writeq(O).
+  [preposition/1,adj/1,adv/1,noun2/1,verb/1,interj/1,superl/1,conj/1,sing_only/1,fem/1,pronoun/1,p/1,
+   masc/1,b_t/1,noun_verb/1,agentive/1,ncollect/1,pres_indic/1,comp/1,possessive/1,
+   m/1,personal/1,impersonal/1,indef/1,auxiliary/1,pl_pronoun/1,interrog/1,auxilary/1,
+   noun1/2,superl/2,domain/2,comp/2,noun_or_verb/3,
+   transitive/5,intransitive/5]
+
+ 
+
+       [noun2/1,preposition/1,adj/1,adv/1,verb/1,interj/1,superl/1,conj/1,sing_only/1,fem/1,pronoun/1,
+       p/1,masc/1,b_t/1,noun_verb/1,agentive/1,ncollect/1,pres_indic/1,comp/1,possessive/1,
+       m/1,personal/1,impersonal/1,indef/1,auxiliary/1,pl_pronoun/1,interrog/1,auxilary/1,
+       domain/2,noun1/2,superl/2,comp/2,noun_or_verb/3,
+       transitive/5,intransitive/5]
+
 
 */
-% was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
 
 talk_db_argsIsa(comp,1,adjective(comparative)).
 talk_db_argsIsa(superl,1,adjective(superlative)).
@@ -70,6 +81,7 @@ talk_db_argsIsa(indef,0,(pronoun)).
 talk_db_argsIsa(interj,0,(interjection)).
 talk_db_argsIsa(interrog,0,(whpron)). % only instance
 talk_db_argsIsa(agentive,0,(noun)).
+talk_db_argsIsa(domain,0,noun(ology)).
 talk_db_argsIsa(masc,0,(masculine)).
 talk_db_argsIsa(masc,0,(noun)).
 talk_db_argsIsa(ncollect,0,(massnoun)).
@@ -135,18 +147,25 @@ talk_db_pos(String,POSVV,POS,F,N):- length(List,N),Search=[_|List],C=..[talk_db,
 show_num_clauses(F/A):- (functor(P,F,A),predicate_property(P, number_of_clauses(C)))->format(' ~w~t ~t ',[F/A=C]);format(' ~w~t ',[F/A='(none)']).
 show_size_left(Message):-
    format('% ~w~t ~t',[Message]),
-   show_num_clauses(talk_db_new/4),show_num_clauses(talk_db/4),
-   show_num_clauses(talk_db_new/6),show_num_clauses(talk_db/6),
+   show_num_clauses(talk_db/2),
+   show_num_clauses(talk_db/3),
+   show_num_clauses(talk_db/4),
+   show_num_clauses(talk_db/5),
+   show_num_clauses(talk_db/6),
    nl.
 
 use_new_morefile:- fail.
 
 
-talk_db([F,A|List]):-talk_db_argsIsa(F,N,_),length(List,N),apply(talk_db,[F,A|List]).
-talk_db(noun1,Sing,Sing):-talk_db(noun2,Sing).
-talk_db(Type,Verb,Fishing,Fish):- talk_db_new(Type,Verb,Fishing,Fish).
-talk_db(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed2):-talk_db_new(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed2).
+% was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
+% talk_db([F,A|List]):- talk_db_argsIsa(F,N,_), length(List,N),apply(talk_db,[F,A|List]).
+talk_db([F,A|List]):- between(0,4,N),length(List,N),apply(talk_db,[F,A|List]).
 
+talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- plt,
+  talk_db(noun_or_verb,Jackets,Jacketing,Jacket),
+  talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed).
+
+talk_db(noun1,Sing,Sing):- talk_db(noun2,Sing).
 talk_db(superl, far, aftermost).
 talk_db(superl, close, formest).
 talk_db(superl, far, furthest).
@@ -159,7 +178,7 @@ talk_db(superl, far, furthest).
    set_stream(In, encoding(iso_latin_1)),
    repeat,
    read(In, P),
-   (P= (:- (G)) -> call(G) ; assertz_if_new(P)),
+   (P= (:- (G)) -> call(G) ; talkdb:assertz_if_new(P)),
       P==end_of_file, !.
 
 
@@ -168,29 +187,59 @@ talk_db(superl, far, furthest).
 kill_talk_db_bad_verbs:-
          show_size_left("correcting..."),
          talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed),
-         \+ \+ talk_db(noun1,Jacket,Jackets),
+         \+ \+ clause(talkdb:talk_db(noun1,Jacket,Jackets),true),
          retract(talkdb:talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed)),
-         Verb = Jackets, %Verb = Jacketing,         
-         assertz_if_new(talkdb:talk_db_new(VerbType,Verb,Jackets,Jacketed,Jacketing,Jacketed)),
-         assertz_if_new(talkdb:talk_db_new(noun_or_verb,Verb,Jacketing,Jacket)),
+         assertz_if_new(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed)),
+         assertz_if_new(talkdb:talk_db(noun_or_verb,Jackets,Jacketing,Jacket)),
         % dmsg(fixed_talkdb_noun_verb(VerbType,(Jacket-->Jackets/Jacketed/Jacketing))),
          fail.
 kill_talk_db_bad_verbs:-
          talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished),
-         \+ \+ talk_db(noun2,Fish),
-         retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished)),
-         Verb = Fishes, %Verb = Fishing,         
-         assertz_if_new(talkdb:talk_db_new(VerbType,Verb,Fishes,Fished,Fishing,Fished)),
-         assertz_if_new(talkdb:talk_db_new(noun_or_verb,Verb,Fishing,Fish)),
+         \+ \+ clause(talkdb:talk_db(noun2,Fish),true),
+         retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished):-true),
+         assertz_if_new(talkdb:talk_db(VerbType,Fishes,Fishes,Fished,Fishing,Fished)),
+         assertz_if_new(talkdb:talk_db(noun_or_verb,Fishes,Fishing,Fish)),
          % dmsg(fixed_talkdb_noun_verb(VerbType,(Fish-->Fishes/Fished/Fishing))),
          fail.
 
-kill_talk_db_bad_verbs:- \+ use_new_morefile, !, show_size_left("Loaded").
+% noun1/3
+kill_talk_db_bad_verbs:-
+         retract(talkdb:talk_db(noun1,Sing,Plural,Subject):-true),
+         asserta_if_new(talkdb:talk_db(noun1,Sing,Plural)),
+         asserta_if_new(talkdb:talk_db(domain,Sing,Subject)),
+         fail.
+% noun1/1
+kill_talk_db_bad_verbs:-
+         retract(talkdb:talk_db(noun1,Mass):-true),
+         asserta_if_new(talkdb:talk_db(noun3,Mass)),
+         fail.
+% domain/3
+kill_talk_db_bad_verbs:-
+         retract(talkdb:talk_db(domain,Mass,Subject1,Subject2):-true),
+         asserta_if_new(talkdb:talk_db(noun3,Mass)),
+         asserta_if_new(talkdb:talk_db(domain,Mass,[Subject1,Subject2])),
+         fail.
+% domain/5
+kill_talk_db_bad_verbs:-
+         retract(talkdb:talk_db(domain,Mass,S1,S2,S3,S4):-true),
+         asserta_if_new(talkdb:talk_db(noun3,Mass)),
+         asserta_if_new(talkdb:talk_db(domain,Mass,[S1,S2,S3,S4])),
+         fail.
+% noun3/2
+kill_talk_db_bad_verbs:-
+         retract(talkdb:talk_db(noun3,Mass):-true),
+         \+ clause(talkdb:talk_db(noun1,Mass,_),true),
+         \+ clause(talkdb:talk_db(noun1,_,Mass),true),         
+         asserta_if_new(talkdb:talk_db(noun2,Mass)),
+         fail.
+
+kill_talk_db_bad_verbs:- \+ use_new_morefile, !, show_size_left("Loaded"),
+  save_to_file('talk_db.more',clause_always,talk_db).
 
 kill_talk_db_bad_verbs:-         
         prolog_load_context(file,This),
         show_size_left("Saving now..."),
-        save_to_file('talk_db.more',erase_when(clause_from_assert),talk_db_new),   
+        save_to_file('talk_db.more',erase_when(clause_from_assert),talk_db),   
         save_to_file('talk_db.prev',clause_not_here(This),talk_db),
         show_size_left("Saved...").
 
@@ -198,13 +247,14 @@ kill_talk_db_bad_verbs:-
 erase_when(When,Ref,Loc):- call(When,Ref,Loc),!,erase(Ref). 
 clause_not_here(This,Ref,_Loc):- (clause_from_assert(Ref,_); \+ clause_belongs(Ref,This)),!.
 clause_belongs(Ref,Loc):- (clause_from_assert(Ref,_);clause_from_file(Ref,Loc)),!.
+clause_always(_Ref,_Loc).
 
 clause_from_file(Ref,File):- clause_property(Ref,file(Other)), (Other=File;same_file(Other,File)).
 clause_from_assert(Ref, _):- \+ clause_property(Ref,file(_)), \+ clause_property(Ref,source(_)).
 
 save_to_file(Name,Belongs,F):-
   File = pldata(Name),
-  absolute_file_name(File,Loc),
+  absolute_file_name(File,Loc,[access(read)]),
   tell(Loc),
   format(':- style_check(-(discontiguous)).~n:- style_check(-(singleton)). ~n'),
  forall(current_predicate(F/A),
