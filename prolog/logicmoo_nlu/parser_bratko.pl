@@ -82,6 +82,8 @@ must_test_bratko("the cost of what the product is changes", tell).
 
 must_test_bratko("ohad wrote nothing", tell).
 must_test_bratko("bertrand wrote a book", tell).
+
+% passes the above and fails the below
 must_test_bratko("bertand wrote", tell).
 must_test_bratko("bertand wrote a book about gottlob", tell).
 must_test_bratko("bertand wrote about gottlob", tell).
@@ -127,7 +129,7 @@ bratko(Sentence, Reply) :-
    show_call(bratko_clausify(LF, Clause)), !,
    bratko_reply(Clause, Reply).
 bratko(Sentence,
-   error('too difficult'(Sentence))).
+   error('FAILED!!!!! too difficult'(Sentence))).
 
 
 bratko_parse(Sentence, LF):-
