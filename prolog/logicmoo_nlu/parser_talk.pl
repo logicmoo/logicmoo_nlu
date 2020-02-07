@@ -158,17 +158,25 @@ noun_phrase((X^S)^S,gap(noun_phrase,X)) --> [].
 
 
 % Verb phrases
-verb_phrase(Form2,VP2,GapInfo) --> vp(Form2,VP2,GapInfo).
+verb_phrase(Form2,VP2,GapInfo) --> v_p(Form2,VP2,GapInfo).
+
+v_p(Form1,VP2,GapInfo) -->  v_p_unit(Form1,VP2,GapInfo).
+
 % @TODO Prep
-% verb_phrase(Form2,VP2&NP,GapInfo) --> vp(Form2,VP2,GapInfo),prep(P),noun_phrase(Y^NP2,_GapInfo).
+% v_p(Form1,VP1&VP2,GapInfo) -->  v_p_unit(Form1,VP1,nogap), p_p(VP2,GapInfo).
+% v_p(Form1,VP1&VP2,GapInfo) -->  v_p_unit(Form1,VP1,GapInfo), p_p(VP2,nogap).
 
-vp(Form,X^S,GapInfo) -->  talk_tv(Form,X^VP),  noun_phrase(VP^S,GapInfo).
-vp(Form,VP,nogap) -->     talk_iv(Form,VP).
-vp(Form1,VP2,GapInfo) -->  aux(Form1/Form2,   VP1^VP2),  vp(Form2,VP1,GapInfo).
-vp(Form1,VP2,GapInfo) -->  rov(Form1/Form2,NP^VP1^VP2),  noun_phrase(NP,GapInfo),  vp(Form2,VP1,nogap).
-vp(Form2,VP2,GapInfo) -->  rov(Form1/Form2,NP^VP1^VP2),  noun_phrase(NP,nogap),  vp(Form1,VP1,GapInfo).
-vp(_Tense+fin,X^S,GapInfo) --> copula_is_does,  noun_phrase((X^P)^exists(X,S&P),GapInfo).
+v_p(Form1,VP2,GapInfo) -->  aux(Form1/Form2,   VP1^VP2),             v_p(Form2,VP1,GapInfo).
+v_p(Form1,VP2,GapInfo) -->  v_p_rovn1(Form1,VP2,GapInfo,Form2,VP1),  v_p(Form2,VP1,nogap).
+v_p(Form2,VP2,GapInfo) -->  v_p_rovn1(Form1,VP2, nogap ,Form2,VP1),  v_p(Form1,VP1,GapInfo).
+v_p(_Tense+fin,X^S,GapInfo) --> copula_is_does,  noun_phrase((X^P)^exists(X,S&P),GapInfo).
 
+v_p_unit(Form,X^S,GapInfo) -->  talk_tv(Form,X^VP),  noun_phrase(VP^S,GapInfo).
+v_p_unit(Form,VP,  nogap ) -->  talk_iv(Form,VP).
+
+p_p(X^S,GapInfo) -->  talk_pp(X^VP),  noun_phrase(VP^S,GapInfo).
+
+v_p_rovn1(Form1,VP2, GapInfo,Form2,VP1) --> rov(Form1/Form2,NP^VP1^VP2), noun_phrase(NP,GapInfo).
 
 % relative clauses
 relative_clause((X^S1)^(X^(S1&S2))) -->  relpron,verb_phrase(_Tense+fin,X^S2,nogap).
@@ -206,6 +214,8 @@ talk_tv(pres+fin,  LF) --> [TV],{talk_tv_lf(_,TV,_,_,_,LF)}.
 talk_tv(past+fin,  LF) --> [TV],{talk_tv_lf(_,_,TV,_,_,LF)}.
 talk_tv(past+part, LF) --> [TV],{talk_tv_lf(_,_,_,TV,_,LF)}.
 talk_tv(pres+part, LF) --> [TV],{talk_tv_lf(_,_,_,_,TV,LF)}.
+
+talk_pp(X^Y^z(PP,X,Y)) --> [PP],{prep(PP)}.
 
 rov(nonfinite /Requires,LF) --> [ROV], {rov_lf(ROV,_,_,_,_,LF,Requires)}.
 rov(pres+fin  /Requires,LF) --> [ROV], {rov_lf(_,ROV,_,_,_,LF,Requires)}.
@@ -253,16 +263,19 @@ noun_lf(Mass,  X^ISA) :- talk_db(noun2,Mass),into_isa3(X,Mass,ISA).
 
  adj_lf(Sing,  X^ISA) :- (adj_db(Sing,restr);talk_db(adj,Sing)),into_isa3(X,adjFn(Sing),ISA).
 
-pn_lf(begriffsschrift ,begriffsschrift).
-pn_lf(bertrand ,bertrand ).
-pn_lf(bill  ,bill  ).
-pn_lf(gottlob ,gottlob ).
-pn_lf(alfred ,alfred ).
-pn_lf(lunar  ,lunar ).
-pn_lf(principia ,principia ).
-pn_lf(shrdlu  ,shrdlu ).
-pn_lf(terry  ,terry ).
-pn_lf(Name  ,Name ):- name_template_db(Name,_).
+
+pn_lf(Name, Value) :- pn_dict(Name), Name = Value.
+
+pn_dict(begriffsschrift ).
+pn_dict(bertrand ).
+pn_dict(bill ).
+pn_dict(gottlob ).
+pn_dict(alfred ).
+pn_dict(lunar ).
+pn_dict(principia ).
+pn_dict(shrdlu ).
+pn_dict(terry ).
+pn_dict(Name ):- name_template_db(Name,_).
 
 
 %           nonfinite, pres+fin, past+fin,  past+part,  pres+part,  LF

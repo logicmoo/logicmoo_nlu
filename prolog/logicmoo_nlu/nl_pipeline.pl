@@ -484,7 +484,7 @@ remove_punctuation(W2,W2).
 % ================================================================================================
 
 % ================================================================================================
-:-  if(load_parser_interface(parser_talk)).
+:-  if((false,load_parser_interface(parser_talk))).
 % ================================================================================================
 
 eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
@@ -496,6 +496,18 @@ eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
 :- install_converter(parser_talk,talkpl_parse(+(tokens),-lf,-type)).
 :- install_converter(parser_talk,talkpl_clausify(+lf,-clause,-(freevars))).
 :- install_converter(parser_talk,talkpl_reply(+type,+(freevars),+clause,-reply)).
+
+%:- debug.
+
+:- endif.
+
+% ================================================================================================
+:-  if(load_parser_interface(bratko)).
+% ================================================================================================
+
+:- install_converter(parser_talk,bratko_parse(+(tokens),-lf_b)).
+:- install_converter(parser_talk,bratko_clausify(+lf_b,-clause_b)).
+:- install_converter(parser_talk,bratko_reply(+clause_b,-reply_b)).
 
 %:- debug.
 
