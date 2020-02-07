@@ -1,6 +1,6 @@
 % ===================================================================
 % File 'parser_bratko.pl'
-% Purpose: English to KIF conversions from SWI-Prolog 
+% Purpose: English to KIF conversions from SWI-Prolog
 % This implementation is incomplete
 % Maintainer: Douglas Miles
 % Contact: $Author: dmiles $@users.sourceforge.net ;
@@ -20,7 +20,7 @@
 %:- op(100, xfy, and).
 %:- op(150, xfx, '=>').
 
-/* when using sentence we need to pass 3 arguments, 
+/* when using sentence we need to pass 3 arguments,
    the first will match LFOut in the head of the DGC clause
    the second is the list containing the words in the sentence
    the third is the empty list.
@@ -101,46 +101,46 @@ must_test_bratko("who did alfred give a book to", ask).
 print_reply(Other) :-  fmt(Other).
 
 %to_wordlist_atoms(Sentence, WordsA):- into_text80(Sentence, WordsA), !.
-to_wordlist_atoms(Sentence, WordsA):- 
-   to_word_list(Sentence, Words), 
+to_wordlist_atoms(Sentence, WordsA):-
+   to_word_list(Sentence, Words),
    maplist(any_to_atom, Words, WordsA), !.
 
 
 system:myb :- bratko.
 
 :-export(bratko/0).
-bratko :- locally(tracing80, 
-             with_no_assertions(lmconf:use_cyc_database, 
-                  locally(t_l:usePlTalk, (told, repeat, prompt_read('BRATKO> ', U), 
+bratko :- locally(tracing80,
+             with_no_assertions(lmconf:use_cyc_database,
+                  locally(t_l:usePlTalk, (told, repeat, prompt_read('BRATKO> ', U),
                             to_wordlist_atoms(U, WL), (WL==[bye];WL==[end, '_', of, '_', file];bratko(WL)))))).
 
 :-export(bratko/1).
-bratko(Sentence):- 
-  to_wordlist_atoms(Sentence, Words), !, 
-  fmt(sent_in_bratko(Words)), 
-  bratko(Words, Reply),  
+bratko(Sentence):-
+  to_wordlist_atoms(Sentence, Words), !,
+  fmt(sent_in_bratko(Words)),
+  bratko(Words, Reply),
   print_reply(Reply).
 
 :-export(bratko/2).
 bratko(Sentence, Reply) :-
-   deepen_pos(bratko_parse(Sentence, LF)), 
-   show_call(bratko_clausify(LF, Clause)), !,  
+   deepen_pos(bratko_parse(Sentence, LF)),
+   show_call(bratko_clausify(LF, Clause)), !,
    bratko_reply(Clause, Reply).
-bratko(Sentence, 
+bratko(Sentence,
    error('too difficult'(Sentence))).
 
 
-bratko_parse(Sentence, LF):-  
-  to_wordlist_atoms(Sentence, WL), 
+bratko_parse(Sentence, LF):-
+  to_wordlist_atoms(Sentence, WL),
   utterance(_How, LF, WL, []).
 
 
 % bratko_reply a question
 bratko_reply((answer(Answer) :- Condition), Reply) :-
- term_variables(Condition, Vars), 
- term_singletons(Answer+Vars, FreeVars), 
- Query = FreeVars^satisfy(Condition), 
- fmt(query(Answer, Query)), 
+ term_variables(Condition, Vars),
+ term_singletons(Answer+Vars, FreeVars),
+ Query = FreeVars^satisfy(Condition),
+ fmt(query(Answer, Query)),
 ((baseKB:setof(Answer, Query, Answers)
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([no]) ; Reply = answer([none])))), !.
@@ -222,7 +222,7 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).  % was nogap
 % "are you happy?"
 % "Could the dog"
 % interogative(LFOut => answer(yes)) -->  copula_is_does, noun_phrase((X^SO)^LFOut, nogap),   noun_phrase((X^true)^exists(X, SO & true), nogap).
-         
+
 % =================================================================
 % Verb Phrase
 % =================================================================
@@ -231,7 +231,7 @@ verb_phrase(_Frame, X, equals(X, Y)) --> [is], proper_noun(Y).
 verb_phrase(Frame, X, Assn) --> [is], verb_phrase(Frame, X, Assn).
 verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, Assn), dcg_s2(verb_post_mod(Frame), Assn, Out).
 
-verb_phrase1(Frame, X, ~(Assn)) --> [not], verb_phrase(Frame, X, Assn).
+verb_phrase1(Frame, X, ~(LFOut)) --> [not], verb_phrase(Frame, X, LFOut).
 verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(Y, Assn2, LFOut).
 verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
 
@@ -239,7 +239,7 @@ verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(Frame, intrans_verb(Frame, X
 trans_verb(_Frame, X, Y, z(like, X, Y)) --> [likes].
 trans_verb(_Frame, X, Y, z(admire, X, Y)) --> [admires].
 trans_verb(_Frame, X, Y, LF ) --> talk_verb(tv(X, Y), _Time, LF). % & isa(Frame, timeFn(Time)
-%                      nonfinite, pres+fin, past+fin,  past+part,  pres+part,  LF
+%                      nonfinite, pres+fin, past+fin,  past+part,  pres+part,   LF
  talk_verb_lf(tv(X, Y), write,     writes,   wrote,     written,    writing,    z(writes, X, Y)).
  talk_verb_lf(tv(X, Y), meet,      meets,    met,       met,        meeting,    z(meets, X, Y)).
  talk_verb_lf(tv(X, Y), concern, concerns, concerned, concerned, concerning,    z(concerns, X, Y)).
@@ -280,29 +280,33 @@ talk_verb_lf(infinitival(X, Y), want, wants, wanted,    wanted,    wanting,   ((
 % Auxilary Forms
 % =================================================================
 aux(Form, LFIn, LFOut) --> [Aux], {aux_lf(Aux, Form, LFIn, LFOut)}.
-aux_lf(to ,  infinitival/nonfinite , VP, VP).
-aux_lf(does , _Tense+fin/nonfinite ,  VP, VP).
-aux_lf(did ,  _Tense+fin/nonfinite ,  VP, VP).
-aux_lf(to ,  _/_ , VP, VP).
+ aux_lf(to ,  infinitival/nonfinite , VP, VP).
+ aux_lf(does , _Tense+fin/nonfinite ,  VP, VP).
+ aux_lf(did ,  _Tense+fin/nonfinite ,  VP, VP).
+ aux_lf(to ,  _/_ , VP, VP).
 
-copula_is_does --> [C], {copula_is_does(C)}.
+copula_is_does --> [C], {copula_is_does_dict(C)}.
 
-copula_is_does(is).
-copula_is_does(does).
+  copula_is_does_dict(is).
+  copula_is_does_dict(does).
 
 % =================================================================
 % Prepostional Phrase / Verb Satellites
 % =================================================================
 prepostional_phrase(X, _Frame, Prop1, about(X, Y) & Prop2) --> [about], noun_phrase(Y, Prop1, Prop2).
-prepostional_phrase(X, _Frame, Prop1, prep(Prep, X, Y) & Prop2) --> {prep(Prep)}, [Prep], noun_phrase(Y, Prop1, Prop2).
+prepostional_phrase(X, _Frame, Prop1, prep(Prep, X, Y) & Prop2) --> {prep_dict(Prep)}, [Prep], noun_phrase(Y, Prop1, Prop2).
 
-prep(X):- talk_db(preposition, X).
-
-verb_mod_surround(Frame, Verb, Assn1, Out) --> dcg_s2(verb_pre_mod(Frame), Assn1, AdvProps), Verb, 
-                                               dcg_s2(verb_post_mod(Frame), AdvProps, Out).
+   prep_dict(X):- talk_db(preposition, X).
 
 
-adv_lf(X, Adv,  ISA) :- talk_db(adv, Adv), into_isa3(X, advFn(Adv), ISA).
+verb_mod_surround(Frame, Verb, Assn1, Out) -->
+  dcg_s2(verb_pre_mod(Frame), Assn1, AdvProps),
+  Verb,
+  dcg_s2(verb_post_mod(Frame), AdvProps, Out).
+
+
+ adv_lf(X, Adv,  ISA) :- talk_db(adv, Adv), into_isa3(X, advFn(Adv), ISA).
+
 
 verb_pre_mod(X, Assn, AdvLF & Assn) --> [Adv], {adv_lf(X, Adv, AdvLF)}.
 
@@ -322,12 +326,15 @@ noun_phrase1(X, LF, ~exist(X, LF)) --> [nothing].
 noun_phrase1(X, LF, exist(X, LF)) --> [something].
 % some good food
 noun_phrase1(X, LF, LFOut) -->
-    determiner(X, Precond, LF, LFOut), 
-    dcg_s2(noun_pre_mod(X), NounProp, AdjProps), 
-    noun(X, NounProp), 
+    determiner(X, Precond, LF, LFOut),
+    dcg_s2(noun_pre_mod(X), NounProp, AdjProps),
+    noun(X, NounProp),
     dcg_s2(noun_post_mod(X), AdjProps, Precond).
 % happy Jack
-noun_phrase1(X, Assn, LFOut) --> dcg_s2(noun_pre_mod(X), Assn, LFOut), proper_noun(X).
+noun_phrase1(X, Assn, LFOut) -->
+   dcg_s2(noun_pre_mod(X), Assn, LF),
+   proper_noun(X),
+   dcg_s2(noun_post_mod(X), LF, LFOut).
 
 
 % =================================================================
@@ -375,7 +382,7 @@ noun(X, LF) --> [N], {noun_lf(X, N, LF)}.
  noun_lf(X, Mass,  ISA) :- talk_db(noun2, Mass), into_isa3(X, Mass, ISA).
  noun_lf(X, Sing,  ISA) :- noun_dict(Sing), into_isa3(X, Sing, ISA).
 
-  noun_dict(author). noun_dict(book). noun_dict(professor). noun_dict(program). 
+  noun_dict(author). noun_dict(book). noun_dict(professor). noun_dict(program).
   noun_dict(programmer). noun_dict(student). noun_dict(man). noun_dict(woman).
 
 
@@ -411,8 +418,8 @@ dcg_push(A, S, [A|S]).
 optionalText1(X) --> { length(X, L), L > 0, L < 33 } , X.
 optionalText1(_) --> [].
 
-dcg_s2(DCG2, In, Out) --> 
-   {append_term(DCG2, In, DCG1), 
+dcg_s2(DCG2, In, Out) -->
+   {append_term(DCG2, In, DCG1),
     append_term(DCG1, Mid, DCG0)},
    DCG0,
    dcg_s2(DCG2, Mid, Out).
