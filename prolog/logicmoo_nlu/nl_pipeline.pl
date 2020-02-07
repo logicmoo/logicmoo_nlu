@@ -502,12 +502,12 @@ eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
 :- endif.
 
 % ================================================================================================
-:-  if(load_parser_interface(bratko)).
+:-  if(load_parser_interface(parser_bratko)).
 % ================================================================================================
 
-:- install_converter(parser_talk,bratko_parse(+(tokens),-lf_b)).
-:- install_converter(parser_talk,bratko_clausify(+lf_b,-clause_b)).
-:- install_converter(parser_talk,bratko_reply(+clause_b,-reply_b)).
+:- install_converter(parser_bratko,bratko_parse(+(tokens),-lf_b)).
+:- install_converter(parser_bratko,bratko_clausify(+lf_b,-clause_b)).
+:- install_converter(parser_bratko,bratko_reply(+clause_b,-reply_b)).
 
 %:- debug.
 

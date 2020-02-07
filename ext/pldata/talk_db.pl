@@ -163,7 +163,7 @@ talk_db([F,A|List]):- between(0,4,N),length(List,N),apply(talk_db,[F,A|List]).
 
 talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- plt,
   talk_db(noun_or_verb,Jackets,Jacketing,Jacket),
-  talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed).
+  clause(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed),true).
 
 talk_db(noun1,Sing,Sing):- talk_db(noun2,Sing).
 talk_db(superl, far, aftermost).

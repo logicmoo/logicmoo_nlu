@@ -176,7 +176,7 @@ v_p_unit(Form,VP,  nogap ) -->  talk_iv(Form,VP).
 
 p_p(X^S,GapInfo) -->  talk_pp(X^VP),  noun_phrase(VP^S,GapInfo).
 
-v_p_rovn1(Form1,VP2, GapInfo,Form2,VP1) --> rov(Form1/Form2,NP^VP1^VP2), noun_phrase(NP,GapInfo).
+v_p_rovn1(Form1,VP2, GapInfo,Form2,VP1) --> rov(Form1/Form2,NP,VP1,VP2), noun_phrase(NP,GapInfo).
 
 % relative clauses
 relative_clause((X^S1)^(X^(S1&S2))) -->  relpron,verb_phrase(_Tense+fin,X^S2,nogap).
@@ -281,7 +281,7 @@ pn_dict(Name ):- name_template_db(Name,_).
 %           nonfinite, pres+fin, past+fin,  past+part,  pres+part,  LF
 talk_iv_lf( halt,      halts,    halted,    halted,     halting,    X^z(doing,X,halt)).
 
-talk_iv_lf( Write,     Writes,   Wrote,     Written,    Writing,    X^Y^z(Writes,X,Y)) :- 
+talk_iv_lf( Write,     Writes,   Wrote,     Written,    Writing,    X^z(doing,X,Writes)) :- 
    talk_db(intransitive,Write,Writes,Wrote,Writing,Written).
 
 %           nonfinite, pres+fin, past+fin,  past+part,  pres+part,  LF

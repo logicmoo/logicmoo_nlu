@@ -2014,8 +2014,8 @@ aux_phrase(CycAuxWord,Subj,Event,Out) -->
 % =======================================================
 % preopistional_phrase
 % =======================================================
-preopistional_phrase(Oblique,CycWord,CycL) -->
-	 isPOS('Preposition',CycWord), 
+preopistional_phrase(Oblique,CycWordPrep,CycL) -->
+	 isPOS('Preposition',CycWordPrep), 
 	 noun_phrase(Oblique,Prep,CycL),{varnameIdea('Prep',Prep)}.
       
 % =======================================================
