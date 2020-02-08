@@ -222,6 +222,9 @@ renumber_vars_from_0(_,V,UV):- copy_term(V,UM,_),duplicate_term(UM,UV),!.
 renumber_vars_from_0(kif(_),V,UV):-V=UV,!.
 renumber_vars_from_0(_,V,UV):- unnumbervars(V,UV). % get_ape_results:rename_vars(UV,UV). %,ape_numbervars(UV,0,_).
 
+
+renumber_vars_from_1(_,V,UV):- unnumbervars(V,UV). % get_ape_results:rename_vars(UV,UV). %,ape_numbervars(UV,0,_).
+
 system:ape_numbervars(DRSCopy,Zero,N):- numbervars(DRSCopy,Zero,N,[attvar(skip)]).
 
 %% clear_pipeline(+TID:key)
