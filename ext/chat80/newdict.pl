@@ -128,7 +128,7 @@ conj_db(But):- cycQuery80(partOfSpeech(_,'CoordinatingConjunction',But)).
 
 int_pron_db(what,undef).
 int_pron_db(which,undef).
-int_pron_db(who,subj80).
+int_pron_db(who,subj).
 int_pron_db(whom,compl).
 
 int_art_db(how,X,_,int_det(X)).
@@ -263,7 +263,7 @@ pron_db(W):-pers_pron_db(W,_,_,_,_).
 pron_db(W):-int_pron_db(W,_).
 pron_db(W):-quantifier_pron_db(W,_,_).
 
-rel_pron_db(who,subj80).
+rel_pron_db(who,subj).
 rel_pron_db(whom,compl).
 rel_pron_db(which,undef).
 
@@ -275,16 +275,16 @@ poss_pron_db(its,neut,3,sg).
 poss_pron_db(our,_,1,pl).
 poss_pron_db(their,_,3,pl).
 
-pers_pron_db(i,_,1,sg,subj80).
+pers_pron_db(i,_,1,sg,subj).
 pers_pron_db(you,_,2,_,_).
-pers_pron_db(he,masc,3,sg,subj80).
-pers_pron_db(she,fem,3,sg,subj80).
+pers_pron_db(he,masc,3,sg,subj).
+pers_pron_db(she,fem,3,sg,subj).
 pers_pron_db(it,neut,3,sg,_).
-pers_pron_db(we,_,1,pl,subj80).
+pers_pron_db(we,_,1,pl,subj).
 % dmiles added
-pers_pron_db(they,_,3,pl,subj80).
+pers_pron_db(they,_,3,pl,subj).
 % dmiles removed
-% pers_pron_db(them,_,3,pl,subj80).
+% pers_pron_db(them,_,3,pl,subj).
 pers_pron_db(me,_,1,sg,compl(_)).
 pers_pron_db(him,masc,3,sg,compl(_)).
 pers_pron_db(her,fem,3,sg,compl(_)).

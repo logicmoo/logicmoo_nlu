@@ -1,5 +1,16 @@
+:-module(parser_jpaine,[trans/3]).
+
+
 /*  GB.PL  */
 
+
+:- dynamic(lexadjective/1).
+:- dynamic(lexconj/2).
+:- dynamic(lexdet/3).
+:- dynamic(lexmodal/1).
+:- dynamic(lexnoun/2).
+:- dynamic(lexprep/1).
+:- dynamic(lexverb/4).
 
 /*
 This is the parser that I use with PLANNING_BUG.PL. It was sent
@@ -42,7 +53,6 @@ done correctly. Here are some examples:
         smashes(_1, _2)
     T = assertion
 */
-
 
 /*
 The parser
@@ -89,10 +99,11 @@ parse :- read_sentence(Sentence),
      sentence(Struc,Sentence,[]),
      print_struct(Struc).
 
+print_struct(S):- fmt(S).
 
-trans( Sentence, Goal, Type ) :-
+system:trans( Sentence, Goal, Type ) :-
      sentence( Struc, Sentence, [] ),
-     /*  print_struct(Struc), */
+     print_struct(struc:-Struc),
      trans_sentence( Struc, Goal, Type ).
 
 
@@ -127,7 +138,7 @@ sentence(Struc) -->
 %   imperative
 %
 sentence(Struc) -->
-    verb_phrase(Vp,Pers,Vnum,M),
+    verb_phrase(Vp,_Pers,_Vnum,_M),
     {Struc = c(Vp)}.
 
 
@@ -147,7 +158,7 @@ sentence(Struc) -->
 %
 %%%%%%%%%
 
-noun_phrase(Struc,Pers,Nnum,Gap,Gapout) -->
+noun_phrase(Struc,_Pers,_Nnum,Gap,Gapout) -->
     [],
     {Gap =.. [np|_]},
     {Gapout = nogap},
@@ -175,7 +186,7 @@ noun_phrase(Struc,Pers,Num,Gap,Gapout) -->
 %   changed to "all" or "some" if desired.
 %
 
-determiner(Struc,Dnum) --> [Word], {lexdet(Word,Det,Dnum)}, {Struc = det(Word)}.
+determiner(Struc,Dnum) --> [Word], {lexdet(Word,_Det,Dnum)}, {Struc = det(Word)}.
 determiner(Struc,Dnum) --> [], {Dnum = plur}, {Struc = det(nil)}.
 
 %
@@ -302,10 +313,10 @@ verb_bar(Struc,Pers,Vnum,Pgap) -->
 %   )
 %
 
-modal(Struc,Mpers,Vpers,Mnum,Vbnum,Mgap,Vbgap) --> [Word],
+modal(Struc,_Mpers,Vpers,_Mnum,Vbnum,Mgap,Vbgap) --> [Word],
     {lexmodal(Word)}, {Vbgap = Mgap}, {Vbnum = inf},
     {Vpers = nil}, {Struc = modal(Word)}.
-modal(Struc,Mpers,Vpers,Mnum,Vbnum,Mgap,Vbgap) --> [],
+modal(Struc,_Mpers,Vpers,_Mnum,Vbnum,Mgap,Vbgap) --> [],
     {Mgap =.. [modal|[X]]}, {X \== nil}, {Vbgap = nogap}, {Vbnum = inf},
     {Vpers = nil}, {Struc = Mgap}.
 modal(Struc,Mpers,Vpers,Mnum,Vbnum,Mgap,Vbgap) --> [],
@@ -334,7 +345,7 @@ verb(Struc,Pers,Vnum,Scat) --> [Word],
 verb(Struc,Pers,Vnum,Scat) --> [Word],
     {Pers = third}, {Vnum = sing}, {lexverb(Scat,_,Word,_)},
     {Struc = verb(Word)}.
-verb(Struc,Pers,Vnum,Scat) --> [Word],
+verb(Struc,_Pers,Vnum,Scat) --> [Word],
     {Vnum \== inf}, {lexverb(Scat,_,_,Word)},
     {Struc = verb(Word)}.
 
@@ -502,15 +513,15 @@ trans_sentence( c(VP), Command, command ) :-
         represents the relation described by the verb, acting on
         NPVar and Vars.       
 */
-combine_noun_verb( NPVar, Modal, Verb, [], VerbGoals ) :-
+combine_noun_verb( NPVar, _Modal, Verb, [], VerbGoals ) :-
     !,
     VerbGoals =.. [ Verb, NPVar ].
 
-combine_noun_verb( NPVar, Modal, Verb, [ArgVar1], VerbGoals ) :-
+combine_noun_verb( NPVar, _Modal, Verb, [ArgVar1], VerbGoals ) :-
     !,
     VerbGoals =.. [ Verb, NPVar, ArgVar1 ].
 
-combine_noun_verb( NPVar, Modal, Verb, [ArgVar1,ArgVar2], VerbGoals ) :-
+combine_noun_verb( NPVar, _Modal, Verb, [ArgVar1,ArgVar2], VerbGoals ) :-
     VerbGoals =.. [ Verb, NPVar, ArgVar1, ArgVar2 ].
 
 
@@ -523,6 +534,8 @@ combine_noun_verb( NPVar, Modal, Verb, [ArgVar1,ArgVar2], VerbGoals ) :-
         object denoted by it, and Goal the conditions that object must
         satisfy.
 */
+:- discontiguous(trans_noun_phrase/3).
+
 trans_noun_phrase( np(det(nil),NBar), NPGoals, NPVar ) :-
     !,
     trans_noun_bar( NBar, NPGoals, NPVar ).
@@ -599,9 +612,10 @@ trans_verb_bar( vbar(verb(Verb),P), Verb, ArgGoals, ArgVars ) :-
         defining each phrase, and a list of variables representing the
         things referred to.
 */
+:- discontiguous (trans_predicate/3).
 trans_predicate( pred(NP1,NP2), (NP1Goals,NP2Goals), [NP1Var,NP2Var] ) :-
     !,
-    trans_noun_phrase( NP1, NP1Goals, NP1Var ).
+    trans_noun_phrase( NP1, NP1Goals, NP1Var ),
     trans_noun_phrase( NP2, NP2Goals, NP2Var ).
 
 trans_predicate( pred(NP), NPGoals, [NPVar] ) :-
@@ -751,4 +765,86 @@ structures and how Gibberish can be expanded to suit:
         (and the phrases headed by both),  mood, voice, the
         verb "be",  the copula "be", pronouns, idioms, etc.
 */
+
+/*  GB_LEX.PL  */
+
+
+/*
+This is the lexicon used with GB.PL, for PLANNING_BUG.PL. It doesn't
+handle the parts of 'be' properly, and (of course) this form of
+representation is no use for highly inflected languages.
+*/
+
+
+/*  lexdet( Word+, Syn+, Number+ ):
+*/
+lexdet(the,the,_).
+lexdet(a,a,sing).
+lexdet(an,a,sing).
+
+
+/*  lexadjective( Word+ ):
+*/
+lexadjective(big).
+lexadjective(small).
+
+
+/*  lexnoun( WordSing+, WordPlur+ ):
+*/
+lexnoun(boulder,boulders).
+lexnoun(bug,bugs).
+lexnoun(door,doors).
+lexnoun(food,food).
+lexnoun(hammer,hammers).
+lexnoun(key,keys).
+lexnoun(quicksand,quicksands).
+lexnoun(rock,rocks).
+
+
+/*  lexmodal( Word+ ):
+*/
+lexmodal(can).
+lexmodal(could).
+lexmodal(do).
+lexmodal(does).
+lexmodal(shall).
+lexmodal(should).
+lexmodal(will).
+lexmodal(would).
+
+
+/*  lexverb( Trans-, Pres, Pres3, Past ):
+*/
+lexverb(tv,drop,drops,dropped).
+lexverb(tv,eat,eats,ate).
+lexverb(dt,give,gives,gave).
+lexverb(iv,go,goes,went).
+lexverb(tv,grab,grabs,grabbed).
+lexverb(tv,have,has,had).
+lexverb(tv,zzzz,is,was).
+lexverb(tv,open,opens,opened).
+lexverb(tv,see,sees,saw).
+lexverb(tv,smash,smashes,smashed).
+lexverb(tv,use,uses,used).
+lexverb(tv,want,wants,wanted).
+
+
+/*  lexprep( Word+ ):
+*/
+lexprep(by).
+lexprep(for).
+lexprep(from).
+lexprep(in).
+lexprep(near).
+lexprep(of).
+lexprep(on).
+lexprep(to).
+lexprep(with).
+
+
+/*  lexconj( Word+, Number ):
+*/
+lexconj(and,plur).
+lexconj(or,sing).
+
 

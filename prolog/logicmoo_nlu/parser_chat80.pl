@@ -264,7 +264,7 @@ chat80("what countries are there in europe?").
 chat80_tests:- 
   forall(chat80(X,Y,Z),chat80(X,Y,Z)).
 
-:- import(clex_iface:clex_adj/3).
+%:- import(clex_iface:clex_adj/3).
 
 
 :-export(test_chat80_regressions/0).

@@ -33,6 +33,7 @@
 :- (abolish(apply_macros:expand_apply,2), assert((apply_macros:expand_apply(_In,_):- fail))).
 
 :- ensure_loaded(parser_sharing).
+:- ensure_loaded(parser_tokenize).
 
 :- ensure_loaded(library(logicmoo_utils_all)).
 :- ensure_loaded(library(logicmoo_lib)).
@@ -378,21 +379,7 @@ load_parser_interface(File):- call(File:ensure_loaded_no_mpreds(File)).
 :- system:import(get_ape_results:ace_to_pkif/2).
 
 
-input_to_acetext(Input,AceText):- atomic(Input), tokenize(Input, Tokens),
-   tokens_to_acetext(Tokens,AceText).
-
-tokens_to_acetext(Tokens,AceText):- notrace((into_text80(Tokens,TokensP),is_list(TokensP),tokens_to_acetext0(TokensP,AceText))).
-
-any_nb_to_atom(nb(N),A):- any_to_atom(N,A),!.
-any_nb_to_atom(N,A):- any_to_atom(N,A).
-
-tokens_to_acetext0([],'').
-tokens_to_acetext0(ListIn,Out):-  notrace((member(T,ListIn), \+ atom(T))), !, maplist(any_nb_to_atom,ListIn,List),tokens_to_acetext0(List,Out).
-tokens_to_acetext0([T],T):-!.
-tokens_to_acetext0([T,':',P|Tokens],AceText):- atomic_list_concat([T,(:),P],'',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
-tokens_to_acetext0([T,P|Tokens],AceText):- atom_length(P,1),char_type(P,punct),!,atom_concat(T,P,TP),tokens_to_acetext0([TP|Tokens],AceText).
-tokens_to_acetext0([T,P],AceText):- atomic_list_concat([T,P],' ',AceText),!.
-tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
+input_to_acetext(Input,AceText):- atomic(Input), tokenize(Input, Tokens), tokens_to_acetext(Tokens,AceText).
 
 :- install_converter(parser_all:input_to_acetext(+input, -acetext)).
 :- install_converter(parser_all:tokens_to_acetext(+(tokens), -acetext)).
@@ -505,7 +492,7 @@ eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
 :- endif.
 
 % ================================================================================================
-:-  if(load_parser_interface(parser_bratko)).
+:-  if(load_parser_interface('parser_bratko.pl')).
 % ================================================================================================
 
 :- install_converter(parser_bratko,bratko_parse(+(tokens),-lf_b)).
@@ -561,6 +548,11 @@ load_parser_stanford:-  load_parser_interface(parser_stanford).
 % ================================================================================================
 % TODO - grovel the API
 :-  load_parser_interface(parser_SUPPLE).
+% ================================================================================================
+
+% ================================================================================================
+% TODO - grovel the API
+:-  load_parser_interface(parser_jpaine).
 % ================================================================================================
 
 % ================================================================================================

@@ -209,14 +209,14 @@ i_subj(Voice,Subj,Slots0,Slots,Quant,Up,Id) :-
 i_verb_args(VArgs,XA0,XA,Slots0,Slots,Args0,Args,Up,Id) :-
    fill_verb(VArgs,XA0,XA,Slots0,Slots,Args0,Args,Up,Id).
 
-active_passive_subjcase(active,subj80).
+active_passive_subjcase(active,subj).
 active_passive_subjcase(passive,s_subj).
 
 fill_verb([],XA,XA,Slots,Slots,Args,Args,[],_).
 fill_verb([Node|Nodes0],XA0,XA,Slots0,Slots,Args0,Args,Up,Id) :-
    verb_slot(Node,XA0,XA1,Slots0,Slots1,Args0,Args1,Up0,-Id),
    conc80(Up0,Nodes0,Nodes),
-   fill_verb(Nodes,XA1,XA,Slots1,Slots,Args1,Args,Up,+Id).
+   fill_verb(Nodes,XA1,XA,Slots1,Slots,Args1,Args,Up,+d).
 
 verb_slot(pp(Prep,NP),
       XArg0,XArg,Slots0,Slots,[Q|Args],Args,Up,Id) :-
@@ -306,17 +306,17 @@ noun_template(Noun,TypeV,V,apply(F,P),
 
 
 slot_verb_template(have,Y=Z,
-		[slot(subj80,TypeS,S,-Id,free),
+		[slot(subj,TypeS,S,-Id,free),
 		 slot(dir,TypeV,Y,_,free),
 		 slot(prep(of),TypeV,Z,_,free)],
 		held_arg(poss,-(-(+Id)),TypeS-S), have).
 slot_verb_template(have,Y=Z,
-	[slot(subj80,TypeS,S,-(-(Id)),free),
+	[slot(subj,TypeS,S,-(-(Id)),free),
 	 slot(dir,TypeV,Y,_,free),
 	 slot(prep(as),TypeV,Z,_,free)],
 	held_arg(poss,-(-(-(+Id))),TypeS-S), have).
 slot_verb_template(Verb,Pred,
-      [slot(subj80,TypeS,S,_,free)|Slots],[],transparent) :-
+      [slot(subj,TypeS,S,_,free)|Slots],[],transparent) :-
    no_repeats_must(verb_type_db(Verb,_+Kind)),!,
    slot_verb_kind(Kind,Verb,TypeS,S,Pred,Slots).
 
@@ -335,7 +335,7 @@ slot_verb_kind(ditrans(_Prep),Verb,TypeS,S,Pred,
 deepen_case(prep(at),time).
 deepen_case(s_subj,dir).
 deepen_case(s_subj,ind).
-deepen_case(prep(by),subj80).
+deepen_case(prep(by),subj).
 deepen_case(prep(to),ind).
 deepen_case(prep(of),poss).
 deepen_case(X,X).
@@ -363,7 +363,7 @@ indexable(the(pl)).
 indexable(all).
 
 index80(index(_I)).
-
+                              
 % ================================================================
 % Utilities
 

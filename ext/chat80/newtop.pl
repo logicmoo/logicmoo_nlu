@@ -1,4 +1,4 @@
-/*
+to_word_list/*
 
  _________________________________________________________________________
 |	Copyright (C) 1982						  |
@@ -85,48 +85,6 @@ end(user) :- !.
 end(F) :- 
    told,seen,
    catch(close(F),_,seen),!.
-
-number_to_nb(nb(N),nb(N)):-!.
-number_to_nb(A,nb(N)):- atom(A),atom_number(A,N),!.
-number_to_nb(N,nb(N)):- number(N),!.
-number_to_nb(A,A).
-
-:-share_mp(into_text80/2).
-into_text80(I,O):- notrace((into_control80(I,M),!,maplist(number_to_nb,M,O))).
-into_control80(NotList,Out):-  
-  string(NotList),string_to_atom(NotList,Atom),!,
-  into_control80(Atom,Out).
-into_control80(NotList,Out):-  atom(NotList),
-   on_x_fail(tokenizer:tokenize(NotList,Tokens)),!,
-   into_control80(Tokens,Out).
-into_control80(NotList,Out):-  
-   \+ is_list(NotList), 
-   convert_to_atoms_list(NotList,List), !,
-   into_control80(List,Out).
-into_control80([W|ListIn],Out):- 
-   any_to_atom(W,AW),W\=@=AW,
-   maplist(any_to_atom,ListIn,AList),!,
-   into_control80([AW|AList],Out).
-into_control80(ListIn,Out):- 
-   append(Left,[Last],ListIn), 
- ( \+ atom_length(Last,1),
-   char_type(P,period), % covers Q, ! , etc
-   atom_concat(Word,P,Last)),
-   append(Left,[Word,P],ListMid),!,
-   into_control80(ListMid,Out).
-into_control80(ListIn,Out):- 
-   append(Left,[P],ListIn), 
- (\+ atom_length(P,1); \+ char_type(P,period)),!,
-   append(ListIn,[('.')],ListMid),!,
-   into_control80(ListMid,Out).
-into_control80([W,'.'],Out):- 
-   downcase_atom(W,D),W\==D,!,
-   into_control80([D,'.'],Out).
-into_control80([W,A,B|More],Out):- 
-   downcase_atom(W,D),
-   Out=[D,A,B|More],!.
-into_control80(Out,Out):- !.
-
 
 
 :-share_mp(control80/1).
