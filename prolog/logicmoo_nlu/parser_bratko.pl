@@ -323,9 +323,14 @@ conjoin_lf0(LF1, LF2, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf
 % conjoin_lf0(LF2, LF1, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
 conjoin_lf0(LF1, LF2, LF1&LF2):-!.
 
+
+quantify(no,     X, Found, ~exists(X, Found)).
+quantify(exists, X, Found,  exists(X, Found)).
+quantify(every,  X, Found,     all(X, Found)).
+quantify(any,   _X, Found,            Found ).
+
 conjoin_lf1(LF1, LF2, Out):- LF2==true, !, Out=LF1.
-conjoin_lf1(LF1, LF2, Out):- compound(LF2), LF2 = quant(X, exists), conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; Out = exists(X, Found)).
-conjoin_lf1(LF1, LF2, Out):- compound(LF2), LF2 = quant(X, every), conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; Out = all(X, Found)).
+conjoin_lf1(LF1, LF2, Out):- compound(LF2), LF2 = quant(X, Type), conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; quantify(Type,X,Found,Out)).
 conjoin_lf1(LF1, LF2, Out):- compound(LF2), subst(LF2, '_addto', (LF1&'_addto'), Out), LF2\==Out, !.
 conjoin_lf1(LF1, LF2, Out):- conjoin_lf2(LF1, LF2, Out), !.
 
@@ -345,24 +350,29 @@ add_traits( X, [H|List], LF, LFO):- !,
 add_traits( X, H&List, LF, LFO):- !,
   add_traits(X, H, LF, LFM),
   add_traits(X, List, LFM, LFO).
-add_traits( X, T, LF, Out):- trait_on( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
+add_traits( X, T, LF, Out):- var_1trait( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
 add_traits(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
 
-%trait_on(X, sg, atMost(X, 1)).
-trait_on(_X, sg, true).
-trait_on(X, pl, atLeast(X, 2)).
-% trait_on(X, Atom, Out):- atom(Atom), i_name(t, Atom, Value), into_isa3(X, Value, Out).
-trait_on(X, Atom, Out):- atom(Atom), into_isa3(X, Atom, Out).
-trait_on(X, isa(Value), Prop):- !, trait_on(X, Value, Prop).
-trait_on(_, gender(Var), true):- var(Var).
-trait_on(X, gender(masc), Prop):- into_isa3(X, tMale, Prop).
-trait_on(X, gender(fem), Prop):- into_isa3(X, tFemale, Prop).
-trait_on(_, person(Var), true):- var(Var).
-trait_on(X, person(N), denotableBy(X, Str)):- atom_concat(N, person, Str).
-trait_on(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
-trait_on(X, Str, denotableBy(X, Str)):- string(Str).
-trait_on(X, Prop, Prop):- compound(Prop), sub_var(X, Prop).  % arg(2, Prop, _).
-trait_on(X, Prop, XProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !.
+% var_1trait(X, sg, atMost(X, 1)).
+
+%var_1trait(X, Prop, Out):- var(Prop), !, fail, Out = Prop.
+var_1trait(X, Prop, call(X^Prop)):- var(Prop), !.
+var_1trait(_, True, true):- True == true.
+var_1trait(X, sg, nonvar(X)).
+var_1trait(_, sg, true).
+var_1trait(X, pl, atLeast(X, 2)).
+% var_1trait(X, Atom, Out):- atom(Atom), i_name(t, Atom, Value), into_isa3(X, Value, Out).
+var_1trait(X, Atom, Out):- atom(Atom), into_isa3(X, Atom, Out).
+var_1trait(X, isa(Value), Prop):- !, var_1trait(X, Value, Prop).
+var_1trait(_, gender(Var), true):- var(Var).
+var_1trait(X, gender(masc), Prop):- into_isa3(X, tMale, Prop).
+var_1trait(X, gender(fem), Prop):- into_isa3(X, tFemale, Prop).
+var_1trait(_, person(Var), true):- var(Var).
+var_1trait(X, person(N), denotableBy(X, Str)):- atom_concat(N, person, Str).
+var_1trait(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
+var_1trait(X, Str, denotableBy(X, Str)):- string(Str).
+var_1trait(X, Prop, Prop):- compound(Prop), sub_var(X, Prop).  % arg(2, Prop, _).
+var_1trait(X, Prop, XProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !.
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% Grammar %%%%%%%%%%%%%%%%%%%%%%%
@@ -420,7 +430,7 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % =================================================================
 % Verb Phrase
 % =================================================================
-verb_phrase(Frame, X, AssnOut) --> is_be(X, NounProp, AssnOut), ([a];[an]), noun(X, NounProp), nvd(is, Frame).
+verb_phrase(Frame, X, AssnOut) --> is_be(X, NounProp, AssnOut), ([a];[an]), noun(object, X, NounProp), nvd(is, Frame).
 verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
 verb_phrase(Frame, X, AssnOut) --> is_be(X, equals(X, Y), AssnOut), proper_noun(Y), nvd(is, Frame).
 
@@ -562,36 +572,43 @@ noun_phrase(SO, X, LF0, LFOut) -->
 
 noun_phrase(SO, X, LF, LFOut) --> noun_phrase1(SO, X, LF, LFOut).
 
-dcg_must_each_det((G1, G2), S, E):- !, must(phrase(G1, S, M)), !, dcg_must_each_det(G2, M, E), !.
-dcg_must_each_det(G, S, E):- must(phrase(G, S, E)), !.
 
 :- discontiguous(noun_phrase1//4).
 noun_phrase1(_SO, X, LF, ~exist(X, LF)) --> [nothing].
 noun_phrase1(_SO, X, LF, exist(X, LF)) --> [something].
 
-% it, she, we, them, everyone
-noun_phrase1(SO, X, LF, Out) -->
-  pronoun(SO, X, LF, LF2),
-  dcg_s2(noun_post_mod(SO, X), LF2, Out).
-
   % some good food
 noun_phrase1(SO, X, LF, LFOut) -->
     determiner(X, DetProps),
     dcg_must_each_det((dcg_s2(noun_pre_mod(SO, X), true, PreProps),
-    noun(X, NounProps),
+    noun(SO, X, NounProps),
     dcg_s2(noun_post_mod(SO, X), true, PostProps),
     conjoin_lf(NounProps, PreProps&PostProps, Precond),
     add_traits(X, DetProps, Precond, PrecondDet),
     conjoin_lf(precond(PrecondDet), LF, LFOut))).
 
-determiner(_Var, quant(every)) --> [every];[all];[each].
-determiner(_Var, quant(exists)&numberOf(0)) --> [no];[zero].
-determiner(_Var, quant(exists)&numberOf(1)) --> [one].
-determiner(_Var, quant(exists)&numberOf(3)) --> [three].
-determiner(_Var, quant(exists)&numberOf(N)) --> [nb(N)].
-determiner( Var, quant(exists)&the(Var)) --> [the].
-determiner(_Var, quant(exists)) --> [some];[any];[there, exists];[exists].
-determiner(_Var, quant(exists)) --> [a];[an].
+determiner1(_Var, quant(every)) --> [every];[all];[each].
+determiner1(_Var, quant(no)) --> [no];dcg_peek([zero]).
+determiner1(_Var, quant(exists)) --> [some];[any];[there, exists];[exists].
+determiner1(_Var, quant(exists)) --> [a];[an].
+determiner1(_Var, true) --> [].
+
+determiner2( Var, quant(exists)&the(Var)) --> [the].
+determiner2(_Var, true) --> [].
+
+determiner3(_Var, numberOf(0)) --> [no];[zero].
+determiner3(_Var, quant(exists)&numberOf(1)) --> [one].
+determiner3(_Var, quant(exists)&numberOf(3)) --> [three].
+determiner3(_Var, quant(exists)&numberOf(N)) --> [nb(N)].
+determiner3(_Var, true) --> [].
+
+determiner( V, LF) --> determiner1(V,LF1),determiner2(V,LF2),determiner3(V,LF3),conjoin_lf(LF1,LF2&LF3,LF).
+
+
+% it, she, we, them, everyone
+noun_phrase1(SO, X, LF, Out) -->
+  pronoun(SO, X, LF, LF2),
+  dcg_s2(noun_post_mod(SO, X), LF2, Out).
 
 
 /*
@@ -603,7 +620,7 @@ determiner(Var, Prop, LF, ~exists(Var, Prop & LF)) --> [no].
 noun_phrase1(SO, X, LF, LFOut) -->
     determiner(X, Precond, LF, LFOut),
     dcg_s2(noun_pre_mod(SO, X), NounProp, AdjProps),
-    noun(X, NounProp),
+    noun(SO, X, NounProp),
     dcg_s2(noun_post_mod(SO, X), AdjProps, Precond).
 */
 % happy Jack
@@ -626,15 +643,15 @@ adjective1(X, MProps)  -->      [Adj], {adj_lf(X, Adj, MProps)}.
  adj_lf(X, Adj, ISA) :- (adj_db(Adj, restr);talkdb:talk_db(adj, Adj)), into_isa3(X, adjFn(Adj), ISA).
 
 noun_pre_mod(_SO, X, LF, Out) --> adjective(X, MProps), conjoin_lf(LF, MProps, Out).
-noun_pre_mod(SO, X, LF, LF0) --> near_noun_mod(SO, X, LF, LF0).
+noun_pre_mod(SO,  X, LF, Out) --> near_noun_mod(SO, X, LF, Out).
 
 near_noun_mod(_SO, X, LF, Out) --> [hapilly, maried], conjoin_lf(LF , hapilly_maried(X), Out).
 
 noun_post_mod(SO, X, LF, Out) --> [of], noun_phrase(SO, Y, LF, LF0), conjoin_lf(LF0, of(X, Y), Out).
 noun_post_mod(SO, X, LF, Out) --> [owned, by], noun_phrase(SO, Y, LF & ownedBy(X, Y), Out).
 %noun_post_mod(SO, X, LF, LFOut)  --> prepostional_phrase(SO, X, _Frame, LF, LFOut).
-noun_post_mod(SO, X, LF, LFOut)  --> rel_clause(SO,X, LF, LFOut).
-noun_post_mod(SO, X, LF, LF0) --> near_noun_mod(SO, X, LF, LF0).
+noun_post_mod(SO, X, LF, Out)  --> rel_clause(SO, X, LF, Out).
+noun_post_mod(SO, X, LF, Out) --> near_noun_mod(SO, X, LF, Out).
 
 % =================================================================
 %  Word-level Negation
@@ -689,41 +706,35 @@ whpron(X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)}
   whpron_dict(Which):- talkdb:talk_db(pronoun, Which), atom_concat('w', _, Which).
 
 % pers_pron_db
-% pronoun_split('Something', upper, (a, '-thing'))
-
-% noun(X, LF) --> [A, Thing], {ace_niceace:pronoun_split(S, lower, (A, Thing))}, !, dcg_push(S), noun(X, LF).
 pronoun(_SO, X, _LF, _Out) --> determiner(X, _), !, {fail}.
-pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO), nvd(She, X), atom_string(She, Str)},
- add_traits(X, [denotableBy(X, pronounFn(Str)), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
-
 pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body), nvd(Nobody, X), pronoun_ok(_Subj,SO), atom_string(Nobody, Str)},
  add_traits(X, [denotableBy(X, pronounFn(Str)), quant(No), Body], LF, Out), !.
+pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO), nvd(She, X), atom_string(She, Str)},
+ add_traits(X, [denotableBy(X, pronounFn(Str)), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
 
 pronoun(subject, X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)},
   add_traits(X, denotableBy(X, pronounFn(Str)), LF, Out).
 
 
-pronoun_ok(obj, subject):-!,fail.
+pronoun_ok(Obj, Subject):- Obj == obj, Subject == subject, !, fail.
 pronoun_ok(_80, _SO).
 
 
-noun(X, denotableBy(X, pronounFn(Str))) --> [WH], {pron_db(WH), nvd(WH, X), atom_string(WH, Str)}.
-noun(X, denotableBy(X, pronounFn(Str))) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)}.
-noun(X, ~something(X)) --> [nothing], nvd(nothing, X).
-noun(X, something(X)) --> [something], nvd(something, X).
-noun(X, LF) --> maybe_negated_dcg(noun1(X), LF).
+noun(_SO, X, ~something(X)) --> [nothing], nvd(nothing, X).
+noun(_SO, X, something(X)) --> [something], nvd(something, X).
+noun(SO, X, LF) --> maybe_negated_dcg(noun1(SO, X), LF).
 
-noun1(X, LF) --> [N], {noun_lf(X, N, LF)}, nvd(N, X).
+noun1(SO, X, LF) --> [N], {noun_lf(SO, X, N, LF)}, nvd(N, X).
 
- noun_lf(X, Word, Out) :-
+ noun_lf(_SO, X, Word, Out) :-
    (Word=Sing;Word=Plur), talkdb:talk_db(noun1, Sing, Plur), !,
     ISA = Sing,
     (Sing==Plur -> add_traits(X, [ISA, denote(Word)], true, Out) ;
     (Word==Plur ->  add_traits(X, [ISA, pl], true, Out) ;
      add_traits(X, [ISA, sg], true, Out))).
 
- noun_lf(X, Mass, Out) :- talkdb:talk_db(noun2, Mass), add_traits(X, [Mass, denote(Mass)], true, Out).
- noun_lf(X, Sing, Out) :- noun_dict(Sing), add_traits(X, [Sing], true, Out).
+ noun_lf(_SO, X, Mass, Out) :- talkdb:talk_db(noun2, Mass), add_traits(X, [Mass, denote(Mass)], true, Out).
+ noun_lf(_SO, X, Sing, Out) :- noun_dict(Sing), add_traits(X, [Sing], true, Out).
 
   noun_dict(author).  noun_dict(human).  noun_dict(book).  noun_dict(professor).  noun_dict(program).
   noun_dict(programmer).  noun_dict(student).  noun_dict(man).  noun_dict(woman).
@@ -746,11 +757,19 @@ proper_noun(Entity) --> quietly(([PN], {pn_lf(PN, Entity)})).
 % plt --> quietly(([], {plt})).
 plt(A, A):- notrace(plt).
 
-quietly(DCG, S, E):- quietly(phrase(DCG, S, E)).
+quietly(DCG, S, E):- setup_call_cleanup(quietly(phrase(DCG, S, E)),true,true).
+
+dcg_peek(DCG,S,S):- phrase(DCG,S,_).
 
 tag(Frame, Tag, isa(Frame, TAG)) --> {atomic(Tag)}, !, [$, TAG], {downcase_atom(TAG, Start), atom_concat(Tag, _, Start)}.
 tag(Frame, Cmp, N) --> {functor(Cmp, F, _)}, tag(Frame, F, N).
 % iterative deeping flag
+
+dcg_must_each_det(_, S, _):- S == [], !, fail.
+dcg_must_each_det((G1, G2), S, E):- !, must(phrase(G1, S, M)), !, dcg_must_each_det(G2, M, E), !.
+dcg_must_each_det(G, S, E):- must(phrase(G, S, E)), !.
+
+dcg_and(DCG1, DCG2, S, E) :- dcg_phrase(DCG1, S, E), dcg_phrase(DCG2, S, E), !.
 
 % Push a new term onto DCG stack
 dcg_push(List, S, ListS):- is_list(List), !, append(List, S, ListS).
