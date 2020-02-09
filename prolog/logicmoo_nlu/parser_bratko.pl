@@ -696,10 +696,10 @@ pronoun(_SO, X, _LF, _Out) --> determiner(X, _), !, {fail}.
 pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO), nvd(She, X), atom_string(She, Str)},
  add_traits(X, [denotableBy(X, pronounFn(Str)), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
 
-pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body), nvd(Nobody, X), pronoun_ok(Subj,SO), atom_string(Nobody, Str)},
+pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body), nvd(Nobody, X), pronoun_ok(_Subj,SO), atom_string(Nobody, Str)},
  add_traits(X, [denotableBy(X, pronounFn(Str)), quant(No), Body], LF, Out), !.
 
-pronoun(SO, X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), pronoun_ok(Subj,SO), atom_string(WH, Str)},
+pronoun(subject, X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)},
   add_traits(X, denotableBy(X, pronounFn(Str)), LF, Out).
 
 
