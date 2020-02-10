@@ -5,6 +5,7 @@ ext/candc/models/
 ~*/
 .*/
 *.qlf
+*.bak
 *~.*
 *~
 ~*

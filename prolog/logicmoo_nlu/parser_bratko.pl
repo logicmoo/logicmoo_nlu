@@ -129,7 +129,7 @@ must_test_bratko("everybody paints", pronoun).
 must_test_bratko("everyone paints", pronoun).
 must_test_bratko("everything paints", pronoun).
 must_test_bratko("nobody paints", pronoun).
-must_test_bratko("noone paints", pronoun).
+must_test_bratko("no one paints", pronoun).
 must_test_bratko("nothing paints", pronoun).
 must_test_bratko("one paints", pronoun).
 must_test_bratko("somebody paints", pronoun).
@@ -153,7 +153,7 @@ must_test_bratko("she likes it", pronoun).
 must_test_bratko("she likes us", pronoun).
 must_test_bratko("she likes them", pronoun).
 must_test_bratko("she likes no one", pronoun).
-must_test_bratko("she likes noone", pronoun).
+%must_test_bratko("she likes noone", pronoun).
 must_test_bratko("she likes none", pronoun).
 
 
@@ -251,21 +251,26 @@ bratko :- locally(tracing80,
 % :-export(bratko/1).
 system:bratko(Sentence):-
   setup_call_cleanup(notrace((to_wordlist_atoms(Sentence, Words),
-  fmt(bratko(Words)))),
-  (brakto_0(Words, Reply), print_reply(Reply)), true).
+  fmt(bratko(Sentence)))),
+  bratko_0(Words), true).
+
+% :-export(bratko/1).
+system:bratko_0(Words):-
+  bratko_0(Words, Reply),
+  print_reply(Reply).
 
 :-export(bratko/2).
 bratko(Sentence, Reply):-
  quietly(to_wordlist_atoms(Sentence, WL)), !,
- brakto_0(WL, Reply).
+ bratko_0(WL, Reply).
 
-brakto_0(Sentence, Reply) :-
+bratko_0(Sentence, Reply) :-
    % must_or_rtrace
    deepen_pos(bratko_parse0(Sentence, LF)), % deepen_pos?
    quietly((show_call(bratko_clausify(LF, Clause)),
    bratko_reply(Clause, Reply))), !.
-brakto_0(Sentence,
-   error('FAILED!!!!! small bug'(Sentence))):- ansifmt(red, brakto_0(Sentence)).
+bratko_0(Sentence,
+   error('FAILED!!!!! small bug'(Sentence))):- ansifmt(red, rtrace(bratko_0(Sentence))).
 
 bratko_parse(Sentence, LF):-
   quietly(to_wordlist_atoms(Sentence, WL)), !,
@@ -341,17 +346,18 @@ conjoin_lf2(LF1, LF2, exists(X, Out)):- compound(LF2), (LF2 = exists(X , Body)),
 conjoin_lf2(LF1, LF2, all(X, Out)):- compound(LF2), (LF2 = all(X , Body)), !, conjoin_lf0(LF1, Body, Out).
 
 
-add_traits( X, T, LF, Out, L, L):- notrace(add_traits( X, T, LF, Out)).
+add_traits( X, T, LF, Out, L, L):- notrace(add_traits0( X, T, LF, Out)).
+add_traits( X, T, LF, Out):- notrace(add_traits0( X, T, LF, Out)).
 
-add_traits(_X, V, LF, LF):- (var(V) ; V==[]) , !.
-add_traits( X, [H|List], LF, LFO):- !,
-  add_traits(X, H, LF, LFM),
-  add_traits(X, List, LFM, LFO).
-add_traits( X, H&List, LF, LFO):- !,
-  add_traits(X, H, LF, LFM),
-  add_traits(X, List, LFM, LFO).
-add_traits( X, T, LF, Out):- var_1trait( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
-add_traits(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
+add_traits0(_X, V, LF, LF):- (var(V) ; V==[]) , !.
+add_traits0( X, [H|List], LF, LFO):- !,
+  add_traits0(X, H, LF, LFM),
+  add_traits0(X, List, LFM, LFO).
+add_traits0( X, H&List, LF, LFO):- !,
+  add_traits0(X, H, LF, LFM),
+  add_traits0(X, List, LFM, LFO).
+add_traits0( X, T, LF, Out):- var_1trait( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
+add_traits0(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
 
 % var_1trait(X, sg, atMost(X, 1)).
 
@@ -370,7 +376,9 @@ var_1trait(X, gender(fem), Prop):- into_isa3(X, tFemale, Prop).
 var_1trait(_, person(Var), true):- var(Var).
 var_1trait(X, person(N), denotableBy(X, Str)):- atom_concat(N, person, Str).
 var_1trait(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
-var_1trait(X, Str, denotableBy(X, Str)):- string(Str).
+var_1trait(X, Str, denotableBy(X, Str)):- string(Str), nvd(X,Str).
+var_1trait(X, Prop, denotableBy(X, Str)):- compound(Prop), Prop=.. [F, Arg2],atom_concat(F,_,'Fn'),
+  i_name(i,F,FF),any_to_string(Arg2,Str),XProp=.. [FF,Str],!,nvd(Str,X).
 var_1trait(X, Prop, Prop):- compound(Prop), sub_var(X, Prop).  % arg(2, Prop, _).
 var_1trait(X, Prop, XProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !.
 
@@ -394,7 +402,7 @@ declarative(LFOut) --> sentence(_NewFrame, LFOut), optionalText1(['.']).
 
 % Regular NP+VP
 sentence(Frame, LF) --> tag(Frame, sentence, LF), !.
-sentence(Frame, LFOut) --> noun_phrase(subject, X, LF, LFOut), verb_phrase(Frame, X, LF).
+sentence(Frame, LFOut) --> noun_phrase(subj, X, LF, LFOut), verb_phrase(Frame, X, LF).
 
 % =================================================================
 % Interogative sentences @TODO
@@ -407,7 +415,7 @@ question(LFOut => answer(LFOut)) --> sentence(_NewFrame, LFOut), [?].
 
 
 % "is joe walking" (Inverted sentences)
-sentence_inv(X, LFOut) -->  aux(_Tense+fin/_Form, S0, LFOut), noun_phrase(subject, X, LF, S0), verb_phrase(_NewFrame, X, LF).
+sentence_inv(X, LFOut) -->  aux(_Tense+fin/_Form, S0, LFOut), noun_phrase(subj, X, LF, S0), verb_phrase(_NewFrame, X, LF).
 
 % "What have you?"
 % "who eats?"
@@ -425,12 +433,12 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % "is joe a person?"
 % "are you happy?"
 % "Could the dog"
-% interogative(LFOut => answer(yes)) -->  copula_is_does, noun_phrase(subject, (X^SO)^LFOut, nogap),  noun_phrase(subject, (X^true)^exists(X, SO & true), nogap).
+% interogative(LFOut => answer(yes)) -->  copula_is_does, noun_phrase(subj, (X^SO)^LFOut, nogap),  noun_phrase(subj, (X^true)^exists(X, SO & true), nogap).
 
 % =================================================================
 % Verb Phrase
 % =================================================================
-verb_phrase(Frame, X, AssnOut) --> is_be(X, NounProp, AssnOut), ([a];[an]), noun(object, X, NounProp), nvd(is, Frame).
+verb_phrase(Frame, X, AssnOut) --> is_be(X, NounProp, AssnOut), ([a];[an]), noun(obj, X, NounProp), nvd(is, Frame).
 verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
 verb_phrase(Frame, X, AssnOut) --> is_be(X, equals(X, Y), AssnOut), proper_noun(Y), nvd(is, Frame).
 
@@ -438,7 +446,7 @@ verb_phrase(Frame, X, AssnOut) --> is_be(X, LF, AssnOut), !, verb_phrase(Frame, 
 verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_s2(verb_post_mod(X, Frame), LF, Out).
 
 verb_phrase1(Frame, X, ~(LFOut)) --> [not], verb_phrase(Frame, X, LFOut).
-verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(object, Y, Assn2, LFOut).
+verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
 verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
 
 :- discontiguous(talk_verb_lf/8).
@@ -480,7 +488,7 @@ talk_verb(Frame, IV, Type, pres+part, LF) --> [IV], {talk_verb_lf(Frame, Type, _
    toPropercase(Writing, ProperEvent),
    make_object(Frame, Written, Y, MadeObj).
 
-make_object(Frame, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat('object', Proper, Pred), MadeObj=.. [Pred, Frame, Y].
+make_object(Frame, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat('obj', Proper, Pred), MadeObj=.. [Pred, Frame, Y].
 
 intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF), {make_time_info(Frame, Time, LF, LFO)}.
 
@@ -564,7 +572,7 @@ verb_post_mod(X, Frame, LFIn, FLOut) -->  prepostional_phrase(oblique, X, Frame,
 % =================================================================
 % what the product is
 noun_phrase(SO, X, LF, Out) --> [what], noun_phrase1(SO, Y, LF, LF0), [is], conjoin_lf(LF0 , what_is(Y, X), Out).
-%poss_pron_db(his, masc, 3, sg)  noun_phrase(subject, X, LF, ownedBy(X, him) & LFOut) --> [his], dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
+%poss_pron_db(his, masc, 3, sg)  noun_phrase(subj, X, LF, ownedBy(X, him) & LFOut) --> [his], dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
 noun_phrase(SO, X, LF0, LFOut) -->
   [His], {poss_pron_db(His, Masc, Pers, SgOrpl)},
   add_traits(Y, [ownedBy(X, Y), gender(Masc), person(Pers), SgOrpl], LF0, LF),
@@ -602,7 +610,7 @@ determiner3(_Var, quant(exists)&numberOf(3)) --> [three].
 determiner3(_Var, quant(exists)&numberOf(N)) --> [nb(N)].
 determiner3(_Var, true) --> [].
 
-determiner( V, LF) --> determiner1(V,LF1),determiner2(V,LF2),determiner3(V,LF3),conjoin_lf(LF1,LF2&LF3,LF).
+determiner( V, LF) --> determiner1(V,LF1), determiner2(V,LF2), determiner3(V,LF3),conjoin_lf(LF1,LF2&LF3,LF).
 
 
 % it, she, we, them, everyone
@@ -696,8 +704,8 @@ maybe_suffixed_dcg(DCGGoal1, Suffix, LF) -->
 % =================================================================
 %  Noun Units
 % =================================================================
-whpron(X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)},
-  add_traits(X, denotableBy(X, pronounFn(Str)), LF, Out).
+whpron(X, LF, Out) --> [WH], {whpron_dict(WH)},
+  add_traits(X, [pronounFn(WH)), LF, Out).
 
   whpron_dict(who).
   whpron_dict(whom).
@@ -706,18 +714,43 @@ whpron(X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)}
   whpron_dict(Which):- talkdb:talk_db(pronoun, Which), atom_concat('w', _, Which).
 
 % pers_pron_db
-pronoun(_SO, X, _LF, _Out) --> determiner(X, _), !, {fail}.
-pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body), nvd(Nobody, X), pronoun_ok(_Subj,SO), atom_string(Nobody, Str)},
- add_traits(X, [denotableBy(X, pronounFn(Str)), quant(No), Body], LF, Out), !.
-pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO), nvd(She, X), atom_string(She, Str)},
- add_traits(X, [denotableBy(X, pronounFn(Str)), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
+% pronoun(_SO, X, _LF, _Out) --> determiner(X, _), !, {fail}.
+pronoun(SO, X, LF, Out) --> [noone],dcg_push(nobody),!,pronoun(SO, X, LF, Out).
 
-pronoun(subject, X, LF, Out) --> [WH], {whpron_dict(WH), nvd(WH, X), atom_string(WH, Str)},
-  add_traits(X, denotableBy(X, pronounFn(Str)), LF, Out).
+pronoun(_SO, X, LF, Out) --> [none], add_traits(X, [pronounQFn("none"), quant(no)], LF, Out), !.
+pronoun(_SO, X, LF, Out) --> [one], add_traits(X, [pronounQFn("one"), numberOf(1), quant(exists)], LF, Out), !.
+pronoun(_SO, X, LF, Out) --> [some], add_traits(X, [pronounQFn("some"), atLeast(1), quant(exists)], LF, Out), !.
+ 
+%pronoun(SO, X, LF, Out) --> [one],dcg_push(someone),!,pronoun(SO, X, LF, Out).
+
+pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body),pronoun_ok(_Subj,SO)},
+ add_traits(X, [pronounDFn(Nobody), quant(No), Body], LF, Out), !.
+
+pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO)},
+ add_traits(X, [pronounCFn(She), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
+
+pronoun(SO, X, LF, Out) --> [Herself], {reflexive_pronoun(Herself,Traits),
+  (member(v_arg(O),Traits)-> pronoun_ok(O,SO); true)},
+  add_traits(X, [pronounBFn(Herself)|Traits], LF, Out), !.
+
+pronoun(subj, X, LF, Out) --> [WH], {whpron_dict(WH)},
+  add_traits(X, pronounAFn(WH), LF, Out).
 
 
-pronoun_ok(Obj, Subject):- Obj == obj, Subject == subject, !, fail.
+pronoun_ok(Obj, Subject):- Obj == obj, Subject == subj, !, fail.
 pronoun_ok(_80, _SO).
+
+reflexive_pronoun(herself,[v_arg(obj),person(3),sg,gender(fem)]).
+reflexive_pronoun(himself,[v_arg(obj),person(3),sg,gender(masc)]).
+reflexive_pronoun(itself,[v_arg(obj),person(3),sg,gender(neuter)]).
+reflexive_pronoun(ourself,[v_arg(obj),person(1),pl]).
+reflexive_pronoun(themself,[v_arg(obj),person(3),pl]).
+reflexive_pronoun(yourself,[v_arg(obj),person(2),pl]).
+reflexive_pronoun(myself,[v_arg(obj),person(1),sg]).
+reflexive_pronoun(yourself,[person(2),sg]).
+reflexive_pronoun(ourselve,[person(1),pl]).
+reflexive_pronoun(themselves,[person(3),pl]).
+reflexive_pronoun(yourselves,[person(2),pl]).
 
 
 noun(_SO, X, ~something(X)) --> [nothing], nvd(nothing, X).
@@ -755,6 +788,8 @@ proper_noun(Entity) --> quietly(([PN], {pn_lf(PN, Entity)})).
 % %%%%%%%%%%%%%%%%%%%%%%% DCG UTILS %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 % plt --> quietly(([], {plt})).
+
+% iterative deeping flag
 plt(A, A):- notrace(plt).
 
 quietly(DCG, S, E):- setup_call_cleanup(quietly(phrase(DCG, S, E)),true,true).
@@ -763,11 +798,12 @@ dcg_peek(DCG,S,S):- phrase(DCG,S,_).
 
 tag(Frame, Tag, isa(Frame, TAG)) --> {atomic(Tag)}, !, [$, TAG], {downcase_atom(TAG, Start), atom_concat(Tag, _, Start)}.
 tag(Frame, Cmp, N) --> {functor(Cmp, F, _)}, tag(Frame, F, N).
-% iterative deeping flag
+
+dcg_must_each_det(G, S, E):- !, phrase(G, S, E), !.
 
 dcg_must_each_det(_, S, _):- S == [], !, fail.
 dcg_must_each_det((G1, G2), S, E):- !, must(phrase(G1, S, M)), !, dcg_must_each_det(G2, M, E), !.
-dcg_must_each_det(G, S, E):- must(phrase(G, S, E)), !.
+dcg_must_each_det(G, S, E):- !, must(phrase(G, S, E)), !.
 
 dcg_and(DCG1, DCG2, S, E) :- dcg_phrase(DCG1, S, E), dcg_phrase(DCG2, S, E), !.
 
