@@ -1020,7 +1020,9 @@ verb_form_db(LookPL,Look,pres+fin,3+pl):- clex_verb(LookPL,Look,_,infpl).
 verb_form_db(Looking,Look,pres+part,_):- (atom(Looking)->atom_concat(Look,'ing',Looking);var(Looking)),no_loop_check(verb_root_db(Look)),atom(Look),atom_concat(Look,'ing',Looking).
 verb_type_db_0(Look,main+ITDV):- clex_verb(_Formed,Look,ITDV,_Finsg).
 verb_LF(_,Assign,feature&_,X,dbase_t(Assign,X,Y), [slot(prep(To),feature&_,Y,_,free)],_):- clex_verb(_Assigned, Assign, dv(To),_).
-verb_LF(_,Look,feature&_,X,dbase_t(Look,X,Y), [slot(prep(At),feature&_,Y,_,free)],_):- (tv_infpl(S,S);tv_finsg(S,S)),atomic_list_concat([Look,At],'-',S).
+verb_LF(_,Look,feature&_,X,dbase_t(Look,X,Y), [slot(prep(At),feature&_,Y,_,free)],_):- 
+  (tv_infpl(S,S);tv_finsg(S,S)),
+  atomic_list_concat([Look,At],'-',S).
 
 % verb_LF(iv,Look,feature&_,X,dbase_t(Look,X,Y,Z), [slot(prep(at),feature&_,Z,_,free), slot(prep(with),feature&_,Y,_,free)],_). 
 

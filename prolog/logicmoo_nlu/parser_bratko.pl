@@ -250,6 +250,7 @@ bratko :- locally(tracing80,
 
 % :-export(bratko/1).
 system:bratko(Sentence):-
+  make, 
   setup_call_cleanup(notrace((to_wordlist_atoms(Sentence, Words),
   fmt(bratko(Sentence)))),
   bratko_0(Words), true).
@@ -296,11 +297,11 @@ bratko_reply(_, error('unknown type')).
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% CLAUSIFY %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
-bratko_clausify(C, F):- bratko_clausify(C, F, _), !.
+% bratko_clausify(C, F):- bratko_clausify(C, F, _), !.
 bratko_clausify(C, C).
 
 % Universals
-bratko_clausify(all(X, F0), F, [X|V]) :-  bratko_clausify(F0, F, V).
+bratko_clausify( q(all, X, F0), F, [X|V]) :-  bratko_clausify(F0, F, V).
 % Implications
 bratko_clausify((A0 => C0), (A => C), V) :- clausify_antecedent(A0, A, V), clausify_literal(C0, C).
 % Literals
@@ -311,7 +312,7 @@ clausify_antecedent(L0, L, []):-  clausify_literal(L0, L).
 % Conjunctions
 clausify_antecedent(E0&F0, (E, F), V) :-  clausify_antecedent(E0, E, V0), clausify_antecedent(F0, F, V1), conc(V0, V1, V).
 % Existentials
-clausify_antecedent(exists(X, F0), F, [X|V]) :-  clausify_antecedent(F0, F, V).
+clausify_antecedent(q(NotAll, X, F0), F, [X|V]) :- NotAll\==all, clausify_antecedent(F0, F, V).
 
 % Verbatum
 clausify_literal(L, L).
@@ -321,41 +322,53 @@ conjoin_lf(LF1, LF2, Out, L, L):- notrace(conjoin_lf0(LF1, LF2, Out)).
 
 %conjoin_lf0(LF1, LF2, Out):- assertion(nonvar(LF2)), assertion(nonvar(LF1)), fail.
 
-conjoin_lf0(LF1, LF2, Out):- LF1==LF2, !, Out=LF1.
-conjoin_lf0(LF1, LF2, Out):- conjoin_lf1(LF1, LF2, Out), !.
-conjoin_lf0(LF2, LF1, Out):- conjoin_lf1(LF1, LF2, Out), !.
+conjoin_lf00(LF1, LF2, Out):- LF2==true, !, Out=LF1.
+
+
+conjoin_lf0(LF1, LF2, Out):- assertion(callable(LF1)), assertion(callable(LF2)), LF1==LF2, !, Out=LF1.
+
 conjoin_lf0(LF1, LF2, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
+
+conjoin_lf0(LF1, LF2, Out):- conjoin_lf00(LF1, LF2, Out), !.
+conjoin_lf0(LF1, LF2, Out):- conjoin_lf00(LF2, LF1, Out), !.
+conjoin_lf0(precond(LF1),  LF2, Out):- !, conjoin_lf1(LF2, precond(LF1), Out).
+conjoin_lf0(quant(X,LF1),  LF2, Out):- !, conjoin_lf1(LF2, quant(X,LF1), Out).
+conjoin_lf0(LF1, LF2, Out):- conjoin_lf1(LF1, LF2, Out), !.
+
+conjoin_lf1(LF1, precond(q(Q, X, LF2)), Out):- !, conjoin_lf1(LF1, q(Q, X, precond(LF2)), Out).
+conjoin_lf1(LF1, quant(X, Type), Out):- conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; det_quantify(Type,X,Found,Out)).
+
+%conjoin_lf1(LF1,           precond(q(Q, X, LF2)), q(Q,  X, Out)):- conjoin_lf0(LF1,precond(LF2), Out).
+conjoin_lf1(LF1,                   q(Q, X, LF2),  q(Q,  X, Out)):- conjoin_lf0(LF1, LF2, Out).
+conjoin_lf1(q(Q1, Y, LF1),                 LF2,   q(Q1, Y, Out)):- conjoin_lf0(LF1, LF2, Out).
+conjoin_lf1((LF1 => Post), precond(        LF2),  (Out => Post)):- conjoin_lf0(LF1, LF2, Out).
+conjoin_lf1(LF1          , precond(        LF2),   (LF2 => LF1)).
+conjoin_lf1((LF1 => Post),                 LF2,    (LF1 => Out)):- conjoin_lf0(Post, LF2, Out).
+
+conjoin_lf1(LF1, LF2, Out):- conjoin_lf4(LF1, LF2, Out), !.
+conjoin_lf1(LF1, LF2, Out):- conjoin_lf4(LF2, LF1, Out), !.
 % conjoin_lf0(LF2, LF1, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
-conjoin_lf0(LF1, LF2, LF1&LF2):-!.
+conjoin_lf1(LF1, LF2, LF1&LF2):-!.
 
 
-quantify(no,     X, Found, ~exists(X, Found)).
-quantify(exists, X, Found,  exists(X, Found)).
-quantify(every,  X, Found,     all(X, Found)).
-quantify(any,   _X, Found,            Found ).
+det_quantify(no,     X, Found, ~q(exists,X, Found)).
+det_quantify(exists, X, Found,  q(exists,X, Found)).
+det_quantify(every,  X, Found,    q(all, X, Found)).
+det_quantify(any,   _X, Found,              Found ).
+det_quantify(Q,      X, Found,    q(Q,   X, Found)).
 
-conjoin_lf1(LF1, LF2, Out):- LF2==true, !, Out=LF1.
-conjoin_lf1(LF1, LF2, Out):- compound(LF2), LF2 = quant(X, Type), conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; quantify(Type,X,Found,Out)).
-conjoin_lf1(LF1, LF2, Out):- compound(LF2), subst(LF2, '_addto', (LF1&'_addto'), Out), LF2\==Out, !.
-conjoin_lf1(LF1, LF2, Out):- conjoin_lf2(LF1, LF2, Out), !.
 
-conjoin_lf2(LF1, LF2, (Out =>Post)):- compound(LF2), LF2 = precond(Add), compound(LF1), (LF1 = (Pre => Post)), !, conjoin_lf0(Pre, Add, Out).
-conjoin_lf2(LF1, LF2, (Add => LF1)):- compound(LF2), LF2 = precond(Add).
-conjoin_lf2(LF1, LF2, (Pre => Out)):- compound(LF1), (LF1 = (Pre => Post)), !, conjoin_lf0(Post, LF2, Out).
-conjoin_lf2(LF1, LF2, exists(X, Out)):- compound(LF2), (LF2 = exists(X , Body)), !, conjoin_lf0(LF1, Body, Out).
-conjoin_lf2(LF1, LF2, all(X, Out)):- compound(LF2), (LF2 = all(X , Body)), !, conjoin_lf0(LF1, Body, Out).
+
+conjoin_lf4(LF1, LF2, Out):- compound(LF1), subst(LF1, '_addto', NEW, Out), LF1\==Out, NEW = (LF2 & '_addto'), !.
+
 
 
 add_traits( X, T, LF, Out, L, L):- notrace(add_traits0( X, T, LF, Out)).
 add_traits( X, T, LF, Out):- notrace(add_traits0( X, T, LF, Out)).
 
 add_traits0(_X, V, LF, LF):- (var(V) ; V==[]) , !.
-add_traits0( X, [H|List], LF, LFO):- !,
-  add_traits0(X, H, LF, LFM),
-  add_traits0(X, List, LFM, LFO).
-add_traits0( X, H&List, LF, LFO):- !,
-  add_traits0(X, H, LF, LFM),
-  add_traits0(X, List, LFM, LFO).
+add_traits0( X, [H|List], LF, LFO):- !, add_traits0(X, H, LF, LFM),add_traits0(X, List, LFM, LFO).
+add_traits0( X, H&List, LF, LFO):- !,add_traits0(X, H, LF, LFM),add_traits0(X, List, LFM, LFO).
 add_traits0( X, T, LF, Out):- var_1trait( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
 add_traits0(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
 
@@ -376,11 +389,13 @@ var_1trait(X, gender(fem), Prop):- into_isa3(X, tFemale, Prop).
 var_1trait(_, person(Var), true):- var(Var).
 var_1trait(X, person(N), denotableBy(X, Str)):- atom_concat(N, person, Str).
 var_1trait(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
-var_1trait(X, Str, denotableBy(X, Str)):- string(Str), nvd(X,Str).
-var_1trait(X, Prop, denotableBy(X, Str)):- compound(Prop), Prop=.. [F, Arg2],atom_concat(F,_,'Fn'),
-  i_name(i,F,FF),any_to_string(Arg2,Str),XProp=.. [FF,Str],!,nvd(Str,X).
+var_1trait(X, Str, denotableBy(X, Str)):- string(Str), nvd(Str,X).
+
+var_1trait(X, Prop, denotableBy(X, XProp)):- compound(Prop), functor(Prop,F,A), atom_concat(_,'Fn',F),
+  arg(A,Prop,Arg2), must((any_to_string(Arg2,Str),i_name(i,F,FF),XProp=.. [FF,Str],!,nvd(Str,X))).
 var_1trait(X, Prop, Prop):- compound(Prop), sub_var(X, Prop).  % arg(2, Prop, _).
-var_1trait(X, Prop, XProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !.
+var_1trait(X, Prop, ZProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !,
+ (var_1trait(X, XProp, ZProp) -> true ; ZProp = XProp).
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% Grammar %%%%%%%%%%%%%%%%%%%%%%%
@@ -401,8 +416,9 @@ imperative(do(X, LFOut)) --> verb_phrase(_NewFrame, X, LFOut), optionalText1([!]
 declarative(LFOut) --> sentence(_NewFrame, LFOut), optionalText1(['.']).
 
 % Regular NP+VP
-sentence(Frame, LF) --> tag(Frame, sentence, LF), !.
-sentence(Frame, LFOut) --> noun_phrase(subj, X, LF, LFOut), verb_phrase(Frame, X, LF).
+% sentence(Frame, LF) --> tag(Frame, sentence, LF), !.
+sentence(Frame, LFOut) --> noun_phrase(subj, X, true, Precond), verb_phrase(Frame, X, Postcond), 
+  conjoin_lf(Postcond, precond(Precond),LFOut).
 
 % =================================================================
 % Interogative sentences @TODO
@@ -433,21 +449,19 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % "is joe a person?"
 % "are you happy?"
 % "Could the dog"
-% interogative(LFOut => answer(yes)) -->  copula_is_does, noun_phrase(subj, (X^SO)^LFOut, nogap),  noun_phrase(subj, (X^true)^exists(X, SO & true), nogap).
+% interogative(LFOut => answer(yes)) -->  copula_is_does, noun_phrase(subj, (X^SO)^LFOut, nogap),  noun_phrase(subj, (X^true)^q(exists,X, SO & true), nogap).
 
 % =================================================================
 % Verb Phrase
 % =================================================================
-verb_phrase(Frame, X, AssnOut) --> is_be(X, NounProp, AssnOut), ([a];[an]), noun(obj, X, NounProp), nvd(is, Frame).
-verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
-verb_phrase(Frame, X, AssnOut) --> is_be(X, equals(X, Y), AssnOut), proper_noun(Y), nvd(is, Frame).
-
-verb_phrase(Frame, X, AssnOut) --> is_be(X, LF, AssnOut), !, verb_phrase(Frame, X, LF).
 verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_s2(verb_post_mod(X, Frame), LF, Out).
 
-verb_phrase1(Frame, X, ~(LFOut)) --> [not], verb_phrase(Frame, X, LFOut).
+verb_phrase1(Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
+verb_phrase1(Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
+%verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
 verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
 verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
+verb_phrase1(Frame, X, AssnOut) --> is_be(X, LF, AssnOut), verb_phrase1(Frame, X, LF).
 
 :- discontiguous(talk_verb_lf/8).
 
@@ -593,7 +607,7 @@ noun_phrase1(SO, X, LF, LFOut) -->
     dcg_s2(noun_post_mod(SO, X), true, PostProps),
     conjoin_lf(NounProps, PreProps&PostProps, Precond),
     add_traits(X, DetProps, Precond, PrecondDet),
-    conjoin_lf(precond(PrecondDet), LF, LFOut))).
+    conjoin_lf((PrecondDet), LF, LFOut))).
 
 determiner1(_Var, quant(every)) --> [every];[all];[each].
 determiner1(_Var, quant(no)) --> [no];dcg_peek([zero]).
@@ -620,10 +634,10 @@ noun_phrase1(SO, X, LF, Out) -->
 
 
 /*
-determiner(Var, Prop, LF, all(Var, (Prop => LF))) --> [every];[all].
-determiner(Var, Prop, LF, exists(Var, the(Var) & Prop & LF)) --> [the].
-determiner(Var, Prop, LF, exists(Var, Prop & LF)) --> [a];[an];[some].
-determiner(Var, Prop, LF, ~exists(Var, Prop & LF)) --> [no].
+determiner(Var, Prop, LF,  q(all, Var, (Prop => LF))) --> [every];[all].
+determiner(Var, Prop, LF, q(exists,Var, the(Var) & Prop & LF)) --> [the].
+determiner(Var, Prop, LF, q(exists,Var, Prop & LF)) --> [a];[an];[some].
+determiner(Var, Prop, LF, ~q(exists,Var, Prop & LF)) --> [no].
 % some good food
 noun_phrase1(SO, X, LF, LFOut) -->
     determiner(X, Precond, LF, LFOut),
@@ -673,7 +687,7 @@ must_test_bratko("every human programmer happily writes a not a program", tell).
 pos_or_neg(-) --> [not], plt, !, optionalText1(['a']), optionalText1(['an']).
 pos_or_neg(-) --> [not].
 pos_or_neg(-) --> [non], optionalText1(['-']).
-pos_or_neg(-) --> [Neg], {neg_to_pos(Neg, Pos)}, !, dcg_push(Pos).
+pos_or_neg(-) --> [Neg], {atomic(Neg), neg_to_pos(Neg, Pos)}, !, dcg_push(Pos).
 pos_or_neg(+) --> [].
 
 neg_to_pos(UnHappy, Happy) :- atom_concat('un', Happy, UnHappy).
@@ -704,8 +718,7 @@ maybe_suffixed_dcg(DCGGoal1, Suffix, LF) -->
 % =================================================================
 %  Noun Units
 % =================================================================
-whpron(X, LF, Out) --> [WH], {whpron_dict(WH)},
-  add_traits(X, [pronounFn(WH)), LF, Out).
+whpron(X, LF, Out) --> [WH], {whpron_dict(WH)}, add_traits(X, pronounQQFn(WH), LF, Out).
 
   whpron_dict(who).
   whpron_dict(whom).
@@ -775,7 +788,8 @@ noun1(SO, X, LF) --> [N], {noun_lf(SO, X, N, LF)}, nvd(N, X).
 
 proper_noun(Entity) --> quietly(([PN], {pn_lf(PN, Entity)})).
 
-   pn_lf(Name, Value) :- pn_dict(Name), i_name(i, Name, Value).
+   pn_lf(nb(N), N):-!.
+   pn_lf(Name, Value) :- atom(Name), pn_dict(Name), i_name(i, Name, Value).
 
     pn_dict(Name):- toPropercase(Name, PC), PC==Name.
     pn_dict(begriffsschrift).  pn_dict(bertrand).  pn_dict(ohad).  pn_dict(bill).  pn_dict(gottlob).

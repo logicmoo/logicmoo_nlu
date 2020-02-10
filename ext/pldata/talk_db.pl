@@ -161,7 +161,7 @@ use_new_morefile:- fail.
 % talk_db([F,A|List]):- talk_db_argsIsa(F,N,_), length(List,N),apply(talk_db,[F,A|List]).
 talk_db([F,A|List]):- between(0,4,N),length(List,N),apply(talk_db,[F,A|List]).
 
-talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- nonvar(Jacket), plt,
+talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- nonvar(Jacket), \+ plt,
   talk_db(noun_or_verb,Jackets,Jacketing,Jacket),
   clause(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed),true).
 
