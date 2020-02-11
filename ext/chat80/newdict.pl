@@ -305,6 +305,7 @@ noun_plu_db(places,place).
 
 noun_plu_db(P,S):-plt,talk_db(noun1,S,P).
 noun_plu_db(continents,continent).
+noun_plu_db(women,woman).
 noun_plu_db(oceans,ocean).
 noun_plu_db(regions,region).
 noun_plu_db(rivers,river).

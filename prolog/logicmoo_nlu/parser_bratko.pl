@@ -47,6 +47,7 @@
 
 system:t33:- make, t33a.
 system:t33a:- parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
+system:t33t:- make,  parser_bratko:forall((must_test_bratko(Sent, Type), Type== tell,  testing_bratko(Sent, Type)), bratko(Sent)).
 
 testing_bratko(Sent, Type):- Type\==ask, into_text80(Sent, Words), \+ (Words = [not |_]).
 
@@ -237,7 +238,17 @@ must_test_bratko(S, _T) :- \+ ground(S), !, fail.
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
-print_reply(Other) :-  quietly((pretty_numbervars(Other, O), fmt(O))).
+print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), print_tree(O))),!.
+
+print_reply(Color,O):- ansi_format([fg(Color)],'~@',[print_reply(O)]),!.
+
+also_show_chat80(U):- 
+ (parser_chat80:sent_to_parsed(U,E)->
+  (print_reply(cyan,(E)),
+   (parser_chat80:sent_to_prelogic(E,L)->print_reply(cyan,(1:-L));(ansifmt(yellow,rtrace(parser_chat80:sent_to_prelogic(E))),!,fail)));
+    (ansifmt(magenta,rtrace(also_show_chat80(U))),!,fail)),!.
+ 
+
 
 
 system:myb :- bratko.
@@ -250,15 +261,17 @@ bratko :- locally(tracing80,
 
 % :-export(bratko/1).
 system:bratko(Sentence):-
-  make, 
+  % make, 
   setup_call_cleanup(notrace((to_wordlist_atoms(Sentence, Words),
   fmt(bratko(Sentence)))),
   bratko_0(Words), true).
 
 % :-export(bratko/1).
 system:bratko_0(Words):-
+  nb_setval('$variable_names',[]),
   bratko_0(Words, Reply),
-  print_reply(Reply).
+  print_reply(Reply),
+  notrace(ignore(also_show_chat80(Words))),!.
 
 :-export(bratko/2).
 bratko(Sentence, Reply):-
@@ -266,7 +279,9 @@ bratko(Sentence, Reply):-
  bratko_0(WL, Reply).
 
 bratko_0(Sentence, Reply) :-
-   % must_or_rtrace
+   % must_or_rtrace   
+   retractall(t_l:usePlTalk),
+   retractall(t_l:useAltPOS),   
    deepen_pos(bratko_parse0(Sentence, LF)), % deepen_pos?
    quietly((show_call(bratko_clausify(LF, Clause)),
    bratko_reply(Clause, Reply))), !.
@@ -290,7 +305,7 @@ bratko_reply((answer(Answer) :- Condition), Reply) :-
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([no]) ; Reply = answer([none])))), !.
 % bratko_reply an assertion
-bratko_reply(Assertion, asserted(Assertion)) :-  baseKB:ain(Assertion), !.
+bratko_reply(Assertion, asserted(Assertion)) :-  nop(baseKB:ain(Assertion)), !.
 bratko_reply(_, error('unknown type')).
 
 
@@ -461,12 +476,12 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % =================================================================
 verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
 
-verb_phrase1(Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
-verb_phrase1(Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
+verb_phrase1( Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
+verb_phrase1(_Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
 %verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
-verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
-verb_phrase1(Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
-verb_phrase1(Frame, X, AssnOut) --> is_be(X, LF, AssnOut), verb_phrase1(Frame, X, LF).
+verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
+verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
+verb_phrase1( Frame, X, AssnOut) --> is_be(X, LF, AssnOut), verb_phrase1(Frame, X, LF).
 
 :- discontiguous(talk_verb_lf/8).
 
@@ -617,7 +632,7 @@ noun_phrase1(SO, X, LF, LFOut) -->
     dcg_thru_2args(noun_post_mod(SO, X), true, PostProps),
     conjoin_lf(NounProps, PreProps&PostProps, Precond),
     add_traits(X, DetProps, Precond, PrecondDet),
-    conjoin_lf(precond(PrecondDet), LF, LFOut))).
+    conjoin_lf(PrecondDet, LF, LFOut))).
 
 determiner1(_Var, quant(every)) --> [every];[all];[each].
 determiner1(_Var, quant(no)) --> [no];dcg_peek([zero]).

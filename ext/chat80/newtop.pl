@@ -233,15 +233,33 @@ term_depth0(C,TDO):-C=..[_|LIST],findall(D,(member(T,LIST),term_depth0(T,D)),DL)
 is_sane(C):-must((term_depth(C,D),D<100)).
 is_sane_nv(C):-must((nonvar(C),term_depth(C,D),D<100)).
 
+:-meta_predicate(deepen_local_0(+,0)).
+deepen_local_0(Local, Call):-
+  ( \+ retract(Local) -> setup_call_cleanup(true, one_must(Call,locally(Local,Call)), ignore(retract(Local)))  ; 
+     (setup_call_cleanup(true, 
+       one_must(Call,locally(Local,Call)), 
+        asserta(Local)))).
+
+
 sent_to_parsed(U,E):- deepen_pos(parser_chat80:sentence80(E,U,[],[],[])).
 
 :- share_mp(deepen_pos/1).
 :- export(deepen_pos/1).
 :-meta_predicate(deepen_pos(0)).
 deepen_pos(Call):- deepen_pos_0(Call) *->  true ; locally(t_l:useAltPOS,deepen_pos_0(Call)).
+
 :- share_mp(deepen_pos_0/1).
 :-meta_predicate(deepen_pos_0(0)).
-deepen_pos_0(Call):-one_must(Call,locally(t_l:usePlTalk,Call)).
+deepen_pos_0(Call):- deepen_local_0(t_l:usePlTalk,Call).
+
+/*
+deepen_pos_0(Call):-
+  ( \+ retract(t_l:usePlTalk) -> setup_call_cleanup(true, one_must(Call,locally(t_l:usePlTalk,Call)), ignore(retract(t_l:usePlTalk)))  ; 
+     (setup_call_cleanup(true, 
+       one_must(Call,locally(t_l:usePlTalk,Call)), 
+        asserta(t_l:usePlTalk)))).
+*/
+
 
 call_until_failed([H,(!)|T]):- !,call_until_failed([(H,!)|T]).
 call_until_failed([H|T]):- !,
