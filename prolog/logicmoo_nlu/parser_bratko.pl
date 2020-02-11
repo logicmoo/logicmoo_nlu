@@ -47,7 +47,7 @@
 
 system:t33:- make, t33a.
 system:t33a:- parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
-system:t33t:- make,  parser_bratko:forall((must_test_bratko(Sent, Type), Type== tell,  testing_bratko(Sent, Type)), bratko(Sent)).
+system:t33t:- parser_bratko:forall((must_test_bratko(Sent, Type), Type== tell,  testing_bratko(Sent, Type)), bratko(Sent)).
 
 testing_bratko(Sent, Type):- Type\==ask, into_text80(Sent, Words), \+ (Words = [not |_]).
 
@@ -238,6 +238,7 @@ must_test_bratko(S, _T) :- \+ ground(S), !, fail.
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
+
 print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), print_tree(O))),!.
 
 print_reply(Color,O):- ansi_format([fg(Color)],'~@',[print_reply(O)]),!.
@@ -248,6 +249,13 @@ also_show_chat80(U):-
    (parser_chat80:sent_to_prelogic(E,L)->print_reply(cyan,(1:-L));(ansifmt(yellow,rtrace(parser_chat80:sent_to_prelogic(E))),!,fail)));
     (ansifmt(magenta,rtrace(also_show_chat80(U))),!,fail)),!.
  
+
+
+also_show_chat80(U):- 
+ deepen_pos(parser_chat80:sent_to_parsed(U,E)),!,
+ print_reply(sent_to_parsed:-E),
+ deepen_pos(parser_chat80:sent_to_prelogic(E,L)),!,
+ print_reply(sent_to_prelogic:-L),!.
 
 
 
@@ -261,7 +269,7 @@ bratko :- locally(tracing80,
 
 % :-export(bratko/1).
 system:bratko(Sentence):-
-  % make, 
+  make, 
   setup_call_cleanup(notrace((to_wordlist_atoms(Sentence, Words),
   fmt(bratko(Sentence)))),
   bratko_0(Words), true).
@@ -332,6 +340,49 @@ clausify_antecedent(q(NotAll, X, F0), F, [X|V]) :- NotAll\==all, clausify_antece
 % Verbatum
 clausify_literal(L, L).
 
+% make_object(Frame, Obj, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat(Obj, Proper, Pred), MadeObj=.. [Pred, Frame, Y].
+%     toPropercase(Writing, ProperEvent),
+%     make_object(Frame, Writing, 'To', Y, MadeObj).
+%     make_object(Frame, 'obj', Written, Z, MadeOblique).
+
+
+
+expand_1arg(_,A,B):- \+ compound(A),!,A=B.
+expand_1arg(t,List,Out):- is_list(List),List=[Obj|Written],maplist(toPropercase,Written,WrittenO),i_name(Obj,WrittenO,Out).
+expand_1arg(_,str(Name), Out):- any_to_string(Name,Out),!.
+expand_1arg(isa,timeFn(Time), timeFn('vPast')):-  Time== past+fin. % Time\==nonfinite,
+expand_1arg(_,A,A).
+
+expand_args(_,_,A,B):- \+ compound(A),!,A=B.
+expand_args(_,_,[t|Args],Out):- !, maplist(expand_1arg(t),Args,ArgsO),Out =..[t|ArgsO].
+expand_args(_,_,[a,Type,Name], Out):- make_i(Type,Name,Out),!.
+expand_args(_,_,[T|Args],Out):- maplist(expand_1arg(T),Args,ArgsO),Out =..[T|ArgsO].
+expand_args(C,N,[P|ARGS],Out):- 
+  maplist(expand_lf(C,N),0,[P|ARGS],[_|ARGSO]),
+   Out =..[P|ARGSO].
+
+
+expand_lf(_,_,A,B):- var(A),!,A=B.
+expand_lf(_,_,A,B):- \+ compound(A),!,A=B.
+expand_lf(C,N,A,B):- compound_name_arity(A,P,0),!,expand_lf(C,N,P,BP),compound_name_arguments(B,BP,0),!.
+expand_lf(C,N,A&Rest,B&List):- expand_lf(C,N,A,B),!,expand_lf(C,N,Rest,List).
+expand_lf(C,N,[A|Rest],[B|List]):- expand_lf(C,N,A,B),!,expand_lf(C,N,Rest,List).
+expand_lf(C,N, z(Writing, X ), Out):- 
+  toPropercase(Writing, ProperEvent),
+  expand_lf(C,N, isa(Frame, ProperEvent) & doer(Frame, X), Out).
+
+expand_lf(_,_, isa(_,timeFn(XX)), true):- XX==pres+fin,!.
+expand_lf(_,_, isa(_,timeFn(XX)), true):- XX==nonfinite,!.
+expand_lf(C,N, z(Writing, X, Y ), Out):- 
+  toPropercase(Writing, ProperEvent),
+  expand_lf(C,N, isa(Frame, ProperEvent) & doer(Frame, X) & objectOf(Frame, Y), Out).
+expand_lf(C,N,A,Out):- 
+  compound_name_arguments(A,P,ARGS),
+   expand_args(C,N,[P|ARGS],Out).
+
+expand_lf(A,B):-expand_lf(lf,0,A,B).
+
+
 conjoin_lf(LF1, LF2, Out):- notrace(conjoin_lf0(LF1, LF2, Out)).
 conjoin_lf(LF1, LF2, Out, L, L):- notrace(conjoin_lf0(LF1, LF2, Out)).
 
@@ -339,10 +390,12 @@ conjoin_lf(LF1, LF2, Out, L, L):- notrace(conjoin_lf0(LF1, LF2, Out)).
 
 conjoin_lf00(LF1, LF2, Out):- LF2==true, !, Out=LF1.
 
-
 conjoin_lf0(LF1, LF2, Out):- assertion(callable(LF1)), assertion(callable(LF2)), LF1==LF2, !, Out=LF1.
 
 conjoin_lf0(LF1, LF2, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
+
+%conjoin_lf0(LF1, LF2, Out):- expand_lf(LF1, LF11),LF1\==LF11,!,conjoin_lf0(LF11, LF2, Out).
+%conjoin_lf0(LF1, LF2, Out):- expand_lf(LF2, LF22),LF2\==LF22,!,conjoin_lf0(LF1, LF22, Out).
 
 conjoin_lf0(LF1, LF2, Out):- conjoin_lf00(LF1, LF2, Out), !.
 conjoin_lf0(LF1, LF2, Out):- conjoin_lf00(LF2, LF1, Out), !.
@@ -350,9 +403,22 @@ conjoin_lf0(precond(LF1),  LF2, Out):- !, conjoin_lf1(LF2, precond(LF1), Out).
 conjoin_lf0(quant(X,LF1),  LF2, Out):- !, conjoin_lf1(LF2, quant(X,LF1), Out).
 conjoin_lf0(LF1, LF2, Out):- conjoin_lf1(LF1, LF2, Out), !.
 
-conjoin_lf1(LF1, precond(q(Q, X, LF2)), Out):- !, conjoin_lf1(LF1, q(Q, X, precond(LF2)), Out).
+det_quantify(no,     X, Found, ~q(exists,X, Found)).
+det_quantify(exists, X, Found,  q(exists,X, Found)).
+det_quantify(every,  X, Found,    q(all, X, Found)).
+det_quantify(any,   _X, Found,              Found ).
+det_quantify(Q,      X, Found,    q(Q,   X, Found)).
+
+'$quant_marker':attr_unify_hook(_,_) :- !.
+conjoin_lf1(LF1, quant(X, Type), Out):-  
+  (get_attr(X,'$quant_marker',_)-> Out=LF1 ; 
+   put_attr(X,'$quant_marker',Type), det_quantify(Type,X,LF1,Out)),!.
+conjoin_lf1(LF1, quant(X, Type), Out):-  
+ (nb_current('$quant_marker',F);F=[]), 
+    (sub_var(X,F) -> Out = LF1   ; ( nb_setval('$quant_marker',[X|F]), det_quantify(Type,X,LF1,Out))),!.
 conjoin_lf1(LF1, quant(X, Type), Out):- conjoin_lf0(LF1, v(X), Found), (LF1==Found -> Out = LF1 ; det_quantify(Type,X,Found,Out)).
 
+conjoin_lf1(LF1, precond(q(Q, X, LF2)), Out):- !, conjoin_lf1(LF1, q(Q, X, precond(LF2)), Out).
 %conjoin_lf1(LF1,           precond(q(Q, X, LF2)), q(Q,  X, Out)):- conjoin_lf0(LF1,precond(LF2), Out).
 conjoin_lf1(LF1,                   q(Q, X, LF2),  q(Q,  X, Out)):- conjoin_lf0(LF1, LF2, Out).
 conjoin_lf1(q(Q1, Y, LF1),                 LF2,   q(Q1, Y, Out)):- conjoin_lf0(LF1, LF2, Out).
@@ -364,13 +430,6 @@ conjoin_lf1(LF1, LF2, Out):- conjoin_lf4(LF1, LF2, Out), !.
 conjoin_lf1(LF1, LF2, Out):- conjoin_lf4(LF2, LF1, Out), !.
 % conjoin_lf0(LF2, LF1, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
 conjoin_lf1(LF1, LF2, LF1&LF2):-!.
-
-
-det_quantify(no,     X, Found, ~q(exists,X, Found)).
-det_quantify(exists, X, Found,  q(exists,X, Found)).
-det_quantify(every,  X, Found,    q(all, X, Found)).
-det_quantify(any,   _X, Found,              Found ).
-det_quantify(Q,      X, Found,    q(Q,   X, Found)).
 
 
 
@@ -406,6 +465,7 @@ var_1trait(X, isa(Value), Prop):- !, var_1trait(X, Value, Prop).
 var_1trait(_, gender(Var), true):- var(Var).
 var_1trait(X, gender(masc), Prop):- into_isa3(X, tMale, Prop).
 var_1trait(X, gender(fem), Prop):- into_isa3(X, tFemale, Prop).
+var_1trait(X, gender(neut), Prop):- into_isa3(X, tInanimateObject, Prop).
 var_1trait(_, person(Var), true):- var(Var).
 var_1trait(X, person(N), denotableBy(X, Str)):- atom_concat(N, person, Str).
 var_1trait(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
@@ -541,8 +601,10 @@ intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), 
 
 
 
-% @TODO
-%                            nonfinite, pres+fin, past+fin, past+part, pres+part, LF
+
+% =================================================================
+% Infinitival Verbs % @TODO
+% =================================================================
 talk_verb_lf(_Frame, infinitival(X, Y), want, wants, wanted,   wanted,   wanting,  ((z(want, Y, X, Comp)&LFOut) & Comp & LFOut )).
 
 %semantics is partially execution of
