@@ -29,10 +29,10 @@ get_it:-
 %  [(user:term_expansion(_,_):-!,fail),(user:goal_expansion(_,_):-!,fail),(system:term_expansion(_,_):-!,fail),(system:goal_expansion(_,_):-!,fail)],
   (
    %pfc_lib:load_parser_interface(library(logicmoo/plarkc/logicmoo_i_call_kb)),
-   load_language_file(pldata(clex_iface)),
-   load_language_file(pldata(nldata_BRN_WSJ_LEXICON)),
+   reexport(pldata(clex_iface)),
+   nop(load_language_file(pldata(nldata_BRN_WSJ_LEXICON))),
    if_defined(baseKB:skip_el_assertions,load_language_file(library(el_holds/el_assertions))),
-   load_language_file(pldata(nldata_freq_pdat)),
+   nop(load_language_file(pldata(nldata_freq_pdat))),
    %talkdb:load_language_file(pldata(talk_db)),
    reexport(pldata(talk_db)),
    nop(load_language_file(pldata(nldata_cycl_pos0)))),!.

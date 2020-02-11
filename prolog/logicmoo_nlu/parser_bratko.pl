@@ -377,7 +377,8 @@ add_traits0(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
 %var_1trait(X, Prop, Out):- var(Prop), !, fail, Out = Prop.
 var_1trait(X, Prop, call(X^Prop)):- var(Prop), !.
 var_1trait(_, True, true):- True == true.
-var_1trait(X, sg, nonvar(X)).
+%var_1trait(X, sg, v(X)).
+var_1trait(_, v_arg(_), true).
 var_1trait(_, sg, true).
 var_1trait(X, pl, atLeast(X, 2)).
 % var_1trait(X, Atom, Out):- atom(Atom), i_name(t, Atom, Value), into_isa3(X, Value, Out).
@@ -454,7 +455,7 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % =================================================================
 % Verb Phrase
 % =================================================================
-verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_s2(verb_post_mod(X, Frame), LF, Out).
+verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_thru_2args(verb_post_mod(X, Frame), LF, Out).
 
 verb_phrase1(Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
 verb_phrase1(Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
@@ -562,9 +563,9 @@ prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, abou
 
 
 verb_mod_surround(X, Frame, Verb, Assn1, Out) -->
-  dcg_s2(verb_pre_mod(Frame), Assn1, AdvProps),
+  dcg_thru_2args(verb_pre_mod(Frame), Assn1, AdvProps),
   Verb,
-  dcg_s2(verb_post_mod(X, Frame), AdvProps, Out).
+  dcg_thru_2args(verb_post_mod(X, Frame), AdvProps, Out).
 
 
 
@@ -602,9 +603,9 @@ noun_phrase1(_SO, X, LF, exist(X, LF)) --> [something].
   % some good food
 noun_phrase1(SO, X, LF, LFOut) -->
     determiner(X, DetProps),
-    dcg_must_each_det((dcg_s2(noun_pre_mod(SO, X), true, PreProps),
+    dcg_must_each_det((dcg_thru_2args(noun_pre_mod(SO, X), true, PreProps),
     noun(SO, X, NounProps),
-    dcg_s2(noun_post_mod(SO, X), true, PostProps),
+    dcg_thru_2args(noun_post_mod(SO, X), true, PostProps),
     conjoin_lf(NounProps, PreProps&PostProps, Precond),
     add_traits(X, DetProps, Precond, PrecondDet),
     conjoin_lf((PrecondDet), LF, LFOut))).
@@ -630,7 +631,7 @@ determiner( V, LF) --> determiner1(V,LF1), determiner2(V,LF2), determiner3(V,LF3
 % it, she, we, them, everyone
 noun_phrase1(SO, X, LF, Out) -->
   pronoun(SO, X, LF, LF2),
-  dcg_s2(noun_post_mod(SO, X), LF2, Out).
+  dcg_thru_2args(noun_post_mod(SO, X), LF2, Out).
 
 
 /*
@@ -641,15 +642,15 @@ determiner(Var, Prop, LF, ~q(exists,Var, Prop & LF)) --> [no].
 % some good food
 noun_phrase1(SO, X, LF, LFOut) -->
     determiner(X, Precond, LF, LFOut),
-    dcg_s2(noun_pre_mod(SO, X), NounProp, AdjProps),
+    dcg_thru_2args(noun_pre_mod(SO, X), NounProp, AdjProps),
     noun(SO, X, NounProp),
-    dcg_s2(noun_post_mod(SO, X), AdjProps, Precond).
+    dcg_thru_2args(noun_post_mod(SO, X), AdjProps, Precond).
 */
 % happy Jack
 noun_phrase1(SO, X, LF, LFOut) -->
-   dcg_s2(noun_pre_mod(SO, X), LF, LF),
+   dcg_thru_2args(noun_pre_mod(SO, X), LF, LF),
    proper_noun(X),
-   dcg_s2(noun_post_mod(SO, X), LF, LFOut).
+   dcg_thru_2args(noun_post_mod(SO, X), LF, LFOut).
 
 
 % =================================================================
@@ -828,12 +829,20 @@ dcg_push(A, S, [A|S]).
 optionalText1(X) --> { length(X, L), L > 0, L < 33 } , X.
 optionalText1(_) --> [].
 
-dcg_s2(DCG2, In, Out) -->
-   {notrace((append_term(DCG2, In, DCG1),
-    append_term(DCG1, Mid, DCG0)))},
-   DCG0,
-   dcg_s2(DCG2, Mid, Out).
-dcg_s2(_, Same, Same) --> [].
+
+dcg_call(DCG1,Arg,S,E):-
+  append_term(DCG1,Arg,DCG0),
+  phrase(DCG0,S,E).
+
+dcg_call(DCG2,Arg1,Arg2,S,E):-
+   notrace((append_term(DCG2, Arg1, DCG1),
+            append_term(DCG1, Arg2, DCG0))),
+  phrase(DCG0,S,E).
+
+dcg_thru_2args(DCG2, In, Out) -->
+   dcg_call(DCG2,In,Mid),
+   dcg_thru_2args(DCG2, Mid, Out).
+dcg_thru_2args(_, Same, Same) --> [].
 
 % nvd(N, X) --> quietly(( [], {nvd(N, X)})).
 nvd(N, X, A, A):- notrace(nvd(N, X)).

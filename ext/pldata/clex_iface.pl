@@ -1,5 +1,9 @@
 :-module(clex_iface, [
 
+   clex_call/1,clex_call/2,
+   clex_call/3,clex_call/4,
+   clex_call/5,clex_call/6,
+
 
          clex_verb/4,
 /*           tv_pp/2,
@@ -126,7 +130,7 @@ clex_call(F,A,B,C,D,E):- is_clex_pred(M,F,5),M:call(F,A,B,C,D,E).
 clex_verb(Formed, Verb, iv, finsg):- clex_call(iv_finsg,Formed, Verb).
 clex_verb(Formed, Verb, tv, finsg):- clex_call(tv_finsg,Formed, Verb).
 clex_verb(Formed, Verb, dv(Prep), finsg):- clex_call(dv_finsg,Formed, Verb, Prep), nop(Prep\=='').
-%clex_verb(Formed, Verb, iv, pp):- clex_call(iv_pp,Formed, Verb). % iz none .. what about "jump to" ?
+clex_verb(Formed, Verb, iv, pp):- clex_call(iv_pp,Formed, Verb). % iz none .. what about "jump to" ?
 clex_verb(Formed, Verb, tv, pp):- clex_call(tv_pp,Formed, Verb).
 clex_verb(Formed, Verb, dv(Prep), pp):- clex_call(dv_pp,Formed, Verb, Prep).
 clex_verb(Formed, Verb, iv, infpl):- clex_call(iv_infpl,Formed, Verb).
@@ -160,9 +164,9 @@ clex_adj_prep(Biggest, Big, Prep, Type):-
     (nonvar(Biggest)->atom_concat(Biggest,PrepH,BiggestH);true),
     (nonvar(Big)->atom_concat(Big,PrepH,BigH);true))),
   clex_adj_prep0(BiggestH, BigH, Prep, Type),
-  (var(PrepH)->atom_concat('-',Prep,PrepH);true),
-  (var(Biggest)->atom_concat(Biggest,PrepH,BiggestH);true),
-  (var(Big)->atom_concat(Big,PrepH,BigH);true).
+   atom_concat('-',Prep,PrepH),
+   atom_concat(Biggest,PrepH,BiggestH),
+   atom_concat(Big,PrepH,BigH).
 
 
 :- clex_pred(clex_iface:clex_adj_prep0/4).
@@ -174,13 +178,13 @@ clex_adj_prep0(Biggest, Big, Prep, unknown):- clex_call(adj_tr,Biggest, Big, Pre
 
 :- clex_pred(clex_iface:clex_adj/3).
 clex_adj(Biggest, Big, Type):- adj_itr0(Biggest, Big, Type).
-clex_adj(Biggest, Big, unknown):- adj_itr(Biggest, Big), \+ adj_itr0(Biggest, _, _).
+clex_adj(Biggest, Big, unknown):- clex_call(adj_itr,Biggest, Big), \+ adj_itr0(Biggest, _, _).
          adj_itr0(Bigger, Big, comparitve):- clex_call(adj_itr_comp,Bigger, Big).
          adj_itr0(Biggest, Big, superlative):- clex_call(adj_itr_sup,Biggest, Big).
 
 :- clex_pred(clex_iface:clex_adv/3).
 clex_adv(Biggest, Big, Type):- adv_itr0(Biggest, Big, Type).
-clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
+clex_adv(Biggest, Big, unknown):- clex_call(adv,Biggest, Big), \+ adv_itr0(Biggest, _, _).
          adv_itr0(Bigger, Big, comparitve):- clex_call(adv_comp,Bigger, Big).
          adv_itr0(Biggest, Big, superlative):- clex_call(adv_sup,Biggest, Big).
 
@@ -196,7 +200,7 @@ clex_adv(Biggest, Big, unknown):- adv(Biggest, Big), \+ adv_itr0(Biggest, _, _).
 %:- style_check(-discontiguous).
 %:- include(pldata('clex_lexicon_user1.nldata')).
 
-dyn_load_clex(M,F):- absolute_file_name(F, File, [access(read),file_type(prolog)]),
+clex_dynload(M,F):- absolute_file_name(F, File, [access(read),file_type(prolog)]),
    open(File, read, In),
    set_stream(In, encoding(iso_latin_1)),
    repeat,
@@ -205,9 +209,9 @@ dyn_load_clex(M,F):- absolute_file_name(F, File, [access(read),file_type(prolog)
    (P= (:- (G)) -> M:call(G) ; asserta_new(M:P)),
    P==end_of_file, !.
 
-:- dyn_load_clex(clex,pldata('clex_lexicon_user1.nldata')).
+:- clex_dynload(clex,pldata('clex_lexicon_user1.nldata')).
 
-:- dyn_load_clex(clex,ape(lexicon/clex_lexicon)).
+:- clex_dynload(clex,ape(lexicon/clex_lexicon)).
 
 % apply_fixes:- clex_verb(Formed, Verb, dv(Prep), PP)
 
