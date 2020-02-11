@@ -557,7 +557,33 @@ make_time_info(Frame, Time, LF, Out):- Time\==nonfinite, Time\== pres+fin, nvd(L
  conjoin_lf(LF , isa(Frame, timeFn(Time)), Out).
 make_time_info(Frame, _Time, LF, LF):- nvd(LF, Frame).
 
-trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, X, Y, LF), {make_time_info(Frame, Time, LF, LFO)}.
+
+% =================================================================
+% Ditrans Verb
+% =================================================================
+ditrans_verb(Frame, X, Y, Z, LFO) --> ditrans_verb1(Frame, Time, X, Y, Z, LF), {expand_lf(isa(Frame,timeFn(Time))&LF, LFO)}.
+
+% paits her a picture
+ditrans_verb1(_Frame, pres+fin, X, Y, Z, doesAgentRecipientSomething(paints, X, Y, Z)) --> [paints].
+ditrans_verb1(Frame, Time, X, Y, Z, LF) --> talk_verb(Frame, IV, dtv(X, Y, Z), Time, LF), nvd(IV, Frame).  % & isa(Frame, timeFn(Time)
+
+   talk_verb_lf(_Frame, dtv(X, Y, Z), write,    writes,  wrote,    written,   writing,  doesAgentRecipientSomething(writes, X, Y, Z)).
+
+   talk_verb_lf(Frame, dtv(X, Y, Z), Write,  Writes,  Wrote,    Written,   Writing,
+                                             isa(Frame, a(event,Writing))
+                                             &doer(Frame, X)
+                                             &t([Writing, 'To'], Frame, Y)
+                                             &t(['obj', Written], Frame, Z)) :-
+     talkdb:talk_db(ditransitive, Write, Writes, Wrote, Writing, Written).
+     
+
+
+
+% =================================================================
+% Trans Verb
+% =================================================================
+trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, X, Y, LF), 
+  {make_time_info(Frame, Time, LF, LFO)}.
 
 trans_verb1(_Frame, pres+fin, X, Y, z(painting, X, Y)) --> [paints].
 trans_verb1(_Frame, pres+fin, X, Y, z(admiring, X, Y)) --> [admires].
@@ -583,8 +609,11 @@ talk_verb(Frame, IV, Type, pres+part, LF) --> [IV], {talk_verb_lf(Frame, Type, _
    make_object(Frame, Written, Y, MadeObj).
 
 make_object(Frame, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat('obj', Proper, Pred), MadeObj=.. [Pred, Frame, Y].
-
-intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF), {make_time_info(Frame, Time, LF, LFO)}.
+% =================================================================
+% Intrans Verb
+% =================================================================
+intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF), 
+  {make_time_info(Frame, Time, LF, LFO)}.
 
 intrans_verb1(_Frame, pres+fin, X, z(painting, X)) --> [paints].
 intrans_verb1(_Frame, past+fin, X, z(wrote, X, _)) --> [wrote].
@@ -596,6 +625,7 @@ intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), 
  talk_verb_lf(_Frame, iv(X), halt,     halts,   halted,   halted,    halting, z(halting, X)).
  talk_verb_lf(Frame, iv(X), Write,    Writes,  Wrote,    Written,   Writing,  isa(Frame, ProperEvent)&doer(Frame, X)) :-
     toPropercase(Writing, ProperEvent),
+    
     talkdb:talk_db(intransitive, Write, Writes, Wrote, Writing, Written).
 
 
@@ -645,11 +675,10 @@ prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, abou
 
 
 
-verb_mod_surround(X, Frame, Verb, Assn1, Out) -->
-  dcg_thru_2args(verb_pre_mod(X, Frame), Assn1, AdvProps),
+verb_mod_surround(X, Frame, Verb, In, Out) -->
+  dcg_thru_2args(verb_pre_mod(X, Frame), In, Mid),
   Verb,
-  dcg_thru_2args(verb_post_mod(X, Frame), AdvProps, Out).
-
+  dcg_thru_2args(verb_post_mod(X, Frame), Mid, Out).
 
 
 % quickly <jumped>
