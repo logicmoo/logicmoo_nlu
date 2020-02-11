@@ -15,6 +15,7 @@
 :- module(tokenizer, [
 		tokenize/2
 	]).
+:- use_module(library(error)).
 
 :- use_module('../lexicon/chars', [
 		is_letter/1,
@@ -86,6 +87,21 @@ tokenize(Codes, Tokens) :-  is_codelist(Codes),!,
 tokenize(Chars, Tokens) :- (is_charlist(Chars);atom(Chars);string(Chars);number(Chars)), 
    string_codes(Chars,Codes),!,codes_to_tokens(Codes, Tokens).
 tokenize(S, Tokens) :- any_to_string(S,String), string_codes(String,Codes),!,codes_to_tokens(Codes, Tokens).
+
+tokenize_NEW([], []) :- !.
+
+tokenize_NEW(Text, Tokens) :-
+	(   atom(Text)
+	->  atom_codes(Text, Codes)
+	;   string(Text)
+	->  string_codes(Text, Codes)
+	),
+	!,
+	codes_to_tokens(Codes, Tokens).
+
+tokenize_NEW(Codes, Tokens) :-
+	must_be(codes, Codes),
+	codes_to_tokens(Codes, Tokens).
 
 
 %% codes_to_tokens(+Codes:list, -Tokens:list) is det.

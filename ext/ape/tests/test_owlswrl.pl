@@ -2,7 +2,7 @@
 % $ swipl -f none -g main -t halt -s test_owlswrl.pl
 % Writes the test results into STDIN and statistics into STDERR.
 
-:- assert(user:file_search_path(ape, '../')).
+:- assert(user:file_search_path(ape, '../prolog')).
 
 :- use_module(ape('parser/ace_to_drs'), [
 		acetext_to_drs/5
@@ -28,11 +28,6 @@
 :- use_module(ape('lexicon/ulex'), [
 		read_ulex/1
 	]).
-
-
-
-
-:- set_prolog_flag(float_format, '%.11g').
 
 t('1-1', 'Every man is a human.').
 t('1-2', 'Every man is somebody.').
@@ -515,8 +510,10 @@ store_as_file(ID, Atom) :-
 
 set_up_lexicon :-
 	% Read the large lexicon into ulex
+	setup_call_cleanup(
 	open('clex_lexicon.pl', read, Stream),
-	call_cleanup(read_ulex(Stream), close(Stream)),
+	    read_ulex(Stream),
+	    close(Stream)),
 	% Override some entries
 	asserta(ulex:noun_sg(apple, 'iri|http://www.example.org/words#apple', neutr)),
 	asserta(ulex:pn_sg('Bill', iri('http://www.example.org/words#Bill'), neutr)).

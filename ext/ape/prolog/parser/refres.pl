@@ -507,7 +507,7 @@ resolve_one_anaphor(drs(ReferentsIn, ConditionsIn), ConditionsAllIn, ConditionsA
               Antecedent = antecedent(AntecedentID, AntecedentReferent, AntecedentConditions, AnaphorGenus, AntecedentNumerus, AnaphorPerson, AntecedentSID, AntecedentTID, AntecedentTokens),
               copy_term(Antecedent, CopiedAntecedent),
               % ... ground variables of CopiedAntecedent to preserve their correct syntactic relations and ...
-              numbervars(CopiedAntecedent, 1, _),
+              ape_numbervars(CopiedAntecedent, 1, _),
 			  % ... unify AnaphorReferent with ground CopiedAntecedentReferent and ...
               CopiedAntecedent = antecedent(_, CopiedAntecedentReferent, CopiedAntecedentConditions, _, _, _, _, _, _),
 			  AnaphorReferent = CopiedAntecedentReferent, 
@@ -549,7 +549,7 @@ resolve_one_anaphor(drs(ReferentsIn, ConditionsIn), ConditionsAllIn, ConditionsA
               Antecedent = antecedent(AntecedentID, AntecedentReferent, AntecedentConditions, AnaphorGenus, AntecedentNumerus, AnaphorPerson, AntecedentSID, AntecedentTID, AntecedentTokens),
               copy_term((Antecedent, ConditionsAllIn), (CopiedAntecedent, CopiedConditionsAllIn)),
               % ... ground variables of CopiedAntecedent and CopiedConditionsAllIn to preserve their correct syntactic relations and ...
-              numbervars((CopiedAntecedent, CopiedConditionsAllIn), 1, _),
+              ape_numbervars((CopiedAntecedent, CopiedConditionsAllIn), 1, _),
 			  % ... unify AnaphorReferent with ground CopiedAntecedentReferent and ...
               CopiedAntecedent = antecedent(_, CopiedAntecedentReferent, CopiedAntecedentConditions, _, _, _, _, _, _),
 			  AnaphorReferent = CopiedAntecedentReferent, 
@@ -901,7 +901,7 @@ eliminate_spurious_antecedents(AntecedentsIn, AnaphorID, AnaphorConditions, Ante
     member(antecedent(AntecedentID, AntecedentReferent, AntecedentConditions, AntecedentGenus, AntecedentNumerus, AntecedentPerson, AntecedentSID, AntecedentTID, AntecedentTokens), AntecedentsIn),
     AnaphorID < AntecedentID, 
     \+ AntecedentConditions = [],
-    \+ \+ (numbervars((AnaphorConditions, AntecedentConditions), 1, _), forall(member(Condition, AntecedentConditions), member(Condition, AnaphorConditions)))
+    \+ \+ (ape_numbervars((AnaphorConditions, AntecedentConditions), 1, _), forall(member(Condition, AntecedentConditions), member(Condition, AnaphorConditions)))
     ->
     delete(AntecedentsIn, antecedent(AntecedentID, AntecedentReferent, AntecedentConditions, AntecedentGenus, AntecedentNumerus, AntecedentPerson, AntecedentSID, AntecedentTID, AntecedentTokens), AntecedentsIntermediate),
     eliminate_spurious_antecedents(AntecedentsIntermediate, AnaphorID, AnaphorConditions, AntecedentsOut)

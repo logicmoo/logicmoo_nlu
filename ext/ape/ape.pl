@@ -18,16 +18,12 @@
 @author Tobias Kuhn
 @author Kaarel Kaljurand
 
-Building the executable file (stack sizes are in kilobytes):
+Building the executable file:
 
 ==
-swipl -g "working_directory(_, 'parser'), [fit_to_plp], halt."
-swipl -O -F none -g "[ape], qsave_program('ape.exe', [goal(ape), toplevel(halt), local(25000), global(50000)])." -t halt
+swipl -g "working_directory(_, 'prolog/parser'), [fit_to_plp], halt."
+swipl -O -F none -g "[ape], qsave_program('ape.exe', [goal(ape), toplevel(halt)])." -t halt
 ==
-
-Note that you can use smaller stack sizes if needed. It is known that global stack of 25600 was not
-enough to parse 1687 sentences of the Ordnance Survey Hydrology ontology verbalization.
-
 
 TODO:
 
@@ -50,13 +46,15 @@ communicated to Java?
 
 */
 
-:- use_module(get_ape_results, [
+:- consult('pack.pl').
+
+:- use_module('prolog/ape', [
 		get_ape_results/2,
 		get_ape_results_timelimit/3,
 		get_ape_results_timelimit/4
 	]).
 
-:- use_module('logger/error_logger').
+:- use_module('prolog/logger/error_logger').
 
 % Default encoding used for opening files in text mode.
 :- set_prolog_flag(encoding, utf8).
@@ -220,7 +218,8 @@ show_help.
 % Prints the version information.
 %
 show_version :-
-	format("Attempto Parsing Engine for ACE 6.7, version ~w~n", ['6.7-131003']).
+	version(Version),
+	format("Attempto Parsing Engine for ACE 6.7, version ~w~n", [Version]).
 
 
 %% arglist_namevaluelist(+ArgList:list, -NameValueList:list) is det.

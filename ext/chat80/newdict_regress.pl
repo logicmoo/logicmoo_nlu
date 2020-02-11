@@ -11,7 +11,7 @@
 
 :- shared_parser_data(in_continent/2).
 
-:- use_module(library(clpr)).
+:- use_module(library(clpr),[]).
 :- install_constant_renamer_until_eof.
 :- set_prolog_flag(do_renames_sumo,never).
 
@@ -97,6 +97,7 @@ terminator_db(.,_).
 terminator_db(?,?).
 terminator_db(!,!).
 
+% plt:-! ,fail.
 plt:- t_l:usePlTalk,!.
 plt2:- t_l:useAltPOS,!.
 % plt:- t_l:chat80_interactive,!.
@@ -143,8 +144,10 @@ det_db(each,sg,each,indef).
 det_db(no,_,no,indef).
 
 det_db(Det):-det_db(Det,_,_,_).
-det_db(W):-det_db0(W),not(det_db(W,_,_,_)),dif(CCW,'Determiner'),not(ccw_db(W,CCW)).
-det_db0(W):- ('determinerStrings'(_,W);cyckb_t('determinerStrings',_,W)),atom(W).
+det_db(W):-det_db0(W), \+ det_db(W,_,_,_), dif(CCW,'Determiner'), \+ ccw_db(W,CCW).
+det_db0(W):- (cycQuery80('determinerStrings'(_,W));cyckb_t('determinerStrings',_,W)),atom(W).
+
+:- listing(det_db/1).
 
 number_db(W,I,Nb) :-
    tr_number(W,I),
@@ -459,8 +462,12 @@ wrong_subj_obj_lf(_OK_LFKind,_OK_Word):-!,fail.
 
 noun_plu_db(places,place).
 
-noun_plu_db(P,S):-plt_call(P,'Noun',plt_call(S,'Noun',(talk_db(noun1,S,P),not_ccw(P),not_ccw(S)))).
+% NEW 
+% noun_plu_db(P,S):-plt_call(P,'Noun',plt_call(S,'Noun',(talk_db(noun1,S,P),not_ccw(P),not_ccw(S)))).
+% OLD
+noun_plu_db(P,S):-plt,talk_db(noun1,S,P).
 noun_plu_db(continents,continent).
+noun_plu_db(women,woman).
 noun_plu_db(oceans,ocean).
 noun_plu_db(regions,region).
 noun_plu_db(rivers,river).
@@ -472,8 +479,7 @@ noun_plu_db(seamasses,seamass).
 % ==========================================================
 % meetsForm(String,CycWord,Form)
 % ==========================================================
-meetsForm80(String,RootString,form80(MainPlusTrans,main+tv)):-!,fail,nop((String,RootString,form80(MainPlusTrans,main+tv))).
-
+meetsForm80(String,RootString,form80(MainPlusTrans,main+tv)):- fail,nop((String,RootString,form80(MainPlusTrans,main+tv))).
 
 noun_plu_db(PluralString,SingularString):- meetsForm80(PluralString,SingularString,noun+plural).
 noun_sin_db(Singular):- meetsForm80(Singular,Singular,noun+singular).
@@ -538,6 +544,7 @@ river(R) :- river_pathlist(R,_L).
 % "Whoable Count Nouns" 
 % ------------------------------
 noun_plu_db(persons,person).  noun_plu_db(people,person).
+noun_plu_db(men, man). noun_plu_db(wommen, woman).
 subject_LF(thing,person,_,X,person(X)).
 
 
@@ -811,9 +818,7 @@ verb_type_db_0(Verb,main+ditrans(Prep)):- plt_call(Verb,'Verb',  subj_obj_indire
 
 verb_type_db_0(Verb,main+TIV):-plt_call(Verb,'Verb', talk_db(TIV,Verb,_,_,_,_)).
 
-
 :- dmsg(warn(error(remove_falure_next_line))).
-
 verb_root_db(Govern):-plt_call(Govern,'Verb',(nop(verb_root_db),fail,talk_db(_Verb_i,Govern,_Governs,_GovernedImperfect,_Governing,_Governed))).
 regular_pres_db(Govern):-plt_call(Govern,'Verb',(nop(regular_pres_db),talk_db(_,Govern,_Governs,_GovernedImperfect,_Governing,_Governed))).
 regular_past_db(Governed,Govern):-plt_call(Governed,'Verb',(nop(regular_past_db),talk_db(_,Govern,_Governs,_GovernedImperfect,_Governing,Governed))).

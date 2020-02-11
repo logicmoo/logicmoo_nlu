@@ -22,8 +22,7 @@
                 paragraphs_to_drs/9, % +Paragraphs, +Guess, +Catch, +StartID, -Sentences, -Trees, -Drs, -Messages, -Time
                 call_tokenizer/4,
                 call_parser/4,
-                clear_ape_messages/0
-	]).
+                clear_ape_messages/0	]).
 
 
 /** <module> ACE to DRS
@@ -59,7 +58,7 @@
 
 :- style_check(-discontiguous).
 :- style_check(-singleton).
-:- use_module('grammar_plp.pl', [parse/4]).
+:- use_module('grammar.plp', [parse/4]).
 :- style_check(+discontiguous).
 :- style_check(+singleton).
 
@@ -75,8 +74,8 @@
 % Examples:
 %
 %==
-% ?- acetext_to_drs('Every man waits.', Sentences, SyntaxTrees, Drs, Messages)
-% ?- acetext_to_drs('Every man waits.', on, off, Sentences, SyntaxTrees, Drs, Messages, Time)
+% acetext_to_drs('Every man waits.', Sentences, SyntaxTrees, Drs, Messages)
+% acetext_to_drs('Every man waits.', on, off, Sentences, SyntaxTrees, Drs, Messages, Time)
 %==
 %
 % @param Text is an ACE text

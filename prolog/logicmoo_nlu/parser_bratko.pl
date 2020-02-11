@@ -44,6 +44,7 @@
 :- asserta((check:list_undefined:-!)).
 %:- abolish(check:list_undefined, 1).
 %:- asserta((check:list_undefined(_):-!)).
+:- use_module(parser_chat80).
 
 system:t33:- make, t33a.
 system:t33a:- parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
@@ -312,7 +313,7 @@ bratko_reply((answer(Answer) :- Condition), Reply) :-
 ((baseKB:setof(Answer, Query, Answers)
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([no]) ; Reply = answer([none])))), !.
-% bratko_reply an assertion
+% bratko_reply an assertion @TODO remove NOP 
 bratko_reply(Assertion, asserted(Assertion)) :-  nop(baseKB:ain(Assertion)), !.
 bratko_reply(_, error('unknown type')).
 
@@ -345,7 +346,18 @@ clausify_literal(L, L).
 %     make_object(Frame, Writing, 'To', Y, MadeObj).
 %     make_object(Frame, 'obj', Written, Z, MadeOblique).
 
+% OLD
+make_time_info(Frame, Time, z(Writing, X, Y), Out):- nonvar(Writing), !,
+  toPropercase(Writing, ProperEvent),
+  make_time_info(Frame, Time, isa(Frame, ProperEvent) & doer(Frame, X) & objectOf(Frame, Y), Out).
 
+make_time_info(Frame, Time, z(Writing, X), Out):- nonvar(Writing), !,
+  toPropercase(Writing, ProperEvent),
+  make_time_info(Frame, Time, isa(Frame, ProperEvent) & doer(Frame, X), Out).
+
+make_time_info(Frame, Time, LF, Out):- Time\==nonfinite, Time\== pres+fin, nvd(LF, Frame),
+ conjoin_lf(LF , isa(Frame, timeFn(Time)), Out).
+make_time_info(Frame, _Time, LF, LF):- nvd(LF, Frame).
 
 expand_1arg(_,A,B):- \+ compound(A),!,A=B.
 expand_1arg(t,List,Out):- is_list(List),List=[Obj|Written],maplist(toPropercase,Written,WrittenO),i_name(Obj,WrittenO,Out).
@@ -539,23 +551,18 @@ verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_thru_2args(ver
 verb_phrase1( Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
 verb_phrase1(_Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
 %verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
+
+% OLD
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
+% NEW
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z), true, Assn2), noun_phrase(obj, Y, Assn2, Assn3), noun_phrase(oblique, Z, Assn3, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
+
 verb_phrase1( Frame, X, AssnOut) --> is_be(X, LF, AssnOut), verb_phrase1(Frame, X, LF).
 
 :- discontiguous(talk_verb_lf/8).
-
-make_time_info(Frame, Time, z(Writing, X, Y), Out):- nonvar(Writing), !,
-  toPropercase(Writing, ProperEvent),
-  make_time_info(Frame, Time, isa(Frame, ProperEvent) & doer(Frame, X) & objectOf(Frame, Y), Out).
-
-make_time_info(Frame, Time, z(Writing, X), Out):- nonvar(Writing), !,
-  toPropercase(Writing, ProperEvent),
-  make_time_info(Frame, Time, isa(Frame, ProperEvent) & doer(Frame, X), Out).
-
-make_time_info(Frame, Time, LF, Out):- Time\==nonfinite, Time\== pres+fin, nvd(LF, Frame),
- conjoin_lf(LF , isa(Frame, timeFn(Time)), Out).
-make_time_info(Frame, _Time, LF, LF):- nvd(LF, Frame).
 
 
 % =================================================================
@@ -583,8 +590,10 @@ ditrans_verb1(Frame, Time, X, Y, Z, LF) --> talk_verb(Frame, IV, dtv(X, Y, Z), T
 % Trans Verb
 % =================================================================
 trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, X, Y, LF), 
-  {make_time_info(Frame, Time, LF, LFO)}.
-
+% OLD 
+{make_time_info(Frame, Time, LF, LFO)}.
+% NEW {expand_lf(isa(Frame,timeFn(Time)) &LF, LFO)}.
+ 
 trans_verb1(_Frame, pres+fin, X, Y, z(painting, X, Y)) --> [paints].
 trans_verb1(_Frame, pres+fin, X, Y, z(admiring, X, Y)) --> [admires].
 trans_verb1(Frame, Time, X, Y, LF) --> talk_verb(Frame, IV, tv(X, Y), Time, LF), nvd(IV, Frame).  % & isa(Frame, timeFn(Time)
@@ -602,19 +611,27 @@ talk_verb(Frame, IV, Type, pres+part, LF) --> [IV], {talk_verb_lf(Frame, Type, _
  talk_verb_lf(_Frame, tv(X, Y), concern, concerns, concerned, concerned, concerning,   z(concerning, X, Y)).
  talk_verb_lf(_Frame, tv(X, Y), run,     runs,      ran,        run, running,      z(running, X, Y)).
 %talk_verb_lf(_Frame, tv(X, Y), write,    writes,  wrote,    written,   writing,   z(writing, X, Y)).
- talk_verb_lf(Frame, tv(X, Y), Write,    Writes,  Wrote,    Written,   Writing,
+% OLD
+ talk_verb_lf( Frame, tv(X, Y), Write,    Writes,  Wrote,    Written,   Writing,
                                            isa(Frame, ProperEvent)&doer(Frame, X)&MadeObj) :-
    talkdb:talk_db(transitive, Write, Writes, Wrote, Writing, Written),
    toPropercase(Writing, ProperEvent),
    make_object(Frame, Written, Y, MadeObj).
-
 make_object(Frame, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat('obj', Proper, Pred), MadeObj=.. [Pred, Frame, Y].
+
+% NEW
+/*
+  talk_verb_lf( Frame, tv(X, Y), Write,    Writes,  Wrote,    Written,   Writing,
+                        talkdb:talk_db(transitive, Write, Writes, Wrote, Writing, Written).
+*/
 % =================================================================
 % Intrans Verb
 % =================================================================
 intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF), 
+% OLD 
   {make_time_info(Frame, Time, LF, LFO)}.
-
+% NEW expand_lf(isa(Frame,timeFn(Time)) &LF, LFO)}.
+ 
 intrans_verb1(_Frame, pres+fin, X, z(painting, X)) --> [paints].
 intrans_verb1(_Frame, past+fin, X, z(wrote, X, _)) --> [wrote].
 intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, iv(X), Time, LF), nvd(IV, Frame).
@@ -623,11 +640,19 @@ intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), 
 
 %                nonfinite, pres+fin, past+fin, past+part, pres+part, LF
  talk_verb_lf(_Frame, iv(X), halt,     halts,   halted,   halted,    halting, z(halting, X)).
- talk_verb_lf(Frame, iv(X), Write,    Writes,  Wrote,    Written,   Writing,  isa(Frame, ProperEvent)&doer(Frame, X)) :-
+%OLD
+  talk_verb_lf(Frame, iv(X), Write,    Writes,  Wrote,    Written,   Writing,  
+    isa(Frame, ProperEvent)
+    &doer(Frame, X)) :-
     toPropercase(Writing, ProperEvent),
-    
     talkdb:talk_db(intransitive, Write, Writes, Wrote, Writing, Written).
-
+%NEW 
+/*
+ talk_verb_lf(Frame, iv(X), Write,    Writes,  Wrote,    Written,   Writing, 
+   isa(Frame, a(event,Writing))
+   &doer(Frame, X)) :-
+                  talkdb:talk_db(intransitive, Write, Writes, Wrote, Writing, Written).
+*/
 
 
 
@@ -666,7 +691,7 @@ copula_is_does --> [C], {copula_is_does_dict(C)}.
 % =================================================================
 verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepostional_phrase(oblique, X, Frame, LFIn, LFOut).
 
-prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, pp, TAG), !.
+prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
 prepostional_phrase(SO, X, _Frame, LF, Out) --> [Prep], {prep_dict(Prep)}, noun_phrase(SO, Y, prep(Prep, X, Y) & LF, Out).
 prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, about(X, Y) & LF, Out).
 
@@ -675,10 +700,21 @@ prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, abou
 
 
 
+% OLD
 verb_mod_surround(X, Frame, Verb, In, Out) -->
   dcg_thru_2args(verb_pre_mod(X, Frame), In, Mid),
   Verb,
   dcg_thru_2args(verb_post_mod(X, Frame), Mid, Out).
+/*
+% NEW 
+verb_mod_surround(X, Frame, Verb, In, Out) -->
+  dcg_thru_2args(verb_pre_mod(X, Frame), In, Mid),
+  dcg_call(Verb,VerbMid),
+  dcg_thru_2args(verb_post_mod(X, Frame), VerbMid, VerbPost),
+  conjoin_lf(Mid,VerbPost,Out).
+  
+
+*/
 
 
 % quickly <jumped>
@@ -704,7 +740,7 @@ adverb1(X, MProps)  -->      [Adv], {adv_lf(X, Adv, MProps)}.
 noun_phrase(SO, X, LF, Out) --> [what], noun_phrase1(SO, Y, LF, LF0), [is], conjoin_lf(LF0 , what_is(Y, X), Out).
 %poss_pron_db(his, masc, 3, sg)  noun_phrase(subj, X, LF, ownedBy(X, him) & LFOut) --> [his], dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
 noun_phrase(SO, X, LF0, LFOut) -->
-  [His], {poss_pron_db(His, Masc, Pers, SgOrpl)},
+  [His], {nl_call(poss_pron_db(His, Masc, Pers, SgOrpl)},
   add_traits(Y, [ownedBy(X, Y), gender(Masc), person(Pers), SgOrpl], LF0, LF),
   dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
 
@@ -869,9 +905,10 @@ pronoun(subj, X, LF, Out) --> [WH], {whpron_dict(WH)},
 pronoun_ok(Obj, Subject):- Obj == obj, Subject == subj, !, fail.
 pronoun_ok(_80, _SO).
 
+:- 
 reflexive_pronoun(herself,[v_arg(obj),person(3),sg,gender(fem)]).
 reflexive_pronoun(himself,[v_arg(obj),person(3),sg,gender(masc)]).
-reflexive_pronoun(itself,[v_arg(obj),person(3),sg,gender(neuter)]).
+reflexive_pronoun(itself,[v_arg(obj),person(3),sg,gender(neut)]).
 reflexive_pronoun(ourself,[v_arg(obj),person(1),pl]).
 reflexive_pronoun(themself,[v_arg(obj),person(3),pl]).
 reflexive_pronoun(yourself,[v_arg(obj),person(2),pl]).
@@ -907,12 +944,25 @@ proper_noun(Entity) --> quietly(([PN], {pn_lf(PN, Entity)})).
    pn_lf(nb(N), N):-!.
    pn_lf(Name, Value) :- atom(Name), pn_dict(Name), i_name(i, Name, Value).
 
-    pn_dict(Name):- toPropercase(Name, PC), PC==Name.
-    pn_dict(begriffsschrift).  pn_dict(bertrand).  pn_dict(ohad).  pn_dict(bill).  pn_dict(gottlob).
-    pn_dict(alfred).  pn_dict(lunar).  pn_dict(principia).   pn_dict(shrdlu).  pn_dict(terry).
-    pn_dict(john).  pn_dict(annie).  pn_dict(monet).
+    pn_dict(Name):- atomic(Name), toPropercase(Name, PC), PC==Name.
     pn_dict(Name):- name_template_db(Name, _).
 
+    %pn_dict(Name):- atom(Name),downcase_atom(Name,Down),
+    pn_dict_tiny(begriffsschrift,place).  pn_dict_tiny(gottlob,city).
+
+    pn_dict_tiny(principia,book). 
+    pn_dict_tiny(thingy,thing). 
+    pn_dict_tiny(lunar,robot).    
+    pn_dict_tiny(shrdlu,robot).  
+    pn_dict_tiny(monet,person).
+    pn_dict_tiny(alfred,person).
+    pn_dict_tiny(terry,person). 
+    pn_dict_tiny(john,person).
+    pn_dict_tiny(dmiles,person).  
+    pn_dict_tiny(annie,person).  
+    pn_dict_tiny(bertrand,person).
+    pn_dict_tiny(ohad,person).
+    pn_dict_tiny(bill,person).  
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% DCG UTILS %%%%%%%%%%%%%%%%%%%%%%%

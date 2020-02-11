@@ -120,7 +120,7 @@ i_rel(conj(Conj,Left,Right),X,
    i_rel(Left,X,LPred,'`'(true),LQMods,[],[],-Id),
    i_rel(Right,X,RPred,'`'(true),RQMods,[],Up,+Id).
 
-i_np_mod(pp(Prep,NP),
+i_np_mod(prep_phrase(Prep,NP),
       X,Slots0,Slots,Pred,Pred,[QMod|QMods],QMods,Up,Id0,Index0) :-
    i_np_head(NP,Y,Q,LDet,LDet0,LX,LPred,LQMods,LSlots0,Id0),
    i_bind(Prep,Slots0,Slots1,X,Y,Id0,Function,P,PSlots,XArg),
@@ -196,7 +196,7 @@ have_pred('`'(Head),Verb,'`'(true),(Head,Verb)).
 have_pred(Head,Verb,Head,Verb) :-
    meta_head(Head).
 
-meta_head(apply(_,_)).
+meta_head(apply80(_,_)).
 meta_head(aggr(_,_,_,_,_)).
 
 i_neg(pos(V),id(V)).
@@ -218,14 +218,14 @@ fill_verb([Node|Nodes0],XA0,XA,Slots0,Slots,Args0,Args,Up,Id) :-
    conc80(Up0,Nodes0,Nodes),
    fill_verb(Nodes,XA1,XA,Slots1,Slots,Args1,Args,Up,+d).
 
-verb_slot(pp(Prep,NP),
+verb_slot(prep_phrase(Prep,NP),
       XArg0,XArg,Slots0,Slots,[Q|Args],Args,Up,Id) :-
    i_np(NP,X,Q,Up,Id,unit,XArg0,XArg),
    in_slot(Slots0,Case,X,Id,Slots,_),
    deepen_case(Prep,Case).
 verb_slot(void(_Meaning),XA,XA,Slots,Slots,Args,Args,[],_) :-
    in_slot(Slots,pred,_,_,_,_).
-verb_slot(pp(prep(Prep),NP),
+verb_slot(prep_phrase(prep(Prep),NP),
       TXArg,TXArg,Slots0,Slots,[Q& '`'(P)|Args],Args,Up,Id0) :-
    in_slot(Slots0,pred,X,Id0,Slots1,_),
    i_adjoin(Prep,X,Y,PSlots,XArg,P),
@@ -261,7 +261,7 @@ i_pred(comp(Op0,adj(Adj),NP),X,[P1 & P2 & '`'(P3),Q|As],As,Up,Id) :-
    i_measure(Y,Adj,Type,V,P2),
    inverse_db(Op0,Sign,Op),
    measure_op_db(Op,U,V,P3).
-i_pred(pp(prep(Prep),NP),X,['`'(H),Q|As],As,Up,Id) :-
+i_pred(prep_phrase(prep(Prep),NP),X,['`'(H),Q|As],As,Up,Id) :-
    i_np(NP,Y,Q,Up,Id,unit,[],[]),
    adjunction_lf(Prep,X,Y,H).
 
@@ -300,8 +300,8 @@ noun_template(Noun,TypeV,V,aggr(F,V,[],'`'(true),'`'(true)),
 noun_template(Noun,Type,X,'`'(P),Slots) :-
    no_repeats_must(deduce_subject_LF(thing,Noun,Type,X,P)),Slots=[].
 
-noun_template(Noun,TypeV,V,apply(F,P),
-      [slot(prep(of),TypeX,X,_,apply)]) :-
+noun_template(Noun,TypeV,V,apply80(F,P),
+      [slot(prep(of),TypeX,X,_,apply80)]) :-
    meta_noun_db(Noun,TypeV,V,TypeX,X,P,F).
 
 
@@ -345,12 +345,12 @@ deepen_case(X,X).
 
 index_slot(index,I,I).
 index_slot(free,_,unit).
-index_slot(apply,_,apply).
+index_slot(apply80,_,apply80).
 index_slot(comparator,_,comparator).
 
 index_args(det(the(pl)),unit,I,set(I),index(I)) :- !.
 index_args(int_det(X),index(I),_,int_det(I,X),unit) :- !.
-index_args(generic,apply,_,lambda,unit) :-!.
+index_args(generic,apply80,_,lambda,unit) :-!.
 index_args(D,comparator,_,id(_Why),unit) :-
  ( indexable(D); D=generic), !.
 index_args(D,unit,_,D,unit) :- !.

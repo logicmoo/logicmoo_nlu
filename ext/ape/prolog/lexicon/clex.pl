@@ -17,6 +17,7 @@
 		clex_switch/1,     % ?Switch
 		set_clex_switch/1  % +Switch
 	]).
+:- use_module(library(error)).
 
 /** <module> Common Lexicon Interface
 
@@ -34,8 +35,9 @@ the executable.
 % change this, you have to edit the source code and recompile.
 
 clex_file(clex_lexicon).
-% clex_file(library(pldata/clex_lexicon_user1)).
-clex_file('').
+clex_file(library(pldata/clex_lexicon_user1)).
+%clex_file(clex_lexicon_small).
+%clex_file('').
 
 
 % The predicates for the lexicon entries are declared dynamic. In this way, they don't fail if
@@ -72,6 +74,7 @@ clex_file('').
 
 % Load the clex-file
 :- style_check(-discontiguous).
+:- clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(utf8)]) ).
 :- forall(clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(utf8)]) )).
 %:-include(clex_lexicon).
 %:-include(library(pldata/clex_lexicon_user1)).
@@ -92,6 +95,6 @@ clex_switch(on).
 % This predicate switches clex on (Switch='on') or off (Switch='off').
 
 set_clex_switch(Switch) :-
-    member(Switch, [on, off]),
+    must_be(oneof([on,off]), Switch),
     retractall(clex_switch(_)),
     assert(clex_switch(Switch)).

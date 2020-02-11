@@ -17,10 +17,9 @@
 % end_of_file.
 % :- ensure_loaded(library(logicmoo_nlu/nl_pipeline)).
 
-:- ensure_loaded(library(apply_macros)).
-% From /usr/lib/swi-prolog/library/apply_macros.pl:389
 
 /*
+% From /usr/lib/swi-prolog/library/apply_macros.pl:389
 :- must(system:retract(((goal_expansion(GoalIn, PosIn, GoalOut, PosOut) :-
     apply_macros:expand_apply(GoalIn, PosIn, GoalOut, PosOut))))).
 % From /usr/lib/swi-prolog/library/apply_macros.pl:386
@@ -28,26 +27,27 @@
     apply_macros:(\+ current_prolog_flag(xref, true),
     expand_apply(GoalIn, GoalOut)))))).
 */
-
+:- use_module(library(apply_macros)).
 :- (abolish(apply_macros:expand_apply,4), assert((apply_macros:expand_apply(_In,_,_,_):- fail))).
 :- (abolish(apply_macros:expand_apply,2), assert((apply_macros:expand_apply(_In,_):- fail))).
 
-:- ensure_loaded(parser_sharing).
-:- ensure_loaded(parser_tokenize).
+:- use_module(parser_sharing).
+:- use_module(parser_tokenize).
 
-:- ensure_loaded(library(logicmoo_utils_all)).
-:- ensure_loaded(library(logicmoo_lib)).
+:- use_module(library(logicmoo_utils_all)).
+:- use_module(library(logicmoo_lib)).
+:- use_module(library(logicmoo_nlu)).
 %:- ensure_loaded(library(wamcl_runtime)).
 
 
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
-   asserta(user:file_search_path(logicmoo_nlu_ext,Dir)).
+   asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
-   asserta(user:file_search_path(logicmoo,Dir)).
+   asserta_new(user:file_search_path(logicmoo,Dir)).
 
-:- export(baseKB:installed_converter/2).
 % :- dynamic(baseKB:installed_converter/2).
 :- shared_parser_data(baseKB:installed_converter/2).
+:- export(baseKB:installed_converter/2).
 
 :- shared_parser_data(talkdb:talk_db/2).
 :- shared_parser_data(talkdb:talk_db/3).
@@ -360,13 +360,13 @@ show_pipeline:-forall(installed_converter(M,CNV),wdmsg(installed_converter(M,CNV
 :- user:ignore((Z = ('-'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
 :- dmsg(parser_all_start).
 
-
+                                             
 :- shared_parser_data(clex_iface:clex_noun/5).
 
 :- export(load_parser_interface/1).
 % load_parser_interface(File):- \+ exists_source(File), !, call(File:ensure_loaded_no_mpreds(logicmoo_nlu_ext(File))).
 load_parser_interface(File):- call(File:ensure_loaded_no_mpreds(File)).
-:- parser_chat80:import(load_parser_interface/1).
+%:- parser_chat80:import(load_parser_interface/1).
 
 % ================================================================================================
 %:- include(parser_ape).

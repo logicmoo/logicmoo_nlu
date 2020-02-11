@@ -5,21 +5,18 @@
 :-use_module('../lexicon/functionwords').
 :-use_module(ape_utils).
 :-use_module(grammar_words).
-:-use_module('grammar_functionwords_plp.pl').
-:-use_module('grammar_contentwords_plp.pl').
+:-use_module('grammar_functionwords.plp').
+:-use_module('grammar_contentwords.plp').
 :-op(400,fy,-).
 :-op(400,fy,~).
 :-op(500,xfx,=>).
 :-op(500,xfx,v).
 parse(A,B,C,D):-b_setval(npid,0),acetext('$sign'(E,'$display'(F,C,G,H),I,J,K,'$drs'(L,B,M,drs([],[]),D,N,O,P),Q),A).
 acetext('$sign'(A,'$display'(B,[],C,D),E,F,G,'$drs'(H,I,J,K,K,L,M,N),O),[]).
-acetext('$sign'(A,'$display'(B,[C|D],E,F),G,H,I,'$drs'(J,K,L,M,N,O,P,Q),R),[S|T]):-grammar_words:reset_progress_record(S),complete_sentence('$sign'(U,'$display'(V,C,W,X),Y,Z,A1,'$drs'(B1,K,C1,M,D1,E1,F1,G1),H1),S),clear_error_messages_sentence(K),I1 is K+1,garbage_collect,!,acetext('$sign'(J1,'$display'(K1,D,L1,M1),N1,O1,P1,'$drs'(Q1,I1,R1,D1,N,S1,T1,U1),V1),T).
+acetext('$sign'(A,'$display'(B,[C|D],E,F),G,H,I,'$drs'(J,K,L,M,N,O,P,Q),R),[S|T]):-reset_progress_record(S),complete_sentence('$sign'(U,'$display'(V,C,W,X),Y,Z,A1,'$drs'(B1,K,C1,M,D1,E1,F1,G1),H1),S),clear_error_messages_sentence(K),I1 is K+1,garbage_collect,!,acetext('$sign'(J1,'$display'(K1,D,L1,M1),N1,O1,P1,'$drs'(Q1,I1,R1,D1,N,S1,T1,U1),V1),T).
 acetext('$sign'(A,B,C,D,E,'$drs'(F,G,H,I,J,K,L,M),N),[O|P]):-ape_utils:report_failed_sentence(G,O).
-e_specification('$sign'(A,'$display'(B,[specification,C,'.'],D,E),F,G,H,'$drs'(I,J,K,L,M,N,O,P),Q)) 
-  -->
-   sentence_coord('$sign'(R,'$display'(S,C,T,U),V,'$syn'(W,X,'$nonlocal'(Y,Z,A1,B1,C1,'$bool'(D1,'$minus'),E1,F1,G1,H1,I1,J1,K1)),L1,'$drs'(M1,J,N1,L,M,O1,P1,Q1),R1)),['.'].
 complete_sentence(A,B):-last(B,C),complete_sentence_x(C,A,B).
-complete_sentence_x('.',A,B):-!,e_specification(A,B,[]).
+complete_sentence_x('.',A,B):-!,specification(A,B,[]).
 complete_sentence_x(?,A,B):-!,query(A,B,[]).
 complete_sentence_x(!,A,B):-!,command(A,B,[]).
 complete_sentence_x(A,B,C).
@@ -41,6 +38,7 @@ wh_question('$sign'(A,'$display'(B,[question,C,D,E,F],G,H),I,'$syn'(J,K,'$nonloc
 wh_question('$sign'(A,'$display'(B,[question,C,D,E,F],G,H),I,J,K,'$drs'(L,M,N,O,P,Q,R,S),T))-->adverb_coord('$sign'(U,'$display'(V,C,W,X),'$sem'(Y,Z,A1,B1,C1,D1,E1,F1,G1,H1,I1,J1),'$syn'(K1,L1,'$nonlocal'(M1,N1,O1,'$inout'(P1,[],[]),Q1,R1,S1,T1,U1,V1,'$whinout'(W1,'$wh'(X1,'$not_r'('$no_wh')),'$wh'(Y1,'$not_r'('$q'))),Z1,A2)),B2,'$drs'(C2,M,D2,E2,F2,'$inout'(G2,H2,I2),J2,K2),L2)),grammar_functionwords:aux('$sign'(M2,'$display'(N2,D,O2,P2),Q2,'$syn'(R2,'$head'(S2,T2,'$aux'(U2,'$nonempty_aux'(V2)),W2,X2,Y2,Z2,A3,B3,C3,D3),E3),F3,'$drs'(G3,H3,I3,J3,K3,L3,M3,N3),O3)),sentence_without_vpcoord('$sign'(P3,'$display'(Q3,[s,E,F],R3,S3),T3,'$syn'(U3,V3,'$nonlocal'(W3,X3,Y3,'$inout'(Z3,[aux('$sign'(A4,B4,C4,'$syn'(D4,'$head'(S2,T2,'$aux'(U2,'$nonempty_aux'(V2)),W2,X2,Y2,Z2,A3,B3,C3,D3),E4),F4,'$drs'(G4,H4,I3,I4,J4,K4,L4,M4),N4)),adverb_coord('$sign'(O4,P4,'$sem'(Q4,R4,S4,T4,C1,U4,V4,W4,X4,Y4,Z4,A5),B5,C5,'$drs'(D5,E5,F5,G5,H5,'$inout'(I5,H2,I2),J5,K5),L5))],[]),M5,N5,O5,P5,Q5,R5,'$whinout'(S5,'$wh'(T5,'$not_r'('$no_wh')),'$wh'(U5,'$not_r'(V5))),W5,X5)),Y5,'$drs'(Z5,M,A6,O,P,B6,C6,D6),E6)).
 command('$sign'(A,'$display'(B,[command,C,!],D,E),F,G,H,'$drs'(I,J,K,drs(L,M),drs(L,[command(N)|M]),O,P,Q),R))-->imperative_sentence('$sign'(S,'$display'(T,C,U,V),W,X,Y,'$drs'(Z,J,A1,drs([],[]),N,B1,C1,D1),E1)),[!].
 imperative_sentence('$sign'(A,'$display'(B,[s,C,',',D],E,F),G,H,I,'$drs'(J,K,L,M,N,O,P,Q),R))-->np_coord('$sign'(S,'$display'(T,C,U,V),'$sem'(W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1,H1),'$syn'(I1,'$head'(J1,'$agr'(K1,L1,M1,'$pers'(N1,'$second')),O1,'$case'(P1,'$nom'),Q1,R1,S1,T1,U1,V1,W1),'$nonlocal'(X1,Y1,Z1,'$inout'(A2,[],[]),'$bool'(B2,'$minus'),C2,D2,E2,F2,G2,'$whinout'(H2,'$wh'(I2,'$not_r'('$no_wh')),'$wh'(J2,'$not_r'('$no_wh'))),'$refagr'(K2,nosubj,L2),M2)),N2,'$drs'(O2,K,P2,M,N,Q2,R2,'$inout'(S2,T2,U2)),V2)),word_noninitial(','),vp('$sign'(W2,'$display'(X2,D,Y2,Z2),'$sem'(A3,A1,B3,C3,D3,E3,F3,G3,H3,I3,J3,K3),'$syn'(L3,'$head'(M3,'$agr'(K1,L1,M1,'$pers'(N1,'$second')),N3,O3,P3,'$vform'(Q3,'$inf'),'$bool'(R3,'$minus'),'$modality'(S3,'$no_modality'),T3,'$bool'(U3,'$minus'),V3),'$nonlocal'(W3,X3,Y3,'$inout'(Z3,[],[]),A4,B4,C4,D4,E4,F4,'$whinout'(G4,'$wh'(H4,'$not_r'('$no_wh')),'$wh'(I4,'$not_r'('$no_wh'))),'$refagr'(J4,subj(A1),'$agr'(K1,L1,M1,'$pers'(N1,'$second'))),K4)),L4,'$drs'(M4,K,N4,T2,U2,O4,P4,Q4),R4)).
+specification('$sign'(A,'$display'(B,[specification,C,'.'],D,E),F,G,H,'$drs'(I,J,K,L,M,N,O,P),Q))-->sentence_coord('$sign'(R,'$display'(S,C,T,U),V,'$syn'(W,X,'$nonlocal'(Y,Z,A1,B1,C1,'$bool'(D1,'$minus'),E1,F1,G1,H1,I1,J1,K1)),L1,'$drs'(M1,J,N1,L,M,O1,P1,Q1),R1)),['.'].
 sentence_coord('$sign'(A,'$display'(B,C,D,E),F,'$syn'(G,H,'$nonlocal'(I,J,K,L,M,'$bool'(N,O),P,Q,R,S,T,U,V)),W,'$drs'(X,Y,Z,A1,B1,C1,D1,E1),F1))-->sentence_coord_1('$sign'(G1,'$display'(H1,I1,J1,K1),L1,'$syn'(M1,N1,'$nonlocal'(O1,P1,Q1,R1,S1,'$bool'(N,O),T1,U1,V1,W1,X1,Y1,Z1)),A2,'$drs'(B2,Y,C2,D2,E2,F2,G2,H2),I2)),sentence_coord_tail('$sign'(J2,'$display'(K2,I1-C,L2,M2),N2,'$syn'(O2,P2,'$nonlocal'(Q2,R2,S2,T2,U2,'$bool'(N,O),V2,W2,X2,Y2,Z2,A3,B3)),C3,'$drs'(D3,Y,E3,A1,B1,F3,'$inout'(G3,D2,E2),H3),I3)).
 sentence_coord_tail('$sign'(A,'$display'(B,C-[s_coord,C,D,E],F,G),H,'$syn'(I,J,'$nonlocal'(K,L,M,N,O,'$bool'(P,Q),R,S,T,U,V,W,X)),Y,'$drs'(Z,A1,B1,C1,D1,E1,'$inout'(F1,G1,H1),I1),J1))-->grammar_functionwords:comma_or('$sign'(K1,'$display'(L1,D,M1,N1),O1,P1,Q1,'$drs'(R1,S1,T1,C1,D1,U1,'$inout'(V1,G1,H1),'$inout'(W1,X1,Y1)),Z1)),sentence_coord('$sign'(A2,'$display'(B2,E,C2,D2),E2,'$syn'(F2,G2,'$nonlocal'(H2,I2,J2,K2,L2,'$bool'(P,Q),M2,N2,O2,P2,Q2,R2,S2)),T2,'$drs'(U2,A1,V2,X1,Y1,W2,X2,Y2),Z2)).
 sentence_coord_tail('$sign'(A,'$display'(B,C-C,D,E),F,G,H,'$drs'(I,J,K,L,M,N,'$inout'(O,L,M),P),Q))-->[].

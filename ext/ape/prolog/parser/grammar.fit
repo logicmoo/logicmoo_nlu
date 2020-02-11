@@ -26,8 +26,8 @@
 :- use_module('../lexicon/functionwords').
 :- use_module(ape_utils).
 :- use_module(grammar_words).
-:- use_module('grammar_functionwords_plp.pl').
-:- use_module('grammar_contentwords_plp.pl').
+:- use_module('grammar_functionwords.plp').
+:- use_module('grammar_contentwords.plp').
 
 :- op(400, fy, -).
 :- op(400, fy, ~).
@@ -812,7 +812,6 @@ imperative_sentence(
 % Example: A man waits. He eats.
 %------------------------------------------------------------------------------
 
-:-export(specification//1).
 specification(
 		display!tree![specification,SentenceCoord,'.'] &
 		drs!in!DrsIn &

@@ -38,7 +38,7 @@ TODO:
 
 * test how \= (ACE non-equality) is serialized, maybe check character_escapes(bool, changeable)
 * find a way to print terms which contain variables so that the output
-has nice variable names (A vs _G123) but without the detour of numbervars,
+has nice variable names (A vs _G123) but without the detour of ape_numbervars,
 maybe check: print, portray
 * should we serialize singletons as '_'
 * we make an extra effort to locally undefine some operators, there must be a cleaner way
@@ -52,7 +52,7 @@ maybe check: print, portray
 % @param Term is a term to be serialized
 %
 serialize_term(Stream, Term) :-
-	numbervars(Term, 0, _),
+	ape_numbervars(Term, 0, _),
 	op(0, fy, -),
 	op(0, fy, ~),
 	op(0, xfx, =>),
@@ -63,7 +63,7 @@ serialize_term(Stream, Term) :-
 
 
 serialize_term(Term) :-
-	numbervars(Term, 0, _),
+	ape_numbervars(Term, 0, _),
 	op(0, fy, -),
 	op(0, fy, ~),
 	op(0, xfx, =>),

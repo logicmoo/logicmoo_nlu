@@ -53,7 +53,7 @@ quantify(pred(Subj,Op,Head,Args),Above,Right,P) :-
    quantify(Subj,SQuants,[],P0),
    quantify_args(Args,AQuants,P1),
    split_quants(Op,AQuants,Up,Right,Here,[]),
-   conc80(SQuants,Up,Above),
+   append(SQuants,Up,Above),
    chain_apply(Here,(P0,Head,P1),P2),
    op_apply(Op,P2,P).
 quantify('`'(P),Q,Q,P).
@@ -70,10 +70,6 @@ head_vars([Quant|Quants],(P,R0),R,[X|V],V0) :-
 strip_types([],[]).
 strip_types([_-X|L0],[X|L]) :-
    strip_types(L0,L).
-
-conc80([],L,L).
-conc80([H|T],L,[H|R]) :- conc80(T,L,R).
-
 
 extract_var(quant(_,_-X,P,_-X),P,X).
 
@@ -99,7 +95,7 @@ pre_apply('`'(Head),Det,X,P1,P2,Y,Quants,quant(Det,X,(P,P2),Y)) :-
  ( unit_det(Det);
    index_det(Det,_)),
    chain_apply(Quants,(Head,P1),P).
-pre_apply(apply(F,P0),Det,X,P1,P2,Y,
+pre_apply(apply80(F,P0),Det,X,P1,P2,Y,
       Quants0,quant(Det,X,(P3,P2),Y)) :-
    but_last(Quants0,quant(lambda,Z,P0,Z),Quants),
    chain_apply(Quants,(F,P1),P3).
@@ -122,7 +118,7 @@ close_tree(T,P) :-
    chain_apply(Q,P0,P).
 
 meta_apply('`'(G),R,Q,G,R,Q).
-meta_apply(apply(F,(R,P)),R,Q0,F,true,Q) :-
+meta_apply(apply80(F,(R,P)),R,Q0,F,true,Q) :-
    but_last(Q0,quant(lambda,Z,P,Z),Q).
 
 indices([],_,[],[]).
@@ -212,23 +208,23 @@ unit_det(int_det(_)).
 unit_det(proportion(_)).
 
 det_apply(quant(Det,Type-X,P,_-Y),Q0,Q) :-
-   apply(Det,Type,X,P,Y,Q0,Q).
+   apply80(Det,Type,X,P,Y,Q0,Q).
 
-apply(generic,_,X,P,X,Q,X^(P,Q)).
-apply(proportion(_Type-V),_,X,P,Y,Q,
+apply80(generic,_,X,P,X,Q,X^(P,Q)).
+apply80(proportion(_Type-V),_,X,P,Y,Q,
       S^(setof(X,P,S),
          N^(numberof(Y,(one_of(S,Y),Q),N),
             M^(card(S,M),ratio(N,M,V))))).
-apply(id(_Why),_,X,P,X,Q,(P,Q)).
-apply(void(_Meaning),_,X,P,X,Q,X^(P,Q)).
-apply(set,_,Index:X,P0,S,Q,S^(P,Q)) :-
+apply80(id(_Why),_,X,P,X,Q,(P,Q)).
+apply80(void(_Meaning),_,X,P,X,Q,X^(P,Q)).
+apply80(set,_,Index:X,P0,S,Q,S^(P,Q)) :-
    apply_set(Index,X,P0,S,P).
-apply(int_det(Type-X),Type,X,P,X,Q,(P,Q)).
-apply(index(_),_,X,P,X,Q,X^(P,Q)).
-apply(quant(Op,N),Type,X,P,X,Q,R) :-
+apply80(int_det(Type-X),Type,X,P,X,Q,(P,Q)).
+apply80(index(_),_,X,P,X,Q,X^(P,Q)).
+apply80(quant(Op,N),Type,X,P,X,Q,R) :-
    value(N,Type,Y),
    quant_op(Op,Z,Y,numberof(X,(P,Q),Z),R).
-apply(det(Det),_,X,P,Y,Q,R) :-
+apply80(det(Det),_,X,P,Y,Q,R) :-
    apply0(Det,X,P,Y,Q,R).
 
 apply0(Some,X,P,X,Q,X^(P,Q)) :-

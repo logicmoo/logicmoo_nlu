@@ -1,6 +1,9 @@
-# Unofficial Makefile for some tasks
 # Tested only on Ubuntu Linux.
+# For Windows builds use make_exe.bat
 
+SHELL=/bin/bash
+
+swipl = swipl
 version = 6.7
 
 text1 = "John likes Mary."
@@ -15,6 +18,7 @@ help:
 	@echo Targets:
 	@echo
 	@echo "  build: builds ape.exe"
+	@echo "install: (same as build)"
 	@echo "    doc: generates documentation"
 	@echo "  clean: deletes automatically generatable files"
 	@echo "   test: runs some tests"
@@ -22,14 +26,18 @@ help:
 
 
 build:
-	swipl --traditional -O -F none -g "working_directory(_, 'parser'), [fit_to_plp], halt." -t halt ; swipl -O -f ape.pl -g "qsave_program('ape.exe', [goal(ape), toplevel(halt), local(25000), global(50000)])." -t halt
+	$(swipl) -O -F none -g "working_directory(_, 'prolog/parser'), [fit_to_plp], halt." -t halt ; $(swipl) -O -f ape.pl -g "qsave_program('ape.exe', [goal(ape), toplevel(halt)])." -t halt
+
+install: build
+
+check:
 
 clean:
-	rm -f *.exe *.toc parser/*.plp parser/*.html parser/*.toc
+	rm -f *.exe *.toc prolog/parser/*.{plp,html,toc}
 
 doc:
-	cat parser/grammar.fit parser/grammar_functionwords.fit parser/grammar_contentwords.fit | perl parser/make_syntax_report.perl
-	cat parser/grammar.fit parser/grammar_functionwords.fit parser/grammar_contentwords.fit | perl parser/make_syntax_report.perl --number $(version) > syntax_report.html
+	cat prolog/parser/{grammar,grammar_functionwords,grammar_contentwords}.fit | perl prolog/parser/make_syntax_report.perl
+	cat prolog/parser/{grammar,grammar_functionwords,grammar_contentwords}.fit | perl prolog/parser/make_syntax_report.perl --number $(version) > syntax_report.html
 
 test:
 	./ape.exe -text $(text1) -cdrspp -cparaphrase -cowlfsspp -csyntax -csyntaxpp -csyntaxd -csyntaxdpp
