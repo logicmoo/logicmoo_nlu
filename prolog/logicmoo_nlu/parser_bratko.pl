@@ -367,8 +367,12 @@ add_traits( X, T, LF, Out, L, L):- notrace(add_traits0( X, T, LF, Out)).
 add_traits( X, T, LF, Out):- notrace(add_traits0( X, T, LF, Out)).
 
 add_traits0(_X, V, LF, LF):- (var(V) ; V==[]) , !.
-add_traits0( X, [H|List], LF, LFO):- !, add_traits0(X, H, LF, LFM),add_traits0(X, List, LFM, LFO).
-add_traits0( X, H&List, LF, LFO):- !,add_traits0(X, H, LF, LFM),add_traits0(X, List, LFM, LFO).
+add_traits0( X, [H|List], LF, LFO):- !,
+  add_traits0(X, H, LF, LFM),
+  add_traits0(X, List, LFM, LFO).
+add_traits0( X, H&List, LF, LFO):- !,
+  add_traits0(X, H, LF, LFM),
+  add_traits0(X, List, LFM, LFO).
 add_traits0( X, T, LF, Out):- var_1trait( X, T, TLF), !, conjoin_lf(LF, TLF, Out).
 add_traits0(_X, TLF, LF, Out):- conjoin_lf(LF, TLF, Out).
 
@@ -455,7 +459,7 @@ interogative(LFOut => answer(yes)) -->  sentence_inv(_X, LFOut).   % was nogap
 % =================================================================
 % Verb Phrase
 % =================================================================
-verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_thru_2args(verb_post_mod(X, Frame), LF, Out).
+verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), !, dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
 
 verb_phrase1(Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
 verb_phrase1(Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
@@ -553,6 +557,8 @@ copula_is_does --> [C], {copula_is_does_dict(C)}.
 % =================================================================
 % Prepostional Phrase / Verb Satellites
 % =================================================================
+verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepostional_phrase(oblique, X, Frame, LFIn, LFOut).
+
 prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, pp, TAG), !.
 prepostional_phrase(SO, X, _Frame, LF, Out) --> [Prep], {prep_dict(Prep)}, noun_phrase(SO, Y, prep(Prep, X, Y) & LF, Out).
 prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, about(X, Y) & LF, Out).
@@ -563,14 +569,18 @@ prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, abou
 
 
 verb_mod_surround(X, Frame, Verb, Assn1, Out) -->
-  dcg_thru_2args(verb_pre_mod(Frame), Assn1, AdvProps),
+  dcg_thru_2args(verb_pre_mod(X, Frame), Assn1, AdvProps),
   Verb,
   dcg_thru_2args(verb_post_mod(X, Frame), AdvProps, Out).
 
 
 
+% quickly <jumped>
+verb_pre_mod(_,Frame, LF, Out) --> adverb(Frame, MProps), conjoin_lf(LF, MProps, Out).
 
-verb_pre_mod(X, LF, Out) --> adverb(X, MProps), conjoin_lf(LF, MProps, Out).
+% <jumped> quickly
+verb_post_mod(_,Frame, LF, Out) --> {fail}, adverb(Frame, MProps), conjoin_lf(LF, MProps, Out).
+verb_post_mod(X, Frame, LFIn, FLOut) -->  {fail},  prepostional_phrase(oblique, X, Frame, LFIn, FLOut).
 
 % adverb(X, MProps) --> quietly(maybe_negated_dcg(adverb1(X), MProps)).
 adverb(X, MProps) --> quietly(adverb1(X, MProps)).
@@ -579,7 +589,6 @@ adverb1(X, MProps)  -->      [Adv], {adv_lf(X, Adv, MProps)}.
 
 
 
-verb_post_mod(X, Frame, LFIn, FLOut) -->  prepostional_phrase(oblique, X, Frame, LFIn, FLOut).
 
 
 % =================================================================
@@ -608,7 +617,7 @@ noun_phrase1(SO, X, LF, LFOut) -->
     dcg_thru_2args(noun_post_mod(SO, X), true, PostProps),
     conjoin_lf(NounProps, PreProps&PostProps, Precond),
     add_traits(X, DetProps, Precond, PrecondDet),
-    conjoin_lf((PrecondDet), LF, LFOut))).
+    conjoin_lf(precond(PrecondDet), LF, LFOut))).
 
 determiner1(_Var, quant(every)) --> [every];[all];[each].
 determiner1(_Var, quant(no)) --> [no];dcg_peek([zero]).
