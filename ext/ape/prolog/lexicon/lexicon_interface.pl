@@ -14,7 +14,7 @@
 
 
 :- module(lexicon_interface, [
-	adv/2,
+        adv/2,
 	adv_comp/2,
 	adv_sup/2,
 	adj_itr/2,
@@ -40,7 +40,7 @@
 	dv_finsg/3,
 	dv_infpl/3,
 	dv_pp/3,
-	prep/2,
+	prep/2,     
 	common_noun/1,
 	verb/1,
 	attributive_adjective/1

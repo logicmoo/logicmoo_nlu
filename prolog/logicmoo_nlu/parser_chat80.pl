@@ -1,4 +1,4 @@
-:-module(parser_chat80, [chat80/0,test_chat80_regressions/0,t80/0,/*t10/0,t14/0,*/t11/0,t12/0,t13/0,satisfy/1,holds_truthvalue/2]).
+:-module(parser_chat80, [chat80/0,chat80/3,chat80/2,test_chat80_regressions/0,t80/0,/*t10/0,t14/0,*/t11/0,t12/0,t13/0,satisfy/1,holds_truthvalue/2]).
 /** <module>
 % Imperitive Sentence Parser (using DCG)
 %
@@ -36,8 +36,10 @@
 %:- '$set_typein_module'(baseKB).
 
 :- use_module(parser_sharing).
-:- use_module(library(pfc)).
+:- use_module(library(pfc_lib)).
 
+:- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
+   asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
 
 :- thread_local(t_l:disable_px/0).
 :- thread_local(t_l:usePlTalk/0).
@@ -136,12 +138,15 @@ chat80_t(UIn,O1,O2):-
    process_run_real(_Callback,_StartParse,Mid,O1,O2),
    flush_output_safe,!.
 
-:- shared_parser_data(chat80/1).
-:- shared_parser_data(chat80/2).
-:- shared_parser_data(chat80/3).
+:- dynamic(chat80/1).
+:- dynamic(chat80/2).
+:- dynamic(chat80/3).
 :- discontiguous(chat80/1).
 :- discontiguous(chat80/2).
 :- discontiguous(chat80/3).
+:- shared_parser_data(chat80/1).
+:- shared_parser_data(chat80/2).
+:- shared_parser_data(chat80/3).
 
 contains_subterm(Term,Sub):- \+ \+ (sub_term(ST, Term), Sub==ST).
 is_trait(X) :- ground(X), \+ string(X), \+ \+ (chat80(_XXX, _Ans, Traits), contains_subterm(Traits,X)).
@@ -326,7 +331,7 @@ chat80 :- locally(tracing80,
 % :- retract(t_l:into_form_code).
 
 :- ensure_loaded(logicmoo_nlu_ext(chat80/clotab)).	% attachment tables
-:- ensure_loaded(logicmoo_nlu_ext(chat80/newdict)).	% syntactic dictionary
+:- include(logicmoo_nlu_ext(chat80/newdict)).	% syntactic dictionary
 % :- ensure_loaded(logicmoo_nlu_ext(chat80/newdict_regress)).	% syntactic dictionary
 :- ensure_loaded(logicmoo_nlu_ext(chat80/slots)).	% fits arguments into predicates
 :- ensure_loaded(logicmoo_nlu_ext(chat80/scopes)).	% quantification and scoping

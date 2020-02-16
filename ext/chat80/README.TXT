@@ -94,7 +94,7 @@ ndtabl.pl
 	may take in a call to the predicate). we use a logarithmic
 	size measure
 
-		s = 10 * log10(n)
+		s80 = 10 * log10(n)
 
 	where n is the actual size (number of solutions or number pf
 	distinct values) of a predicate or argument domain.

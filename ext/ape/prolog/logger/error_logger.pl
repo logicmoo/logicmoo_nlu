@@ -325,7 +325,7 @@ setval(Name, Value) :-
 % 
 
 getval(Name, Value) :-
-    nb_getval(Name, Value).
-
+    nb_current(Name, Value),!.
+getval(_Name, []).
 
 :- clear_messages.

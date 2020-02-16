@@ -9,13 +9,53 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
-:- module(parser_sharing,[term_expansion/4,
+:- module(parser_sharing,[
+  term_expansion/4,
    op(1150,fx,(share_mp)),
    op(1150,fx,(shared_parser_data)),
    op(1150,fx,(dynamic_multifile_exported))]).
+/*
+:- op(1150,fx,(share_mp)),
+   op(1150,fx,(shared_parser_data)),
+   op(1150,fx,(dynamic_multifile_exported)).
+*/
 
-:- ensure_loaded(nl_pipeline).
+% :- ensure_loaded(nl_pipeline).
 
+%nl_pred(F/A):-
+def_nl_pred(M,F,A):- 
+  assert_if_new(nlfac:is_nl_pred(M,F,A)).
+
+:- export(nl_call/1).
+:- export(nl_call/2).
+:- export(nl_call/3).
+:- export(nl_call/4).
+:- export(nl_call/5).
+:- export(nl_call/6).
+:- export(nl_call/7).
+:- export(nl_call/8).
+nl_call([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
+nl_call(P):- (nlfac:is_nl_pred(M,F,A),functor(P,F,A),nl_call_entr(M,F,A,P),M:P,nl_call_exit(M,F,A,P))*->true;
+  (current_predicate(_,M:P),call(call,M:P)).
+
+make_nl_call_stubs:- forall((between(1,7,A),length(List,A),Head =.. [nl_call,F|List], Body =.. [call,M:F|List],   
+   functor(Head,CF,CA),ignore(abolish(parser_sharing:CF,CA)),
+   Enter =.. [nl_call_entr,M,F,A,Z],
+   Exit =.. [nl_call_exit,M,F,A,Z],
+   nop(assertion( \+ predicate_property(parser_sharing:Head,(defined))))),
+   ((dynamic(parser_sharing:CF/CA),
+     assert(parser_sharing:(Head:- (nlfac:is_nl_pred(M,F,A),Z=Body,Enter,Z,Exit))),
+     module_transparent(parser_sharing:CF/CA),
+     compile_predicates([parser_sharing:CF/CA]),
+     export(parser_sharing:CF/CA)))).
+
+nl_call_entr(_M,_F,_A,_P).
+nl_call_exit(_M,_F,_A,_P).
+
+:- make_nl_call_stubs.
+% :- make_nl_call_stubs. 
+:- listing(nl_call).
+% (predicate_property(P,number_of_clauses(N))
 :- module_transparent(each_parser_module_1/1).
 each_parser_module(M):- no_repeats(each_parser_module_0(M)).
 :- module_transparent(each_parser_module_0/1).
@@ -76,13 +116,15 @@ share_mp(_,nil):-!.
 share_mp(M,XY):- pi_splits(XY,X,Y),!,share_mp(M,X),share_mp(M,Y).
 share_mp(CM,(M:P)):- !, atom(M),share_mp(M,P),(CM==M->true;import_and_export(CM,M:P)).
 share_mp(M,PI):- pi_p(PI,P)->PI\==P,!,share_mp(M,P).
-share_mp(M,P):- functor(P,F,A), MFA=M:F/A,
-   (M:multifile(M:MFA)), 
+share_mp(M,P):- functor(P,F,A), MFA=M:F/A,   
+   (M:multifile(MFA)), 
    (M:module_transparent(MFA)),
+   (M:dynamic(MFA)),
    (M:export(MFA)),
    (M:public(MFA)),   
    import_and_export(parser_sharing,MFA),
    import_and_export(parser_all,MFA),
+   def_nl_pred(M,F,A),
    '$current_source_module'(SM),import_and_export(SM,MFA),
    '$current_typein_module'(CM),import_and_export(CM,MFA),
    import_and_export(system,MFA),
@@ -99,10 +141,10 @@ share_mp(M,P):- functor(P,F,A), MFA=M:F/A,
 shared_parser_data(XY):- assertion(compound(XY)),fail.
 shared_parser_data(XY):- pi_splits(XY,X,Y),!,shared_parser_data(X),shared_parser_data(Y).
 shared_parser_data(XY):- pi_p(XY,PI)-> XY\==PI,!,shared_parser_data(PI).
-shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!, functor(P,F,A),M:export(M:F/A),shared_parser_data(M:P),Imp:import(M:P).
-shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_),functor(P,F,A),M:export(M:F/A),Imp:import(M:P).
+shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!, functor(P,F,A),M:multifile(M:F/A),M:export(M:F/A),shared_parser_data(M:P),Imp:import(M:P).
+shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_),share_mp(M:P),Imp:import(M:P).
 % shared_parser_data(P):- each_parser_module(M),predicate_property(M:P,defined), \+ predicate_property(M:P,imported_from(_)),!,shared_parser_data(M:P).
-shared_parser_data(P):- get_query_from(SM),shared_parser_data(SM:P).
+shared_parser_data(P):-  get_query_from(SM),shared_parser_data(SM:P).
 :- share_mp((shared_parser_data)/1).
 
 
@@ -143,6 +185,8 @@ def_parser_data(M,F/A):- !, assertion((atom(F),integer(A),functor(P,F,A))), def_
 def_parser_data(_,M:XY):- !, def_parser_data(M,XY).
 def_parser_data(M,P):-
    use_shared_parser_data,
+   functor(P,F,A),
+   def_nl_pred(M,F,A),
    ( \+ predicate_property(M:P,defined) -> define_shared_loadable_pred(M,P) ; true ),!.   
 /*
 def_parser_data(M,P):- throw(old_code),
@@ -159,15 +203,17 @@ define_shared_loadable_pred(M,P):- current_prolog_flag(access_level,system),!,se
 % define_shared_loadable_pred(M,P):- !, mpred_ain(isBorked==>M:P).
 define_shared_loadable_pred(M,P):- % throw(old_code),
    '$current_source_module'(SM),'$current_typein_module'(CM),
-   %mpred_ain(isBorked==>M:P),
+   %mpred_ain(isBorked==>M:P),   
    functor(P,F,A),dmsg(def_parser_data(sm=SM,cm=CM,m=M,F/A)),
+   def_nl_pred(M,F,A),
    dynamic(M:P),multifile(M:P),discontiguous(M:P).
 
 :- module_transparent(show_shared_pred_info/1).
 show_shared_pred_info(FA):-
    prolog_load_context(module,User),
    (pi_p(FA,P);P=FA),!,
-   functor(P,F,A),
+   functor(P,F,A),      
+   listing(nlfac:is_nl_pred(_,F,A)),
    ((User:predicate_property(P,defined))->
        (predicate_property(P,number_of_clauses(N)),
          (N<20 -> User:listing(FA) ; dmsg(big(User,F/A)));

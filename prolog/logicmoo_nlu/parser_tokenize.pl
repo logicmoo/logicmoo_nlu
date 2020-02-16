@@ -9,10 +9,13 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
-:- module(parser_tokenize,[into_text80/2,tokens_to_acetext/2]).
+:- module(parser_tokenize,[into_text80/2,input_to_acetext/2]).
+
+%input_to_acetext(Input,AceText):- atomic(Input), !, tokenize(Input, Tokens), tokens_to_acetext(Tokens,AceText).
+%input_to_acetext(Input,AceText):- tokens_to_acetext(Input,AceText).
 
 
-tokens_to_acetext(Tokens,AceText):- 
+input_to_acetext(Tokens,AceText):- 
    notrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).
 
 tokens_to_acetext0([],'').

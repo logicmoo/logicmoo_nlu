@@ -13,7 +13,7 @@
 % Parsing Engine (APE). If not, see http://www.gnu.org/licenses/.
 
 
-:- module(clex, [
+:- module(clex_ape, [
 		clex_switch/1,     % ?Switch
 		set_clex_switch/1  % +Switch
 	]).
@@ -28,14 +28,20 @@ the executable.
 @version 2008-07-17
 */
 
+:- reexport(pldata(clex_iface)).
+
+
+/*
+DMILES @TODO
+
 
 %% clex_file(-ClexFile)
 %
 % This predicate defines the clex-file that is loaded and compiled into the executable. In order to
 % change this, you have to edit the source code and recompile.
 
-clex_file(clex_lexicon).
-clex_file(library(pldata/clex_lexicon_user1)).
+clex_file(pldata('clex_lexicon_user1.nldata')).
+%clex_file(clex_lexicon).
 %clex_file(clex_lexicon_small).
 %clex_file('').
 
@@ -74,12 +80,12 @@ clex_file(library(pldata/clex_lexicon_user1)).
 
 % Load the clex-file
 :- style_check(-discontiguous).
-:- clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(utf8)]) ).
-:- forall(clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(utf8)]) )).
+%:- clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(utf8)]) ).
+:- forall(clex_file(ClexFile), ( ClexFile == '' ; load_files(ClexFile, [encoding(iso_latin_1)]) )).
 %:-include(clex_lexicon).
 %:-include(library(pldata/clex_lexicon_user1)).
 :- style_check(+discontiguous).
-
+*/
 
 %% clex_switch(?Switch)
 %

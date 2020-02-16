@@ -66,7 +66,7 @@ anot_xmask(_X,1,0).
 
 % Noun phrase position features
 
-is_to_role_case(subj80,_,#(1,0,0)).
+is_to_role_case(subj,_,#(1,0,0)).
 is_to_role_case(compl,_,#(0,_,_)).
 is_to_role_case(undef,main,#(_,0,_)).
 is_to_role_case(undef,aux,#(0,_,_)).
@@ -81,7 +81,7 @@ is_compl_case(#(0,_,_)).
 :- op(100,fx,?).
 
 user:portray('#'(PP,Pred,Trace,Adv)) :-
-   portray_bit(pp,PP,S0,S1),
+   portray_bit(prep_phrase,PP,S0,S1),
    portray_bit(pred,Pred,S1,S2),
    portray_bit(trace,Trace,S2,S3),
    portray_bit(adv,Adv,S3,[]),

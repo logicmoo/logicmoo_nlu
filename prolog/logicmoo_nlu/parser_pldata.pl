@@ -29,14 +29,19 @@ get_it:-
 %  [(user:term_expansion(_,_):-!,fail),(user:goal_expansion(_,_):-!,fail),(system:term_expansion(_,_):-!,fail),(system:goal_expansion(_,_):-!,fail)],
   (
    %pfc_lib:load_parser_interface(library(logicmoo/plarkc/logicmoo_i_call_kb)),
-   reexport(pldata(clex_iface)),
+   %reexport(pldata(clex_iface)),
    nop(load_language_file(pldata(nldata_BRN_WSJ_LEXICON))),
    if_defined(baseKB:skip_el_assertions,load_language_file(library(el_holds/el_assertions))),
    nop(load_language_file(pldata(nldata_freq_pdat))),
    %talkdb:load_language_file(pldata(talk_db)),
-   reexport(pldata(talk_db)),
+   %reexport(pldata(talk_db)),
    nop(load_language_file(pldata(nldata_cycl_pos0)))),!.
 
 
-:- set_prolog_flag(qcompile,false).
+:- if(exists_source(pldata(nl_iface))).
+% being in user is just to help debugging from console
+:- user:reexport(pldata(nl_iface)).
+:- endif.
+
+% :- set_prolog_flag(qcompile,false).
 

@@ -20,7 +20,6 @@
 
 :- module(talkdb, [getPos/4, talk_db/1]).
 
-
 :- style_check(-(discontiguous)).
 
 decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
@@ -33,6 +32,7 @@ decl_talk_db_data(F/A):-dynamic(F/A),multifile(F/A),export(F/A).
 :- decl_talk_db_data(talk_db/6).
 :- decl_talk_db_data(talk_db/4).
 :- decl_talk_db_data(talk_db/6).
+
 
 /*
 
@@ -156,14 +156,50 @@ show_size_left(Message):-
 
 use_new_morefile:- fail.
 
+check_marker(Type,Possibles):- \+ compound(Type), !,
+  member(W, Possibles), atom(W), 
+  concat_atom([Type,Base],':',W), !,
+  fill_in_blanks(Base,Possibles).
+
+check_marker(Marks,Possibles):- 
+   member(W,Possibles),
+   atom(W),concat_atom([Type,Base],':',W), !,
+   arg(_,Marks,Type),!,fill_in_blanks(Base,Possibles).
+
+fill_in_blanks( Base,[H|T]):- ignore(H=Base), !, fill_in_blanks(Base,T).
+fill_in_blanks(_Base,[]).
+
+:- dynamic(parser_chat80:plt/0).
+:- multifile(parser_chat80:plt/0).
 
 % was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
 % talk_db([F,A|List]):- talk_db_argsIsa(F,N,_), length(List,N),apply(talk_db,[F,A|List]).
 talk_db([F,A|List]):- between(0,4,N),length(List,N),apply(talk_db,[F,A|List]).
 
-talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- nonvar(Jacket), \+ plt,
+talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- nonvar(Jacket), \+ parser_chat80:plt,
   talk_db(noun_or_verb,Jackets,Jacketing,Jacket),
   clause(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed),true).
+
+
+talk_db(transitive, Jacket,Jackets,Jacketed,Jacketing,Jacketed):- 
+            check_marker(v('tv','v'),[Jacket,Jackets,Jacketed,Jacketing]).
+
+talk_db(intransitive, Jacket,Jackets,Jacketed,Jacketing,Jacketed):- 
+            check_marker(v('iv','v'),[Jacket,Jackets,Jacketed,Jacketing]).
+
+talk_db(ditransitive, Jacket,Jackets,Jacketed,Jacketing,Jacketed):- 
+            check_marker(v('dv','v'),[Jacket,Jackets,Jacketed,Jacketing]).
+
+
+talk_db(noun1,Sing,Plural):- check_marker(v('n','cn'),[Sing,Plural]).
+talk_db(noun2,Sing,Sing):- check_marker(v('n','mn'),[Sing]).
+talk_db(adj,Sing):- check_marker('jj',[Sing]).
+talk_db(adv,Sing):- check_marker('av',[Sing]).
+talk_db(Type,A):- atom(A), concat_atom([Type,_],':', A).
+talk_db(Type,A,B):- check_marker(Type,[A,B]).
+talk_db(Type,A,B,C):- check_marker(Type,[A,B,C]).
+talk_db(Type,A,B,D,C):- check_marker(Type,[A,B,C,D]).
+
 
 talk_db(noun1,Sing,Sing):- talk_db(noun2,Sing).
 talk_db(superl, far, aftermost).
@@ -234,7 +270,7 @@ kill_talk_db_bad_verbs:-
          fail.
 
 kill_talk_db_bad_verbs:- \+ use_new_morefile, !, show_size_left("Loaded"),
-  save_to_file('talk_db.more',clause_always,talk_db).
+  nop(save_to_file('talk_db.more',clause_always,talk_db)).
 
 kill_talk_db_bad_verbs:-         
         prolog_load_context(file,This),
@@ -273,6 +309,9 @@ save_to_file(Name,Belongs,F):-
 :- show_size_left("Loaded talk_db.more").
 :- endif.       
 %:-share_mp(kill_talk_db_bad_verbs/0).
+
+:- fixup_exports. 
+:- fixup_exports_system.%  system:reexport(talk_db).
 
 % =================================
 % some random talk_db/2-6 from the other file (to help see the meanings)

@@ -31,19 +31,21 @@
 :- (abolish(apply_macros:expand_apply,4), assert((apply_macros:expand_apply(_In,_,_,_):- fail))).
 :- (abolish(apply_macros:expand_apply,2), assert((apply_macros:expand_apply(_In,_):- fail))).
 
-:- use_module(parser_sharing).
-:- use_module(parser_tokenize).
-
-:- use_module(library(logicmoo_utils_all)).
-:- use_module(library(logicmoo_lib)).
-:- use_module(library(logicmoo_nlu)).
-%:- ensure_loaded(library(wamcl_runtime)).
-
 
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo,Dir)).
+
+
+:- use_module(library(logicmoo_utils_all)).
+:- use_module(library(logicmoo_lib)).
+
+:- use_module(parser_sharing).
+:- use_module(parser_tokenize).
+
+%:- use_module(library(logicmoo_nlu)).
+%:- ensure_loaded(library(wamcl_runtime)).
 
 % :- dynamic(baseKB:installed_converter/2).
 :- shared_parser_data(baseKB:installed_converter/2).
@@ -63,8 +65,11 @@
 :- shared_parser_data(baseKB:type_action_info/3).
 :- shared_parser_data(baseKB:agent_call_command/2).
 :- shared_parser_data(baseKB:mud_test/2).
+:- multifile(baseKB:sanity_test/0).
 :- shared_parser_data(baseKB:sanity_test/0).
-:- shared_parser_data(baseKB:regression_test/0).
+:- multifile(baseKB:regression_test/0).
+e:- shared_parser_data(baseKB:regression_test/0).
+:- multifile(baseKB:feature_test/0).
 :- shared_parser_data(baseKB:feature_test/0).
 :- shared_parser_data(baseKB:sanity_test/1).
 :- shared_parser_data(baseKB:regression_test/1).
@@ -78,9 +83,9 @@
 %   acetext, sentences, syntaxTrees, drs, drs0, sdrs, fol, pnf, (tokens), 
 %        sentencesToParse, paraphrase
 % 
-% CHAT80:  acetext, text_no_punct, pos_sents_pre,  syntaxTree80, qplan
+% CHAT80:  acetext, text_no_punct, pos_sents_pre,  parsed80, qplan
 %
-%  needConverter(syntaxTree,syntaxTree80).
+%  needConverter(syntaxTree,parsed80).
 % 
 % =============================================================================
 
@@ -220,7 +225,7 @@ maybe_new_value_op(TID,Name,V):-
             (NameC:VC)=@=(Name:CV)) -> true; flag(TID,OPs,1+OPs)).
 
 renumber_vars_from_0(_,V,UV):- copy_term(V,UM,_),duplicate_term(UM,UV),!.
-renumber_vars_from_0(kif(_),V,UV):-V=UV,!.
+renumber_vars_from_0(aceKif(_),V,UV):-V=UV,!.
 renumber_vars_from_0(_,V,UV):- unnumbervars(V,UV). % get_ape_results:rename_vars(UV,UV). %,ape_numbervars(UV,0,_).
 
 
@@ -260,7 +265,7 @@ get_pipeline_nvlist(TID,AllNameValues):-
 %
 %  Run a pipeline to yeild NameValues list
 %
-run_pipeline(Text):- run_pipeline(Text,[kif(p)=_,lf=_,clause=_,qplan=_,results80=_],O),show_kvs(O).
+run_pipeline(Text):- run_pipeline(Text,[aceKif(p)=_,lf=_,clause=_,qplan=_,results80=_],O),show_kvs(O).
 
 pipeline_input(X=Text,[X=Text]):-!.
 pipeline_input([X=Text|More],[X=Text|More]):-!.
@@ -379,37 +384,40 @@ load_parser_interface(File):- call(File:ensure_loaded_no_mpreds(File)).
 :- system:import(get_ape_results:ace_to_pkif/2).
 
 
-input_to_acetext(Input,AceText):- atomic(Input), tokenize(Input, Tokens), tokens_to_acetext(Tokens,AceText).
+system:my_aceparagraph_to_drs(AceText, Sentences, SyntaxTrees, UnresolvedDrsCopy, Drs, Messages):- 
+   ace_to_drs:aceparagraph_to_drs(AceText, on, off, 1, Sentences, SyntaxTrees, UnresolvedDrsCopy, Drs, Messages, _).
 
-:- install_converter(parser_all:input_to_acetext(+input, -acetext)).
-:- install_converter(parser_all:tokens_to_acetext(+(tokens), -acetext)).
+%:- install_converter(parser_tokenize:input_to_acetext(+input, -acetext)).
+:- install_converter(parser_tokenize:input_to_acetext(+text80, -acetext)).
+:- install_converter(parser_tokenize:into_text80(+input, -text80)).
+:- install_converter(parser_tokenize:into_text80(+acetext, -text80)).
+%:- install_converter(parser_tokenize:tokens_to_acetext(+(tokens), -acetext)).
+%:- install_converter(tokenizer:tokenize(+input, -(tokens))).
+%:- install_converter(get_ape_results:ace_to_pkif(+acetext, -aceKif(p))).
+%:- install_converter(ace_to_drs:call_tokenizer(+acetext, +(guess,on), -sentences:set, -sentencesToParse)).
+%:- install_converter(ace_to_drs:paragraphs_to_drs(+sentences:list, +(guess,on), +(catch,off), +(startID,1), -sentences, -syntaxTrees, -drs0, -messages, -time)).
+%:- install_converter(ace_to_drs:call_parser(+sentences:list, +(startID,1), -syntaxtrees, -drs0:reversed_set)).
+:- install_converter(system:my_aceparagraph_to_drs(+acetext, -sentences_set, -syntaxTrees, -unresolvedDrs, -drs0, -messages)).
+%:- install_converter(ace_to_drs:acetext_to_drs(+acetext, -sentences_set, -syntaxTrees, -drs0, -messages)).
+%:- install_converter(tokens_to_sentences:tokens_to_sentences(+(tokens), -sentences:set)).
+%:- install_converter(tokens_to_sentences:tokens_to_paragraphs(+(tokens), -sentences:set)).
+:- install_converter(drs_fol_pnf:drs_pnf(+drs0, -fol)).
+:- install_converter(drs_fol_pnf:drs_fol(+drs0, -pnf)).
 
+:- install_converter(get_ape_results:fol_to_pkif(+pnf, -aceKif(p_kif))).
+:- install_converter(get_ape_results:fol_to_pkif(+fol, -aceKif(f_kif))).
+:- install_converter(get_ape_results:fol_to_pkif(+drs0, -aceKif(d_kif))).
+:- install_converter(get_ape_results:fol_to_pkif(+sdrs, -aceKif(s_kif))).
 
-:- install_converter(get_ape_results:ace_to_pkif(+acetext, -kif(p))).
-:- install_converter(ace_to_drs:call_tokenizer(+acetext, +(guess,on), -sentences:set, -sentencesToParse)).
-:- install_converter(ace_to_drs:paragraphs_to_drs(+sentences:list, +(guess,on), +(catch,off), +(startID,1), -sentences, -syntaxTrees, -drs0, -messages, -time)).
-:- install_converter(ace_to_drs:call_parser(+sentences:list, +(startID,1), -syntaxtrees, - drs0:reversed_set)).
-:- install_converter(ace_to_drs:acetext_to_drs(+acetext, -sentences:set, -syntaxTrees, -drs0, -messages)).
-:- install_converter(tokenizer:tokenize(+input, -(tokens))).
-:- install_converter(tokens_to_sentences:tokens_to_sentences(+(tokens):set, -sentences:set)).
-:- install_converter(tokens_to_sentences:tokens_to_paragraphs(+(tokens):set, -sentences:set)).
-:- install_converter(drs_fol_pnf:drs_pnf(+drs, -fol)).
-:- install_converter(drs_fol_pnf:drs_fol(+drs, -pnf)).
-
-:- install_converter(get_ape_results:fol_to_pkif(+pnf, -kif(p))).
-:- install_converter(get_ape_results:fol_to_pkif(+fol, -kif(f))).
-:- install_converter(get_ape_results:fol_to_pkif(+drs, -kif(d))).
-:- install_converter(get_ape_results:fol_to_pkif(+sdrs, -kif(s))).
-
-:- install_converter(drs_to_ace:drs_to_ace(+drs0, -paraphrase:set)).
-:- install_converter(drs_to_drslist:drslist_to_ace(+drs0:list, -paraphrase:set)).
-:- install_converter(drs_to_drslist:drs_to_drslist(+drs0, -drs:set)).
+:- install_converter(drs_to_ace:drs_to_ace(+drs0, -paraphrase_set)).
+:- install_converter(drs_to_ace:drslist_to_ace(+drs_set, -paraphrase_set)).
+:- install_converter(drs_to_drslist:drs_to_drslist(+drs0, -drs_set)).
 :- install_converter(drs_to_sdrs:drs_to_sdrs(+drs, -sdrs)).
 :- endif.
 
 
 % ================================================================================================
-% CHAT80:  acetext,  text_no_punct, pos_sents_pre,  syntaxTree80,  simplify80, qplan
+% CHAT80:  acetext,  text_no_punct, pos_sents_pre,  parsed80,  simplify80, qplan
 :-  if(load_parser_interface(parser_chat80)).
 % ================================================================================================
 
@@ -430,13 +438,13 @@ remove_punctuation(W2,W2).
 %:- install_converter(parser_all:remove_punctuation(+acetext,-acetext_no_punct)).
 
 %:- install_converter(parser_chat80:words_to_w2(+acetext_no_punct,-pos_sents_pre)).
-:- install_converter(parser_chat80:into_text80(+(tokens), -text80)).
-:- install_converter(parser_chat80:sent_to_parsed(+text80, -syntaxTree80)).
-:- install_converter(parser_chat80:i_sentence(+syntaxTree80,-i_sentence)).
-:- install_converter(parser_chat80:clausify80(+i_sentence,-clausify80)).
+% :- install_converter(parser_chat80:into_text80(+(tokens), -text80)).
+:- install_converter(parser_chat80:sent_to_parsed(+text80, -parsed80)).
+:- install_converter(parser_chat80:i_sentence(+parsed80,-sent80)).
+:- install_converter(parser_chat80:clausify80(+sent80,-clausify80)).
 :- install_converter(parser_chat80:simplify80(+clausify80,-simplify80)).
-:- install_converter(parser_chat80:qplan(+simplify80,-qplan)).
-:- install_converter(parser_chat80:results80(+qplan,-results80)).
+:- install_converter(parser_chat80:qplan(+simplify80,-qplan80)).
+:- install_converter(parser_chat80:results80(+qplan80,-results80)).
 
 :-kb_global(partOfSpeech/3).
 :-kb_global(determinerStrings/2).
@@ -455,8 +463,6 @@ remove_punctuation(W2,W2).
 %:- debug.
 
 :- endif.
-
-:- set_prolog_flag(subclause_expansion, false).
 
 
 % ================================================================================================
@@ -495,7 +501,7 @@ eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
 :-  if(load_parser_interface('parser_bratko.pl')).
 % ================================================================================================
 
-:- install_converter(parser_bratko,bratko_parse(+(tokens),-lf_b)).
+:- install_converter(parser_bratko,bratko_parse(+chat80,-lf_b)).
 :- install_converter(parser_bratko,bratko_clausify(+lf_b,-clause_b)).
 :- install_converter(parser_bratko,bratko_reply(+clause_b,-reply_b)).
 
@@ -560,6 +566,7 @@ load_parser_stanford:-  load_parser_interface(parser_stanford).
 :-  load_parser_interface(parser_SIRIDUS).
 % ================================================================================================
 
+
 % ================================================================================================
 % TODO - grovel the API
 :-  load_parser_interface(parser_ProNTo).
@@ -570,17 +577,22 @@ load_parser_stanford:-  load_parser_interface(parser_stanford).
 
 :- show_pipeline.
 
+:- ensure_loaded(parser_pldata).
+
+% ================================================================================================
+:-  load_parser_interface(parser_fwd).
+% ================================================================================================
 
 :- dmsg(parser_all_complete).
 
 
-baseKB:sanity_test:- run_pipeline(input='A person who loves all animals is loved by someone.',[kif(p)=_],O),show_kvs(O).
-baseKB:sanity_test:- run_pipeline(input='All persons are happy.',[kif(p)=_],O),wdmsg(O).
+baseKB:sanity_test:- run_pipeline(input='A person who loves all animals is loved by someone.',[aceKif(p)=_],O),show_kvs(O).
+baseKB:sanity_test:- run_pipeline(input='All persons are happy.',[aceKif(p)=_],O),wdmsg(O).
 baseKB:regression_test:- run_pipeline('What are the oceans that border african countries and that border asian countries ?').
 baseKB:regression_test:- run_pipeline('What is the ocean that border african countries and that border asian countries?',[qplan=_],O),wdmsg(O).
 baseKB:regression_test:- run_pipeline(input='what countries are there in europe ?',[qplan=_],O),show_kvs(O).
 baseKB:regression_test:- must_test_80(Tokens,_,_),run_pipeline([(tokens)=Tokens],[qplan=_],O),show_kvs(O).
-baseKB:regression_test_TODO:- run_pipeline(input='A person who loves all animals is loved by someone.',[kif(p)=_],O),show_kvs(O).
+baseKB:regression_test_TODO:- run_pipeline(input='A person who loves all animals is loved by someone.',[aceKif(p)=_],O),show_kvs(O).
 animals_test:- must_det_l((ace_to_pkif('A person who loves all animals is loved by someone.',X),kif_to_boxlog(X,BOX),portray_clause(user_error,(fol:-BOX)))).
 baseKB:regression_test:- animals_test.
 
@@ -597,9 +609,6 @@ baseKB:regression_test:- gripe_time(5,test_chat80_sanity).
                 
 % :- must(retract(t_l:disable_px)).
 
-:- ensure_loaded(parser_pldata).
-
-
 :- ensure_loaded(library(apply_macros)).
 
 
@@ -609,10 +618,10 @@ baseKB:regression_test:- gripe_time(5,test_chat80_sanity).
 
 :- user:ignore((Z = ('`'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
 
-feature_test:- run_pipeline("what countries are there in europe ?").
-feature_test:- run_pipeline("What countries are there in europe ?").
-feature_test:- run_pipeline("What countries are there in north_america ?").
-feature_test:- run_pipeline("What countries are there in north america ?").
+baseKB:feature_test:- run_pipeline("what countries are there in europe ?").
+baseKB:feature_test:- run_pipeline("What countries are there in europe ?").
+baseKB:feature_test:- run_pipeline("What countries are there in north_america ?").
+baseKB:feature_test:- run_pipeline("What countries are there in north america ?").
 baseKB:feature_test(must_test_80):- 
   forall(must_test_80(U,R,O),
     (ignore(\+ \+ process_run_diff(report,U,R,O)),
@@ -626,6 +635,7 @@ baseKB:feature_test(must_test_80):-
 :- listing(chat80/1).
 :- listing(chat80/2).
 :- fixup_exports.
+:- threads.
 
 %:- must_test_80.
 %:- test_chat80_regressions.

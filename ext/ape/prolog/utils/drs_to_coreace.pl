@@ -615,7 +615,7 @@ conditions_verbtype([H | T], [H | Predicates], Adverbs, PPs) :-
 %
 counter(Name, N) :-
 	catch(
-		(nb_getval(Name, N0), succ(N0, N), nb_setval(Name, N)),
+		(b_getval(Name, N0), succ(N0, N), nb_setval(Name, N)),
 		_,
 		(N = 1, nb_setval(Name, N))
 	).

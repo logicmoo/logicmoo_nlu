@@ -37,7 +37,7 @@ i_sentence(whq(X,S),question80([X],P)) :- !,
 i_sentence(decl(S),assertion([],P)) :- !,
    i_s(S,P,[],0).
 
-i_sentence(imp(s(_,Verb,VArgs,VMods)),imp(V,Args)) :- !,
+i_sentence(imp(s80(_,Verb,VArgs,VMods)),imp(V,Args)) :- !,
    i_verb(Verb,V,_,active,pos(_TFScope),Slots0,[],transparent),
    i_verb_args(VArgs,[],[],Slots0,Slots,Args,Args0,Up,-0),
    conc80(Up,VMods,Mods),
@@ -46,6 +46,7 @@ i_sentence(imp(s(_,Verb,VArgs,VMods)),imp(V,Args)) :- !,
 i_sentence(S,assertion([],P)) :-
    i_s(S,P,[],0).
 
+i_np(here,Y,quant(void(_Meaning),_X,'`'(true),'`'(true),[],Y),[],_,_,XA,XA).
 i_np(there,Y,quant(void(_Meaning),_X,'`'(true),'`'(true),[],Y),[],_,_,XA,XA).
 i_np(NP,Y,Q,Up,Id0,Index,XA0,XA) :-
    i_np_head(NP,Y,Q,Det,Det0,X,Pred,QMods,Slots0,Id0),
@@ -172,7 +173,7 @@ i_adj(adj(Adj),TypeX-X,T,T,_,
    no_repeats_must(deduce_subj_obj_LF(attribute,Adj,TypeX,X,_,Y,P)),
    standard_adj_db(Adj,TypeX,Y,Q).
 
-i_s('s'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :-
+i_s('s80'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :-
    i_verb(Verb,P,Tense,Voice,Neg,Slots0,XA0,Meta),
    i_subj(Voice,Subj,Slots0,Slots1,QSubj,SUp,'-'('-'(Id))),
    conc80(SUp,VArgs,TArgs),
@@ -216,7 +217,7 @@ fill_verb([],XA,XA,Slots,Slots,Args,Args,[],_).
 fill_verb([Node|Nodes0],XA0,XA,Slots0,Slots,Args0,Args,Up,Id) :-
    verb_slot(Node,XA0,XA1,Slots0,Slots1,Args0,Args1,Up0,-Id),
    conc80(Up0,Nodes0,Nodes),
-   fill_verb(Nodes,XA1,XA,Slots1,Slots,Args1,Args,Up,+d).
+   fill_verb(Nodes,XA1,XA,Slots1,Slots,Args1,Args,Up,+Id).
 
 verb_slot(prep_phrase(Prep,NP),
       XArg0,XArg,Slots0,Slots,[Q|Args],Args,Up,Id) :-

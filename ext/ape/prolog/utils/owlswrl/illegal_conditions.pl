@@ -165,18 +165,18 @@ cond_sid(Cond, SId) :-
 	unary_drs_operator(F),
 	!,
 	arg(1, Cond, Drs),
-	conds_id(Drs, SId).
+	conds_sid(Drs, SId).
 
 cond_id(_Label:Drs, SId) :-
 	!,
-	conds_id(Drs, SId).
+	conds_sid(Drs, SId).
 
 cond_id(Drs1 v Drs2, SId) :-
 	!,
-	conds_id(Drs1, SId),
-	conds_id(Drs2, SId).
+	conds_sid(Drs1, SId),
+	conds_sid(Drs2, SId).
 
 cond_id(Drs1 => Drs2, SId) :-
 	!,
-	conds_id(Drs1, SId),
-	conds_id(Drs2, SId).
+	conds_sid(Drs1, SId),
+	conds_sid(Drs2, SId).

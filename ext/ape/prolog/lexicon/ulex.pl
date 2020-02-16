@@ -23,6 +23,7 @@
 :- use_module(functionwords).
 :- use_module('../logger/error_logger').
 
+
 /** <module> User Lexicon Interface
 
 This module contains the predicates for the dynamic management of the user lexicon that is not
@@ -549,3 +550,4 @@ unredefinable_fw(when).
 unredefinable_fw('When').
 unredefinable_fw(many).
 unredefinable_fw(much).
+

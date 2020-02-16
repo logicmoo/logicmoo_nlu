@@ -38,17 +38,19 @@
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
-:- use_module(library(make)).
+%:- use_module(library(make)).
 :- use_module(library(check)).
 :- abolish(check:list_undefined, 0).
 :- asserta((check:list_undefined:-!)).
 %:- abolish(check:list_undefined, 1).
 %:- asserta((check:list_undefined(_):-!)).
 :- use_module(parser_chat80).
+%:- use_module(parser_chat80,[plt/0,print_tree/1]).
+:- use_module(pldata(clex_iface)).
 
-system:t33:- make, t33a.
-system:t33a:- parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
-system:t33t:- parser_bratko:forall((must_test_bratko(Sent, Type), Type== tell,  testing_bratko(Sent, Type)), bratko(Sent)).
+system:t33:- cls, make, t33a.
+system:t33a:- cls, parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
+system:t33t:- cls, parser_bratko:forall((must_test_bratko(Sent, Type), Type== tell,  testing_bratko(Sent, Type)), bratko(Sent)).
 
 testing_bratko(Sent, Type):- Type\==ask, into_text80(Sent, Words), \+ (Words = [not |_]).
 
@@ -59,7 +61,11 @@ baseKB:sanity_test:- t33.
 must_test_bratko(S, _T) :- ground(S), !, bratko(S).
 :- system:import(must_test_bratko/2).
 
-must_test_bratko("a woman paints", quants).
+must_test_bratko("a woman drains", tell).
+% ;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\candc;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\ape;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\prolog
+
+% must_test_bratko(S, _T) :- \+ ground(S), !, fail.
+
 must_test_bratko("one woman paints", quants).
 must_test_bratko("no woman paints", quants).
 must_test_bratko("some woman paints", quants).
@@ -67,6 +73,23 @@ must_test_bratko("every woman paints", quants).
 must_test_bratko("each woman paints", quants).
 must_test_bratko("any woman paints", quants).
 must_test_bratko("the woman paints", quants).
+
+must_test_bratko("each african country is bordered by 2 oceans", tell).
+must_test_bratko("there are 10 large cars", tell).
+must_test_bratko("there are 10 oceans", tell).
+must_test_bratko("there are 10 women", tell).
+
+must_test_bratko("an ocean borders an african country", tell).
+must_test_bratko("2 oceans border each african country", tell).
+% ;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\candc;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\ape;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\prolog
+
+must_test_bratko(S, _T) :- \+ ground(S), !, fail.
+
+must_test_bratko("what is the ocean that borders african countries and that borders asian countries?" , tell).
+
+must_test_bratko("indian ocean is the ocean that borders african countries and that borders asian countries", tell).
+
+must_test_bratko("an ocean borders an african country", tell).
 
 
 must_test_bratko("the not woman paints", quants).  % ?? The Good Place "the not a girl"
@@ -181,7 +204,8 @@ must_test_bratko("every woman that likes a man that admires monet paints", tell)
 must_test_bratko("john likes annie", tell).
 must_test_bratko("annie likes a man that admires monet", tell).
 must_test_bratko("bertrand wrote principia", tell).
-must_test_bratko("a author wrote principia", tell).
+must_test_bratko("an author wrote principia", tell).
+must_test_bratko("iraq is a country", tell).
 must_test_bratko("a happy author wrote principia", tell).
 must_test_bratko("is bertrand an author", ask).
 must_test_bratko("bertrand is an author", tell).
@@ -226,6 +250,7 @@ must_test_bratko("bertrand wrote nothing about gottlob", tell).
 
 must_test_bratko("what did alfred give to bertrand", ask).
 must_test_bratko("alfred gave a book to bertrand", tell).
+must_test_bratko("alfred gave something to bertrand", tell).
 must_test_bratko("who did alfred give a book to", ask).
 
 must_test_bratko("alfred gave it", tell).
@@ -240,23 +265,23 @@ must_test_bratko(S, _T) :- \+ ground(S), !, fail.
 % =================================================================
 
 
-print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), print_tree(O))),!.
+print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), parser_chat80:print_tree(O))),!.
 
-print_reply(Color,O):- ansi_format([fg(Color)],'~@',[print_reply(O)]),!.
+print_reply(C,O):- (is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[print_reply(O)]),!.
 
+
+also_show_chat80(U):- 
+ parser_chat80:sent_to_parsed(U,E), 
+ parser_chat80:sent_to_prelogic(E,L),!,
+ print_reply(green,E),
+ print_reply([underline,fg(green)],L),!.
 also_show_chat80(U):- 
  (parser_chat80:sent_to_parsed(U,E)->
-  (print_reply(cyan,(E)),
-   (parser_chat80:sent_to_prelogic(E,L)->print_reply(cyan,(1:-L));(ansifmt(yellow,rtrace(parser_chat80:sent_to_prelogic(E))),!,fail)));
+  (print_reply(yellow,(E)),
+   (parser_chat80:sent_to_prelogic(E,L)->print_reply(cyan,(1:-L));
+     (ansifmt(cyan,rtrace(parser_chat80:sent_to_prelogic(E))),!,fail)));
     (ansifmt(magenta,rtrace(also_show_chat80(U))),!,fail)),!.
  
-
-
-also_show_chat80(U):- 
- deepen_pos(parser_chat80:sent_to_parsed(U,E)),!,
- print_reply(sent_to_parsed:-E),
- deepen_pos(parser_chat80:sent_to_prelogic(E,L)),!,
- print_reply(sent_to_prelogic:-L),!.
 
 
 
@@ -270,14 +295,13 @@ bratko :- locally(tracing80,
 
 % :-export(bratko/1).
 system:bratko(Sentence):-
-  make, 
+  make,
   setup_call_cleanup(notrace((to_wordlist_atoms(Sentence, Words),
   fmt(bratko(Sentence)))),
   bratko_0(Words), true).
 
 % :-export(bratko/1).
 system:bratko_0(Words):-
-  nb_setval('$variable_names',[]),
   bratko_0(Words, Reply),
   print_reply(Reply),
   notrace(ignore(also_show_chat80(Words))),!.
@@ -288,10 +312,8 @@ bratko(Sentence, Reply):-
  bratko_0(WL, Reply).
 
 bratko_0(Sentence, Reply) :-
-   % must_or_rtrace   
-   retractall(t_l:usePlTalk),
-   retractall(t_l:useAltPOS),   
-   deepen_pos(bratko_parse0(Sentence, LF)), % deepen_pos?
+   % must_or_rtrace      
+   bratko_parse0(Sentence, LF), % deepen_pos?
    quietly((show_call(bratko_clausify(LF, Clause)),
    bratko_reply(Clause, Reply))), !.
 bratko_0(Sentence,
@@ -301,16 +323,20 @@ bratko_parse(Sentence, LF):-
   quietly(to_wordlist_atoms(Sentence, WL)), !,
   bratko_parse0(WL, LF).
 
-bratko_parse0(WL, LF):- utterance(_How, LF, WL, []).
+bratko_parse0(WL, LF):-    
+   nb_setval('$variable_names',[]),
+   retractall(t_l:usePlTalk),
+   retractall(t_l:useAltPOS),
+   deepen_pos(utterance(_How, LF, WL, [])).
 
 
 % bratko_reply a question
 bratko_reply((answer(Answer) :- Condition), Reply) :-
  term_variables(Condition, Vars),
  term_singletons(Answer+Vars, FreeVars),
- Query = FreeVars^satisfy(Condition),
- fmt(query(Answer, Query)),
-((baseKB:setof(Answer, Query, Answers)
+ 
+ fmt(query(Answer, FreeVars^satisfy(Condition))),
+((baseKB:setof(Answer, FreeVars^call(call,satisfy,Condition), Answers)
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([no]) ; Reply = answer([none])))), !.
 % bratko_reply an assertion @TODO remove NOP 
@@ -367,10 +393,10 @@ expand_1arg(_,A,A).
 
 expand_args(_,_,A,B):- \+ compound(A),!,A=B.
 expand_args(_,_,[t|Args],Out):- !, maplist(expand_1arg(t),Args,ArgsO),Out =..[t|ArgsO].
-expand_args(_,_,[a,Type,Name], Out):- make_i(Type,Name,Out),!.
+expand_args(_,_,[a,Type,Name], Out):- i_name(Type,Name,Out),!.
 expand_args(_,_,[T|Args],Out):- maplist(expand_1arg(T),Args,ArgsO),Out =..[T|ArgsO].
-expand_args(C,N,[P|ARGS],Out):- 
-  maplist(expand_lf(C,N),0,[P|ARGS],[_|ARGSO]),
+expand_args(C,_,[P|ARGS],Out):- 
+  maplist(expand_lf(C,0),ARGS,[_|ARGSO]),
    Out =..[P|ARGSO].
 
 
@@ -395,14 +421,23 @@ expand_lf(C,N,A,Out):-
 expand_lf(A,B):-expand_lf(lf,0,A,B).
 
 
+assertion_callable(C):- callable(C),!.
+assertion_callable(_):- dumpST.
+
 conjoin_lf(LF1, LF2, Out):- notrace(conjoin_lf0(LF1, LF2, Out)).
 conjoin_lf(LF1, LF2, Out, L, L):- notrace(conjoin_lf0(LF1, LF2, Out)).
 
 %conjoin_lf0(LF1, LF2, Out):- assertion(nonvar(LF2)), assertion(nonvar(LF1)), fail.
 
 conjoin_lf00(LF1, LF2, Out):- LF2==true, !, Out=LF1.
+                                 
+conjoin_lf0(LF1, LF2, Out):- LF1==LF2, !, Out=LF1.
 
-conjoin_lf0(LF1, LF2, Out):- assertion(callable(LF1)), assertion(callable(LF2)), LF1==LF2, !, Out=LF1.
+%conjoin_lf0(LF1, LF2, LF1&LF2):- var(LF1),var(LF2), !.
+conjoin_lf0(LF1, LF2, LF1&LF2):- var(LF2), !.
+conjoin_lf0(LF1, LF2, LF2&LF1):- var(LF1), !.
+
+conjoin_lf0(LF1, LF2, _):- assertion_callable(LF1), assertion_callable(LF2),fail.
 
 conjoin_lf0(LF1, LF2, Out):- compound(LF2), (LF2 = (LF2a & LF2b)), !, conjoin_lf0(LF1, LF2a, M), conjoin_lf0(M, LF2b, Out).
 
@@ -484,16 +519,22 @@ var_1trait(X, denote(Any), denotableBy(X, Str)):- any_to_string(Any, Str).
 var_1trait(X, Str, denotableBy(X, Str)):- string(Str), nvd(Str,X).
 
 var_1trait(X, Prop, denotableBy(X, XProp)):- compound(Prop), functor(Prop,F,A), atom_concat(_,'Fn',F),
-  arg(A,Prop,Arg2), must((any_to_string(Arg2,Str),i_name(i,F,FF),XProp=.. [FF,Str],!,nvd(Str,X))).
+  arg(A,Prop,Arg2), must_or_rtrace((any_to_string(Arg2,Str),i_name(i,F,FF),XProp=.. [FF,Str],!,nvd(Str,X))).
 var_1trait(X, Prop, Prop):- compound(Prop), sub_var(X, Prop).  % arg(2, Prop, _).
 var_1trait(X, Prop, ZProp):- compound(Prop), Prop=.. [F, Arg2], XProp=.. [F, X, Arg2], !,
  (var_1trait(X, XProp, ZProp) -> true ; ZProp = XProp).
 
+ char_type_sentence(?,ask).
+ char_type_sentence((.),tell).
+ char_type_sentence((.),act).
+ char_type_sentence((!),act).
+ char_type_sentence((!),tell).
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% Grammar %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
-utterance(tell, LF) -->   !, declarative(LF).
-utterance(ask, LF) -->   quietly(question(LF)).  % @TODO make this first (and remove the cut above)
+utterance(Type, LF, S, E):- var(Type), is_list(S), append(First,[Char],S), \+ \+ char_type_sentence(Char,_), !, char_type_sentence(Char,Type),utterance(Type, LF, First, E).
+utterance(ask, LF) -->   quietly(question(LF)).
+utterance(tell, LF) -->  declarative(LF).
 utterance(act, LF) -->   quietly(imperative(LF)).
 
 
@@ -727,11 +768,12 @@ verb_post_mod(X, Frame, LFIn, FLOut) -->  {fail},  prepostional_phrase(oblique, 
 % adverb(X, MProps) --> quietly(maybe_negated_dcg(adverb1(X), MProps)).
 adverb(X, MProps) --> quietly(adverb1(X, MProps)).
 adverb1(X, MProps)  -->      [Adv], {adv_lf(X, Adv, MProps)}.
- adv_lf(X, Adv, ISA) :- talkdb:talk_db(adv, Adv), into_isa3(X, advFn(Adv), ISA).
-
-
-
-
+ adv_lf(X, Adv, ISA) :-  fail,
+   ((    clex_iface:clex_adv(Adv, RAdv, _);
+         talkdb:talk_db(_, RAdv, Adv);
+        (((parser_chat80:comp_adv_db(Adv);parser_chat80:sup_adv_db(Adv);parser_chat80:adverb_db(Adv))),RAdv=Adv);
+         (talkdb:talk_db(adv, Adv),RAdv=Adv))),
+    into_isa3(X, advFn(RAdv), ISA).    
 
 % =================================================================
 % Noun Phrase
@@ -740,7 +782,7 @@ adverb1(X, MProps)  -->      [Adv], {adv_lf(X, Adv, MProps)}.
 noun_phrase(SO, X, LF, Out) --> [what], noun_phrase1(SO, Y, LF, LF0), [is], conjoin_lf(LF0 , what_is(Y, X), Out).
 %poss_pron_db(his, masc, 3, sg)  noun_phrase(subj, X, LF, ownedBy(X, him) & LFOut) --> [his], dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
 noun_phrase(SO, X, LF0, LFOut) -->
-  [His], {nl_call(poss_pron_db(His, Masc, Pers, SgOrpl)},
+  [His], {nl_call(poss_pron_db,His, Masc, Pers, SgOrpl)},
   add_traits(Y, [ownedBy(X, Y), gender(Masc), person(Pers), SgOrpl], LF0, LF),
   dcg_push(some), noun_phrase1(SO, X, LF, LFOut).
 
@@ -814,7 +856,13 @@ rel_clause(_SO, X, LF, Out) --> [Who], {relpron_dict(Who)}, verb_phrase(_NewFram
 
 adjective(X, MProps) --> quietly(maybe_negated_dcg(adjective1(X), MProps)).
 adjective1(X, MProps)  -->      [Adj], {adj_lf(X, Adj, MProps)}.
- adj_lf(X, Adj, ISA) :- (adj_db(Adj, restr);talkdb:talk_db(adj, Adj)), into_isa3(X, adjFn(Adj), ISA).
+
+ adj_lf(X, Adj, ISA) :- 
+   ((   (parser_chat80:adj_db( Adj, _),RAdj=Adj);
+         clex_iface:clex_adj(Adj, RAdj, _);
+         talkdb:talk_db(_, RAdj, Adj);
+        (talkdb:talk_db(adj, Adj),RAdj=Adj))),
+    into_isa3(X, adjFn(RAdj), ISA).
 
 noun_pre_mod(_SO, X, LF, Out) --> adjective(X, MProps), conjoin_lf(LF, MProps, Out).
 noun_pre_mod(SO,  X, LF, Out) --> near_noun_mod(SO, X, LF, Out).
@@ -870,7 +918,7 @@ maybe_suffixed_dcg(DCGGoal1, Suffix, LF) -->
 % =================================================================
 %  Noun Units
 % =================================================================
-whpron(X, LF, Out) --> [WH], {whpron_dict(WH)}, add_traits(X, pronounQQFn(WH), LF, Out).
+whpron(_, LF, LF & pronounQQFn(WH)) --> [WH], {whpron_dict(WH)},!.
 
   whpron_dict(who).
   whpron_dict(whom).
@@ -888,13 +936,13 @@ pronoun(_SO, X, LF, Out) --> [some], add_traits(X, [pronounQFn("some"), atLeast(
  
 %pronoun(SO, X, LF, Out) --> [one],dcg_push(someone),!,pronoun(SO, X, LF, Out).
 
-pronoun(SO, X, LF, Out) --> [Nobody], {quantifier_pron_db(Nobody, No, Body),pronoun_ok(_Subj,SO)},
+pronoun(SO, X, LF, Out) --> [Nobody], {nl_call(quantifier_pron_db,Nobody, No, Body),pronoun_ok(_Subj,SO)},
  add_traits(X, [pronounDFn(Nobody), quant(No), Body], LF, Out), !.
 
-pronoun(SO, X, LF, Out) --> [She], {pers_pron_db(She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO)},
+pronoun(SO, X, LF, Out) --> [She], {nl_call(pers_pron_db,She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO)},
  add_traits(X, [pronounCFn(She), gender(Fem), person(Third), Sing, v_arg(Subj)], LF, Out), !.
 
-pronoun(SO, X, LF, Out) --> [Herself], {reflexive_pronoun(Herself,Traits),
+pronoun(SO, X, LF, Out) --> [Herself], {nl_call(reflexive_pronoun,Herself,Traits),
   (member(v_arg(O),Traits)-> pronoun_ok(O,SO); true)},
   add_traits(X, [pronounBFn(Herself)|Traits], LF, Out), !.
 
@@ -905,7 +953,7 @@ pronoun(subj, X, LF, Out) --> [WH], {whpron_dict(WH)},
 pronoun_ok(Obj, Subject):- Obj == obj, Subject == subj, !, fail.
 pronoun_ok(_80, _SO).
 
-:- 
+
 reflexive_pronoun(herself,[v_arg(obj),person(3),sg,gender(fem)]).
 reflexive_pronoun(himself,[v_arg(obj),person(3),sg,gender(masc)]).
 reflexive_pronoun(itself,[v_arg(obj),person(3),sg,gender(neut)]).
@@ -945,7 +993,7 @@ proper_noun(Entity) --> quietly(([PN], {pn_lf(PN, Entity)})).
    pn_lf(Name, Value) :- atom(Name), pn_dict(Name), i_name(i, Name, Value).
 
     pn_dict(Name):- atomic(Name), toPropercase(Name, PC), PC==Name.
-    pn_dict(Name):- name_template_db(Name, _).
+    pn_dict(Name):- parser_chat80:name_template_db(Name, _).
 
     %pn_dict(Name):- atom(Name),downcase_atom(Name,Down),
     pn_dict_tiny(begriffsschrift,place).  pn_dict_tiny(gottlob,city).
@@ -976,8 +1024,8 @@ quietly(DCG, S, E):- setup_call_cleanup(quietly(phrase(DCG, S, E)),true,true).
 
 dcg_peek(DCG,S,S):- phrase(DCG,S,_).
 
-tag(Frame, Tag, isa(Frame, TAG)) --> {atomic(Tag)}, !, [$, TAG], {downcase_atom(TAG, Start), atom_concat(Tag, _, Start)}.
-tag(Frame, Cmp, N) --> {functor(Cmp, F, _)}, tag(Frame, F, N).
+tag(Frame, Tag, isa(Frame, TAG)) --> {atomic(Tag)}, !, [$, TAG], {atom(TAG),downcase_atom(TAG, Start), atom_concat(Tag, _, Start)}.
+tag(Frame, Cmp, N) --> {compound(Cmp),functor(Cmp, F, _)}, tag(Frame, F, N).
 
 dcg_must_each_det(G, S, E):- !, phrase(G, S, E), !.
 
@@ -1041,6 +1089,8 @@ to_wordlist_atoms(Sentence, WordsA):-
 
 :- context_module(CM), module_predicates_are_exported(CM).
 :- context_module(CM), module_meta_predicates_are_transparent(CM).
+
 % :- context_module(CM), module_property(CM, exports(List)), moo_hide_show_childs(List).
 
 :- fixup_exports.
+

@@ -115,7 +115,8 @@ must_be_callable(P):- notrace(( assertion(callable(P)),assertion(\+ is_list(P)))
 
 :- b_setval(ex_set,[]).
 
-:- module_transparent(satisfy/1).
+:- meta_predicate(satisfy(0)).
+:- export(satisfy/1).
 satisfy(P):- must_be_callable(P), fail.
 satisfy(M:P):- !, M:satisfy(P).
 satisfy((P,Q)) :- !, satisfy(P), satisfy(Q).

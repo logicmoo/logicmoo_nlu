@@ -16,16 +16,21 @@
 :- reexport(parser_sharing).
 :- shared_parser_data(talkdb:talk_db/3).
 
-:- absolute_file_name(logicmoo_nlu_ext('ape/'),Dir,[file_type(directory)]),
+:- absolute_file_name(logicmoo_nlu_ext('ape'),Dir,[file_type(directory)]),
    assertz(user:file_search_path(ape,Dir)).
+:- absolute_file_name(logicmoo_nlu_ext('ape/prolog'),Dir,[file_type(directory)]),
+   asserta(user:file_search_path(ape,Dir)).
 
-  
+
+%warning(F,A):- sformat(S,F,A), dmsg(warning(S)).
+%error(C1,C2):- trace_or_throw(error(C1,C2)).
 
 :- reexport(ape(parser/ace_to_drs)).
 :- reexport(ape(get_ape_results)).
 :- reexport(ape(utils/drs_to_drslist)).
 :- reexport(ape(utils/drs_to_sdrs)).
-:- reexport(ape('parser/grammar_plp.pl')).
+% sorts, grammar, grammar_functionwords, grammar_contentwords
+:- reexport(ape('parser/grammar.plp')).
 :- reexport(ape('parser/grammar_words'),[reset_progress_record/1]).
 :- reexport(ape(parser/ape_utils)).
 :- reexport(ape(parser/tokenizer)).

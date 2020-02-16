@@ -138,7 +138,7 @@ get_prev_run_results(U,List,Time):-must_test_80(U,List,Time),!.
 get_prev_run_results(_,[],[]).
 
 :- share_mp(call_in_banner/2).
-call_in_banner(U,Call):- in_terse,!,call(Call).
+call_in_banner(_,Call):- in_terse,!,call(Call).
 call_in_banner(U,Call):- setup_call_cleanup(p2(begin:U),Call,p2(end:U)).
 
 in_terse:- !.
@@ -246,6 +246,8 @@ sent_to_parsed(U,E):- deepen_pos(parser_chat80:sentence80(E,U,[],[],[])).
 :- share_mp(deepen_pos/1).
 :- export(deepen_pos/1).
 :-meta_predicate(deepen_pos(0)).
+% temp hack
+deepen_pos(Call):- !, call(Call).
 deepen_pos(Call):- deepen_pos_0(Call) *->  true ; locally(t_l:useAltPOS,deepen_pos_0(Call)).
 
 :- share_mp(deepen_pos_0/1).
@@ -318,7 +320,7 @@ test_quiet(_,_,_,_).
 report(Item,Label, Time, Mode) :- (\+ t_l:tracing80 ; Time==0), !,
    nop((nl, write(Label), write(':(report) '),ignore(safely_call_ro(report_item(Mode,Item))))),!.
 report(Item,Label,Time,Mode) :- 
-   nl, write(Label), write(':(report4) '), write(Time), write(' sec(s).'), nl,
+   nl, write(Label), write(':(report4) '), write(Time), write(' sec(s80).'), nl,
    ignore(safely_call_ro(report_item(Mode,Item))),!.
 report(_,_,_,_).
 
@@ -367,8 +369,8 @@ quote_amp(R) :-
 
 
 sent_to_prelogic(S0,S) :-
-   i_sentence(S0,S1),
-   clausify80(S1,S),!.
+   deepen_pos((i_sentence(S0,S1),
+   clausify80(S1,S))),!.
 
 sent_to_prelogic(S0,S) :- 
   t_l:chat80_interactive,plt,!,

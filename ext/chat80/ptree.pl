@@ -68,17 +68,17 @@ write_simple(A):- format('~p',[A]).
 
 as_is(V):- var(V).
 as_is(A) :- \+ compound(A), !.
-as_is(A) :- A=..[_,S], simple_arg(S), !.
 as_is(A) :- functor(A,F,_), simple_f(F).
 as_is('_'(_)) :- !.
 as_is(X) :-
    quote(X).
-as_is(F):- simple_arg(F).
+as_is(F):- simple_arg(F), !.
+as_is(A) :- A=..[_|S], maplist(simple_arg,S), !.
 
 simple_f(denotableBy).
 simple_f(HasSpace):- atom_contains(HasSpace,' ').
 
-simple_arg(S):- nvar(S) ; \+ compound(S).
+simple_arg(S):- (nvar(S) ; \+ compound(S)),!.
 simple_arg(S):- \+ (arg(_,S,Var), compound(Var), \+ nvar(Var)).
 
 nvar(S):- compound(S)-> functor(S,'$VAR',_); var(S).

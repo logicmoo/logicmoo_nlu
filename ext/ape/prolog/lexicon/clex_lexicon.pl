@@ -12,6 +12,9 @@
 % You should have received a copy of the GNU Lesser General Public License along with the Attempto
 % Parsing Engine (APE). If not, see http://www.gnu.org/licenses/.
 
+/* @TODO Ask Dmiles */
+end_of_file.
+
 adj_itr('grown-up', 'grown-up').
 adj_itr(accepted, accepted).
 adj_itr(active, active).

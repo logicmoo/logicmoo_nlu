@@ -83,6 +83,22 @@ clex_pred(M:F/A):-
   assert_if_new(clex_iface:is_clex_pred(M,F,A)).
 clex_pred(F/A):- clex_pred(clex:F/A).
 
+:- export(clex_call/1).
+:- export(clex_call/2).
+:- export(clex_call/3).
+:- export(clex_call/4).
+:- export(clex_call/5).
+:- export(clex_call/6).
+:- export(clex_call/7).
+clex_call([F|Rest]):- !, is_clex_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
+clex_call(P):- is_clex_pred(M,F,A),functor(P,F,A),M:call(P).
+clex_call(F,A):- is_clex_pred(M,F,1),M:call(F,A).
+clex_call(F,A,B):- is_clex_pred(M,F,2),M:call(F,A,B).
+clex_call(F,A,B,C):- is_clex_pred(M,F,3),M:call(F,A,B,C).
+clex_call(F,A,B,C,D):- is_clex_pred(M,F,4),M:call(F,A,B,C,D).
+clex_call(F,A,B,C,D,E):- is_clex_pred(M,F,5),M:call(F,A,B,C,D,E).
+clex_call(F,A,B,C,D,E,G):- is_clex_pred(M,F,5),M:call(F,A,B,C,D,E,G).
+
 :- clex_pred(noun_pl/3).
 :- clex_pred(iv_infpl/2).
 :- clex_pred(noun_sg/3).
@@ -111,19 +127,6 @@ clex_pred(F/A):- clex_pred(clex:F/A).
 :- clex_pred(adv_comp/2).
 :- clex_pred(adj_tr/3).
 
-:- export(clex_call/1).
-:- export(clex_call/2).
-:- export(clex_call/3).
-:- export(clex_call/4).
-:- export(clex_call/5).
-:- export(clex_call/6).
-clex_call([F|Rest]):- !, is_clex_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
-clex_call(P):- is_clex_pred(M,F,A),functor(P,F,A),M:call(P).
-clex_call(F,A):- is_clex_pred(M,F,1),M:call(F,A).
-clex_call(F,A,B):- is_clex_pred(M,F,2),M:call(F,A,B).
-clex_call(F,A,B,C):- is_clex_pred(M,F,3),M:call(F,A,B,C).
-clex_call(F,A,B,C,D):- is_clex_pred(M,F,4),M:call(F,A,B,C,D).
-clex_call(F,A,B,C,D,E):- is_clex_pred(M,F,5),M:call(F,A,B,C,D,E).
 
 :- clex_pred(clex_iface:clex_verb/4).
 :- export(clex_verb/4).
@@ -209,9 +212,20 @@ clex_dynload(M,F):- absolute_file_name(F, File, [access(read),file_type(prolog)]
    (P= (:- (G)) -> M:call(G) ; asserta_new(M:P)),
    P==end_of_file, !.
 
+:- if(exists_source(pldata('clex_lexicon_user1.nldata'))).
 :- clex_dynload(clex,pldata('clex_lexicon_user1.nldata')).
+:- else.
+:- if(exists_source(('clex_lexicon_user1.nldata'))).
+:- clex_dynload(clex,('clex_lexicon_user1.nldata')).
+:- endif.
+:- endif.
 
+
+:- if(exists_source(ape(lexicon/clex_lexicon))).
 :- clex_dynload(clex,ape(lexicon/clex_lexicon)).
+:- endif.
+
+:- fixup_exports. 
 
 % apply_fixes:- clex_verb(Formed, Verb, dv(Prep), PP)
 

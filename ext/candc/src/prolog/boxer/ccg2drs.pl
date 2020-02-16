@@ -545,7 +545,7 @@ interpret(gbxc(Cat,S,A,W,A1,F1),Der):-
    topcat(A1,ACat),
    base(ACat,S2/S3,Dollar,N),
    base(Cat,S1/S3,Dollar,N), !,
-   interp(gbxc(Cat,N,S,A,W,A1,F1),Der).
+   interpret(gbxc(Cat,N,S,A,W,A1,F1),Der).
 
 /* -------------------------------------------------------------------------
    Token

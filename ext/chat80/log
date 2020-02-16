@@ -66,7 +66,7 @@ Parse: 0.0168457sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
@@ -99,7 +99,7 @@ does afghanistan border china ?
 
 Parse: 0.0161133sec.
 q
-   s
+   s80
       np
          3+sg
          name(afghanistan)
@@ -132,7 +132,7 @@ Parse: 0.0339356sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          wh(B)
@@ -146,7 +146,7 @@ whq
                det(the(sg))
                []
                capital
-            pp
+            prep_phrase
                prep(of)
                np
                   3+sg
@@ -173,7 +173,7 @@ Parse: 0.032959sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          np_head
@@ -187,7 +187,7 @@ whq
       verb(be,active,pres+fin,[],pos)
       arg
          pred
-         pp
+         prep_phrase
             prep(in)
             np
                $VAR
@@ -231,7 +231,7 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
@@ -261,20 +261,20 @@ albania, andorra, austria, belgium, bulgaria, cyprus, czechoslovakia, denmark, e
 
 Reply: 0.184082sec.
 
-which country ' s capital is london ? 
+which country ' s80 capital is london ? 
 
 Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          np_head
             det(the(sg))
             []
             capital
-         pp
+         prep_phrase
             poss
             np
                3+sg
@@ -313,7 +313,7 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          wh(B)
@@ -364,7 +364,7 @@ Parse: 0.0339356sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          np_head
@@ -419,7 +419,7 @@ Parse: 0.0827637sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          wh(B)
@@ -438,7 +438,7 @@ whq
                rel
                   $VAR
                      2
-                  s
+                  s80
                      np
                         3+sg
                         wh(C)
@@ -458,7 +458,7 @@ whq
                rel
                   $VAR
                      3
-                  s
+                  s80
                      np
                         3+sg
                         wh(D)
@@ -511,7 +511,7 @@ Parse: 0.032959sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          wh(B)
@@ -525,7 +525,7 @@ whq
                det(the(pl))
                []
                capital
-            pp
+            prep_phrase
                prep(of)
                np
                   3+pl
@@ -536,7 +536,7 @@ whq
                   reduced_rel
                      $VAR
                         2
-                     s
+                     s80
                         np
                            3+pl
                            wh(C)
@@ -578,7 +578,7 @@ Parse: 0.032959sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
@@ -588,7 +588,7 @@ whq
          []
       verb(border,passive,pres+fin,[],pos)
       []
-      pp
+      prep_phrase
          prep(by)
          np
             3+pl
@@ -623,14 +623,14 @@ Parse: 0.065918sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          name(danube)
          []
       verb(flow,active,pres+fin,[],pos)
       []
-      pp
+      prep_phrase
          prep(through)
          np
             3+pl
@@ -664,7 +664,7 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          wh(B)
@@ -679,7 +679,7 @@ whq
                adj
                   total
                area
-            pp
+            prep_phrase
                prep(of)
                np
                   3+pl
@@ -692,7 +692,7 @@ whq
                      reduced_rel
                         $VAR
                            2
-                        s
+                        s80
                            np
                               3+pl
                               wh(C)
@@ -700,7 +700,7 @@ whq
                            verb(be,active,pres+fin,[],pos)
                            arg
                               pred
-                              pp
+                              prep_phrase
                                  prep(southof)
                                  np
                                     3+sg
@@ -710,7 +710,7 @@ whq
                      reduced_rel
                         $VAR
                            3
-                        s
+                        s80
                            np
                               3+pl
                               wh(D)
@@ -718,7 +718,7 @@ whq
                            verb(be,active,pres+fin,[],neg)
                            arg
                               pred
-                              pp
+                              prep_phrase
                                  prep(in)
                                  np
                                     3+sg
@@ -758,7 +758,7 @@ Parse: 0.0668945sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          wh(B)
@@ -773,7 +773,7 @@ whq
                adj
                   average
                area
-            pp
+            prep_phrase
                prep(of)
                np
                   3+pl
@@ -781,7 +781,7 @@ whq
                      det(the(pl))
                      []
                      country
-                  pp
+                  prep_phrase
                      prep(in)
                      np
                         3+sg
@@ -821,7 +821,7 @@ is there more than one country in each continent ?
 
 Parse: 0.032959sec.
 q
-   s
+   s80
       there
       verb(be,active,pres+fin,[],pos)
       arg
@@ -832,7 +832,7 @@ q
                quant(more,nb(1))
                []
                country
-            pp
+            prep_phrase
                prep(in)
                np
                   3+sg
@@ -876,7 +876,7 @@ is there some ocean that does not border any country ?
 
 Parse: 0.0500488sec.
 q
-   s
+   s80
       there
       verb(be,active,pres+fin,[],pos)
       arg
@@ -890,7 +890,7 @@ q
             rel
                $VAR
                   1
-               s
+               s80
                   np
                      3+sg
                      wh(B)
@@ -937,7 +937,7 @@ Parse: 0.0830078sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          wh(B)
@@ -954,7 +954,7 @@ whq
             rel
                $VAR
                   2
-               s
+               s80
                   np
                      3+sg
                      np_head
@@ -964,13 +964,13 @@ whq
                      []
                   verb(flow,active,pres+fin,[],pos)
                   []
-                  pp
+                  prep_phrase
                      prep(from)
                      np
                         3+pl
                         wh(C)
                         []
-                  pp
+                  prep_phrase
                      prep(into)
                      np
                         3+sg
@@ -1006,7 +1006,7 @@ Parse: 0.184082sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          wh(B)
@@ -1023,14 +1023,14 @@ whq
             rel
                $VAR
                   2
-               s
+               s80
                   np
                      3+sg
                      np_head
                         det(no)
                         []
                         country
-                     pp
+                     prep_phrase
                         prep(in)
                         np
                            3+pl
@@ -1048,14 +1048,14 @@ whq
                         rel
                            $VAR
                               3
-                           s
+                           s80
                               np
                                  3+sg
                                  np_head
                                     det(the(sg))
                                     []
                                     population
-                                 pp
+                                 prep_phrase
                                     poss
                                     np
                                        3+pl
@@ -1121,7 +1121,7 @@ Parse: 0.116943sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+sg
          np_head
@@ -1131,7 +1131,7 @@ whq
          reduced_rel
             $VAR
                2
-            s
+            s80
                np
                   3+sg
                   wh(C)
@@ -1156,14 +1156,14 @@ whq
             rel
                $VAR
                   3
-               s
+               s80
                   np
                      3+sg
                      wh(D)
                      []
                   verb(border,passive,pres+fin,[],pos)
                   []
-                  pp
+                  prep_phrase
                      prep(by)
                      np
                         3+sg
@@ -1174,14 +1174,14 @@ whq
                         rel
                            $VAR
                               4
-                           s
+                           s80
                               np
                                  3+sg
                                  np_head
                                     det(the(sg))
                                     []
                                     population
-                                 pp
+                                 prep_phrase
                                     poss
                                     np
                                        3+sg
@@ -1196,7 +1196,7 @@ whq
                                        det(the(sg))
                                        []
                                        population
-                                    pp
+                                    prep_phrase
                                        prep(of)
                                        np
                                           3+sg
@@ -1245,7 +1245,7 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
@@ -1265,7 +1265,7 @@ whq
             reduced_rel
                $VAR
                   2
-               s
+               s80
                   np
                      3+sg
                      wh(C)
@@ -1309,14 +1309,14 @@ Parse: 0.0671387sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
             int_det(B)
             []
             country
-         pp
+         prep_phrase
             prep(with)
             np
                3+sg
@@ -1327,7 +1327,7 @@ whq
                reduced_rel
                   $VAR
                      2
-                  s
+                  s80
                      np
                         3+sg
                         wh(C)
@@ -1379,14 +1379,14 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
             int_det(B)
             []
             percentage
-         pp
+         prep_phrase
             prep(of)
             np
                3+pl
@@ -1446,7 +1446,7 @@ Parse: 0.0500488sec.
 whq
    $VAR
       1
-   s
+   s80
       np
          3+pl
          np_head
@@ -1456,7 +1456,7 @@ whq
          []
       verb(be,active,pres+fin,[],pos)
       void
-      pp
+      prep_phrase
          prep(in)
          np
             3+sg

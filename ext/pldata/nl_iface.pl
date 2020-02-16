@@ -1,13 +1,17 @@
 :- module(nl_iface,[]).
 
+:- use_module(library(logicmoo_common)).
+
 :- prolog_load_context(file,File),
    absolute_file_name('.',X,[relative_to(File),file_type(directory)]),
-   (user:file_search_path(nldata,X)-> true ; asserta(user:file_search_path(nldata,X))).
+   (user:file_search_path(nldata,X)-> true ; asserta(user:file_search_path(nldata,X))),
+   (user:file_search_path(pldata,X)-> true ; asserta(user:file_search_path(pldata,X))).
 
 
-:- reexport(tt0_iface).
-:- reexport(ac_xnl_iface).
-:- reexport(clex_iface).
+:- system:reexport(tt0_iface).
+:- system:reexport(ac_xnl_iface).
+:- system:reexport(clex_iface).
+:- system:reexport(talk_db).
 % :- ensure_loaded('../candc/src/prolog/boxer/boxer').
 
 		 /*******************************
@@ -21,8 +25,8 @@ set_rel_path_from_here:-
 
 :- getenv('WNDB', _WNDB) -> true ; set_rel_path_from_here.
 
-:- reexport(wn30_iface).
-:- load_wordnet.
+:- system:reexport(wn_iface).
+% :- load_wordnet.
 
 end_of_file.
 

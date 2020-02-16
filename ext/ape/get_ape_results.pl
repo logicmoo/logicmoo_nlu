@@ -25,8 +25,165 @@
 	]).
 
 :- reexport('prolog/ape').
-
 :- use_module(parser_sharing).
+:-export(rename_vars/2).
+rename_vars(Content):-rename_vars(Content,RContent),ignore(Content=RContent).
+rename_vars(Content0,RContent):-
+        (ground(Content0)->unnumbervars(Content0,Content);Content=Content0),
+        rename_vars(pass1,Content,RContent1),
+        rename_vars(pass2,RContent1,RContent2),
+        rename_vars(pass3,RContent2,RContent).
+
+rename_vars(_,Var,Var):- \+ compound(Var),!.
+rename_vars(_,'$VAR'(V),'$VAR'(V)):-!.
+rename_vars(Pass,Content,RContent):- is_list(Content),!,maplist(rename_vars(Pass),Content,RContent).
+rename_vars(Pass,Content,RContent):-   
+  once(ignore(suggests_name(Pass,Content))),
+  Content=..[F|Args],  
+  maplist(rename_vars(Pass),Args,RArgs),
+  (Args==RArgs->RContent=Content;RContent=..[F|RArgs]),!.
+rename_vars(_,Content,Content).
+
+% DRS
+name_in_arg(pass1,object/6,2-1,'_OBJ').
+name_in_arg(pass1,predicate/3,2-1,'_FRAME').
+name_in_arg(pass2,property/3,2-1,'_REL').
+name_in_arg(pass3,modifier_pp/3,2-1,'_MOD').
+
+% FOL
+name_in_arg(pass1,object/7,3-2,'_OBJ').
+name_in_arg(pass1,predicate/4,3-2,'_EVENT').
+name_in_arg(pass2,property/4,3-2,'_PROP').
+name_in_arg(pass3,modifier_pp/4,3-2,'_MOD').
+name_in_arg(pass3,predicate/4,3-1,'_FRAME').
+
+name_in_arg(pass2,predicate/5,3-2,'_EVENT').
+name_in_arg(pass3,predicate/5,3-1,'_FRAME').
+
+% TPTP
+name_in_arg(pass2,predicate1/3,2-1,'_EVENT').
+name_in_arg(pass2,predicate2/_,2-1,'_PRED2').
+name_in_arg(pass2,property1/3,2-1,'_PROP').
+name_in_arg(pass3,modifier_pp/4,3-2,'_MOD').
+
+
+suggests_name(_Pass,G):-  (\+ compound(G) ; ground(G)).
+suggests_name(_Pass,G):- G=..[Name,Var], maybe_name_var(Var,Name,'_OBJ'),!.
+suggests_name(Pass,G):- functor(G,F,A),name_in_arg(Pass,F/A,NameArg-VarArg,SUFFIX),arg(NameArg,G,Name),arg(VarArg,G,Var),maybe_name_var(Var,Name,SUFFIX),!.
+suggests_name(_Pass,_).
+
+maybe_name_var('$VAR'(Var),Name,CAT):-atom(Name),ignore(upcase_atom(Name,VAR)),atom_concat(VAR,CAT,Var),!.
+maybe_name_var(_,_,_).
+
+:-export(fol_to_pkif/2).
+fol_to_pkif(FOL,PKIF):- transitive(fol_to_kif,FOL,KIF),kif_to_pkif(KIF,PKIF),!.
+
+:-export(ace_to_pnf/2).
+ace_to_pnf(ACE,FOL):-  must_det_l((get_ape_term_results(ACE,PROPS),transitive(props_to_pnf,PROPS,PNF),v_pp(PNF,FOL))),!.
+
+:-export(ace_to_pkif/2).
+ace_to_pkif(ACE,PKIF):-  must_det_l((ace_to_pnf(ACE,FOL),fol_to_pkif(FOL,PKIF0),fully_expand(PKIF0,PKIF))),!.
+
+props_to_pnf(PROPS,PNF):-member(drs=drs([],[]),PROPS),!,member(tokens=Tokens,PROPS),!,PNF=isEng2KifFn(ftAssertable,Tokens),!.
+props_to_pnf(PROPS,PNF):-member(pnf=PNF,PROPS),!.
+props_to_pnf(PROPS,PNF):-member(fol=PNF,PROPS),!.
+props_to_pnf(PROPS,PNF):-member(drs=PNF,PROPS),!.
+props_to_pnf(PROPS,PNF):-member(tptp=PNF,PROPS),!.
+
+
+ace_i_name(A,Plur,AT):-atom(Plur),talkdb:talk_db(noun1,Sing,Plur),if_defined(i_name(A,Sing,AT)),!.
+ace_i_name(A,T,AT):-atom(T),if_defined(i_name(A,T,AT)),!.
+ace_i_name(_A,T,AT):-AT=T.
+
+%:- talkdb:load_language_file(pldata(talk_db_pdat)).
+
+:-export(fol_to_kif/2).
+
+                           
+fol_to_kif(FOL, FOL) :- var(FOL),!.
+fol_to_kif($true, is_true) :-!.
+fol_to_kif(FOL, FOL) :- (\+ (compound(FOL))) ,!.
+fol_to_kif('$VAR'(O), '$VAR'(O)):-!.
+fol_to_kif([FH|FT],[KH|KT]) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif([FH|FT],(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif(t(P,A),C) :- atom(P),!,C=..[P,A],!.
+fol_to_kif(t(P,A,B),C) :- atom(P),!,C=..[P,A,B],!.
+fol_to_kif(object(_LOVE_FRAME,PERSON_OBJ,Person,Countable,Na,Eq,One),object(PERSON_OBJ,Person,Countable,Na,Eq,One)).
+fol_to_kif(predicate(_LOVE_FRAME,LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ),predicate(LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ)).
+fol_to_kif(property(_LOVE_FRAME, PERSON_OBJ, Person, Pos),property(PERSON_OBJ, Person, Pos)).
+
+fol_to_kif(object(LOVE_FRAME,PERSON_OBJ,Person,countable,na,eq,1),ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ))):-!,ace_i_name(t,Person,PersonSym).
+fol_to_kif(object(LOVE_FRAME,PERSON_OBJ,Person,Countable,_Na,Eq,One),(ist(LOVE_FRAME,t(Countable,PERSON_OBJ,Eq,One)),ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ)))):-!,ace_i_name(t,Person,PersonSym).
+fol_to_kif(property(LOVE_FRAME, PERSON_OBJ, Person, pos),(ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ)))):-!,ace_i_name(t,Person,PersonSym).
+
+
+fol_to_kif(object(PERSON_OBJ,Person,countable,na,eq,1),t(PersonSym,PERSON_OBJ)):-!,ace_i_name(t,Person,PersonSym).
+fol_to_kif(property(PERSON_OBJ, Person, pos),t(PersonSym,PERSON_OBJ)):-!,ace_i_name(v,Person,PersonSym).
+fol_to_kif(property(PERSON_OBJ, Person, neg), '-'(t(PersonSym,PERSON_OBJ))):-!,ace_i_name(v,Person,PersonSym).
+
+
+
+fol_to_kif(object(ANIMAL_OBJ, Animal, countable, na, eq, 1),t(AnimalSym,ANIMAL_OBJ)):-!,ace_i_name(t,Animal,AnimalSym).
+fol_to_kif(object(PERSON_OBJ,Person,Countable,_Na,Eq,One),(t(Countable,PERSON_OBJ,Eq,One),t(PersonSym,PERSON_OBJ))):-!,ace_i_name(t,Person,PersonSym).
+fol_to_kif(predicate(LOVE_FRAME,LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ),(holdsIn(LOVE_FRAME,LOVE_EVENT),frame(LOVE_FRAME),ist(LOVE_EVENT,t(LoveSym,PERSON_OBJ,ANIMAL_OBJ)))):-!,ace_i_name(mud,Love,LoveSym).
+fol_to_kif(predicate(Love,PERSON_OBJ,ANIMAL_OBJ),(t(LoveSym,PERSON_OBJ,ANIMAL_OBJ))):-!,ace_i_name(mud,Love,LoveSym).
+fol_to_kif(predicate(_LOVE_FRAME, Love, PERSON_OBJ, ANIMAL_OBJ),t(LoveSym, PERSON_OBJ, ANIMAL_OBJ)):-!,ace_i_name(mud,Love,LoveSym).
+
+fol_to_kif((O - N/M), K):- integer(N),integer(M), !,fol_to_kif(O,K).
+fol_to_kif('=>'(FH,FT),implies(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif('implies'(FH,FT),implies(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif('&'(FH,FT),(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif('v'(FH,FT),(KH;KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif('-'(FT),'-'(KT)) :- !, fol_to_kif(FT,KT).
+fol_to_kif('~'(FT),'-'(KT)) :- !, fol_to_kif(FT,KT).
+fol_to_kif(exists(FH,FT),exists(FH,KT)) :- !,fol_to_kif(FT,KT).
+fol_to_kif(all(FH,FT),all(FH,KT)) :- !,fol_to_kif(FT,KT).
+fol_to_kif(drs([],FT),CNF) :- !,fol_to_kif(FT,KT),list_to_conjuncts(KT,CNF).
+fol_to_kif(drs(FH,FT),exists(FH,CNF)) :- !,fol_to_kif(FT,KT),list_to_conjuncts(KT,CNF).
+fol_to_kif(forall(FH,FT),all(FH,KT)) :- !,fol_to_kif(FT,KT).
+fol_to_kif(('?'(VARS : FOL)),exists(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
+fol_to_kif('!'(VARS:FOL),forall(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
+fol_to_kif('!'(VARS):FOL,forall(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
+
+fol_to_kif([FH|FT],[KH|KT]) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
+fol_to_kif(FH,KH) :- FH=..[F|FT], fol_to_kif(FT,KT),!,KH=..[F|KT].
+
+
+:-export(kif_to_pkif/2).
+kif_to_pkif(FOL, FOL) :- \+ compound(FOL),!.
+kif_to_pkif('$VAR'(O), '$VAR'(O)):-!.
+kif_to_pkif(exists(FH,FT),exists(FH,KT)) :- !,kif_to_pkif(FT,KT).
+kif_to_pkif(forall(FH,FT),all(FH,KT)) :- !,kif_to_pkif(FT,KT).
+kif_to_pkif([FH|FT],[KH|KT]) :- !, kif_to_pkif(FH,KH),kif_to_pkif(FT,KT).
+kif_to_pkif(FH,KH) :- FH=..[F|FT], kif_to_pkif(FT,KT),!,KH=..[F|KT].
+
+%% get_ape_term_results(+Input:list, -Content:atom) is det.
+%  get_ape_term_results(+Input:list, -ContentType:atom, -Content:atom) is det.
+%
+% @param Input is a list of input parameters of the form Key=Value
+% @param ContentType is one of {text/plain, text/xml}
+% @param Content is the returned XML
+%
+
+get_ape_term_results(InputTok, RContent) :- is_list(InputTok), flatten(InputTok,InputTokF),!,    
+  delete(InputTokF,(^),InputTokS),concat_atom(InputTokS,' ',InputStr),!,get_ape_term_results(InputStr, RContent),!.
+get_ape_term_results(Input, Content) :-  get_ape_results([text=Input,guess=on], _ContentType, Content).
+
+
+:-export(get_ape_term_results/1).
+get_ape_term_results(Text):- get_ape_term_results(Text,L),forall(member(K=V,L),(v_pp(V,P),portray_clause(K:-P))).
+
+
+v_pp(V,V):-var(V),!.
+v_pp([V],P):-nonvar(V),v_pp(V,P).
+v_pp(fof(Axiom,V),fof(Axiom,P)):-!,v_pp(V,P).
+v_pp(A:V,exists(A,P)):-!,v_pp(V,P).
+v_pp(V,V):-!.
+
+call_ape(G):- G.
+
+end_of_file.
+
 
 :- shared_parser_data(talkdb:talk_db/3).
 
@@ -172,30 +329,6 @@ catchtype_errormessage(CatchType, 'text/xml', ErrorMessage) :-
 		]), ErrorMessage).
 
 
-%% get_ape_results(+Input:list, -Content:atom) is det.
-%% get_ape_results(+Input:list, -ContentType:atom, -Content:atom) is det.
-%
-% @param Input is a list of input parameters of the form Key=Value
-% @param ContentType is one of {text/plain, text/xml}
-% @param Content is the returned XML
-%
-get_ape_results(Input, Content) :-
-	get_ape_results(Input, _ContentType, Content).
-
-
-:-export(get_ape_term_results/1).
-get_ape_term_results(Text):- get_ape_term_results(Text,L),forall(member(K=V,L),(v_pp(V,P),portray_clause(K:-P))).
-
-v_pp(V,V):-var(V),!.
-v_pp([V],P):-nonvar(V),v_pp(V,P).
-v_pp(fof(Axiom,V),fof(Axiom,P)):-!,v_pp(V,P).
-v_pp(A:V,exists(A,P)):-!,v_pp(V,P).
-v_pp(V,V):-!.
-
-call_ape(G):- G.
-
-get_ape_term_results(InputTok, RContent) :- is_list(InputTok),flatten(InputTok,InputTokF),!,   
-  delete(InputTokF,(^),InputTokS),concat_atom(InputTokS,' ',InputStr),!,get_ape_term_results(InputStr, RContent),!.
 get_ape_term_results(InputStr, RContent) :-
    Input = [text = InputStr , cinput=on, cdrs=on,  cparaphrase=on, 
       cparaphrase1=on, cparaphrase2=on, ctokens=on, guess=on, csyntax=on, cfol=on, cpnf=on, ctptp=on, cowlfss=on, cowlrdf = on],
@@ -244,137 +377,6 @@ get_ape_prolog_term_result(Input, TempResult, Type=PrologTerm) :-
 		(Output = '', PrologTerm = Catcher)
 	))).
 
-
-:-export(rename_vars/2).
-rename_vars(Content):-rename_vars(Content,RContent),ignore(Content=RContent).
-rename_vars(Content0,RContent):-
-        (ground(Content0)->unnumbervars(Content0,Content);Content=Content0),
-        rename_vars(pass1,Content,RContent1),
-        rename_vars(pass2,RContent1,RContent2),
-        rename_vars(pass3,RContent2,RContent).
-
-rename_vars(_,Var,Var):- \+ compound(Var),!.
-rename_vars(_,'$VAR'(V),'$VAR'(V)):-!.
-rename_vars(Pass,Content,RContent):- is_list(Content),!,maplist(rename_vars(Pass),Content,RContent).
-rename_vars(Pass,Content,RContent):-   
-  once(ignore(suggests_name(Pass,Content))),
-  Content=..[F|Args],  
-  maplist(rename_vars(Pass),Args,RArgs),
-  (Args==RArgs->RContent=Content;RContent=..[F|RArgs]),!.
-rename_vars(_,Content,Content).
-
-% DRS
-name_in_arg(pass1,object/6,2-1,'_OBJ').
-name_in_arg(pass1,predicate/3,2-1,'_FRAME').
-name_in_arg(pass2,property/3,2-1,'_REL').
-name_in_arg(pass3,modifier_pp/3,2-1,'_MOD').
-
-% FOL
-name_in_arg(pass1,object/7,3-2,'_OBJ').
-name_in_arg(pass1,predicate/4,3-2,'_EVENT').
-name_in_arg(pass2,property/4,3-2,'_PROP').
-name_in_arg(pass3,modifier_pp/4,3-2,'_MOD').
-name_in_arg(pass3,predicate/4,3-1,'_FRAME').
-
-name_in_arg(pass2,predicate/5,3-2,'_EVENT').
-name_in_arg(pass3,predicate/5,3-1,'_FRAME').
-
-% TPTP
-name_in_arg(pass2,predicate1/3,2-1,'_EVENT').
-name_in_arg(pass2,predicate2/_,2-1,'_PRED2').
-name_in_arg(pass2,property1/3,2-1,'_PROP').
-name_in_arg(pass3,modifier_pp/4,3-2,'_MOD').
-
-
-suggests_name(_Pass,G):-  (\+ compound(G) ; ground(G)).
-suggests_name(_Pass,G):- G=..[Name,Var], maybe_name_var(Var,Name,'_OBJ'),!.
-suggests_name(Pass,G):- functor(G,F,A),name_in_arg(Pass,F/A,NameArg-VarArg,SUFFIX),arg(NameArg,G,Name),arg(VarArg,G,Var),maybe_name_var(Var,Name,SUFFIX),!.
-suggests_name(_Pass,_).
-
-maybe_name_var('$VAR'(Var),Name,CAT):-atom(Name),ignore(upcase_atom(Name,VAR)),atom_concat(VAR,CAT,Var),!.
-maybe_name_var(_,_,_).
-
-:-export(fol_to_pkif/2).
-fol_to_pkif(FOL,PKIF):- transitive(fol_to_kif,FOL,KIF),kif_to_pkif(KIF,PKIF),!.
-
-:-export(ace_to_pnf/2).
-ace_to_pnf(ACE,FOL):-  must_det_l((get_ape_term_results(ACE,PROPS),transitive(props_to_pnf,PROPS,PNF),v_pp(PNF,FOL))),!.
-
-:-export(ace_to_pkif/2).
-ace_to_pkif(ACE,PKIF):-  must_det_l((ace_to_pnf(ACE,FOL),fol_to_pkif(FOL,PKIF0),fully_expand(PKIF0,PKIF))),!.
-
-props_to_pnf(PROPS,PNF):-member(drs=drs([],[]),PROPS),!,member(tokens=Tokens,PROPS),!,PNF=isEng2KifFn(ftAssertable,Tokens),!.
-props_to_pnf(PROPS,PNF):-member(pnf=PNF,PROPS),!.
-props_to_pnf(PROPS,PNF):-member(fol=PNF,PROPS),!.
-props_to_pnf(PROPS,PNF):-member(drs=PNF,PROPS),!.
-props_to_pnf(PROPS,PNF):-member(tptp=PNF,PROPS),!.
-
-
-ace_i_name(A,Plur,AT):-atom(Plur),talk_db(noun1,Sing,Plur),if_defined(i_name(A,Sing,AT)),!.
-ace_i_name(A,T,AT):-atom(T),if_defined(i_name(A,T,AT)),!.
-ace_i_name(_A,T,AT):-AT=T.
-
-%:- talkdb:load_language_file(pldata(talk_db_pdat)).
-
-:-export(fol_to_kif/2).
-
-                           
-fol_to_kif(FOL, FOL) :- var(FOL),!.
-fol_to_kif($true, is_true) :-!.
-fol_to_kif(FOL, FOL) :- (\+ (compound(FOL))) ,!.
-fol_to_kif('$VAR'(O), '$VAR'(O)):-!.
-fol_to_kif([FH|FT],[KH|KT]) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif([FH|FT],(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif(t(P,A),C) :- atom(P),!,C=..[P,A],!.
-fol_to_kif(t(P,A,B),C) :- atom(P),!,C=..[P,A,B],!.
-fol_to_kif(object(_LOVE_FRAME,PERSON_OBJ,Person,Countable,Na,Eq,One),object(PERSON_OBJ,Person,Countable,Na,Eq,One)).
-fol_to_kif(predicate(_LOVE_FRAME,LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ),predicate(LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ)).
-fol_to_kif(property(_LOVE_FRAME, PERSON_OBJ, Person, Pos),property(PERSON_OBJ, Person, Pos)).
-
-fol_to_kif(object(LOVE_FRAME,PERSON_OBJ,Person,countable,na,eq,1),ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ))):-!,ace_i_name(t,Person,PersonSym).
-fol_to_kif(object(LOVE_FRAME,PERSON_OBJ,Person,Countable,_Na,Eq,One),(ist(LOVE_FRAME,t(Countable,PERSON_OBJ,Eq,One)),ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ)))):-!,ace_i_name(t,Person,PersonSym).
-fol_to_kif(property(LOVE_FRAME, PERSON_OBJ, Person, pos),(ist(LOVE_FRAME,t(PersonSym,PERSON_OBJ)))):-!,ace_i_name(t,Person,PersonSym).
-
-
-fol_to_kif(object(PERSON_OBJ,Person,countable,na,eq,1),t(PersonSym,PERSON_OBJ)):-!,ace_i_name(t,Person,PersonSym).
-fol_to_kif(property(PERSON_OBJ, Person, pos),t(PersonSym,PERSON_OBJ)):-!,ace_i_name(v,Person,PersonSym).
-fol_to_kif(property(PERSON_OBJ, Person, neg), '-'(t(PersonSym,PERSON_OBJ))):-!,ace_i_name(v,Person,PersonSym).
-
-
-
-fol_to_kif(object(ANIMAL_OBJ, Animal, countable, na, eq, 1),t(AnimalSym,ANIMAL_OBJ)):-!,ace_i_name(t,Animal,AnimalSym).
-fol_to_kif(object(PERSON_OBJ,Person,Countable,_Na,Eq,One),(t(Countable,PERSON_OBJ,Eq,One),t(PersonSym,PERSON_OBJ))):-!,ace_i_name(t,Person,PersonSym).
-fol_to_kif(predicate(LOVE_FRAME,LOVE_EVENT,Love,PERSON_OBJ,ANIMAL_OBJ),(holdsIn(LOVE_FRAME,LOVE_EVENT),frame(LOVE_FRAME),ist(LOVE_EVENT,t(LoveSym,PERSON_OBJ,ANIMAL_OBJ)))):-!,ace_i_name(mud,Love,LoveSym).
-fol_to_kif(predicate(Love,PERSON_OBJ,ANIMAL_OBJ),(t(LoveSym,PERSON_OBJ,ANIMAL_OBJ))):-!,ace_i_name(mud,Love,LoveSym).
-fol_to_kif(predicate(_LOVE_FRAME, Love, PERSON_OBJ, ANIMAL_OBJ),t(LoveSym, PERSON_OBJ, ANIMAL_OBJ)):-!,ace_i_name(mud,Love,LoveSym).
-
-fol_to_kif((O - N/M), K):- integer(N),integer(M), !,fol_to_kif(O,K).
-fol_to_kif('=>'(FH,FT),implies(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif('implies'(FH,FT),implies(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif('&'(FH,FT),(KH,KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif('v'(FH,FT),(KH;KT)) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif('-'(FT),'-'(KT)) :- !, fol_to_kif(FT,KT).
-fol_to_kif('~'(FT),'-'(KT)) :- !, fol_to_kif(FT,KT).
-fol_to_kif(exists(FH,FT),exists(FH,KT)) :- !,fol_to_kif(FT,KT).
-fol_to_kif(all(FH,FT),all(FH,KT)) :- !,fol_to_kif(FT,KT).
-fol_to_kif(drs([],FT),CNF) :- !,fol_to_kif(FT,KT),list_to_conjuncts(KT,CNF).
-fol_to_kif(drs(FH,FT),exists(FH,CNF)) :- !,fol_to_kif(FT,KT),list_to_conjuncts(KT,CNF).
-fol_to_kif(forall(FH,FT),all(FH,KT)) :- !,fol_to_kif(FT,KT).
-fol_to_kif(('?'(VARS : FOL)),exists(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
-fol_to_kif('!'(VARS:FOL),forall(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
-fol_to_kif('!'(VARS):FOL,forall(VARS,KIF)):-!,fol_to_kif(FOL,KIF).
-
-fol_to_kif([FH|FT],[KH|KT]) :- !, fol_to_kif(FH,KH),fol_to_kif(FT,KT).
-fol_to_kif(FH,KH) :- FH=..[F|FT], fol_to_kif(FT,KT),!,KH=..[F|KT].
-
-
-:-export(kif_to_pkif/2).
-kif_to_pkif(FOL, FOL) :- \+ compound(FOL),!.
-kif_to_pkif('$VAR'(O), '$VAR'(O)):-!.
-kif_to_pkif(exists(FH,FT),exists(FH,KT)) :- !,kif_to_pkif(FT,KT).
-kif_to_pkif(forall(FH,FT),all(FH,KT)) :- !,kif_to_pkif(FT,KT).
-kif_to_pkif([FH|FT],[KH|KT]) :- !, kif_to_pkif(FH,KH),kif_to_pkif(FT,KT).
-kif_to_pkif(FH,KH) :- FH=..[F|FT], kif_to_pkif(FT,KT),!,KH=..[F|KT].
 
 get_ape_results(Input, ContentType, Content) :-
 	clear_messages,
