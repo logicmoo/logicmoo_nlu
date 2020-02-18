@@ -10,31 +10,31 @@ ac_nl_info(Str,Infos):-
        maplist(ac_nl_info_1,Info0,More),
        append([Info0|More],ListM),list_to_set(ListM,Infos),!.
 
-ac_nl_info_0(Str,[cycWord(CycWord),cycPOS(RegularAdverb)]):- assertion_content(RegularAdverb,CycWord,Str,_645343).
+ac_nl_info_0(Str,[cycWord(CycWord),cycPOS(RegularAdverb)]):- acnl(RegularAdverb,CycWord,Str,_645343).
 ac_nl_info_0(Str,[str(Str)]):- string(Str).
-ac_nl_info_0(CycWord,[cycWord(CycWord)]):-  assertion_content('isa',CycWord,_,_645347).
+ac_nl_info_0(CycWord,[cycWord(CycWord)]):-  acnl('isa',CycWord,_,_645347).
 ac_nl_info_0(Word,Results):- 
-   atom(Word), % \+ assertion_content('isa',xCleverTheWord,_,_645347), 
+   atom(Word), % \+ acnl('isa',xCleverTheWord,_,_645347), 
    downcase_atom(Word,Word),atom_string(Word,String),!,ac_nl_info_0(String,Results).
 
 
 ac_nl_info_1(Word,Results):- findset(Info,ac_nl_info_2(Word,Info), Results),!.
 
-ac_nl_info_2(cycWord(CycWord),t(P,$self,Y)):-      assertion_content(P,CycWord,Y,_).
-ac_nl_info_2(cycWord(CycWord),t(P,Y,$self)):-      assertion_content(P,Y,CycWord,_).
-ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z)):-    assertion_content(P,CycWord,Y,Z,_).
-ac_nl_info_2(cycWord(CycWord),t(P,Y,$self,Z)):-    assertion_content(P,Y,CycWord,Z,_).
-ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z,OO)):- assertion_content(P,CycWord,Y,Z,OO,_).
-ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z,OO)):- assertion_content(P,Y,CycWord,Z,OO,_).
+ac_nl_info_2(cycWord(CycWord),t(P,$self,Y)):-      acnl(P,CycWord,Y,_).
+ac_nl_info_2(cycWord(CycWord),t(P,Y,$self)):-      acnl(P,Y,CycWord,_).
+ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z)):-    acnl(P,CycWord,Y,Z,_).
+ac_nl_info_2(cycWord(CycWord),t(P,Y,$self,Z)):-    acnl(P,Y,CycWord,Z,_).
+ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z,OO)):- acnl(P,CycWord,Y,Z,OO,_).
+ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z,OO)):- acnl(P,Y,CycWord,Z,OO,_).
 
-:- retractall(assertion_content(retainTerm,_,_)).
+:- retractall(acnl(retainTerm,_,_)).
 
 :- export(killBadNL/1).
 killBadNL(AC):- retract(AC),assertz('$BORKED'(AC)),dmsg(retract(AC)),!,fail.
 
 :- export(killBadNL/0).
-killBadNL:- assertion_content(retainTerm,X,Y), killBadNL(assertion_content(retainTerm,X,Y)).
-killBadNL:- between(1,8,N),length(L,N),append([assertion_content,F|L],[_ID],Out),member('$BORKED',L),P=..Out,P,F\=verbSemTrans,
+killBadNL:- acnl(retainTerm,X,Y), killBadNL(acnl(retainTerm,X,Y)).
+killBadNL:- between(1,8,N),length(L,N),append([acnl,F|L],[_ID],Out),member('$BORKED',L),P=..Out,P,F\=verbSemTrans,
   killBadNL(P).
 killBadNL.
 

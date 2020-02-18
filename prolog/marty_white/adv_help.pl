@@ -20,9 +20,15 @@
 :- dynamic(adv:cmd_help/2).
 :- multifile(adv:cmd_help/2).
 
+/*
 :- online_help:use_module(library(help)). %,[online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
 :- online_help:use_module(library(pldoc)).
 :- online_help:use_module(library(pldoc/doc_man)).
+:- use_module(library(help)). %,[online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
+:- use_module(library(pldoc)).
+:- use_module(library(pldoc/doc_man)).
+*/
+
 
 call_oh(G):- call(call,online_help:G).
 

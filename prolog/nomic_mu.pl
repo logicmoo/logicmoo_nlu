@@ -89,6 +89,6 @@ or to run as single player use:
 
   
 
-:- initialization(srv_mu_main, main).
+% :- initialization(srv_mu_main, main).
 
 :- initialization(usage_mu).

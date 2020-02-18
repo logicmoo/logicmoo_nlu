@@ -1,52 +1,54 @@
 :- module(nlkb7166,[
-   assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2,
-   assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,
-   assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,
-   assertion_content/11,assertion_content/12,assertion_content/13]).
+   % assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2,
+   acnl/3,acnl/4,acnl/5,acnl/6,
+   acnl/7,acnl/8,acnl/9,acnl/10,
+   acnl/11,acnl/12,acnl/13]).
 
 
-:- public((assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,assertion_content/11,assertion_content/12,assertion_content/13)).
-:- export((assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,assertion_content/11,assertion_content/12,assertion_content/13)).
-:- multifile((assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,assertion_content/11,assertion_content/12,assertion_content/13)).
-:- dynamic((assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,assertion_content/11,assertion_content/12,assertion_content/13)).
-:- discontiguous((assertion_content/3,assertion_content/4,assertion_content/5,assertion_content/6,assertion_content/7,assertion_content/8,assertion_content/9,assertion_content/10,assertion_content/11,assertion_content/12,assertion_content/13)).
+:- public((acnl/3,acnl/4,acnl/5,acnl/6,acnl/7,acnl/8,acnl/9,acnl/10,acnl/11,acnl/12,acnl/13)).
+:- export((acnl/3,acnl/4,acnl/5,acnl/6,acnl/7,acnl/8,acnl/9,acnl/10,acnl/11,acnl/12,acnl/13)).
+:- multifile((acnl/3,acnl/4,acnl/5,acnl/6,acnl/7,acnl/8,acnl/9,acnl/10,acnl/11,acnl/12,acnl/13)).
+:- dynamic((acnl/3,acnl/4,acnl/5,acnl/6,acnl/7,acnl/8,acnl/9,acnl/10,acnl/11,acnl/12,acnl/13)).
+:- discontiguous((acnl/3,acnl/4,acnl/5,acnl/6,acnl/7,acnl/8,acnl/9,acnl/10,acnl/11,acnl/12,acnl/13)).
 
+/*
 :- public((assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2)).
 :- export((assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2)).
 :- multifile((assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2)).
 :- dynamic((assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2)).
 :- discontiguous((assertion_lifting_consequent/2,assertion_lifting/2,assertion_mt/2)).
+*/
 
 :- set_prolog_flag(double_quotes,string).
 :- style_check(-singleton).
 
 :- if(exists_source('ac_xnl/ac_xnl_7166_part_000000.nldata')).
 
-:-dynamic(assertion_content/3).
-:-dynamic(assertion_content/4).
-:-dynamic(assertion_content/5).
-:-dynamic(assertion_content/6).
-:-dynamic(assertion_content/7).
-:-dynamic(assertion_content/8).
-:-dynamic(assertion_content/9).
-:-dynamic(assertion_content/10).
-:-dynamic(assertion_content/11).
-:-dynamic(assertion_content/12).
-:-dynamic(assertion_content/13).
-:-dynamic(assertion_content_implies/3).
-:-dynamic(assertion_content_implies/4).
-:-dynamic(assertion_content_implies/5).
-:-dynamic(assertion_content_implies/6).
-:-dynamic(assertion_content_implies/7).
-:-dynamic(assertion_content_implies/8).
-:-dynamic(assertion_content_implies/9).
-:-dynamic(assertion_content_implies/10).
-:-dynamic(assertion_content_not/2).
-:-dynamic(assertion_content_not/3).
-:-dynamic(assertion_content_not/4).
-:-dynamic(assertion_content_not/5).
-:-dynamic(assertion_content_not/6).
-:-dynamic(assertion_content_not/7).
+:-dynamic(acnl/3).
+:-dynamic(acnl/4).
+:-dynamic(acnl/5).
+:-dynamic(acnl/6).
+:-dynamic(acnl/7).
+:-dynamic(acnl/8).
+:-dynamic(acnl/9).
+:-dynamic(acnl/10).
+:-dynamic(acnl/11).
+:-dynamic(acnl/12).
+:-dynamic(acnl/13).
+:-dynamic(acnl_implies/3).
+:-dynamic(acnl_implies/4).
+:-dynamic(acnl_implies/5).
+:-dynamic(acnl_implies/6).
+:-dynamic(acnl_implies/7).
+:-dynamic(acnl_implies/8).
+:-dynamic(acnl_implies/9).
+:-dynamic(acnl_implies/10).
+:-dynamic(acnl_not/2).
+:-dynamic(acnl_not/3).
+:-dynamic(acnl_not/4).
+:-dynamic(acnl_not/5).
+:-dynamic(acnl_not/6).
+:-dynamic(acnl_not/7).
 
 
 :- style_check(-discontiguous).
@@ -327,15 +329,15 @@
 /*
 split -l 8000 -d -a 4 --additional-suffix=00.nldata sorted ac_xnl/ac_xnl_7166_part_
 
-   assertion_content/3
-   assertion_content/4
-   assertion_content/5
-   assertion_content/6
-   assertion_content/7
-   assertion_content/8
-   assertion_content/9
-   % assertion_content/10
-   assertion_content/11
+   acnl/3
+   acnl/4
+   acnl/5
+   acnl/6
+   acnl/7
+   acnl/8
+   acnl/9
+   % acnl/10
+   acnl/11
 
 */
 

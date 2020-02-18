@@ -210,7 +210,8 @@ clex_dynload(M,F):- absolute_file_name(F, File, [access(read),file_type(prolog)]
    read(In, P),
    % DMiles: i am putting them in backwards (cuz, the hypens- confuse me if they pop out first in the debugger)
    (P= (:- (G)) -> M:call(G) ; asserta_new(M:P)),
-   P==end_of_file, !.
+   P==end_of_file, !,
+   close(In).
 
 :- if(exists_source(pldata('clex_lexicon_user1.nldata'))).
 :- clex_dynload(clex,pldata('clex_lexicon_user1.nldata')).
