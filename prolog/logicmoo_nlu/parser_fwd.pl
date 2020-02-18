@@ -93,9 +93,20 @@ saved_aceparagraph_to_drs(ID, _VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrs
 
 (installed_converter(M,P),{pipe_to_fwc(M,P,FWCode)})==> FWCode.
 
+uninteresting_pipe(sentences_set).
+uninteresting_pipe(monitor).
+uninteresting_pipe(input).
+uninteresting_pipe(acetext).
+uninteresting_pipe(text80).
 
 
-((pipeline(ID,monitor,send_to(User,Channel)),pipeline(ID,Name,Value)) ==> {once(say(Channel:User,pipeline(ID,Name,Value)))}).
+((pipeline(ID,monitor,send_to(User,Channel)),   
+      pipeline(ID,Name,Value),  
+     {\+ uninteresting_pipe(Name), numbervars(Value,0,_,[attvar(skip)])})
+  ==> tell_aboutonce(Channel:User,Name=Value)).
+
+tell_aboutonce(N,V) ==> {once(say(N,V))}.
+
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
@@ -103,7 +114,7 @@ saved_aceparagraph_to_drs(ID, _VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrs
 
 % list_exceptions:- thread_property(T,status(exception(E))).
 % :- prolog_load_context(source,File),asserta(used_ain_syntax(File,M,I, (:- ain_in_thread(M,I)))).
-:- set_fc_mode(thread).
+%:- set_fc_mode(thread).
 
 % ==> nl_fwd("every man that paints likes monet .",tell).
 % ==> nl_fwd("a woman that admires john paints .",tell).

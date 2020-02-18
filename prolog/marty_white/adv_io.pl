@@ -17,6 +17,7 @@
 %
 */
 % Marty's Tokenizer/Scanner/Lexer, written in Prolog.
+/*
 :- module(adv_io,[
  read_line_to_tokens/4,
  clear_overwritten_chars/1,
@@ -49,7 +50,7 @@
    svo_message/3,
    svi_message/3,
    svoi_message/4,*/ ]).
-
+*/
 :- dynamic(adv:wants_quit/3).
 :- dynamic(adv:console_tokens/2).
 :- dynamic(adv:console_io_player/3).
@@ -124,17 +125,36 @@ bug(_) :- debugging(adv(all)).
 bug(B) :- debugging(adv(B),YN),!,YN.
 bug(_) :- debugging(adv(unknown),YN),!,YN.
 
-bugout1(L) :- bugout3('~q', [L], always).
 
-bugout3(A, B) :- bugout3('~q', [A], B).
+term_to_pretty_string(L,LinePrefix,SO):- 
+  string_concat("\n",LinePrefix,SC),
+  sformat(S,'~@',[print_reply(L)]), 
+  split_string(S, "", "\s\t\n", [SS]), 
+  replace_in_string("\n",SC,SS,SSS),
+  string_concat(LinePrefix,SSS,SO).
 
-bugout3(A, L, B) :-
- bug(B),
- !,
- must_det(maplist(simplify_dbug, L, LA)),
- ansi_format([fg(cyan)], '~N% ', []), ansi_format([fg(cyan)], A, LA),
+  
+
+bugout1(Fmt) :- 
+  \+ \+ 
+   ((mu:simplify_dbug(Fmt, FmtS), 
+     term_to_pretty_string(FmtS,"% ",SSS), 
+     bugout4("",'~s~n', [SSS], always))).
+
+bugout3(Fmt, DebugDest) :- 
+   bugout3('~q', [Fmt], DebugDest).
+
+bugout3(Fmt, Args, DebugDest) :- 
+  \+ \+
+     ((mu:simplify_dbug(Args, ArgsS),
+       bugout4("% ", Fmt, ArgsS, DebugDest))).
+
+bugout4(Prefix, Fmt, Args, DebugDest) :-
+ bug(DebugDest),
+ !, 
+ ansi_format([fg(cyan)], '~N~w', [Prefix]), ansi_format([fg(cyan)], Fmt, Args),
  must_det((stdio_player(Player),overwrote_prompt(Player))),!.
-bugout3(_, _, _).
+bugout4(_, _, _, _).
 
       
 %:- set_stream(user_input,buffer_size(1)).

@@ -733,12 +733,13 @@ copula_is_does --> [C], {copula_is_does_dict(C)}.
 verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepostional_phrase(oblique, X, Frame, LFIn, LFOut).
 
 prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
-prepostional_phrase(SO, X, _Frame, LF, Out) --> [Prep], {prep_dict(Prep)}, noun_phrase(SO, Y, prep(Prep, X, Y) & LF, Out).
+prepostional_phrase(SO, X, _Frame, LF, Out) --> [Prep], {prep_dict(Prep),ok_prep(Prep)}, noun_phrase(SO, Y, prep(Prep, X, Y) & LF, Out).
 prepostional_phrase(SO, X, _Frame, LF, Out) --> [about], noun_phrase(SO, Y, about(X, Y) & LF, Out).
 
    prep_dict(to).
    prep_dict(X):- talkdb:talk_db(preposition, X).
 
+   ok_prep(M):- M\==a.
 
 
 % OLD

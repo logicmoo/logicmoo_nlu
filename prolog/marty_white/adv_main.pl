@@ -170,11 +170,11 @@ telnet_decide_action(Agent, Mem, Mem) :-
 
 main_once:- 
  must_mw1((
-   retract(advstate_db(S0)),
+   advstate_db(S0),
    main(S0, S1),
-   asserta(advstate_db(S1)),
-   must_output_state(S1))
- ),!.
+   must_output_state(S1),
+   retractall(advstate_db(_)),
+   asserta(advstate_db(S1)))),!.
 
 mainloop :-
  repeat,

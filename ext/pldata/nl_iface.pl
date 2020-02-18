@@ -8,6 +8,47 @@
    (user:file_search_path(pldata,X)-> true ; asserta(user:file_search_path(pldata,X))).
 
 
+:- export(qcompile_external/1).
+qcompile_external(File) :- cwc,
+        absolute_file_name(File,R,[access(read),file_type(prolog)]),
+        file_directory_name(R,LPWD),
+        format(atom(A),'qcompile(~q)',[R]),
+        process_create(path(swipl),
+                ['-g', A, '-t', halt],
+                [cwd(LPWD),stdout(pipe(Out))]),
+        read_string(Out, _, _Output),
+        close(Out).
+
+
+:- export(rexport_qlf/2).
+rexport_qlf(Module,Name):-
+  setup_call_cleanup((
+   atom_concat(Name,'.qlf',QLF),
+   atom_concat(Name,'.pl',PLF)),
+   rexport_qlf(Module,Name,PLF,QLF),
+   format(user_error,'~NDone with ~w. ~n',[Name])).
+
+rexport_qlf(Module,_Name,_PLF,QLF):-  exists_source(QLF),
+   format(user_error,'~NLoading ~w  ... ~n',[QLF]),
+   prolog_statistics:time(catch(((Module:reexport(QLF))),E,(dmsg(E-->QLF),fail))),!.
+rexport_qlf(Module,Name,_PLF,QLF):- \+ exists_source(QLF), 
+   format(user_error,'~NCompiling Quickload ~w (this may take 60-120 seconds the very first time) ... ~n',[QLF]),
+   %catch((prolog_statistics:time(load_files(PLF,[qcompile(always)]))),E,(dmsg(E-->Nmae),fail)),
+   prolog_statistics:time(catch(((nl_iface:qcompile_external(Name))),E,(dmsg(E-->Name),fail))),
+   % prolog_statistics:time(qcompile(QLF)),
+   format(user_error,'~NMade ~w ~n',[QLF]),
+   Module:reexport(QLF).
+   %rexport_qlf(Module,Name,PLF,QLF).
+rexport_qlf(_M,_Name,_PLF,QLF):- \+  exists_source(QLF), 
+   format(user_error,'~NMissing ~w  ... ~n',[QLF]),fail.
+rexport_qlf(Module,_Name,PLF,_QLF):- exists_source(PLF),!,
+   format(user_error,'~NLoading ~w instead  ... ~n',[PLF]),
+   Module:reexport(PLF).
+rexport_qlf(Module,Name,_PLF,_QLF):- exists_source(Name),!,
+   format(user_error,'~NLoading Stem ~w instead  ... ~n',[Name]),
+   Module:reexport(Name).
+
+
 :- system:reexport(tt0_iface).
 :- system:reexport(ac_xnl_iface).
 :- system:reexport(clex_iface).
@@ -25,7 +66,7 @@ set_rel_path_from_here:-
 
 :- getenv('WNDB', _WNDB) -> true ; set_rel_path_from_here.
 
-:- system:reexport(wn_iface).
+:- nl_iface:rexport_qlf(nl_iface,wn_frames).
 % :- load_wordnet.
 
 end_of_file.

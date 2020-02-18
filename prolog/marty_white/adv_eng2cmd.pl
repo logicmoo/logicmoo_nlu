@@ -97,14 +97,16 @@ with_parse_mem(Mem, Goal):-
 parse2logical(_Self,  NotList, Action, _) :- \+ is_list(NotList), !, Action = NotList.
 parse2logical(_Self, [NonAtom], Action, _) :- \+ atom(NonAtom), !, Action=NonAtom.
 parse2logical(Doer, [rtrace|Args], Action, M) :- Args\==[], !, rtrace(parse2logical(Doer, Args, Action, M)).
-parse2logical(Doer, [cls|Args], Action, M) :- Args\==[], !, cls, notrace(parse2logical(Doer, Args, Action, M)).
+parse2logical(Doer, [notrace|Args], Action, M) :- Args\==[], !, notrace(parse2logical(Doer, Args, Action, M)).
+parse2logical(Doer, [cls|Args], Action, M) :- Args\==[], !, cls, parse2logical(Doer, Args, Action, M).
 parse2logical(Doer, [wait], wait(Doer), _Mem) :- !.
+parse2logical(Agent, [Alias|More], Action, Mem):- cmdalias(Alias,Cmd),flatten([Cmd],Flat),append(Flat,More,FlatMore), !, parse2logical(Agent, FlatMore, Action, Mem).
 parse2logical(Agent, [look], look(Agent), _).
-parse2logical(Agent, [l], look(Agent), _).
-parse2logical(_Self, [Verb|Args], Action, _M) :- verbatum_anon(Verb), !,
- Action =.. [Verb|Args].
+parse2logical(_Self, [Verb|Args], Action, _M) :- verbatum_anon(Verb), !, Action =.. [Verb|Args].
 parse2logical(Doer, Tokens, Action, Mem) :- 
-  with_parse_mem(Mem, phrase(parse_imperative(Doer, Action),Tokens, [])).
+  with_parse_mem(Mem, phrase(parse_imperative(Doer, Action),Tokens, [])),!.
+parse2logical(_Doer, Tokens, bratko(Action), Mem) :- 
+  with_parse_mem(Mem, phrase(utterance(_,Action),Tokens, [])).
 
 % %%%%%%%%%%%%%%
 % Introspection
@@ -113,7 +115,8 @@ parse2logical(Doer, Tokens, Action, Mem) :-
 self_prop(done_by,mem,memory).
 self_prop(object,props,props).
 
-parse_imperative(Doer, inspect(Doer,getprop(Target,PropPred))) --> [PropText], {self_prop(Type, PropText, PropPred)},!,  parse_for_optional(Type,Target,Doer).
+parse_imperative(Doer, inspect(Doer,getprop(Target,PropPred))) --> [PropText], 
+  {self_prop(Type, PropText, PropPred)},!,  parse_for_optional(Type,Target,Doer).
 
 
 parse_for_optional(Type, Target, _Else) --> parse_for(Type,Target).
@@ -185,7 +188,7 @@ parse2logical(Doer, [take, Object], take(Doer, Object), _Mem) :- !.
 %lac(infinitive, xGiveTheWord, "give", 638997)
 % talkdb:talk_db(transitive, give, gives, gave, giving, given).
 acdb(F,A,B):- nl_call(ttholds(F,A,B)).
-acdb(F,A,B):- nl_call(assertion_content(F,A,B,_)).
+acdb(F,A,B):- nl_call(acnl(F,A,B,_)).
 
 
 %acdb(Past, 'TTWord_Give', "gave")
@@ -333,8 +336,8 @@ make_dataframe_simple([Prop| FrameArgs],TextArgs, [NewArg|VarsOf], Action, Frame
 % give love to sally
 % give sally some love
 verb_frame1(Action, give,
-  [does-done_by:tAnimate,to-recipient:tAnimate,some-objectActedOn:object,with-using:bpart],
-  [the,Doer,does,$verb,to,Recipient,the,Object,using,Instrument],
+  [does-done_by:tAnimate,some-objectActedOn:object,to-recipient:tAnimate,with-using:bpart],
+  [Doer,does,$verb,some,Object,to,Recipient,using,Instrument],
   [done_by(Action,Doer),
 
    normally(
@@ -350,9 +353,9 @@ verb_frame1(Action, give,
    end_of_list]).
 
 
-% player~1 etches name onto the tree's bark with a knife
-% etch name on tree knife
 % write name in book with pen
+% etch name on tree [with] knife
+% player~1 etches name onto the tree's bark with a knife
 % 
 % surface 
 %    tree
@@ -391,8 +394,8 @@ verb_frame1(Action, give,
 %    at cover of book
 % 
 verb_frame1(Action,etch,
- [does-done_by:tAnimate,text-depliction:glyphic,on-target:surface,of-objectActedOn,with-using:tTool],
- [the,Doer,does,$verb,some,Depliction,on,Surface,of,Object,using,Instrument],
+ [does-done_by:tAnimate,some-depliction:glyphic,on-target:surface,of-objectActedOn,with-using:tTool],
+ [Doer,does,$verb,some,Depliction,on,Surface,of,Object,using,Instrument],
  [done_by(Action,Doer),
    pre(isa(Instrument,tKnife),cntrls(Doer, Instrument),can_reach(Instrument, Object)),
   part_of(Surface, Object),
@@ -400,13 +403,14 @@ verb_frame1(Action,etch,
   pre(~part_of(Depliction, Surface)),
   post(part_of(Depliction, Surface))]).
 
-verb_frame1(Action,put,
- [does-done_by:tAnimate,some-objectActedOn:object,to-region,of-container,with-using:bpart],
- [the,Doer,does,$verb,some,Object,at,Region,of,Container,using,Instrument],
+verb_frame1(Action,put,  % to-region,of-container
+ [does-done_by:tAnimate,some-objectActedOn:object,at-toLocation:place,with-using:bpart],
+ [Doer,does,$verb,some,Object,at,Place,using,Instrument],
  [done_by(Action,Doer),
-  cntrls(Doer, Instrument), can_reach(Instrument, Region),
-  part_of(Region, Container),  
-  post(h(Region,Container,Object))]).
+  cntrls(Doer, Instrument), can_reach(Instrument, Place),
+  part_of(Place, Container),
+  or(h(How,Place,Container),h(How,Container,Place)),
+  post(h(How,Container,Object))]).
 
 
 % %%%%%%%%%%%%%%
@@ -421,7 +425,7 @@ parse2logical(Agent, [dig, ShapeHole], dig(Agent, ShapeHole, Where, Instrument),
 
 verb_frame1(Action, dig,
  [does-done_by:tAnimate,some-shape_of,on-faceOf:surfaceOf(Object),in-objectActedOn:tGround,with-using:tTool],
- [the,Doer,does,$verb,some,ShapeHole,on,Surface,into,Object,using,Instrument],
+ [Doer,does,$verb,some,ShapeHole,on,Surface,into,Object,using,Instrument],
 [done_by(Action,Doer),
   normally(
            isa(Instrument,tKnife), 
@@ -512,7 +516,7 @@ verb(bite,
 */
 verb_frame1(Action, bite,
   [does-done_by:tAnimate,some-victem,with-using:teeth],
-  [the,Doer,does,$verb,the,Object,using,BPart],
+  [Doer,does,$verb,some,Object,using,BPart],
   [done_by(Action,Doer),
    part_of(BPart, Doer),
    can_reach(BPart, Object),
@@ -520,13 +524,13 @@ verb_frame1(Action, bite,
 
 verb_frame1(Action, like,
   [does-done_by:tAnimate,some-targetObject,so-amount],
-  [the,Doer,does,$verb,the,Object,a,LotsOrLittle],
+  [Doer,does,$verb,some,Object,a,LotsOrLittle],
   [done_by(Action,Doer),
    feelsAbout(Doer,Object,LotsOrLittle)]).
 
 verb_frame1(Action, want,
   [does-done_by:tAnimate,to-targetAction:action],
-  [the,Doer,does,$verb,want,to,AlsoDo],
+  [Doer,does,$verb,want,to,AlsoDo],
   [done_by(Action,Doer),
    wantsToDo(Doer,Action,AlsoDo)]).
 
@@ -539,7 +543,7 @@ bpart_contol(unlight,unlit).
 % %%%%%%%%%%%%%%
 verb_frame1(Action,Light,
    \[does-done_by:tAnimate,some-objectActedOn,with-using:bpart],
-   [the,Doer,does,$verb,the,Object,using,Instrument], 
+   [Doer,does,$verb,some,Object,using,Instrument], 
    [done_by(Action,Doer),
     pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),    
   symetrically(opposite_values(Lit,Unlit)),
@@ -556,7 +560,7 @@ verb_frame1(Action,Light,
 
 verb_frame1(Action,switch,
    [does-done_by:tAnimate,some-objectActedOn,to-state:on_off,with-using:bpart],
-   [the,Doer,does,$verb,the,Object,to,On,using,Instrument],
+   [Doer,does,$verb,some,Object,to,On,using,Instrument],
  [done_by(Action,Doer),
   pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),
   pre(position(Object,Off)),
@@ -574,7 +578,7 @@ verb_undos(unlock,locked,key).
 % %%%%%%%%%%%%%%
 verb_frame1(Action,Unlock,
  [does-done_by:tAnimate,some-objectActedOn,with-using:Key],
- [the,Doer,does,$verb,the,Object,using,Instrument],
+ [Doer,does,$verb,some,Object,using,Instrument],
  [done_by(Action,Doer),
   pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),
   pre(status(Object,Locked)),
@@ -585,7 +589,7 @@ verb_cantbe_causes(open,locked,opened).
 % %%%%%%%%%%%%%%
 verb_frame1(Action,Open,
    [does-done_by:tAnimate,some-objectActedOn,with-using:bpart],
-   [the,Doer,does,$verb,the,Object,using,Instrument],
+   [Doer,does,$verb,some,Object,using,Instrument],
   [done_by(Action,Doer),
    pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),
    pre(~status(Object,Opened)),
@@ -599,7 +603,7 @@ verb_undos_causes1(lock,opened,locked,key).
 % %%%%%%%%%%%%%%
 verb_frame1(Action,Lock,
  [does-done_by:tAnimate,some-objectActedOn,with-using:Key],
- [the,Doer,does,$verb,the,Object,using,Instrument],
+ [Doer,does,$verb,some,Object,using,Instrument],
  [done_by(Action,Doer),
   pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),
   pre(~status(Object,Locked)),
@@ -614,7 +618,7 @@ verb_tool_ends_ensures(extinguish,extinguiser,flaming,unburned).
 % %%%%%%%%%%%%%%
 verb_frame1(Action,Burn,
  [does-done_by:tAnimate,some-objectActedOn,with-using:Match],
- [the,Doer,does,$verb,the,Object, with, Instrument],
+ [Doer,does,$verb,some,Object, with, Instrument],
  [done_by(Action,Doer),
   pre(cntrls(Doer, Instrument),can_reach(Instrument, Object)),
   symetrically(opposite_values(Unflaming, Flaming)),

@@ -27,6 +27,8 @@ simply_debug_opts([len=5]).
 
 get_zoption(Z, N, V, E):- member(N=V,Z)->true;V=E.
 
+
+simplify_dbug(G,GG):- is_list(G),must_det(maplist(simplify_dbug, G, GG)),!.
 simplify_dbug(G,GG):- simply_debug_opts(Z), simplify_dbug(Z,G,GG).
 
 simplify_dbug(_, G,GG):- \+ compound(G),!,GG=G.
