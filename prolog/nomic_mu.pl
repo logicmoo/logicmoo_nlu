@@ -29,8 +29,8 @@
 
 :- pack_install(dictoo).
 
-:- ensure_loaded('./marty_white/adv_telnet').
 :- ensure_loaded('./marty_white/adv_main').
+:- ensure_loaded('./marty_white/adv_telnet').
 
 % :- use_module(library(dialect/ifprolog),except([time / 1])).
 % :- use_module(./chat80).
@@ -89,6 +89,6 @@ or to run as single player use:
 
   
 
-% :- initialization(srv_mu_main, main).
-
-:- initialization(usage_mu).
+:- initialization(srv_mu_main, main).
+:- initialization(usage_mu, now).
+:- initialization(usage_mu, program).

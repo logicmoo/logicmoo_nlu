@@ -149,7 +149,7 @@ console_decide_action(Agent, Mem0, Mem1):-
  ensure_has_prompt(Agent),
  read_line_to_tokens(Agent, In,[], Words0), 
  (Words0==[]->(Words=[wait],makep);Words=Words0))),
- parse_command(Agent, Words, Action, Mem0),      
+ eng2log(Agent, Words, Action, Mem0),      
  !,
  if_tracing(bugout3('Console TODO ~p~n', [Agent: Words->Action], telnet)),
  add_todo(Action, Mem0, Mem1), ttyflush, !.
@@ -217,15 +217,15 @@ decide_action(Agent, Mem0, Mem0) :-
 :- meta_predicate with_agent_console(*,0).
 /*
 with_agent_console(Agent,Goal):- 
- adv:console_host_io_history_unused(Id,Alias,InStream,OutStream, Host, Peer, Agent),
- nop(adv:console_host_io_history_unused(Id,Alias,InStream,OutStream, Host, Peer, Agent)),
+ mu_global:console_host_io_history_unused(Id,Alias,InStream,OutStream, Host, Peer, Agent),
+ nop(mu_global:console_host_io_history_unused(Id,Alias,InStream,OutStream, Host, Peer, Agent)),
  current_input(WasIn),
  InStream\==WasIn,!,
  setup_call_cleanup(set_input(InStream),with_agent_console(Agent,Goal),set_input(WasIn)).
 */
 with_agent_console(Agent,Goal):- 
  setup_call_cleanup(
-  asserta(adv:current_agent_tl(Agent),E),
+  asserta(mu_global:current_agent_tl(Agent),E),
   Goal,erase(E)),!.
 
 run_agent_pass_1(Agent, S0, S) :-

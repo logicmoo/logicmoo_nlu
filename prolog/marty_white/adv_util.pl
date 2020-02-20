@@ -74,9 +74,9 @@ defn_state_setter(P):- defn_state_pred(P,2).
 :- defn_state_none(bugout1(term)).
 :- defn_state_none(bugout3(string,atom)).
 :- defn_state_none(bugout3(string,list(term),atom)).
-:- defn_state_none(adv_io:bugout1(term)).
-:- defn_state_none(adv_io:bugout3(string,list(term),term)).
-:- defn_state_none(adv_io:bugout3(string,term)).
+%:- defn_state_none(adv_io:bugout1(term)).
+%:- defn_state_none(adv_io:bugout3(string,list(term),term)).
+%:- defn_state_none(adv_io:bugout3(string,term)).
 :- defn_state_none(==(term,term)).
 :- defn_state_none(\==(term,term)).
 :- defn_state_none(=(term,term)).

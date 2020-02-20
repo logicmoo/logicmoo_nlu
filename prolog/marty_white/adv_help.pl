@@ -17,8 +17,8 @@
 %
 */
 
-:- dynamic(adv:cmd_help/2).
-:- multifile(adv:cmd_help/2).
+:- dynamic(mu_global:cmd_help/2).
+:- multifile(mu_global:cmd_help/2).
 
 /*
 :- online_help:use_module(library(help)). %,[online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
@@ -33,13 +33,15 @@
 call_oh(G):- call(call,online_help:G).
 
 add_help(Cmd,HelpStr):-
- retractall(adv:cmd_help(Cmd,_)),
- assert(adv:cmd_help(Cmd,HelpStr)).
+ retractall(mu_global:cmd_help(Cmd,_)),
+ assert(mu_global:cmd_help(Cmd,HelpStr)).
 
+add_help_cmd_borked(_Cmd):- !.
+/*
 add_help_cmd_borked(Cmd):-
  with_output_to(string(HelpStr),help(Cmd)),
  add_help(Cmd,HelpStr).
-            
+
 add_help_cmd(Cmd):-
  redirect_error_to_string(help(Cmd),HelpStr),
  add_help(Cmd,HelpStr).
@@ -63,6 +65,7 @@ give_help(A) :-
     D),
   D\==[], !,
   show_help(A, D).
+*/
 give_help(A) :-
   format('No help available for ~w~n', [A]).
 

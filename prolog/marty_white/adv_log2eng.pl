@@ -166,13 +166,7 @@ compile_eng(_Context, silent(_Eng), '').
 compile_eng(Context, extra_verbose(Eng), '...verbose...'(Compiled) ):- 
  compile_eng_txt(Context, Eng, Compiled).
 
-compile_eng(Context, Inst, TheThing):- atom(Inst), inst_of(Inst, Type, N), N\==0, !,
- (nth0(N, [(unknown), '', the, thee, old, some, a], Det) -> true; atom_concat('#',N,Det)),
- compile_eng(Context, [Det, Type], TheThing).
-
-compile_eng(Context, Atom, Text):- fail, atom(Atom), must_mw1(atomic_list_concat(ABC,' ',Atom)),
- ABC=[A,B|C],!,
- compile_eng_txt(Context, [A,B|C], Text).
+compile_eng(Context, Inst, TheThing):- atom(Inst),!, must_mw1(compile_eng_atom(Context, Inst, TheThing)).
 
 /*compile_eng(Context, String, Text):- string(String),
  name(Atom, String), compile_eng(Context, Atom, Text).
@@ -182,7 +176,8 @@ compile_eng(_Context, Inst, Text):- \+ compound(Inst),!, format(atom(Text),'~w',
 compile_eng(Context, s(Word), Textually) :- % TODO make actually plural
  compile_eng_txt(Context, Word, Textual),
  atom(Textual),
- atom_concat("s", Textual, Textually).
+ atom_concat(Textual,"s", Textually).
+
 compile_eng(Context, Wordly, Textually) :- functor(Wordly,S,1), english_suffix(S),
  Wordly =..[S, Word],
  compile_eng_txt(Context, Word, Textual),
@@ -198,6 +193,20 @@ compile_eng(Context, DetWord, AThing) :-
  compile_eng(Context,['\n'|TextMid],Text), !.
 */
 compile_eng(_Context, Prop, Prop).
+
+
+compile_eng_atom(Context, Inst, TheThing):- 
+  inst_of(Inst, Type, N), N\==0, !,
+ (nth0(N, [(unknown), '', the, thee, old, some, a], Det) -> true; atom_concat('#',N,Det)),
+ compile_eng(Context, [Det, Type], TheThing).
+
+compile_eng_atom(Context, Atom, Text):- fail, atom(Atom), must_mw1(atomic_list_concat(ABC,' ',Atom)),
+ ABC=[A,B|C],!, compile_eng_txt(Context, [A,B|C], Text).
+%compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word,L),L>3, atom_contains(Word,' '), into_text80(Word,Words),!,compile_eng_txt(Context, Words, Textually).
+compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word,L),L>3, 
+  atom_contains(Word,'_'),\+ atom_contains(Word,'('),atomic_list_concat(Words,'_',Word),!,compile_eng_txt(Context, Words, Textually).
+compile_eng_atom(_Context, Inst, Text):- \+ compound(Inst),!, format(atom(Text),'~w',[Inst]).
+
 
 vowel(a). vowel(e). vowel(i). vowel(o). vowel(u).
 
@@ -249,9 +258,15 @@ insert_spaces([W1, W2|Tail1], [W1, W2|Tail2]) :-
 insert_spaces([W1, W2|Tail1], [W1, ' ', W3|Tail2]) :-
  insert_spaces([W2|Tail1], [W3|Tail2]).
 insert_spaces([], []).
-     
-make_atomic(Atom, Atom) :-
- atomic(Atom), !.
+
+
+make_atomic(_, Atom, Atom) :- atomic(Atom), !.
+make_atomic(Context, Some, Text):- is_list(Some),!, 
+  maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text). 
+make_atomic(Context, Logic, Text):- Logic =.. [F|Some],
+  maplist(logic2english(Context), Some, Stuff),
+  Term =.. [F|Stuff],
+  term_to_atom(Term, Text).
 make_atomic(Term, Atom) :-
  term_to_atom(Term, Atom).
 
@@ -279,7 +294,7 @@ compile_eng_txt_pt2(Context, EngIn, Text) :-
  % Flatten any sub-lists.
  flatten([Compiled], FlatList),
  % Convert terms to atom-strings.
- findall(Atom, (member(Term, FlatList), make_atomic(Term, Atom)), AtomList),
+ findall(Atom, (member(Term, FlatList), make_atomic(Context, Term, Atom)), AtomList),
  findall(Atom2, (member(Atom2, AtomList), Atom2\=''), AtomList1),
  grammar_check(Context,AtomList1,AtomList2),
  % Add spaces.
@@ -351,6 +366,7 @@ log2eng( Obj, Some, English):-
 log2eng_( Obj, Prop, English):- 
  \+ ground(Prop), copy_term(Prop,Prop2),!,
  mw_numbervars(Prop2,55,_), log2eng(Obj, Prop2, English).
+
 log2eng_(_Obj, desc = (Out), [' "',Out,'"']):- !.
 log2eng_(Obj, Some, English):- (pretty -> true ; dif(English,[])), logic2eng(Obj, Some, English),!.
 log2eng_(Context, Inst, TheThing):- atom(Inst), inst_of(Inst, Type, N), !,
@@ -366,7 +382,9 @@ log2eng_(_Obj, Prop, [String]):- compound(Prop), \+ xtreme_english, !, format(at
 log2eng_( Obj, Prop, [cap(N), Value, aux(be), English]):- Prop =..[N, V| Range],
  log2eng(Obj, V, Value),
  maplist(logic2eng(Obj), Range, English).
-log2eng_(_Obj, Prop, [String]):- format(atom(String), '~w', [Prop]), !.
+
+log2eng_( Obj, Prop, English) :- logic2eng( Obj, Prop, English).
+%log2eng_(_Obj, Prop, [String]):- format(atom(String), '~w', [Prop]), !.
 
 
 timestamped_pred(holds_at).
@@ -410,8 +428,9 @@ logic2eng(Context,  percept(_Agent, _, _Depth, exit_list(Relation, Here, Exits))
 
 logic2eng(_Context, percept(_Agent,  Sense, Depth, child_list(Object, Prep, '<mystery>'(Closed,_,_))), extra_verbose([Object, aux(be), Closed, from, ing(Sense), cap(Prep)]) ):- Depth \= depth(3).
 logic2eng(_Context, percept(_Agent, _Sense, Depth, child_list(Object, Prep, [])), extra_verbose([nothing,Prep,Object]) ):- Depth \= 1.
+
 logic2eng(Context,  percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)), 
-    [cap(subj(Agent)), is, Prep, Here, and, es(Sense), ':'  | SeeText]):- 
+    [cap(subj(Agent)),  es(Sense), Prep, Here, ':'  | SeeText]):- 
  select_from(Agent, Nearby, OthersNearby),!,  list2eng(Context, OthersNearby, SeeText).
 
 logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)), 
@@ -420,9 +439,16 @@ logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)
 logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose(notices(Agent,How,Depth,What))):-  Depth=1,
   logic2eng(Context, Info, What).
 
-
 logic2eng(Context, percept(Agent, How, _, Info), notices(Agent,How, What)):- 
  \+ same_agent(Context, Agent), logic2eng(Agent, Info, What).
+
+% {{ percept('player~1',see,2,props('cabinate~1',[shape=cabinate,opened=f,has rel(in,t),has rel(on,t)])) }}
+% {{ percept('player~1',see,3,props(kitchen,[volume capacity=10000,has rel(in,t),has rel(exit(D2),t),desc='cooking happens here'])) }}
+% {{ percept('player~1',see,2,props('crate~1',[shape=crate,opened=f,has rel(in,t)])) }}
+% {{ percept('player~1',see,3,props(living room,[volume capacity=10000,has rel(in,t),has rel(exit(D2),t)])) }}
+logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose(notices(Agent,How,Depth,What))):- Depth>1,
+  logic2eng(Context, Info, What).
+
 
 
 logic2eng(Context, carrying(Agent, Items),
@@ -568,15 +594,23 @@ logic2eng(Context, Inst, TheThing):- atom(Inst), inst_of(Inst, Type, N), !,
 logic2eng(_Obj, desc = (Out), [' "',Out,'"']):- !.
 logic2eng(_, V,[String]):- (string(V);(atom(V),atom_needs_quotes(V))),!, format(atom(String), ' "~w" ', [V]), !.
 
+logic2eng(_Obj, sub__examine(Who,Sense,Prep,Where,3), [cap(subj(Who)), s(Sense), Prep, Where]):-!.
+
 % logic2eng( Obj, Prop, [cap(N),of,O, aux(be), Value]):- Prop =..[N,O, V], list2eng(Obj, V, Value).
 logic2eng( Obj, Prop, ['(',cap(N), ':', Value,')']):- Prop =..[N, V], list2eng(Obj, V, Value).
 %logic2eng(_Obj, Prop, [String]):- compound(Prop), !, String=''. % format(atom(String), ' \n {{ ~q. }}\n ', [Prop]), !.
-logic2eng(_Obj, Prop, [String]):- compound(Prop), \+ xtreme_english, !, format(atom(String), ' {{ ~q }} ', [Prop]), !.
-logic2eng( Obj, Prop, [cap(N), Value, aux(be), English]):- Prop =..[N, V| Range],
- log2eng(Obj, V, Value),
- maplist(logic2eng(Obj), Range, English).
+%
+% sub__examine('player~1',see,in,living_room,3)
 
-logic2eng(_Obj, Prop, [String]):- format(atom(String), '~w', [Prop]), !.
+
+
+logic2eng(_Obj, Prop, [String]):- compound(Prop), \+ xtreme_english, !, format(atom(String), ' {{ ~q }} ', [Prop]), !.
+logic2eng(_Obj, Prop, [String]):- format(atom(String), '~p', [Prop]), !.
+
+logic2eng( Obj, Prop, [cap(N), Value, aux(be), English]):- Prop =..[N, V| Range],
+   log2eng(Obj, V, Value),
+   maplist(logic2eng(Obj), Range, English).
+
 
 atom_needs_quotes(V):-format(atom(VV),'~q',[V]),V\==VV.
 
@@ -631,8 +665,13 @@ player_pprint(_Doer, D,K):- pprint(D,K).
 
 print_english(Doer, Logic):- is_list(Logic),!, maplist(print_english(Doer), Logic).
 
-print_english(Doer, Logic):- log2eng(Doer, Logic, Eng),must_mw1((eng2txt(Doer, Doer, Eng, Text))), pprint(Text,always).
+print_english(Doer, Logic):- logic2english(Doer, Logic, Text), pprint(Text,always).
 
+:- thread_local(tl_loop:in_logic2english/1).
+logic2english( Doer, Logic, Text):- atomic(Logic),!,Text=Logic,!.
+logic2english(_Doer, Logic, Text):- \+ \+ tl_loop:in_logic2english(Logic),!,term_to_atom(Logic,Text).
+logic2english( Doer, Logic, Text):- locally(tl_loop:in_logic2english(Logic),
+  ((log2eng(Doer, Logic, Eng),must_mw1((eng2txt(Doer, Doer, Eng, Text)))))),!.
 
 maybe_our_portray_english(Logic):- 
  compound(Logic), 
@@ -671,3 +710,4 @@ was_simple_english_line(String):-
 user:portray(Logic) :-
  maybe_our_portray_english(Logic).
 
+:- noguitracer.

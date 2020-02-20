@@ -36,6 +36,9 @@
 
 :- if(exists_source(library(logicmoo_nlu))).
 :- use_module(library(logicmoo_nlu)).
+%:- use_module(library(logicmoo_nlu/parser_sharing)).
+%:- use_module(library(logicmoo_nlu/parser_tokenize)).
+%:- use_module(library(logicmoo_nlu/nl_pipeline)).
 :- else.
 % :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_sharing)).
 :- if(exists_source(pack(logicmoo_nlu/ext/pldata/nl_iface))).
@@ -48,7 +51,6 @@
 :- endif.
 :- load_wordnet.
 :- endif.
-
 
 
 security_of(_,_Wiz).
@@ -78,12 +80,15 @@ extra :- true. % Fuller, but questionable if needed yet.
 :- consult(adv_examine).
 :- consult(adv_action).
 :- consult(adv_agent).
-:- consult(adv_eng2cmd).
 :- consult(adv_floyd).
 :- consult(adv_log2eng).
 :- consult(adv_physics).
 :- consult(adv_plan).
+
+:- consult(adv_eng2cmd).
+% :- ensure_loaded(adv_state).
 :- consult(adv_state).
+
 :- consult(adv_data).
 
 %:- consult(adv_test).
@@ -137,17 +142,17 @@ main(S0, S9) :-
 main(S0, S0) :-
  bugout3('main FAILED~n', general).
 
-:- dynamic(adv:agent_conn/4).
+:- dynamic(mu_global:agent_conn/4).
 
 update_telnet_clients(S0,S2):-
- retract(adv:agent_conn(Agent,Named,_Alias,Info)),
+ retract(mu_global:agent_conn(Agent,Named,_Alias,Info)),
  create_agent_conn(Agent,Named,Info,S0,S1),
  update_telnet_clients(S1,S2).
 update_telnet_clients(S0,S0).
 
 
 
-:- dynamic(adv:console_tokens/2).
+:- dynamic(mu_global:console_tokens/2).
 telnet_decide_action(Agent, Mem0, Mem0):-
  % If actions are queued, no further thinking required.
  thought(todo([Action|_]), Mem0),
@@ -156,8 +161,8 @@ telnet_decide_action(Agent, Mem0, Mem0):-
 
 telnet_decide_action(Agent, Mem0, Mem1) :-
  %must_mw1(thought(timestamp(T0), Mem0)),
- retract(adv:console_tokens(Agent, Words)), !,
- must_mw1((parse_command(Agent, Words, Action, Mem0),
+ retract(mu_global:console_tokens(Agent, Words)), !,
+ must_mw1((eng2log(Agent, Words, Action, Mem0),
  if_tracing(bugout3('Telnet TODO ~p~n', [Agent: Words->Action], telnet)),
  add_todo(Action, Mem0, Mem1))), !.
 telnet_decide_action(Agent, Mem, Mem) :-

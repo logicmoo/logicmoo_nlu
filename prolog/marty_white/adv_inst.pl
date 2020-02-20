@@ -175,8 +175,10 @@ create_objs([Obj|Objs],[NewObj|NewObjs],Suffix,Info,S0,S2):-
 create_objs([],[],_Suffix,_Info,S0,S0).
 
 
-create_1obj(Suffix,_Info,a(Type),Inst,S0,S2):- !, 
- must_mw1(create_new_suffixed_unlocated(Suffix,Type,Inst,S0,S2)).
+create_1obj(Suffix,_Info,a(Type),Inst,S0,S2):- !,atom_concat(Suffix,'a',NewSuffix),
+ must_mw1(create_new_suffixed_unlocated(NewSuffix,Type,Inst,S0,S2)).
+create_1obj(Suffix,_Info,s(Type),Inst,S0,S2):- !,atom_concat(Suffix,'*',NewSuffix),
+ must_mw1(create_new_suffixed_unlocated(NewSuffix,Type,Inst,S0,S2)).
 create_1obj(Suffix,_Info,the(Type),Inst,S0,S2):- !, 
  must_mw1(create_new_suffixed_unlocated(Suffix,Type,Inst,S0,S2)).
 

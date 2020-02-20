@@ -33,7 +33,7 @@ no_repeats_must(Call):-one_must(gripe_time(0.5,no_repeats(Call)),(fail,(dmsg(war
 i_sentence(q(S),question80([],P)) :- !,
    i_s(S,P,[],0).
 i_sentence(whq(X,S),question80([X],P)) :- !,
-   i_s(S,P,[],0).
+   show_failure(i_s(S,P,[],0)).
 i_sentence(decl(S),assertion([],P)) :- !,
    i_s(S,P,[],0).
 
@@ -173,14 +173,44 @@ i_adj(adj(Adj),TypeX-X,T,T,_,
    no_repeats_must(deduce_subj_obj_LF(attribute,Adj,TypeX,X,_,Y,P)),
    standard_adj_db(Adj,TypeX,Y,Q).
 
-i_s('s80'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :-
+i_s('s80'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :- fail,
    i_verb(Verb,P,Tense,Voice,Neg,Slots0,XA0,Meta),
    i_subj(Voice,Subj,Slots0,Slots1,QSubj,SUp,'-'('-'(Id))),
    conc80(SUp,VArgs,TArgs),
    i_verb_args(TArgs,XA0,XA,Slots1,Slots,Args0,Args,Up0,'+'('-'(Id))),
    conc80(Up0,VMods,Mods),
    i_verb_mods(Mods,Tense,XA,Slots,Args,Up,+Id),
-   reshape_pred(Meta,QSubj,Neg,P,Args0,Pred).
+   reshape_pred(Meta,QSubj,Neg,P,Args0,Pred),!.
+
+i_s('s80'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :-
+   try_maybe_p(i_verb(Verb,P,Tense,Voice,Neg,Slots0,XA0,Meta)),
+   try_maybe_p(i_subj(Voice,Subj,Slots0,Slots1,QSubj,SUp,'-'('-'(Id)))),
+   try_maybe_p(conc80(SUp,VArgs,TArgs)),
+   try_maybe_p(i_verb_args(TArgs,XA0,XA,Slots1,Slots,Args0,Args,Up0,'+'('-'(Id)))),
+   try_maybe_p(conc80(Up0,VMods,Mods)),
+   try_maybe_p(i_verb_mods(Mods,Tense,XA,Slots,Args,Up,+Id)),
+   try_maybe_p(reshape_pred(Meta,QSubj,Neg,P,Args0,Pred)).
+
+
+:- export(try_maybe_p/1).
+try_maybe_p(M:P):- P=..[F,_,R],!,try_maybe_f(F,M:P,R).
+try_maybe_p(M:P):- P=..[F,_,_,R],!,try_maybe_f(F,M:P,R).
+%try_maybe_p(M:P):- debugging, !, on_f_ftrace(M:P).
+try_maybe_p(M:P):- !, call(M:P).
+try_maybe_p(M:P):- !, P=..[F,_|List],try_maybe_pl(M:P,F,List).
+try_maybe_p(P):-!,try_maybe_p(parser_chat80:P).
+
+try_maybe_pl(_  ,F,List):- (member(E,List),compound(E),E=error(F,_)),!,print_reply(E),fail.
+try_maybe_pl(M:P,F,List):- member(E,List),var(E),reverse(List,RList),member(R,RList),var(R),!,                 
+  (R==E -> try_maybe_p(M:P,R);
+  (try_maybe_f(F,M:P,R);try_maybe_f(F,M:P,E))).
+
+:- export(try_maybe_p/3).
+try_maybe_p(_,error(E1,E2),R):-!, (fail;true),R=error(E1,E2).
+try_maybe_p(M:F,X,R):- P=..[F,X,R],!,try_maybe_f(F,M:P,R).
+
+try_maybe_f(F,P,R):- P*->true;(fail;fail;R=error(F,P)).
+
 
 i_verb(verb(Root,Voice,Tense,_Aspect,Neg),
       P,Tense,Voice,Det,Slots,XArg,Meta) :-

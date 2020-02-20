@@ -28,14 +28,14 @@ random_noise(Agent, [cap(subj(Agent)), Msg]) :- fail,
  'fidgets uncomfortably.'
  ]).
 
-:- dynamic(adv:agent_last_action/3).
+:- dynamic(mu_global:agent_last_action/3).
  
 
 do_autonomous_cycle(Agent):- time_since_last_action(Agent,When), When > 10, !.
 do_autonomous_cycle(Agent):- 
  time_since_last_action(Other,When),
  Other \== Agent, When < 1, !, 
- retractall(adv:agent_last_action(Other,_,_)),
+ retractall(mu_global:agent_last_action(Other,_,_)),
  nop(bugout1(time_since_last_action_for(Other,When,Agent))).
 
 
@@ -145,7 +145,7 @@ always_action(go_dir(_,_,_)).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 consider_text(Speaker, _EmoteType, Agent, Words, Mem0, Mem1):-
- parse_command(Agent, Words, Action, Mem0) -> 
+ eng2log(Agent, Words, Action, Mem0) -> 
  consider_request(Speaker, Agent, Action, Mem0, Mem1).
 
 % For now, agents will attempt to satisfy all commands.

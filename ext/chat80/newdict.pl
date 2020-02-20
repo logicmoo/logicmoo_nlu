@@ -312,6 +312,7 @@ noun_plu_db(places,place).
 noun_plu_db(P,S):-plt,talk_db(noun1,S,P).
 noun_plu_db(continents,continent).
 noun_plu_db(women,woman).
+noun_plu_db(men,man).
 noun_plu_db(oceans,ocean).
 noun_plu_db(regions,region).
 noun_plu_db(rivers,river).
@@ -340,6 +341,7 @@ subject_LF(thing,seamass,feature&place&seamass,X,seamass(X)).
 subject_LF(thing,region,feature&place&_,X,region80(X)).
 
 subject_LF(thing,woman,feature&person&female,X,isa(X,tFemale)).
+subject_LF(thing,man,feature&person&male,X,isa(X,tFemale)).
 
 /* WHICH WHICH DENOTES A  */
 
@@ -557,7 +559,7 @@ name_db([black,sea],black_sea).
 name_db([upper,volta],upper_volta).
 name_db([Name],Name) :-
    name_template_db(Name,_), !.
-%name_db([Name],Name) :- t_l:useAltPOS,downcase_atom(Name,DCName),loop_check(not(cw_db(DCName,_))).
+name_db([Name],Name) :- t_l:useAltPOS,downcase_atom(Name,DCName),loop_check(not(cw_db(DCName,_))).
 
 
 name_template_db(X,feature&circle) :- circle_of_latitude(X).
@@ -830,6 +832,16 @@ intrans_LF(rise,feature&river,X,rises(X,Y), [slot(prep(in),feature&place&_,Y,_,f
 rises(R,C) :- river_pathlist(R,L), last(L,C).
 
 
+verb_root_db(wait).
+regular_pres_db(wait).
+regular_past_db(waited,wait).
+verb_form_db(waits,wait,pres+fin,3+sg).
+verb_form_db(waiting,wait,pres+part,_).
+verb_type_db_0(wait,main+iv).
+intrans_LF(wait,feature&person,X,waits(X,Y), [slot(prep(into),feature&place&_,Y,_,free)],_).
+
+waits(R,S) :- river_pathlist(R,L), lists_first(L,S).
+
 verb_root_db(drain).
 regular_pres_db(drain).
 regular_past_db(drained,drain).
@@ -997,7 +1009,7 @@ subj_obj_LF(attribute,large,feature&place&_,X,measure&area,Y,areaOf(X,Y)).
 subj_obj_LF(attribute,small,feature&Place&_,X,measure&Area,Y,holds_t(AreaPred,X,Y)):-type_measured_by_pred_db(Place,Area,AreaPred).
 subj_obj_LF(attribute,large,feature&Place&_,X,measure&Area,Y,holds_t(AreaPred,X,Y)):-type_measured_by_pred_db(Place,Area,AreaPred).
 
-type_measured_by_pred_db(human,feet,height).
+type_measured_by_pred_db(person,feet,height).
 
 units_db(small,measure&_).
 units_db(large,measure&_).

@@ -20,15 +20,15 @@
 
 :- ensure_loaded(adv_axiom).
 
-:- dynamic(adv:agent_last_action/3).
+:- dynamic(mu_global:agent_last_action/3).
 
 time_since_last_action(Agent,When):- 
- (adv:agent_last_action(Agent,_Action,Last),clock_time(T),When is T - Last) *-> true; clock_time(When).
+ (mu_global:agent_last_action(Agent,_Action,Last),clock_time(T),When is T - Last) *-> true; clock_time(When).
 
 set_last_action(Agent,Action):- 
  clock_time(T),
- retractall(adv:agent_last_action(Agent,_,_)),
- assertz(adv:agent_last_action(Agent,Action,T)).
+ retractall(mu_global:agent_last_action(Agent,_,_)),
+ assertz(mu_global:agent_last_action(Agent,Action,T)).
 
 
 

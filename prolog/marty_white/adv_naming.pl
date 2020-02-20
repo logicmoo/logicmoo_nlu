@@ -1,3 +1,2 @@
 
-
-type_prefix(t,'Type').
+:- asserta(type_prefix(t,'Type')).

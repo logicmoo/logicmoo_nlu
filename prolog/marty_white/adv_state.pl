@@ -72,7 +72,7 @@ select_from(Fact, type(Type), type(Type)):- !,
    select_always(type_props(Type,_),State,MidState),
    append([type_props(Type,NewPropList)], MidState, NewState),
    set_advstate(NewState).
-select_from(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name),DBPred=..[Pred1Name,State], (retract(DBPred);State=[]),!, select_from_list(Fact, State, NewState),DBPredNewState=..[Pred1Name,NewState], asserta(DBPredNewState).
+select_from(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name),append_term(Pred1Name,State,DBPred), (retract(DBPred);State=[]),!, select_from_list(Fact, State, NewState),DBPredNewState=..[Pred1Name,NewState], asserta(DBPredNewState).
 select_from(Fact, VarName, VarName):- atom(VarName),nb_current(VarName,PropList), select_from_list(Fact,PropList,NewPropList),b_setval(VarName,NewPropList).
 select_from(Fact, Object, Object):- callable(Fact),!, Fact=..[F|List], 
   Call=..[F, NewArg|List], 
@@ -110,7 +110,7 @@ declare(Fact, type(Type), type(Type)):- !,
    select_always(type_props(Type,_),State,MidState),
    append([type_props(Type,NewPropList)], MidState, NewState),
    set_advstate(NewState).
-declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name),DBPred=..[Pred1Name,State], (retract(DBPred);State=[]),!, declare_list(Fact, State, NewState),DBPredNewState=..[Pred1Name,NewState], asserta(DBPredNewState).
+declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name),append_term(Pred1Name,State,DBPred), (retract(DBPred);State=[]),!, declare_list(Fact, State, NewState),DBPredNewState=..[Pred1Name,NewState], asserta(DBPredNewState).
 declare(Fact, VarName, VarName):- atom(VarName),nb_current(VarName,PropList), declare_list(Fact,PropList,NewPropList),b_setval(VarName,NewPropList).
 declare(Fact, Object, Object):- callable(Fact),!, Fact=..[F|List], 
   Call=..[F, NewArg|List], 
@@ -121,6 +121,7 @@ declare(Fact, Object, Object):- callable(Fact),!, Fact=..[F|List],
 
 is_pred1_state(istate).
 is_pred1_state(statest).
+is_pred1_state(parseFrame(_)).
 is_pred1_state(advstate_db).
 
 declare_list(Fact, State, NewState) :- assertion(compound(Fact)),assertion(var(NewState)), Fact==[], !, NewState = State.
@@ -364,10 +365,12 @@ single_valued_prop(desc).
 single_valued_prop(mass).
 single_valued_prop(volume).
 
+:- export(is_state_info/1).
 
 is_state_info(StateInfo):- \+ compound(StateInfo), !, fail.
 is_state_info(StateInfo):- functor(StateInfo, F, A),
    (functor_arity_state(F, A)->true; (A>2, functor_arity_state(F, 2))).
+
 
 functor_arity_state(F, A):- functor(TypeFunctor, F, A), type_functor(state, TypeFunctor).
 functor_arity_state(type, 2).
@@ -389,6 +392,12 @@ push_to_state(props(Obj, Conj)):-  props_to_list(Conj, List) -> Conj\== List, !,
 push_to_state(type_props(Obj, Conj)):-  props_to_list(Conj, List) -> Conj\== List, !, push_to_state(type_props(Obj, List)).
 push_to_state(StateInfo):- StateInfo=..[F, Obj, E1, E2|More], functor_arity_state(F, 2), !, StateInfoNew=..[F, Obj, [E1, E2|More]], !, push_to_state(StateInfoNew).
 push_to_state(StateInfo):- props_to_list(StateInfo, StateInfo2)->StateInfo2\=[StateInfo], !, push_to_state(StateInfo2).
+
+push_to_state(eng2log(Text)):- must(eng2log(istate, Text,Translation,[])), push_to_state(Translation).
+push_to_state(eng2log(_Text,Translation)):- !, push_to_state(Translation).
+push_to_state(assert_text(Text)):- must(eng2log(istate, Text,Translation,[])), push_to_state(Translation).
+push_to_state(assert_text(Where,Text)):- !, must(eng2log(Where, Text,Translation,[])), push_to_state(Translation).
+
 push_to_state(StateInfo):- is_state_info(StateInfo), !, declare(StateInfo, istate, _).
 push_to_state(StateInfo):- forall(arg(_, StateInfo, Sub), push_to_state(Sub)).
 
@@ -428,4 +437,5 @@ correct_prop(isa(Type), inherit(Type, t)):- check_atom(Type), !.
 correct_prop(isnt(Type), inherit(Type, f)):- check_atom(Type), !.
 correct_prop(inherit(Type), inherit(Type, t)):- check_atom(Type), !.
 correct_prop(Other,Other).
+
 

@@ -76,9 +76,6 @@ type_functor(dest, of(up, $here)).
 type_functor(dest, of(west, $here)).
 
 
-type_functor(nv_of_any, structure_label(term)).
-
-
 type_functor(memory, goals(list(goals))).
 type_functor(memory, todo(list(doing))).
 %type_functor(memory, model(list(state_with_stamps))).
@@ -125,9 +122,7 @@ type_functor(doing, recall(agent, prop, inst2)).
 type_functor(doing, properties(inst)).
 type_functor(doing, inspect(agent, getprop(inst, nv))).
 type_functor(doing, setprop(inst, nv)).
-type_functor(doing, print_(agent, msg)).
-
-
+type_functor(doing, print_(agent, msg)). % for debug and agent feedback
 
 type_functor(doing, give(agent, inst, agnt2)).
 type_functor(doing, take(agent, inst)).
@@ -141,64 +136,53 @@ type_functor(doing, goto_loc(agent, movetype, dest)).
 
 type_functor(doing, throw(agent, inst, dest)).
 type_functor(doing, put(agent, inst, dest)).
+
+
+
 type_functor(event, moved(agent, how, inst, from, prop, to)).
-
-
 
 type_functor(event, carrying(agent, list(inst))).
 type_functor(event, destroyed(inst)).
 type_functor(event, did(action)).
-type_functor(event, percept(agent, exit_list(in, dest, list(exit)))).
-type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))).
-type_functor(event, failed(doing, msg)).
-type_functor(event, transformed(inst, inst2)).
+type_functor(event, percept(agent, exit_list(in, dest, list(exit)))). % paths noticable
+type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))). 
+type_functor(event, failed(doing, msg)). % some action has failed
+type_functor(event, transformed(inst, inst2)). % inst1 got derezed and rerezed as inst2
 
-
+% DATA
+type_functor(nv_of_any, structure_label(term)).
 
 type_functor(nv, adjs(list(text))).
-type_functor(nv, can(actverb, tf)).
-type_functor(nv, knows_verbs(actverb, tf)).
-type_functor(nv, cant_go(inst, dir, text)).
-type_functor(nv, class_desc(list(text))).
-type_functor(nv, co(list(nv))).
+type_functor(nv, can_be(actverb, tf)).
+type_functor(nv, knows_verbs(actverb, tf)).  % can use these actions
+type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
+type_functor(nv, class_desc(list(text))). % class description
+type_functor(nv, co(list(nv))).  % item is created
 type_functor(nv, desc(sv(text))).
 type_functor(nv, door_to(inst)).
-type_functor(nv, effect(verb_targeted, script)).
+type_functor(nv, effect(verb_targeted, script)). % 
 type_functor(nv, breaks_into = type).
 type_functor(nv, has_rel(domrel, tf)).
-type_functor(nv, has_sense(sense)).
-type_functor(nv, isnt(type)).
+type_functor(nv, has_sense(sense)). 
+type_functor(nv, isnt(type)). % stops inheritance into some type
 type_functor(nv, inherit(type, tf)).
 type_functor(nv, inherited(type)).
 type_functor(nv, inheriting(type)).
 type_functor(nv, inst(sv(term))).
-type_functor(nv, name = (sv(text))).
+type_functor(nv, name = (sv(text))).  
 type_functor(nv, nominals(list(text))).
 type_functor(nv, nouns(list(text))).
 type_functor(nv, oper(doing, preconds, postconds)).
 type_functor(nv, =(name, value)).
 
-
-:- ensure_loaded(adv_state).
-
-two_adjs(W1,W2,W3):- var(W1),nonvar(W2),!,two_adjs(W2,W1,W3).
-two_adjs(W1,W2,W3):- var(W1),var(W2),!, 
-      nl_call( wn_s(A,B,W1,_,_,_)),once((nl_call(wn_ant(A,B,C,D)),
-      A>C, 
-      two_adjs_0(A,W2,C,W3,D))).
-two_adjs(W1,W2,W3):- 
-      nl_call(wn_s(A,B,W1,_,_,_)),once((nl_call(wn_ant(A,B,C,D)),
-      two_adjs_0(A,W2,C,W3,D))).
-
-two_adjs_0(A,W2,C,W3,D):- 
-      nl_call(wn_at(A,E)),nl_call(wn_at(C,E)),
-      nl_call(wn_s(C,D,W2,_,_,_)),nl_call(wn_s(E,1,W3,_,_,_)).
-
-
 :- dynamic(istate/1).
+% empty intial state
 istate([ structure_label(istate) ]).
 
+
+% this hacks the state above 
 :- push_to_state([
+
 
 % Relationships
 
@@ -210,7 +194,7 @@ held_by(the(bag), the(player)),
 in(the(coins), the(bag)),
 held_by(the(wrench), floyd),
 
-exit(south, pantry, kitchen), % pantry exits south to kitchen
+eng2log("A pantry exits south to a kitchen", exit(south, pantry, kitchen)),
 exit(north, kitchen, pantry),
 exit(down, pantry, basement),
 exit(up, basement, pantry),
@@ -223,9 +207,15 @@ exit(east, living_room, dining_room),
 exit(south, living_room, kitchen),
 exit(west, kitchen, living_room),
 
-in(the(shelf), pantry), % shelf is in pantry
-in(the(locker), pantry), % locker is in pantry
-in(the(rock), garden),
+
+in(the(shelf), pantry),  % the shelf is in pantry
+in(the(locker), pantry), % the locker is in pantry
+in(the(rock), garden),   % xformed:  in('rock~1',garden).
+% there are rocks in the garden
+in(a(rock), garden),     % xformed:  in('rock~11',garden).
+%in(s(rock), garden),     % in('rock~21',garden).
+% in({atLeast(2)}/in(a(rock),garden)).
+                         % 
 in(the(fountain), garden),
 in(the(mushroom), garden),
 in(the(shovel), basement), % FYI shovel has no props (this is a lttle test to see what happens)
@@ -240,20 +230,21 @@ in(brklamp, garden)
 ]).
 
 
-term_expansion(StateInfo, (:- push_to_state(StateInfo))):- is_state_info(StateInfo).
+term_expansion(StateInfo, (:- push_to_state(StateInfo))):- mu:is_state_info(StateInfo).
 
-door type
-  ~can(take),
-   can(open),
-   can(close),
+% type/2s are noticed by the term_expansion is_state_info
+door type      % xformed: type_props(door, ... the below ... )
+  ~can(take),  % xformed: can_be(actTake, f)
+   can(open),  % xformed: can_be(actOpen, t)
+   can(close), % xformed: can_be(actClose, t)
    (opened = t),
-   nouns(door),
-   fully_corporial.
+   nouns(door),  % xformed: nouns(["door"])
+   fully_corporial.  % xformed:  inherits(fully_corporial)
 
 food type
    can(eat),
-   object,
-   measurable.
+   object,      % xformed:  inherits(object)
+   measurable.  % xformed:  inherits(measurable)
 
 basement props place,
    desc('This is a very dark basement.'),

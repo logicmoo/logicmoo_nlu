@@ -248,10 +248,14 @@ must_test_bratko("bertrand wrote a book about gottlob", tell).
 must_test_bratko("bertrand wrote about gottlob", tell).
 must_test_bratko("bertrand wrote nothing about gottlob", tell).
 
-must_test_bratko("what did alfred give to bertrand", ask).
-must_test_bratko("alfred gave a book to bertrand", tell).
-must_test_bratko("alfred gave something to bertrand", tell).
-must_test_bratko("who did alfred give a book to", ask).
+must_test_bratko("what did alfred write to bertrand", ask).
+must_test_bratko("alfred wrote a letter", tell).
+must_test_bratko("alfred wrote a letter to bertrand", tell).
+must_test_bratko("alfred wrote something to bertrand", tell).
+must_test_bratko("alfred wrote to bertrand", tell).
+must_test_bratko("alfred wrote to bertrand a letter", tell).
+must_test_bratko("alfred wrote bertrand a letter", tell).
+must_test_bratko("who did alfred write a letter to", ask).
 
 must_test_bratko("alfred gave it", tell).
 must_test_bratko("alfred gave a book", tell).
@@ -282,8 +286,6 @@ also_show_chat80(U):-
      (ansifmt(cyan,rtrace(parser_chat80:sent_to_prelogic(E))),!,fail)));
     (ansifmt(magenta,rtrace(also_show_chat80(U))),!,fail)),!.
  
-
-
 
 system:myb :- bratko.
 
@@ -593,13 +595,13 @@ verb_phrase1( Frame, X, ~(LFOut)) --> [not], !, verb_phrase1(Frame, X, LFOut).
 verb_phrase1(_Frame, X, AssnOut) --> is_be(X, equals(X, Y) , Assn), noun_phrase(obj, Y, Assn, AssnOut).
 %verb_phrase(Frame, X, AssnOut) --> is_be(X, AdjProp, AssnOut), adjective(X, AdjProp), nvd(is, Frame).
 
+% NEW
+verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, Assn3), noun_phrase(oblique, Z, Assn3, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
 % OLD
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
-% NEW
-%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z), true, Assn2), noun_phrase(obj, Y, Assn2, Assn3), noun_phrase(oblique, Z, Assn3, LFOut).
-%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj, Y, Assn2, LFOut).
-%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
 
 verb_phrase1( Frame, X, AssnOut) --> is_be(X, LF, AssnOut), verb_phrase1(Frame, X, LF).
 
@@ -613,17 +615,19 @@ ditrans_verb(Frame, X, Y, Z, LFO) --> ditrans_verb1(Frame, Time, X, Y, Z, LF), {
 
 % paits her a picture
 ditrans_verb1(_Frame, pres+fin, X, Y, Z, doesAgentRecipientSomething(paints, X, Y, Z)) --> [paints].
+ditrans_verb1(_Frame, pres+fin, X, Y, Z, doesAgentRecipientSomething(gave, X, Y, Z)) --> [gave].
 ditrans_verb1(Frame, Time, X, Y, Z, LF) --> talk_verb(Frame, IV, dtv(X, Y, Z), Time, LF), nvd(IV, Frame).  % & isa(Frame, timeFn(Time)
 
-   talk_verb_lf(_Frame, dtv(X, Y, Z), write,    writes,  wrote,    written,   writing,  doesAgentRecipientSomething(writes, X, Y, Z)).
+  talk_verb_lf(_Frame, dtv(X, Y, Z), write,    writes,  wrote,    written,   writing,  doesAgentRecipientSomething(writes, X, Y, Z)).
 
    talk_verb_lf(Frame, dtv(X, Y, Z), Write,  Writes,  Wrote,    Written,   Writing,
                                              isa(Frame, a(event,Writing))
                                              &doer(Frame, X)
-                                             &t([Writing, 'To'], Frame, Y)
-                                             &t(['obj', Written], Frame, Z)) :-
+                                             &t([Writing, "To"], Frame, Y)
+                                             &t([Written,"Object"], Frame, Z)) :-
      talkdb:talk_db(ditransitive, Write, Writes, Wrote, Writing, Written).
      
+
 
 
 
@@ -658,7 +662,7 @@ talk_verb(Frame, IV, Type, pres+part, LF) --> [IV], {talk_verb_lf(Frame, Type, _
    talkdb:talk_db(transitive, Write, Writes, Wrote, Writing, Written),
    toPropercase(Writing, ProperEvent),
    make_object(Frame, Written, Y, MadeObj).
-make_object(Frame, Written, Y, MadeObj):- toPropercase(Written, Proper), atom_concat('obj', Proper, Pred), MadeObj=.. [Pred, Frame, Y].
+make_object(Frame, Written, Y, t([Written,"Object"],Frame,Y)).
 
 % NEW
 /*

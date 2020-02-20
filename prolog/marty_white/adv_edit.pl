@@ -40,7 +40,7 @@ do_metacmd(_Doer, quit(Agent)) -->
  {player_format('Bye!~n', [])}.
 
 do_metacmd(_Doer, help, S0, S0) :- !,
- listing(adv:cmd_help).
+ listing(mu_global:cmd_help).
 
 :- add_help(english,"english <level>: turn on paraphrase generation.").
 do_metacmd(Doer, english, S0, S0) :- security_of(Doer,admin),

@@ -66,7 +66,7 @@ pipe_to_fwc(M,P,add_conversion(From,M:Pred,To)):- compound(P), P=..[Pred,+From,-
 (nl_fwd(Sentence)/gensym(test,Id)) ==> pipeline(Id,input,Sentence).
 (nl_fwd(Sentence,Kind)/gensym(Kind,Id)) ==> pipeline(Id,input,Sentence).
 
-nl_fwd(S):- awc, ground(S), ain(nl_fwd(S)).
+system:nl_fwd(S):- awc, ground(S), ain(nl_fwd(S)).
 nl_fwd(S,K):- awc, ground(S), ain(nl_fwd(S,K)).
 
 :- mpred_trace_all.

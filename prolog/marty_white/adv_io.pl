@@ -42,7 +42,7 @@
 
  our_current_portray_level/1,
 
- current_error/1,set_error/1, redirect_error_to_string/2
+ current_error_io/1,set_error/1, redirect_error_to_string/2
    
    /*post_message/1,
    post_message/2,
@@ -51,21 +51,21 @@
    svi_message/3,
    svoi_message/4,*/ ]).
 */
-:- dynamic(adv:wants_quit/3).
-:- dynamic(adv:console_tokens/2).
-:- dynamic(adv:console_io_player/3).
-:- volatile(adv:console_io_player/3).
+:- dynamic(mu_global:wants_quit/3).
+:- dynamic(mu_global:console_tokens/2).
+:- dynamic(mu_global:console_io_player/3).
+:- volatile(mu_global:console_io_player/3).
 
 
 
-current_error(Stream) :- stream_property(Stream, alias(user_error)), !. % force det. 
-current_error(Stream) :- stream_property(Stream, alias(current_error)), !. % force det. 
-current_error(Stream) :- stream_property(Stream, file_no(2)), !. % force det. 
+current_error_io(Stream) :- stream_property(Stream, alias(user_error)), !. % force det. 
+current_error_io(Stream) :- stream_property(Stream, alias(current_error)), !. % force det. 
+current_error_io(Stream) :- stream_property(Stream, file_no(2)), !. % force det. 
 set_error(Stream) :- set_stream(Stream, alias(user_error)). 
 
 :- meta_predicate redirect_error_to_string(0,-).
 redirect_error_to_string(Goal, String) :- 
-  current_error(OldErr),
+  current_error_io(OldErr),
   new_memory_file(Handle),  
   setup_call_cleanup( 
    open_memory_file(Handle, write, Err),
@@ -80,12 +80,12 @@ redirect_error_to_string(Goal, String) :-
 
 user:setup_console :- current_input(In),setup_console(In).
 
-:- dynamic(adv:has_setup_setup_console/1).
-:- volatile(adv:has_setup_setup_console/1).
+:- dynamic(mu_global:has_setup_setup_console/1).
+:- volatile(mu_global:has_setup_setup_console/1).
 
-setup_console(In):- adv:has_setup_setup_console(In),!.
+setup_console(In):- mu_global:has_setup_setup_console(In),!.
 setup_console(In):- 
- assert(adv:has_setup_setup_console(In)),
+ assert(mu_global:has_setup_setup_console(In)),
  set_prolog_flag(color_term, true),
  ensure_loaded(library(prolog_history)),
  (current_prolog_flag(readline,X)-> ensure_loaded(library(X));ensure_loaded(library(editline))),
@@ -97,16 +97,16 @@ setup_console(In):-
   setup_readline),!.
 
 
-:- dynamic(adv:input_log/1).
+:- dynamic(mu_global:input_log/1).
 init_logging :- !.
 init_logging :-
  get_time(StartTime),
  convert_time(StartTime, StartTimeString),
  open('~/.nomic_mu_input.log', append, FH),
  format(FH, '\n==== ADVENTURE INPUT, ~w\n', [StartTimeString]),
- asserta(adv:input_log(FH)).
+ asserta(mu_global:input_log(FH)).
 stop_logging :-
- adv:input_log(FH) -> close(FH) ; true.
+ mu_global:input_log(FH) -> close(FH) ; true.
 
 % :- dynamic(bugs/1). % Types of logging output.
 %bugs([general, printer, planner, autonomous]).
@@ -188,29 +188,29 @@ our_prolog_pretty_print(Term):-
 
 :- export(stdio_player/1).
 stdio_player(Agent):- nonvar(Agent),!, stdio_player(AgentWas), !, AgentWas == Agent.
-stdio_player(Agent):- stream_property(InStream, fileno(0)), adv:console_io_player(InStream, _, Agent),!.
+stdio_player(Agent):- stream_property(InStream, fileno(0)), mu_global:console_io_player(InStream, _, Agent),!.
 stdio_player(Agent):- 
   Agent = 'player~1',
- \+ adv:console_io_player(_, _, Agent). 
+ \+ mu_global:console_io_player(_, _, Agent). 
 
-:- thread_local(adv:current_agent_tl/1).
+:- thread_local(mu_global:current_agent_tl/1).
 current_player(Agent):- current_agent(AgentWas),!,AgentWas= Agent.
 
 current_agent(Agent):- current_agent_(AgentWas),!,AgentWas= Agent.
 :- export(current_agent/1).
-current_agent_(Agent):- adv:current_agent_tl(Agent),!.
-current_agent_(Agent):- current_input(InStream),adv:console_io_player(InStream, _, Agent).
-current_agent_(Agent):- current_output(OutStream),adv:console_io_player(_, OutStream, Agent).
-%current_agent_(Agent):- thread_self(Id),adv:console_host_io_history_unused(Id,_Alias,_InStream,_OutStream,_Host,_Peer, Agent).
+current_agent_(Agent):- mu_global:current_agent_tl(Agent),!.
+current_agent_(Agent):- current_input(InStream),mu_global:console_io_player(InStream, _, Agent).
+current_agent_(Agent):- current_output(OutStream),mu_global:console_io_player(_, OutStream, Agent).
+%current_agent_(Agent):- thread_self(Id),mu_global:console_host_io_history_unused(Id,_Alias,_InStream,_OutStream,_Host,_Peer, Agent).
 current_agent_('player~1').
 
-:- dynamic(adv:need_redraw/1).
-overwrote_prompt(Agent):- retractall(adv:need_redraw(Agent)), asserta(adv:need_redraw(Agent)),!.
+:- dynamic(mu_global:need_redraw/1).
+overwrote_prompt(Agent):- retractall(mu_global:need_redraw(Agent)), asserta(mu_global:need_redraw(Agent)),!.
 
 ensure_has_prompt(Agent):-  
- ignore((retract(adv:need_redraw(Agent)),
+ ignore((retract(mu_global:need_redraw(Agent)),
   ttyflush,
-  player_format(Agent,'~N~w@spatial> ',[Agent]),retractall(adv:need_redraw(Agent)))),
+  player_format(Agent,'~N~w@spatial> ',[Agent]),retractall(mu_global:need_redraw(Agent)))),
   ttyflush.
 
 
@@ -285,10 +285,10 @@ tokenize([_BadChar|Tail], Rest) :-
  tokenize(Tail, Rest).
 
 log_codes([-1]).
-log_codes(_) :- \+ adv:input_log(_),!.
+log_codes(_) :- \+ mu_global:input_log(_),!.
 log_codes(LineCodes) :-
  ignore(notrace(catch((atom_codes(Line, LineCodes),
- adv:input_log(FH),
+ mu_global:input_log(FH),
  format(FH, '>~w\n', [Line])),_,true))).
 
 
@@ -388,23 +388,23 @@ restore_overwritten_chars(Agent):- agent_to_input(Agent,In),overwritten_chars(In
 
 stream_pairs(In,Out):- nonvar(In), var(Out), stream_property(In,file_no(F)),stream_property(Out,file_no(F)),stream_property(Out,output),!.
 stream_pairs(In,Out):- nonvar(Out), var(In), stream_property(Out,file_no(F)),stream_property(In,file_no(F)),stream_property(In,input),!.
-stream_pairs(In,Out):- adv:console_io_player(In,Out, _Agent).
+stream_pairs(In,Out):- mu_global:console_io_player(In,Out, _Agent).
 stream_pairs(In,Out):- var(In), !, stream_property(Out, input), \+ stream_property(Out, file_name(_)), once(stream_pairs(In,Out)), \+ using_stream_in(In,_OtherAgent).
 %stream_pairs(In,Out):- var(Out), !, stream_property(Out, output), \+ stream_property(Out, fileno(2)), once(stream_pairs(In,Out)), \+ using_stream_in(In,_OtherAgent).
 
-using_stream_in(Stream,OtherAgent):- adv:console_io_player(Stream, _, OtherAgent).
-%using_stream_in(Stream,OtherAgent):- adv:console_host_io_history_unused(_Id,_Alias,Stream,_Out,_Host, _Peer, OtherAgent), \+ adv:console_io_player(Stream, OtherAgent).
+using_stream_in(Stream,OtherAgent):- mu_global:console_io_player(Stream, _, OtherAgent).
+%using_stream_in(Stream,OtherAgent):- mu_global:console_host_io_history_unused(_Id,_Alias,Stream,_Out,_Host, _Peer, OtherAgent), \+ mu_global:console_io_player(Stream, OtherAgent).
 
 using_stream(Stream,OtherAgent):- using_stream_in(Stream,OtherAgent).
-using_stream(Stream,OtherAgent):- adv:console_io_player(_, Stream, OtherAgent).
+using_stream(Stream,OtherAgent):- mu_global:console_io_player(_, Stream, OtherAgent).
 
-agent_to_output(Agent, Stream):- adv:console_io_player(_, Stream, Agent).
-agent_to_output(Agent, Stream):- adv:console_io_player(InStream, _, Agent),stream_pairs(InStream, Stream).
+agent_to_output(Agent, Stream):- mu_global:console_io_player(_, Stream, Agent).
+agent_to_output(Agent, Stream):- mu_global:console_io_player(InStream, _, Agent),stream_pairs(InStream, Stream).
 agent_to_output(_Agent,Stream):- current_output(Stream), \+ using_stream(Stream,_Other),!.
 agent_to_output(_Agent,Stream):- stream_property(Stream, file_no(1)), \+ using_stream(Stream,_Other),!.
 agent_to_output(Agent, Stream):- fail, agent_to_input(Agent,In), stream_property(In,file_no(F)),stream_property(Stream,file_no(F)),stream_property(Stream,write),!.
 agent_to_output(Agent, Stream):- throw(agent_io(Agent,agent_to_output(Agent, Stream))).
-%agent_to_output(Agent, Stream):- adv:console_host_io_history_unused(_Id,_Alias,_In,Stream,_Host, _Peer, Agent),!.
+%agent_to_output(Agent, Stream):- mu_global:console_host_io_history_unused(_Id,_Alias,_In,Stream,_Host, _Peer, Agent),!.
        
 % agent_to_input(Agent,In):- overwritten_chars(Agent,_SoFar),In=Agent,
 agent_to_input(Agent, Stream):- using_stream_in(Stream,Agent),!.
@@ -412,7 +412,7 @@ agent_to_input(_Agent,Stream):- current_input(Stream), \+ using_stream(Stream,_O
 agent_to_input(_Agent,Stream):- stream_property(Stream, file_no(0)), \+ using_stream(Stream,_Other),!.
 agent_to_input(Agent, Stream):- fail, agent_to_output(Agent,Stream), stream_property(Stream,file_no(F)),stream_property(Stream,file_no(F)),stream_property(Stream,read),!.
 agent_to_input(Agent, Stream):- throw(agent_io(Agent,agent_to_input(Agent, Stream))).
-%agent_to_input(Agent, Stream):- adv:console_host_io_history_unused(_Id,_Alias,Stream,_Out,_Host, _Peer, Agent),!.
+%agent_to_input(Agent, Stream):- mu_global:console_host_io_history_unused(_Id,_Alias,Stream,_Out,_Host, _Peer, Agent),!.
 
 is_main_console:- current_input(Stream), stream_property(Stream, file_no(0)).
 
