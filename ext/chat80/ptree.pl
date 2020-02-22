@@ -71,7 +71,7 @@ as_is(A) :- \+ compound(A), !.
 as_is(A) :- functor(A,F,_), simple_f(F).
 as_is('_'(_)) :- !.
 as_is(X) :-
-   quote(X).
+   quote80(X).
 as_is(F):- simple_arg(F), !.
 as_is(A) :- A=..[_|S], maplist(simple_arg,S), !.
 

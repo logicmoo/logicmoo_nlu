@@ -251,38 +251,38 @@ identifer_code(Char) :- memberchk(Char, `-'`).
 punct_code(Punct) :- memberchk(Punct, `,.?;:!&\"`), !. % '
 punct_code(Punct) :- \+ identifer_code(Punct), char_type(Punct, graph).
 
-% -- Split a list of chars into a leading identifier and the rest.
-% Fails if list does not start with a valid identifier.
-identifier([-1|_String], _, _) :- !, fail. % char_type pukes on -1 (EOF)
-identifier([Char|String], [Char|Tail], Rest) :-
+% -- Split a list of chars into a leading identifier_mw and the rest.
+% Fails if list does not start with a valid identifier_mw.
+identifier_mw([-1|_String], _, _) :- !, fail. % char_type pukes on -1 (EOF)
+identifier_mw([Char|String], [Char|Tail], Rest) :-
  identifer_code(Char),
  identifier1(String, Tail, Rest).
 
 identifier1(String, Id, Rest) :-
- identifier(String, Id, Rest), !.
+ identifier_mw(String, Id, Rest), !.
 identifier1(String, [], String).
 
-% -- Split a list of chars into a leading token and the rest.
-% Fails if list does not start with a valid token.
-token(String, Token, Rest) :-
- identifier(String, Token, Rest), !. % Is it an identifier?
-%token(String,id(Atom),Rest) :-
-% identifier(String, Text, Rest), !, atom_codes(Atom,Text).
-token([Punct|Rest], [Punct], Rest) :-
- %char_type(Punct, punct), !. % Is it a single char token?
+% -- Split a list of chars into a leading token_mw and the rest.
+% Fails if list does not start with a valid token_mw.
+token_mw(String, Token, Rest) :-
+ identifier_mw(String, Token, Rest), !. % Is it an identifier_mw?
+%token_mw(String,id(Atom),Rest) :-
+% identifier_mw(String, Text, Rest), !, atom_codes(Atom,Text).
+token_mw([Punct|Rest], [Punct], Rest) :-
+ %char_type(Punct, punct), !. % Is it a single char token_mw?
  punct_code(Punct), !. 
 
-% -- Completely tokenize a string.
+% -- Completely tokenize_mw a string.
 % Ignores unrecognized characters.
-tokenize([],[]) :- !.
-tokenize([-1],[`quit`]) :- !.
-tokenize(String, [Token|Rest]) :-
- token(String, Token, Tail),
+tokenize_mw([],[]) :- !.
+tokenize_mw([-1],[`quit`]) :- !.
+tokenize_mw(String, [Token|Rest]) :-
+ token_mw(String, Token, Tail),
  !,
- tokenize(Tail, Rest).
-tokenize([_BadChar|Tail], Rest) :-
+ tokenize_mw(Tail, Rest).
+tokenize_mw([_BadChar|Tail], Rest) :-
  !,
- tokenize(Tail, Rest).
+ tokenize_mw(Tail, Rest).
 
 log_codes([-1]).
 log_codes(_) :- \+ mu_global:input_log(_),!.
@@ -292,12 +292,12 @@ log_codes(LineCodes) :-
  format(FH, '>~w\n', [Line])),_,true))).
 
 
-%! skip_to_nl(+Input) is det.
+%! skip_to_nl_mw(+Input) is det.
 %
 % Read input after the term. Skips white space and %... comment
 % until the end of the line or a non-blank character.
 
-skip_to_nl(In) :-
+skip_to_nl_mw(In) :-
  repeat,
  peek_char(In, C),
  ( C == '%'
@@ -318,7 +318,7 @@ with_tty(In,Goal):-
  setup_call_cleanup(( 
  set_stream(In, tty(true)),set_stream(In, timeout(infinite))), 
   setup_call_cleanup(prompt(Old,New),
-  (%skip_to_nl(In),
+  (%skip_to_nl_mw(In),
   Goal), prompt(_,Old)),
  (set_stream(In, timeout(TWas)),set_stream(In, tty(Was)))),!.
          
@@ -358,7 +358,7 @@ line_to_tokens(LineCodes,_NegOne,Tokens) :-
 
 line_to_tokens(LineCodes,_,Tokens):- 
  ignore(log_codes(LineCodes)),!,
- tokenize(LineCodes, TokenCodes),!,
+ tokenize_mw(LineCodes, TokenCodes),!,
  % Convert list of list of codes to list of atoms:
  findall(Atom, (member(Codes, TokenCodes), atom_codes(Atom, Codes)), Tokens), 
  nop(save_to_history(LineCodes)),

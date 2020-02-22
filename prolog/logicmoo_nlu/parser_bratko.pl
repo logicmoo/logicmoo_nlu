@@ -33,11 +33,8 @@
 :- op(1200, xfx, -->).
 :- op(100, fx, '`').
 
-:- '$hide'(lists:append(_, _, _)).
-
-% =================================================================
-% %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
-% =================================================================
+:- use_module(library(lists)).
+%:- '$hide'(lists:append(_, _, _)).
 %:- use_module(library(make)).
 :- use_module(library(check)).
 :- abolish(check:list_undefined, 0).
@@ -47,6 +44,10 @@
 :- use_module(parser_chat80).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
 :- use_module(pldata(clex_iface)).
+
+% =================================================================
+% %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
+% =================================================================
 
 system:t33:- cls, make, t33a.
 system:t33a:- cls, parser_bratko:forall((must_test_bratko(Sent, Type), testing_bratko(Sent, Type)), bratko(Sent)).
@@ -212,9 +213,9 @@ must_test_bratko("bertrand is an author", tell).
 must_test_bratko("is bertrand an author", ask).
 must_test_bratko("every author is a programmer", tell).
 must_test_bratko("is bertrand an programmer", ask).  % Just a sanity test
+must_test_bratko("what is a author", ask).  % Just a sanity test
 must_test_bratko("what did bertrand write", ask).
 must_test_bratko("what is a book", ask).
-must_test_bratko("what is a author", ask).
 must_test_bratko("principia is a book", tell).
 must_test_bratko("bertrand is bertrand", tell).
 must_test_bratko("shrdlu halts", tell).
@@ -259,6 +260,40 @@ must_test_bratko("who did alfred write a letter to", ask).
 
 must_test_bratko("alfred gave it", tell).
 must_test_bratko("alfred gave a book", tell).
+
+
+must_test_bratko("There are 5 houses with five different colors.",riddle(_)).
+must_test_bratko("In each house lives a person with a different nationality.",riddle(_)).
+
+must_test_bratko("These five owners drink a certain type of beverage, smoke a certain brand of cigar and keep a certain pet.",riddle(3)).
+%vs
+must_test_bratko("These five owners each drink a certain type of beverage.",riddle(1)).
+must_test_bratko("These five owners each smoke a certain brand of cigar.",riddle(1)).
+must_test_bratko("These five owners each keep a certain pet.",riddle(1)).
+
+must_test_bratko("No owners have the same pet, smoke the same brand of cigar or drink the same beverage.",riddle(3)).
+%vs
+must_test_bratko("No owners have the same pet.",riddle(1)).
+must_test_bratko("No owners smoke the same brand of cigar",riddle(1)).
+must_test_bratko("No owners drink the same kind of beverage.",riddle(1)).
+
+
+must_test_bratko("The Brit lives in the red house.",riddle(_)).
+must_test_bratko("The Swede keeps dogs as pets.",riddle(_)).
+must_test_bratko("A Dane drinks tea.",riddle(_)).
+must_test_bratko("The green house is on the left of the white house.",riddle(_)).
+must_test_bratko("The green house's owner drinks coffee.",riddle(_)).
+must_test_bratko("The person who smokes Pall Mall rears birds.",riddle(_)).
+must_test_bratko("The owner of the yellow house smokes Dunhill.",riddle(_)).
+must_test_bratko("The man living in the center house drinks milk. ",riddle(_)).
+must_test_bratko("The Norwegian lives in the first house .",riddle(_)).
+must_test_bratko("The man who smokes Blends lives next to the one who keeps cats   .",riddle(_)).
+must_test_bratko("The man who keeps horses lives next to the man who smokes Dunhill.",riddle(_)).
+must_test_bratko("The owner who smokes BlueMaster drinks beer.",riddle(_)).
+must_test_bratko("The German smokes Prince.",riddle(_)).
+must_test_bratko("The Norwegian lives next to the blue house.",riddle(_)).
+must_test_bratko("The man who smokes Blends has a neighbor who drinks water.",riddle(_)).
+must_test_bratko("Who owns the fish?",riddle(_)).
 
 must_test_bratko(S, _T) :- \+ ground(S), !, fail.
 
@@ -309,6 +344,7 @@ system:bratko_0(Words):-
   notrace(ignore(also_show_chat80(Words))),!.
 
 :-export(bratko/2).
+bratko(Sentence, Reply):- atom(Reply),!,bratko(Sentence).
 bratko(Sentence, Reply):-
  quietly(to_wordlist_atoms(Sentence, WL)), !,
  bratko_0(WL, Reply).
@@ -342,7 +378,7 @@ bratko_reply((answer(Answer) :- Condition), Reply) :-
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([no]) ; Reply = answer([none])))), !.
 % bratko_reply an assertion @TODO remove NOP 
-bratko_reply(Assertion, asserted(Assertion)) :-  nop(baseKB:ain(Assertion)), !.
+bratko_reply(Assertion, asserted(Assertion)) :-  nop(baseKB:ain(kif(Assertion))), !.
 bratko_reply(_, error('unknown type')).
 
 

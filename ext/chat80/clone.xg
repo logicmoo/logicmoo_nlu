@@ -200,9 +200,9 @@ possessive(Kernel,Agmt,Type,PostMods,Mods,
 gen_case, [the] ---> {t_l:old_text},gen_marker.
 gen_case, [w(the,_)] ---> gen_marker.
 
-gen_marker ---> theText1(''''), an_s.
+gen_marker ---> theText1('\''), an_s.
 
-an_s ---> textOpt([s80]).
+an_s ---> textOpt([s]).
 
 /* Determiners */
 

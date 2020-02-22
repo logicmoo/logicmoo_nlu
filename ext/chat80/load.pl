@@ -61,5 +61,5 @@ bad_chat80 :-
    prompt(_,'Question: '),
    trace,readin80:read_sent(P),
       control80(report,P),
-      end(user).
+      end80(user).
 

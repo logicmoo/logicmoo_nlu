@@ -91,12 +91,12 @@ with_parse_mem(Mem, Goal):-
         b_setval(parsemem,MemWas)).
 
 
-is_text(Text):- is_charlist(Text),!.
-is_text(Text):- is_list(Text),!, is_codelist(Text).
-is_text(Text):- compound(Text),!,fail.
-is_text(Text):- string(Text),!.
-is_text(Text):- atom_contains(Text,' '),!.
-is_text(Text):- name(Text,Codes),last(Codes,L),code_type(L,punct).
+is_text_mw(Text):- is_charlist(Text),!.
+is_text_mw(Text):- is_list(Text),!, is_codelist(Text).
+is_text_mw(Text):- compound(Text),!,fail.
+is_text_mw(Text):- string(Text),!.
+is_text_mw(Text):- atom_contains(Text,' '),!.
+is_text_mw(Text):- name(Text,Codes),last(Codes,L),code_type(L,punct).
 
 is_logic(Logic):- compound(Logic), is_type_functor(_,Logic),!.
 
@@ -738,7 +738,7 @@ verb_frame1(Action,Burn,
  verb_tool_ends_ensures(Burn,Match,Unflaming,Burnt).
 
    verbatum_anon(Verb):- member(Verb, [prolog, make, cls, mem, types, props, ls, debug, cd, pwd, 
- useragent, create, delprop, destroy, echo, halt, getprops,
+ useragent, create, delprop, destroy, echo, halt, getprops, english,
  memory, model, path, properties, setprop, state, status, perceptq, help, threads,
  spy,nospy,call,
  rtrace, nortrace, 

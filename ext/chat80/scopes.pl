@@ -222,7 +222,7 @@ apply80(set,_,Index:X,P0,S,Q,S^(P,Q)) :-
 apply80(int_det(Type-X),Type,X,P,X,Q,(P,Q)).
 apply80(index(_),_,X,P,X,Q,X^(P,Q)).
 apply80(quant(Op,N),Type,X,P,X,Q,R) :-
-   value(N,Type,Y),
+   value80(N,Type,Y),
    quant_op(Op,Z,Y,numberof(X,(P,Q),Z),R).
 apply80(det(Det),_,X,P,Y,Q,R) :-
    apply0(Det,X,P,Y,Q,R).
@@ -243,8 +243,8 @@ quant_op(not(_Why)+less,X,Y,X>=Y).
 quant_op(less,X,Y,X<Y).
 quant_op(more,X,Y,X>Y).
 
-value(wh(Type-X),Type,X).
-value(nb(X),_,X).
+value80(wh(Type-X),Type,X).
+value80(nb(X),_,X).
 
 all(all).
 all(every).

@@ -138,23 +138,21 @@ chat80_t(UIn,O1,O2):-
    process_run_real(_Callback,_StartParse,Mid,O1,O2),
    flush_output_safe,!.
 
-:- dynamic(chat80/1).
-:- dynamic(chat80/2).
-:- dynamic(chat80/3).
+:- shared_parser_data(parser_chat80:chat80/1).
+:- shared_parser_data(parser_chat80:chat80/2).
+:- shared_parser_data(parser_chat80:chat80/3).
+
 :- discontiguous(chat80/1).
 :- discontiguous(chat80/2).
 :- discontiguous(chat80/3).
-:- shared_parser_data(chat80/1).
-:- shared_parser_data(chat80/2).
-:- shared_parser_data(chat80/3).
 
 contains_subterm(Term,Sub):- \+ \+ (sub_term(ST, Term), Sub==ST).
 is_trait(X) :- ground(X), \+ string(X), \+ \+ (chat80(_XXX, _Ans, Traits), contains_subterm(Traits,X)).
 with_traits(X):- forall((chat80(XX, Ans, Traits), contains_subterm(Traits,X)),chat80(XX, Ans, Traits)).
 
-chat80(X):- awc, ground(X), !, (is_trait(X)-> with_traits(X) ; test_chat80(X)).
-chat80(X, Ans):- awc, ground(X),!, chat80(X), ignore((nonvar(Ans),dmsg(answersShouldBe(Ans)))). 
-chat80(X, Ans, Traits):- awc, ground(X),!, chat80(X, Ans), ignore((nonvar(Traits),dmsg(traitsShouldBe(Traits)))). 
+parser_chat80:chat80(X):- awc, ground(X), !, (is_trait(X)-> with_traits(X) ; test_chat80(X)).
+parser_chat80:chat80(X, Ans):- awc, ground(X),!, chat80(X), ignore((nonvar(Ans),dmsg(answersShouldBe(Ans)))). 
+parser_chat80:chat80(X, Ans, Traits):- awc, ground(X),!, chat80(X, Ans), ignore((nonvar(Traits),dmsg(traitsShouldBe(Traits)))). 
 
 % :- style_check(+discontiguous).  
 :- asserta((t_l:enable_src_loop_checking)).

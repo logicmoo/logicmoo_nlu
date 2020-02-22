@@ -347,10 +347,10 @@ subst_dict(BindType, [Find-Replace|Rest], T0, T) :-
 
 
 
-writel([]).
-writel([nl]) :- !, nl. % special case if 'nl' is at end of list.
-writel([H|T]) :- write(H), writel(T).
-%writeln(L) :- writel(L), nl.
+writel_mw([]).
+writel_mw([nl]) :- !, nl. % special case if 'nl' is at end of list.
+writel_mw([H|T]) :- write(H), writel_mw(T).
+%writeln(L) :- writel_mw(L), nl.
 
 % Is Term uninstantiated in any of its parts?
 uninstantiated([]) :- !, fail.

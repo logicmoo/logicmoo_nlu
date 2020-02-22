@@ -42,7 +42,7 @@ hi80(Callback,File):-
       (( repeat,
          ask80(Fd,P),
          control80(Callback,P), !)),
-   end(FOpen)).
+   end80(FOpen)).
 
 ask80(user,P) :- 
   setup_call_cleanup(see(user),
@@ -81,8 +81,8 @@ chars80(X,N) :- atomic(X), !,
    length(L,N).
 chars80(_,2).
 
-end(user) :- !.
-end(F) :- 
+end80(user) :- !.
+end80(F) :- 
    told,seen,
    catch(close(F),_,seen),!.
 
@@ -349,23 +349,23 @@ report_item(tree,Item) :-
 runtime(TimeSecs) :- statistics(runtime,[MSec,_]), TimeSecs is MSec/1000,!.
 
 
-quote(A&R) :-
+quote80(A&R) :-
    atom(A), !,
    quote_amp(R).
-quote(_-_).
-quote('--'(_,_)).
-quote(_+_).
-quote(verb(_,_,_,_,_,_Kind)).
-quote(wh(_)).
-quote(nameOf(_)).
-quote(prep(_)).
-quote(det(_)).
-quote(quant(_,_)).
-quote(int_det(_)).
+quote80(_-_).
+quote80('--'(_,_)).
+quote80(_+_).
+quote80(verb(_,_,_,_,_,_Kind)).
+quote80(wh(_)).
+quote80(nameOf(_)).
+quote80(prep(_)).
+quote80(det(_)).
+quote80(quant(_,_)).
+quote80(int_det(_)).
 
 quote_amp(F):- compound(F), functor(F,'$VAR',1),!.
 quote_amp(R) :-
-   quote(R).
+   quote80(R).
 
 
 sent_to_prelogic(S0,S) :-

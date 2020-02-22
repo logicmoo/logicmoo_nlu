@@ -27,7 +27,7 @@ qplan((P:-Q),(P1:-Q1)) :- qplan(P,Q,P1,Q1), !.
 qplan(P,P).
 
 qplan(X0,P0,X,P) :-
-   numbervars80(X0,0,I), variables(X0,0,Vg),
+   numbervars80(X0,0,I), variables80(X0,0,Vg),
    numbervars80(P0,I,N),
    mark(P0,L,0,Vl),
    schedule(L,Vg,P1),
@@ -36,7 +36,7 @@ qplan(X0,P0,X,P) :-
    variablise(X0,VA,X),
    variablise(P2,VA,P).
 
-mark(X^P,L,Q0,Q) :- !, variables(X,Q0,Q1), mark(P,L,Q1,Q).
+mark(X^P,L,Q0,Q) :- !, variables80(X,Q0,Q1), mark(P,L,Q1,Q).
 mark((P1,P2),L,Q0,Q) :- !,
    mark(P1,L1,Q0,Q1),
    mark(P2,L2,Q1,Q),
@@ -46,12 +46,12 @@ mark(SQ,[m(V,C,SQ1)],Q0,Q0) :- subquery(SQ,SQ1,X,P,N,Q), !,
    mark(P,L,0,Vl),
    L=[Q],   % Too bad about the general case!
    marked(Q,Vq,C0,_),
-   variables(X,Vl,Vlx),
+   variables80(X,Vl,Vlx),
    setminus(Vq,Vlx,V0),
    setofcost(V0,C0,C),
-   variables(N,V0,V).
+   variables80(N,V0,V).
 mark(P,[m(V,C,P)],Q,Q) :-
-   variables(P,0,V),
+   variables80(P,0,V),
    cost(P,V,C).
 
 subquery(setof(X,P,S),setof(X,Q,S),X,P,S,Q).
@@ -70,15 +70,15 @@ negationcost(_V,1000).
 setofcost(0,_,0) :- !.
 setofcost(_,C,C).
 
-variables('$VAR'(N),V0,V) :- !, setplusitem(V0,N,V).
-variables(T,V,V) :- atomic(T), !.
-variables(T,V0,V) :- functor(T,_,N), variables(N,T,V0,V).
+variables80('$VAR'(N),V0,V) :- !, setplusitem(V0,N,V).
+variables80(T,V,V) :- atomic(T), !.
+variables80(T,V0,V) :- functor(T,_,N), variables80(N,T,V0,V).
 
-variables(0,_,V,V) :- !.
-variables(N,T,V0,V) :- N1 is N-1,
+variables80(0,_,V,V) :- !.
+variables80(N,T,V0,V) :- N1 is N-1,
    arg(N,T,X),
-   variables(X,V0,V1),
-   variables(N1,T,V1,V).
+   variables80(X,V0,V1),
+   variables80(N1,T,V1,V).
 
 quantificate(W-V,N,P0,P) :- !, N1 is N+18,
    quantificate(V,N,P1,P),
@@ -114,7 +114,7 @@ plan(\+P,Vg,_,_,\+Q) :- !, Vg = 0,
    quantificate(V,0,Q1,Q).
 plan(SQ,Vg,_,_,SQ1) :- subquery(SQ,SQ1,X,P,_,Q), !,
    marked(P,V,C,P1),
-   variables(X,Vg,Vgx),
+   variables80(X,Vg,Vgx),
    setminus(V,Vgx,Vl),
    quantificate(Vl,0,Q1,Q),
    plan(P1,V,C,Vgx,Q1).
@@ -156,7 +156,7 @@ instantiate0(SQ,Vg,Vi,[m(V,C,SQ1)]) :- subquery(SQ,SQ1,X,P,_,Q), !,
    L=[Q],   % Too bad about the general case!
    marked(Q,Vg,C0,_),
    setminus(Vg,Vi,V),
-   variables(X,0,Vx),
+   variables80(X,0,Vx),
    setminus(V,Vx,V0),
    setofcost(V0,C0,C).
 instantiate0(P,V,Vi,[m(V1,C,P)]) :-

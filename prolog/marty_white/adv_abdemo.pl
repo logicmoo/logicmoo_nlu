@@ -656,17 +656,13 @@ skolemise(T).
 
 /* Odds and sods */
 
-
 opposite(neg(F),F) :- !.
-
 opposite(F,neg(F)).
 
 
-or(true,B,true) :- !.
-
-or(false,false,false).
-
-or(false,true,true).
+abdemo:or(true,B,true) :- !.
+abdemo:or(false,false,false).
+abdemo:or(false,true,true).
 
 
 axiom(initiates(wake_up(X),awake(X),_T),[]).
