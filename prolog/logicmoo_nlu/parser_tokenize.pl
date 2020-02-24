@@ -15,7 +15,7 @@
 %into_acetext(Input,AceText):- into_acetext(Input,AceText).
 
 
-%:- use_module(ape(prolog/parser/tokenizer)).
+:- use_module('../../ext/ape/prolog/parser/tokenizer').
 
 into_acetext(Tokens,AceText):- 
    notrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).

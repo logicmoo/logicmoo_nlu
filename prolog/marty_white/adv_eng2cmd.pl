@@ -152,13 +152,13 @@ reframed_call( Pred, Doer, [Verb|TheArgs], Action, M) :-
 */
 
 
-eng2state(_Doer, Tokens, frame(Logic), Mem) :- 
+eng2state(_Doer, Tokens, frame(Logic), Mem) :- current_predicate(declarative/3), 
   with_parse_mem(Mem, phrase(declarative(Logic),Tokens, [])).
 
-eng2state(_Doer, Tokens, frame80(Logic), Mem) :- 
+eng2state(_Doer, Tokens, frame80(Logic), Mem) :- current_predicate(parse_chat80/2),
   with_parse_mem(Mem, parse_chat80(Tokens, Logic)).
 
-eng2state(_Doer, Tokens, frame(Logic), Mem) :- 
+eng2state(_Doer, Tokens, frame(Logic), Mem) :- current_predicate(utterance/4),
   with_parse_mem(Mem, phrase(utterance(_,Logic),Tokens, [])).
 
 user:parse_chat80(Text,Q):- 

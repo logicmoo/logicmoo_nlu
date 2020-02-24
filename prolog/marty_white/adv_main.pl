@@ -29,30 +29,6 @@
 */
 
 
-
-% :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_chat80)).
-%:- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_pldata)).
-
-
-:- if(exists_source(library(logicmoo_nlu))).
-:- use_module(library(logicmoo_nlu)).
-%:- use_module(library(logicmoo_nlu/parser_sharing)).
-%:- use_module(library(logicmoo_nlu/parser_tokenize)).
-%:- use_module(library(logicmoo_nlu/nl_pipeline)).
-:- else.
-% :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_sharing)).
-:- if(exists_source(pack(logicmoo_nlu/ext/pldata/nl_iface))).
-:- ensure_loaded(pack(logicmoo_nlu/ext/pldata/nl_iface)).
-:- else.
-:- if(exists_source(library(nldata/nl_iface))).
-% being in user is just to help debugging from console
-%:- user:ensure_loaded(library(nldata/nl_iface)).
-:- endif.
-:- endif.
-:- load_wordnet.
-:- endif.
-
-
 security_of(_,_Wiz).
 admin :- true. % Potential security hazzard.
 wizard :- true. % Potential to really muck up game.

@@ -201,22 +201,22 @@ aXiom(dig(Agent, Hole, Where, Tool)) -->
   % OK, dig the hole.
   declare(h(in, Hole, Where)),
   setprop(Hole, default_rel(in)),
-  setprop(Hole, can_be(move, f)),
-  setprop(Hole, can_be(take, f)),
+  setprop(Hole, can(move, f)),
+  setprop(Hole, can(take, f)),
   declare(h(in, dirt, Where)),
   queue_event(
     [ created(Hole, Where),
       [cap(subj(Agent)), person(dig, digs), 'a', Hole, 'in the', Where, '.']]).
 
 aXiom(eat(Agent, Thing)) -->
-  (getprop(Thing, can_be(eat,t)) -> 
+  (getprop(Thing, can(eat,t)) -> 
   (undeclare(h(_, Thing, _)),send_precept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
   send_precept(Agent, [failure(eat(Thing)), 'It''s inedible!'])).
 
 
 aXiom(switch(Agent, OnOff, Thing)) -->
   will_touch(Agent, Thing),
-  getprop(Thing, can_be(switched(OnOff), t)),
+  getprop(Thing, can(switched(OnOff), t)),
   getprop(Thing, effect(switch(OnOff), Term0)),
   {adv_subst(equivalent, ($(self)), Thing, Term0, Term)},
   call(Term),
@@ -292,7 +292,7 @@ aXiom(true) --> [].
 aXiom(switch(Open, Thing)) -->
  act_prevented_by(Open, TF),
  will_touch(Agent, Thing),
- %getprop(Thing, can_be(open),
+ %getprop(Thing, can(open),
  %\+ getprop(Thing, =(open, t)),
  Open = open, traverses(Sense, Open)
  %delprop(Thing, =(Open, f)),
@@ -303,7 +303,7 @@ aXiom(switch(Open, Thing)) -->
 
 aXiom(switch(OnOff, Thing)) -->
  will_touch(Agent, Thing),
- getprop(Thing, can_be(switch, t)),
+ getprop(Thing, can(switch, t)),
  getprop(Thing, effect(switch(OnOff), Term0)),
  adv_subst(equivalent, $self, Thing, Term0, Term),
  call(Term),
@@ -352,12 +352,12 @@ change_state(Agent, Open, Thing, Opened, TF,  S0, S):-
  maybe_when(psubsetof(Open, touch),
    required_reason(Agent, will_touch(Agent, Thing, S0, _))),
 
- %getprop(Thing, can_be(open, S0),
+ %getprop(Thing, can(open, S0),
  %\+ getprop(Thing, =(open, t), S0),
 
- required_reason(Agent, \+ getprop(Thing, can_be(Open, f), S0)),
+ required_reason(Agent, \+ getprop(Thing, can(Open, f), S0)),
 
- ignore(dshow_failure(getprop(Thing, can_be(Open, t), S0))),
+ ignore(dshow_failure(getprop(Thing, can(Open, t), S0))),
 
  forall(act_prevented_by(Open,Locked,Prevented),
    required_reason(Agent, \+ getprop(Thing, =(Locked, Prevented), S0))),

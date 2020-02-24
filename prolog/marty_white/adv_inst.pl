@@ -129,7 +129,7 @@ create_objprop(_Object, inherit(Other,t), S0, S0):- direct_props(Other, PropList
 create_objprop(Object, inherit(Other,t), S0, S9):- 
  direct_props_or(Other, PropList0, [], S0),
  adv_subst(PropList0,$class,Other,PropList1),
- (member(adjs(_),PropList1)-> PropList1=PropList;  [nouns([Other])|PropList1]=PropList),
+ (member(adjs(_),PropList1)-> PropList1=PropList;  [nouns(Other)|PropList1]=PropList),
  copy_term(PropList,PropListC),!,
  % must_mw1(updateprop(Object, inherit(Other,t), S5, S9)), !,
  %must_mw1(updateprop(Object, visited(Other), S0, S1)),

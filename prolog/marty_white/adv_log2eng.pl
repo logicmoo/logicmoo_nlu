@@ -563,29 +563,36 @@ logic2eng(_Aobj, cantdothat(EatCmd), [ 'can\'t do: ', EatCmd]).
 
 %logic2eng(_Obj, oper(OProp, [cap(N), aux(be), V]):- Prop =..[N, V].
 
-logic2eng( Obj, Prop, English):- Prop =..[N, V, T| VRange],T==t,Prop2 =..[N, V| VRange], logic2eng( Obj, Prop2, English).
-logic2eng(_Obj, has_rel(on), ['has a surface']).
-logic2eng(_Obj, has_rel(in), ['has an interior']).
-logic2eng(_Obj, has_rel(exit(_)), ['can have exits']).
-logic2eng(_Obj, can_be(eat), ['looks tasty ', '!']).
-logic2eng(_Obj, can_be(take), ['can be taken!']).
-logic2eng(_Obj, can_be(take,f), ['cannot be taken!']).
-logic2eng(_Obj, can_be(Verb), ['Can', aux(be), tense(Verb, past)]).
-logic2eng(_Obj, can_be(Verb, f), ['Can\'t', aux(be), tense(Verb, past)]).
-logic2eng(_Obj, knows_verbs(Verb), ['Able to', Verb ]).
-logic2eng(_Obj, knows_verbs(Verb, f), ['Unable to', Verb ]).
-logic2eng(_Obj, =(Opened, f), [currently,not,Opened]).
 logic2eng(_Obj, =(cleanliness, clean), []) :- pretty.
 logic2eng(_Obj, =(cleanliness, clean), [clean]).
 %logic2eng( Obj, =(shape, Value), extra_verbose([Value, shaped])):- atom_contains(Obj,Value).
 logic2eng( Obj, =(shape, Value), []):- atom_contains(Obj,Value).
 logic2eng(_Obj, =(shape, Value), [Value, shaped]).
 logic2eng(_Obj, =(volume_capacity, 10000), [is,large]).
-logic2eng(_Obj, =(Name, Value), [Name,aux(be),Value]).
+
+logic2eng( Obj, Prop=F, English):- F==f, !, append_term(Prop,F,ReProp),logic2eng( Obj, ReProp, English).
+logic2eng( Obj, Prop=T, English):- T==t, !, logic2eng( Obj, Prop, English).
+logic2eng(_Obj, =(Opened, f), [currently,not,Opened]).
 logic2eng(_Obj, =(Statused), [aux(be), Statused ]).
 logic2eng(_Obj, =(Statused, f), [aux(be), 'not', Statused ]).
+logic2eng(_Obj, =(Name, Value), [Name,aux(be),Value]).
+
+logic2eng( Obj, Prop, English):- Prop =..[N, V, T| VRange],T==t,Prop2 =..[N, V| VRange], logic2eng( Obj, Prop2, English).
+logic2eng(_Obj, has_rel(on), ['has a surface']).
+logic2eng(_Obj, has_rel(in), ['has an interior']).
+logic2eng(_Obj, has_rel(exit(_)), ['can have exits']).
+logic2eng(_Obj, can(eat), ['looks tasty ', '!']).
+logic2eng(_Obj, can(take), ['can be taken!']).
+logic2eng(_Obj, can(take,f), ['cannot be taken!']).
+logic2eng(_Obj, can(Verb), ['Can', aux(be), tense(Verb, past)]).
+logic2eng(_Obj, can(Verb, f), ['Can\'t', aux(be), tense(Verb, past)]).
+logic2eng(_Obj, knows_verbs(Verb), ['Able to', Verb ]).
+logic2eng(_Obj, knows_verbs(Verb, f), ['Unable to', Verb ]).
+
 logic2eng( Obj, inherit(Type), ['is',Out]):- logic2eng(Obj, [Type], Out), !.
-logic2eng( Obj, isnt(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
+logic2eng( Obj, inherit(Type,f), ['wont be',Out]):- logic2eng(Obj, [Type], Out), !.
+%logic2eng( Obj, isnt(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
+logic2eng( Obj, inherited(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, inherited(Type), ['inherit',Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng(_Obj, msg(Msg), Msg):- !.
 logic2eng(_Obj, class_desc(_), []).

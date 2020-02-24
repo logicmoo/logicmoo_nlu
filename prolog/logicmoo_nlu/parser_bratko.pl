@@ -46,8 +46,9 @@
 %:- parser_chat80:export(parser_chat80:theText80/3).
 %:- import(parser_chat80:theText80/3).
 :- reexport(parser_chat80).
+:- reexport(parser_tokenize).
+%:- use_module(pldata(clex_iface)).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
-:- use_module(pldata(clex_iface)).
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
@@ -444,7 +445,7 @@ make_time_info(Frame, _Time, LF, LF):- nvd(LF, Frame).
 expand_1arg(_,A,B):- \+ compound(A),!,A=B.
 expand_1arg(t,List,Out):- is_list(List),List=[Obj|Written],atomic(Obj),maplist(toPropercase,Written,WrittenO),i_name(Obj,WrittenO,Out).
 expand_1arg(_,str(Name), Out):- any_to_string(Name,Out),!.
-expand_1arg(isa,timeFn(Time), timeFn('vPast')):-  Time== past+fin. % Time\==nonfinite,
+expand_1arg(isa,timeFn(Time), timeFn('vPast')):-  (Time== past+fin ; Time==pp). % Time\==nonfinite,
 expand_1arg(_,A,A).
 
 expand_args(_,_,A,B):- \+ compound(A),!,A=B.
@@ -725,14 +726,22 @@ trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, XY, YX, LF), ((([by];[
  
 trans_verb1(_Frame, pres+fin, X, Y, z(painting, X, Y)) --> theText1(paints).
 trans_verb1(_Frame, pres+fin, X, Y, z(admiring, X, Y)) --> theText1(admires).
+trans_verb1(_Frame, Type,     X, Y, z(Verb, X, Y)) --> theText1(Formed),{ clex_verb(Formed, Verb, tv, Type)}.
 trans_verb1(Frame, Time, X, Y, LF) --> talk_verb(Frame, IV, tv(X, Y), Time, LF), nvd(IV, Frame).  % & isa(Frame, timeFn(Time)
 
 % helper for talk_verb_lf/. . .
-talk_verb(Frame, IV, Type, nonfinite, LF) --> theText1(IV), {talk_verb_lf(Frame, Type, IV, _, _, _, _, LF)}.
-talk_verb(Frame, IV, Type, pres+fin, LF) --> theText1(IV), {talk_verb_lf(Frame, Type, _, IV, _, _, _, LF)}.
-talk_verb(Frame, IV, Type, past+fin, LF) --> theText1(IV), {talk_verb_lf(Frame, Type, _, _, IV, _, _, LF)}.
-talk_verb(Frame, IV, Type, past+part, LF) --> theText1(IV), {talk_verb_lf(Frame, Type, _, _, _, IV, _, LF)}.
-talk_verb(Frame, IV, Type, pres+part, LF) --> theText1(IV), {talk_verb_lf(Frame, Type, _, _, _, _, IV, LF)}.
+talk_verb(Frame, IV, Type, Mod, LF) --> theText1(IV),{lf_talk_verb(Frame, IV, Type, Mod, LF)}.
+ 
+
+lf_talk_verb(Frame, IV, Type, nonfinite, LF):- talk_verb_lf(Frame, Type, IV, _, _, _, _, LF).
+lf_talk_verb(Frame, IV, Type, pres+fin,  LF):- talk_verb_lf(Frame, Type, _, IV, _, _, _, LF).
+lf_talk_verb(Frame, IV, Type, past+fin,  LF):- talk_verb_lf(Frame, Type, _, _, IV, _, _, LF).
+lf_talk_verb(Frame, IV, Type, past+part, LF):- talk_verb_lf(Frame, Type, _, _, _, IV, _, LF).
+lf_talk_verb(Frame, IV, Type, pres+part, LF):- talk_verb_lf(Frame, Type, _, _, _, _, IV, LF).
+lf_talk_verb(_Frame, IV, tv(X,Y),Type, z(Verb, X, Y)):- clex_verb(IV, Verb, tv, Type).
+lf_talk_verb(_Frame, IV, iv(X),  Type, z(Verb, X, _)):- clex_verb(IV, Verb, iv, Type).
+
+
 
 
 %                           nonfinite, pres+fin, past+fin, past+part, pres+part,  LF
@@ -763,11 +772,14 @@ intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF),
  
 intrans_verb1(_Frame, pres+fin, X, z(painting, X)) --> theText1(paints).
 intrans_verb1(_Frame, past+fin, X, z(wrote, X, _)) --> theText1(wrote).
+intrans_verb1(_Frame, Type, X, z(Verb, X, _)) --> theText1(Formed),{ clex_verb(Formed, Verb, iv, Type)}.
+
 intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, iv(X), Time, LF), nvd(IV, Frame).
 % fallback
 intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), nvd(IV, Frame).
 
 %                nonfinite, pres+fin, past+fin, past+part, pres+part, LF
+
  talk_verb_lf(_Frame, iv(X), halt,     halts,   halted,   halted,    halting, z(halting, X)).
 %OLD
   talk_verb_lf(Frame, iv(X), Write,    Writes,  Wrote,    Written,   Writing,  
@@ -825,7 +837,7 @@ copula_is_does --> theText1(C), {copula_is_does_dict(C)}.
 verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepostional_phrase(oblique, X, Frame, LFIn, LFOut).
 
 prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
-prepostional_phrase(SO, X, _Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, noun_phrase(SO, Y, prep(Prep, X, Y) & LF, Out).
+prepostional_phrase(SO, X, Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, noun_phrase(SO, Y, prep(Frame, Prep, X, Y) & LF, Out).
 prepostional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO, Y, about(X, Y) & LF, Out).
 
    prep_dict(to).
@@ -1031,16 +1043,16 @@ pronoun(_SO, X, LF, Out) --> theText1(some), add_traits(X, [pronounQFn("some"), 
 %pronoun(SO, X, LF, Out) --> theText1(one),dcg_push(someone),!,pronoun(SO, X, LF, Out).
 
 pronoun(SO, X, LF, Out) --> theText1(Nobody), {nl_call(quantifier_pron_db,Nobody, No, Body),pronoun_ok(_Subj,SO)},
- {upcase_atom(Nobody,VAR),foc_framevar(VAR,X)},
-  add_traits(X, [pronounDFn(Nobody), quant(No),pronounVarFn(VAR),Body], LF, Out), !.
+ {foc_framevar(Nobody,VarFn,X)},
+  add_traits(X, [pronounDFn(Nobody), quant(No),pronounVarFn(VarFn),Body], LF, Out), !.
 
 pronoun(SO, X, LF, Out) --> theText1(She), {nl_call(pers_pron_db,She, Fem, Third, Sing, Subj), pronoun_ok(Subj,SO)},
- {upcase_atom(She,VAR),foc_framevar(VAR,X)},
-  add_traits(X, [pronounCFn(She), gender(Fem), person(Third), pronounVarFn(VAR), Sing, v_arg(Subj)], LF, Out), !.
+ {foc_framevar(She,VarFn,X)},
+  add_traits(X, [pronounCFn(She), gender(Fem), person(Third), pronounVarFn(VarFn), Sing, v_arg(Subj)], LF, Out), !.
 
 pronoun(SO, X, LF, Out) --> theText1(Herself), {nl_call(reflexive_pronoun,VarName,Herself,Traits),               
-  (member(v_arg(O),Traits)-> pronoun_ok(O,SO); true),upcase_atom(VarName,VAR),foc_framevar(VAR,X)},
-  add_traits(X, [pronounBFn(Herself)|Traits], LF, Out), !.
+  (member(v_arg(O),Traits)-> pronoun_ok(O,SO); true),foc_framevar(VarName,VarFn,X)},
+  add_traits(X, [pronounBFn(Herself), pronounVarFn(VarFn)|Traits], LF, Out), !.
 
 pronoun(SO, X, LF, Out) --> named_var(SO, X, LF, Out).
 
@@ -1048,13 +1060,13 @@ pronoun(subj, X, LF, Out) --> theText1(WH), {whpron_dict(WH)},
   add_traits(X, pronounAFn(WH), LF, Out).
 
 
-named_var(_SO, X, LF, Out) --> [?,VAR], {upcase_atom(VAR,VAR),foc_framevar(VAR,X)},add_traits(X, [pronounVarFn(VAR)], LF, Out), !.
-named_var(_SO, X, LF, Out) --> [QVAR], {upcase_atom(QVAR,QVAR),atom_concat('?',VAR,QVAR),foc_framevar(VAR,X)}, 
-  add_traits(X, [pronounVarFn(VAR)], LF, Out), !.
+named_var(_SO, X, LF, Out) --> [?,VarName], {foc_framevar(VarName,VarFn,X)},add_traits(X, [pronounVarFn(VarFn)], LF, Out), !.
+named_var(_SO, X, LF, Out) --> [QVAR], {atom_concat('?',VarName,QVAR),VarName\=='',foc_framevar(VarName,VarFn,X)}, 
+  add_traits(X, [pronounVarFn(VarFn)], LF, Out), !.
 
-foc_framevar(VAR,X):- upcase_atom(VAR,V2),V2\==VAR,!,foc_framevar(V2,X).
-foc_framevar(VAR,X):- nb_current('$frame_variable_names',Vs),member(N=V,Vs),VAR==N,!,must(X=V).
-foc_framevar(VAR,X):- (nb_current('$frame_variable_names',Vs);Vs=[]),!,nb_setval('$frame_variable_names',[VAR=X|Vs]).
+foc_framevar(VarName,VarFn,X):- toPropercase(VarName,VarFn),!,foc_framevar2(VarFn,X).
+foc_framevar2(VarFn,X):- nb_current('$frame_variable_names',Vs),member(N=V,Vs),VarFn==N,!,must(X=V).
+foc_framevar2(VarFn,X):- (nb_current('$frame_variable_names',Vs);Vs=[]),!,nb_setval('$frame_variable_names',[VarFn=X|Vs]).
 
 
 pronoun_ok(Obj, Subject):- Obj == obj, Subject == subj, !, fail.
@@ -1096,6 +1108,12 @@ noun1(SO, X, LF) --> named_var(SO, X, true, LF).
 
 
 value_obj(_SO, Entity, LF, LF) --> proper_noun(Entity).
+value_obj( SO, X, LF, Out) --> named_var(SO, X, LF, Out).
+value_obj(_SO, X, LF, LF) --> numberic_value(X).
+value_obj(_SO, X, LF, MProps&LF) --> adjective1(X, MProps).
+
+numberic_value(N) --> [nb(N)],!,{nonvar(N)}.
+numberic_value(N) --> [W],{atom_number(W,N)}.
 
 proper_noun(Entity) --> quietly(([PN1,PN2], {was_propercase(PN1),was_propercase(PN2),
                                              downcase_atom(PN1,DN1),downcase_atom(PN2,DN2),

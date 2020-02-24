@@ -88,6 +88,7 @@ type_functor(state, props(inst, list(nv))).
 type_functor(state, memories(inst, list(event))).
 type_functor(state, preceptq(inst, list(event))).
 type_functor(state, h(domrel, inst, inst)).
+type_functor(state, domrel=value).
 
 
 type_functor(doing, inventory(agent)).
@@ -153,7 +154,10 @@ type_functor(event, transformed(inst, inst2)). % inst1 got derezed and rerezed a
 type_functor(nv_of_any, structure_label(term)).
 
 type_functor(nv, adjs(list(text))).
-type_functor(nv, can_be(actverb, tf)).
+type_functor(nv, nominals(list(text))).
+type_functor(nv, nouns(list(text))).
+
+type_functor(nv, can(actverb, tf)).
 type_functor(nv, knows_verbs(actverb, tf)).  % can use these actions
 type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
 type_functor(nv, class_desc(list(text))). % class description
@@ -170,14 +174,13 @@ type_functor(nv, inherited(type)).
 type_functor(nv, inheriting(type)).
 type_functor(nv, inst(sv(term))).
 type_functor(nv, name = (sv(text))).  
-type_functor(nv, nominals(list(text))).
-type_functor(nv, nouns(list(text))).
 type_functor(nv, oper(doing, preconds, postconds)).
 type_functor(nv, =(name, value)).
 
 :- dynamic(istate/1).
 % empty intial state
-istate([ structure_label(istate) ]).
+:- retractall(istate(_)).
+:- asserta(istate([ structure_label(istate) ])).
 
 
 % this hacks the state above 
@@ -194,7 +197,8 @@ held_by(the(bag), the(player)),
 in(the(coins), the(bag)),
 held_by(the(wrench), floyd),
 
-eng2log("A pantry exits south to a kitchen", exit(south, pantry, kitchen)),
+% eng2log("A pantry exits south to a kitchen", exit(south, pantry, kitchen)),
+exit(south, pantry, kitchen),
 exit(north, kitchen, pantry),
 exit(down, pantry, basement),
 exit(up, basement, pantry),
@@ -230,14 +234,18 @@ in(brklamp, garden)
 ]).
 
 
-term_expansion(StateInfo, (:- push_to_state(StateInfo))):- mu:is_state_info(StateInfo).
+mu:term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_state_info(StateInfo),PosO=Pos.
+
+:- listing(term_expansion).
+
+%:- rtrace.
 
 % type/2s are noticed by the term_expansion is_state_info
 door type      % xformed: type_props(door, ... the below ... )
-  ~can(take),  % xformed: can_be(actTake, f)
-   can(open),  % xformed: can_be(actOpen, t)
-   can(close), % xformed: can_be(actClose, t)
-   (opened = t),
+  ~can(take),  % xformed: can(actTake)= f
+   can(open),  % xformed: can(actOpen)= t
+   can(close), % xformed: can(actClose)= t
+   (opened = f),
    nouns(door),  % xformed: nouns(["door"])
    fully_corporial.  % xformed:  inherits(fully_corporial)
 
@@ -327,8 +335,8 @@ props(screendoor, [
    % See DM4
    name = ('speckled mushroom'),
    % singular,                     
-   inherit(food),
-   nouns([mushroom, fungus, toadstool]),
+   food,
+   nouns(eachOf([mushroom, fungus, toadstool])),
    adjs([speckled]),
    % initial(description used until initial state changes)
    initial('A speckled mushroom grows out of the sodden earth, on a long stalk.'),
@@ -345,7 +353,7 @@ props(screendoor, [
    ~can(take),
     can(open),
     can(close),
-    (opened = t),
+    (opened = f),
     nouns($class),
     inherit(fully_corporial)]),
 
@@ -361,7 +369,7 @@ props(screendoor, [
     class_desc(['kind is normally thinkable'])]),
 
  type_props(noncorporial, [
-   ~can(examine),
+    can(examine)=f,
    ~can(touch),
     inherit(thinkable),
     adjs($class),
@@ -418,7 +426,7 @@ props(screendoor, [
 
  props(floyd, [name = ('Floyd the robot'), powered = f, inherit(autonomous),inherit(robot)]),
 
- type_props(telnet, [adjs([remote]), inherit(player), nouns([player])]),
+ type_props(telnet, [adjs(remote), inherit(player), nouns([player])]),
  type_props(player, [name = ($self),
    % 1 = look at object  2 = glance at child_list 3 = glance at grandchildren 
    model_depth = 3, % how much of the model to get
@@ -507,8 +515,9 @@ props(screendoor, [
    volume_capacity = 10000,
    default_rel = in,
    has_rel(in),
-   nouns([here, $self]),
-   adjs([locally]),
+   nouns([here]),
+   nouns(($(self))),
+   adjs(locally),
   ~can(move),
   ~can(take),
    oper(discard($agent, Thing),
@@ -710,5 +719,6 @@ extra_decl0(T, P):- member(type_props(T, P), [  ]).
    
 :- op(0, xfx, props).
 
+:- listing(istate).
 %:- istate(IState),sort(IState,SIState),reverse(SIState,RIState), pprint(RIState, always).
 

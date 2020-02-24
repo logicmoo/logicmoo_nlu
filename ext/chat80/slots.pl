@@ -192,26 +192,6 @@ i_s('s80'(Subj,Verb,VArgs,VMods),Pred,Up,Id) :-
    try_maybe_p(reshape_pred(Meta,QSubj,Neg,P,Args0,Pred)).
 
 
-:- export(try_maybe_p/1).
-try_maybe_p(M:P):- P=..[F,_,R],!,try_maybe_f(F,M:P,R).
-try_maybe_p(M:P):- P=..[F,_,_,R],!,try_maybe_f(F,M:P,R).
-%try_maybe_p(M:P):- debugging, !, on_f_ftrace(M:P).
-try_maybe_p(M:P):- !, call(M:P).
-try_maybe_p(M:P):- !, P=..[F,_|List],try_maybe_pl(M:P,F,List).
-try_maybe_p(P):-!,try_maybe_p(parser_chat80:P).
-
-try_maybe_pl(_  ,F,List):- (member(E,List),compound(E),E=error(F,_)),!,print_reply(E),fail.
-try_maybe_pl(M:P,F,List):- member(E,List),var(E),reverse(List,RList),member(R,RList),var(R),!,                 
-  (R==E -> try_maybe_p(M:P,R);
-  (try_maybe_f(F,M:P,R);try_maybe_f(F,M:P,E))).
-
-:- export(try_maybe_p/3).
-try_maybe_p(_,error(E1,E2),R):-!, (fail;true),R=error(E1,E2).
-try_maybe_p(M:F,X,R):- P=..[F,X,R],!,try_maybe_f(F,M:P,R).
-
-try_maybe_f(F,P,R):- P*->true;(fail;fail;R=error(F,P)).
-
-
 i_verb(verb(Root,Voice,Tense,_Aspect,Neg),
       P,Tense,Voice,Det,Slots,XArg,Meta) :-
    slot_verb_template(Root,P,Slots,XArg,Meta),

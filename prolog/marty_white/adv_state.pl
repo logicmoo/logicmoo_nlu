@@ -421,21 +421,26 @@ props_to_list((A, B), ABL):- !,
 props_to_list(Other, [Other]).
 
 correct_prop(NC, NO):- var(NC), !, NC = NO.
-correct_prop(Type, inherit(Type, t)):- atom(Type).
+correct_prop(        (Type), inherit(Type, t)):- atom(Type).
+correct_prop(~inherit(Type), inherit(Type, f)):- atom(Type), !.
+correct_prop( inherit(Type), inherit(Type, t)):- check_atom(Type), !.
+correct_prop(     isa(Type), inherit(Type, t)):- check_atom(Type), !.
+correct_prop(    isnt(Type), inherit(Type, f)):- check_atom(Type), !.
+correct_prop(       ~(Type), inherit(Type, f)):- atom(Type), !.
 correct_prop(NC, nc(NC)):- \+ compound(NC), !.
-correct_prop(~(Type), inherit(Type, f)):- atom(Type), !.
+
 correct_prop(HPRED, h(FS, X, Y)):- HPRED=..[F, S, X, Y], is_spatial_rel(F), !, FS=..[F, S].
 correct_prop(HPRED, h(F, X, Y)):- HPRED=..[F, X, Y], is_spatial_rel(F), !.
-correct_prop(SV, N=V):- SV=..[N, V], single_valued_prop(N), !.
-correct_prop((can(Verb)), can_be(Verb, t)):- nop(check_atom(Verb)).
-correct_prop(~(can(Verb)), can_be(Verb, f)):- nop(check_atom(Verb)).
-correct_prop((knows_verbs(Verb)), knows_verbs(Verb, t)):- nop(check_atom(Verb)).
+correct_prop(          SV, N=V):- SV=..[N, V], single_valued_prop(N), !.
+
+correct_prop( (can_be(Verb)), can(Verb, t)):- nop(check_atom(Verb)).
+correct_prop(~(can_be(Verb)), can(Verb, f)):- nop(check_atom(Verb)).
+correct_prop( (can(Verb)),    can(Verb, t)):- nop(check_atom(Verb)).
+correct_prop(~(can(Verb)),    can(Verb, f)):- nop(check_atom(Verb)).
+correct_prop( (knows_verbs(Verb)), knows_verbs(Verb, t)):- nop(check_atom(Verb)).
 correct_prop(~(knows_verbs(Verb)), knows_verbs(Verb, f)):- nop(check_atom(Verb)).
-correct_prop((has_rel(Verb)), has_rel(Verb, t)):- nop(check_atom(Verb)).
+correct_prop( (has_rel(Verb)), has_rel(Verb, t)):- nop(check_atom(Verb)).
 correct_prop(~(has_rel(Verb)), has_rel(Verb, f)):- nop(check_atom(Verb)).
-correct_prop(isa(Type), inherit(Type, t)):- check_atom(Type), !.
-correct_prop(isnt(Type), inherit(Type, f)):- check_atom(Type), !.
-correct_prop(inherit(Type), inherit(Type, t)):- check_atom(Type), !.
-correct_prop(Other,Other).
+correct_prop(  Other,Other).
 
 

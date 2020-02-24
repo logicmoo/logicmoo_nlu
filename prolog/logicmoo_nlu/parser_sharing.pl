@@ -22,6 +22,13 @@
 
 % :- ensure_loaded(nl_pipeline).
 
+:- expand_file_search_path(pack(logicmoo_nlu/ext/pldata),X),
+   exists_directory(X),!,assert_if_new(user:file_search_path(pldata,X)).
+:- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
+   asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
+:- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
+   asserta_new(user:file_search_path(logicmoo,Dir)).
+
 %nl_pred(F/A):-
 def_nl_pred(M,F,A):- 
   assert_if_new(nlfac:is_nl_pred(M,F,A)).
@@ -289,6 +296,26 @@ is_leave_alone(H):- compound(H),functor(H,F,A),is_leave_alone(F,A).
 %is_leave_alone('--->',_).
 %is_leave_alone('-->',_).
 is_leave_alone(A,_):- upcase_atom(A,A).
+
+:- export(try_maybe_p/1).
+try_maybe_p(M:P):- P=..[F,_,R],!,try_maybe_f(F,M:P,R).
+try_maybe_p(M:P):- P=..[F,_,_,R],!,try_maybe_f(F,M:P,R).
+%try_maybe_p(M:P):- debugging, !, on_f_ftrace(M:P).
+try_maybe_p(M:P):- !, call(M:P).
+try_maybe_p(M:P):- !, P=..[F,_|List],try_maybe_pl(M:P,F,List).
+try_maybe_p(P):-!,try_maybe_p(parser_chat80:P).
+
+try_maybe_pl(_  ,F,List):- (member(E,List),compound(E),E=error(F,_)),!,print_reply(E),fail.
+try_maybe_pl(M:P,F,List):- member(E,List),var(E),reverse(List,RList),member(R,RList),var(R),!,                 
+  (R==E -> try_maybe_f(F,M:P,R);
+  (try_maybe_f(F,M:P,E);try_maybe_f(F,M:P,R))).
+
+:- export(try_maybe_p/3).
+try_maybe_p(_,error(E1,E2),R):-!, (fail;true),R=error(E1,E2).
+try_maybe_p(M:F,X,R):- P=..[F,X,R],!,try_maybe_f(F,M:P,R).
+
+try_maybe_f(F,P,R):- P*->true;(fail;fail;R=error(F,P)).
+
 
 term_expansion(G,I,GG,O):- notrace((nonvar(I),compound(G))),importing_clause_change(G,GG), I=O.
 

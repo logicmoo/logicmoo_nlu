@@ -140,7 +140,10 @@ consume(F,Mode) :-
       ((flag(read_terms,T,T+1),xg_process_now(X,Mode)),
          fail )).
 
-read_conv(X):- read(Y),once(do_renames(Y,X)).
+do_renames80(X,Y):- current_predicate(do_renames/2),do_renames(X,Y),!.
+do_renames80(X,X).
+
+read_conv(X):- read(Y),once(do_renames80(Y,X)).
 
 :- module_transparent(xg_process_now/2).
 xg_process_now(X,Mode):- catch(xg_process(X,Mode),Error,(xg_msg(Error),fail)),!.

@@ -32,13 +32,8 @@
 :- (abolish(apply_macros:expand_apply,2), assert((apply_macros:expand_apply(_In,_):- fail))).
 
 
-:- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
-   asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
-:- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
-   asserta_new(user:file_search_path(logicmoo,Dir)).
-
-
 :- use_module(library(logicmoo_utils_all)).
+
 :- use_module(library(logicmoo_lib)).
 
 :- use_module(parser_sharing).

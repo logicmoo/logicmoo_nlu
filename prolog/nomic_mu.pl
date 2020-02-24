@@ -20,7 +20,9 @@
 :- module(mu, [srv_mu/0, srv_mu/1, run_mu/0, mu_port/1, usage_mu/0]).
 
 % nohup websocket_redir.sh dbutterfly 4004 &
+:- use_module(library(logicmoo_common)).
 
+:- '$set_typein_module'(baseKB).
 
 :- pack_install(dictoo).
 
@@ -54,8 +56,39 @@
 :-endif.
 
 
+% :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_chat80)).
+%:- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_pldata)).
+
+:- use_module(library(logicmoo_nlu/parser_sharing)).
+:- use_module(library(logicmoo_nlu/parser_tokenize)).
+:- ensure_loaded(library(logicmoo_nlu/parser_pldata)).
+:- use_module(library(logicmoo_nlu/parser_chat80)).
+:- use_module(library(logicmoo_nlu/parser_bratko)).
+
+:- if(exists_source(library(logicmoo_nlu))).
+%% :- use_module(library(logicmoo_nlu)).
+%:- use_module(library(logicmoo_nlu/parser_sharing)).
+%:- use_module(library(logicmoo_nlu/parser_tokenize)).
+%:- use_module(library(logicmoo_nlu/nl_pipeline)).
+:- else.
+% :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_sharing)).
+:- if(exists_source(pack(logicmoo_nlu/ext/pldata/nl_iface))).
+:- ensure_loaded(pack(logicmoo_nlu/ext/pldata/nl_iface)).
+:- else.
+:- if(exists_source(library(nldata/nl_iface))).
+% being in user is just to help debugging from console
+%:- user:ensure_loaded(library(nldata/nl_iface)).
+:- endif.
+:- endif.
+:- load_wordnet.
+:- endif.
+
+
+
 :- ensure_loaded('./marty_white/adv_main').
 :- ensure_loaded('./marty_white/adv_telnet').
+
+% :- use_module(library(logicmoo_mud)).
 
 % :- use_module(library(dialect/ifprolog),except([time / 1])).
 % :- use_module(./chat80).
@@ -112,7 +145,7 @@ or to run as single player use:
 
 ',[Port]).
 
-:- use_module(library(logicmoo_mud)).
+:- '$set_typein_module'(mu).
 
 :- initialization(srv_mu_main, (main)).
 :- initialization(usage_mu, (now)).

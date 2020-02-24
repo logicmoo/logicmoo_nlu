@@ -12,7 +12,11 @@
 :- shared_parser_data(in_continent/2).
 
 :- use_module(library(clpr),[]).
-:- install_constant_renamer_until_eof.
+%:- install_constant_renamer_until_eof.
+:- call_on_eof(if_defined(show_missing_renames)),  
+   call_on_eof(set_prolog_flag(do_renames_sumo,maybe)),
+   set_prolog_flag_until_eof(do_renames,term_expansion).
+
 :- set_prolog_flag(do_renames_sumo,never).
 
 /*
@@ -124,10 +128,9 @@ conj_db(or).
 conj_db(But):- cycQuery80(partOfSpeech(_,'CoordinatingConjunction',But)).
 %:- listing(conj_db).
 
-:- do_renames(
-   ((conj_db(But):- cycQuery80(partOfSpeech(Blank,'CoordinatingConjunction',But)))),
-       Out),
-    must((conj_db(But):- cycQuery80(partOfSpeech(Blank,'xtCoordinatingConjunction',But)))==Out).
+:- do_renames80(
+   ((     conj_db(But):- cycQuery80(partOfSpeech(Blank,  'CoordinatingConjunction',But)))),Out),
+    nop(must((conj_db(But):- cycQuery80(partOfSpeech(Blank,'xtCoordinatingConjunction',But)))==Out)).
 
 int_pron_db(what,undef).
 int_pron_db(which,undef).
