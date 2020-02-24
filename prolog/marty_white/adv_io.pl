@@ -194,10 +194,10 @@ stdio_player(Agent):-
  \+ mu_global:console_io_player(_, _, Agent). 
 
 :- thread_local(mu_global:current_agent_tl/1).
-current_player(Agent):- current_agent(AgentWas),!,AgentWas= Agent.
+current_player(Agent):- mu_current_agent(AgentWas),!,AgentWas= Agent.
 
-current_agent(Agent):- current_agent_(AgentWas),!,AgentWas= Agent.
-:- export(current_agent/1).
+mu_current_agent(Agent):- current_agent_(AgentWas),!,AgentWas= Agent.
+:- export(mu_current_agent/1).
 current_agent_(Agent):- mu_global:current_agent_tl(Agent),!.
 current_agent_(Agent):- current_input(InStream),mu_global:console_io_player(InStream, _, Agent).
 current_agent_(Agent):- current_output(OutStream),mu_global:console_io_player(_, OutStream, Agent).
@@ -215,7 +215,7 @@ ensure_has_prompt(Agent):-
 
 
 player_format(Fmt,List):-
- current_agent(Agent) ->
+ mu_current_agent(Agent) ->
  notrace(player_format(Agent, Fmt, List)).
 
 player_format(Agent,Fmt,List):-

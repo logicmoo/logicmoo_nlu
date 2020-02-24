@@ -72,7 +72,7 @@ do_metacmd(Doer, nospy(Pred), S0, S0) :- security_of(Doer,admin), nospy(Pred).
 :- add_help(possess(agent),"Take possession of a character").
 do_metacmd(Doer, possess(NewAgent), S0, S0) :-
  security_of(Doer,wizard),
- current_agent(OldAgent),
+ mu_current_agent(OldAgent),
  current_input(InputConsole),
  retractall(console_controls_agent(_,OldAgent)),
  retractall(console_controls_agent(_,NewAgent)),
@@ -154,7 +154,7 @@ do_metacmd(Doer, inspect(Self, getprop(Target,NamedProperty)), S0, S0) :-
 
 do_metacmd(Doer, create(Type), S0, S9) :-
  security_of(Doer,wizard),
- must_mw1((current_agent(Agent),
+ must_mw1((mu_current_agent(Agent),
  h(Prep, Agent, Here, S0),
  create_new_unlocated(Type, Object, S0, S1),
  declare(h(Prep, Object, Here), S1, S9),

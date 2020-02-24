@@ -198,11 +198,11 @@ must_test_80([which, country, bordering, the, mediterranean, borders, a, country
 must_test_80([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?], [sent([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?]), parse(whq(feature&place&continent-B, s(np(3+plu, wh(feature&place&continent-B), []), verb(be, active, pres+fin, [], pos), [arg(dir, np(3+plu, np_head(det(the(plu)), [], continent), [rel(feature&place&continent-D, s(np(3+sin, np_head(det(no), [], country), [prep_phrase(prep(in), np(3+plu, wh(feature&place&continent-D), []))]), verb(contain, active, pres+fin, [], pos), [arg(dir, np(3+plu, np_head(quant(more, nb(2)), [], city), [rel(feature&city-G, s(np(3+sin, np_head(det(the(sin)), [], population), [prep_phrase(poss, np(3+plu, wh(feature&city-G), []))]), verb(exceed, active, pres+fin, [], pos), [arg(dir, np(3+sin, np_head(quant(same, nb(1)), [], million), []))], []))]))], []))]))], []))), sem((answer([F]):-setof(A, (continent(A), \+B^ (country(B), in(B, A), E^ (numberof(C, (city(C), D^ (population(C, D), exceeds(D, 1--million)), in(C, B)), E), E>2))), F))), qplan((answer([L]):-setof(G, (continent(G), \+H^ (country(H), in(H, G), K^ (numberof(I, (city(I), J^ (population(I, J), exceeds(J, 1--million)), in(I, H)), K), K>2))), L))), answers([[africa,antarctica,australasia]])],[time(0.05499999999999999)]).
 
 chat80(X, Ans, notraits):- var(X), (chat80(X, Ans); chat80(X)).
-%chat80(X, Ans, [regressions|Props]):- var(X), must_test_80(Tokens,Props,_Time), member(answers(Ans),Props), tokens_to_acetext(Tokens,Ace),any_to_string(Ace,X).
-chat80(X, Ans):- var(X), must_test_80(Tokens,Props,_Time), once(( member(answers(Ans),Props), tokens_to_acetext(Tokens,Ace),any_to_string(Ace,X))).
+%chat80(X, Ans, [regressions|Props]):- var(X), must_test_80(Tokens,Props,_Time), member(answers(Ans),Props), into_acetext(Tokens,Ace),any_to_string(Ace,X).
+chat80(X, Ans):- var(X), must_test_80(Tokens,Props,_Time), once(( member(answers(Ans),Props), into_acetext(Tokens,Ace),any_to_string(Ace,X))).
 
-chat80(X):- var(X), must_test_80(Tokens,_,_Time), once((tokens_to_acetext(Tokens,Ace),any_to_string(Ace,X))).
-chat80(X):- var(X), clause(chat80([L|IST]),true),once((tokens_to_acetext([L|IST],Ace),any_to_string(Ace,X))).
+chat80(X):- var(X), must_test_80(Tokens,_,_Time), once((into_acetext(Tokens,Ace),any_to_string(Ace,X))).
+chat80(X):- var(X), clause(chat80([L|IST]),true),once((into_acetext([L|IST],Ace),any_to_string(Ace,X))).
 chat80(X):- var(X), clause(chat80(X,_,_),true).
 chat80(X):- var(X), clause(chat80(X,_),true).
 %chat80(X, Ans, traits):- var(X),chat80(X, Ans, _Traits).

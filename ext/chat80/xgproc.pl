@@ -11,9 +11,9 @@
 
 :-nodebug(xgproc).
 
-xg_msg(M):- (debugging(xgproc);debugging(logicmoo(nlu))),!,wdmsg(M).
+xg_msg(M):- (debugging(xgproc);debugging(logicmoo(nlu))),!,wdmsg_pretty(M).
 xg_msg(_):- prolog_load_context(reloading,true),!.
-xg_msg(M):- dmsg(M).
+xg_msg(M):- nop(dmsg(M)).
 
 abolish_xg(Prop):- 
   % ignore(tlxgproc:current_xg_module(M)),
@@ -200,11 +200,11 @@ xg_complete(_F) :-
    fail.
 xg_complete(F):- flag(read_terms,T,T),xg_msg(info(read(T,F))),nl,nl.
 
-:- listing(xg_complete/1).
+%:- listing(xg_complete/1).
 
-:- cvt_to_dynamic(xg_complete/1).
+%:- cvt_to_dynamic(xg_complete/1).
 
-:- listing(xg_complete/1).
+%:- listing(xg_complete/1).
 
 usurping(+,_) :- !.
 usurping(-,P) :-

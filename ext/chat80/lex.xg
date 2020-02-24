@@ -18,7 +18,7 @@ theTextL(W1,_CYCPOS,WHY) ---> theText80(W1),{call(WHY)}.
 
 noText ---> [].
 
-theText1(W1)---> {t_l:old_text,!},[W1].
+theText1(IC)---> {t_l:old_text,!},[W1],{downcase_atom(W1,DC),(var(IC)->IC=DC;downcase_atom(IC,DC))}.
 theText1(Txt)---> [w(Txt,_)].
 
 theText1(W1,_CYCPOS)--->{t_l:old_text,!},[W1]. % compatible_pos_db(CW,CYCPOS),cw_db(W1,CW)

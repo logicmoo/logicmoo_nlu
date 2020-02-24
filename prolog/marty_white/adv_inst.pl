@@ -62,18 +62,18 @@ init_objects(S0, S2) :-
  create_missing_instances(S0,S1), !,
  must_mw1(call((get_objects(true,ObjectList, S1), ObjectList\==[]))),
  bugout1(iObjectList = ObjectList), 
- apply_mapl_state(create_object(), ObjectList, S1, S2),
+ apply_mapl_state(mu_create_object(), ObjectList, S1, S2),
  must_output_state(S2))).
 
 
-%create_object(Agent, S0, S2) :- declared(perceptq(Agent, []), S0), !,
+%mu_create_object(Agent, S0, S2) :- declared(perceptq(Agent, []), S0), !,
 % bugout1(existingAgent=Agent),
 % S2=S0.
      
-create_object(Object, S0, S0) :- declared(props(Object,PropList), S0), member(co(_),PropList),!.
-create_object(Object, S0, S9) :- 
+mu_create_object(Object, S0, S0) :- declared(props(Object,PropList), S0), member(co(_),PropList),!.
+mu_create_object(Object, S0, S9) :- 
  object_props_or(Object, PropList, [], S0),!,
- bugout1(create_object(Object,PropList)),
+ bugout1(mu_create_object(Object,PropList)),
  undeclare_always(props(Object,_), S0, S2),
  declare(props(Object,[co(PropList)]), S2, S3),
  create_objprop(Object, PropList, S3, S9). 

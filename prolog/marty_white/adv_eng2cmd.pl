@@ -225,16 +225,16 @@ parse_cmd(Doer, inspect(Doer,getprop(Target,PropPred))) --> [PropText],
   {self_prop(Type, PropText, PropPred)},!,  parse_for_optional(Type,Target,Doer).
 
 
-parse_for_optional(Type, Target, _Else) --> parse_for(Type,Target).
+parse_for_optional(Type, Target, _Else) --> parse_for_kind(Type,Target).
 parse_for_optional(_Type, Else,  Else) --> [].
 
-%parse_for(_,_) --> [], !, {fail}.
-parse_for(agent,floyd) --> [floyd],!.
-parse_for(agent,Target) --> !, parse_for(object,Target).
-parse_for(place,Target) --> !, parse_for(object,Target).
-parse_for(object,Target) --> {list_len_between(3,1,List)},List,{parse2object(List,Target,inst('player~1'))}.
-%parse_for(place, Dest)--> in_agent_model(Dest, h(_, _, Dest)).
-%parse_for(place, Dest)--> in_agent_model(Dest, h(_, Dest, _)).
+%parse_for_kind(_,_) --> [], !, {fail}.
+parse_for_kind(agent,floyd) --> [floyd],!.
+parse_for_kind(agent,Target) --> !, parse_for_kind(object,Target).
+parse_for_kind(place,Target) --> !, parse_for_kind(object,Target).
+parse_for_kind(object,Target) --> {list_len_between(3,1,List)},List,{parse2object(List,Target,inst('player~1'))}.
+%parse_for_kind(place, Dest)--> in_agent_model(Dest, h(_, _, Dest)).
+%parse_for_kind(place, Dest)--> in_agent_model(Dest, h(_, Dest, _)).
 
 list_len_between(N,M,List):- length(List, N) ;
   (N\=M , (N<M -> N2 is N+1 ; N2 is N-1), list_len_between(N2,M,List)).
@@ -255,9 +255,9 @@ oneOf(List,S,E):-member(I,List),(is_list(I)->phrase(I,S,E);phrase([I],S,E)).
 % %%%%%%%%%%%%%%
 % Communication
 % %%%%%%%%%%%%%%
-parse_cmd(Doer, emote(Doer, say, Dest, Emoted)) --> parse_for(agent, Dest), [','],  eng2assert_text(Emoted).
+parse_cmd(Doer, emote(Doer, say, Dest, Emoted)) --> parse_for_kind(agent, Dest), [','],  eng2assert_text(Emoted).
 parse_cmd(Doer, emote(Doer, Say, Dest, Emoted)) --> [Ask], {ask_to_say(Ask,Say)},
-  oneOf([to,from,:,(','),[]]), ignore(parse_for(agent, Dest);parse2object(Dest)), oneOf([to,:,[]]), eng2assert_text(Emoted).
+  oneOf([to,from,:,(','),[]]), ignore(parse_for_kind(agent, Dest);parse2object(Dest)), oneOf([to,:,[]]), eng2assert_text(Emoted).
 %parse_cmd(Doer, emote(Doer, Emoted)) --> [emote], eng2assert_text(Emoted),!.
 %parse_cmd(Doer, say(Doer, Emoted)) --> [say], eng2assert_text(Emoted).
 
@@ -801,15 +801,14 @@ args2logical(TheArgs, TheArgs, _M).
  
 quietly_talk_db(L):- quietly(munl_call(talk_db(L))).
 
+mu_is_kind(Thing,inst):- get_advstate(M), member(props(Thing,_),M).
+mu_is_kind(Thing,type):- get_advstate(M), member(type_props(Thing,_),M).
+%mu_is_kind(Thing,inst):- get_advstate(M), \+ member(type_props(Thing,_),M).
 
-is_kind(Thing,inst):- get_advstate(M), member(props(Thing,_),M).
-is_kind(Thing,type):- get_advstate(M), member(type_props(Thing,_),M).
-%is_kind(Thing,inst):- get_advstate(M), \+ member(type_props(Thing,_),M).
-
-atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),is_kind(Thing,Kind),TheThing==Thing,!.
-atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),is_kind(Thing,Kind),atom_concat(TheThing,_,Thing),!.
-atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),is_kind(Thing,Kind),atom_concat(_,TheThing,Thing),!.
-atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),is_kind(Thing,Kind),atom_contains(Thing,TheThing),!.
+atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),mu_is_kind(Thing,Kind),TheThing==Thing,!.
+atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),mu_is_kind(Thing,Kind),atom_concat(TheThing,_,Thing),!.
+atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),mu_is_kind(Thing,Kind),atom_concat(_,TheThing,Thing),!.
+atom_of(Kind,TheThing,Thing,M):- sub_term_atom(Thing,M),mu_is_kind(Thing,Kind),atom_contains(Thing,TheThing),!.
 
 
 sub_term_atom(Term, TermO):- \+ compound(Term), !, atom(Term), TermO = Term.

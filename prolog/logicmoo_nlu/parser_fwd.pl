@@ -32,12 +32,12 @@ system:nl_fwd :- locally(tracing80,
 irc_cmd:irc_invoke_nlp(Channel,User,_Say,"list"):-     
    ID = uid(User,_),
    OldPipeline = pipeline(ID,_Name,_Value),
-   forall(OldPipeline, say(Channel:User,OldPipeline)).  
+   forall(OldPipeline, eggdrop:say(Channel:User,OldPipeline)).  
 
 % :- trace.
 irc_cmd:irc_invoke_nlp(Channel,User,Say,Args):- 
    nop(say(irc_invoke_nlp(Channel,User,Say,Args))),
-   into_text80(Args,Text80),input_to_acetext(Text80,Ace),  
+   parser_tokenize:into_text80(Args,Text80),parser_tokenize:into_acetext(Text80,Ace),  
    ID = uid(User,Ace),
    OLDID = uid(User,_),
    OldPipeline = pipeline(OLDID,_Name,_Value),
@@ -69,7 +69,7 @@ pipe_to_fwc(M,P,add_conversion(From,M:Pred,To)):- compound(P), P=..[Pred,+From,-
 system:nl_fwd(S):- awc, ground(S), ain(nl_fwd(S)).
 nl_fwd(S,K):- awc, ground(S), ain(nl_fwd(S,K)).
 
-:- mpred_trace_all.
+%:- mpred_trace_all.
 
 add_conversion(From,Pred,To) ==>
    ((pipeline(ID,From,VarFrom),{t(Pred,VarFrom,VarTo)}) ==> pipeline(ID,To,VarTo)).
@@ -119,10 +119,10 @@ tell_aboutonce(N,V) ==> {once(say(N,V))}.
 % ==> nl_fwd("every man that paints likes monet .",tell).
 % ==> nl_fwd("a woman that admires john paints .",tell).
 % ==> nl_fwd("every woman that likes a man that admires monet paints.",tell).
+/*
 ==> nl_fwd("Every woman waits.", tell).
 ==> nl_fwd("all men are mortal.",tell).
 ==> nl_fwd("what countries are there in europe ?", ask).
-/*
 ==> nl_fwd("bertrand is an author .",tell).
 ==> nl_fwd("bertand is in europe.", tell).
 

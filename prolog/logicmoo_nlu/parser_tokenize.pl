@@ -9,15 +9,15 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
-:- module(parser_tokenize,[into_text80/2,input_to_acetext/2]).
+:- module(parser_tokenize,[into_text80/2,into_acetext/2,any_nb_to_atom/2]).
 
-%input_to_acetext(Input,AceText):- atomic(Input), !, tokenize(Input, Tokens), tokens_to_acetext(Tokens,AceText).
-%input_to_acetext(Input,AceText):- tokens_to_acetext(Input,AceText).
-
-
+%into_acetext(Input,AceText):- atomic(Input), !, tokenizer:tokenize(Input, Tokens), into_acetext(Tokens,AceText).
+%into_acetext(Input,AceText):- into_acetext(Input,AceText).
 
 
-input_to_acetext(Tokens,AceText):- 
+%:- use_module(ape(prolog/parser/tokenizer)).
+
+into_acetext(Tokens,AceText):- 
    notrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).
 
 tokens_to_acetext0([],'').
@@ -49,8 +49,7 @@ break_atom_symbols([],[]).
 break_atom_symbols([I|List],[I|ListO]):- keep_unbroken(I), !, 
    break_atom_symbols(List,ListO).
 break_atom_symbols([I|List],[O|ListO]):-  unquoted(I,S),!,
-  into_text80(S,T),
-  tokens_to_acetext(T,A),
+  into_acetext(S,A),
   requoted(A,O),!,
   break_atom_symbols(List,ListO).
 break_atom_symbols([Pos,':',Word|List],[O|ListO]):-  atomic_list_concat([Pos,':',Word],'',O), !,

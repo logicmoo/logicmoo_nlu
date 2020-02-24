@@ -21,13 +21,38 @@
 
 % nohup websocket_redir.sh dbutterfly 4004 &
 
-:- if(\+ exists_source(library(poor_bugger))).
-:- prolog_load_context(file,File),
-   absolute_file_name('.',X,[relative_to(File),file_type(directory)]),
-   asserta(user:file_search_path(library,X)).
-:- endif.
 
 :- pack_install(dictoo).
+
+%:- if(current_prolog_flag(argv,[])).
+%  sudo -u prologmud_server gdb -x gdbinit -return-child-result -ex "set pagination off" -ex run -ex quit --args swipl -l run_mud_server.pl --all --world --repl --lisp --lispsock --sumo --planner --nonet --repl --noworld
+:- if(\+ ((current_prolog_flag(argv,X),member(E,X),atom_concat('--',_,E)))).
+:- current_prolog_flag('argv',WasArgV),
+   append(WasArgV,[         
+   '--', % '--all',
+   % '--pdt','--repl','--lisp','--lispsock','--swish','--docs','--plweb', '--cliop','--sigma','--www',
+   % '--elfinder',  '--defaults'
+   '--nonet', % we will start our own net servers in NomicMU
+   '--irc',   
+   %'--noworld',   
+   %'--world',
+   '--sumo', '--planner'], NewArgV),
+   set_prolog_flag('argv',NewArgV).
+
+:- current_prolog_flag('argv',Is),writeq(set_prolog_flag('argv',Is)),!,nl.
+:- endif.
+
+:-if(exists_source(library(pldoc))).
+:- use_module(library(pldoc), []). % Must be loaded before doc_process	
+:- use_module(library(pldoc/doc_process)).
+:- use_module(library(prolog_xref)).
+:- doc_collect(true).
+:-endif.
+
+:-if(exists_source(library(instant_prolog_docs))).
+:- use_module(library(instant_prolog_docs)).
+:-endif.
+
 
 :- ensure_loaded('./marty_white/adv_main').
 :- ensure_loaded('./marty_white/adv_telnet').
@@ -66,6 +91,7 @@ srv_mu_main:- srv_mu.
 
 mu_port(4004).
 
+:- add_history((mu:srv_mu)).
    
 usage_mu:- mu_port(Port), format('~N
 You may start the server with:
@@ -86,9 +112,10 @@ or to run as single player use:
 
 ',[Port]).
 
+:- use_module(library(logicmoo_mud)).
 
-  
+:- initialization(srv_mu_main, (main)).
+:- initialization(usage_mu, (now)).
+:- initialization(usage_mu, (program)).
 
-:- initialization(srv_mu_main, main).
-:- initialization(usage_mu, now).
-:- initialization(usage_mu, program).
+

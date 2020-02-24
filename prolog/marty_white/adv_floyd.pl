@@ -126,7 +126,7 @@ autonomous_decide_follow_player(Agent, Mem0, Mem1) :- % 1 is random(2),
  must_mw1((
  agent_thought_model(Agent,ModelData, Mem0),
  in_agent_model(Agent,h(_, Agent, Here), ModelData))),
- dif(Agent, Player), current_agent(Player),
+ dif(Agent, Player), mu_current_agent(Player),
  in_agent_model(Agent,h(_, Player, There), ModelData),
  in_agent_model(Agent,h(exit(Dir), Here, There), ModelData),
  add_todo(go_dir(Agent, walk, Dir), Mem0, Mem1).

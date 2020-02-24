@@ -54,7 +54,7 @@ nl_call_exit(_M,_F,_A,_P).
 
 :- make_nl_call_stubs.
 % :- make_nl_call_stubs. 
-:- listing(nl_call).
+%:- listing(nl_call).
 % (predicate_property(P,number_of_clauses(N))
 :- module_transparent(each_parser_module/1).
 each_parser_module(M):- no_repeats(M,each_parser_module_0(M)).
@@ -68,7 +68,7 @@ each_parser_module_0(M):- each_parser_module_1(E),default_module(E,M).
 each_parser_module_1(M):- strip_module(_,M,_).
 each_parser_module_1(M):- '$current_source_module'(M).
 each_parser_module_1(M):- '$current_typein_module'(M).
-each_parser_module_1(M):- current_module(M).
+%each_parser_module_1(M):- current_module(M).
 
 :- module_transparent(predicate_visible_home/2).
 predicate_visible_home(H,M):- predicate_property(H,imported_from(M)),!.

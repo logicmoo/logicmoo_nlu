@@ -143,8 +143,8 @@ compile_eng(Context, aux(Can), Text) :- !,compile_eng_txt(Context, Can, Text).
 
 compile_eng(Context, subj(Agent), Person) :-
  context_agent(Agent, Context),
- declared(person(Person), Context).
-compile_eng(Context, subj(Other), Compiled) :-
+ declared(person(Person), Context),!.
+compile_eng(Context, subj(Other), Compiled) :- !,
  compile_eng(Context, Other, Compiled).
 compile_eng(Context, Agent, Person) :-
  context_agent(Agent, Context),
@@ -263,7 +263,7 @@ insert_spaces([], []).
 make_atomic(_, Atom, Atom) :- atomic(Atom), !.
 make_atomic(Context, Some, Text):- is_list(Some),!, 
   maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text). 
-make_atomic(Context, Logic, Text):- Logic =.. [F|Some],
+make_atomic(Context, Logic, Text):- fail, Logic =.. [F|Some],
   maplist(logic2english(Context), Some, Stuff),
   Term =.. [F|Stuff],
   term_to_atom(Term, Text).
@@ -271,12 +271,15 @@ make_atomic(Term, Atom) :-
  term_to_atom(Term, Atom).
 
 eng2txt(Agent, _Person, LogicalEnglish, Text) :- compound(LogicalEnglish), \+ is_list(LogicalEnglish),!,  
-  percept2txt(Agent, LogicalEnglish, Text),!.
-
+  logic2english(Agent, LogicalEnglish, Text),!.
+eng2txt(Agent, Person, LogicalEnglish, Text) :- \+ is_list(LogicalEnglish),!,  
+  eng2txt(Agent, Person, [LogicalEnglish], Text), !.
 eng2txt(Agent, Person, Eng, Text) :- assertion(nonvar(Eng)),
  % Find subject, if any.
- quietly((findall(subj(Subject), findterm(subj(Subject), Eng), Context),
- compile_eng_txt([agent(Agent), person(Person)|Context], Eng, Text))).
+ quietly((
+  findall(subj(Subject), findterm(subj(Subject), Eng), Context),
+  list_to_set([agent(Agent), person(Person)| Context],NewContext),
+  compile_eng_txt(NewContext, Eng, Text))).
 eng2txt(_Agent, _Person, Text, Text).
 
 compile_eng_txt(_Context, Done, '') :- Done == [], !.
@@ -701,7 +704,7 @@ our_portray_english_simple_only(Logic):-
  format('{|i7|| ~s |}',[Codes]).
 
 english_codes(Logic,Codes):- 
- once(Agent = self ; current_agent(Agent)),
+ once(Agent = self ; mu_current_agent(Agent)),
  with_output_to(codes(SCodes),print_english(Agent, Logic)),!,
  trim_eols(SCodes,Codes),!.
 

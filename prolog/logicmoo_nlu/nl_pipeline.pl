@@ -110,7 +110,7 @@ install_converter(M,CNV):-
   '@'(import(M:F/A),parser_all),
   '@'(import(M:F/A),baseKB),
   system:import(M:F/A),
-  dmsg(installed_converter(M,CNVLST)),
+  nop(dmsg(installed_converter(M,CNVLST))),
   must(ainz(installed_converter(M,CNVLST))).
 %install_converter(M,CNV):-strip_module(CNV,M,CNVLST),functor(CNVLST,F,A), '@'(export(M:F/A),M), must(assertz_new(installed_converter(M,CNVLST))).
 
@@ -387,8 +387,8 @@ load_parser_interface(File):- call(File:ensure_loaded_no_mpreds(File)).
 system:my_aceparagraph_to_drs(AceText, Sentences, SyntaxTrees, UnresolvedDrsCopy, Drs, Messages):- 
    ace_to_drs:aceparagraph_to_drs(AceText, on, off, 1, Sentences, SyntaxTrees, UnresolvedDrsCopy, Drs, Messages, _).
 
-%:- install_converter(parser_tokenize:input_to_acetext(+input, -acetext)).
-:- install_converter(parser_tokenize:input_to_acetext(+text80, -acetext)).
+%:- install_converter(parser_tokenize:into_acetext(+input, -acetext)).
+:- install_converter(parser_tokenize:into_acetext(+text80, -acetext)).
 :- install_converter(parser_tokenize:into_text80(+input, -text80)).
 :- install_converter(parser_tokenize:into_text80(+acetext, -text80)).
 %:- install_converter(parser_tokenize:tokens_to_acetext(+(tokens), -acetext)).

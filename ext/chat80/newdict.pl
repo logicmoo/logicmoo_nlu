@@ -79,7 +79,7 @@ txt_not_db(not,not).
 txt_no_db(not,not).
 txt_no_db(no,no).
 
-:- listing(txt_no_db/2).
+%:- listing(txt_no_db/2).
 
 
 % =================================================================
@@ -122,7 +122,7 @@ conj_db(or).
 
 
 conj_db(But):- cycQuery80(partOfSpeech(_,'CoordinatingConjunction',But)).
-:- listing(conj_db).
+%:- listing(conj_db).
 
 :- do_renames(
    ((conj_db(But):- cycQuery80(partOfSpeech(Blank,'CoordinatingConjunction',But)))),
@@ -152,7 +152,7 @@ det_db(Det):-det_db(Det,_,_,_).
 det_db(W):-det_db0(W), \+ det_db(W,_,_,_), dif(CCW,'Determiner'), \+ ccw_db(W,CCW).
 det_db0(W):- (cycQuery80('determinerStrings'(_,W));cyckb_t('determinerStrings',_,W)),atom(W).
 
-:- listing(det_db/1).
+%:- listing(det_db/1).
 
 number_db(W,I,Nb) :-
    tr_number(W,I),

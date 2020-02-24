@@ -147,7 +147,7 @@ det_db(Det):-det_db(Det,_,_,_).
 det_db(W):-det_db0(W), \+ det_db(W,_,_,_), dif(CCW,'Determiner'), \+ ccw_db(W,CCW).
 det_db0(W):- (cycQuery80('determinerStrings'(_,W));cyckb_t('determinerStrings',_,W)),atom(W).
 
-:- listing(det_db/1).
+%:- listing(det_db/1).
 
 number_db(W,I,Nb) :-
    tr_number(W,I),
