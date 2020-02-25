@@ -1,4 +1,4 @@
-:- module(ac_xnl_7166_nlkb,[]).
+:- module(ac_xnl_7166_nlkb,[killBadNL/0]).
 
 
 :- export(ac_nl_info/2).
@@ -30,13 +30,19 @@ ac_nl_info_2(cycWord(CycWord),t(P,$self,Y,Z,OO)):- acnl(P,Y,CycWord,Z,OO,_).
 :- retractall(acnl(retainTerm,_,_)).
 
 :- export(killBadNL/1).
-killBadNL(AC):- retract(AC),assertz('$BORKED'(AC)),dmsg(retract(AC)),!,fail.
+killBadNLC(AC):- call(AC),killBadNL(AC).
+killBadNL(AC):-  retract(AC),assertz('$BORKED'(AC)),nop(wdmsg(retract(AC))),fail.
 
 :- export(killBadNL/0).
-killBadNL:- acnl(retainTerm,X,Y), killBadNL(acnl(retainTerm,X,Y)).
-killBadNL:- between(1,8,N),length(L,N),append([acnl,F|L],[_ID],Out),member('$BORKED',L),P=..Out,P,F\=verbSemTrans,
-  killBadNL(P).
+killBadNL:- killBadNLC(nlkb7166:acnl(retainTerm,_,_)),fail.
+%killBadNL:- killBadNLC(nlkb7166:acnl(_,xxxxx,_,_)),fail.
+%killBadNL:- killBadNLC(nlkb7166:acnl(_,_,xxxxx,_)),fail.
+killBadNL:- between(1,8,N),length(L,N),append([acnl,F|L],[_ID],Out),member('$BORKED_ARG',L),P=..Out,
+  call(nlkb7166:P),
+  (F==verbSemTrans-> (wdmsg(retain(P)),fail) ; (killBadNL(nlkb7166:P),fail)).
 killBadNL.
+
+:- killBadNL.
 
 :- fixup_exports.
 

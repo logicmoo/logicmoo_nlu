@@ -360,7 +360,7 @@ quote80(wh(_)).
 quote80(nameOf(_)).
 quote80(prep(_)).
 quote80(det(_)).
-quote80(quant(_,_)).
+quote80(quantV(_,_)).
 quote80(int_det(_)).
 
 quote_amp(F):- compound(F), functor(F,'$VAR',1),!.

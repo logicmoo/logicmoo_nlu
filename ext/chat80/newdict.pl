@@ -12,6 +12,9 @@
 :- shared_parser_data(in_continent/2).
 
 :- use_module(library(clpr),[]).
+:- use_module(library(logicmoo_util_body_reorder)).
+:- use_module(library(logicmoo_util_autocut)).
+
 %:- install_constant_renamer_until_eof.
 :- call_on_eof(if_defined(show_missing_renames)),  
    call_on_eof(set_prolog_flag(do_renames_sumo,maybe)),
@@ -554,16 +557,18 @@ type_allowed0(TypeM,Type):-Type==TypeM,!.
 type_allowed0(TypeM&_,Type):- Type==TypeM,!.
 
 
-
 % =================================================================
 % Having Referant Proper nouns
 % =================================================================
 name_db([black,sea],black_sea).
 name_db([upper,volta],upper_volta).
-name_db([Name],Name) :-
-   name_template_db(Name,_), !.
+name_db([W1,W2],Name) :- reorder_if_var(W2,atomic_list_concat([W1,'_',W2],Name), 
+   name_template_db(Name,_)).
+%name_db([Name],Name) :- any_will_cut(name_template_db(Name,_),Cut), (Cut==! -> !; call(Cut)).
+name_db([Name],Name) :- last_clause(name_template_db(Name,_)).
 name_db([Name],Name) :- t_l:useAltPOS,downcase_atom(Name,DCName),loop_check(not(cw_db(DCName,_))).
 
+:- listing(name_db/2).
 
 name_template_db(X,feature&circle) :- circle_of_latitude(X).
 
@@ -580,7 +585,7 @@ name_template_db(X,feature& ISA) :- plt,  nonvar(ISA), isa(X,ISA).
 name_template_db(X,feature& ISA & _) :- plt,  nonvar(ISA), isa(X,ISA).
 name_template_db(X,feature& _ & ISA ) :- plt,  nonvar(ISA), isa(X,ISA).
 :- shared_parser_data(name_template_db/2).
-:- show_shared_pred_info(name_template_db/2).
+%:- show_shared_pred_info(name_template_db/2).
 
 % =================================================================
 % FACETS (Adjectives) 
@@ -652,7 +657,7 @@ simplePOS(POS,SIMP):-posName(SIMP),atom_concat(_,SIMP,POS).
 subject_LF(restriction,AdjNounEan,feature&_,X,adjIsa(X,AdjNounEan)):- plt, adj_db(AdjNounEan,restr),not_ccw(AdjNounEan).
 adjIsa(E,C):- satisfy(isa_backchaing(E,C)).
 adj_db(AdjNounEan,restr):- plt,talk_db(adj,AdjNounEan),talk_db(noun1,AdjNounEan,_).
-adj_db(AdjRestr,restr):-plt,talk_db(adj,AdjRestr),not(adj_db(AdjRestr,quant)),not(adverb_db(AdjRestr)).
+adj_db(AdjRestr,restr):-plt, talk_db(adj,AdjRestr), \+ adj_db(AdjRestr,quantV), \+ adverb_db(AdjRestr).
 adj_db(AdjRestr,restr):-meetsForm80(AdjRestr,AdjRestr,form80(adj+restr)).
 
 
@@ -1037,16 +1042,16 @@ rel_adj_db(greater,great).
 
 rel_adj_db(bigger,big).
 sup_adj_db(biggest,big).
-adj_db(small,quant).
-adj_db(large,quant).
-adj_db(great,quant).
-adj_db(big,quant).
+adj_db(small,quantV).
+adj_db(large,quantV).
+adj_db(great,quantV).
+adj_db(big,quantV).
 
-adj_db(Big,quant):-plt,talk_db(superl,Big,_Biggest).
-adj_db(Big,quant):-plt,talk_db(comp,Big,_Bigger).
+adj_db(Big,quantV):-plt,talk_db(superl,Big,_Biggest).
+adj_db(Big,quantV):-plt,talk_db(comp,Big,_Bigger).
 
-adj_db(old,quant).
-adj_db(new,quant).
+adj_db(old,quantV).
+adj_db(new,quantV).
 rel_adj_db(older,old).
 sup_adj_db(oldest,old).
 rel_adj_db(newer,new).
@@ -1110,19 +1115,19 @@ must_test_801([what, is, the, ocean, that, borders, african, countries, and, tha
 answers([indian_ocean])],[time(0.0020000000000000018)]).
 must_test_801([what, are, the, capitals, of, the, countries, bordering, the, baltic, ?], [sent([what, are, the, capitals, of, the, countries, bordering, the, baltic, ?]), parse(whq(feature&city-B, s80(np(3+pl, wh(feature&city-B), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(det(the(pl)), [], capital), [prep_phrase(prep(of), np(3+pl, np_head(det(the(pl)), [], country), [reduced_rel(feature&place&country-D, s80(np(3+pl, wh(feature&place&country-D), []), verb(border, active, inf, [prog], pos(_)), [varg(dir, np(3+sg, name(baltic), []))], []))]))]))], []))), sem((answer80([D]):-setof([A]:C, (country(A), borders(A, baltic), setof(B, capital(A, B), C)), D))), qplan((answer80([H]):-setof([E]:G, (country(E), borders(E, baltic), setof(F, capital(E, F), G)), H))), 
 answers([[[denmark]:[copenhagen], [east_germany]:[east_berlin], [finland]:[helsinki], [poland]:[warsaw], [soviet_union]:[moscow], [sweden]:[stockholm], [west_germany]:[bonn]]])],[time(0.0010000000000000009)]).
-must_test_801([how, many, countries, does, the, danube, flow, through, ?], [sent([how, many, countries, does, the, danube, flow, through, ?]), parse(whq(feature&place&country-B, s80(np(3+sg, nameOf(danube), []), verb(flow, active, pres+fin, [], pos(_)), [], [prep_phrase(prep(through), np(3+pl, np_head(quant(same, wh(feature&place&country-B)), [], country), []))]))), sem((answer80([A]):-numberof(B, (country(B), flows(danube, B)), A))), qplan((answer80([B]):-numberof(A, (flows(danube, A), {country(A)}), B))), 
+must_test_801([how, many, countries, does, the, danube, flow, through, ?], [sent([how, many, countries, does, the, danube, flow, through, ?]), parse(whq(feature&place&country-B, s80(np(3+sg, nameOf(danube), []), verb(flow, active, pres+fin, [], pos(_)), [], [prep_phrase(prep(through), np(3+pl, np_head(quantV(same, wh(feature&place&country-B)), [], country), []))]))), sem((answer80([A]):-numberof(B, (country(B), flows(danube, B)), A))), qplan((answer80([B]):-numberof(A, (flows(danube, A), {country(A)}), B))), 
 answers([6])],[time(0.0010000000000000009)]).
 must_test_801([what, is, the, average, area, of, the, countries, in, each, continent, ?], [sent([what, is, the, average, area, of, the, countries, in, each, continent, ?]), parse(whq(A-C, s80(np(3+sg, wh(A-C), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(det(the(sg)), [adj(average)], area), [prep_phrase(prep(of), np(3+pl, np_head(det(the(pl)), [], country), [prep_phrase(prep(in), np(3+sg, np_head(det(each), [], continent), []))]))]))], []))), sem((answer80([B, E]):-continent(B), [ (0--ksqmiles):[andorra], (0--ksqmiles):[liechtenstein], (0--ksqmiles):[malta], (0--ksqmiles):[monaco], (0--ksqmiles):[san_marino], (1--ksqmiles):[luxembourg], (4--ksqmiles):[cyprus], (11--ksqmiles):[albania], (12--ksqmiles):[belgium], (14--ksqmiles):[netherlands], (16--ksqmiles):[switzerland], (17--ksqmiles):[denmark], (27--ksqmiles):[eire], (32--ksqmiles):[austria], (35--ksqmiles):[portugal], (36--ksqmiles):[hungary], (40--ksqmiles):[iceland], (41--ksqmiles):[east_germany], (43--ksqmiles):[bulgaria], (49--ksqmiles):[czechoslovakia], (51--ksqmiles):[greece], (92--ksqmiles):[romania], (94--ksqmiles):[united_kingdom], (96--ksqmiles):[west_germany], (99--ksqmiles):[yugoslavia], (116--ksqmiles):[italy], (120--ksqmiles):[poland], (125--ksqmiles):[norway], (130--ksqmiles):[finland], (174--ksqmiles):[sweden], (195--ksqmiles):[spain], (213--ksqmiles):[france]]^ (setof(D:[C], (area(C, D), country(C), in_ploc(C, B)), [ (0--ksqmiles):[andorra], (0--ksqmiles):[liechtenstein], (0--ksqmiles):[malta], (0--ksqmiles):[monaco], (0--ksqmiles):[san_marino], (1--ksqmiles):[luxembourg], (4--ksqmiles):[cyprus], (11--ksqmiles):[albania], (12--ksqmiles):[belgium], (14--ksqmiles):[netherlands], (16--ksqmiles):[switzerland], (17--ksqmiles):[denmark], (27--ksqmiles):[eire], (32--ksqmiles):[austria], (35--ksqmiles):[portugal], (36--ksqmiles):[hungary], (40--ksqmiles):[iceland], (41--ksqmiles):[east_germany], (43--ksqmiles):[bulgaria], (49--ksqmiles):[czechoslovakia], (51--ksqmiles):[greece], (92--ksqmiles):[romania], (94--ksqmiles):[united_kingdom], (96--ksqmiles):[west_germany], (99--ksqmiles):[yugoslavia], (116--ksqmiles):[italy], (120--ksqmiles):[poland], (125--ksqmiles):[norway], (130--ksqmiles):[finland], (174--ksqmiles):[sweden], (195--ksqmiles):[spain], (213--ksqmiles):[france]]), aggregate80(average, [ (0--ksqmiles):[andorra], (0--ksqmiles):[liechtenstein], (0--ksqmiles):[malta], (0--ksqmiles):[monaco], (0--ksqmiles):[san_marino], (1--ksqmiles):[luxembourg], (4--ksqmiles):[cyprus], (11--ksqmiles):[albania], (12--ksqmiles):[belgium], (14--ksqmiles):[netherlands], (16--ksqmiles):[switzerland], (17--ksqmiles):[denmark], (27--ksqmiles):[eire], (32--ksqmiles):[austria], (35--ksqmiles):[portugal], (36--ksqmiles):[hungary], (40--ksqmiles):[iceland], (41--ksqmiles):[east_germany], (43--ksqmiles):[bulgaria], (49--ksqmiles):[czechoslovakia], (51--ksqmiles):[greece], (92--ksqmiles):[romania], (94--ksqmiles):[united_kingdom], (96--ksqmiles):[west_germany], (99--ksqmiles):[yugoslavia], (116--ksqmiles):[italy], (120--ksqmiles):[poland], (125--ksqmiles):[norway], (130--ksqmiles):[finland], (174--ksqmiles):[sweden], (195--ksqmiles):[spain], (213--ksqmiles):[france]], E)))), qplan((answer80([F, J]):-continent(F), I^ (setof(H:[G], (area(G, H), country(G), in_ploc(G, F)), I), aggregate80(average, I, J)))), 
 answers([[europe, 58.84375--ksqmiles]])],[time(0.0040000000000000036)]).
-must_test_801([is, there, more, than, one, country, in, each, continent, ?], [sent([is, there, more, than, one, country, in, each, continent, ?]), parse(q(s80(there, verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(quant(more, nb(1)), [], country), [prep_phrase(prep(in), np(3+sg, np_head(det(each), [], continent), []))]))], []))), sem((answer80([]):- \+A^ (continent(A), \+C^ (numberof(B, (country(B), in_ploc(B, A)), C), C>1)))), qplan((answer80([]):- \+D^ (continent(D), \+F^ (numberof(E, (country(E), in_ploc(E, D)), F), F>1)))), 
+must_test_801([is, there, more, than, one, country, in, each, continent, ?], [sent([is, there, more, than, one, country, in, each, continent, ?]), parse(q(s80(there, verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(quantV(more, nb(1)), [], country), [prep_phrase(prep(in), np(3+sg, np_head(det(each), [], continent), []))]))], []))), sem((answer80([]):- \+A^ (continent(A), \+C^ (numberof(B, (country(B), in_ploc(B, A)), C), C>1)))), qplan((answer80([]):- \+D^ (continent(D), \+F^ (numberof(E, (country(E), in_ploc(E, D)), F), F>1)))), 
 answers([false])],[time(0.0010000000000000009)]).
 must_test_801([is, there, some, ocean, that, does, not, border, any, country, ?], [sent([is, there, some, ocean, that, does, not, border, any, country, ?]), parse(q(s80(there, verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(det(some), [], ocean), [rel(feature&place&seamass-B, s80(np(3+sg, wh(feature&place&seamass-B), []), verb(border, active, pres+fin, [], neg(_)), [varg(dir, np(3+sg, np_head(det(any), [], country), []))], []))]))], []))), sem((answer80([]):-A^ (ocean(A), \+B^ (country(B), borders(A, B))))), qplan((answer80([]):-A^{ocean(A), {\+B^ (borders(A, B), {country(B)})}})), 
 answers([true])],[time(0.0010000000000000009)]).
 must_test_801([what, are, the, countries, from, which, a, river, flows, into, the, black_sea, ?], [sent([what, are, the, countries, from, which, a, river, flows, into, the, black_sea, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, wh(feature&place&country-B), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(det(the(pl)), [], country), [rel(feature&place&country-D, s80(np(3+sg, np_head(det(a), [], river), []), verb(flow, active, pres+fin, [], pos(_)), [], [prep_phrase(prep(from), np(3+pl, wh(feature&place&country-D), [])), prep_phrase(prep(into), np(3+sg, name(black_sea), []))]))]))], []))), sem((answer80([A]):-setof(B, (country(B), C^ (river(C), flows(C, B, black_sea))), A))), qplan((answer80([C]):-setof(B, A^ (flows(A, B, black_sea), {country(B)}, {river(A)}), C))), 
 answers([[romania]])],[time(0.0010000000000000009)]).
-must_test_801([which, countries, have, a, population, exceeding, nb(10), million, ?], [sent([which, countries, have, a, population, exceeding, nb(10), million, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), []), verb(have, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(det(a), [], population), [reduced_rel(measure&countables-C, s80(np(3+sg, wh(measure&countables-C), []), verb(exceed, active, inf, [prog], pos(_)), [varg(dir, np(3+pl, np_head(quant(same, nb(10)), [], million), []))], []))]))], []))), sem((answer80([A]):-country(A), B^ (exceeds(B, 10--million), population(A, B)))), qplan((answer80([A]):-B^ (country(A), {population(A, B), {exceeds(B, 10--million)}}))), 
+must_test_801([which, countries, have, a, population, exceeding, nb(10), million, ?], [sent([which, countries, have, a, population, exceeding, nb(10), million, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), []), verb(have, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(det(a), [], population), [reduced_rel(measure&countables-C, s80(np(3+sg, wh(measure&countables-C), []), verb(exceed, active, inf, [prog], pos(_)), [varg(dir, np(3+pl, np_head(quantV(same, nb(10)), [], million), []))], []))]))], []))), sem((answer80([A]):-country(A), B^ (exceeds(B, 10--million), population(A, B)))), qplan((answer80([A]):-B^ (country(A), {population(A, B), {exceeds(B, 10--million)}}))), 
 answers([malaysia, uganda])],[time(0.0010000000000000009)]).
-must_test_801([which, countries, with, a, population, exceeding, nb(10), million, border, the, atlantic, ?], [sent([which, countries, with, a, population, exceeding, nb(10), million, border, the, atlantic, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), [prep_phrase(prep(with), np(3+sg, np_head(det(a), [], population), [reduced_rel(measure&countables-C, s80(np(3+sg, wh(measure&countables-C), []), verb(exceed, active, inf, [prog], pos(_)), [varg(dir, np(3+pl, np_head(quant(same, nb(10)), [], million), []))], []))]))]), verb(border, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, name(atlantic), []))], []))), sem((answer80([A]):-B^ (population(A, B), exceeds(B, 10--million), country(A)), borders(A, atlantic))), qplan((answer80([A]):-B^ (borders(A, atlantic), {population(A, B), {exceeds(B, 10--million)}}, {country(A)}))), 
+must_test_801([which, countries, with, a, population, exceeding, nb(10), million, border, the, atlantic, ?], [sent([which, countries, with, a, population, exceeding, nb(10), million, border, the, atlantic, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), [prep_phrase(prep(with), np(3+sg, np_head(det(a), [], population), [reduced_rel(measure&countables-C, s80(np(3+sg, wh(measure&countables-C), []), verb(exceed, active, inf, [prog], pos(_)), [varg(dir, np(3+pl, np_head(quantV(same, nb(10)), [], million), []))], []))]))]), verb(border, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, name(atlantic), []))], []))), sem((answer80([A]):-B^ (population(A, B), exceeds(B, 10--million), country(A)), borders(A, atlantic))), qplan((answer80([A]):-B^ (borders(A, atlantic), {population(A, B), {exceeds(B, 10--million)}}, {country(A)}))), 
 answers([venezuela])],[time(0.0010000000000000009)]).
 
 must_test_801([what, countries, are, there, in, europe, ?], [sent([what, countries, are, there, in, europe, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), []), verb(be, active, pres+fin, [], pos(_)), [void], [prep_phrase(prep(in), np(3+sg, name(europe), []))]))), sem((answer80([A]):-country(A), in_ploc(A, europe))), qplan((answer80([A]):-in_ploc(A, europe), {country(A)})), 
@@ -1137,7 +1142,7 @@ answers([0--ksqmiles])],[time(0.0)]).
 must_test_802([what, is, the, total, area, of, countries, south, of, the, equator, and, not, in, australasia, ?], [sent([what, is, the, total, area, of, countries, south, of, the, equator, and, not, in, australasia, ?]), parse(whq(A-B, s80(np(3+sg, wh(A-B), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(det(the(sg)), [adj(total)], area), [prep_phrase(prep(of), np(3+pl, np_head(generic, [], country), [conj(and, reduced_rel(feature&place&country-F, s80(np(3+pl, wh(feature&place&country-F), []), verb(be, active, pres+fin, [], pos(_)), [varg(pred, prep_phrase(prep(southof), np(3+sg, name(equator), [])))], [])), reduced_rel(feature&place&country-F, s80(np(3+pl, wh(feature&place&country-F), []), verb(be, active, pres+fin, [], neg(_)), [varg(pred, prep_phrase(prep(in), np(3+sg, name(australasia), [])))], [])))]))]))], []))), sem((answer80([A]):-B^ (setof(C:[D], (area(D, C), country(D), southof(D, equator), \+in_ploc(D, australasia)), B), aggregate80(total, B, A)))), 
 qplan((answer80([E]):-D^ (setof(C:[B], (southof(B, equator), area(B, C), {country(B)}, {\+in_ploc(B, australasia)}), D), aggregate80(total, D, E)))), 
 answers([10239--ksqmiles])],[time(0.0010000000000000009)]).
-must_test_802([which, countries, are, bordered, by, two, seas, ?], [sent([which, countries, are, bordered, by, two, seas, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), []), verb(border, passive, pres+fin, [], pos(_)), [], [prep_phrase(prep(by), np(3+pl, np_head(quant(same, nb(2)), [], sea), []))]))), 
+must_test_802([which, countries, are, bordered, by, two, seas, ?], [sent([which, countries, are, bordered, by, two, seas, ?]), parse(whq(feature&place&country-B, s80(np(3+pl, np_head(int_det(feature&place&country-B), [], country), []), verb(border, passive, pres+fin, [], pos(_)), [], [prep_phrase(prep(by), np(3+pl, np_head(quantV(same, nb(2)), [], sea), []))]))), 
 sem((answer80([A]):-country(A), numberof(B, (sea(B), borders(B, A)), 2))), 
 qplan((answer80([B]):-numberof(A, (sea(A), borders(A, B)), 2), {country(B)})), 
 answers([egypt, iran, israel, saudi_arabia, turkey])],[time(0.0)]).
@@ -1148,7 +1153,7 @@ answers([turkey])],[time(0.0020000000000000018)]).
 must_test_803([which, country, '\'', s80, capital, is, london, ?], [sent([which, country, '\'', s80, capital, is, london, ?]), parse(whq(feature&place&country-B, s80(np(3+sg, np_head(det(the(sg)), [], capital), [prep_phrase(poss, np(3+sg, np_head(int_det(feature&place&country-B), [], country), []))]), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, name(london), []))], []))), sem((answer80([A]):-country(A), capital(A, london))), 
 qplan((answer80([A]):-capital(A, london), {country(A)})), 
 answers([united_kingdom])],[time(0.0010000000000000009)]).
-must_test_803([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?], [sent([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?]), parse(whq(feature&place&continent-B, s80(np(3+pl, wh(feature&place&continent-B), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(det(the(pl)), [], continent), [rel(feature&place&continent-D, s80(np(3+sg, np_head(det(no), [], country), [prep_phrase(prep(in), np(3+pl, wh(feature&place&continent-D), []))]), verb(contain, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(quant(more, nb(2)), [], city), [rel(feature&city-G, s80(np(3+sg, np_head(det(the(sg)), [], population), [prep_phrase(poss, np(3+pl, wh(feature&city-G), []))]), verb(exceed, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(quant(same, nb(1)), [], million), []))], []))]))], []))]))], []))), 
+must_test_803([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?], [sent([what, are, the, continents, no, country, in, which, contains, more, than, two, cities, whose, population, exceeds, nb(1), million, ?]), parse(whq(feature&place&continent-B, s80(np(3+pl, wh(feature&place&continent-B), []), verb(be, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(det(the(pl)), [], continent), [rel(feature&place&continent-D, s80(np(3+sg, np_head(det(no), [], country), [prep_phrase(prep(in), np(3+pl, wh(feature&place&continent-D), []))]), verb(contain, active, pres+fin, [], pos(_)), [varg(dir, np(3+pl, np_head(quantV(more, nb(2)), [], city), [rel(feature&city-G, s80(np(3+sg, np_head(det(the(sg)), [], population), [prep_phrase(poss, np(3+pl, wh(feature&city-G), []))]), verb(exceed, active, pres+fin, [], pos(_)), [varg(dir, np(3+sg, np_head(quantV(same, nb(1)), [], million), []))], []))]))], []))]))], []))), 
 sem((answer80([F]):-setof(A, (continent(A), \+B^ (country(B), in_ploc(B, A), E^ (numberof(C, (city(C), D^ (population(C, D), exceeds(D, 1--million)), in_ploc(C, B)), E), E>2))), F))), qplan((answer80([L]):-setof(G, (continent(G), \+H^ (country(H), in_ploc(H, G), K^ (numberof(I, (city(I), J^ (population(I, J), exceeds(J, 1--million)), in_ploc(I, H)), K), K>2))), L))), 
 answers([[africa, america, antarctica, asia, australasia, europe]])],[time(0.05499999999999999)]).
 

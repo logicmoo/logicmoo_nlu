@@ -465,7 +465,7 @@ logic2eng(Context, carrying(Agent, Items),
                                
 
 logic2eng(_Agent, moved(_Doer, _Verb, What, From, Prep, To),
-   [cap(subj(What)), 'moves', ' from', From, Prep, 'to', To]).
+   [cap(subj(What)), 'moves', ' from', From, 'to' ,Prep, To]).
 
 
 logic2eng(_Agent, transformed(Before, After), [Before, 'turns into', After, .]).
@@ -682,8 +682,7 @@ expand_english(_State, Term, Term).
 player_pprint(Doer, Logic, always):- xtreme_english,!, print_english(Doer, Logic).
 player_pprint(_Doer, D,K):- pprint(D,K).
 
-print_english(Doer, Logic):- is_list(Logic),!, maplist(print_english(Doer), Logic).
-
+% print_english(Doer, Logic):- is_list(Logic),!, maplist(print_english(Doer), Logic).
 print_english(Doer, Logic):- logic2english(Doer, Logic, Text), pprint(Text,always).
 
 :- thread_local(tl_loop:in_logic2english/1).

@@ -26,7 +26,8 @@ filter_spec((Spec1, Spec2), PropList):- !, filter_spec(Spec1, PropList), filter_
 filter_spec( Spec, PropList):- declared(Spec, PropList).
 
 create_new_unlocated(Type,Inst,S0,S2):- 
- atom_concat(Type,'~',TType),gensym(TType,Inst),
+ %atom_concat(Type,'~',TType),gensym(TType,TTypeT1), Inst = o(Type,TTypeT1),trace,
+ atom_concat(Type,'~',TType),gensym(TType,TTypeT1), Inst = TTypeT1,
  declare_inst_type(Inst,Type,S0,S2).
 
 create_new_suffixed_unlocated(Suffix, Type,Inst,S0,S2):- 

@@ -9,7 +9,7 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
-:- module(parser_tokenize,[into_text80/2,into_acetext/2,any_nb_to_atom/2]).
+:- module(parser_tokenize,[into_text80/2,into_acetext/2,any_nb_to_atom/2,foc_framevar/3,foc_framevar2/2]).
 
 %into_acetext(Input,AceText):- atomic(Input), !, tokenizer:tokenize(Input, Tokens), into_acetext(Tokens,AceText).
 %into_acetext(Input,AceText):- into_acetext(Input,AceText).
@@ -121,8 +121,16 @@ into_control80([W,A,B|More],Out):-
 into_control80(Out,Out):- !.
 
 
-any_nb_to_atom(nb(N),A):- any_to_atom(N,A),!.
+any_nb_to_atom(nb(N),A):-!,any_to_atom(N,A),!.
 any_nb_to_atom(N,A):- any_to_atom(N,A).
+
+
+foc_framevar(VarName,VarFn,X):- atom_concat('?',VN,VarName),!,foc_framevar(VN,VarFn,X).
+foc_framevar(VarName,VarFn,X):- toPropercase(VarName,VarFn),!,foc_framevar2(VarFn,X).
+
+foc_framevar2(VarName,X):- atom_concat('?',VN,VarName),!,foc_framevar2(VN,X).
+foc_framevar2(VarFn,X):- nb_current('$frame_variable_names',Vs),member(N=V,Vs),VarFn==N,!,must(X=V).
+foc_framevar2(VarFn,X):- (nb_current('$frame_variable_names',Vs);Vs=[]),!,nb_setval('$frame_variable_names',[VarFn=X|Vs]).
 
 
 
