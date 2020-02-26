@@ -42,16 +42,25 @@ def_nl_pred(M,F,A):-
 :- export(nl_call/7).
 :- export(nl_call/8).
 nl_call([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
-nl_call(P):- (nlfac:is_nl_pred(M,F,A),functor(P,F,A),nl_call_entr(M,F,A,P),M:P,nl_call_exit(M,F,A,P))*->true;
+nl_call(P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),
+   M:P,nl_call_exit(M,F,A,P))*->true;
   (current_predicate(_,M:P),call(call,M:P)).
+
+nl_pred(M,F,A):- var(F),!,nlfac:is_nl_pred(M,F,A).
+nl_pred(M,F,A):- (nlfac:is_nl_pred(M,F,A))*->true;((must(current_predicate(M:F/A)),def_nl_pred(M,F,A)),!).
+nl_pred(P,M,F,A):- (var(F),var(P)),!,nlfac:is_nl_pred(M,F,A),functor(P,F,A).
+nl_pred(P,M,F,A):- var(F),!,functor(P,F,A),ignore(nlfac:is_nl_pred(M,F,A)).
+nl_pred(P,M,F,A):- var(P),!,nl_pred(M,F,A),functor(P,F,A).
+nl_pred(P,M,F,A):- functor(P,F,A),!,nl_pred(M,F,A).
+
 
 make_nl_call_stubs:- forall((between(1,7,A),length(List,A),Head =.. [nl_call,F|List], Body =.. [call,M:F|List],   
    functor(Head,CF,CA),ignore(abolish(parser_sharing:CF,CA)),
-   Enter =.. [nl_call_entr,M,F,A,Z],
+   Enter =.. [nl_call_entr,M,F,A,Z],                                 
    Exit =.. [nl_call_exit,M,F,A,Z],
    nop(assertion( \+ predicate_property(parser_sharing:Head,(defined))))),
    ((dynamic(parser_sharing:CF/CA),
-     assert(parser_sharing:(Head:- (nlfac:is_nl_pred(M,F,A),Z=Body,Enter,Z,Exit))),
+     assert(parser_sharing:(Head:- (nl_pred(M,F,A),Z=Body,Enter,Z,Exit))),
      module_transparent(parser_sharing:CF/CA),
      compile_predicates([parser_sharing:CF/CA]),
      export(parser_sharing:CF/CA)))).
