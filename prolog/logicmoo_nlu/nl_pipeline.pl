@@ -475,30 +475,30 @@ remove_punctuation(W2,W2).
 % ================================================================================================
 
 % ================================================================================================
-:-  if((false,load_parser_interface(parser_talk))).
+:-  if((false,load_parser_interface(parser_e2fc))).
 % ================================================================================================
 
-eng_to_talkpl(Sentence,LF,Type,Clause,FreeVars) :-
-   show_call(talkpl_parse(Sentence,LF,Type)),
-   show_call(talkpl_clausify(LF,Clause,FreeVars)),!.
+eng_to_bratko(Sentence,LF,Type,Clause,FreeVars) :-
+   show_call(bratko_parse(Sentence,LF,Type)),
+   show_call(bratko_clausify(LF,Clause,FreeVars)),!.
    
 
-:- install_converter(parser_all,eng_to_talkpl(+(tokens),-lf,-type,-clause,+(freevars))).
-:- install_converter(parser_talk,talkpl_parse(+(tokens),-lf,-type)).
-:- install_converter(parser_talk,talkpl_clausify(+lf,-clause,-(freevars))).
-:- install_converter(parser_talk,talkpl_reply(+type,+(freevars),+clause,-reply)).
+:- install_converter(parser_all,eng_to_bratko(+(tokens),-lf,-type,-clause,+(freevars))).
+:- install_converter(parser_bratko,bratko_parse(+(tokens),-lf,-type)).
+:- install_converter(parser_bratko,bratko_clausify(+lf,-clause,-(freevars))).
+:- install_converter(parser_bratko,bratko_reply(+type,+(freevars),+clause,-reply)).
 
 %:- debug.
 
 :- endif.
 
 % ================================================================================================
-:-  if(load_parser_interface('parser_bratko.pl')).
+:-  if(load_parser_interface(parser_e2fc)).
 % ================================================================================================
 
-:- install_converter(parser_bratko,bratko_parse(+chat80,-lf_b)).
-:- install_converter(parser_bratko,bratko_clausify(+lf_b,-clause_b)).
-:- install_converter(parser_bratko,bratko_reply(+clause_b,-reply_b)).
+:- install_converter(parser_e2fc,e2fc_parse(+chat80,-lf_b)).
+:- install_converter(parser_e2fc,e2fc_clausify(+lf_b,-clause_b)).
+:- install_converter(parser_e2fc,e2fc_reply(+clause_b,-reply_b)).
 
 %:- debug.
 
@@ -629,6 +629,8 @@ baseKB:feature_test(must_test_80):-
 :- listing(chat80/3).
 :- listing(chat80/1).
 :- listing(chat80/2).
+:- listing(test_e2fc/1).
+:- listing(test_e2fc/2).
 :- fixup_exports.
 :- threads.
 

@@ -123,7 +123,7 @@ chat80 :- w_tl(tracing80,
               (told, repeat, prompt_read('CHAT80> ',U),  
                             to_word_list(U,WL),((WL==[bye];WL==[end,'_',of,'_',file];(mmake,once(chat80(WL)),fail)))))))).
 
-:- multifile(t_l:into_form_code/0).
+:- thread_local(t_l:into_form_code/0).
 :- asserta(t_l:into_form_code).
 
 
@@ -141,7 +141,6 @@ chat80 :- w_tl(tracing80,
 :- include((chat80/xgrun)).	% XG runtimes
 % :- include((chat80/newg)).		% clone + lex
 
-% :- retract(t_l:into_form_code).
 
 :- include((chat80/clotab)).	% attachment tables
 :- include((chat80/newdict)).	% syntactic dictionary

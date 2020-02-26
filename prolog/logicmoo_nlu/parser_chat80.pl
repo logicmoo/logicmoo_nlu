@@ -35,6 +35,14 @@
 %:- '$set_source_module'(baseKB).
 %:- '$set_typein_module'(baseKB).
 
+
+%:- parser_chat80:export(parser_chat80:theText80/3).
+%:- import(parser_chat80:theText80/3).
+:- reexport(parser_e2fc).
+:- reexport(parser_tokenize).
+%:- use_module(pldata(clex_iface)).
+%:- use_module(parser_chat80,[plt/0,print_tree/1]).
+
 :- use_module(parser_sharing).
 :- use_module(library(pfc_lib)).
 
@@ -304,10 +312,8 @@ chat80 :- locally(tracing80,
                   locally(usePlTalk, (told, repeat, prompt_read('CHAT80> ',U),  
                             to_word_list(U,WL),((WL==[bye];WL==[end,'_',of,'_',file];control80(WL))))))))).
 
-:- multifile(t_l:into_form_code/0).
+:- thread_local(t_l:into_form_code/0).
 :- asserta(t_l:into_form_code).
-
-
 
 :- ensure_loaded(logicmoo_nlu_ext(chat80/xgproc)).	% XG generator
 
@@ -325,8 +331,6 @@ chat80 :- locally(tracing80,
 % :- list('newg.pl').
 :- ensure_loaded(logicmoo_nlu_ext(chat80/xgrun)).	% XG runtimes
 % :- ensure_loaded(logicmoo_nlu_ext(chat80/newg)).		% clone + lex
-
-% :- retract(t_l:into_form_code).
 
 :- ensure_loaded(logicmoo_nlu_ext(chat80/clotab)).	% attachment tables
 :- include(logicmoo_nlu_ext(chat80/newdict)).	% syntactic dictionary
@@ -375,6 +379,6 @@ baseKB:mud_test(chat80_regressions,test_chat80_regressions).
 
 t80:- baseKB:hi80(logicmoo_nlu_ext(chat80/demo)).
 
-:- use_module(parser_bratko).
+:- use_module(parser_e2fc).
 
 

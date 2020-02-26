@@ -22,8 +22,6 @@
 % nohup websocket_redir.sh dbutterfly 4004 &
 :- use_module(library(logicmoo_common)).
 
-:- '$set_typein_module'(baseKB).
-
 :- pack_install(dictoo).
 
 %:- if(current_prolog_flag(argv,[])).
@@ -63,7 +61,7 @@
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
 :- ensure_loaded(library(logicmoo_nlu/parser_pldata)).
 :- use_module(library(logicmoo_nlu/parser_chat80)).
-:- use_module(library(logicmoo_nlu/parser_bratko)).
+:- use_module(library(logicmoo_nlu/parser_e2fc)).
 
 :- if(exists_source(library(logicmoo_nlu))).
 %% :- use_module(library(logicmoo_nlu)).
@@ -145,7 +143,9 @@ or to run as single player use:
 
 ',[Port]).
 
-:- '$set_typein_module'(mu).
+:- fixup_exports.
+
+%:- '$set_typein_module'(mu).
 
 :- initialization(srv_mu_main, (main)).
 :- initialization(usage_mu, (now)).

@@ -1,15 +1,15 @@
 % ===================================================================
-% File 'parser_bratko.pl'
+% File 'parser_e2fc.pl'
 % Purpose: English to KIF conversions from SWI-Prolog
 % This implementation is incomplete
 % Maintainer: Douglas Miles
 % Contact: $Author: dmiles $users.sourceforge.net ;
-% Version: 'parser_bratko.pl' 1.0.0
+% Version: 'parser_e2fc.pl' 1.0.0
 % Revision:  $Revision: 1.3 $
 % Revised At:   $Date: 2012/06/06 15:43:15 $
 % ===================================================================
 
-:-module(parser_bratko,[]).
+:-module(parser_e2fc,[]).
 /* from Bratko chapter 17 page 455.
    This comes from Pereira and Warren paper,AI journal,1980 */
 
@@ -43,7 +43,7 @@
 % =================================================================
 
 system:t33:- make,t33a.
-system:t33a:- parser_bratko:forall((must_test_bratko(Sent,Type),Type\==ask),bratko(Sent)).
+system:t33a:- parser_e2fc:forall((must_test_bratko(Sent,Type),Type\==ask),bratko(Sent)).
 
 baseKB:sanity_test:- t33.
 
@@ -108,6 +108,8 @@ must_test_bratko("who did alfred give a book to",ask).
 must_test_bratko("alfred gave it",tell).
 must_test_bratko("alfred gave a book",tell).
 
+
+:- thread_local(t_l:into_form_code/0).
 :- asserta(t_l:into_form_code).
 
 % =================================================================

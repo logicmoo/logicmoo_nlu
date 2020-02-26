@@ -9,12 +9,15 @@ f% ===================================================================
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
+
 :-module(parser_e2c,[]
         % e2c/1,
          % e2c/2,
          % do_renames_e2c/2
          % idGen/1
          ).
+
+:- throw(module(parser_e2c)).
 
 :- use_module(library(multimodal_dcg)).  
 :- use_module(library(logicmoo_util_body_textstr)).

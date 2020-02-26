@@ -26,7 +26,7 @@ baseKB:sanity_test:- t33fa.
 
 system:nl_fwd :- locally(tracing80,
              with_no_assertions(lmconf:use_cyc_database,
-                  locally(t_l:usePlTalk,(told,repeat,prompt_read('BRATKO> ',U),
+                  locally(t_l:usePlTalk,(told,repeat,prompt_read('E2FC> ',U),
                             to_wordlist_atoms(U,WL),(WL==[bye];WL==[end,'_',of,'_',file];ain(nl_fwd(WL))))))).
 
 irc_cmd:irc_invoke_nlp(Channel,User,_Say,"list"):-     
@@ -75,14 +75,14 @@ add_conversion(From,Pred,To) ==>
    ((pipeline(ID,From,VarFrom),{t(Pred,VarFrom,VarTo)}) ==> pipeline(ID,To,VarTo)).
 
 % ==> add_conversion(input,to_wordlist_atoms,text80).
-==> add_conversion(text80,bratko_parse,lf_b).
-==> add_conversion(lf_b,bratko_clausify,clause_b).
-==> add_conversion(clause_b,bratko_reply,reply_b).
+==> add_conversion(text80,e2fc_parse,lf_b).
+==> add_conversion(lf_b,e2fc_clausify,clause_b).
+==> add_conversion(clause_b,e2fc_reply,reply_b).
 
-==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).
-==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,prelogic80).
+% ==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).
+% ==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,prelogic80).
 
-
+/*
 (pipeline(ID,acetext,VarFrom), 
   { parser_all:my_aceparagraph_to_drs(VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrsCopy, Drs0, Messages) }) ==>
   saved_aceparagraph_to_drs(ID,VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrsCopy, Drs0, Messages).
@@ -92,6 +92,7 @@ saved_aceparagraph_to_drs(ID, _VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrs
    pipeline(ID,unresolvedDrsCopy,UnresolvedDrsCopy),pipeline(ID,drs0,Drs0),pipeline(ID,messages,Messages)).
 
 (installed_converter(M,P),{pipe_to_fwc(M,P,FWCode)})==> FWCode.
+*/
 
 uninteresting_pipe(sentences_set).
 uninteresting_pipe(monitor).
