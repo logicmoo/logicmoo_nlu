@@ -65,7 +65,15 @@ system:t33:- cls, make, t33a.
 system:t33p:- cls, parser_e2fc:forall((test_e2fc(Sent, Type), is_testing_e2fc(Sent, Type)), e2fc(Sent)).
 system:t33t:- cls, parser_e2fc:forall((test_e2fc(Sent, Type), Type== tell,  is_testing_e2fc(Sent, Type)), e2fc(Sent)).
 system:t33a:- cls, parser_e2fc:forall(test_e2fc(Sent, _Type), e2fc(Sent)).
-system:t33f:- cls, parser_e2fc:forall(test_e2fc(Sent, Type), add_nl_fwd(Sent,Type)).
+
+system:t33f:- cls, 
+  mpred_trace_all,
+  mpred_trace_exec,
+  setup_call_cleanup(
+     true, 
+     parser_e2fc:forall(test_e2fc(Sent, Type), show_failure(parser_fwd:add_nl_fwd(Sent,Type))), 
+     mpred_notrace_all),
+  mpred_notrace_exec.
 
 is_testing_e2fc(Sent, Type):- Type\==ask, to_wordlist_atoms(Sent, Words), \+ (Words = [not |_]).
 
@@ -1527,13 +1535,14 @@ nvd(N, X):- compound(N), N=.. [z, F|_], may_debug_var([F, '_Frame'], X).
 nvd(N, X):- atom(N), name(N, Name), last(Name, C), \+ char_type(C, digit), !, gensym(N, NN), !, may_debug_var(NN, X), !.
 nvd(N, X):- may_debug_var(N, X), !.
 
+into_isa3(I,C,ISA):- notrace(into_isa3_0(I,C,ISA)).
 
-into_isa3(X, Y, isa(X, YY)):- atom(Y), (atom_concat('t', Name, Y)-> YY=Y; (maybe_toPropercase(Y, YY), Name=YY)), gensym(Name, VarName), nvd(VarName, X).
-into_isa3(X, Y, isa(X,  Y)):- \+ compound(Y),!.
-into_isa3(_, timeFn(infpl), true).
-into_isa3(_, timeFn(infinitive), true).
-into_isa3(X, Y, isa(X, YY)):- compound(Y), Y=.. [Fn, Word], atom_concat(_, 'Fn', Fn), any_to_string(Word, Str), !, YY=.. [Fn, Str].
-into_isa3(X, Y, isa(X, Y)):-!.
+into_isa3_0(X, Y, isa(X, YY)):- atom(Y), (atom_concat('t', Name, Y) -> YY=Y; (maybe_toPropercase(Y, YY), Name=YY)), gensym(Name, VarName), nvd(VarName, X).
+into_isa3_0(X, Y, isa(X,  Y)):- \+ compound(Y),!.
+into_isa3_0(_, timeFn(infpl), true).
+into_isa3_0(_, timeFn(infinitive), true).
+into_isa3_0(X, Y, isa(X, YY)):- compound(Y), Y=.. [Fn, Word], atom_concat(_, 'Fn', Fn), any_to_string(Word, Str), !, YY=.. [Fn, Str].
+into_isa3_0(X, Y, isa(X, Y)):-!.
 
 maybe_toPropercase(X,Y):- downcase_atom(X,DC),DC\==X,!,X=Y.
 maybe_toPropercase(X,Y):- toPropercase(X,Y).

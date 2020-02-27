@@ -76,14 +76,14 @@ system:add_nl_fwd(S,K):- ain(nl_fwd(S,K)).
 nl_fwd(S,K):- awc, ground(S), add_nl_fwd(S,K).
 
 % (nl_fwd(Sentence)/gensym(test,Id)) ==> pipeline(Id,input,Sentence).
-(nl_fwd(Sentence,Kind)/(any_to_atom(Kind,A),gensym(A,Id))) ==> pipeline(Id,input,Sentence).
+(nl_fwd(Sentence,Kind)/(any_to_string(Kind,A),gensym(A,Id))) ==> pipeline(Id,input,Sentence).
 
 
 
 %:- mpred_trace_all.
 
 add_conversion(From,Pred,To) ==>
-   ((pipeline(ID,From,VarFrom),{Call = t(Pred,VarFrom,VarTo), no_repeats(VarTo,Call)}) ==> pipeline(ID,To,VarTo)).
+   ((pipeline(ID,From,VarFrom),{no_repeats(VarTo,t(Pred,VarFrom,VarTo))}) ==> pipeline(ID,To,VarTo)).
 
 
 ==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).

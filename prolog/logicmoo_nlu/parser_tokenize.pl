@@ -24,13 +24,13 @@ tokens_to_acetext0([],'').
 tokens_to_acetext0(ListIn,Out):-  notrace((member(T,ListIn), \+ atom(T))), !, maplist(any_nb_to_atom,ListIn,List),tokens_to_acetext0(List,Out).
 tokens_to_acetext0([T],T):-!.
 tokens_to_acetext0([T,':',P|Tokens],AceText):- atomic_list_concat([T,(:),P],'',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
-tokens_to_acetext0([T,P|Tokens],AceText):- atom_length(P,1),char_type(P,punct),!,atom_concat(T,P,TP),tokens_to_acetext0([TP|Tokens],AceText).
+tokens_to_acetext0([T,P|Tokens],AceText):- atom_length(P,1),char_type_punct(P),!,atom_concat(T,P,TP),tokens_to_acetext0([TP|Tokens],AceText).
 tokens_to_acetext0([T,P],AceText):- atomic_list_concat([T,P],' ',AceText),!.
 tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
 
 
 into_text80(I,O):- 
-  notrace(parser_tokenize:(init_to_tokens(I,T),break_atom_symbols(T,N),maplist(number_to_nb,N,O))),!.
+  parser_tokenize:(init_to_tokens(I,T),!,fast_break_atom_symbols(T,N),!,maplist(number_to_nb,N,O)),!.
 
 
 number_to_nb(nb(N),nb(N)):-!.
@@ -44,6 +44,9 @@ requoted(I,S):- format(atom(S),'"~w"',I).
 
 keep_unbroken(I):- \+ atom(I),!.
 keep_unbroken(I):- atom_concat('#$',_,I).
+
+fast_break_atom_symbols(I,O):- break_atom_symbols(I,O),!.
+%fast_break_atom_symbols(I,I).
 
 break_atom_symbols([],[]).
 break_atom_symbols([I|List],[I|ListO]):- keep_unbroken(I), !, 
@@ -59,23 +62,39 @@ break_atom_symbols([I|List],ListO):- atom_length(I,N), N>1, split_symbols(I,O),!
   break_atom_symbols(ListM,ListO).
 break_atom_symbols([I|List],[I|ListO]):- !, break_atom_symbols(List,ListO).
 
-split_symbols(I,[O]):- char_type(S,space),(atom_concat(S,O,I);atom_concat(O,S,I)),!.
-split_symbols(I,[O1,O2|List]):- char_type(S,space),atomic_list_concat([O1,O2|List],S,I),!.
+split_symbols(I,[O]):- char_type_space(S),(atom_concat(S,O,I);atom_concat(O,S,I)),!.
+split_symbols(I,[O1,O2|List]):- char_type_space(S),atomic_list_concat([O1,O2|List],S,I),!.
 split_symbols(I,[S,O]):- split_from_start(S),atom_concat(S,O,I),!.
 split_symbols(I,[S,O]):- split_from_end(O),atom_concat(S,O,I),!.
 split_symbols(I,[O1,S,O2]):- split_from_mid(S),atomic_list_concat([O1,O2],S,I),!.
 
-split_symbol(S):- char_type(S, punct), \+ char_type(S, quote).
+
+char_type_space( ' '). char_type_space('\r'). char_type_space('\n').
+char_type_space('\t'). char_type_space('\v'). char_type_space('\f').
+
+% split_symbol(S):- char_type(S, punct), \+ char_type(S, quote).
+char_type_period('?'). char_type_period('.'). char_type_period('!').
+
+char_type_punct(P  ):- char_type_period(P).
+char_type_punct(',').  char_type_punct(':').
+char_type_punct('$').  char_type_punct(';'). 
+char_type_punct('%'). 
+ 
+split_symbol(P  ):- char_type_punct(P).
+split_symbol('_'). split_symbol('-').   split_symbol('#'). 
+split_symbol('='). split_symbol('+'). split_symbol('/').
+split_symbol('\\'). %split_symbol('#$').
+
 split_from_start(S):- split_symbol(S), S \== '#'.
 split_from_mid(S):- split_symbol(S), S \== '-', S \== ':'.
 split_from_end(S):- split_symbol(S), S \== '#'.
 
 :-share_mp(into_text80/2).
 
-init_to_tokens(I,T):- is_list(I),into_control80(I,T).
-init_to_tokens(I,T):- any_to_string(I,S),atom_string(A,S),tokenizer_tokenize(A,T).
+init_to_tokens(I,T):- is_list(I),into_control80(I,T),!.
+init_to_tokens(I,T):- any_to_string(I,S),atom_string(A,S),!,tokenizer_tokenize(A,T).
 
-tokenizer_tokenize(A,T):- tokenizer:tokenize(A,M), rejoin_pronouns(M,T).
+tokenizer_tokenize(A,T):- tokenizer:tokenize(A,M),!, rejoin_pronouns(M,T),!.
 
 rejoin_pronouns([],[]).
 rejoin_pronouns([A,Thing|List],[S|ListO]):- 
@@ -104,7 +123,7 @@ into_control80([W|ListIn],Out):-
 into_control80(ListIn,Out):- 
    append(Left,[Last],ListIn), 
  ( \+ atom_length(Last,1),
-   char_type(P,period), % covers Q, ! , etc
+   char_type_period(P), % covers Q, ! , etc
    atom_concat(Word,P,Last)),
    append(Left,[Word,P],ListMid),!,
    into_control80(ListMid,Out).
