@@ -63,11 +63,15 @@ pt( In, LC,[A|As],I) :- !,
    pt0(In,',',A,I),
    pt(In,LC,As,I).
 
-write_simple(A):- \+ compound(A),!, format('~q',[A]).
+is_arity_lt1(A) :- \+ compound(A),!.
+is_arity_lt1(A) :- compound_name_arity(A,_,0),!.
+
+write_simple(A):- is_arity_lt1(A),!, format('~q',[A]).
 write_simple(A):- format('~p',[A]).
 
 as_is(V):- var(V).
-as_is(A) :- \+ compound(A), !.
+as_is(A) :- is_arity_lt1(A), !.
+as_is(A) :- is_list(A),length(A,L),L<2,!.
 as_is(A) :- functor(A,F,_), simple_f(F).
 as_is('_'(_)) :- !.
 as_is(X) :-
@@ -81,4 +85,4 @@ simple_f(HasSpace):- atom_contains(HasSpace,' ').
 simple_arg(S):- (nvar(S) ; \+ compound(S)),!.
 simple_arg(S):- \+ (arg(_,S,Var), compound(Var), \+ nvar(Var)).
 
-nvar(S):- compound(S)-> functor(S,'$VAR',_); var(S).
+nvar(S):- \+ is_arity_lt1(S)-> functor(S,'$VAR',_); var(S).

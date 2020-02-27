@@ -18,8 +18,8 @@
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
-system:t33f:- make,t33fa.
-system:t33fa:- forall((must_test_fwd(Sent,Type),Type\==ask),nl_fwd(Sent)).
+system:t33ff:- make,t33fa.
+system:t33ffa:- forall((test_e2fc(Sent,Type),Type\==ignored),nl_fwd(Sent,Type)).
 
 
 baseKB:sanity_test:- t33fa.
@@ -29,24 +29,30 @@ system:nl_fwd :- locally(tracing80,
                   locally(t_l:usePlTalk,(told,repeat,prompt_read('E2FC> ',U),
                             to_wordlist_atoms(U,WL),(WL==[bye];WL==[end,'_',of,'_',file];ain(nl_fwd(WL))))))).
 
-irc_cmd:irc_invoke_nlp(Channel,User,_Say,"list"):-     
+irc_cmd:irc_invoke_nlp(Channel,User,Say,Args):- invoke_irc_nlp(Channel,User,Say,Args).
+
+if_ace(G):-nop(G).
+
+irc_cmd:irc_invoke_fallback(Channel,User,Say,Text):- dmsg(irc_cmd:irc_invoke_fallback(Channel,User,Say,Text)).
+
+
+invoke_irc_nlp(Channel,User,_Say,"list"):-     
    ID = uid(User,_),
    OldPipeline = pipeline(ID,_Name,_Value),
    forall(OldPipeline, eggdrop:say(Channel:User,OldPipeline)).  
 
 % :- trace.
-irc_cmd:irc_invoke_nlp(Channel,User,Say,Args):- 
+invoke_irc_nlp(Channel,User,Say,Args):- 
    nop(say(irc_invoke_nlp(Channel,User,Say,Args))),
-   parser_tokenize:into_text80(Args,Text80),parser_tokenize:into_acetext(Text80,Ace),  
+   parser_tokenize:into_text80(Args,Text80),
+   if_ace(parser_tokenize:into_acetext(Text80,Ace)),  
    ID = uid(User,Ace),
    OLDID = uid(User,_),
    OldPipeline = pipeline(OLDID,_Name,_Value),
    forall(OldPipeline, ain(\+ OldPipeline)),
    ain(pipeline(ID,monitor,send_to(User,Channel))),
    ain(pipeline(ID,text80,Text80)),
-   ain(pipeline(ID,acetext,Ace)).
-
-irc_cmd:irc_invoke_fallback(Channel,User,Say,Text):- dmsg(irc_cmd:irc_invoke_fallback(Channel,User,Say,Text)).
+   if_ace(ain(pipeline(ID,acetext,Ace))).
 
 %:- virtualize_source_file(bodies).
 
@@ -60,27 +66,38 @@ pipe_to_fwc(M,P,add_conversion(From,M:Pred,To)):- compound(P), P=..[Pred,+From,-
 % :- share_mp(saved_aceparagraph_to_drs/7).
 %:- share_mp((==>)/2).
 
+system:nl_fwd(S):- gensym(test,K), with_fc_mode(thread,ain(nl_fwd(S,K))).
+% system:add_nl_fwd(S,K):- with_fc_mode(thread,ain(nl_fwd(S,K))).
+system:add_nl_fwd(S,K):- ain(nl_fwd(S,K)).
+
 :- include(library(pfc_syntax)).  
 %:- virtualize_source_file(heads).
 
-(nl_fwd(Sentence)/gensym(test,Id)) ==> pipeline(Id,input,Sentence).
-(nl_fwd(Sentence,Kind)/gensym(Kind,Id)) ==> pipeline(Id,input,Sentence).
+nl_fwd(S,K):- awc, ground(S), add_nl_fwd(S,K).
 
-system:nl_fwd(S):- awc, ground(S), ain(nl_fwd(S)).
-nl_fwd(S,K):- awc, ground(S), ain(nl_fwd(S,K)).
+% (nl_fwd(Sentence)/gensym(test,Id)) ==> pipeline(Id,input,Sentence).
+(nl_fwd(Sentence,Kind)/(any_to_atom(Kind,A),gensym(A,Id))) ==> pipeline(Id,input,Sentence).
+
+
 
 %:- mpred_trace_all.
 
 add_conversion(From,Pred,To) ==>
-   ((pipeline(ID,From,VarFrom),{t(Pred,VarFrom,VarTo)}) ==> pipeline(ID,To,VarTo)).
+   ((pipeline(ID,From,VarFrom),{Call = t(Pred,VarFrom,VarTo), no_repeats(VarTo,Call)}) ==> pipeline(ID,To,VarTo)).
 
-% ==> add_conversion(input,to_wordlist_atoms,text80).
-==> add_conversion(text80,e2fc_parse,lf_b).
-==> add_conversion(lf_b,e2fc_clausify,clause_b).
-==> add_conversion(clause_b,e2fc_reply,reply_b).
 
-% ==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).
-% ==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,prelogic80).
+==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).
+==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,prelogic80).
+==> add_conversion(parsed80,parser_e2fc:my_sent_to_prelogic,prelogic80).
+
+% ==> add_conversion(prelogic80,parser_e2fc:prelogic_to_pfc,pfc_lf).
+
+==> add_conversion(input,to_wordlist_atoms,text80).
+==> add_conversion(text80,e2fc_parse,lf_e2fc).
+==> add_conversion(lf_e2fc,e2fc_clausify,clause_e2fc).
+==> add_conversion(clause_e2fc,e2fc_reply,reply_e2fc).
+==> add_conversion(reply_e2fc,parser_e2fc:my_sent_to_prelogic,prelogic80).
+
 
 /*
 (pipeline(ID,acetext,VarFrom), 
@@ -99,6 +116,8 @@ uninteresting_pipe(monitor).
 uninteresting_pipe(input).
 uninteresting_pipe(acetext).
 uninteresting_pipe(text80).
+uninteresting_pipe(parsed80).
+
 
 
 ((pipeline(ID,monitor,send_to(User,Channel)),   

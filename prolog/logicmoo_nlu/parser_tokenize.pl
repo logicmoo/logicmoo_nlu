@@ -132,5 +132,5 @@ foc_framevar2(VarName,X):- atom_concat('?',VN,VarName),!,foc_framevar2(VN,X).
 foc_framevar2(VarFn,X):- nb_current('$frame_variable_names',Vs),member(N=V,Vs),VarFn==N,!,must(X=V).
 foc_framevar2(VarFn,X):- (nb_current('$frame_variable_names',Vs);Vs=[]),!,nb_setval('$frame_variable_names',[VarFn=X|Vs]).
 
-
+:- fixup_exports.
 

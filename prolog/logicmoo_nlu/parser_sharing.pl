@@ -295,16 +295,16 @@ clean_te_module(_, _   ,_,OO,WasOM,WasOM:OO).
 importing_clause(H,H):- \+ callable(H),!.
 importing_clause((:-B),(:-BB)):- !,strip_module(B,CM,_),importing_body(CM,B,BB).
 importing_clause((H:-B),(HH:-BB)):- !, importing_head(H,HH),!,strip_module(HH,CM,_),importing_body(CM,B,BB).
-importing_clause((H), (H)):- is_leave_alone(H),!.
+importing_clause((H), (H)):- is_leave_alone_ic(H),!.
 importing_clause((H),(HH)):- importing_head(H,HH),!.
 importing_clause((B),(BB)):- strip_module(B,CM,_),importing_body(CM,B,BB),!.
 importing_clause(HB,HB).
 :- share_mp(importing_clause/2).
 
-is_leave_alone(H):- compound(H),functor(H,F,A),is_leave_alone(F,A).
-%is_leave_alone('--->',_).
-%is_leave_alone('-->',_).
-is_leave_alone(A,_):- upcase_atom(A,A).
+is_leave_alone_ic(H):- compound(H),functor(H,F,A),is_leave_alone_ic(F,A).
+%is_leave_alone_ic('--->',_).
+%is_leave_alone_ic('-->',_).
+is_leave_alone_ic(A,_):- upcase_atom(A,A).
 
 :- export(try_maybe_p/1).
 try_maybe_p(M:P):- P=..[F,_,R],!,try_maybe_f(F,M:P,R).

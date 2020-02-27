@@ -18,7 +18,7 @@ theTextL(W1,_CYCPOS,WHY) ---> theText80(W1),{call(WHY)}.
 
 noText ---> [].
 
-theText1(IC)---> {t_l:old_text,!},[W0],{any_nb_to_atom(W0,W1),downcase_atom(W1,DC),(var(IC)->IC=DC;downcase_atom(IC,DC))}.
+theText1(IC)---> {t_l:old_text,!},[W0],{parser_tokenize:any_nb_to_atom(W0,W1),downcase_atom(W1,DC),(var(IC)->IC=DC;downcase_atom(IC,DC))}.
 theText1(Txt)---> [w(Txt,_)].
 
 theText1(W1,_CYCPOS)--->{t_l:old_text,!},[W1]. % compatible_pos_db(CW,CYCPOS),cw_db(W1,CW)
@@ -149,3 +149,5 @@ loc_pred_prep(P,OFPREP) ---> theTextC(W,'Preposition',loc_pred_prep_db(W,P,OFPRE
 
 
 :-retract(tlxgproc:do_xg_process_te).
+
+

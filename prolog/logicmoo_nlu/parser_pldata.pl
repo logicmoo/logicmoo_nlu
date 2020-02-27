@@ -1,3 +1,4 @@
+:-module(parser_pldata,[]).
 
 % ================================================================================================
 % PLDATA: LOAD ENGLISH CORE FILES
@@ -42,12 +43,14 @@ get_it:-
    nop(llf(pldata(nldata_cycl_pos0)))),!.
 
 
-:- use_module(pldata(clex_iface)).
+:- reexport(pldata(clex_iface)).
 
 :- if(exists_source(pldata(nl_iface))).
 % being in user is just to help debugging from console
-:- user:reexport(pldata(nl_iface)).
+:- reexport(pldata(nl_iface)).
 :- endif.
+
+:- fixup_exports.
 
 % :- set_prolog_flag(qcompile,false).
 

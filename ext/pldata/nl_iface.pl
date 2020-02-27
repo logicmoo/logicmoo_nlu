@@ -69,6 +69,8 @@ set_rel_path_from_here:-
 :- nl_iface:rexport_qlf(nl_iface,wn_frames).
 % :- load_wordnet.
 
+:- fixup_exports.
+
 end_of_file.
 
 
