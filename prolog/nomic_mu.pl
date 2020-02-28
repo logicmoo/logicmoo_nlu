@@ -57,7 +57,7 @@
 % :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_chat80)).
 %:- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_pldata)).
 
-:- use_module(library(logicmoo_nlu/parser_sharing)).
+:- use_module(library(logicmoo_nlu/parser_sharing),except([term_expansion/4])).
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
 :- parser_all:ensure_loaded(library(logicmoo_nlu/parser_pldata)).
 :- use_module(library(logicmoo_nlu/parser_chat80)).

@@ -10,7 +10,7 @@
 % ===================================================================
 
 :- module(parser_sharing,[
-  term_expansion/4,
+  % term_expansion/4,
    op(1150,fx,(share_mp)),
    op(1150,fx,(shared_parser_data)),
    op(1150,fx,(dynamic_multifile_exported))]).
@@ -326,6 +326,6 @@ try_maybe_p(M:F,X,R):- P=..[F,X,R],!,try_maybe_f(F,M:P,R).
 try_maybe_f(F,P,R):- P*->true;(fail;fail;R=error(F,P)).
 
 
-term_expansion(G,I,GG,O):- notrace((nonvar(I),compound(G))),importing_clause_change(G,GG), I=O.
+parser_sharing:term_expansion(G,I,GG,O):- notrace((nonvar(I),compound(G))),importing_clause_change(G,GG), I=O.
 
 :- fixup_exports.

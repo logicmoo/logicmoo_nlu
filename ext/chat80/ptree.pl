@@ -23,7 +23,7 @@
 /* Print term as a tree */
 
 print_tree(T) :-
-   numbervars80(T,1,_),
+   numbervars80(T,111,_),
    pt0('','',T,0), nl, fail.
 print_tree(_).
 
@@ -45,29 +45,52 @@ pt0(In,LC,TTs,I) :-
 */
 pt0(In,LC,[T|Ts],I) :- !,
    pt0(In,LC,T,I),
-   pt(In,LC,Ts,I).
+   pt1(In,LC,Ts,I).
 
 pt0(In,LC,q(E,V,G),I):- atom(E), !, T=..[E,V,G],!, pt0(In,LC,T,I).
+
+pt0(_In,LC,T,I) :- T=..[F,A], !,
+   tab(I), format('~p(',[F]),
+   I0 is I+1, format(atom(LC2),')~w',[LC]),   
+   pt1(F,LC2,[A],I0).
+
+pt0(_In, LC,T,I) :-    
+   T=..[F,A0,A|As], as_is(A0), append([L1|Left],[R|Rest],[A|As]), \+ is_arity_lt1(R), !,
+   tab(I), format('~p( ',[F]),
+   write_simple(A0), write_simple_each([L1|Left]), format(', '), nl,
+   I0 is I+3, format(atom(LC2),')~w',[LC]),   
+   pt1(F,LC2,[R|Rest],I0).
+
+
+pt0(_In,LC,T,I) :- T=..[F,A,B|As], is_arity_lt1(A), !, 
+   tab(I), format('~p( ~p,',[F,A]), nl,
+   I0 is I+2, format(atom(LC2),')~w',[LC]),
+   pt1(F,LC2,[B|As],I0).
+
 pt0(In,LC,T,I) :- !,
    T=..[F|As],   
-   ((In==F, F == & )
+   (((In==F, F == & )
      -> (I0 is I+1,LCO='~w' )
-      ; (tab(I), format('~p(',[F]), I0 is I+3, nl, LCO=')~w')),
+      ; (tab(I), format('~p(',[F]), I0 is I+3, nl, LCO=')~w'))),
    format(atom(LC2),LCO,[LC]),
-   pt(F,LC2,As,I0).
+   pt1(F,LC2,As,I0).
 
-pt(_In,_LC,[],_) :- !.
-pt( In, LC,[A],I) :- !,
+pt1(_In,_LC,[],_) :- !.
+pt1( In, LC,[A],I) :- !,
    pt0(In,LC,A,I).
-pt( In, LC,[A|As],I) :- !,
+pt1( In, LC,[A0,A|As],I) :- is_arity_lt1(A0), append([L1|Left],[R|Rest],[A|As]), \+ is_arity_lt1(R), !,
+   tab(I), write_simple(A0), write_simple_each([L1|Left]), nl,
+   pt0(In,',',R,I),
+   pt1(In,LC,Rest,I).  
+pt1( In, LC,[A|As],I) :- !,
    pt0(In,',',A,I),
-   pt(In,LC,As,I).
+   pt1(In,LC,As,I).
+
+
 
 is_arity_lt1(A) :- \+ compound(A),!.
 is_arity_lt1(A) :- compound_name_arity(A,_,0),!.
-
-write_simple(A):- is_arity_lt1(A),!, format('~q',[A]).
-write_simple(A):- format('~p',[A]).
+is_arity_lt1(A) :- functor(A,'$VAR',_),!.
 
 as_is(V):- var(V).
 as_is(A) :- is_arity_lt1(A), !.
@@ -76,13 +99,27 @@ as_is(A) :- functor(A,F,_), simple_f(F).
 as_is('_'(_)) :- !.
 as_is(X) :-
    quote80(X).
-as_is(F):- simple_arg(F), !.
-as_is(A) :- A=..[_|S], maplist(simple_arg,S), !.
+as_is(A) :- A=..[_|S], maplist(is_arity_lt1,S), !.
+% as_is(F):- simple_arg(F), !.
 
 simple_f(denotableBy).
+simple_f(iza).
+simple_f(isa).
 simple_f(HasSpace):- atom_contains(HasSpace,' ').
 
 simple_arg(S):- (nvar(S) ; \+ compound(S)),!.
+simple_arg(S):- S=[_,A], simple_arg(A), !.
 simple_arg(S):- \+ (arg(_,S,Var), compound(Var), \+ nvar(Var)).
 
 nvar(S):- \+ is_arity_lt1(S)-> functor(S,'$VAR',_); var(S).
+
+
+
+% write_simple(A):- is_arity_lt2(A),!, format('~p',[A]).
+write_simple(A):- is_arity_lt1(A),!, format('~q',[A]).
+write_simple(A):- format('~p',[A]).
+
+write_simple_each([]).
+write_simple_each([A0|Left]):-  format(', '), write_simple(A0), write_simple_each(Left).
+
+

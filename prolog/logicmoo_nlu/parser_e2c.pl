@@ -58,6 +58,18 @@
 %:- use_module(pldata(clex_iface)).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
 
+decl_is_dcg(MP):- strip_module(MP,M,P),(P=F/A;(P=F//A2,
+  A is A2+2);(atom(P),F=P,A=2);(compound(P),compound_name_arity(P,F,A2),A is A2+2)),!,
+  decl_is_dcg(M,F,A). 
+decl_is_dcg(M,F,A):- ain(baseKB:mpred_props(M,F,A,prologDcg)), ain(baseKB:mpred_props(M,F,A,prologOnly)).
+
+:- decl_is_dcg(optionalText1/3).
+:- decl_is_dcg(theText1/3).
+
+:- multifile(system:term_expansion/4).
+:- dynamic(system:term_expansion/4).
+system:term_expansion(MH --> _,_,_,_):- notrace((strip_module(MH,M,H),decl_is_dcg(M:H),fail)).
+
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
@@ -65,7 +77,7 @@
 system:t33:- cls, make, t33s.
 system:t33s:- cls, test_e2c([sanity]).
 system:t33t:- cls, test_e2c([riddle]).
-system:t33ts:- cls, test_e2c(\[]). % all
+system:t33ts:- cls, test_e2c([]). % all
 
 system:t33f:-  
   mpred_trace_all,
@@ -149,9 +161,9 @@ test_e2c("No two owners drink the same kind of beverage.", [riddle(1), sanity]).
 test_e2c("No two owners have the same pet.", [riddle(1), sanity, regression]).  % RESULTs?
 
 
-test_e2c("The Brit lives in the red house.", [riddle(_), sanity]).
-test_e2c("The Swede keeps dogs as pets.", [riddle(_), sanity]).
-test_e2c("A Dane drinks tea.", [riddle(_), sanity]).
+test_e2c("The brit lives in the red house.", [riddle(_), sanity]).
+test_e2c("The swede keeps dogs as pets.", [riddle(_), sanity]).
+test_e2c("A dane drinks tea.", [riddle(_), sanity]).
 test_e2c("The green house is on the left of the white house.", [riddle(_), sanity]).
 test_e2c("The green house's owner drinks coffee.", [riddle(_), sanity]).
 
@@ -171,7 +183,7 @@ test_e2c("Who owns the fish?", [riddle(_), sanity]).
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
 add_e2c(S,W):-  clause(test_e2c(S,W),true),!.
-add_e2c(S,W):- assertz(test_e2c(S,W)).
+add_e2c(S,W):- listify(W,L),assertz(test_e2c(S,L)).
 
 baseKB:feature_test(nlu_riddle):- riddle.
 riddle :-  riddle(_AnyLevel).
@@ -183,12 +195,24 @@ riddle(Level) :- forall(test_e2c(Text,riddle(Level)),e2c(Text)).
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
-print_reply_colored(error(Reply)):- !, print_reply(red, error(Reply)).
-print_reply_colored((Reply)):- !, must(print_reply(green, (Reply))).
+print_reply_colored(Reply):- notrace(((functor_result_color(Reply,Color), !, print_reply(Color, Reply)))).
+
+functor_result_color(T,yellow):-var(T),!.
+functor_result_color(error,red).
+functor_result_color(failed,red).
+functor_result_color(success,green).
+functor_result_color(failed,red).
+functor_result_color(_:T,Color):- !, functor_result_color(T,Color).
+functor_result_color(T:-_,Color):- !, functor_result_color(T,Color).
+functor_result_color(T,Color):- \+ structureless(T),functor(T,F,_),!,functor_result_color(F,Color).
+functor_result_color(_,cyan).
+
+
+call_print_reply(Goal):- catch((Goal-> print_reply_colored(success(Goal)); print_reply_colored(failed(Goal))),E,print_reply_colored(E)).
 
 print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), parser_chat80:print_tree(O))),!.
 
-print_reply(C,O):- (is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[print_reply(O)]),!.
+print_reply(C,O):- notrace(((is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[print_reply(O)]))),!.
 
 system:myb :- e2c.
 
@@ -212,6 +236,10 @@ e2c_0(Words):-
   ignore_must(e2c_0(Words, Reply)), %cls, % ignore(also_show_chat80(Words)),!,
   print_reply_colored(Reply).
 
+
+irc_cmd:irc_invoke_e2c(Channel,Agent,_Say,Args):- 
+ irc_process(Channel,Agent,   
+   e2c(Args)).
 
 irc_cmd:irc_invoke_nlp(Channel,Agent,_Say,Args):- 
  irc_process(Channel,Agent,irc_e2c(Args)).
@@ -356,17 +384,17 @@ make_time_info(Frame, Time, LF, Out):- Time\==nonfinite, Time\== pres+fin, nvd(L
 make_time_info(Frame, _Time, LF, LF):- nvd(LF, Frame).
 
 expand_1arg(_,A,B):- structureless(A),!,A=B.
-expand_1arg(t,List,Out):- is_list(List),List=[Obj|Written],atomic(Obj),maplist(toPropercase,Written,WrittenO),i_name(Obj,WrittenO,Out).
+expand_1arg(t,List,Out):- is_list(List),List=[Obj|Written],atomic(Obj),must_maplist(toPropercase,Written,WrittenO),i_name(Obj,WrittenO,Out).
 expand_1arg(_,str(Name), Out):- any_to_string(Name,Out),!.
 expand_1arg(iza,timeFn(Time), timeFn('vPast')):-  (Time== past+fin ; Time==pp). % Time\==nonfinite,
 expand_1arg(_,A,A).
 
 expand_args(_,_,A,B):- structureless(A),!,A=B.
-%expand_args(_,_,[t|Args],Out):- !, maplist(expand_1arg(t),Args,ArgsO),Out =..[t|ArgsO].
+%expand_args(_,_,[t|Args],Out):- !, must_maplist(expand_1arg(t),Args,ArgsO),Out =..[t|ArgsO].
 expand_args(_,_,[a,Type,Name], Out):- i_name(Type,Name,Out),!.
-expand_args(_,_,[T|Args],Out):- atom(T),maplist(expand_1arg(T),Args,ArgsO),Out =..[T|ArgsO].
+expand_args(_,_,[T|Args],Out):- atom(T),must_maplist(expand_1arg(T),Args,ArgsO),Out =..[T|ArgsO].
 expand_args(C,_,[P|ARGS],Out):- 
-  maplist(expand_lf(C,0),ARGS,ARGSO),
+  must_maplist(expand_lf(C,0),ARGS,ARGSO),
    Out =..[P|ARGSO].
 
 
@@ -520,7 +548,7 @@ var_1trait(_, the(sg), true).
 var_1trait(X, past, iza(X,timeFn(vPast))).
 var_1trait(X, pres, iza(X,timeFn(vNow))).
 
-%var_1trait(X, np_head(A,B,C), Out):- maplist(into_args80(np,X),[A,B,C],ABC),add_traits( X, ABC, true, Out).
+%var_1trait(X, np_head(A,B,C), Out):- must_maplist(into_args80(np,X),[A,B,C],ABC),add_traits( X, ABC, true, Out).
 var_1trait(X, reduced_rel(X,Data), Out):- rewrite_result( X, verb,X,Data,Out).
 var_1trait(X, rel(X,Data), Out):- rewrite_result( _, verb,_Frm,Data,Out).
 var_1trait(X, prep_phrase(prep(With),Data), prep(With,X,Y) & Out):-  
@@ -552,7 +580,7 @@ var_1trait(VF,varg(dir,DATA),(directObject(VF,DIR) & O)):- nvd('Obj',DIR), !, ad
 
 var_1trait(X, Data, O):- 
  compound_name_arguments(Data,F,Args), into_split(F,Mode),!,
- maplist(into_args80(Mode,X),Args,Args80),
+ must_maplist(into_args80(Mode,X),Args,Args80),
  add_traits(X,Args80,true,O).
 
 var_1trait(X, Str, denotableBy(X, Str)):- string(Str), nvd(Str,X).
@@ -599,11 +627,11 @@ rewrite_result( SF, Mode, VF,varg(subj,DATA),(theSubject(VF,DIR) & O)):- nvd('Su
 rewrite_result(_SF,_Mode, VF,quant(same,nb(N)),countOf(VF,same,N)).
 rewrite_result(_SF,_Mode, VF,S,):- 
  compound_name_arguments(S,F,Args), (into_split_o(F);into_split(F)),!,
- maplist(into_args80(VF),Args,Args80),
+ must_maplist(into_args80(VF),Args,Args80),
  add_traits(VF,Args80,true,O).
 rewrite_result( SF, Mode, VF,S,O):- 
  compound_name_arguments(S,F,Args), into_split(F),!,
- maplist(rewrite_result( SF, F, VF),Args,ArgsO),
+ must_maplist(rewrite_result( SF, F, VF),Args,ArgsO),
  rewrite_result( SF, Mode, VF,ArgsO,O).
 */
 
@@ -611,7 +639,7 @@ rewrite_result(_SF,_Mode,_VF,S,O):- arg(_,S,E),var(E),!, S=O.
 
 rewrite_result( SF, Mode, VF,S,O):- 
  compound_name_arguments(S,F,Args),
- maplist(rewrite_result( SF, Mode,VF),Args,ArgsO),
+ must_maplist(rewrite_result( SF, Mode,VF),Args,ArgsO),
  compound_name_arguments(M,F,ArgsO),
  ((Args==ArgsO;true) -> M = O ; rewrite_result( SF, Mode, VF,M,O)).
 
@@ -638,13 +666,14 @@ to_evt_name(A,Out):- atom_concat('act',APC,A),!, (is_captitalized(APC)-> A=Out ;
 to_evt_name(A,Out):- atom_concat(APC,'ing',A),!, (is_captitalized(APC)-> A=Out ; to_evt_name2(APC,Out)).
 to_evt_name(A,Out):- to_evt_name2(A,Out).
 
-into_active(A,ING):- talkdb:talk_db(noun_or_verb, _, ING, A).
-into_active(A,ING):- talkdb:talk_db(_, A, _, _, ING, _),!.
-into_active(A,ING):- talkdb:talk_db(_, _, A, _, ING, _),!.
-into_active(A,ING):- talkdb:talk_db(_, _, _, A, ING, _),!.
-into_active(A,ING):- talkdb:talk_db(_, _, _, _, ING, A),!.
-into_active(A,A):-    talkdb:talk_db(_, _, _, _, A, _),!.
-into_active(A,ING):- talkdb:talk_db(noun_or_verb, A, ING, _).
+into_active(A,ING):- (into_active1(A,ING);into_active2(A,ING)),!.
+into_active1(A,ING):- talkdb:talk_db(_, A, _, _, ING, _),!.
+into_active1(A,ING):- talkdb:talk_db(_, _, A, _, ING, _),!.
+into_active1(A,ING):- talkdb:talk_db(_, _, _, A, ING, _),!.
+into_active1(A,ING):- talkdb:talk_db(_, _, _, _, ING, A),!.
+into_active1(A,ING):- talkdb:talk_db(_, _, _, _,   A, _),!, A = ING.
+into_active1(A,ING):- talkdb:talk_db(noun_or_verb, _, ING, A).
+into_active2(A,ING):- talkdb:talk_db(noun_or_verb, A, ING, _).
 
 to_evt_name2(A,Out):- downcase_atom(A,DC),into_active(DC,ING),toPropercase(ING,APC),atomic_list_concat(['act',APC],Out),!.
 to_evt_name2(A,Out):- downcase_atom(A,DC),A==DC,toPropercase(A,APC),atomic_list_concat(['act',APC,'ing'],Out),!.
@@ -676,11 +705,10 @@ imperative(do(X, LFOut)) --> verb_phrase(_NewFrame, X, LFOut), optionalText1('!'
 % Declarative sentences
 % =================================================================
 
-declarative(LFOut):- frame_sentence0(_Frame, LFOut).
 % [if|when|whenever] Cond then Result
 declarative(LFOut) --> (theText1(if);theBaseForm(when)),!,frame_sentence(_Frame1,LHS),{add_quant(all,LHS)},
      optionalText1(','),theText1(then),frame_sentence(_Frame2,RHS),{add_quant(exists,RHS),expand_quants(LHS=>RHS,LFOut)}.
-
+% declarative(LFOut) --> frame_sentence0(_Frame, LFOut).
 declarative(LFOut) --> frame_sentence(LFOut), optionalText1('.').
 
 :-add_e2c("The man who smokes Blends has a neighbor who drinks water.", sanity).
@@ -739,7 +767,7 @@ frame_sentence(Frame, LFOut) --> noun_phrase(subj, X, true, Precond), verb_phras
 frame_sentence(LFOut) --> frame_sentence(Frame, LFOut), {add_quant(exists,LFOut),add_quant(exists,Frame)}. 
 
 add_quant(Type,X):- var(X) -> (get_attr(X,'$quant_needed',_)->true;put_attr(X,'$quant_needed',Type));
-   (term_variables(X,Plain),maplist(add_quant(Type),Plain)).
+   (term_variables(X,Plain),must_maplist(add_quant(Type),Plain)).
 
 term_plain_variables(LF,Plain):- term_variables(LF,Vars),exclude(attvar,Vars,Plain).
 % =================================================================
@@ -783,7 +811,7 @@ verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), dcg_thru_2args(verb_p
 % verb_phrase1(Frame, X, AssnOut) --> verb_phrase1(Frame, X, AssnOut).
 verb_phrase1( Frame, X, ~(LFOut)) --> theText1(not), !, verb_phrase1(Frame, X, LFOut).
 verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, equals(X, Y) , Assn),optionalText1(equal),optionalText1(to),
-  \+ verb1(_V), (pronoun(obj(_K), Y, Assn, AssnOut);value_obj(obj(_K), Y, Assn, AssnOut)).
+   (pronoun(obj(_K), Y, Assn, AssnOut);value_obj(obj(_K), Y, Assn, AssnOut)).
 verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, AdjProp, AssnOut), adjective(X, AdjProp),!, nvd(is, Frame).
 verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, Assn, AssnOut), noun_phrase(obj(_K), X, true, Assn),!.
 
@@ -793,12 +821,14 @@ verb_phrase1_ditrans( Frame, X, verbPrep(Frame,X,LeftOfVerb,CycVerb,LeftOfPrep,C
   {fail},scan_for_verb_prep(LeftOfVerb,_AtomVerb,LeftOfPrep,_AtomPrep,RightOfPrep,CycVerb,CycPrep).
 
 % NEW
-verb_phrase1_ditrans( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z, Assn1), Assn1, Assn2), noun_phrase(obj(_K), Y, Assn2, Assn3), noun_phrase(obj(indir), Z, Assn3, LFOut).
+verb_phrase1_ditrans( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z, Assn1), Assn1, Assn2), 
+  noun_phrase(obj(dir), Y, Assn2, Assn3), 
+  noun_phrase(obj(indir), Z, Assn3, LFOut).
 %verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj(_K), Y, Assn2, LFOut).
 %verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
 % OLD
 
-verb1(V) --> theText1(Verb), {into_active(Verb,Active),to_evt_name(Active,V)}.
+verb1(V) --> theText1(Verb), {into_active1(Verb,Active),to_evt_name(Active,V)}.
 
 %ditrans_verb1(Frame, TenseUniversal, X, Y, Z, LF) --> [W],{atom_string(W,S),                                      
 
@@ -864,11 +894,13 @@ trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, XY, YX, LF), ((([by];[
 % OLD 
 {make_time_info(Frame, Time, LF, LFO)}.
 % NEW {expand_lf(iza(Frame,timeFn(Time)) & LF, LFO)}.
- 
-trans_verb1(_Frame, pres+fin, X, Y, z(painting, X, Y)) --> theText1(paints).
-trans_verb1(_Frame, pres+fin, X, Y, z(admiring, X, Y)) --> theText1(admires).
-trans_verb1(_Frame, Type,     X, Y, z(Evt, X, Y)) --> theText1(Formed),{ my_clex_verb(Formed, _Verb, tv, Type, Evt)}.
-trans_verb1(Frame, Time, X, Y, LF) --> talk_verb(Frame, IV, tv(X, Y), Time, LF), nvd(IV, Frame).  % & iza(Frame, timeFn(Time)
+
+trans_verb1(Frame, Time, X, Y, LF)--> trans_verb2(Frame, Time, X, Y, LF), \+ dcg_peek(theText1(by)).
+
+trans_verb2(_Frame, pres+fin, X, Y, z(painting, X, Y)) --> theText1(paints).
+trans_verb2(_Frame, pres+fin, X, Y, z(admiring, X, Y)) --> theText1(admires).
+trans_verb2(_Frame, Type,     X, Y, z(Evt, X, Y)) --> theText1(Formed),{ my_clex_verb(Formed, _Verb, tv, Type, Evt)}.
+trans_verb2(Frame, Time, X, Y, LF) --> talk_verb(Frame, IV, tv(X, Y), Time, LF), nvd(IV, Frame).  % & iza(Frame, timeFn(Time)
 
 
 my_clex_verb(Formed, Verb, tv, Type, Evt):- clex_verb(Formed, Verb, tv, Type),to_evt_name(Verb,Evt).
@@ -916,14 +948,16 @@ intrans_verb(Frame, X, LFO) --> intrans_verb1(Frame, Time, X, LF),
 % OLD 
   {make_time_info(Frame, Time, LF, LFO)}.
 % NEW expand_lf(iza(Frame,timeFn(Time)) & LF, LFO)}.
- 
-intrans_verb1(_Frame, pres+fin, X, z(painting, X)) --> theText1(paints).
-intrans_verb1(_Frame, past+fin, X, z(writting, X, _)) --> theText1(wrote).
-intrans_verb1(_Frame, Type, X, z(Evt, X, _)) --> theText1(Formed),{ my_clex_verb(Formed, _Verb, iv, Type, Evt)}.
 
-intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, iv(X), Time, LF), nvd(IV, Frame).
+intrans_verb1(Frame, Time, X, LF)--> intrans_verb2(Frame, Time, X, LF), nop( \+  dcg_peek(theText1(by))).
+
+intrans_verb2(_Frame, pres+fin, X, z(painting, X)) --> theText1(paints).
+intrans_verb2(_Frame, past+fin, X, z(writting, X, _)) --> theText1(wrote).
+intrans_verb2(_Frame, Type, X, z(Evt, X, _)) --> theText1(Formed),{ my_clex_verb(Formed, _Verb, iv, Type, Evt)}.
+
+intrans_verb2(Frame, Time, X, LF) --> talk_verb(Frame, IV, iv(X), Time, LF), nvd(IV, Frame).
 % fallback
-intrans_verb1(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), nvd(IV, Frame).
+intrans_verb2(Frame, Time, X, LF) --> talk_verb(Frame, IV, tv(X, _), Time, LF), nvd(IV, Frame).
 
 %                nonfinite, pres+fin, past+fin, past+part, pres+part, LF
 
@@ -964,6 +998,11 @@ aux(Form, LFIn, LFOut) --> theText1(Aux), {aux_lf(Aux, Form, LFIn, LFOut)}.
  aux_lf(did , _Tense+fin/nonfinite , VP, VP).
  aux_lf(to , _/_ , VP, VP).
 
+is_be( Frame, X, LF, will(LFO)) --> theText1(will),!,is_be1( Frame, X, LF, LFO).
+is_be( Frame, X, LF, ~will(LFO)) --> theText1(wont),!,is_be1( Frame, X, LF, LFO).
+is_be( Frame, X, LF, possible(LFO)) --> theText1(can),!,is_be1( Frame, X, LF, LFO).
+is_be( Frame, X, LF, ~possible(LFO)) --> theText1(cant),!,is_be1( Frame, X, LF, LFO).
+
 is_be( Frame, X, NounProp, NounPropO) --> is_be1( Frame, X, NounProp, NounPropM),
   (theText1(not) -> {NounPropO = ~(NounPropM)} ; {NounPropO = NounPropM}).
   
@@ -981,20 +1020,20 @@ copula_is_does --> theText1(C), {copula_is_does_dict(C)}.
 % =================================================================
 % Prepostional Phrase / Verb Satellites
 % =================================================================
-verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepostional_phrase(obj(indir), X, Frame, LFIn, LFOut).
+verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepositional_phrase(obj(indir), X, Frame, LFIn, LFOut).
 
 verb_phrase_post_mod(X, Frame, LFIn, LFIn & LFOut) --> optionalText1(','),theText1('and'), verb_phrase(_Frame2, X, LFOut),put_attr(Frame,'$frame_conjunction',and).
 verb_phrase_post_mod(X, Frame, LFIn, LFIn;LFOut) --> optionalText1(','),theText1('or'), verb_phrase(Frame, X, LFOut),put_attr(Frame,'$frame_conjunction',or).
 verb_phrase_post_mod(X, Frame, LFIn, conj(Frame,LFIn,LFOut)) --> theText1(','), verb_phrase(_Frame2, X, LFOut).
 
-prepostional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
-prepostional_phrase(SO, X, Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
+prepositional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
+prepositional_phrase(SO, X, Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
   {get_attr(Frame,'$root',Root)},
   noun_phrase(SO, Y, w([Root,Prep], X, Y) & LF, Out).
-prepostional_phrase(SO, X, _Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
+prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
   noun_phrase(SO, Y, w(Prep, X, Y) & LF, Out).
 
-prepostional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO, Y, about(X, Y) & LF, Out).
+prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO, Y, about(X, Y) & LF, Out).
 
    prep_dict(to).
    prep_dict(X):- talkdb:talk_db(preposition, X).
@@ -1024,7 +1063,7 @@ verb_pre_mod(_,Frame, LF, Out) --> adverb(Frame, MProps), conjoin_lf(LF, MProps,
 
 % <jumped> quickly
 verb_post_mod(_,Frame, LF, Out) --> {fail}, adverb(Frame, MProps), conjoin_lf(LF, MProps, Out).
-verb_post_mod(X, Frame, LFIn, FLOut) -->  prepostional_phrase(obj(indir), X, Frame, LFIn, FLOut).
+verb_post_mod(X, Frame, LFIn, FLOut) -->  prepositional_phrase(obj(indir), X, Frame, LFIn, FLOut).
 
 % adverb(X, MProps) --> quietly(maybe_negated_dcg(adverb1(X), MProps)).
 adverb(X, MProps) --> quietly(adverb1(X, MProps)).
@@ -1039,6 +1078,7 @@ adverb1(X, MProps)  -->      theText1(Adv), {adv_lf(X, Adv, MProps)}.
 % =================================================================
 % Noun Phrase
 % =================================================================
+
 % what the product is
 noun_phrase(SO, X, LF, Out) --> theText1(what), noun_phrase1(SO, Y, LF, LF0), 
   theText1(is), conjoin_lf(LF0 , what_is(Y, X), Out).
@@ -1159,7 +1199,7 @@ rel_clause(_SO, X, LF, Out) --> theText1(Who), {relpron_dict(Who)},!, verb_phras
   relpron_dict(that).  relpron_dict(who).  relpron_dict(whom).
 
 adjective(X, MProps) --> quietly(maybe_negated_dcg(adjective1(X), MProps)).
-adjective1(X, MProps)  -->   \+ verb1(_V),   theText1(Adj), {adj_lf(X, Adj, MProps)}.
+adjective1(X, MProps)  -->  nop( \+ dcg_peek(verb1(_V))),   theText1(Adj), {nop(Adj \== liked), adj_lf(X, Adj, MProps)}.
 
  adj_lf(X, Adj, ISA) :- 
    ((   (parser_chat80:adj_db( Adj, _),RAdj=Adj);
@@ -1178,7 +1218,7 @@ near_noun_mod(_SO, X, LF, Out) --> theText1([hapilly, maried]), conjoin_lf(LF , 
 noun_post_mod(SO, X, LF, Out) --> theText1(of), noun_phrase(SO, Y, LF, LF0), conjoin_lf(LF0, of(X, Y), Out).
 % "owned by me"
 noun_post_mod(SO, X, LF, Out) --> theText1([owned, by]), noun_phrase(SO, Y, LF & posessedBy(X, Y), Out).
-noun_post_mod(SO, X, LF, Out)  --> prepostional_phrase(SO, X, _Frame, LF, Out).
+noun_post_mod(SO, X, LF, Out)  --> prepositional_phrase(SO, X, _Frame, LF, Out).
 noun_post_mod(SO, X, LF, Out)  --> rel_clause(SO, X, LF, Out).
 noun_post_mod(_SO, _X, LF, LF)  --> theText1(each);theText1(all).
 
@@ -1238,11 +1278,6 @@ whpron(X, LF, Out) --> theText1(WH), {whpron_dict(WH,Type)},!,add_traits(X, [pro
   whpron_dict(Which,tThing):- talkdb:talk_db(pronoun, Which), atom_concat('w', _, Which).
 
 
-idiomatic_replace([why,did,np(X),Y],[what,situation,caused,np(X),to,Y]).
-% why did X ... 
-% % -> what situation caused X to ...
-
-
 % pers_pron_db
 % pronoun(_SO, X, _LF, _Out) --> determiner(X, _), !, {fail}.
 pronoun(SO, X, LF, Out) --> theText1(noone),dcg_push(nobody),!,pronoun(SO, X, LF, Out).
@@ -1272,10 +1307,11 @@ pronoun(SO, X, LF, Out) --> theText1(Hers),
   findall_set1(pos(Prop),acnl('partOfSpeech',CycWordHers,Prop,StrHers,_),Props)},
   add_traits(X, [pronounSubjFn(Hers),v_arg(SO)|Props], LF, Out).
 
+pronoun(SO, X, LF, Out) --> theText1(WH), {talkdb:talk_db(pl_pronoun, WH)},!,add_traits(X, [pronounSubjFn(WH),v_arg(SO)], LF, Out).
 
 pronoun(SO, X, LF, Out) --> theText1(WH), {talkdb:talk_db(fem, WH)},!,add_traits(X, [pronounSubjFn(WH),v_arg(SO),gender(fem)], LF, Out).
-pronoun(SO, X, LF, Out) --> theText1(WH), {talkdb:talk_db(pl_pronoun, WH)},!,add_traits(X, [pronounSubjFn(WH),v_arg(SO)], LF, Out).
 pronoun(subj, X, LF, Out) --> theText1(WH), {whpron_dict(WH,Type)},!,add_traits(X, [pronounSubjWHFn(WH), iza(Type)], LF, Out).
+
 pronoun(SO, X, LF, Out) --> theText1(WH), {talkdb:talk_db(pronoun, WH)},!,add_traits(X, 
   [pronounSubjFn(WH),v_arg(SO)], LF, Out).
 
@@ -1408,11 +1444,12 @@ dcg_and(DCG1, DCG2, S, E) :- dcg_phrase(DCG1, S, E), dcg_phrase(DCG2, S, E), !.
 dcg_push(List, S, ListS):- is_list(List), !, append(List, S, ListS).
 dcg_push(A, S, [A|S]).
 
-theText1(IC)--> {var(IC),!},[W0],notrace(({parser_tokenize:any_nb_to_atom(W0,W1), downcase_atom(W1,IC)})).
-theText1([])--> !, [].
+theText1(IC)-->notrace(theText11(IC)).
 
-theText1(IC)--> {atomic(IC),downcase_atom(IC,DC)},[W0],{parser_tokenize:any_nb_to_atom(W0,W1),(W1=DC;downcase_atom(W1,DC))},!.
-theText1([H|T])--> theText1(H),!,theText1(T).
+theText11(IC)--> {var(IC),!},[W0],notrace(({parser_tokenize:any_nb_to_atom(W0,W1), downcase_atom(W1,IC)})).
+theText11([])--> !, [].
+theText11(IC)--> {atomic(IC),downcase_atom(IC,DC)},[W0],{parser_tokenize:any_nb_to_atom(W0,W1),(W1=DC;downcase_atom(W1,DC))},!.
+theText11([H|T])--> theText11(H),!,theText11(T).
 %theText1(Txt)--> [w(Txt,_)].
 
 theBaseForm(Tex)-->[Text],{atom_concat(Tex,_,Text)}.
@@ -1463,13 +1500,26 @@ maybe_toPropercase(X,Y):- first_char_to_upper(X,Y).
 conc([], L, L).
 conc([H|T], L, [H|R]) :- conc(T, L, R).
 
-into_combines(Words,WordsA):- maplist(parser_tokenize:any_nb_to_atom, Words, WordsA).
+idiomatic_replace([why,did,np(X),Y],[what,situation,caused,np(X),to,Y]).
+% why did X ... 
+% % -> what situation caused X to ...
+
+txt_rewrite([wont],[will,not]).
+
+do_txt_rewrites([],[]):-!.
+do_txt_rewrites([WordA|WordsI],WordsO):- downcase_atom(WordA,WordD), txt_rewrite([WordD|Left],Into), append(Left,Mid,WordsI),!,
+   append(Into,Mid,WordsM),
+   do_txt_rewrites(WordsM,WordsO).
+do_txt_rewrites([Word|Words],[Word|WordsO]):- !, do_txt_rewrites(Words,WordsO).
+
+into_combines(Words,WordsO):- must_maplist(parser_tokenize:any_nb_to_atom, Words, WordsA), do_txt_rewrites(WordsA,WordsO).
 
 to_wordlist_atoms(Sentence, WordsA):- into_text80(Sentence, Words),into_combines(Words,WordsA),!.
 to_wordlist_atoms(Sentence, WordsA):-
    to_word_list(Sentence, Words),
-   maplist(any_to_atom, Words, WordsA), !.
+   must_maplist(any_to_atom, Words, WordsA), !.
 
+:- import(mu:nop/3).
 
 
 also_show_chat80(I):-
@@ -1518,12 +1568,37 @@ my_sent_to_prelogic(E,Res):-
   % print_reply(yellow,(E)), 
   rewrite_result(_SF, verb,_VF,E,Res),!. 
 
+
+% scan_is_dcg(M,F,A):- baseKB:mpred_props(M,F,A,prologDcg). 
+scan_is_dcg(M,F,A):- current_predicate(M:F/A),A>=2,functor(H,F,A),
+  predicate_property(M:H,number_of_clauses(_)),
+  \+ predicate_property(M:H,imported_from(_)),
+  \+ \+ (clause(M:H,B),is_dcg_clause(M,H,B)).
+
+%is_dcg_clause(M,H,B):- H=..[F|Args],sub_term(Sub,B),\+ structureless(Sub), Sub=..[_|Args],!.
+is_dcg_clause(M,_,B):- sub_term(Sub,B), \+ structureless(Sub),Sub\=[_|_],functor(Sub,F,A),A>=2,baseKB:mpred_props(M,F,A,prologDcg).
+
+make_dcg_test_stub(M,F,_):- current_predicate(M:F/1),!. % no place for it
+make_dcg_test_stub(_,F,_):- current_predicate(F/1),!. % still no place for it?
+make_dcg_test_stub(M,F,A):-
+   functor(PrologHead,F,A),
+   PrologHead =.. [F|PrologHeadArgs],
+   append(_,[W,E],PrologHeadArgs),   
+   TextHead =.. [F,S],
+   (Assert = ( M:TextHead:- (make, to_wordlist_atoms(S,W),call_print_reply(M:PrologHead),E=[]))),
+   M:assert_if_new(Assert).
+
 :- retract(t_l:into_form_code).
 
+:- M = parser_e2c, forall(scan_is_dcg(M,F,A), decl_is_dcg(M,F,A)).
+:- M = parser_e2c, forall(baseKB:mpred_props(M,F,A,prologDcg),must_or_rtrace(make_dcg_test_stub(M,F,A))).
 
+/*
+:- if(\+ prolog_load_context(reloading,true)).
 :- context_module(CM), module_predicates_are_exported(CM).
 :- context_module(CM), module_meta_predicates_are_transparent(CM).
-
+:- endif.
+*/
 % :- context_module(CM), module_property(CM, exports(List)), moo_hide_show_childs(List).
 %:- rtrace.
 :- fixup_exports.
