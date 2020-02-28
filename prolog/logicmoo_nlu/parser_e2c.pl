@@ -62,10 +62,10 @@
 % %%%%%%%%%%%%%%%%%%%%%%% examples/tests %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
-system:t33:- cls, make, t33a.
-system:t33p:- cls, parser_e2c:forall((test_e2c(Sent, Type), is_testing_e2c(Sent, Type)), e2c(Sent)).
-system:t33t:- cls, parser_e2c:forall((test_e2c(Sent, Type), Type== tell,  is_testing_e2c(Sent, Type)), e2c(Sent)).
-system:t33a:- cls, parser_e2c:forall(test_e2c(Sent, _Type), e2c(Sent)).
+system:t33:- cls, make, t33s.
+system:t33s:- cls, test_e2c([sanity]).
+system:t33t:- cls, test_e2c([riddle]).
+system:t33ts:- cls, test_e2c(\[]). % all
 
 system:t33f:-  
   mpred_trace_all,
@@ -76,37 +76,37 @@ system:t33f:-
      mpred_notrace_all),
   mpred_notrace_exec.
 
-is_testing_e2c(Sent, Type):- Type\==ask, to_wordlist_atoms(Sent, Words), \+ (Words = [not |_]).
 
 baseKB:sanity_test:- t33.
 
-meets_criteria(_, _,      []).
-meets_criteria(_, Traits, + Include):- atom(TestType),!, \+ \+ memberchk(Include,Traits).
-meets_criteria(_, Traits, - Exclude):- atom(TestType),!,    \+ memberchk(Exclude,Traits).
-meets_criteria(_, Traits,  TestType):- atom(TestType),!,  member(T,Traits), functor(T,TestType,_).
-meets_criteria(S,_Traits,- CantHave):- string(CantHave), \+ atom_contains(S,CantHave).
-meets_criteria(S,_Traits,+ MustHave):- string(MustHave),    atom_contains(S,MustHave).
+is_testing_e2c(_, _,      []).
+is_testing_e2c(_, Traits, + Include):- atom(Include),!, \+ \+ memberchk(Include,Traits).
+is_testing_e2c(_, Traits, - Exclude):- atom(Exclude),!,    \+ memberchk(Exclude,Traits).
+is_testing_e2c(_, Traits,  TestType):- atom(TestType),!,  member(T,Traits), functor(T,TestType,_).
+is_testing_e2c(S,_Traits,- CantHave):- string(CantHave), \+ atom_contains(S,CantHave).
+is_testing_e2c(S,_Traits,+ MustHave):- string(MustHave),    atom_contains(S,MustHave).
 % ANY or
-meets_criteria(S, Traits,[Type|TestTypes]):- !, 
-  meets_criteria(S, Traits,Type);
-  meets_criteria(S, Traits,TestTypes).
+is_testing_e2c(S, Traits,[Type|TestTypes]):- !, 
+  is_testing_e2c(S, Traits,Type);
+  is_testing_e2c(S, Traits,TestTypes).
 % AND
-meets_criteria(S, Traits, Type1+Type2):- !,
-  meets_criteria(S, Traits, Type1),
-  meets_criteria(S, Traits, Type2).
+is_testing_e2c(S, Traits, Type1+Type2):- !,
+  is_testing_e2c(S, Traits, Type1),
+  is_testing_e2c(S, Traits, Type2).
 % ALL BUT
-meets_criteria(S, Traits, Type1-Type2):- !,
-  meets_criteria(S, Traits, Type1),
-  \+ meets_criteria(S, Traits, Type2).
+is_testing_e2c(S, Traits, Type1-Type2):- !,
+  is_testing_e2c(S, Traits, Type1),
+  \+ is_testing_e2c(S, Traits, Type2).
 
 run_e2c_test(S, _T):- e2c(S).
 
+
 test_e2c(String) :- string(String), !, run_e2c_test(String, [requested]).
 test_e2c(TestTypes) :- 
-  forall((test_e2c(S,T), meets_criteria(S, T, TestTypes)), 
+  forall((test_e2c(S,T), is_testing_e2c(S, T, TestTypes)), 
          (flatten([T, TestTypes],TestInfo), run_e2c_test(S, TestInfo))).
-
 :- system:import(test_e2c/1).
+
 
 
 % ;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\candc;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\ape;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\prolog
