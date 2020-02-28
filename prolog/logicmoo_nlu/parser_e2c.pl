@@ -80,65 +80,93 @@ is_testing_e2c(Sent, Type):- Type\==ask, to_wordlist_atoms(Sent, Words), \+ (Wor
 
 baseKB:sanity_test:- t33.
 
-:- discontiguous(test_e2c/2).
-:- dynamic(test_e2c/2).
-:- export(test_e2c/2).
-test_e2c(S, _T) :- ground(S), !, e2c(S).
-:- system:import(test_e2c/2).
+meets_criteria(_, _,      []).
+meets_criteria(_, Traits,  TestType):-    atom(TestType),!, memberchk(TestType,Traits).
+meets_criteria(S,_Traits,- CantHave):- string(CantHave), \+ atom_contains(S,CantHave).
+meets_criteria(S,_Traits,+ MustHave):- string(MustHave),    atom_contains(S,MustHave).
+meets_criteria(_, Traits,- TestType):- atom(TestType),!, \+ memberchk(TestType,Traits).
+meets_criteria(_, Traits,+ TestType):- atom(TestType),!,    memberchk(TestType,Traits).
+% ANY or
+meets_criteria(S, Traits,[Type|TestTypes]):- !, 
+  meets_criteria(S, Traits,Type);
+  meets_criteria(S, Traits,TestTypes).
+% AND
+meets_criteria(S, Traits, Type1+Type2):- !,
+  meets_criteria(S, Traits, Type1),
+  meets_criteria(S, Traits, Type2).
+% ALL BUT
+meets_criteria(S, Traits, Type1-Type2):- !,
+  meets_criteria(S, Traits, Type1),
+  \+ meets_criteria(S, Traits, Type2).
 
+run_e2c_test(S,_T):- e2c(S).
+
+test_e2c(String) :- string(String), !, run_e2c_test(String, [requested]).
+test_e2c(TestTypes) :- 
+  forall((test_e2c(S,T), meets_criteria(S, T, TestTypes)), 
+          run_e2c_test(S, T)).
+
+:- system:import(test_e2c/1).
 
 
 % ;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\candc;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\ext\ape;W:\opt\logicmoo_workspace\packs_sys\logicmoo_nlu\prolog
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
+:- discontiguous(test_e2c/2).
+:- export(test_e2c/2).
 :- multifile(test_e2c/2).
 :- dynamic(test_e2c/2).
 
-test_e2c("His friends are liked by hers.", [ bad_juju,sanity]).
-test_e2c("Her friends are not liked by his.", [ bad_juju,sanity]).
+% sanity = ran as a sanity test
+% regression = ran as regression test
+% feature = ran as feature test
 
-test_e2c("If ?X is rearing ?Y then ?X has ?Y.", [riddle(_),sanity]).
-test_e2c("If ?X keeps ?Y then ?X has ?Y.", [riddle(_),sanity]).
+test_e2c("His friends are liked by hers.", [bad_juju, sanity]).
+test_e2c("Her friends are not liked by his.", [bad_juju, sanity]).
+test_e2c("Do their friends like each other?", [bad_juju, feature]).
 
-test_e2c("There are 5 houses with five different colors.", [riddle(_),sanity]).
-  test_e2c("There are 5 houses", [ riddle_prep,sanity]).
-  test_e2c("Each house has a different color", [ riddle_prep,sanity]).
-test_e2c("In each house lives a person with a different nationality.", [riddle(_),sanity]). % FAILS
+test_e2c("If ?X is rearing ?Y then ?X has ?Y.", [riddle(_), sanity]).
+test_e2c("If ?X keeps ?Y then ?X has ?Y.", [riddle(_), sanity]).
 
-test_e2c("These five owners drink a certain type of beverage, smoke a certain brand of cigar and keep a certain pet.", [riddle(3),sanity]). % FAILS
+test_e2c("There are 5 houses with five different colors.", [riddle(_), sanity]).
+  test_e2c("There are 5 houses", [riddle_prep, sanity]).
+  test_e2c("Each house has a different color", [riddle_prep, sanity]).
+test_e2c("In each house lives a person with a different nationality.", [riddle(_), sanity]). % FAILS
+
+test_e2c("These five owners drink a certain type of beverage, smoke a certain brand of cigar and keep a certain pet.", [riddle(3), sanity]). % FAILS
 %vs
-test_e2c("These five owners each drink a certain type of beverage.", [riddle(1),sanity]).
-test_e2c("These five owners each smoke a certain brand of cigar.", [riddle(1)) . % FAILS
-test_e2c("These five owners each keep a certain pet.", [riddle(1),sanity]). % FAILS
+test_e2c("These five owners each drink a certain type of beverage.", [riddle(1), sanity]).
+test_e2c("These five owners each smoke a certain brand of cigar.", [riddle(1), regression]). % FAILS
+test_e2c("These five owners each keep a certain pet.", [riddle(1), sanity, regression]). % FAILS
 
-test_e2c("No owners have the same pet, smoke the same brand of cigar or drink the same beverage.", [riddle(3),sanity]). % FAILS
+test_e2c("No owners have the same pet, smoke the same brand of cigar or drink the same beverage.", [riddle(3), sanity]). % FAILS
 %vs
-test_e2c("No owners have the same pet.", [riddle(1),sanity]).  % PASS
-test_e2c("No owners smoke the same brand of cigar", [riddle(1),sanity]).  % FAILS
-test_e2c("No two owners drink the same kind of beverage.", [riddle(1),sanity]).
+test_e2c("No owners have the same pet.", [riddle(1), sanity, regression]).  % PASS
+test_e2c("No owners smoke the same brand of cigar", [riddle(1), sanity, regression]).  % FAILS
+test_e2c("No two owners drink the same kind of beverage.", [riddle(1), sanity]).
 
-test_e2c("No two owners have the same pet.", [riddle(1),sanity]).  % RESULTs?
+test_e2c("No two owners have the same pet.", [riddle(1), sanity, regression]).  % RESULTs?
 
 
-test_e2c("The Brit lives in the red house.", [riddle(_),sanity]).
-test_e2c("The Swede keeps dogs as pets.", [riddle(_),sanity]).
-test_e2c("A Dane drinks tea.", [riddle(_),sanity]).
-test_e2c("The green house is on the left of the white house.", [riddle(_),sanity]).
-test_e2c("The green house's owner drinks coffee.", [riddle(_),sanity]).
+test_e2c("The Brit lives in the red house.", [riddle(_), sanity]).
+test_e2c("The Swede keeps dogs as pets.", [riddle(_), sanity]).
+test_e2c("A Dane drinks tea.", [riddle(_), sanity]).
+test_e2c("The green house is on the left of the white house.", [riddle(_), sanity]).
+test_e2c("The green house's owner drinks coffee.", [riddle(_), sanity]).
 
-test_e2c("The person who smokes Pall Mall rears birds.", [riddle(_),sanity]). % FAILS
+test_e2c("The person who smokes Pall Mall rears birds.", [riddle(_), sanity, regression]). % FAILS
 
-test_e2c("The owner of the yellow house smokes Dunhill.", [riddle(_),sanity]).
-test_e2c("The man living in the center house drinks milk. ", [riddle(_),sanity]).
-test_e2c("The Norwegian lives in the first house .", [riddle(_),sanity]).
-test_e2c("The man who smokes Blends lives next to the one who keeps cats   .", [riddle(_),sanity]).
-test_e2c("The man who keeps horses lives next to the man who smokes Dunhill.", [riddle(_),sanity]).
-test_e2c("The owner who smokes BlueMaster drinks beer.", [riddle(_),sanity]).
-test_e2c("The German smokes Prince.", [riddle(_),sanity]).
-test_e2c("The Norwegian lives next to the blue house.", [riddle(_),sanity]).
-test_e2c("The man who smokes Blends has a neighbor who drinks water.", [riddle(_),sanity]).
-test_e2c("Who owns the fish?", [riddle(_),sanity]).
+test_e2c("The owner of the yellow house smokes Dunhill.", [riddle(_), sanity]).
+test_e2c("The man living in the center house drinks milk.", [riddle(_), sanity]).
+test_e2c("The Norwegian lives in the first house .", [riddle(_), sanity]).
+test_e2c("The man who smokes Blends lives next to the one who keeps cats   .", [riddle(_), sanity]).
+test_e2c("The man who keeps horses lives next to the man who smokes Dunhill.", [riddle(_), sanity]).
+test_e2c("The owner who smokes BlueMaster drinks beer.", [riddle(_), sanity]).
+test_e2c("The German smokes Prince.", [riddle(_), sanity]).
+test_e2c("The Norwegian lives next to the blue house.", [riddle(_), sanity]).
+test_e2c("The man who smokes Blends has a neighbor who drinks water.", [riddle(_), sanity]).
+test_e2c("Who owns the fish?", [riddle(_), sanity]).
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
@@ -163,8 +191,6 @@ print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), parser_
 print_reply(C,O):- (is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[print_reply(O)]),!.
 
 system:myb :- e2c.
-
-test_e2c(X):- e2c(X).
 
 :-export(e2c/0).
 e2c :- locally(tracing80,
@@ -657,7 +683,7 @@ declarative(LFOut) --> (theText1(if);theBaseForm(when)),!,frame_sentence(_Frame1
 
 declarative(LFOut) --> frame_sentence(LFOut), optionalText1('.').
 
-:-add_e2c("The man who smokes Blends has a neighbor who drinks water.",sanity).
+:-add_e2c("The man who smokes Blends has a neighbor who drinks water.", sanity).
 
 % frame_sentence(Frame, LF) --> tag(Frame, frame_sentence, LF), !.
 /* when using frame_sentence we need to pass 4 arguments,
