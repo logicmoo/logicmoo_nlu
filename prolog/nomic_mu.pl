@@ -61,7 +61,7 @@
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
 :- parser_all:ensure_loaded(library(logicmoo_nlu/parser_pldata)).
 :- use_module(library(logicmoo_nlu/parser_chat80)).
-:- use_module(library(logicmoo_nlu/parser_e2fc)).
+:- use_module(library(logicmoo_nlu/parser_e2c)).
 
 :- if(exists_source(library(logicmoo_nlu))).
 % 

@@ -475,7 +475,7 @@ remove_punctuation(W2,W2).
 % ================================================================================================
 
 % ================================================================================================
-:-  if((false,load_parser_interface(parser_e2fc))).
+:-  if((false,load_parser_interface(parser_e2c))).
 % ================================================================================================
 
 eng_to_bratko(Sentence,LF,Type,Clause,FreeVars) :-
@@ -493,12 +493,12 @@ eng_to_bratko(Sentence,LF,Type,Clause,FreeVars) :-
 :- endif.
 
 % ================================================================================================
-:-  if(load_parser_interface(parser_e2fc)).
+:-  if(load_parser_interface(parser_e2c)).
 % ================================================================================================
 
-:- install_converter(parser_e2fc,e2fc_parse(+chat80,-lf_b)).
-:- install_converter(parser_e2fc,e2fc_clausify(+lf_b,-clause_b)).
-:- install_converter(parser_e2fc,e2fc_reply(+clause_b,-reply_b)).
+:- install_converter(parser_e2c,e2c_parse(+chat80,-lf_b)).
+:- install_converter(parser_e2c,e2c_clausify(+lf_b,-clause_b)).
+:- install_converter(parser_e2c,e2c_reply(+clause_b,-reply_b)).
 
 %:- debug.
 
@@ -629,8 +629,8 @@ baseKB:feature_test(must_test_80):-
 :- listing(chat80/3).
 :- listing(chat80/1).
 :- listing(chat80/2).
-:- listing(test_e2fc/1).
-:- listing(test_e2fc/2).
+:- listing(test_e2c/1).
+:- listing(test_e2c/2).
 :- fixup_exports.
 :- threads.
 

@@ -18,8 +18,16 @@
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
+show_keys :- forall(baseKB:pipeline(Key,text80,Text80), (parser_tokenize:into_acetext(Text80,Ace), show_pipeline_key(Key,Ace))).
+
+show_pipeline_key(Key,Text80):- 
+   forall(member(Name,[lf80]), 
+      forall(baseKB:pipeline(Key,Name,Value),
+         parser_e2c:print_reply(Text80:-Value))).
+
+
 system:t33ff:- make,t33fa.
-system:t33ffa:- forall((test_e2fc(Sent,Type),Type\==ignored),nl_fwd(Sent,Type)).
+system:t33ffa:- forall((test_e2c(Sent,Type),Type\==ignored),nl_fwd(Sent,Type)).
 
 
 baseKB:sanity_test:- t33fa.
@@ -29,21 +37,22 @@ system:nl_fwd :- locally(tracing80,
                   locally(t_l:usePlTalk,(told,repeat,prompt_read('E2FC> ',U),
                             to_wordlist_atoms(U,WL),(WL==[bye];WL==[end,'_',of,'_',file];ain(nl_fwd(WL))))))).
 
-irc_cmd:irc_invoke_nlp(Channel,User,Say,Args):- invoke_irc_nlp(Channel,User,Say,Args).
+irc_cmd:irc_invoke_pipeline(Channel,User,Say,Args):- invoke_irc_pipeline(Channel,User,Say,Args).
 
 if_ace(G):-nop(G).
 
-irc_cmd:irc_invoke_fallback(Channel,User,Say,Text):- dmsg(irc_cmd:irc_invoke_fallback(Channel,User,Say,Text)).
+irc_cmd:irc_invoke_fallback(Channel,User,Say,Text):- 
+  dmsg(irc_cmd:irc_invoke_fallback(Channel,User,Say,Text)).
 
 
-invoke_irc_nlp(Channel,User,_Say,"list"):-     
+invoke_irc_pipeline(Channel,User,_Say,"list"):-     
    ID = uid(User,_),
    OldPipeline = pipeline(ID,_Name,_Value),
    forall(OldPipeline, eggdrop:say(Channel:User,OldPipeline)).  
 
 % :- trace.
-invoke_irc_nlp(Channel,User,Say,Args):- 
-   nop(say(irc_invoke_nlp(Channel,User,Say,Args))),
+invoke_irc_pipeline(Channel,User,Say,Args):- 
+   nop(say(irc_invoke_pipeline(Channel,User,Say,Args))),
    parser_tokenize:into_text80(Args,Text80),
    if_ace(parser_tokenize:into_acetext(Text80,Ace)),  
    ID = uid(User,Ace),
@@ -67,8 +76,9 @@ pipe_to_fwc(M,P,add_conversion(From,M:Pred,To)):- compound(P), P=..[Pred,+From,-
 %:- share_mp((==>)/2).
 
 system:nl_fwd(S):- gensym(test,K), with_fc_mode(thread,ain(nl_fwd(S,K))).
+system:add_nl_fwd(S,K):- with_fc_mode(direct,ain(nl_fwd(S,K))).
 % system:add_nl_fwd(S,K):- with_fc_mode(thread,ain(nl_fwd(S,K))).
-system:add_nl_fwd(S,K):- ain(nl_fwd(S,K)).
+%system:add_nl_fwd(S,K):- ain(nl_fwd(S,K)).
 
 :- include(library(pfc_syntax)).  
 %:- virtualize_source_file(heads).
@@ -80,23 +90,23 @@ nl_fwd(S,K):- awc, ground(S), add_nl_fwd(S,K).
 
 
 
-%:- mpred_trace_all.
+:- mpred_trace_exec.
 
 add_conversion(From,Pred,To) ==>
    ((pipeline(ID,From,VarFrom),{no_repeats(VarTo,t(Pred,VarFrom,VarTo))}) ==> pipeline(ID,To,VarTo)).
 
 
 ==> add_conversion(text80,parser_chat80:sent_to_parsed,parsed80).
-==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,prelogic80).
-==> add_conversion(parsed80,parser_e2fc:my_sent_to_prelogic,prelogic80).
+==> add_conversion(parsed80,parser_chat80:sent_to_prelogic,lf80).
+==> add_conversion(parsed80,parser_e2c:my_sent_to_prelogic,lf80).
 
-% ==> add_conversion(prelogic80,parser_e2fc:prelogic_to_pfc,pfc_lf).
+% ==> add_conversion(lf80,parser_e2c:prelogic_to_pfc,pfc_lf).
 
-==> add_conversion(input,to_wordlist_atoms,text80).
-==> add_conversion(text80,e2fc_parse,lf_e2fc).
-==> add_conversion(lf_e2fc,e2fc_clausify,clause_e2fc).
-==> add_conversion(clause_e2fc,e2fc_reply,reply_e2fc).
-==> add_conversion(reply_e2fc,parser_e2fc:my_sent_to_prelogic,prelogic80).
+==> add_conversion(input,parser_e2c:to_wordlist_atoms,text80).
+==> add_conversion(text80,parser_e2c:e2c_parse,lf_e2c).
+==> add_conversion(lf_e2c,parser_e2c:e2c_clausify,clause_e2c).
+==> add_conversion(clause_e2c,parser_e2c:e2c_reply,reply_e2c).
+==> add_conversion(reply_e2c,parser_e2c:my_sent_to_prelogic,lf80).
 
 
 /*
@@ -111,19 +121,18 @@ saved_aceparagraph_to_drs(ID, _VarFrom, Sentences_set, SyntaxTrees,UnresolvedDrs
 (installed_converter(M,P),{pipe_to_fwc(M,P,FWCode)})==> FWCode.
 */
 
-uninteresting_pipe(sentences_set).
 uninteresting_pipe(monitor).
 uninteresting_pipe(input).
-uninteresting_pipe(acetext).
 uninteresting_pipe(text80).
+uninteresting_pipe(acetext).
+uninteresting_pipe(sentences_set).
 uninteresting_pipe(parsed80).
-
 
 
 ((pipeline(ID,monitor,send_to(User,Channel)),   
       pipeline(ID,Name,Value),  
-     {\+ uninteresting_pipe(Name), numbervars(Value,0,_,[attvar(skip)])})
-  ==> tell_aboutonce(Channel:User,Name=Value)).
+     {\+ uninteresting_pipe(Name), portray_vars:pretty_numbervars(Value,ValueO)})
+  ==> tell_aboutonce(Channel:User,Name=ValueO)).
 
 tell_aboutonce(N,V) ==> {once(say(N,V))}.
 

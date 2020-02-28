@@ -1,4 +1,5 @@
 :-module(parser_chat80, [chat80/0,chat80/3,chat80/2,test_chat80_regressions/0,t80/0,/*t10/0,t14/0,*/t11/0,t12/0,t13/0,satisfy/1,holds_truthvalue/2]).
+:- set_how_virtualize_file(false).
 /** <module>
 % Imperitive Sentence Parser (using DCG)
 %
@@ -38,7 +39,7 @@
 
 %:- parser_chat80:export(parser_chat80:theText80/3).
 %:- import(parser_chat80:theText80/3).
-:- reexport(parser_e2fc).
+:- reexport(parser_e2c).
 :- reexport(parser_tokenize).
 %:- use_module(pldata(clex_iface)).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
@@ -158,9 +159,13 @@ contains_subterm(Term,Sub):- \+ \+ (sub_term(ST, Term), Sub==ST).
 is_trait(X) :- ground(X), \+ string(X), \+ \+ (chat80(_XXX, _Ans, Traits), contains_subterm(Traits,X)).
 with_traits(X):- forall((chat80(XX, Ans, Traits), contains_subterm(Traits,X)),chat80(XX, Ans, Traits)).
 
+:- set_how_virtualize_file(part).
+
 parser_chat80:chat80(X):- awc, ground(X), !, (is_trait(X)-> with_traits(X) ; test_chat80(X)).
 parser_chat80:chat80(X, Ans):- awc, ground(X),!, chat80(X), ignore((nonvar(Ans),dmsg(answersShouldBe(Ans)))). 
 parser_chat80:chat80(X, Ans, Traits):- awc, ground(X),!, chat80(X, Ans), ignore((nonvar(Traits),dmsg(traitsShouldBe(Traits)))). 
+
+:- set_how_virtualize_file(false).
 
 % :- style_check(+discontiguous).  
 :- asserta((t_l:enable_src_loop_checking)).
@@ -379,6 +384,6 @@ baseKB:mud_test(chat80_regressions,test_chat80_regressions).
 
 t80:- baseKB:hi80(logicmoo_nlu_ext(chat80/demo)).
 
-:- use_module(parser_e2fc).
+:- use_module(parser_e2c).
 
 
