@@ -1,5 +1,5 @@
 name(logicmoo_nlu).
-version('1.3.111').
+version('1.4.111').
 title('Various English to Logic Converters - warning: HUGE amount of lexical and test data').
 author( 'Douglas Miles', 'http://www.linkedin.com/in/logicmoo' ).
 packager( 'TeamSPoon/LogicMoo', 'https://github.com/TeamSPoon/' ).
