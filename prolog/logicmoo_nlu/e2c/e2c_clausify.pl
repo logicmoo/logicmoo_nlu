@@ -1,12 +1,13 @@
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% CLAUSIFY %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
-
-
+ignore_quant(LFOut)--> 
+  put_attr_if_missing(LFOut,'$quant_needed',false), 
+  put_attr_if_missing(LFOut,'$quant_marker',ignore).
 put_attr_if_missing(LFOut,_Name,_Value):- nonvar(LFOut),!.
 put_attr_if_missing(LFOut, Name, Value):- get_attr(LFOut,Name,_Was)-> true;put_attr(LFOut,Name,Value).
-
 put_attr_if_missing(LFOut, Name, Value,S,S):-put_attr_if_missing(LFOut, Name, Value). 
+
 
 into_split(verb,'Event').
 into_split(np_head,'').

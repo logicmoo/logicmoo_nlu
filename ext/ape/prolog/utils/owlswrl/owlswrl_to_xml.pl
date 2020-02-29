@@ -170,7 +170,8 @@ elist_to_xml(Type, [CE | Tail], Prefix, [CEx | Tailx]) :-
 	elist_to_xml(Type, Tail, Prefix, Tailx).
 
 
-%% e_to_xml(ce, CE, Prefix, CEx)
+%% e_to_xml(+CeType, +CE, +Prefix, -CEx)
+%
 e_to_xml(ce, E, Prefix, Ex) :- ce_to_xml(E, Prefix, Ex).
 e_to_xml(ope, E, Prefix, Ex) :- ope_to_xml(E, Prefix, Ex).
 e_to_xml(dpe, E, Prefix, Ex) :- dpe_to_xml(E, Prefix, Ex).
@@ -179,7 +180,7 @@ e_to_xml(a, E, Prefix, Ex) :- a_to_xml(E, Prefix, Ex).
 e_to_xml(v_or_l, E, Prefix, Ex) :- v_or_l_to_xml(E, Prefix, Ex).
 
 
-%% ce_to_xml('ObjectSomeValuesFrom'(OPE, CE), _Prefix, 'Class'(CE))
+%% ce_to_xml(ObjectSomeValuesFrom(OPE;CE), _Prefix, Class(CE))
 %
 % Class Expression
 %

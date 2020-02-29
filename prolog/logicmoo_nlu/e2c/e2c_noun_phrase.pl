@@ -14,11 +14,6 @@ noun_phrase(SO, X, LF, LFOut) -->
    noun_phrase0(SO, X, LF, LFOut),
    ignore_quant(LFOut).
 
-ignore_quant(LFOut)--> 
-  put_attr_if_missing(LFOut,'$quant_needed',false), 
-  put_attr_if_missing(LFOut,'$quant_marker',ignore).
-
-
 noun_phrase0(SO, X, LF, LFOut) --> noun_phrase9(SO, X, LF, LFOut).
 
 % some/all
@@ -38,7 +33,8 @@ noun_phrase1(SO, X, LF0, LFOut) -->
 % evil bush
 noun_phrase1(SO, X, LF, LFOut) --> 
     dcg_when([_,_],
-      dcg_thru_2args(noun_pre_mod(SO, X), LF, PreProps)),
+      dcg_and(dcg_thru_2args(noun_pre_mod(SO, X), LF, PreProps),[_|_])),
+    % {PreProps \== LF},!,
     noun_phrase1(SO, X, PreProps, LFOut).
     
 noun_phrase1(SO, X, LF, LFOut) -->
@@ -285,12 +281,14 @@ proper_noun(Entity) --> quietly((w2txt(PN), {pn_lf(PN, Entity)})).
 
 
    pn_lf(nb(N), N):-!.
+   pn_lf(Name, Name):- atom(Name),atom_contains(Name,'~').
    pn_lf(Name, Value) :- atom(Name), pn_dict(Name), i_name(i, Name, Value).
 
    was_propercase(Name):- atomic(Name), atom_length(Name,L),L>1,toPropercase(Name, PC),!, PC==Name.
 
     pn_dict(Name):- was_propercase(Name),!.
     pn_dict(Name):- parser_chat80:name_template_db(Name, _).
+    
 
     %pn_dict(Name):- atom(Name),downcase_atom(Name,Down),
     pn_dict_tiny(begriffsschrift,place).  pn_dict_tiny(gottlob,city).

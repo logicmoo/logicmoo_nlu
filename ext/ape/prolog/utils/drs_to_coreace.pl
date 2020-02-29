@@ -170,7 +170,7 @@ drs_to_coreace_nvar_wrapper(Drs, List, Result) :-
 	catch(drs_to_coreace_nvar(Drs, BoxId, List, []--_, Result), _, fail).
 
 
-%% post_process//0
+% % post_process//0
 %
 % Apply some post-processing on the generated tokens.
 %
@@ -1565,7 +1565,7 @@ sentencelist_sentencelistcoord([Sentence1, Sentence2 | SentenceList], [Sentence1
 	sentencelist_sentencelistcoord([Sentence2 | SentenceList], SentenceListCoord).
 
 
-%% get_sentence_id(SId/_TId, SId)
+%% get_sentence_id(SId_Slash_TId, SId)
 %
 % Returns the sentence ID. Supports two
 % formats:

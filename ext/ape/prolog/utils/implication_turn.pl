@@ -42,7 +42,7 @@ only predicate/5 (and predicate/4 and DRSs too) needs backtracking
 %:- debug(verbose).
 
 
-%% implication_turn(+Implication:term, -ImplicationTurned:term) is undet.
+%% implication_turn(Implication:+term, ImplicationTurned:-term) is undet.
 %
 % @param Implication is DRS condition in the form =|Left => Right|=
 % @param ImplicationTurned is DRS condition in the form =|Left => Right|=
@@ -51,7 +51,7 @@ implication_turn(Left => Right, ImplicationTurned) :-
 	get_pred(0, _, Left => Right, _, ImplicationTurned).
 
 
-%% drs_turn(+Level:functor, +Subject:functor, +CondsIn:list, -CondsTurned:list) is undet.
+%% drs_turn(Level:+functor, Subject:+functor, CondsIn:+list, CondsTurned:-list) is undet.
 %
 %
 
