@@ -9,7 +9,7 @@
 
 
 :- export(qcompile_external/1).
-qcompile_external(File) :- cwc,
+qcompile_external(File) :- 
         absolute_file_name(File,R,[access(read),file_type(prolog)]),
         file_directory_name(R,LPWD),
         format(atom(A),'qcompile(~q)',[R]),
