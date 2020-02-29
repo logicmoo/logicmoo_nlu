@@ -575,7 +575,7 @@ load_parser_stanford:-  load_parser_interface(parser_stanford).
 :- ensure_loaded(parser_pldata).
 
 % ================================================================================================
-:-  load_parser_interface(parser_fwd).
+%:-  load_parser_interface(parser_fwd).
 % ================================================================================================
 
 :- dmsg(parser_all_complete).
