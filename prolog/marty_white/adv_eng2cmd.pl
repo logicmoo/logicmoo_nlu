@@ -281,7 +281,7 @@ ask_to_say(Ask,say):- arg(_,v(request,tell),Ask).
 acdb(F,A,B):- munl_call(ttholds(F,A,B)).
 acdb(F,A,B):- munl_call(acnl(F,A,B,_)).
 
-munl_call(G):- notrace((fail,nl_call(G))).
+munl_call(G):- notrace((nl_call(G))).
 
 two_adjs(W1,W2,W3):- var(W1),nonvar(W2),!,two_adjs(W2,W1,W3).
 two_adjs(W1,W2,W3):- var(W1),var(W2),!, 
