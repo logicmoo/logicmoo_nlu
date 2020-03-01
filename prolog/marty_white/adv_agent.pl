@@ -136,6 +136,8 @@ recall_whereis(_S0,Agent,  _WHQ, There, Answer, _ModelData) :-
  Answer = [subj(Agent), person('don\'t', 'doesn\'t'),
    'recall a "', There, '".'].
 
+get_agent_prompt(Agent,Prompt):- get_agent_memory(Agent, Mem),
+  thought(prompt(Prompt), Mem).
 
 console_decide_action(Agent, Mem0, Mem1):- 
  %thought(timestamp(T0), Mem0),

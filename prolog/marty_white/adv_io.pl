@@ -209,8 +209,9 @@ overwrote_prompt(Agent):- retractall(mu_global:need_redraw(Agent)), asserta(mu_g
 
 ensure_has_prompt(Agent):-  
  ignore((retract(mu_global:need_redraw(Agent)),
-  ttyflush,
-  player_format(Agent,'~N~w@spatial> ',[Agent]),retractall(mu_global:need_redraw(Agent)))),
+  flush_output,
+  (get_agent_prompt(Agent,Prompt)->true;Prompt = [wants,to]),
+  player_format(Agent,'~N~w@~w> ',[Agent, Prompt]),retractall(mu_global:need_redraw(Agent)))),
   ttyflush.
 
 

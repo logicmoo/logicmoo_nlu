@@ -29,6 +29,9 @@
 :- dynamic(advstate_db/1).
 advstate_db([]).
 
+get_agent_memory(Agent, Mem):- 
+   get_advstate(State),
+   declared(props(Agent,Mem), State).
 
 get_advstate_varname(Varname):- nb_current(advstate_var,Varname),Varname\==[],!.
 get_advstate_varname(advstate).
