@@ -3,7 +3,9 @@
 % =================================================================
 
 
-verb_phrase(Frame, X, Out) --> verb_phrase1(Frame, X, LF), dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
+verb_phrase(Frame, X, Out) --> 
+  verb_phrase1(Frame, X, LF), 
+  dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
                                    
 % verb_phrase1(Frame, X, AssnOut) --> verb_phrase1(Frame, X, AssnOut).
 verb_phrase1( Frame, X, ~(LFOut)) --> theText1(not), !, verb_phrase1(Frame, X, LFOut).
@@ -13,21 +15,6 @@ verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, AdjProp, AssnOut), adjective
 verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, Assn, AssnOut), noun_phrase(obj(_K), X, true, Assn),!.
 
 % verb_phrase1( Frame, X, LFOut) --> verb_phrase1_ditrans( Frame, X, LFOut).
-
-verb_phrase1_ditrans( Frame, X, verbPrep(Frame,X,LeftOfVerb,CycVerb,LeftOfPrep,CycPrep,RightOfPrep)) --> 
-  {fail},scan_for_verb_prep(LeftOfVerb,_AtomVerb,LeftOfPrep,_AtomPrep,RightOfPrep,CycVerb,CycPrep).
-
-% NEW
-verb_phrase1_ditrans( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z, Assn1), Assn1, Assn2), 
-  noun_phrase(obj(dir), Y, Assn2, Assn3), 
-  noun_phrase(obj(indir), Z, Assn3, LFOut).
-%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj(_K), Y, Assn2, LFOut).
-%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
-% OLD
-
-verb1(V) --> theText1(Verb), {into_active1(Verb,Active),to_evt_name(Active,V)}.
-
-%ditrans_verb1(Frame, TenseUniversal, X, Y, Z, LF) --> theText1(W),{atom_string(W,S),                                      
 
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2),    
     noun_phrase(obj(_K), Y, Assn2, LFOut).
@@ -57,6 +44,12 @@ scan_words(Left,AtomWord,Right,StrWord^Goal,S,[]):-
   call(Goal).
 
 
+
+verb1(V) --> theText1(Verb), {into_active1(Verb,Active),to_evt_name(Active,V)}.
+
+%ditrans_verb1(Frame, TenseUniversal, X, Y, Z, LF) --> theText1(W),{atom_string(W,S),                                      
+
+
 % =================================================================
 % Ditrans Verb
 % =================================================================
@@ -84,6 +77,18 @@ ditrans_verb1(Frame, Time, X, Y, Z, LF) --> talk_verb(Frame, IV, dtv(X, Y, Z), T
 
 
 
+verb_phrase1_ditrans( Frame, X, verbPrep(Frame,X,LeftOfVerb,CycVerb,LeftOfPrep,CycPrep,RightOfPrep)) --> 
+  {fail},scan_for_verb_prep(LeftOfVerb,_AtomVerb,LeftOfPrep,_AtomPrep,RightOfPrep,CycVerb,CycPrep).
+
+% NEW
+verb_phrase1_ditrans( Frame, X, LFOut) --> verb_mod_surround(X, Frame, ditrans_verb(Frame, X, Y, Z, Assn1), Assn1, Assn2), 
+  noun_phrase(obj(dir), Y, Assn2, Assn3), 
+  noun_phrase(obj(indir), Z, Assn3, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y), true, Assn2), noun_phrase(obj(_K), Y, Assn2, LFOut).
+%verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X), true, LFOut).
+% OLD
+
+
 % =================================================================
 % Trans Verb
 % =================================================================
@@ -93,6 +98,11 @@ trans_verb(Frame, X, Y, LFO) --> trans_verb1(Frame, Time, XY, YX, LF), ((theText
 % NEW {expand_lf(iza(Frame,timeFn(Time)) & LF, LFO)}.
 
 trans_verb1(Frame, Time, X, Y, LF)--> trans_verb2(Frame, Time, X, Y, LF), \+ dcg_peek(theText1(by)).
+
+trans_verb2( Frame, pres+fin, X, Y, LFOut) --> theText1([wants,to]), 
+  add_traits(Y, iza(Y,'evtState'), holdsIn(Frame,z(actWantingTo, X, Y)),LFOut).
+
+
 
 trans_verb2( Frame, pres+fin, X, Y, holdsIn(Frame,z(painting, X, Y))) --> theText1(paints).
 trans_verb2( Frame, pres+fin, X, Y, holdsIn(Frame,z(admiring, X, Y))) --> theText1(admires).
@@ -285,6 +295,7 @@ to_evt_name(A,_Out):- assertion(atom(A)),fail.
 to_evt_name(active, 'AciveEvent').
 to_evt_name(passive,'PassiveEvent').
 to_evt_name(A,Out):- is_captitalized(A),atom_concat(_,'Event',A),!,A=Out.
+to_evt_name(A,Out):-atom_contains(A,'act'), atom_contains(A,'ing'), Out = A.
 to_evt_name(A,Out):- atom_concat('act',APC,A),!, (is_captitalized(APC)-> A=Out ; to_evt_name2(APC,Out)).
 to_evt_name(A,Out):- atom_concat(APC,'ing',A),!, (is_captitalized(APC)-> A=Out ; to_evt_name2(APC,Out)).
 to_evt_name(A,Out):- to_evt_name2(A,Out).
@@ -296,10 +307,12 @@ into_active1(A,ING):- talkdb:talk_db(_, _, _, A, ING, _),!.
 into_active1(A,ING):- talkdb:talk_db(_, _, _, _, ING, A),!.
 into_active1(A,ING):- talkdb:talk_db(_, _, _, _,   A, _),!, A = ING.
 into_active1(A,ING):- talkdb:talk_db(noun_or_verb, _, ING, A).
+into_active1(A,ING):- atom_contains(A,'ing'), A = ING.
 into_active2(A,ING):- talkdb:talk_db(noun_or_verb, A, ING, _).
 
-to_evt_name2(A,Out):- downcase_atom(A,DC),into_active(DC,ING),toPropercase(ING,APC),atomic_list_concat(['act',APC],Out),!.
-to_evt_name2(A,Out):- downcase_atom(A,DC),A==DC,toPropercase(A,APC),atomic_list_concat(['act',APC,'ing'],Out),!.
+to_evt_name2(A,Out):- atom_contains(A,'act'), atom_contains(A,'ing'), Out = A.
+to_evt_name2(A,Out):- downcase_atom(A,DC),into_active(DC,ING),first_char_to_upper(ING,APC),atomic_list_concat(['act',APC],Out),!.
+to_evt_name2(A,Out):- downcase_atom(A,DC),A==DC,first_char_to_upper(A,APC),atomic_list_concat(['act',APC,'ing'],Out),!.
 to_evt_name2(A,Out):- first_char_to_upper(A,APC),atomic_list_concat(['act',APC,'ing'],Out),!.
 % into_split_o(prep_phrase).
 

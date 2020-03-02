@@ -13,6 +13,11 @@ utterance(tell, LF) -->  declarative(LF).
 utterance(ask, LF) -->   quietly(question(LF)).
 utterance(act, LF) -->   quietly(imperative(LF)).
 
+sub_compound(Sub,LF):- sub_term(S,LF),nonvar(S),Sub=S.
+
+parse_for('evtState',Evt, LF, LFOut) --> theText1(to), verb_phrase(Evt, _, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
+parse_for('evtState',Evt, LF, LFOut) --> frame_sentence(Evt, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
+
 
 % =================================================================
 % Imperative sentences

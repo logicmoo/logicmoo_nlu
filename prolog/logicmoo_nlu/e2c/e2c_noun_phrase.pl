@@ -9,6 +9,8 @@ noun_phrase9(SO, X, LF, Out) --> theText1(what), noun_phrase(SO, Y, LF, LF0),
 noun_phrase9(_SO, X, LF, exist(X, LF & iza(X,'tType'))) --> theText1([a,certain,type]).
 
 :- decl_is_dcg(noun_phrase(_SO, _X, _LF, _LFOut)).
+
+noun_phrase(_SO, X, LF, LFOut) --> {sub_compound(iza(V,What),LF),V==X, nonvar(What)},parse_for(What,X, LF, LFOut).
 noun_phrase(SO, X, LF, LFOut) --> 
    ignore_quant(LF),
    noun_phrase0(SO, X, LF, LFOut),

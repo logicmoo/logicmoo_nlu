@@ -193,15 +193,17 @@ eng2cmd(Doer, Words, Action, M) :-
  append(Before, [Agent|After], NewWords),
  reframed_call(eng2cmd, Doer, NewWords, Action, M).
 
-eng2cmd( Self,  Words, Logic, Mem):- append([Self,wants,to],Words,Decl),eng2state( Self,  Decl, Logic, Mem),!. 
+eng2cmd( Self,  Words, Logic, Mem):-  \+ member(Self,Words),
+   (get_agent_prompt(Agent,Prompt)->true;Prompt = [does]),
+   append([Self|Prompt],Words,Decl),eng2state( Self,  Decl, Logic, Mem),!. 
 
-eng2cmd(Doer, [TheVerb|Args], Action, M) :- fail,
+eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
  quietly_talk_db([F,Verb|Forms]),
  notrace(F==intransitive;F==transitive),
  member(TheVerb,Forms),!,
  eng2cmd(Doer, [Verb|Args], Action, M).
 
-eng2cmd(Doer, [TheVerb|Args], Action, M) :- fail,
+eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
  munl_call(clex_verb(TheVerb,Verb,_,_)),
  Verb\==TheVerb,!,
  eng2cmd(Doer, [Verb|Args], Action, M).
@@ -281,6 +283,7 @@ ask_to_say(Ask,say):- arg(_,v(request,tell),Ask).
 acdb(F,A,B):- munl_call(ttholds(F,A,B)).
 acdb(F,A,B):- munl_call(acnl(F,A,B,_)).
 
+:- set_prolog_flag(debug_on_error,true).
 munl_call(G):- notrace((nl_call(G))).
 
 two_adjs(W1,W2,W3):- var(W1),nonvar(W2),!,two_adjs(W2,W1,W3).
@@ -434,6 +437,49 @@ make_dataframe_simple([Prop| FrameArgs],TextArgs, [NewArg|VarsOf], Action, Frame
   append(Left, Right, NewTextArgs),
   make_dataframe_simple(FrameArgs, NewTextArgs, VarsOf, Action, Frame).
 
+/*
+   Take the sentence:    
+
+      London 2pm 200 men mouths loudly protesting law not give police hell
+
+
+   Add Blanks like:
+
+   " _ London _ 2pm _ 200  _ men _ mouths _ loudly _ protesting _ law _ not _ give  _ police _ hell "
+
+
+  Fill in blanks: 
+
+  " in London at 2pm approx 200 using mouths by men very loudly orderTo protest about law did not acually give to police some hell"
+
+
+  Lets make each one a frameroles:
+
+  ?- premutation(["in London", "about 2pm", "approx 200", "using mouths",  "by men",  "very loudly", "orderto protest", "about law" 
+                                                "did not", "acually give", "to police", "some hell"], Res).
+
+
+  is the permutations output accepbale?
+
+
+  If this is correct you can immagine a declarion as the "psuedo-preps"  
+
+   in _ about _ approx _ using _ by _ very _ orderto _ about  _ did _ acually _ to _ some _  of this GIVE frame 
+
+
+
+  dataformat would be...
+
+
+  default_args_prep_order(give,in-place, about-time, approx-number, using-device, 
+               by-doer, very-adverb, orderto-reason, about-theme, did-truthvalue, acually-verb, to-doee, some-thing).
+
+*/
+
+/*
+   at(Place-London),when(Time-2pm),because(Reason-protesting),
+   by(Doer-men),with(MoreDoers,"and women"),own(Instrument-"knife"),VrtuhValue,did(Action-),toward(Vector-up),to(Doee),of(
+*/
 :- discontiguous(verb_frame1/5). 
 % to sally give love
 % to sally does player1 give love
