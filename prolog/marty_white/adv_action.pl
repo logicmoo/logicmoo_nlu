@@ -241,55 +241,17 @@ split_k(Agent,[in(X,Y)|PrecondsK],[h(in,X,Y)|Preconds]):-
 split_k(Agent,[Cond|PrecondsK],[Cond|Preconds]):- 
   split_k(Agent,PrecondsK,Preconds).
 
+
 api_invoke( Action) :- get_advstate(S), api_invoke( Action, S, E), set_advstate(E).
 
 api_invoke( Action) --> apply_act( Action).
 
-apply_act( Action) --> 
- action_doer(Action, Agent), 
- do_introspect(Agent,Action, Answer),
- send_precept(Agent, [answer(Answer), Answer]), !.
-
-apply_act(print_(Agent, Msg)) -->
-  h(descended, Agent, Here),
-  queue_local_event(msg_from(Agent, Msg), [Here]).
-
-apply_act(wait(Agent)) -->
- from_loc(Agent, Here),
- queue_local_event(time_passes(Agent),Here).
-
-apply_act(Action) --> 
- {implications(_DoesEvent,(Action), Preconds, Postconds), action_doer(Action,Agent) },
- /*dmust_tracing*/(satisfy_each(preCond(_),Preconds)),
- (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
-    ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, (Action)))),!.
-
-apply_act( Action) --> 
- {oper_splitk(Agent,Action,Preconds,Postconds)},
- /*dmust_tracing*/(satisfy_each(preCond(_),Preconds)),
- (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
-    ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, success(Action)))),!.
-
 apply_act( Action) --> aXiom(Action), !.
 
 
-
-/*
-apply_act( Action) --> fail, 
-  action_doer(Action, Agent),
-  copy_term(Action,ActionG),
-  from_loc(Agent, Here, S0),  
-  % queue_local_event(spatial, [attempting(Agent, Action)], [Here], S0, S1),
-  act( Action), !,
-  queue_local_event([emoted(Agent, aXiom, '*'(Here), ActionG)], [Here], S0, S9).
-*/
-
-apply_act( Act, S0, S9) :- ((cmd_workarround(Act, NewAct) -> Act\==NewAct)), !, apply_act( NewAct, S0, S9).
-apply_act( Action, S0, S0):- notrace((bugout3(failed_act( Action), general))),!, \+ tracing.
-
-
-must_act( Action , S0, S9) :- (apply_act( Action, S0, S9)) *-> ! ; fail.
-% must_act( Action) --> rtrace(apply_act( Action, S0, S1)), !.
+must_act( Action , S0, S9) :- 
+  (apply_act( Action, S0, S9)) *-> ! ; fail.
+must_act( Action) --> {debugging(apply_act)}, !, rtrace(apply_act( Action, S0, S1)), !.
 must_act( Action) --> 
  action_doer(Action,Agent), 
  send_precept(Agent, [failure(Action, unknown_to(Agent,Action))]).
@@ -366,5 +328,74 @@ action_doer(Action,Agent):- trace,throw(missing(action_doer(Action,Agent))).
 action_verb_agent_thing(Action, Verb, Agent, Thing):-
   notrace((compound(Action),Action=..[Verb,Agent|Args], \+ verbatum_anon(Verb))), !,
   (Args=[Thing]->true;Thing=_),!.
+
+
+
+/*
+disgorge(Doer, How, Container, At, Here, Vicinity, Msg) :-
+  findall(Inner, h(child, Inner, Container), Contents),
+  bugout3('~p contained ~p~n', [Container, Contents], general),
+  moveto(Doer, How, Contents, At, Here, Vicinity, Msg).
+disgorge(Doer, How, _Container, _At, _Here, _Vicinity, _Msg).
+*/
+disgorge(Doer, How, Container, Prep, Here, Vicinity, Msg) -->
+  findall(Inner, h(child, Inner, Container), Contents),
+   {bugout3('~p contained ~p~n', [Container, Contents], general)},
+  moveto(Doer, How, Contents, Prep, Here, Vicinity, Msg).
+
+:- defn_state_setter(moveto(agent,verb,listof(inst),domrel,dest,list(dest),msg)).
+moveto(Doer, Verb, List, At, Dest, Vicinity, Msg) --> {is_list(List)},!,
+ apply_mapl_rest_state(moveto(Doer, Verb), List, [At, Dest, Vicinity, Msg]).
+moveto(Doer, Verb, Object, At, Dest, Vicinity, Msg) -->
+  undeclare(h(_, Object, From)),
+  declare(h(At, Object, Dest)),
+  queue_local_event([moved(Doer, Verb, Object, From, At, Dest), Msg], Vicinity).
+
+
+event_props(thrown(Agent,  Thing, _Target, Prep, Here, Vicinity),
+ [getprop(Thing, breaks_into(NewBrokenType)),
+ bugout3('object ~p is breaks_into~n', [Thing], general),
+ undeclare(h(_, Thing, _)),
+ declare(h(Prep, NewBrokenType, Here)),
+ queue_local_event([transformed(Thing, NewBrokenType)], Vicinity),
+ disgorge(Agent, throw, Thing, Prep, Here, Vicinity, 'Something falls out.')]).
+
+                                      
+setloc_silent(Prep, Object, Dest) --> 
+ undeclare(h(_, Object, _)),
+ declare(h(Prep, Object, Dest)).
+
+
+change_state(Agent, Open, Thing, Opened, TF,  S0, S):- 
+ % must_mw1
+ ((
+ maybe_when(psubsetof(Open, touch),
+   required_reason(Agent, will_touch(Agent, Thing, S0, _))),
+
+ %getprop(Thing, can(open, S0),
+ %\+ getprop(Thing, =(open, t), S0),
+
+ required_reason(Agent, \+ getprop(Thing, can(Open, f), S0)),
+
+ ignore(dshow_failure(getprop(Thing, can(Open, t), S0))),
+
+ forall(act_prevented_by(Open,Locked,Prevented),
+   required_reason(Agent, \+ getprop(Thing, =(Locked, Prevented), S0))),
+
+ %delprop(Thing, =(Open, f), S0, S1),
+ %setprop(Thing, =(Open, t), S0, S1),
+
+  open_traverse(Agent, Here, S0),
+
+ apply_forall(
+  (getprop(Thing, effect(Open, Term0), S0),
+  adv_subst(equivalent,$self, Thing, Term0, Term1),
+  adv_subst(equivalent,$agent, Agent, Term1, Term2),
+  adv_subst(equivalent,$here, Here, Term2, Term)),
+  call(Term),S0,S1),
+
+ setprop(Thing, =(Opened, TF), S1, S2))),
+
+ queue_local_event([setprop(Thing, =(Opened, TF)),msg([Thing,is,TF,Opened])], [Here, Thing], S2, S),!.
 
 
