@@ -52,6 +52,24 @@ aXiom( Action) ==>>
  (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
     ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, success(Action)))),!.
 
+aXiom((A,B)) ==>> !.
+  aXiom(A), aXiom(B).
+aXiom((A;B)) ==>> !,
+  aXiom(A) ; aXiom(B).
+aXiom((A->B;C)) ==>> !,
+  (aXiom(A) -> aXiom(B) ; aXiom(C)).
+aXiom((A->B)) ==>> !,
+  (aXiom(A) -> aXiom(B)).
+aXiom((A*->B;C)) ==>> !,
+  (aXiom(A) *-> aXiom(B) ; aXiom(C)).
+aXiom((A*->B)) ==>> !,
+  (aXiom(A) *-> aXiom(B)).
+
+aXiom(do_english(Agent,English)) ==>> !,
+  {assertz(mu_global:console_tokens(Agent, English))}.
+
+
+
 aXiom(talk(Agent, Object, Message)) ==>>  % directed message
   can_sense(Agent, audio, Object),
   from_loc(Agent, Here),

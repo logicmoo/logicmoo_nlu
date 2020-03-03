@@ -1679,8 +1679,17 @@ autonomous_decide_action(Agent, Mem0, Mem1) :- fail,
 autonomous_decide_action(Agent, Mem0, Mem0) :-
   bugout('~w: Can\'t think of anything to do.~n', [Agent], autonomous).% trace.
 
-
-
+console_decide_action(Agent, Mem0, Mem0):-
+ % If actions are queued, no further thinking required.
+ thought(Agent, todo([Action|_]), Mem0),
+ (declared(h(in, Agent, Here), advstate)->true;Here=somewhere),
+ bugout('~w @ ~w Console: Already about to: ~w~n', [Agent, Here, Action], telnet).
+console_decide_action(Agent, Mem0, Mem1) :-
+ %must_mw1(thought(timestamp(T0), Mem0)),
+ retract(mu_global:console_tokens(Agent, Words)), !,
+ must_mw1((eng2log(Agent, Words, Action, Mem0),
+ if_tracing(bugout3('Console TODO ~p~n', [Agent: Words->Action], telnet)),
+ add_todo(Action, Mem0, Mem1))).
 console_decide_action(Agent, Mem0, Mem1):- 
  %thought(timestamp(T0), Mem0),
  %bugout(read_pending_codes(In,Codes,Found,Missing)),
