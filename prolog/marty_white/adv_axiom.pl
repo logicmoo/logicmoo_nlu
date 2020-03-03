@@ -52,7 +52,7 @@ aXiom( Action) ==>>
  (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
     ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, success(Action)))),!.
 
-aXiom((A,B)) ==>> !.
+aXiom((A,B)) ==>> !,
   aXiom(A), aXiom(B).
 aXiom((A;B)) ==>> !,
   aXiom(A) ; aXiom(B).
