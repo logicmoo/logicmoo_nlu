@@ -285,7 +285,8 @@ acdb(F,A,B):- munl_call(ttholds(F,A,B)).
 acdb(F,A,B):- munl_call(acnl(F,A,B,_)).
 
 :- set_prolog_flag(debug_on_error,true).
-munl_call(G):- notrace((nl_call(G))).
+munl_call(G):- catch((nl_call(G)),_,fail).
+% munl_call(G):- nl_call(G).
 
 two_adjs(W1,W2,W3):- var(W1),nonvar(W2),!,two_adjs(W2,W1,W3).
 two_adjs(W1,W2,W3):- var(W1),var(W2),!, 

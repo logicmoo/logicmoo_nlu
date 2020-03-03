@@ -174,7 +174,7 @@ fill_in_blanks(_Base,[]).
 
 % was talk_db([F, A|List]):- talk_db_argsIsa(F, N_Minus1, _), length(List, N_Minus1), apply(talk_db, [F, A|List]).
 % talk_db([F,A|List]):- talk_db_argsIsa(F,N,_), length(List,N),apply(talk_db,[F,A|List]).
-talk_db([F,A|List]):- between(0,4,N),length(List,N),apply(talk_db,[F,A|List]).
+talk_db([F,A|List]):- between(0,4,N), length(List,N), trace, apply(talk_db,[F,A|List]).
 
 talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed):- nonvar(Jacket), \+ parser_chat80:plt,
   talk_db(noun_or_verb,Jackets,Jacketing,Jacket),
