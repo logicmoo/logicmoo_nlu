@@ -122,7 +122,7 @@ bug(B) :- (B == always;B==general),!.
 bug(B) :- debugging(B,false),!,fail.
 bug(B) :- debugging(adv_skip(B),true),!,fail.
 bug(_) :- debugging(adv_skip(all),true),!,fail.
-bug(_) :- debugging(adv(all)).
+bug(_) :- debugging(adv(all)),!.
 bug(B) :- debugging(adv(B),YN),!,YN.
 bug(_) :- debugging(adv(unknown),YN),!,YN.
 
@@ -174,17 +174,21 @@ pprint(_, _).
 :- flag(our_pretty_printer,_,0).
 our_current_portray_level(Level) :- flag(our_pretty_printer,Was,Was),Was=Level.
 :- export(our_current_portray_level/1).
+
+
 %our_pretty_printer(Term):- !, fmt90(Term).
 our_pretty_printer(Term):- compound(Term),
  \+ \+ setup_call_cleanup( flag(our_pretty_printer,Was,Was+1),
                      \+ \+ our_prolog_pretty_print(Term),
-                     flag(our_pretty_printer,_,Was)).
+                     flag(our_pretty_printer,_,Was)),!.
 % our_pretty_printer(Term):- format(current_output,'~w',[Term]).
-our_pretty_printer(Term):- fmt90(Term).
+our_pretty_printer(Term):- fmt90(Term),!.
+
+
 
 our_prolog_pretty_print(Term):- 
-  pretty_numbervars(Term,Term2),
-  prolog_pretty_print:print_term(Term2, [ output(current_output)]).
+  \+ \+ ((portray_vars:pretty_numbervars(Term,Term2),
+      prolog_pretty_print:print_term(Term2, [ output(current_output)]))).
 
 
 :- export(stdio_player/1).
