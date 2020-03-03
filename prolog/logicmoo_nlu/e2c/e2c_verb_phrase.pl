@@ -2,25 +2,25 @@
 % Verb Phrase
 % =================================================================
 
-
 verb_phrase(Frame, X, Out) --> 
   verb_phrase1(Frame, X, LF), 
   dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
                                    
 % verb_phrase1(Frame, X, AssnOut) --> verb_phrase1(Frame, X, AssnOut).
 verb_phrase1( Frame, X, ~(LFOut)) --> theText1(not), !, verb_phrase1(Frame, X, LFOut).
-verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, equals(X, Y) , Assn),optionalText1(equal),optionalText1(to),
-   (pronoun(obj(_K), Y, Assn, AssnOut);value_obj(obj(_K), Y, Assn, AssnOut)).
-verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, AdjProp, AssnOut), adjective(X, AdjProp),!, nvd(is, Frame).
-verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, Assn, AssnOut), noun_phrase(obj(_K), X, true, Assn),!.
 
 % verb_phrase1( Frame, X, LFOut) --> verb_phrase1_ditrans( Frame, X, LFOut).
+
+verb_phrase1( Frame, X, AssnOut) --> is_be(Frame,X, LF, AssnOut), verb_phrase1(Frame, X, LF).
 
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, trans_verb(Frame, X, Y, Assn1), Assn1, Assn2),    
     noun_phrase(obj(_K), Y, Assn2, LFOut).
 verb_phrase1( Frame, X, LFOut) --> verb_mod_surround(X, Frame, intrans_verb(Frame, X, Assn1), Assn1, LFOut).
 
-verb_phrase1( Frame, X, AssnOut) --> is_be(Frame,X, LF, AssnOut), verb_phrase1(Frame, X, LF).
+verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, Assn, AssnOut), noun_phrase(obj(_K), X, true, Assn),!.
+%verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, AdjProp, AssnOut), adjective(X, AdjProp),!, nvd(is, Frame).
+verb_phrase1(Frame, X, AssnOut) --> is_be(Frame, X, equals(X, Y) , Assn),optionalText1(equal),optionalText1(to),
+   (pronoun(obj(_K), Y, Assn, AssnOut);value_obj(obj(_K), Y, Assn, AssnOut)).
 
 
 verb_prep(VerbString, PrepString,TenseUniversal,DitransitivePPFrameType,LF):- 
@@ -234,16 +234,17 @@ copula_is_does --> theText1(C), {copula_is_does_dict(C)}.
 % =================================================================
 verb_phrase_post_mod(X,Frame, LFIn, LFOut) -->  prepositional_phrase(obj(indir), X, Frame, LFIn, LFOut).
 
-verb_phrase_post_mod(X, Frame, LFIn, LFIn & LFOut) --> optionalText1(','),theText1('and'), verb_phrase(_Frame2, X, LFOut),put_attr(Frame,'$frame_conjunction',and).
-verb_phrase_post_mod(X, Frame, LFIn, LFIn;LFOut) --> optionalText1(','),theText1('or'), verb_phrase(Frame, X, LFOut),put_attr(Frame,'$frame_conjunction',or).
+verb_phrase_post_mod(X, Frame, LFIn, LFIn & LFOut) --> optionalText1(','),theText1('and'), verb_phrase(_Frame2, X, LFOut),{put_attr(Frame,'$frame_conjunction',and)}.
+verb_phrase_post_mod(X, Frame, LFIn, LFIn;LFOut) --> optionalText1(','),theText1('or'), verb_phrase(Frame, X, LFOut),{put_attr(Frame,'$frame_conjunction',or)}.
 verb_phrase_post_mod(X, Frame, LFIn, conj(Frame,LFIn,LFOut)) --> theText1(','), verb_phrase(_Frame2, X, LFOut).
 
 prepositional_phrase(_SO, X, _Frame, LF, TAG & LF) --> tag(X, prep_phrase, TAG), !.
 prepositional_phrase(SO, X, Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
-  {get_attr(Frame,'$root',Root)},
-  noun_phrase(SO, Y, w([Root,Prep], X, Y) & LF, Out).
+  {get_attr(Frame,'$root',Root) % , freeze(Y,(wdmsg(y(Y)),dumpST))
+  },
+  noun_phrase(SO, Y, p(c(Root,Prep), X, Y) & LF, Out).
 prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}, 
-  noun_phrase(SO, Y, w(Prep, X, Y) & LF, Out).
+  noun_phrase(SO, Y, p(Prep, X, Y) & LF, Out).
 
 prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO, Y, about(X, Y) & LF, Out).
 

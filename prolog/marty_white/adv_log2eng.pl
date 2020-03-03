@@ -679,7 +679,7 @@ expand_english(_State, Term, Term).
 % Our user:portray(Logic) English helpers
 % %%%%%%%%%%%%%%%
 
-player_pprint(Doer, Logic, always):- xtreme_english,!, print_english(Doer, Logic).
+player_pprint(Doer, Logic, always):- xtreme_english,!, must(print_english(Doer, Logic)).
 player_pprint(_Doer, D,K):- pprint(D,K).
 
 % print_english(Doer, Logic):- is_list(Logic),!, maplist(print_english(Doer), Logic).

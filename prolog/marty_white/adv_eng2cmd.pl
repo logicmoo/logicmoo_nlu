@@ -193,8 +193,9 @@ eng2cmd(Doer, Words, Action, M) :-
  append(Before, [Agent|After], NewWords),
  reframed_call(eng2cmd, Doer, NewWords, Action, M).
 
-eng2cmd( Self,  Words, Logic, Mem):-  \+ member(Self,Words),
-   (get_agent_prompt(Agent,Prompt)->true;Prompt = [does]),
+eng2cmd( Self,  Words, Logic, Mem):-  
+    \+ member(Self, Words),
+   (get_agent_prompt(Self,Prompt)->true;Prompt = [does]),
    append([Self|Prompt],Words,Decl),eng2state( Self,  Decl, Logic, Mem),!. 
 
 eng2cmd(Doer, [TheVerb|Args], Action, M) :- 

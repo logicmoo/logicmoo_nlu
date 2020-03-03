@@ -84,7 +84,7 @@ adventure_init :-
  player_format('INIT STATE~n', []),
  player_format('=============================================~n', []),
  printable_state(S1,SP), 
- pprint(SP, general).
+ pprint(SP, state).
 
 
 adventure:- 
@@ -107,7 +107,7 @@ main(S0, S9) :-
  notrace((set_advstate(S0))),
  must_mw1(update_telnet_clients(S0,S1)),
  ((set_advstate(S1),
- % pprint(S1,general),
+ % pprint(S1,state),
  get_live_agents(LiveAgents, S1),
  ttyflush)),
  %bugout1(liveAgents = LiveAgents),

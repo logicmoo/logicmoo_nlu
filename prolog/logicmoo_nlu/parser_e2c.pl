@@ -9,7 +9,7 @@
 % Revised At:   $Date: 2012/06/06 15:43:15 $
 % ===================================================================
 
-:-module(parser_e2c, []).
+:-module(parser_e2c, []). 
 
 
 /*                                 
@@ -184,6 +184,8 @@ test_e2c("The German smokes Prince.", [riddle(_), sanity]).
 test_e2c("The Norwegian lives next to the blue house.", [riddle(_), sanity]).
 test_e2c("The man who smokes Blends has a neighbor who drinks water.", [riddle(_), sanity]).
 test_e2c("Who owns the fish?", [riddle(_), sanity]).
+
+:- include(library(logicmoo_nlu/parser_tests)).
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 

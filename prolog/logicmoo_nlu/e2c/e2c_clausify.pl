@@ -125,6 +125,7 @@ expand_lf(C,N, z(Writing, X ), Out):-
 
 expand_lf(_,_, iza(_,timeFn(XX)), true):- XX==pres+fin,!.
 expand_lf(_,_, iza(_,timeFn(XX)), true):- XX==nonfinite,!.
+expand_lf(_,_, quant(X, _Type), true):- nonvar(X),!.
 expand_lf(_,_, quant(X, Type), true):- 
 ((get_attr(X,'$quant_marker',Old),Type==Old)->true;
    (put_attr(X,'$quant_marker',Type),put_attr(X,'$quant_needed',true))).
@@ -205,6 +206,7 @@ del_e2c_attributes(Term):-
 '$frame_conjunction':attr_unify_hook(_,_) :- !.
 
 conjoin_lf1(LF1, traits(X, Traits), Out):- nonvar(Traits), !, add_traits(X, Traits, LF1, Out).  
+conjoin_lf1(LF1, quant(X, _Type), LF1):- nonvar(X),!.
 conjoin_lf1(LF1, quant(X, Type), Out):-  
   (get_attr(X,'$quant_marker',_)-> Out=LF1 ; 
    (put_attr(X,'$quant_marker',Type),put_attr(X,'$quant_needed',false), det_quantify(Type,X,LF1,Out))),!.
@@ -268,7 +270,7 @@ var_1trait(X, pl, ~numberOf(X, 1)).
 % var_1trait(_, pl, true). %
 var_1trait(_, infpl, true).
 var_1trait(_, fin, true).
-var_1trait(_, the(sg), true).
+var_1trait(X, the(X), true).
 var_1trait(X, past, iza(X,timeFn(vPast))).
 var_1trait(X, pres, iza(X,timeFn(vNow))).
 

@@ -1,6 +1,11 @@
-
+:- if((prolog_load_context(source,File),prolog_load_context(file,File))).
+:- module(parser_tests, []).
+:- import(parser_e2c:test_e2c/2).
+:- multifile(parser_e2c:test_e2c/2).
+:- else.
 :- multifile(test_e2c/2).
-:- dynamic(test_e2c/2).
+:- endif.
+
 
 test_e2c("One woman paints.", [ quants]).
 test_e2c("No woman paints.", [ quants]).
@@ -56,6 +61,24 @@ test_e2c("Not no three women paint.", [ quants]).
 test_e2c("Not all three women paint.", [ quants]).
 test_e2c("Not every three women paint.", [ quants]).
 test_e2c("Not any three women paint.", [ quants]).
+
+test_e2c("Not three of the women paint.", [ quants]).
+test_e2c("Not some of the three women paint.", [ quants]).
+test_e2c("Not no three of the women paint.", [ quants]).
+test_e2c("Not all three of the women paint.", [ quants]).
+test_e2c("Not every three of the women paint.", [ quants]).
+test_e2c("Not any three of the women paint.", [ quants]).
+
+test_e2c("Not three of the four women paint.", [ quants]).
+test_e2c("Not none of three out of the four women paint.", [ quants]).
+test_e2c("Not all three of the four women paint.", [ quants]).
+test_e2c("Not any three of the four women paint.", [ quants]).
+
+test_e2c("Three of the four women paint.", [ quants]).
+test_e2c("Three out of the four women paint.", [ quants]).
+test_e2c("All three of the four women paint.", [ quants]).
+test_e2c("Any three of the four women paint.", [ quants]).
+
 
 test_e2c("I paint", [ pronoun]).
 test_e2c("you paint", [ pronoun]).
@@ -120,6 +143,7 @@ test_e2c("It is him that paints", [ pronoun]).
 
 
 test_e2c("We are us that paint", [ pronoun]).
+test_e2c("We are all of us that paint", [ pronoun]).
 test_e2c("It is everybody that paints", [ pronoun]).
 
 test_e2c("Every man that paints likes monet.", [ bratko]).
@@ -203,7 +227,7 @@ test_e2c("There are 10 large cars.", [ quants]).
 test_e2c("There are 10 oceans.", [ quants]).
 test_e2c("There are 10 women.", [ quants]).
 test_e2c("An ocean borders an African country.", [ chat80(tell)]).
-test_e2c("What is the ocean that borders african countries and that borders asian countries?" , tell]).
+test_e2c("What is the ocean that borders african countries and that borders asian countries?" , [tell]).
 test_e2c("Indian ocean is the ocean that borders african countries and that borders asian countries.", [ tell]).
 
 test_e2c("Bertrand wrote a book.", [ bratko(book)]).
@@ -220,11 +244,14 @@ test_e2c("Alfred wrote a letter.", [ bratko(book)]).
 test_e2c("Alfred wrote a letter to Bertrand.", [ bratko(book)]).
 test_e2c("Alfred wrote something to Bertrand.", [ bratko(book)]).
 test_e2c("Alfred wrote to Bertrand.", [ bratko(book)]).
-test_e2c("Alfred wrote to Bertrand a letter.", [ bratko(book)]).
+test_e2c("Alfred wrote to Bertrand a letter.", [ bratko(book)]).                         
 test_e2c("Alfred wrote Bertrand a letter.", [ bratko(book)]).
 test_e2c("Who did alfred write a letter to?", [ bratko(book)]).
 
 test_e2c("Alfred gave it.", [ bratko(book)]).
 test_e2c("Alfred gave a book.", [ bratko(book)]).
 
+:- if((prolog_load_context(source,File),prolog_load_context(file,File))).
+:- fixup_exports.
+:- endif.
 

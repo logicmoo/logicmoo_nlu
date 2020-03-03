@@ -71,6 +71,7 @@ noun_phrase2(SO, X, LF, Out) -->
 %opt_each_all--> optionalText1(each).
 %opt_each_all--> optionalText1(all).
 
+% three of
 
 determiner1( Var, LF) --> determiner1a(Var,LF),optionalText1(of).
 determiner1(_Var, true) --> [].
@@ -101,22 +102,11 @@ number_of(3) --> theText1(three).
 number_of(N) --> theText1(Five),{tr_number(Five,N)}.
 number_of(N) --> numberic_value(N).
 
-determiner( Var, LF & quant(exists)) --> (theText1([there, exists]);theText1(exists)),!,determiner( Var, LF).
-determiner( V, LF) --> determiner1(V,LF0), determiner2(V,LF1), number_of(V,LF2),add_traits(V,LF0 & LF1 & LF2,true,LF),!.
+determiner0( Var, LF & quant(exists)) --> (theText1([there, exists]);theText1(exists)),!,determiner( Var, LF).
+determiner0( V, LF) --> determiner1(V,LF0), determiner2(V,LF1), number_of(V,LF2),add_traits(V,LF0 & LF1 & LF2,true,LF),!.
 
-
-/*
-determiner(Var, Prop, LF,  q(all, Var, (Prop => LF))) --> theText1(every);theText1(all).
-determiner(Var, Prop, LF, q(exists,Var, the(Var) & Prop & LF)) --> theText1(the).
-determiner(Var, Prop, LF, q(exists,Var, Prop & LF)) --> theText1(a);theText1(an);theText1(some).
-determiner(Var, Prop, LF, ~q(exists,Var, Prop & LF)) --> theText1(no).
-% some good food
-noun_phrase(SO, X, LF, LFOut) -->
-    determiner(X, Precond, LF, LFOut),
-    dcg_thru_2args(noun_pre_mod(SO, X), NounProp, AdjProps),
-    noun(SO, X, NounProp),
-    dcg_thru_2args(noun_post_mod(SO, X), AdjProps, Precond).
-*/
+determiner( V, LF) --> determiner0(V, LFV), theText1(of), determiner0(G,LFG), add_traits(V, LFV,of(V,G),LF1),add_traits(G,LFG,LF1,LF).
+determiner( V, LF) --> determiner0(V, LF).
 
 
 % =================================================================
@@ -131,7 +121,7 @@ adjective(X, MProps) --> quietly(maybe_negated_dcg(adjective1(X), MProps)).
 adjective1(X, MProps) --> named_var_match(contains('ADJ'), Var, iza(X, Var), MProps).
 adjective1(X, MProps)  -->  nop( \+ dcg_peek(verb1(_V))),   theText1(Adj), {nop(Adj \== liked), adj_lf(X, Adj, MProps)}.
 
- adj_lf(X, Adj, ISA) :- 
+ adj_lf(X, Adj, ISA) :-
    ((   (parser_chat80:adj_db( Adj, _),RAdj=Adj);
          clex_iface:clex_adj(Adj, RAdj, _);
          talkdb:talk_db(_, RAdj, Adj);
@@ -234,7 +224,7 @@ pronoun(SO, X, LF, Out) --> theText1(Herself), {nl_call(reflexive_pronoun,VarNam
   (member(v_arg(O),Traits)-> pronoun_ok(O,SO); true),pronoun_var(VarName,VarFn,X)},
   add_traits(X, [pronounReflxFn(Herself), varnamedFn(VarFn)|Traits], LF, Out), !.
 
-pronoun(SO, X, LF, Out) --> theText1(Hers),
+pronoun(SO, X, LF, Out) --> {fail}, theText1(Hers),
  {atom_string(Hers,StrHers), nl_call(acnl,'pronounStrings',CycWordHers,StrHers,_), 
   findall_set1(pos(Prop),nl_call(acnl,'partOfSpeech',CycWordHers,Prop,StrHers,_),Props)},
   add_traits(X, [pronounCycFn(Hers),v_arg(SO)|Props], LF, Out).

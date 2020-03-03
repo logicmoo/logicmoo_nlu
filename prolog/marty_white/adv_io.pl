@@ -118,6 +118,7 @@ bug_contexts([always, general, planner, autonomous, telnet, general, parser, pri
 :- debug(adv(all)).
 %bugs([general, autonomous]).
 
+bug(B) :- (B == always;B==general),!.
 bug(B) :- debugging(B,false),!,fail.
 bug(B) :- debugging(adv_skip(B),true),!,fail.
 bug(_) :- debugging(adv_skip(all),true),!,fail.
