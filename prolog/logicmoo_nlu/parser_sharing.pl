@@ -29,7 +29,11 @@
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo,Dir)).
 
+if_giveup_dcg(S,_):- var(S),!.
+if_giveup_dcg(_,_,S,_):- var(S),!.
 %nl_pred(F/A):-
+% def_nl_pred(M,share_mp,A):- dumpST,break.
+   
 def_nl_pred(M,F,A):- 
   assert_if_new(nlfac:is_nl_pred(M,F,A)).
 
@@ -42,12 +46,13 @@ def_nl_pred(M,F,A):-
 :- export(nl_call/7).
 :- export(nl_call/8).
 nl_call([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
-nl_call(P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),
-   M:P,nl_call_exit(M,F,A,P))*->true;
+nl_call(P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),      
+   on_x_rtrace((nl_pred(P,M,F,A),M:P)),nl_call_exit(M,F,A,P))*->true;
   (current_predicate(_,M:P),call(call,M:P)).
 
 nl_pred(M,F,A):- var(F),!,nlfac:is_nl_pred(M,F,A).
 nl_pred(M,F,A):- (nlfac:is_nl_pred(M,F,A))*->true;((must(current_predicate(M:F/A)),def_nl_pred(M,F,A)),!).
+
 nl_pred(P,M,F,A):- (var(F),var(P)),!,nlfac:is_nl_pred(M,F,A),functor(P,F,A).
 nl_pred(P,M,F,A):- var(F),!,functor(P,F,A),ignore(nlfac:is_nl_pred(M,F,A)).
 nl_pred(P,M,F,A):- var(P),!,nl_pred(M,F,A),functor(P,F,A).
@@ -117,6 +122,7 @@ pi_splits(M:XY,M:X,M:Y):- pi_splits(XY,X,Y),!.
 :- op(1150,fx,baseKB:(share_mp)).
 
 :- module_transparent((share_mp)/1).
+share_mp(X):- var(X),!,nop(dumpST),fail.
 share_mp(nil):- !.
 share_mp(XY):- pi_splits(XY,X,Y),!,share_mp(X),share_mp(Y).
 share_mp(XY):- pi_p(XY,PI),!,share_mp(PI).
@@ -129,6 +135,7 @@ import_and_export(CM,M:F/A):-
 
 
 :- module_transparent((share_mp)/2).
+share_mp(_,X):- var(X),!,nop(dumpST),fail.
 share_mp(_,nil):-!.
 share_mp(M,XY):- pi_splits(XY,X,Y),!,share_mp(M,X),share_mp(M,Y).
 share_mp(CM,(M:P)):- !, atom(M),share_mp(M,P),(CM==M->true;import_and_export(CM,M:P)).
@@ -155,6 +162,7 @@ share_mp(M,P):- functor(P,F,A), MFA=M:F/A,
 :- op(1150,fx,baseKB:(shared_parser_data)).
 :- module_transparent((shared_parser_data)/1).
 
+shared_parser_data(XY):- var(XY),!,nop(dumpST),fail.
 shared_parser_data(XY):- assertion(compound(XY)),fail.
 shared_parser_data(XY):- pi_splits(XY,X,Y),!,shared_parser_data(X),shared_parser_data(Y).
 shared_parser_data(XY):- pi_p(XY,PI)-> XY\==PI,!,shared_parser_data(PI).
@@ -178,8 +186,8 @@ find_predicate_module(P,MP):-find_predicate_module_maybe(MP,P),!.
 :- share_mp(find_predicate_module/2).
 
 :- module_transparent(find_predicate_module_maybe/2).
-find_predicate_module_maybe(MPO,F/A):-!, functor(P,F,A),find_predicate_module_maybe(MPO,P).
-find_predicate_module_maybe(MPO,M:F/A):-!, functor(P,F,A),find_predicate_module_maybe(MPO,M:P).
+find_predicate_module_maybe(MPO,F/A):-!,ground(F/A), functor(P,F,A),find_predicate_module_maybe(MPO,P).
+find_predicate_module_maybe(MPO,M:F/A):-!, ground(F/A), functor(P,F,A),find_predicate_module_maybe(MPO,M:P).
 find_predicate_module_maybe(M:P,MP):-  predicate_property(MP,imported_from(M)),!,strip_module(MP,_,P).
 find_predicate_module_maybe(M:P,M:P):- !, predicate_property(M:P,defined), \+ predicate_property(M:P,imported_from(_)),!.
 find_predicate_module_maybe(M:P,P):- each_parser_module(M),predicate_property(M:P,defined), \+ predicate_property(M:P,imported_from(_)),!.
@@ -198,7 +206,7 @@ use_shared_parser_data:-
    ignore((prolog_load_context(file,File3), use_shared_parser_data(User,File3))).
 
 :- module_transparent(def_parser_data/2).
-def_parser_data(M,F/A):- !, assertion((atom(F),integer(A),functor(P,F,A))), def_parser_data(M,P).
+def_parser_data(M,F/A):- !, ground(F/A), assertion((atom(F),integer(A),functor(P,F,A))), def_parser_data(M,P).
 def_parser_data(_,M:XY):- !, def_parser_data(M,XY).
 def_parser_data(M,P):-
    use_shared_parser_data,
@@ -226,7 +234,7 @@ define_shared_loadable_pred(M,P):- % throw(old_code),
    dynamic(M:P),multifile(M:P),discontiguous(M:P).
 
 :- module_transparent(show_shared_pred_info/1).
-show_shared_pred_info(FA):-
+show_shared_pred_info(FA):- nonvar(FA),
    prolog_load_context(module,User),
    (pi_p(FA,P);P=FA),!,
    functor(P,F,A),      

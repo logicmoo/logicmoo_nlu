@@ -142,7 +142,7 @@ get_agent_prompt(Agent,Prompt):- get_agent_memory(Agent, Mem),
 console_decide_action(Agent, Mem0, Mem1):- 
  %thought(timestamp(T0), Mem0),
  %bugout1(read_pending_codes(In,Codes,Found,Missing)),
- repeat,
+ % repeat,
  notrace((
  ttyflush,
  agent_to_input(Agent,In),
@@ -189,12 +189,21 @@ decide_action(Agent, Mem0, Mem2):-
 decide_action(Agent, Mem0, Mem0) :- 
  thought(todo([Action|_]), Mem0),
  (declared(h(in, Agent, Here), advstate)->true;Here=somewhere),
- (trival_act(Action)->true;bugout3('~w @ ~w: already about todo: ~w~n', [Agent, Here, Action], autonomous)).
+ (trival_act(Action)->true;bugout3('~w @ ~w: already about todo: ~w~n', [Agent, Here, Action], planner)).
+
+decide_action(Agent, Mem0, Mem1) :-
+ %must_mw1(thought(timestamp(T0), Mem0)),
+ retract(mu_global:console_tokens(Agent, Words)), !,
+ must_mw1((eng2log(Agent, Words, Action, Mem0),
+ if_tracing(bugout3('Agent TODO ~p~n', [Agent: Words->Action], planner)),
+ add_todo(Action, Mem0, Mem1))).
+
 
 % Telnet client
 decide_action(Agent, Mem0, Mem1) :-
  notrace(declared(inherited(telnet), Mem0)),!,
  must_mw1(telnet_decide_action(Agent, Mem0, Mem1)).
+
 
 % Stdin Client
 decide_action(Agent, Mem0, Mem1) :-
@@ -213,7 +222,7 @@ decide_action(_Agent, Mem, Mem) :-
  declared(inherited(memorize), Mem), !. % recorders don't decide much.
 decide_action(Agent, Mem0, Mem0) :-
  set_last_action(Agent,[auto(Agent)]),
- nop(bugout3('decide_action(~w) FAILED!~n', [Agent], general)).
+ bugout3('decide_action(~w) FAILED!~n', [Agent], general).
 
 
 :- meta_predicate with_agent_console(*,0).

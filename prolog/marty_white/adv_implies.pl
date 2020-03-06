@@ -38,34 +38,36 @@ implications(event, arriving(Agent, In, Here, _Walk, ReverseExit),
     [~h(In, Agent, Here), h(exit(ReverseExit), Here, _)], [ h(In, Agent, Here)]).
 
 
+
+only_goto:- true.
+
 :- discontiguous(oper/4).
 % oper(_Self, Action, Preconds, Effects)
-oper(Self, Action, Preconds, Effects):- % Hooks to KR above
- fail, sequenced(Self, Whole),
+oper(Self, Action, Preconds, Effects):- fail,  % Hooks to KR above
+  sequenced(Self, Whole),
  append(Preconds,[did(Action)|Effects],Whole).
 
 
-
 oper(Agent, go_dir(Agent, Walk, ExitName),
-     [ Here \= Agent, There \= Agent, Here \= There, 
-       k(In, Agent, Here),
-       b(exit(ExitName), Here, _),
-       h(exit(ExitName), Here, There),       
-       ReverseExit \= ExitName, 
-       h(exit(ReverseExit), There, Here)],
-     [ 
-        % implies believe(Agent, ~h(in, Agent, Here)),
-        precept_local(Here, departing(Agent, In, Here, Walk, ExitName)),        
-     ~h(In, Agent, Here),  
-      h(In, Agent, There),
-      %b(exit(ExitName), Here, There),
-      %b(exit(ReverseExit), There, Here),
-        % implies, believe(Agent, h(in, Agent, There)),
-       precept_local(There, arriving(Agent, In, There, Walk,  ReverseExit))
+   [ Here \= Agent, There \= Agent, Here \= There, 
+    k(In, Agent, Here),
+    b(exit(ExitName), Here, _),
+    h(exit(ExitName), Here, There),       
+    ReverseExit \= ExitName, 
+    h(exit(ReverseExit), There, Here)],
+   [ 
+     % implies believe(Agent, ~h(in, Agent, Here)),
+     precept_local(Here, departing(Agent, In, Here, Walk, ExitName)),        
+   ~h(In, Agent, Here),  
+    h(In, Agent, There),
+   %b(exit(ExitName), Here, There),
+   %b(exit(ReverseExit), There, Here),
+   % implies, believe(Agent, h(in, Agent, There)),
+    precept_local(There, arriving(Agent, In, There, Walk,  ReverseExit))
    %  ~b(In, Agent, Here),  
    %   b(In, Agent, There),
-        % There \= Here
-        ]):- dif(ExitName, escape).
+     % There \= Here
+     ]):- dif(ExitName, escape).
 
 
 % Return an operator after substituting Agent for Agent.

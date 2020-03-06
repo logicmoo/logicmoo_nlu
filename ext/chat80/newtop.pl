@@ -209,7 +209,7 @@ w2_to_w(w(Txt,_),Txt):-!.
 w2_to_w(Txt,Txt).
 
 %theTextC(W1,CYCPOS,Y=W1)  ---> {t_l:old_text,!},[W1],{W1=Y}.
-theTextC(A,_,F=A,B,C,D,E) :- t_l:old_text, !,terminal(A, B, C, D, E),A=F,is_sane_nv(A).
+theTextC(A,_,F=A,B,C,D,E) :- t_l:old_text, !,terminal(A, B, C, D, E),A=F, is_sane_nv(A).
 theTextC(A,_,F=A,B,C,D,E) :- !,terminal(w(A, _), B, C, D, E),A=F,is_sane_nv(A).
 %theTextC(W1,CYCPOS,Y=W1)  ---> {!},[w(W1,_)],{W1=Y}.
 %theTextC(W1,CYCPOS,WHY) ---> [W2],{memoize_pos_to_db(WHY,CYCPOS,W2,W1)}.

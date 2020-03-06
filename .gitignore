@@ -8,6 +8,7 @@ ext/candc/models/
 *.bak
 *~.*
 *~
+*.o
 ~*
 *_cache
 *-models.jar

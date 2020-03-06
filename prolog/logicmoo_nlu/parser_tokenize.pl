@@ -29,7 +29,7 @@ tokens_to_acetext0([T,P],AceText):- atomic_list_concat([T,P],' ',AceText),!.
 tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
 
 
-into_text80(I,O):- 
+into_text80(I,O):- nonvar(I), 
   parser_tokenize:(init_to_tokens(I,T),!,fast_break_atom_symbols(T,N),!,maplist(number_to_nb,N,O)),!.
 
 

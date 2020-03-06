@@ -241,7 +241,6 @@ split_k(Agent,[in(X,Y)|PrecondsK],[h(in,X,Y)|Preconds]):-
 split_k(Agent,[Cond|PrecondsK],[Cond|Preconds]):- 
   split_k(Agent,PrecondsK,Preconds).
 
-
 api_invoke( Action) :- get_advstate(S), api_invoke( Action, S, E), set_advstate(E).
 
 api_invoke( Action) --> apply_act( Action).

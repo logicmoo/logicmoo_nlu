@@ -62,10 +62,23 @@
 :- mu:export(mu:nop/3).
 :- import(mu:nop/3).
 
+
+make_dcg_test_stub(_,_,A):- A < 3.
+make_dcg_test_stub(M,F,_):- current_predicate(M:F/1),!. % no place for it
+make_dcg_test_stub(_,F,_):- current_predicate(F/1),!. % still no place for it?
+make_dcg_test_stub(M,F,A):-
+   functor(PrologHead,F,A),
+   PrologHead =.. [F|PrologHeadArgs],
+   append(_,[Out,W,E],PrologHeadArgs),   
+   TextHead =.. [F,S],
+   (Assert = ( system:TextHead:- M:(make, to_wordlist_atoms(S,W),call_print_reply(Out,M:PrologHead),!,E=[]))),
+   M:assert_if_new(Assert).
+
+
 decl_is_dcg(MP):- strip_module(MP,M,P),(P=F/A;(P=F//A2,
   A is A2+2);(atom(P),F=P,A=2);(compound(P),compound_name_arity(P,F,A2),A is A2+2)),!,
   decl_is_dcg(M,F,A). 
-decl_is_dcg(M,F,A):- ain(baseKB:mpred_props(M,F,A,prologDcg)), ain(baseKB:mpred_props(M,F,A,prologOnly)).
+decl_is_dcg(M,F,A):- ain(baseKB:mpred_props(M,F,A,prologDcg)), ain(baseKB:mpred_props(M,F,A,prologOnly)),make_dcg_test_stub(M,F,A).
 
 :- decl_is_dcg(optionalText1/3).
 :- decl_is_dcg(theText1/3).
@@ -139,6 +152,8 @@ test_e2c(TestTypes) :-
 % regression = ran as regression test
 % feature = ran as feature test
 
+test_e2c(S,TestInfo) :- nonvar(S), run_e2c_test(S, TestInfo).
+
 test_e2c("His friends are liked by hers.", [bad_juju, sanity]).
 test_e2c("Her friends are not liked by his.", [bad_juju, sanity]).
 test_e2c("Do their friends like each other?", [bad_juju, feature]).
@@ -189,6 +204,7 @@ test_e2c("Who owns the fish?", [riddle(_), sanity]).
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
+add_e2c(S):- add_e2c(S,sanity).
 add_e2c(S,W):-  clause(test_e2c(S,W),true),!.
 add_e2c(S,W):- listify(W,L),assertz(test_e2c(S,L)).
 

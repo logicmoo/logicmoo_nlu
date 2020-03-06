@@ -1,5 +1,5 @@
 namespace NLP {
-  const char *VERSION = "v2527M";
+  const char *VERSION = "v1.00";
 
-  const char *BUILD = "(unix build on 17 June 2014, 22:30:02)";
+  const char *BUILD = "(unix build on 4 March 2020, 05:15:15)";
 }

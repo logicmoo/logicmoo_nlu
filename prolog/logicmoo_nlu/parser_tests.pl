@@ -40,7 +40,7 @@ test_e2c("All women paint.", [ quants]).
 test_e2c("Any women paint.", [ quants]).
 
 test_e2c("Not women paint.", [ quants]).
-test_e2c("Not some women paint.", [ quants]).
+
 test_e2c("Not no women paint.", [ quants]).
 test_e2c("Not all women paint.", [ quants]).
 test_e2c("Not any women paint.", [ quants]).

@@ -215,6 +215,9 @@ eng2cmd(Doer, [TheVerb|Args], Action, M) :-
 
 parse_cmd(Agent,  look(Agent)) --> [look].
 parse_cmd(Agent,  wait(Agent)) --> [wait].
+parse_cmd(Agent,  auto(Agent)) --> [auto].
+
+parse_cmd(Agent,  inventory(Agent)) --> [inventory].
 parse_cmd(Agent,  Cmd) --> [Alias],{cmdalias(Alias,Cmd),flatten([Cmd],Flat)},dcg_push(Flat),parse_cmd(Agent,  Cmd).
 
 % %%%%%%%%%%%%%%
@@ -285,8 +288,9 @@ acdb(F,A,B):- munl_call(ttholds(F,A,B)).
 acdb(F,A,B):- munl_call(acnl(F,A,B,_)).
 
 :- set_prolog_flag(debug_on_error,true).
-munl_call(G):- catch((nl_call(G)),_,fail).
-% munl_call(G):- nl_call(G).
+munl_call(G):- catch(nl_call(G),munl_call2(G),fail).
+munl_call2(G):- catch(rtrace(nl_call(G)),_,fail).
+%munl_call(G):-nl_call(G).
 
 two_adjs(W1,W2,W3):- var(W1),nonvar(W2),!,two_adjs(W2,W1,W3).
 two_adjs(W1,W2,W3):- var(W1),var(W2),!, 

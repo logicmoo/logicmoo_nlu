@@ -12,6 +12,7 @@
 
 :- export(sentence80/5).
 
+sentence80(_) ---> if_giveup_dcg,{!,fail}.
 sentence80(S) ---> wh_question(S), (terminator(?);[]) .
 sentence80(S) ---> yn_question(S), (terminator(?);[]) .
 sentence80(S) ---> imperative80(S), (terminator(!);[]) .

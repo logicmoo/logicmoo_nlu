@@ -135,7 +135,7 @@ sequenced(_Self,
   h(Rel, Self, There),
   notice(There,enters(Self,There,RDir))]).
 
-only_goto:- true.
+
 planner_only:- nb_current(opers, planner).
 
 

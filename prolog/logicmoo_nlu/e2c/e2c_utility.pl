@@ -39,8 +39,8 @@ dcg_condition([], S, _):- S \== [], !, fail.
 dcg_condition(DCG, S, E):- phrase(DCG, S, E).
 
 % Push a new term onto DCG stack
-dcg_push(List, S, ListS):- is_list(List), !, append(List, S, ListS).
-dcg_push(A, S, [A|S]).
+dcg_push(List, S, ListS):- is_list(List), !, t_to_w2(List,ListO), append(ListO, S, ListS).
+dcg_push(A, S, [B|S]):- t_to_w2(A,B).
 
 theText1(IC)-->notrace(theText11(IC)).
 

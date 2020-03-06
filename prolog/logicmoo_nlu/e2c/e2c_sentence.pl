@@ -9,11 +9,10 @@
  char_type_sentence((!),tell).
 
 utterance(Type, LF, S, E):- var(Type), is_list(S), append(First,[ Char],S), \+ \+ char_type_sentence(Char,_), !, char_type_sentence(Char,Type),utterance(Type, LF, First, E).
-utterance(tell, LF) -->  declarative(LF).
-utterance(ask, LF) -->   quietly(question(LF)).
-utterance(act, LF) -->   quietly(imperative(LF)).
 
-sub_compound(Sub,LF):- sub_term(S,LF),nonvar(S),Sub=S.
+utterance(act, LF) -->   quietly(imperative(LF)).
+utterance(ask, LF) -->   quietly(question(LF)).
+utterance(tell, LF) -->  declarative(LF).
 
 parse_for('evtState',Evt, LF, LFOut) --> theText1(to), verb_phrase(Evt, _, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
 parse_for('evtState',Evt, LF, LFOut) --> frame_sentence(Evt, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
@@ -29,8 +28,8 @@ imperative(do(X, LFOut)) --> verb_phrase(_NewFrame, X, LFOut), optionalText1('!'
 % =================================================================
 
 % [if|when|whenever] Cond then Result
-declarative(LFOut) --> (theText1(if);theBaseForm(when)),!,frame_sentence(_Frame1,LHS),{add_quant(all,LHS)},
-     optionalText1(','),theText1(then),frame_sentence(_Frame2,RHS),{add_quant(exists,RHS),expand_quants(LHS=>RHS,LFOut)}.
+declarative(LFOut) --> (theText1(if);theBaseForm(when)),frame_sentence(_Frame1,LHS),{add_quant(all,LHS)},
+     optionalText1(','),theText1(then),frame_sentence(_Frame2,RHS),{add_quant(exists,RHS),expand_quants(LHS=>RHS,LFOut)},!.
 % declarative(LFOut) --> frame_sentence0(_Frame, LFOut).
 declarative(LFOut) --> frame_sentence(LFOut), optionalText1('.').
 
@@ -62,7 +61,9 @@ frame_sentence0(Frame, LFOut) --> theText1(no), number_of(2), !,
   % LFOut = (((XCond & XLF & different(X,Y) & YLF) => ~YCond)).
   
 
-:-add_e2c("no three owners eat pizza", sanity).
+:-add_e2c("no three owners eat pizza", sanity).   % alt: less than three owners eat pizza
+:-add_e2c("no three owners eat the same pizza", sanity).  % alt: less than three owners eat off the same instance
+:-add_e2c("no three owners eat the same kind of pizza", sanity).  % alt: less than three owners eat an instance of the same classes
 frame_sentence0(Frame, LFOut) --> theText1(no), number_of(3),
   noun_phrase(_SO, X, true, XCond),
   verb_phrase(Frame, X, XLF),
@@ -72,6 +73,7 @@ frame_sentence0(Frame, LFOut) --> theText1(no), number_of(3),
   
 
 :-add_e2c("no owners eat the same pizza", sanity).
+:-add_e2c("no owners eat the same kind of pizza", sanity).
 frame_sentence0(Frame, LFOut) --> theText1(no),
   noun_phrase2(_SO, X, true, XCond),
   verb_phrase(Frame, X, XLF),
