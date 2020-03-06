@@ -208,7 +208,7 @@ satisfy_each(Context, (C1,C2), S0, S9) :- !,
    
 satisfy_each(Context, foreach(Cond,Event), S0, S9) :- findall(Event, phrase(Cond,S0,_), TODO), satisfy_each(Context, TODO, S0, S9).
 satisfy_each(_,precept_local(Where,Event)) --> !, queue_local_event([Event],[Where]).
-satisfy_each(_,precept(Agent,Event)) --> !, send_precept(Agent,Event).
+satisfy_each(_,precept(Agent,Event)) --> !, send_1precept(Agent,Event).
 satisfy_each(postCond(_Action), ~(Cond)) --> !, undeclare_always(Cond).
 satisfy_each(postCond(_Action),  Cond) --> !, declare(Cond).
 satisfy_each(Context, ~(Cond)) --> !, (( \+ satisfy_each(Context, Cond)) ; [failed(Cond)] ).
@@ -217,7 +217,7 @@ satisfy_each(_, Cond) --> [failed(Cond)].
 
 
 oper_splitk(Agent,Action,Preconds,Postconds):-
-  oper(Agent,Action,PrecondsK,PostcondsK),
+  oper_db(Agent,Action,PrecondsK,PostcondsK),
   split_k(Agent,PrecondsK,Preconds),
   split_k(Agent,PostcondsK,Postconds).
 
@@ -253,7 +253,7 @@ must_act( Action , S0, S9) :-
 must_act( Action, S0, S1) :- {debugging(apply_act)}, !, rtrace(apply_act( Action, S0, S1)), !.
 must_act( Action) --> 
  action_doer(Action,Agent), 
- send_precept(Agent, [failure(Action, unknown_to(Agent,Action))]).
+ send_1precept(Agent, [failure(Action, unknown_to(Agent,Action))]).
 
 
 act_required_posses('lock','key',$agent).

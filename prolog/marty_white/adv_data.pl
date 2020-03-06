@@ -115,6 +115,8 @@ type_functor(doing, emote(agent, emotype, dest, statement)).
 type_functor(event, emoted(agent, emotype, dest, statement)).
 
 
+type_functor(doing, auto(agent)).
+
 type_functor(doing, wait(agent)).
 type_functor(event, time_passes(agent)).
 
@@ -137,6 +139,11 @@ type_functor(doing, goto_loc(agent, movetype, dest)).
 
 type_functor(doing, throw(agent, inst, dest)).
 type_functor(doing, put(agent, inst, dest)).
+
+% Access ot planner ops
+%type_functor(prolog, oper_db(agent,doing,list(nv),list(nv)).
+% Data representing planner midway state
+%type_functor(prolog, oper_in_step(agent,doing,list(nv)).
 
 
 

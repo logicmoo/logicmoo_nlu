@@ -79,8 +79,20 @@ can_sense(Agent, Sense, Thing, S0) :-
 can_sense(Agent, Sense, Thing, _State):- 
  bugout1(pretending_can_sense(Agent, Sense, Thing, Agent)),!.
 
+as_single_event([Event],SEvent):- !, as_single_event(Event,SEvent).
+as_single_event([E1,E2|More],single_event([E1,E2|More])).
+% as_single_event([E1,E2|More],SEvent):- dumpST,break, !, as_single_event(Event,SEvent).
+as_single_event(Event,Event).
 
-
+send_1precept(Agent, Event, S0, S2) :- as_single_event(Event,SEvent) -> Event\==SEvent,!,
+ send_1precept(Agent, SEvent, S0, S2).
+   
+send_1precept(Agent, Event, S0, S2) :- 
+  declared(perceptq(Agent, _Q), S0), !, 
+  queue_agent_percept(Agent, [Event], S0, S2).
+send_1precept(Agent, Event, S0, S2) :- 
+  do_precept_list(Agent, [Event], S0, S2).
+                        
 send_precept(Agent, Event, S0, S2) :- 
   declared(perceptq(Agent, _Q), S0), !, 
   queue_agent_percept(Agent, Event, S0, S2).
@@ -275,8 +287,9 @@ is_non_player(Agent):- Agent == floyd.
 % process_percept_main(Agent, PerceptsList, Stamp, OldModel, NewModel)
 process_percept_main(_Agent, [], _Stamp, Mem0, Mem0) :- !.
 process_percept_main(Agent, Percept, Stamp, Mem0, Mem2) :-
+ % bugout3('~N1 precept ~q !~n', [percept(Percept)], always),
  quietly(process_percept_player(Agent, Percept, Stamp, Mem0, Mem1)),
- process_percept_auto(Agent, Percept, Stamp, Mem1, Mem2).
+ process_percept_auto(Agent, Percept, Stamp, Mem1, Mem2), !.
 process_percept_main(Agent, Percept, Stamp, Mem0, Mem0):- 
  bugout3('~q FAILED!~n', [bprocess_percept(Agent, Percept, Stamp)], perceptq), !.
 

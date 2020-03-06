@@ -114,6 +114,7 @@ bug_contexts([always, general, planner, autonomous, telnet, general, parser, pri
 :- bug_contexts(List),foreach(member(E,List),debug(adv(E))).
 :- debug(adv_skip(printer)).
 :- debug(adv(unknown)).
+:- debug(adv(planner)).
 :- nodebug(adv(unknown)).
 :- debug(adv(all)).
 %bugs([general, autonomous]).
@@ -125,6 +126,7 @@ bug(_) :- debugging(adv_skip(all),true),!,fail.
 bug(_) :- debugging(adv(all)),!.
 bug(B) :- debugging(adv(B),YN),!,YN.
 bug(_) :- debugging(adv(unknown),YN),!,YN.
+
 
 
 term_to_pretty_string(L,LinePrefix,SO):- 

@@ -101,31 +101,34 @@ add_todo_all([Action|Rest], Mem0, Mem2) :-
  
 % -----------------------------------------------------------------------------
 % do_introspect(Agent, Query, Answer, Memory)
+
 :- defn_state_getter(do_introspect(agent,action,result)).
-do_introspect(Agent, path(There), Answer, S0) :- !, 
-   declared(h(_, _, There), S0),
-   declared(h(_, Agent, Here), S0),
-  do_introspect(Agent, path(Here, There), Answer, S0).
 
-do_introspect(Agent, path(Here, There), Answer, S0) :- !,
-  declared(h(_, _, There), S0),
- do_introspect(Agent, path(Here, There), Answer, S0).
 
-do_introspect(Agent, path(Here, There), Answer, S0) :- 
- agent_thought_model(Agent, ModelData, S0),
- find_path(Here, There, Route, ModelData), !, 
- Answer = msg(['Model is:',Agent,'Shortest path is:\n', Route]).
+do_introspect(Agent, path(There), Answer, M0) :- !, 
+   declared(h(_, _, There), M0),
+   declared(h(_, Agent, Here), M0),
+  do_introspect(Agent, path(Here, There), Answer, M0).
 
-do_introspect(_Agent, path(Here, There), Answer, ModelData) :- 
- find_path(Here, There, Route, ModelData), !, 
- Answer = msg(['Model is:','State','Shortest path is\n:', Route]).
+do_introspect(Agent, path(Here, There), Answer, M0) :- 
+ agent_thought_model(Agent, ModelData, M0), 
+ find_path(Agent, Here, There, Route, ModelData), !, 
+ get_structure_label(ModelData,Name), 
+ Answer = msg(['Model is:',Name,'Shortest path is:\n', Route]).
 
-do_introspect(Agent1, recall(Agent, WHQ, Target), Answer, S0) :- 
- agent_thought_model(Agent, ModelData, S0),
- recall_whereis(S0, Agent1, WHQ, Target, Answer, ModelData).
+do_introspect(Agent, path(Here, There), Answer, ModelData) :- 
+ find_path(Agent, Here, There, Route, ModelData), !, 
+ get_structure_label(ModelData,Name), 
+ Answer = msg(['Model is:',Name,'Shortest path was:',nl, list(Route)]).
 
-do_introspect(Agent1, recall(Agent, Target), Answer, S0) :- !,
-  do_introspect(Agent1, recall(Agent,what, Target), Answer, S0).
+do_introspect(Agent1, recall(Agent, WHQ, Target), Answer, M0) :- 
+ agent_thought_model(Agent, ModelData, M0),
+ recall_whereis(M0, Agent1, WHQ, Target, Answer, ModelData).
+
+do_introspect(Agent1, recall(Agent, Target), Answer, M0) :- !,
+  do_introspect(Agent1, recall(Agent,what, Target), Answer, M0).
+
+:- set_prolog_flag(debugger_write_options, [quoted(true), portray(true), max_depth(100), attributes(portray)]).
 
 recall_whereis(_S0,_Self,  _WHQ, There, Answer, ModelData) :-
  findall(Data, (member(Data,ModelData), nonvar_subterm(There, Data)), Memories),

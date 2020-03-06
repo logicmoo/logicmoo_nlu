@@ -69,7 +69,8 @@ convert_reflexive_self(Agent, Words, NewWords) :-
    NewWords).
 
 is_type_functor(Type,Term):- \+ is_list(Term), compound(Term), functor(Term,F,A), !,
-                              functor(Skel,F,A),type_functor(Type,Skel).
+                              functor(Skel,F,A),
+                              type_functor(Type,Skel).
 
 
 :- discontiguous(eng2logic/4).
@@ -151,9 +152,10 @@ reframed_call( Pred, Doer, [Verb|TheArgs], Action, M) :-
  Action =.. [Verb,Doer|Args].
 */
 
-
-eng2state(_Doer, Tokens, frame(Logic), Mem) :- current_predicate(declarative/3), 
+eng2state(_Doer, Tokens, frame(Logic), Mem) :- fail, current_predicate(declarative/3), 
   with_parse_mem(Mem, phrase(declarative(Logic),Tokens, [])).
+
+/*
 
 eng2state(_Doer, Tokens, frame80(Logic), Mem) :- current_predicate(parse_chat80/2),
   with_parse_mem(Mem, parse_chat80(Tokens, Logic)).
@@ -168,9 +170,18 @@ user:parse_chat80(Text,Q):-
    try_maybe_p(parser_chat80:i_sentence,P,S),
    try_maybe_p(parser_chat80:clausify80,S,C),
    try_maybe_p(parser_chat80:qplan,C,Q))).
+*/
 
+eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_one_or_zero_arg(Verb), !, 
+  (Args =[A|Text] ->
+     Logic =.. [Verb,A|Text]; 
+     Logic = Verb).
 
-eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon(Verb), !, (Args =[A|Text] -> Logic =.. [Verb,A,Text]; Logic = Verb).
+eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_n_args(Verb), !, 
+  (Args =[A|Text] ->
+     Logic =.. [Verb,A|Text]; 
+     Logic = Verb).
+
 eng2cmd(Self, [Alias|Args], Logic, Mem):- cmdalias(Alias,Cmd), !, eng2cmd(Self, [Cmd|Args], Logic, Mem).
 eng2cmd(Doer, Words, Action, M) :- parse_imperative_movement(Doer, Words, Action, M),!.
 
@@ -183,8 +194,7 @@ eng2cmd(Doer, [take| ObjectSpec], take(Doer, Object), Mem) :- parse2object(Objec
 eng2cmd(Doer, Tokens, Logic, Mem) :- 
   with_parse_mem(Mem, phrase(parse_cmd(Doer, Logic),Tokens, [])),!.
 
-eng2cmd(Doer, Words, Action, M) :- 
- fail, 
+eng2cmd(Doer, Words, Action, M) :- fail, 
  Words \== [i], % Dont interfere with inventory
  % If not talking to someone else, substitute Agent for 'self'.
  append(Before, [Doer|After], Words),
@@ -192,17 +202,19 @@ eng2cmd(Doer, Words, Action, M) :-
  thought(inst(Agent), M),
  append(Before, [Agent|After], NewWords),
  reframed_call(eng2cmd, Doer, NewWords, Action, M).
+   
 
-eng2cmd( Self,  Words, Logic, Mem):-  
-    \+ member(Self, Words),
-   (get_agent_prompt(Self,Prompt)->true;Prompt = [does]),
-   append([Self|Prompt],Words,Decl),eng2state( Self,  Decl, Logic, Mem),!. 
 
 eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
  quietly_talk_db([F,Verb|Forms]),
  notrace(F==intransitive;F==transitive),
  member(TheVerb,Forms),!,
  eng2cmd(Doer, [Verb|Args], Action, M).
+
+eng2cmd( Self,  Words, Logic, Mem):-  fail,
+    \+ member(Self, Words),
+   (get_agent_prompt(Self,Prompt)->true;Prompt = [does]),
+   append([Self|Prompt],Words,Decl),eng2state( Self,  Decl, Logic, Mem),!. 
 
 eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
  munl_call(clex_verb(TheVerb,Verb,_,_)),
@@ -213,11 +225,11 @@ eng2cmd(Doer, [TheVerb|Args], Action, M) :-
 % Simple
 % %%%%%%%%%%%%%%
 
-parse_cmd(Agent,  look(Agent)) --> [look].
-parse_cmd(Agent,  wait(Agent)) --> [wait].
-parse_cmd(Agent,  auto(Agent)) --> [auto].
+parsed_as_simple(X):- arg(_,v(look,wait,auto,inventory),X).
 
-parse_cmd(Agent,  inventory(Agent)) --> [inventory].
+parse_cmd(Agent,  Logic) --> [X],{parsed_as_simple(X0),same_verb(X0,X),!,Logic=..[X0,Agent]}.
+
+
 parse_cmd(Agent,  Cmd) --> [Alias],{cmdalias(Alias,Cmd),flatten([Cmd],Flat)},dcg_push(Flat),parse_cmd(Agent,  Cmd).
 
 % %%%%%%%%%%%%%%
@@ -238,9 +250,14 @@ parse_for_optional(_Type, Else,  Else) --> [].
 parse_for_kind(agent,floyd) --> [floyd],!.
 parse_for_kind(agent,Target) --> !, parse_for_kind(object,Target).
 parse_for_kind(place,Target) --> !, parse_for_kind(object,Target).
-parse_for_kind(object,Target) --> {list_len_between(3,1,List)},List,{parse2object(List,Target,inst('player~1'))}.
+parse_for_kind(inst,Target) --> !, parse_for_kind(object,Target).
+parse_for_kind(agnt2,Target) --> !, parse_for_kind(object,Target).
+
+parse_for_kind(object,Target) --> !, {list_len_between(3,1,List)},List,{parse2object(List,Target,inst('player~1'))}.
 %parse_for_kind(place, Dest)--> in_agent_model(Dest, h(_, _, Dest)).
 %parse_for_kind(place, Dest)--> in_agent_model(Dest, h(_, Dest, _)).
+parse_for_kind([H|T],[TargetH|TargetT]) --> {nonvar(T),!}, parse_for_kind(H,TargetH),parse_for_kind(T,TargetT).
+parse_for_kind(_Any,Target) --> !, parse_for_kind(object,Target).
 
 list_len_between(N,M,List):- length(List, N) ;
   (N\=M , (N<M -> N2 is N+1 ; N2 is N-1), list_len_between(N2,M,List)).
@@ -249,7 +266,8 @@ word_next_arg_type(who,done_by).
 word_next_arg_type(what,object).
 word_next_arg_type(where,place).
 
-parse_cmd(Doer, recall(Doer,Who,Target)) --> [Who], {word_next_arg_type(Who, Type)}, parse_for_optional(Type,Target, Doer).
+parse_cmd(Doer, recall(Doer,Who,Target)) --> [Who], {word_next_arg_type(Who, Type)}, 
+  parse_for_optional(Type,Target, Doer).
 
 any_text(Text,Text,[]).
 
@@ -261,11 +279,20 @@ oneOf(List,S,E):-member(I,List),(is_list(I)->phrase(I,S,E);phrase([I],S,E)).
 % %%%%%%%%%%%%%%
 % Communication
 % %%%%%%%%%%%%%%
-parse_cmd(Doer, emote(Doer, say, Dest, Emoted)) --> parse_for_kind(agent, Dest), [','],  eng2assert_text(Emoted).
+parse_cmd(Doer, emote(Doer, say, Dest, Emoted)) --> dcg_from_right(parse_for_kind(agent, Dest), [',']),  eng2assert_text(Emoted).
 parse_cmd(Doer, emote(Doer, Say, Dest, Emoted)) --> [Ask], {ask_to_say(Ask,Say)},
   oneOf([to,from,:,(','),[]]), ignore(parse_for_kind(agent, Dest);parse2object(Dest)), oneOf([to,:,[]]), eng2assert_text(Emoted).
 %parse_cmd(Doer, emote(Doer, Emoted)) --> [emote], eng2assert_text(Emoted),!.
 %parse_cmd(Doer, say(Doer, Emoted)) --> [say], eng2assert_text(Emoted).
+
+parse_cmd( Self,  Logic, [F|Words],[]):-  
+    type_functor(doing, P), P =..[Fun,Ag|_Rest],
+    same_verb(F,Fun),
+    % @TODO start using coerce(...).
+    must_maplist(coerce_text_to_args,Words,Args),
+     (Ag==agent -> 
+       Logic =..[Fun,Self|Args];
+       Logic =..[Fun|Args]).
 
 ask_to_say(Ask,say):- arg(_,v(ask,say,tell,talk),Ask).
 ask_to_say(Ask,say):- arg(_,v(request,tell),Ask).
@@ -363,7 +390,7 @@ frame_var(Name,Frame,Var):- nonvar(Var), !,frame_var(Name,Frame,NewVar),!,NewVar
 frame_var(Name,Frame,Var):- compound(Name), !, arg(_,Name,E), frame_var(E,Frame,Var), !.
 frame_var(Name,[Frame1|Frame2],Var):- !, frame_var(Name,Frame1,Var);frame_var(Name,Frame2,Var).
 frame_var(Name,Prop = Var,Var):- !, same_word(Name,Prop).
-frame_var(Name,f(Pred,1,[Var]),Var):- !, same_name(Name,Pred).
+frame_var(Name,f(Pred,1,[Var]),Var):- !, same_verb(Name,Pred).
 frame_var(Name,f(_,_,[Prop|List]),Var):- !, same_name(Name,Prop),last(List,Var).
 frame_var(Name,Frame,Var):- compound_name_arity(Frame,Pred,Arity), Arity > 0, compound_name_arguments(Frame,Pred,List), 
   frame_var(Name,f(Pred,Arity,List),Var).
@@ -376,6 +403,7 @@ asCol(A,S):- format(atom(S),'~w',[A]).
 to_upcase_name(V,V):- var(V),!.
 to_upcase_name(T,N):- compound(T), !, compound_name_arity(T,A,_),!,to_upcase_name(A,N).
 to_upcase_name(T,N):- format(atom(A),'~w',[T]),upcase_atom(A,N).
+
 
 same_name(T1,T2):- ground(T1),ground(T2),to_upcase_name(T1,N1),to_upcase_name(T2,N2),!,N1==N2.
 
@@ -789,12 +817,23 @@ verb_frame1(Action,Burn,
   end_of_list]):-
  verb_tool_ends_ensures(Burn,Match,Unflaming,Burnt).
 
-   verbatum_anon(Verb):- member(Verb, [prolog, make, cls, mem, types, props, ls, debug, cd, pwd, 
- useragent, create, delprop, destroy, echo, halt, getprops, english,
- memory, model, path, properties, setprop, state, status, perceptq, help, threads,
- spy,nospy,call,
+
+verbatum_anon(Verb):- verbatum_anon_n_args(Verb).
+verbatum_anon(Verb):- verbatum_anon_one_or_zero_arg(Verb).
+
+
+verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
+ prolog, make, cls, 
+ mem, types, props, debug, 
+ ls, cd, pwd, 
+ useragent, create, delprop, destroy, echo, halt, english,
+ memory, model, properties, state, status, perceptq, help, threads,
+ spy, nospy, call,
  rtrace, nortrace, 
  trace, notrace %, %whereami, whereis, whoami
+ ]).
+
+verbatum_anon_n_args(Verb):- member(Verb, [getprops, setprop, path  %, %whereami, whereis, whoami
  ]).
 
 
@@ -811,10 +850,11 @@ parse2object(Type, TheThing, M):-
  show_call(as1object(Type, TheThing, M)), !.
 
 
-
+as1object(TheThing, Thing, Ctx):- var(Ctx),!,get_advstate(Ctx),as1object(TheThing, Thing, Ctx).
 as1object([TheThing], Thing, M):- !, nonvar(TheThing), as1object(TheThing, Thing, M).
 as1object(TheThing, Thing, _Mem):- atom(TheThing), atom_number(TheThing,Thing),!.
-as1object(TheThing, Thing, M):- obj_props(M,Thing,Props),(same_word(TheThing,Thing)->true;(sub_term(Sub,Props),(atom(Sub);string(Sub)),same_word(TheThing,Sub))).
+as1object(TheThing, Thing, M):-  obj_props(M,Thing,Props),
+  (same_word(TheThing,Thing)->true;(sub_term(Sub,Props),(atom(Sub);string(Sub)),same_word(TheThing,Sub))).
 as1object(TheThing, Thing, _Mem):- \+ atom(TheThing),!, TheThing=Thing.
 as1object(TheThing, Thing, M):- atom_of(inst, TheThing, Thing, M),!.
 as1object(TheThing, Thing, M):- get_advstate(Mem2),Mem2\=M,as1object(TheThing, Thing, Mem2).
@@ -827,6 +867,8 @@ to_string_lc(S,L):- is_list(S),!, maplist(to_string_lc,S,W),atomics_to_string(W,
 to_string_lc(A,S):- format(string(S),'~w',[A]).
 
 same_word(T1,T2):- notrace((to_string_lc(T1,S1),to_string_lc(T2,S2),!,S1=S2)).
+
+% same_verb(T1,T2):- ground(T1),ground(T2),to_upcase_name(T1,N1),to_upcase_name(T2,N2),!,(atom_concat(N1,_,N2);atom_concat(N2,_,N1)).
 same_verb(Verb,Text):-  to_string_lc(Verb,LVerb),to_string_lc(Text,LText), atom_concat(LVerb,_,LText).
 
 same_props(Props1,Props1):- !.
@@ -874,6 +916,20 @@ sub_term_atom(Term, T) :-
  sub_term_atom(Term, List).
 
 
+
+
+
+coerce_text_to_args(List,Args):- is_list(List),!,must_maplist(coerce_text_to_args,List,Args).
+coerce_text_to_args(Var,Arg):- is_ftVar(Var),Arg=Var,!.
+coerce_text_to_args(Atom,Arg):- is_already_an_arg(Atom),!,Atom=Arg.
+coerce_text_to_args(Atomic,Arg):- \+ atom(Atomic),!,any_to_atom(Atomic,Atom),!,coerce_text_to_args(Atom,Arg).
+coerce_text_to_args(Word,Thing):- as1object(Word, Thing, _Mem),!.
+
+is_already_an_arg(Var):- is_ftVar(Var),!,fail.
+is_already_an_arg(NonAtomic):- compound(NonAtomic),!.
+is_already_an_arg(Atom):- atom_contains(Atom,"~"),!.
+is_already_an_arg(Atom):- atom_chars(Atom,[_|Chars]),member(C,Chars),
+  (char_type(C,digit); ((char_type(C,to_upper(UC)),C==UC))),!.
 
 
 
@@ -964,6 +1020,12 @@ txt2place(List, Place, M):- is_list(List), parse2object(List,Object,M), txt2plac
 txt2place(Dest, Place, M):- in_agent_model(advstate, h(_, _, Dest), M), Dest = Place.
 txt2place(Dest, Place, M):- in_agent_model(advstate, h(_, Dest, _), M), Dest = Place.
 txt2place(Dest, Place, M):- parse2object(Dest, Place, M).
+
+
+
+:- fixup_exports.
+
+
 
 
 end_of_file.

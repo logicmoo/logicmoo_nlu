@@ -53,6 +53,10 @@ mwmsg(G):- simplify_dbug(G,GG)->guess_pretty(GG)->wdmsg(GG).
 %:- system:import(simplify_dbug/2).
 %:- listing(simplify_dbug/2).
 
+get_structure_label(KB,Name):- \+ is_list(KB),!,Name=KB.
+get_structure_label(KB,Name):- sub_compound(structure_label(Name),KB),!.
+get_structure_label(KB,inst(Name)):- sub_compound(inst(Name),KB),!.
+
 
 is_state_list(_,G,_):- \+ compound(G),!,fail.
 is_state_list(_,[G1|_],{GG,'...'}):- compound(G1),G1=structure_label(GG),!.

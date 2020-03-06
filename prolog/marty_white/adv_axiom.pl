@@ -20,7 +20,7 @@ will_touch(Agent,Thing) ==>>
   h(touchable, Agent,Thing).
 
 eVent(Agent,Event) ==>>
- send_precept(Agent, Event),
+ send_1precept(Agent, Event),
  aXiom(Event).
 
 
@@ -30,7 +30,7 @@ aXiom(Action, _S0, _S9)::= notrace(( \+ trival_act(Action),bugout1(aXiom(Action)
 aXiom( Action) ==>> 
  action_doer(Action, Agent), 
  do_introspect(Agent,Action, Answer),
- send_precept(Agent, [answer(Answer), Answer]), !.
+ send_1precept(Agent, [answer(Answer), Answer]), !.
 
 aXiom(print_(Agent, Msg)) ==>>
   h(descended, Agent, Here),
@@ -43,14 +43,14 @@ aXiom(wait(Agent)) ==>>
 aXiom(Action) ==>> 
  {implications(_DoesEvent,(Action), Preconds, Postconds), action_doer(Action,Agent) },
  /*dmust_tracing*/(satisfy_each(preCond(_),Preconds)),
- (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
-    ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, (Action)))),!.
+ (((sg(member(failed(Why))),send_1precept(Agent, failed(Action,Why))))
+    ; (satisfy_each(postCond(_),Postconds),send_1precept(Agent, (Action)))),!.
 
 aXiom( Action) ==>> 
  {oper_splitk(Agent,Action,Preconds,Postconds)},
  /*dmust_tracing*/(satisfy_each(preCond(_),Preconds)),
- (((sg(member(failed(Why))),send_precept(Agent, failed(Action,Why))))
-    ; (satisfy_each(postCond(_),Postconds),send_precept(Agent, success(Action)))),!.
+ (((sg(member(failed(Why))),send_1precept(Agent, failed(Action,Why))))
+    ; (satisfy_each(postCond(_),Postconds),send_1precept(Agent, success(Action)))),!.
 
 aXiom((A,B)) ==>> !,
   aXiom(A), aXiom(B).
@@ -171,7 +171,7 @@ aXiom(make_true(Doer, h(in, Agent, There))) ==>>
   has_rel(exit(_), There),
   from_loc(Agent, Here),
   agent_thought_model(Agent, ModelData),
-  {find_path(Here, There, Route, ModelData)}, !,
+  {find_path(Doer, Here, There, Route, ModelData)}, !,
   eVent(Agent,follow_plan(Agent, goto_loc(Agent, walk, There), Route)).
 
 aXiom(make_true(Agent, FACT)) ==>> 
@@ -273,12 +273,12 @@ aXiom(thing_transforms(Thing,Broken))  ==>>
 aXiom(hit_with(Agent, Thing, With)) ==>>
   from_loc(Agent, Here),
   hit(Agent, Thing, With, [Here]),
-  send_precept(Agent, [true, 'OK.']).
+  send_1precept(Agent, [true, 'OK.']).
 
 aXiom(hit(Agent, Thing)) ==>>
   from_loc(Agent, Here),
   hit(Agent, Thing, Agent, [Here]),
-  send_precept(Agent, [true, 'OK.']).
+  send_1precept(Agent, [true, 'OK.']).
 
 hit(Doer, Target, _With, Vicinity) ==>>
  ignore(( % Only brittle items use this
@@ -309,8 +309,8 @@ aXiom(dig(Agent, Hole, Where, Tool)) ==>>
 
 aXiom(eat(Agent, Thing)) ==>>
   (getprop(Thing, can(eat,t)) -> 
-  (undeclare(h(_, Thing, _)),send_precept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
-  send_precept(Agent, [failure(eat(Thing)), 'It''s inedible!'])).
+  (undeclare(h(_, Thing, _)),send_1precept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
+  send_1precept(Agent, [failure(eat(Thing)), 'It''s inedible!'])).
 
 
 aXiom(switch(Agent, OnOff, Thing)) ==>>
@@ -319,7 +319,7 @@ aXiom(switch(Agent, OnOff, Thing)) ==>>
   getprop(Thing, effect(switch(OnOff), Term0)),
   {adv_subst(equivalent, ($(self)), Thing, Term0, Term)},
   call(Term),
-  send_precept(Agent, [true, 'OK']).
+  send_1precept(Agent, [success(true, 'OK')]).
 
 aXiom(inventory(Agent)) ==>>
   can_sense(Agent, see, Agent),
@@ -328,7 +328,7 @@ aXiom(inventory(Agent)) ==>>
 aXiom(does_inventory(Agent)) ==>>
   eVent(Agent,examine(Agent, Agent)).
   %findall(What, h(child, What, Agent), Inventory),
-  %send_precept(Agent, [rel_to(held_by, Inventory)]).
+  %send_1precept(Agent, [rel_to(held_by, Inventory)]).
 
 
 
@@ -369,7 +369,7 @@ aXiom(sub__examine(Agent, Sense, Prep, Object, Depth)) ==>> must_mw1(act_examine
 aXiom(touch(Agent, Thing)) ==>> !,
  unless_reason(Agent, will_touch(Agent, Thing),
    cant( reach(Agent, Thing))),
- send_precept(Agent, [success(touch(Agent, Thing),'Ok.')]).
+ send_1precept(Agent, [success(touch(Agent, Thing),'Ok.')]).
 
 
 aXiom(change_state(Agent, Open, Thing, Opened, TF)) ==>> !, 
@@ -405,7 +405,7 @@ aXiom(switch(OnOff, Thing)) ==>>
  getprop(Thing, effect(switch(OnOff), Term0)),
  adv_subst(equivalent, $self, Thing, Term0, Term),
  call(Term),
- send_precept(Agent, [true, 'OK']).
+ send_1precept(Agent, [true, 'OK']).
 */
 % todo
 

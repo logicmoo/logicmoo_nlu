@@ -19,14 +19,14 @@
 
 action_handle_goals(Agent, Mem0, Mem0):- 
   \+ thought(goals([_|_]), Mem0), !,
- bugout3('~w: no goals exist~n', [Agent], autonomous).
+ bugout3('~w: no goals exist~n', [Agent], planner).
 
 action_handle_goals(Agent, Mem0, Mem1):- 
- bugout3('~w: goals exist: generating a plan...~n', [Agent], autonomous),
+ bugout3('~w: goals exist: generating a plan...~n', [Agent], planner),
  Knower = Agent,
  generate_plan(Knower, Agent, NewPlan, Mem0), !,
  serialize_plan(Knower, Agent, NewPlan, Actions), !,
- bugout3('Planned actions are ~w~n', [Actions], autonomous),
+ bugout3('Planned actions are ~w~n', [Actions], planner),
  Actions = [Action|_],
  add_todo(Action, Mem0, Mem1).
 
@@ -34,7 +34,7 @@ action_handle_goals(Agent, Mem0, Mem1):-
 action_handle_goals(Agent, Mem0, Mem9) :-
  forget(goals([G0|GS]), Mem0, Mem1),
  memorize(goals([]), Mem1, Mem2),
- bugout3('~w: Can\'t solve goals ~p. Forgetting them.~n', [Agent,[G0|GS]], autonomous),
+ bugout3('~w: Can\'t solve goals ~p. Forgetting them.~n', [Agent,[G0|GS]], planner),
  memorize_appending(skipped_goals([G0|GS]),Mem2,Mem9),!.
 
 
@@ -47,7 +47,7 @@ has_satisfied_goals(Agent, Mem0, Mem3):-
  subtract(Goals,Unsatisfied,Satisfied), !,
  Satisfied \== [],
  memorize(goals(Unsatisfied), Mem1, Mem2),
- bugout3('~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied], autonomous),
+ bugout3('~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied], planner),
  memorize_appending(goals_satisfied(Satisfied), Mem2, Mem3), !.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,7 +102,7 @@ event(trys(go_dir(Person,walk,north)))
 precond_matches_effect(Cond, Cond).
 
 precond_matches_effects(path(Here, There), StartEffects) :- 
- find_path(Here, There, _Route, StartEffects).
+ find_path(Agent, Here, There, _Route, StartEffects).
 precond_matches_effects(exists(Object), StartEffects) :-
  in_model(h(_, Object, _), StartEffects)
  ;
@@ -131,7 +131,7 @@ sequenced(_Self,
   %PostConds:
   ~h(WasRel, Self, Here),
   notice(Here,leaves(Self,Here,WasRel)),
-  notice(Self,msg(cap(subj(actor(Self))),does(Walk), from(place(Here)), via(exit(Dir)) , Rel, to(place(There)))),
+  notice(Self,msg([cap(subj(actor(Self))),does(Walk), from(place(Here)), via(exit(Dir)) , Rel, to(place(There))])),
   h(Rel, Self, There),
   notice(There,enters(Self,There,RDir))]).
 
@@ -141,9 +141,10 @@ planner_only:- nb_current(opers, planner).
 
 
 % Return an operator after substituting Agent for Self.
-operagent(Agent, Action, BConds, BEffects) :- oper_splitk(Agent, Action, Conds, Effects),
-  once((oper_beliefs(Agent, Conds, BConds),
-  oper_beliefs(Agent, Effects, BEffects))).
+operagent(Agent, Action, BConds, BEffects) :- 
+ oper_splitk(Agent, Action, Conds, Effects),
+   once((oper_beliefs(Agent, Conds, BConds),
+      oper_beliefs(Agent, Effects, BEffects))).
 
 oper_beliefs(_Agent, [], []):- !.
 oper_beliefs(Agent, [ believe(Agent2,H)|Conds], [H|BConds]):- Agent == Agent2, !,
@@ -180,12 +181,34 @@ preconditions_match_effects([Cond|Tail], Effects) :-
 
 % plan(steps, orderings, bindings, links)
 % step(id, operation)
+%                 ModelData, Goals, SeedPlan
 new_plan(Self, CurrentState, GoalState, Plan) :-
- Plan = plan([step(start , oper(Self, true, [], CurrentState)),
-    step(finish, oper(Self, true, GoalState, []))],
-    [before(start, finish)],
-    [],
-    []).
+  new_plan_newver(Self, CurrentState, GoalState, Plan).
+
+
+convert_state_to_goalstate(O,O):- pprint(convert_state_to_goalstate=O,planner).
+
+%                       ModelData, Goals, SeedPlan
+new_plan_newver(Self, CurrentState, GoalState, Plan) :-
+ convert_state_to_goalstate(CurrentState,CurrentStateofGoals),
+ gensym(ending_step_1,End),
+ Plan = 
+ plan([step(start , oper(Self, do_nothing(Self), [], CurrentStateofGoals)),
+       step(completeFn(End), oper(Self, do_nothing(Self), GoalState, []))],
+      [before(start, completeFn(End))],
+      [],
+      []).
+
+/*
+ new_plan_oldver(Self, CurrentState, GoalState, Plan) :-
+ gensym(ending_step_1,End),
+ Plan = 
+ plan([step(start , oper(Self, true, [], CurrentState)),
+       step(completeFn(End), oper(Self, true, GoalState, []))],
+      [before(start, completeFn(End))],
+      [],
+      []).
+*/
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -278,11 +301,13 @@ pick_ordering(_Orderings, [], []).
 test_ordering :-
  bugout3('ORDERING TEST:~n', planner),
  Unordered =
- [ before(start, finish),
+ [ 
+  before(start, completeFn(End)),
   before(start, x),
-  before(start, y), before(y, finish),
+  before(start, y), 
+  before(y, completeFn(End)),
   before(x, z),
-  before(z, finish)
+  before(z, completeFn(End))
  ],
  once(add_orderings(
  Unordered,
@@ -313,15 +338,15 @@ cond_is_achieved(step(J, _Oper), C, plan(_Steps, _Orderings, _)) :-
 
 % Are the preconditions of a given step achieved by the effects of other
 % steps, or are already true?
-step_is_achieved(step(_J, oper(_Self, _, [])), _Plan). % No conditions, OK.
-step_is_achieved(step(J, oper(Self, _, [C|Tail])), plan(Steps, Orderings, _)) :-
+step_is_achieved(step(_J, oper(_Self, _, _, [])), _Planed). % No conditions, OK.
+step_is_achieved(step(J, oper(Self, _, _, [C|Tail])), plan(Steps, Orderings, _)) :-
  cond_is_achieved(step(J), C, plan(Steps, Orderings, _)),
- step_is_achieved(step(J, oper(Self, _, Tail)), plan(Steps, Orderings, _)).
+ step_is_achieved(step(J, oper(Self, _, _, Tail)), plan(Steps, Orderings, _)).
 
 all_steps_are_achieved([Step|Tail], Plan) :-
  step_is_achieved(Step, Plan),
  all_steps_are_achieved(Tail, Plan).
-all_steps_are_achieved([], _Plan).
+all_steps_are_achieved([], _Planned).
 
 is_solution(plan(Steps, O, B, L)) :-
  all_steps_are_achieved(Steps, plan(Steps, O, B, L)).
@@ -499,7 +524,7 @@ choose_operator([goal(GoalID, GoalCond)|Goals0], Goals2,
  % Add ordering constraints.
  add_orderings([before(start, StepID),
      before(StepID, GoalID),
-     before(StepID, finish)],
+     before(StepID, completeFn(_End))],
     Order0, Order1),
  % Need to protect existing links from new step.
  protect_links(OldLinks, StepID, Effects, Order1, Order2),
@@ -513,8 +538,7 @@ choose_operator([goal(GoalID, GoalCond)|Goals0], Goals2,
  conds_as_goals(StepID, Preconds, NewGoals),
  append(Goals0, NewGoals, Goals2),
  bindings_valid(Bindings),
- bugout3(' ~w CREATED ~w to satisfy ~w~n',
-   [Depth, StepID, GoalCond], autonomous),
+ bugout3(' ~w CREATED ~w to satisfy ~w~n', [Depth, StepID, GoalCond], planner),
  pprint(oper(Self, Action, Preconds, Effects), planner),
  once(pick_ordering(Order9, List)),
  bugout3(' Orderings are ~w~n', [List], planner).
@@ -525,6 +549,7 @@ choose_operator([goal(GoalID, GoalCond)|_G0], _G2, _Op, _P0, _P2, D, D) :-
 choose_operator(G0, _G2, _Op, _P0, _P2, D, D) :-
  bugout3(' !!! CHOOSE_OPERATOR FAILED: G0 = ~w~n', [G0], planner), !, fail.
 
+
 planning_loop([], _Operators, plan(S, O, B, L), plan(S, O, B, L), _Depth, _TO ) :-
  bugout3('FOUND SOLUTION?~n', planner),
  bindings_safe(B).
@@ -533,6 +558,7 @@ planning_loop(Goals0, Operators, Plan0, Plan2, Depth0, Timeout) :-
  get_time(Now),
  (Now > Timeout -> throw(timeout(planner)); true),
  bugout3('GOALS ARE: ~w~n', [Goals0], planner),
+ bugout3('AVAILABLE OPERATORS ARE: ~w~n', [Operators], planner),
  choose_operator(Goals0, Goals1, Operators, Plan0, Plan1, Depth0, Depth),
  %Limit2 is Limit - 1,
  planning_loop(Goals1, Operators, Plan1, Plan2, Depth, Timeout).
@@ -544,12 +570,12 @@ planning_loop(Goals0, Operators, Plan0, Plan2, Depth0, Timeout) :-
 serialize_plan(_Knower, _Agent, plan([], _Orderings, _B, _L), []) :- !.
 
 serialize_plan(Knower, Agent, plan(Steps, Orderings, B, L), Tail) :-
- select_from(step(_, oper(Agent, true, _)), Steps, RemainingSteps),
+ select_from(step(_, oper(Agent, do_nothing(_), _, _)), Steps, RemainingSteps),
  !,
  serialize_plan(Knower, Agent, plan(RemainingSteps, Orderings, B, L), Tail).
 
 serialize_plan(Knower, Agent, plan(Steps, Orderings, B, L), [Action|Tail]) :-
- select_from(step(StepI, oper(Agent, Action, _)), Steps, RemainingSteps),
+ select_from(step(StepI, oper(Agent, Action, _, _)), Steps, RemainingSteps),
  \+ (member(step(StepJ, _Oper), RemainingSteps),
   isbefore(StepJ, StepI, Orderings)),
  serialize_plan(Knower, Agent, plan(RemainingSteps, Orderings, B, L), Tail).
@@ -576,7 +602,7 @@ select_unsatisfied_conditions([Cond|Tail], [Cond|Unsatisfied], ModelData) :-
 
 depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
      Depth, Timeout) :-
- bugout3('PLANNING DEPTH is ~w~n', [Depth], autonomous),
+ bugout3('PLANNING DEPTH is ~w~n', [Depth], planner),
  planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan, Depth, Timeout),
  !.
 depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
@@ -598,30 +624,30 @@ generate_plan(Knower, Agent, FullPlan, Mem0) :-
  bugout3('SEED PLAN is:~n', planner), pprint(SeedPlan, planner),
  !,
  %planning_loop(Operators, SeedPlan, FullPlan),
- conds_as_goals(finish, Goals, PlannerGoals),
+ conds_as_goals(completeFn(_End), Goals, PlannerGoals),
  get_time(Now),
  Timeout is Now + 60, % seconds
  catch(
  depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
       1, Timeout),
  timeout(planner),
- (bugout3('PLANNER TIMEOUT~n', autonomous), fail)
+ (bugout3('PLANNER TIMEOUT~n', planner), fail)
  ),
  bugout3('FULL PLAN is:~n', planner), pprint(FullPlan, planner).
 
 % ----
 
 
-path2dir1(Here, There, go_dir(_Self, _Walk, Dir), ModelData):- 
+path2dir1(Doer, Here, There, go_dir(Doer, _Walk, Dir), ModelData):- 
  in_model(h(exit(Dir), Here, There), ModelData).
-path2dir1(Here, There, goto_obj(_Self, _Walk, There), ModelData) :-
+path2dir1(Doer, Here, There, goto_obj(Doer, _Walk, There), ModelData) :-
  in_model(h(descended, Here, There), ModelData).
 
-path2directions([Here, There], [GOTO], ModelData):-
-  path2dir1(Here, There, GOTO, ModelData).
-path2directions([Here, Next|Trail], [GOTO|Tail], ModelData) :-
- path2dir1(Here, Next, GOTO, ModelData),
- path2directions([Next|Trail], Tail, ModelData).
+path2directions(Doer,[Here, There], [GOTO], ModelData):-
+  path2dir1(Doer,Here, There, GOTO, ModelData).
+path2directions(Doer,[Here, Next|Trail], [GOTO|Tail], ModelData) :-
+ path2dir1(Doer,Here, Next, GOTO, ModelData),
+ path2directions(Doer,[Next|Trail], Tail, ModelData).
 
 
 find_path1([First|_Rest], Dest, First, _ModelData) :-
@@ -632,10 +658,11 @@ find_path1([[Last|Trail]|Others], Dest, Route, ModelData) :-
    List),
  append(Others, List, NewRoutes),
  find_path1(NewRoutes, Dest, Route, ModelData).
-find_path(Start, Dest, Route, ModelData) :-
+
+find_path(Doer, Start, Dest, Route, ModelData) :-
  find_path1([[Start]], Dest, R, ModelData),
  reverse(R, RR),
- path2directions(RR, Route, ModelData).
+ path2directions(Doer, RR, Route, ModelData).
 
 
 

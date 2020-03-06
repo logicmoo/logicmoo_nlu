@@ -791,6 +791,7 @@ next_t(t,start).
 next_t(start,now).
 next_t(now,aft).
 next_t(aft,Aft_1):- var(Aft_1),!,gensym(aft_,Aft_1).
+next_t(aft,completeFn(_)).
 
 
 fix_time_args1(T,G,Gs):- 

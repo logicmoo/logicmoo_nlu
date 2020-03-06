@@ -136,7 +136,7 @@ compile_eng(Context, [AN, Apple|More], Text) :-
 % mu:compile_eng([agent('player~1'),person('player~1')],a(floyd),_64404)
 compile_eng(Context, [First|Rest], [First2|Rest2]) :-
  compile_eng(Context, First, First2),
- compile_eng(Context, Rest, Rest2).
+ compile_eng(Context, Rest, Rest2),!.
 
 compile_eng(_Context, aux(be), 'is') :- !.
 compile_eng(Context, aux(Can), Text) :- !,compile_eng_txt(Context, Can, Text).
@@ -181,18 +181,20 @@ compile_eng(Context, s(Word), Textually) :- % TODO make actually plural
 compile_eng(Context, Wordly, Textually) :- functor(Wordly,S,1), english_suffix(S),
  Wordly =..[S, Word],
  compile_eng_txt(Context, Word, Textual),
- atom(Textual), add_suffix(Textual, S, Textually).
+ atom(Textual), add_suffix(Textual, S, Textually),!.
 
 compile_eng(Context, DetWord, AThing) :-
  compound(DetWord), DetWord=..[Det, Word],
  member(Det, [the, some, a, an, '']),
- compile_eng(Context, [Det, Word], AThing).
+ compile_eng(Context, [Det, Word], AThing),!.
 
 /*compile_eng(Context, Prop, Text):- \+ atomic(Prop),
  logic2eng(you,Prop,TextMid),!,
  compile_eng(Context,['\n'|TextMid],Text), !.
 */
 compile_eng(_Context, Prop, Prop).
+
+
 
 
 compile_eng_atom(Context, Inst, TheThing):- 
@@ -252,7 +254,7 @@ no_space_words(W1, W2) :-
 
 insert_spaces([W], [W]).
 insert_spaces([W1, W2|Tail1], [W1, W2|Tail2]) :-
- no_space_words(W1, W2),
+ notrace(no_space_words(W1, W2)),
  !,
  insert_spaces([W2|Tail1], [W2|Tail2]).
 insert_spaces([W1, W2|Tail1], [W1, ' ', W3|Tail2]) :-
@@ -261,14 +263,15 @@ insert_spaces([], []).
 
 
 make_atomic(_, Atom, Atom) :- atomic(Atom), !.
-make_atomic(Context, Some, Text):- is_list(Some),!, 
-  maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text). 
+make_atomic(Context, Some, Text):- is_list(Some),
+  maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text),!. 
+
 make_atomic(Context, Logic, Text):- fail, Logic =.. [F|Some],
   maplist(logic2english(Context), Some, Stuff),
   Term =.. [F|Stuff],
-  term_to_atom(Term, Text).
-make_atomic(Term, Atom) :-
- term_to_atom(Term, Atom).
+  term_to_atom(Term, Text),!.
+make_atomic(_,Term, Atom) :-  format(atom(Atom), '~p',[Term]),!.
+make_atomic(_,Term, Atom) :-  term_to_atom(Term, Atom),!.
 
 eng2txt(Agent, _Person, LogicalEnglish, Text) :- compound(LogicalEnglish), \+ is_list(LogicalEnglish),!,  
   logic2english(Agent, LogicalEnglish, Text),!.
@@ -287,7 +290,7 @@ compile_eng_txt(Context, [First], Text):- compile_eng_txt(Context, First, Text),
 compile_eng_txt(Context, Eng, Text):- 
  flatten([Eng],FEng),
  compile_eng_txt_pt2(Context, FEng, FText), 
- format(atom(Text),'~w',FText).
+ format(atom(Text),'~w',FText),!.
 
 % Compile recognized structures.
 compile_eng_txt_pt2(Context, EngIn, Text) :- 
@@ -304,7 +307,7 @@ compile_eng_txt_pt2(Context, EngIn, Text) :-
  bugout3('insert_spaces(~w)~n', [AtomList2], printer),
  insert_spaces(AtomList2, SpacedList),
  % Return concatenated atoms.
- concat_atom(SpacedList, Text).
+ concat_atom(SpacedList, Text),!.
 
 
 grammar_check(_Context, [], []).
@@ -594,7 +597,7 @@ logic2eng( Obj, inherit(Type,f), ['wont be',Out]):- logic2eng(Obj, [Type], Out),
 %logic2eng( Obj, isnt(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, inherited(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, inherited(Type), ['inherit',Out]):- logic2eng(Obj, [Type], Out), !.
-logic2eng(_Obj, msg(Msg), Msg):- !.
+logic2eng( Obj, msg(Msg), TxtL):- eng2txt(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
 logic2eng(_Obj, class_desc(_), []).
 logic2eng(_Obj, has_rel(Value,TF) , [TF,'that it has,',Value]).
 
@@ -646,7 +649,7 @@ percept2eng(Context, LogicalEnglish, Eng) :- logic2eng(Context, LogicalEnglish, 
 
 percept2txt(Agent, LogicalEnglish, Text) :-
  percept2eng(Agent, LogicalEnglish, English),
- eng2txt(Agent, Agent, English, Text).
+ eng2txt(Agent, Agent, English, Text),!.
 
 the(State, Object, Text) :-
  getprop(Object, name(D), State),
