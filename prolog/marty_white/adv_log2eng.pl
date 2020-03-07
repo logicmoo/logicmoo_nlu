@@ -409,6 +409,10 @@ logic2eng(_Obj, [], []).
 logic2eng(Context, extra_verbose(Eng), '...verbose...'(Compiled) ):- 
  compile_eng_txt(Context, Eng, Compiled).
 
+logic2eng(Context,single_event(Evt),Eng):- !, logic2eng(Context,Evt,Eng). 
+logic2eng(_Context, '<mystery>'(Why,Prep,About), [a,(mystery),because,quoted([Prep,About]),(','),aux(be),(Why)]):- !.
+
+
 
 logic2eng(Obj, [Prop|Tail], Text) :- !,
  must_mw1((logic2eng(Obj, Tail, UText2) ->
@@ -580,6 +584,8 @@ logic2eng(_Obj, =(Statused), [aux(be), Statused ]).
 logic2eng(_Obj, =(Statused, f), [aux(be), 'not', Statused ]).
 logic2eng(_Obj, =(Name, Value), [Name,aux(be),Value]).
 
+logic2eng(_Obj, PredF, [currently,not,N]):- PredF=..[N,f].
+
 logic2eng( Obj, Prop, English):- Prop =..[N, V, T| VRange],T==t,Prop2 =..[N, V| VRange], logic2eng( Obj, Prop2, English).
 logic2eng(_Obj, has_rel(on), ['has a surface']).
 logic2eng(_Obj, has_rel(in), ['has an interior']).
@@ -597,7 +603,8 @@ logic2eng( Obj, inherit(Type,f), ['wont be',Out]):- logic2eng(Obj, [Type], Out),
 %logic2eng( Obj, isnt(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, inherited(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, inherited(Type), ['inherit',Out]):- logic2eng(Obj, [Type], Out), !.
-logic2eng( Obj, msg(Msg), TxtL):- eng2txt(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
+logic2eng( Obj, msg(Msg), TxtL):- any2eng(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
+%logic2eng( Obj, msg(Msg), TxtL):- eng2txt(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
 logic2eng(_Obj, class_desc(_), []).
 logic2eng(_Obj, has_rel(Value,TF) , [TF,'that it has,',Value]).
 
@@ -732,3 +739,7 @@ user:portray(Logic) :- fail,
  maybe_our_portray_english(Logic).
 
 :- noguitracer.
+
+any2eng(_Speaker,_I, Eng, EngLO):- is_english(Eng),!,EngLO=Eng.
+any2eng(_Speaker, I, Eng, EngLO):- logic2eng(I, Eng, EngLO).
+

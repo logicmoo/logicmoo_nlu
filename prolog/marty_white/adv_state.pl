@@ -166,8 +166,9 @@ declared_list(Fact, State) :- member(inst(Object), State), declared_link(declare
 :- meta_predicate(declared_link(2,?,*)).
 declared_link(Pred2, Fact, VarName):- strip_module(Pred2,_,Var), var(Var), !, declared_link(declared, Fact, VarName).
 declared_link(Pred2, Fact, VarName):- atom(VarName), nb_current(VarName,PropList), call(Pred2, Fact, PropList).
-declared_link(Pred2, Fact, inst(Type)):- declared_advstate(props(Type,PropList)), call(Pred2, Fact, PropList).
+declared_link(Pred2, Fact, inst(Obj)):- declared_advstate(props(Obj,PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, type(Type)):- declared_advstate(type_props(Type,PropList)), call(Pred2, Fact, PropList).
+% declared_link(Pred2, Fact, inst_model(Obj,Type)):- declared_advstate(props(Type,PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- nonvar(Object), extra_decl(Object, PropList), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- get_advstate(State), direct_props(Object,PropList,State), call(Pred2, Fact, PropList).
 declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], current_predicate(_,Call),!,call(Call).
@@ -190,6 +191,12 @@ declared_link(Pred2, Fact, Object):- var(Object), get_advstate(State),member(Pro
 % TODO:
 % store initial state as clauses which are collected up and put into a list,
 % like the operators are, to provide proper prolog variable management.
+:- defn_state_getter(get_object_props(agent,model)).
+get_object_props(Obj, ObjectProps, M0):- var(M0), get_advstate(M0),!, get_object_props(Obj, ObjectProps, M0).
+get_object_props(Obj, ObjectProps, M0):- \+ is_list(M0), !, declared_link(get_object_props(Obj), ObjectProps, M0).
+get_object_props(Obj, ObjectProps, M0):- memberchk(propOf(_,Obj),M0), ObjectProps = M0, !.
+get_object_props(Obj, ObjectProps, M0):- declared(props(Obj,ObjectProps),M0),!.
+
 
 get_objects(Spec, Set, State):- 
  quietly((must_input_state(State), 

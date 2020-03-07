@@ -152,18 +152,20 @@ type_functor(event, moved(agent, how, inst, from, prop, to)).
 type_functor(event, carrying(agent, list(inst))).
 type_functor(event, destroyed(inst)).
 type_functor(event, did(action)).
+type_functor(event, percept(agent,sense,depth,props)).
 type_functor(event, percept(agent, exit_list(in, dest, list(exit)))). % paths noticable
 type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))). 
 type_functor(event, failed(doing, msg)). % some action has failed
 type_functor(event, transformed(inst, inst2)). % inst1 got derezed and rerezed as inst2
 
 % DATA
-type_functor(nv_of_any, structure_label(term)).
+type_functor(nv_of_any, propOf(term,term)).
 
 type_functor(nv, adjs(list(text))).
 type_functor(nv, nominals(list(text))).
 type_functor(nv, nouns(list(text))).
 
+type_functor(nv, '<mystery>'(reason,preprel,inst2)).
 type_functor(nv, can(actverb, tf)).
 type_functor(nv, knows_verbs(actverb, tf)).  % can use these actions
 type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
@@ -187,7 +189,7 @@ type_functor(nv, =(name, value)).
 :- dynamic(istate/1).
 % empty intial state
 :- retractall(istate(_)).
-:- asserta(istate([ structure_label(istate) ])).
+:- asserta(istate([ structure_label(istate), propOf(istate,world) ])).
 
 
 % this hacks the state above 
@@ -464,7 +466,24 @@ props(screendoor, [
    can(switch(off), f), powered = t
   ]),
    
- type_props(autonomous, [inherit(autoscan)]),
+ type_props(autonomous, [inherit(autoscan),inherit(impulsive),
+   class_desc(['like Floyd the robot will, instances will automatically use its planner 
+        about planning to decide on what to do'])]),
+
+ type_props(impulsive, [
+      adjs(impulsive),
+             class_desc(['Enqued goals/1 will call the planner to add todo/1s'])]),
+
+ type_props(autoscan, [
+      adjs(perceptive),
+        inherit(autolook),
+           class_desc(['Sensory precepts that discover new objects request further details (notice dirty plates are in the sink)'])]),
+
+ type_props(autolook, [
+      adjs($class),
+          class_desc(['When entering a new area the Agent will automatically 
+            get an overview of the env (without purposeful looking)'])]),
+
 
  type_props(character, [
    has_rel(worn_by),

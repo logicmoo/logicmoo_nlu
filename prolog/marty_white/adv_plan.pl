@@ -40,6 +40,9 @@ action_handle_goals(Agent, Mem0, Mem9) :-
 
 
 has_satisfied_goals(Agent, Mem0, Mem3):-  
+ clearable_satisfied_goals(Agent, Mem0, Mem3).
+
+clearable_satisfied_goals(Agent, Mem0, Mem3):-  
  forget(goals([G0|GS]), Mem0, Mem1),
  Goals = [G0|GS],
  agent_thought_model(Agent, ModelData, Mem0),
@@ -49,6 +52,10 @@ has_satisfied_goals(Agent, Mem0, Mem3):-
  memorize(goals(Unsatisfied), Mem1, Mem2),
  bugout3('~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied], planner),
  memorize_appending(goals_satisfied(Satisfied), Mem2, Mem3), !.
+
+has_unsatisfied_goals(Agent, Mem0, Mem0):-  
+ agent_thought_model(Agent, ModelData, Mem0),
+ thought(goals([_|_]), ModelData).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION

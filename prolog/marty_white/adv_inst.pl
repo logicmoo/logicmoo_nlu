@@ -105,6 +105,7 @@ create_objprop(Object, inherit(perceptq,t), S0, S1):- !,
 create_objprop(Object, inherit(memorize,t), S0, S0):- declared(memories(Object,_),S0),!.
 create_objprop(Self, inherit(memorize,t), S0, S2):- !, clock_time(Now),
  declare(memories(Self, [
+  propOf(memories,Self),
  structure_label(mem(Self)),
  timestamp(0,Now), 
  goals([]),
