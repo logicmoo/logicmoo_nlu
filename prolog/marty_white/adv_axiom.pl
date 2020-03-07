@@ -65,7 +65,7 @@ aXiom((A*->B;C)) ==>> !,
 aXiom((A*->B)) ==>> !,
   (aXiom(A) *-> aXiom(B)).
 
-aXiom(do_english(Agent,English)) ==>
+aXiom(do_english(Agent,English)) ==>>
  eng2log(Agent, English, Action),
  add_todo(Action).
 
