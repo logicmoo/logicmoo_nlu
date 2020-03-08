@@ -189,6 +189,11 @@ decide_action(Agent, Mem0, Mem2):-
   has_satisfied_goals(Agent, Mem0, Mem1), !,
   decide_action(Agent, Mem1, Mem2).
 
+decide_action(Agent, Mem0, Mem9):- 
+  per_plugin(early_decide_action(Agent),Mem0,Mem1), 
+  Mem0\==Mem9,!,
+  decide_action(Agent, Mem1, Mem9).
+
 decide_action(Agent, Mem0, Mem0) :- 
  thought(todo([Action|_]), Mem0),
  (declared(h(in, Agent, Here), advstate)->true;Here=somewhere),
@@ -221,8 +226,12 @@ decide_action(Agent, Mem0, Mem3) :-
  declared(inherited(autonomous), Mem0),
  maybe_autonomous_decide_goal_action(Agent, Mem0, Mem3).
 
+decide_action(Agent, Mem0, Mem9):- 
+  per_plugin(decide_action(Agent),Mem0,Mem9),!.
+
 decide_action(_Agent, Mem, Mem) :-
  declared(inherited(memorize), Mem), !. % recorders don't decide much.
+
 decide_action(Agent, Mem0, Mem0) :-
  set_last_action(Agent,[auto(Agent)]),
  bugout3('decide_action(~w) FAILED!~n', [Agent], general).

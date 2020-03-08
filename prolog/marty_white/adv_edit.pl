@@ -45,11 +45,12 @@ do_metacmd(_Doer, help, S0, S0) :- !,
 :- add_help(english,"english <level>: turn on paraphrase generation.").
 do_metacmd(Doer, english, S0, S0) :- security_of(Doer,admin),
  flag(english,Was,Was),
- player_format('~w=~w~n', [english,Was]).
-do_metacmd(Doer, english(N), S0, S0) :- security_of(Doer,admin),
+ player_format('~w=~q~n', [english,Was]).
+do_metacmd(Doer, english(N0), S0, S0) :- security_of(Doer,admin),
+ any_to_number(N0,N),
  flag(english,_Was,N),
  flag(english,New,New),
- player_format('~w=~w~n', [english,N]).
+ player_format('~w=~q~n', [english,N]).
 
 :- add_help(rtrace,"Debbuging: Start the non-interactive tracer.").
 do_metacmd(Doer, rtrace, S0, S0) :- security_of(Doer,admin), rtrace.
@@ -135,11 +136,13 @@ do_metacmd(Doer, prolog, S0, S0) :-
  setup_call_cleanup('$set_typein_module'(mu),prolog,'$set_typein_module'(Was)),
  ensure_has_prompt(Doer).
 
-do_metacmd(Doer, CLS, S0, S0) :- security_of(Doer, wizard), 
+do_metacmd(Doer, CLS, S0, S9) :- security_of(Doer, wizard), 
  current_predicate(_, CLS), 
+ set_advstate(S0),
  (is_main_console -> catch(CLS,E,(bugout1(CLS:- throw(E)),fail)) ;
- (redirect_error_to_string(catch(CLS,E,(bugout1(CLS:- throw(E)),fail)),Str),!, write(Str))),!,
- ensure_has_prompt(Doer).
+    (redirect_error_to_string(catch(CLS,E,(bugout1(CLS:- throw(E)),fail)),Str),!, write(Str))),!,
+ ensure_has_prompt(Doer),
+ get_advstate(S9).
 
 do_metacmd(Doer, inspect(Self, NamedProperty, Target), S0, S1) :-
  do_metacmd(Doer, inspect(Self, getprop(Target,NamedProperty)), S0, S1).
@@ -196,3 +199,5 @@ do_metacmd(Doer, WA, S0, S1) :-
 pred_holder(memory,memories).
 pred_holder(precepts,preceptq).
 pred_holder(X,X).
+
+

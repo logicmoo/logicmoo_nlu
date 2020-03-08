@@ -160,6 +160,7 @@ do_action(Agent, Action, S0, S3) :-
  undeclare(memories(Agent, Mem0), S0, S1),
  memorize_doing(Action, Mem0, Mem1),
  declare(memories(Agent, Mem1), S1, S2))),
+ set_advstate(S2),
  dmust_tracing(must_act( Action, S2, S3)), !.
 
 memorize_doing(Action, Mem0, Mem0):- has_depth(Action),!.
@@ -246,6 +247,9 @@ api_invoke( Action) :- get_advstate(S), api_invoke( Action, S, E), set_advstate(
 api_invoke( Action) --> apply_act( Action).
 
 apply_act( Action) --> aXiom(Action), !.
+apply_act( Act, S0, S9) :- ((cmd_workarround(Act, NewAct) -> Act\==NewAct)), !, apply_act( NewAct, S0, S9).
+apply_act( Action, S0, S0) :-  
+  notrace((bugout3(failed_aXiom( Action), general))),!, fail,  \+ tracing.
 
 
 must_act( Action , S0, S9) :- 
@@ -302,6 +306,13 @@ reverse_dir(Dir,RDir,S0):-
  h(Dir, Here, There, S0),
  h(RDir, There, Here, S0),!.
 reverse_dir(Dir,reverse(Dir),_).
+
+
+add_agent_todo(Agent, Action):-
+ get_advstate(S0),
+ add_agent_todo(Agent, Action, S0, S9),
+ get_advstate(S9).
+
 
 add_agent_todo(Agent, Action, S0, S9) :- 
   undeclare(memories(Agent, Mem0), S0, S1),

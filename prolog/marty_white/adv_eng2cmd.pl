@@ -99,7 +99,12 @@ is_text_mw(Text):- string(Text),!.
 is_text_mw(Text):- atom_contains(Text,' '),!.
 is_text_mw(Text):- name(Text,Codes),last(Codes,L),code_type(L,punct).
 
-is_logic(Logic):- compound(Logic), is_type_functor(_,Logic),!.
+is_logic(Logic):- strip_module(Logic,_,Data), compound(Data), is_type_functor(E,Data), E\==eng,!.
+
+is_english(Eng):- is_ftVar(Eng),!,fail. 
+is_english([Eng|_]):- !, is_english(Eng).
+is_english(Eng):- english_directve(Eng),!.
+is_english(Eng):- \+ is_logic(Eng),!.
 
 nl_context(Name, Value, Else, Frame ):- declared(Name, Value, Frame)-> true; (Else\=='$fail', Else = Value).
 set_nl_context(Name, Value, Frame):- append_term(Name,Value, Prop), declare(Prop, Frame, _NewFrame).
@@ -199,7 +204,7 @@ eng2cmd(Doer, Words, Action, M) :- fail,
  % If not talking to someone else, substitute Agent for 'self'.
  append(Before, [Doer|After], Words),
  reflexive_self(Doer),
- thought(inst(Agent), M),
+ once(thought(propOf(memories,Agent), M);thought(inst(Agent), M)),
  append(Before, [Agent|After], NewWords),
  reframed_call(eng2cmd, Doer, NewWords, Action, M).
    
@@ -833,12 +838,14 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
  trace, notrace %, %whereami, whereis, whoami
  ]).
 
+verbatum_anon_one_or_zero_arg(N):- current_predicate(N/0).
+
 verbatum_anon_n_args(Verb):- member(Verb, [getprops, setprop, path  %, %whereami, whereis, whoami
  ]).
 
 
 parse2object(List,Agent,M):- append(LList,[R],List),member(R,[(?),(.)]),!,parse2object(LList,Agent,M).
-parse2object([am, i], Agent, M):- thought(inst(Agent), M), !.
+parse2object([am, i], Agent, M):- once(thought(propOf(_,Agent), M);thought(inst(Agent), M)), !.
 
 parse2object([BE| List], Agent, M):- fail, quietly_talk_db([_,BE,is|_More]), parse2object(List,Agent,M),!.
 parse2object([HAS| List], Agent, M):- fail, quietly_talk_db([_,have|HASHAVE]), member(HAS,HASHAVE), !, parse2object(List,Agent,M).

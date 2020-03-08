@@ -172,6 +172,7 @@ type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
 type_functor(nv, class_desc(list(text))). % class description
 type_functor(nv, co(list(nv))).  % item is created
 type_functor(nv, desc(sv(text))).
+type_functor(nv, prefix(sv(text))).
 type_functor(nv, door_to(inst)).
 type_functor(nv, effect(verb_targeted, script)). % 
 type_functor(nv, breaks_into = type).
@@ -282,6 +283,7 @@ dining_room props place.
    % body(clause)
      body(inherited)),
    % cant_go provides last-ditch special handling for Go.
+   desc = "this is the garden",
    cant_go($agent, _Dir, 'The fence surrounding the garden is too tall and solid to pass.')]),
 
    props(kitchen, [inherit(place), desc('cooking happens here')]),
@@ -470,9 +472,18 @@ props(screendoor, [
    class_desc(['like Floyd the robot will, instances will automatically use its planner 
         about planning to decide on what to do'])]),
 
- type_props(impulsive, [
-      adjs(impulsive),
-             class_desc(['Enqued goals/1 will call the planner to add todo/1s'])]),
+ type_props(decider, [       
+       class_desc(['agents of this type/class call decide_action/3 hooks (and per plugin)'])]),
+
+  type_props(nomicmu_plugin, [
+        nouns(plugin),
+        prefix ='$error'("required config var"),
+        class_desc(['Nomicmu plugin'])]),
+
+  type_props(decider_plugin, [
+        adjs(decider),
+        inherit(nomicmu_plugin),
+        class_desc(['plugins that contain decide_action hooks'])]),
 
  type_props(autoscan, [
       adjs(perceptive),
@@ -540,6 +551,7 @@ props(screendoor, [
  type_props(place, [
    volume_capacity = 10000,
    default_rel = in,
+   desc = "this is a place",
    has_rel(in),
    nouns([here]),
    nouns(($(self))),

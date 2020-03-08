@@ -39,56 +39,68 @@ extra :- true. % Fuller, but questionable if needed yet.
 % :- user:ensure_loaded(library(parser_sharing)).
 
 
-:- consult(adv_debug).
-:- consult(adv_help).
-:- consult(adv_util).
-:- consult(adv_io).
+:- ensure_loaded(adv_debug).
+:- ensure_loaded(adv_help).
+:- ensure_loaded(adv_util).
+:- ensure_loaded(adv_io).
 
-:- consult(adv_model).
-:- consult(adv_percept).
+:- ensure_loaded(adv_model).
+:- ensure_loaded(adv_percept).
 
-:- consult(adv_inst).
-:- consult(adv_edit).
+:- ensure_loaded(adv_inst).
+:- ensure_loaded(adv_edit).
+
 :- ensure_loaded(adv_axiom).
 :- ensure_loaded(adv_implies).
 
 :- ensure_loaded(adv_abdemo).
 
-:- consult(adv_examine).
-:- consult(adv_action).
-:- consult(adv_agent).
-:- consult(adv_floyd).
-:- consult(adv_log2eng).
-:- consult(adv_physics).
-:- consult(adv_plan).
+:- ensure_loaded(adv_examine).
+:- ensure_loaded(adv_action).
+:- ensure_loaded(adv_agent).
+:- ensure_loaded(adv_floyd).
+:- ensure_loaded(adv_log2eng).
+:- ensure_loaded(adv_physics).
+:- ensure_loaded(adv_plan).
 
-:- consult(adv_eng2cmd).
+:- ensure_loaded(adv_eng2cmd).
 % :- ensure_loaded(adv_state).
-:- consult(adv_state).
+:- ensure_loaded(adv_state).
 
-:- consult(adv_data).
+:- ensure_loaded(adv_data).
 
-%:- consult(adv_test).
-%:- consult(adv_telnet).
+:- ensure_loaded(adv_plugins).
+
+%:- ensure_loaded(adv_test).
+%:- ensure_loaded(adv_telnet).
 
 
-adventure_init :-
- %guitracer,
+adventure_reset :-
  must_mw1((
  test_ordering,
  init_logging,
- (retractall(advstate_db(_));true),!,
+ retractall(advstate_db(_)),!,
  istate(S0),!,
+ player_format('=============================================~n', []),
+ player_format('RESET STATE~n', []),
+ player_format('=============================================~n', []),
+ set_advstate(S0))),!.
+
+
+adventure_init :- 
+ (get_advstate(S0) -> true; (adventure_reset, get_advstate(S0))),
+ must_mw1((
  init_objects(S0, S1),!,
  asserta(advstate_db(S1)))),
- player_format('=============================================~n', []),
- player_format('INIT STATE~n', []),
- player_format('=============================================~n', []),
+   player_format('=============================================~n', []),
+   player_format('INIT STATE~n', []),
+   player_format('=============================================~n', []),
  printable_state(S1,SP), 
- pprint(SP, state).
+ pprint(SP, state),!.
 
 
 adventure:- 
+ adventure_reset,
  adventure_init,
  player_format('=============================================~n', []),
  player_format('Welcome to Marty\'s Prolog Adventure Prototype~n', []),

@@ -35,8 +35,12 @@ get_agent_memory(Agent, Mem):-
 
 get_advstate_varname(Varname):- nb_current(advstate_var,Varname),Varname\==[],!.
 get_advstate_varname(advstate).
+
 get_advstate(State):- get_advstate_varname(Var),nb_current(Var,State).
 set_advstate(State):- get_advstate_varname(Var),nb_setval(Var,State).
+
+get_advstate_fork(StateC):- set_advstate(State),duplicate_term(State,StateC).
+
 declared_advstate(Fact):- get_advstate(State),declared(Fact,State).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,6 +376,7 @@ text_prop(desc).
 
 single_valued_prop(name).
 single_valued_prop(desc).
+single_valued_prop(prefix).
 single_valued_prop(mass).
 single_valued_prop(volume).
 
@@ -394,6 +399,9 @@ is_spatial_rel(in).
 is_spatial_rel(on).
 is_spatial_rel(exit).
 
+update_running(StateInfo):- get_advstate(S0),!,declare(StateInfo,S0,S1),init_objects(S1, S2),set_advstate(S2),!.
+update_running(_StateInfo).
+
 push_to_state(StateInfo):- \+ compound(StateInfo), !.
 push_to_state(StateInfo):- is_list(StateInfo), !, maplist(push_to_state, StateInfo).
 push_to_state(type(Type, Conj)):-  !, push_to_state(props(type(Type), Conj)).
@@ -408,7 +416,7 @@ push_to_state(eng2log(_Text,Translation)):- !, push_to_state(Translation).
 push_to_state(assert_text(Text)):- must(eng2log(istate, Text,Translation,[])), push_to_state(Translation).
 push_to_state(assert_text(Where,Text)):- !, must(eng2log(Where, Text,Translation,[])), push_to_state(Translation).
 
-push_to_state(StateInfo):- is_state_info(StateInfo), !, declare(StateInfo, istate, _).
+push_to_state(StateInfo):- is_state_info(StateInfo), !, declare(StateInfo, istate, _), update_running(StateInfo).
 push_to_state(StateInfo):- forall(arg(_, StateInfo, Sub), push_to_state(Sub)).
 
 correct_props(_Obj, PropsIn, PropsOut):- props_to_list(PropsIn, PropsOut), !.

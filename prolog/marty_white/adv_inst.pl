@@ -77,33 +77,34 @@ mu_create_object(Object, S0, S9) :-
  bugout1(mu_create_object(Object,PropList)),
  undeclare_always(props(Object,_), S0, S2),
  declare(props(Object,[co(PropList)]), S2, S3),
- create_objprop(Object, PropList, S3, S9). 
+ create_objprop(creation, Object, PropList, S3, S4),
+ create_objprop(instance, Object, PropList, S4, S9).
 /*
 visit_existing(_Object, [], S0, S0) :-!.
 visit_existing(Object, [Prop|List], S0, S2):- !, 
  visit_existing(Object, List, S0, S1),
  visit_existing(Object, Prop, S1, S2).
 
-%visit_existing(Object, Prop, S1, S2):- must_mw1(create_objprop(Object, Prop, S1, S2)).
+%visit_existing(Object, Prop, S1, S2):- must_mw1(create_objprop(Why, Object, Prop, S1, S2)).
 
-visit_existing(Object, Prop, S1, S2):- Prop=inherit(_,t),!,must_mw1(create_objprop(Object, Prop, S1, S2)).
+visit_existing(Object, Prop, S1, S2):- Prop=inherit(_,t),!,must_mw1(create_objprop(Why, Object, Prop, S1, S2)).
 visit_existing(Object, Prop, S0, S2):- must_mw1(updateprop(Object,Prop,S0, S2)).
 */ 
 
-create_objprop(_Object, [], S0, S0):- !.
-create_objprop(Object, [Prop|List], S0, S2):- !,
- create_objprop(Object, List, S0, S1),
- create_objprop(Object, Prop, S1, S2).
+create_objprop(_Why, _Object, [], S0, S0):- !.
+create_objprop(Why, Object, [Prop|List], S0, S2):- !,
+ create_objprop(Why, Object, List, S0, S1),
+ create_objprop(Why, Object, Prop, S1, S2).
 
  % As events happen, percepts are entered in the percept queue of each agent.
  % Each agent empties their percept queue as they see fit.
-create_objprop(Object, inherit(perceptq,t), S0, S0):- declared(perceptq(Object,_),S0),!.
-create_objprop(Object, inherit(perceptq,t), S0, S1):- !,
+create_objprop(_Why, Object, inherit(perceptq,t), S0, S0):- declared(perceptq(Object,_),S0),!.
+create_objprop(_Why, Object, inherit(perceptq,t), S0, S1):- !,
  declare(perceptq(Object, []), S0, S1).
 
  % Most agents store memories of percepts, world model, goals, etc.
-create_objprop(Object, inherit(memorize,t), S0, S0):- declared(memories(Object,_),S0),!.
-create_objprop(Self, inherit(memorize,t), S0, S2):- !, clock_time(Now),
+create_objprop(_Why, Object, inherit(memorize,t), S0, S0):- declared(memories(Object,_),S0),!.
+create_objprop(_Why, Self, inherit(memorize,t), S0, S2):- !, clock_time(Now),
  declare(memories(Self, [
   propOf(memories,Self),
  structure_label(mem(Self)),
@@ -116,19 +117,21 @@ create_objprop(Self, inherit(memorize,t), S0, S2):- !, clock_time(Now),
  inst(Self)]), S0, S2).
 
 
-create_objprop(Object, inherit(Other,f), S0, S0):- getprop(Object, isnt(Other), S0),!. 
-create_objprop(Object, inherit(Other,f)) -->
+create_objprop(_Why, Object, inherit(Other,f), S0, S0):- getprop(Object, isnt(Other), S0),!. 
+create_objprop(_Why, Object, inherit(Other,f)) -->
    updateprop(Object, isnt(Other)), 
    delprop_always(Object, inherited(Other)),
    delprop_always(Object, inherit(Other,t)),
    updateprop(Object, inherit(Other,f)).
     
-create_objprop(Object, inherit(Other,t), S0, S2):- getprop(Object,inherit(Other,f),S0),!,updateprop(Object, inherit(Other,t), S0, S1),create_objprop(Object, inherit(Other,t), S1, S2).
-create_objprop(Object, inherit(Other,t), S0, S0):- getprop(Object,inherited(Other),S0),!.
-create_objprop(Object, inherit(Other,t), S0, S0):- getprop(Object,isnt(Other),S0),!.
-create_objprop(Object, inherit(Other,t), S0, S0):- Other==Object,!.
-create_objprop(_Object, inherit(Other,t), S0, S0):- direct_props(Other, PropList, S0), member(no_copy(t),PropList),!.
-create_objprop(Object, inherit(Other,t), S0, S9):- 
+create_objprop(Why, Object, inherit(Other,t), S0, S2):- getprop(Object,inherit(Other,f),S0),!,
+ updateprop(Object, inherit(Other,t), S0, S1),create_objprop(Why, Object, inherit(Other,t), S1, S2).
+create_objprop(_Why, Object, inherit(Other,t), S0, S0):- getprop(Object,inherited(Other),S0),!.
+create_objprop(_Why, Object, inherit(Other,t), S0, S0):- getprop(Object,isnt(Other),S0),!.
+create_objprop(_Why, Object, inherit(Other,t), S0, S0):- Other==Object,!.
+create_objprop(_Why, _Object, inherit(Other,t), S0, S0):- direct_props(Other, PropList, S0), member(no_copy(t),PropList),!.
+
+create_objprop(Why, Object, inherit(Other,t), S0, S9):- 
  direct_props_or(Other, PropList0, [], S0),
  adv_subst(PropList0,$class,Other,PropList1),
  (member(adjs(_),PropList1)-> PropList1=PropList;  [nouns(Other)|PropList1]=PropList),
@@ -137,16 +140,18 @@ create_objprop(Object, inherit(Other,t), S0, S9):-
  %must_mw1(updateprop(Object, visited(Other), S0, S1)),
  must_mw1(updateprop(Object, inherited(Other), S0, S2)),
  
- must_mw1(create_objprop(Object, PropListC, S2, S9)),
+ must_mw1(create_objprop(Why, Object, PropListC, S2, S9)),
  %must_mw1(setprop(Object, inherited(Other), S3, S9)),
  !.
 
-%create_objprop(Object, inherit(Other,t), S0, S0):- getprop(Object,inherited(Other),S0),!.
+%create_objprop(Why, Object, inherit(Other,t), S0, S0):- getprop(Object,inherited(Other),S0),!.
 
-create_objprop(Object, Prop, S0, S2):- 
+create_objprop(Why, Object, Prop, S0, S2):- 
  adv_subst(equivalent,$self,Object,Prop,NewProp),Prop\==NewProp,!,
- create_objprop(Object, NewProp, S0, S2).
-create_objprop(Object, Prop, S0, S2):- must_mw1(updateprop(Object,Prop,S0, S2)).
+ create_objprop(Why, Object, NewProp, S0, S2).
+
+create_objprop(_Why, Object, Prop, S0, S2):- 
+  must_mw1(updateprop(Object,Prop,S0, S2)).
 
 
 

@@ -173,7 +173,10 @@ pprint(_, _).
 
 :- use_module(library(logicmoo/portray_vars)).
 
-:- flag(our_pretty_printer,_,0).
+set_our_portray_level(N):- flag(our_pretty_printer,_,N).
+
+:- set_our_portray_level(1).
+
 our_current_portray_level(Level) :- flag(our_pretty_printer,Was,Was),Was=Level.
 :- export(our_current_portray_level/1).
 
@@ -467,3 +470,4 @@ whsp --> [X], {X<48}.
 :- initialization(setup_console,program).
 
 :- initialization(setup_console,restore).
+

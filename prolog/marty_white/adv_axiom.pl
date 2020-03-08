@@ -48,7 +48,8 @@ aXiom(Action) ==>>
 
 aXiom( Action) ==>> 
  {oper_splitk(Agent,Action,Preconds,Postconds)},
- /*dmust_tracing*/(satisfy_each(preCond(_),Preconds)),
+ /*dmust_tracing*/
+ (satisfy_each(preCond(_),Preconds)),
  (((sg(member(failed(Why))),send_1precept(Agent, failed(Action,Why))))
     ; (satisfy_each(postCond(_),Postconds),send_1precept(Agent, success(Action)))),!.
 
@@ -179,6 +180,9 @@ aXiom(make_true(Agent, FACT)) ==>>
 
 aXiom(add_todo(Agent, TODO)) ==>> 
   add_agent_todo(Agent, TODO).  
+
+aXiom(follow_plan(Agent, Name, [])) ==>> !,
+  send_1precept(Agent, [success(followed_plan(Agent,Name))]).
 
 aXiom(follow_plan(Agent, Name, [Step|Route])) ==>>
   eVent(Agent,follow_step(Agent, Name, Step)),
@@ -419,9 +423,7 @@ aXiom( Action) ==>> fail,
   queue_local_event([emoted(Agent, aXiom, '*'(Here), ActionG)], [Here], S0, S9).
 */
 
-aXiom( Act, S0, S9) ::= ((cmd_workarround(Act, NewAct) -> Act\==NewAct)), !, aXiom( NewAct, S0, S9).
 
-aXiom( Action, S0, S0)::= notrace((bugout3(failed_aXiom( Action), general))),!, \+ tracing.
 
 
 
