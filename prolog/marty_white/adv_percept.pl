@@ -29,7 +29,7 @@ get_perceptq_objects(Objects, S0):-
  setof(O,member(perceptq(O,_),S0),Objects).
 
 get_sensing_objects(Sense, Agents, S0):-
- get_objects((has_sense(Sense);inherited(memorize)), Agents, S0).
+ get_objects((has_sense(Sense);inherited(memorizer)), Agents, S0).
 
 :- defn_state_getter(get_live_agents(-list(agent))).
 get_live_agents(LiveAgents, S0):-

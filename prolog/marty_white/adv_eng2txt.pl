@@ -94,6 +94,10 @@ compile_eng(Context, [First|Rest], [First2|Rest2]) :-
  compile_eng(Context, First, First2),
  compile_eng(Context, Rest, Rest2),!.
 
+compile_eng(_Context, Object, Text) :- atom(Object),atom_contains(Object,"~"),atomic_list_concat([Wo,_Rds],'~',Object),
+ atomic_list_concat([Wo/*,'#',Rds*/], Text).
+
+
 compile_eng(_Context, aux(be), 'is') :- !.
 compile_eng(Context, aux(Can), Text) :- !,compile_eng_txt(Context, Can, Text).
 compile_eng(Context, quoted(Can), Out) :- !,compile_eng_txt(Context, Can, Text), atomic_list_concat([' "',Text,'" '],Out).
@@ -115,8 +119,8 @@ compile_eng(Context, person(_Second, Third), Compiled) :-
 compile_eng(Context, tense(Verb, Tense), Compiled) :-
  verb_tensed(Context, Verb, Tense, Compiled).
 compile_eng(Context, cap(Eng), Compiled) :-
- compile_eng(Context, Eng, Lowercase),
- capitalize(Lowercase, Compiled).
+ must_mw((compile_eng(Context, Eng, Lowercase),
+ capitalize(Lowercase, Compiled))).
 compile_eng(_Context, silent(_Eng), '').
 
 compile_eng(_Context, extra_verbose_eng(_Eng), '...' ):- debugging(noverbose,true),!.
@@ -222,9 +226,23 @@ insert_spaces([W1, W2|Tail1], [W1, ' ', W3|Tail2]) :-
 insert_spaces([], []).
 
 
+
 make_atomic(_, Atom, Atom) :- atomic(Atom), !.
 make_atomic(Context, Some, Text):- is_list(Some),
   maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text),!. 
+
+make_atomic(_Context, anglify(NewCtx,Some), Text):- !,
+  logic2english(NewCtx, Some, Term),
+  term_to_atom(Term, Text),!.
+
+make_atomic(Context, cap(subj(Some)), Text):- !,
+  compile_eng(Context, cap(Some), Term),
+  term_to_atom(Term, Text),!.
+
+make_atomic(Context, cap(Some), Text):- !,
+  compile_eng(Context, cap(Some), Term),
+  term_to_atom(Term, Text),!.
+
 
 make_atomic(Context, Logic, Text):- fail, Logic =.. [F|Some],
   maplist(logic2english(Context), Some, Stuff),

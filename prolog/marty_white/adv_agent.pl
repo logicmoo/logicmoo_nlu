@@ -159,7 +159,7 @@ console_decide_action(Agent, Mem0, Mem1):-
  if_tracing(bugout3('Console TODO ~p~n', [Agent: Words->Action], telnet)),
  add_todo(Action, Mem0, Mem1), ttyflush, !.
 
-makep:- 
+makep:-
  locally(set_prolog_flag(verbose_load,true),
  with_no_dmsg(make:((
   
@@ -230,7 +230,7 @@ decide_action(Agent, Mem0, Mem9):-
   per_plugin(decide_action(Agent),Mem0,Mem9),!.
 
 decide_action(_Agent, Mem, Mem) :-
- declared(inherited(memorize), Mem), !. % recorders don't decide much.
+ declared(inherited(memorizer), Mem), !. % recorders don't decide much.
 
 decide_action(Agent, Mem0, Mem0) :-
  set_last_action(Agent,[auto(Agent)]),

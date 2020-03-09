@@ -77,9 +77,12 @@ type_functor(dest, of(west, $here)).
 
 
 type_functor(memory, goals(list(goals))).
+type_functor(memory, goals_skipped(list(goals))).
+type_functor(memory, goals_satisfied(list(goals))).
 type_functor(memory, todo(list(doing))).
 %type_functor(memory, model(list(state_with_stamps))).
 type_functor(event, timestamp(ordinal, timept)).
+
 
 %type_functor(state_with_stamps, holds_at(h(domrel, inst, inst), timept)).
 
@@ -88,7 +91,6 @@ type_functor(state, props(inst, list(nv))).
 type_functor(state, memories(inst, list(event))).
 type_functor(state, preceptq(inst, list(event))).
 type_functor(state, h(domrel, inst, inst)).
-type_functor(state, domrel=value).
 
 
 type_functor(doing, inventory(agent)).
@@ -168,7 +170,7 @@ type_functor(nv, nominals(list(text))).
 type_functor(nv, nouns(list(text))).
 
 type_functor(nv, '<mystery>'(reason,preprel,inst2)).
-type_functor(nv, can(actverb, tf)).
+type_functor(nv, can_beyeah(actverb, tf)).
 type_functor(nv, knows_verbs(actverb, tf)).  % can use these actions
 type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
 type_functor(nv, class_desc(list(text))). % class description
@@ -180,20 +182,25 @@ type_functor(nv, effect(verb_targeted, script)). %
 type_functor(nv, breaks_into = type).
 type_functor(nv, has_rel(domrel, tf)).
 type_functor(nv, has_sense(sense)). 
+type_functor(nv, can_be(verb, tf)). 
+type_functor(nv, initial(sv(text))). 
+
+type_functor(nv, has_sense(sense)). 
 type_functor(nv, isnt(type)). % stops inheritance into some type
 type_functor(nv, inherit(type, tf)).
 type_functor(nv, inherited(type)).
 type_functor(nv, inheriting(type)).
+type_functor(nv, default_rel=type).
 type_functor(nv, inst(sv(term))).
 type_functor(nv, name = (sv(text))).  
 type_functor(nv, oper(doing, preconds, postconds)).
-type_functor(nv, =(name, value)).
+type_functor(nv, =(_Name, _Value)).
+% type_functor(nv, domrel=value).
 
 :- dynamic(istate/1).
 % empty intial state
 :- retractall(istate(_)).
 :- asserta(istate([ structure_label(istate), propOf(istate,world) ])).
-
 
 % this hacks the state above 
 :- push_to_state([
@@ -263,7 +270,7 @@ door type      % xformed: type_props(door, ... the below ... )
 
 food type
    can(eat),
-   object,      % xformed:  inherits(object)
+   moveable,      % xformed:  inherits(moveable)
    measurable.  % xformed:  inherits(measurable)
 
 basement props place,
@@ -363,11 +370,12 @@ props(screendoor, [
     (initial, 'You pick the mushroom, neatly cleaving its thin stalk.'))]),
                                
  type_props(door, [
-   ~can(take),
+   % ~can(take),
+    inherit(furnature),
     can(open),
     can(close),
     (opened = f),
-    nouns($class),
+    nouns($class),    
     inherit(fully_corporial)]),
 
  type_props(unthinkable, [
@@ -405,13 +413,15 @@ props(screendoor, [
    can(touch),
    can(examine),
    inherit(thinkable),
-   cleanliness=clean,
+   cleanliness = clean,
    adjs($class),
    class_desc(['kind is corporial'])]),
    
- type_props(object, [
+ type_props(moveable, [
     can(examine),
     adjs(physical),
+    adjs($class),
+    nouns(object),
     can(move),
     inherit(fully_corporial),
     inherit(thinkable),
@@ -425,6 +435,7 @@ props(screendoor, [
    
  type_props(furnature, [
    can(examine),
+   nouns(furnature),
    inherit(untakeable),
    inherit(fully_corporial),
    inherit(surface),
@@ -433,10 +444,7 @@ props(screendoor, [
    class_desc(['kind is furnature'])]),
    
 
-  
-
-  % People
-
+ % People
  props(floyd, [name = ('Floyd the robot'), powered = f, inherit(autonomous),inherit(robot)]),
 
  type_props(telnet, [adjs(remote), inherit(player), nouns([player])]),
@@ -463,7 +471,7 @@ props(screendoor, [
    volume = 50, % liters  (water is 1 kilogram per liter)
    mass = 50, % kilograms
    inherit(character),   
-   inherit(memorize),
+   inherit(memorizer),
    
    
    % players use power but cant be powered down
@@ -507,7 +515,7 @@ props(screendoor, [
    has_sense(see),
    %inherit(perceptq),
    inherit(no_perceptq),
-   inherit(memorize),
+   inherit(memorizer),
    inherit(actor),
    inherit(autoscan),
    inherit(partly_noncorporial)
@@ -527,7 +535,7 @@ props(screendoor, [
    adjs([metallic]),
    desc('Your classic robot: metallic with glowing red eyes, enthusiastic but not very clever.'),
    can(switch),
-   inherit(memorize),
+   inherit(memorizer),
    nouns($class),
    inherit(shiny),
    inherit(character),
@@ -581,7 +589,7 @@ props(screendoor, [
  type_props(bag, [
    volume_capacity = 10,
    inherit(container),
-   inherit(object)   
+   inherit(moveable)   
   ]),
    
  type_props(cup, [inherit(flask)]),
@@ -594,7 +602,7 @@ props(screendoor, [
    % body(clause)
    body(take($agent, Thing, in, $self))),
    inherit(container),
-   inherit(object)
+   inherit(moveable)
   ]),
    
  type_props(bowl, [
@@ -609,7 +617,7 @@ props(screendoor, [
 
  type_props(plate, [
    inherit(surface),
-   inherit(object),
+   inherit(moveable),
    volume_capacity = 2,
    breaks_into = shards,
    cleanliness = dirty,
@@ -628,13 +636,13 @@ props(screendoor, [
    opened = f,
    volume_capacity = 11,
    inherit(container),
-   inherit(object),   
+   inherit(moveable),   
    inherit(cardboard)
   ]),
 
  type_props(crate, [
     inherit(container),
-    inherit(object),
+    inherit(moveable),
     volume_capacity = 13,
     inherit(wooden),
     (opened = t)
@@ -642,7 +650,7 @@ props(screendoor, [
 
  type_props(locker, [
     inherit(container),
-    inherit(object),
+    inherit(moveable),
     volume_capacity = 13,
     inherit(metal),
     opened = f
@@ -695,7 +703,7 @@ props(screendoor, [
    
    
    % shiny things are fully_corporial
- type_props(shiny, [adjs($class), inherit(object), inherit(fully_corporial)]),
+ type_props(shiny, [adjs($class), inherit(moveable), inherit(fully_corporial)]),
    
  type_props(coins, [inherit(shiny), inherit(measurable)]),
    
@@ -708,7 +716,7 @@ props(screendoor, [
    nouns(light),
    nominals(brass),
    inherit(shiny),
-   inherit(object),
+   inherit(moveable),
    emitting(see, light),
    effect(switch(on), setprop($self, emitting(see, light))),
    effect(switch(off), delprop($self, emitting(see, light))),
@@ -736,7 +744,7 @@ props(screendoor, [
  type_props(wrench, [inherit(shiny)]).
 
  type_props(videocamera, [
-   inherit(memorize),
+   inherit(memorizer),
    inherit(perceptq),
    inherit(memorize_perceptq),
    can(switch),

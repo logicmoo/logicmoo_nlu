@@ -94,13 +94,14 @@ trim_eols(String,Codes):- append(LString,[N],String),(N==13;N==10),!,trim_eols(L
 trim_eols(Codes,Codes).
 
 was_simple_english_line(O):- any_to_codelist(O,CL),was_simple_english_line_0(CL),!.
-was_simple_english_line_0(String):- last(String,N),member(N,`.,]`),!,fail.
+was_simple_english_line_0(String):- length(String,L),L<3,!,fail.
+was_simple_english_line_0(String):- last(String,N),member(N,`}`),!,fail.
 was_simple_english_line_0(String):-
  freeze(C, member(C,`\n\r[{?`)),
  \+ member(C,String).
 
 adv_prolog_portray(Term):- is_logic(Type,Term),!,
-  format(atom(Fmt),'{|i7|| <~w> ~~s |}',[Type]),
+  format(atom(Fmt),'{|i7||<~w> ~~s |}',[Type]),
   print_english_simple_only(Fmt,Term),!.  
 
 adv_prolog_portray(Term):- fail,

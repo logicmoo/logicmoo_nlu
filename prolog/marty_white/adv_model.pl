@@ -130,9 +130,10 @@ update_model(Knower, arriving(Agent, At, Here, _, ExitNameReversed), Timestamp, 
   must_mw(in_model(h(_Was, Agent, There), M0)),
   % TODO: Handle goto(Agent, walk, on, table)
   % reverse_dir(ExitNameReversed, ExitName, advstate),
-  % At did I get Here?  
-  must_mw(append(RecentMem, [attempts(go_dir(Agent, _, ExitName))|OlderMem], Mem)), % find figment
-  \+ member(attempts(go_dir(Agent, _, _)), RecentMem),               % guarrantee recentness
+  % How did I get Here?  
+  append(RecentMem, [attempts(Agent,go_dir(Agent, _, ExitName))|OlderMem], Mem), 
+    % find figment
+  \+ member(attempts(Agent,go_dir(Agent, _, _)), RecentMem),               % guarrantee recentness
   memberchk(timestamp(_T1,_OldNow), OlderMem),               % get associated stamp
   %player_format(Agent, '~p moved: goto(Agent, walk, ~p, ~p) from ~p leads to ~p~n',
   %       [Agent, AtGo, Dest, There, Here]),

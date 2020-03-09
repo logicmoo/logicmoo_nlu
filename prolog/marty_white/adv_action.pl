@@ -381,12 +381,12 @@ change_state(Agent, Open, Thing, Opened, TF,  S0, S):-
  maybe_when(psubsetof(Open, touch),
    required_reason(Agent, will_touch(Agent, Thing, S0, _))),
 
- %getprop(Thing, can(open, S0),
+ %getprop(Thing, can_be(open, S0),
  %\+ getprop(Thing, =(open, t), S0),
 
- required_reason(Agent, \+ getprop(Thing, can(Open, f), S0)),
+ required_reason(Agent, \+ getprop(Thing, can_be(Open, f), S0)),
 
- ignore(dshow_failure(getprop(Thing, can(Open, t), S0))),
+ ignore(dshow_failure(getprop(Thing, can_be(Open, t), S0))),
 
  forall(act_prevented_by(Open,Locked,Prevented),
    required_reason(Agent, \+ getprop(Thing, =(Locked, Prevented), S0))),

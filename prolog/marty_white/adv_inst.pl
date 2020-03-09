@@ -103,8 +103,8 @@ create_objprop(_Why, Object, inherit(perceptq,t), S0, S1):- !,
  declare(perceptq(Object, []), S0, S1).
 
  % Most agents store memories of percepts, world model, goals, etc.
-create_objprop(_Why, Object, inherit(memorize,t), S0, S0):- declared(memories(Object,_),S0),!.
-create_objprop(_Why, Self, inherit(memorize,t), S0, S2):- !, clock_time(Now),
+create_objprop(_Why, Object, inherit(memorizer,t), S0, S0):- declared(memories(Object,_),S0),!.
+create_objprop(_Why, Self, inherit(memorizer,t), S0, S2):- !, clock_time(Now),
  declare(memories(Self, [
   propOf(memories,Self),
  structure_label(mem(Self)),

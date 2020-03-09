@@ -45,7 +45,7 @@ declared_advstate(Fact):- get_advstate(State),declared(Fact,State).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION
-:- nop(ensure_loaded('adv_state')).
+:- nop(ensure_loaded(adv_state)).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % -----------------------------------------------------------------------------
@@ -386,8 +386,8 @@ is_state_info(StateInfo):- \+ compound(StateInfo), !, fail.
 is_state_info(StateInfo):- functor(StateInfo, F, A),
    (functor_arity_state(F, A)->true; (A>2, functor_arity_state(F, 2))).
 
-
 functor_arity_state(F, A):- functor(TypeFunctor, F, A), type_functor(state, TypeFunctor).
+functor_arity_state(props, 2).
 functor_arity_state(type, 2).
 %functor_arity_state(F, A):- is_spatial_rel(F).
 
@@ -399,11 +399,18 @@ is_spatial_rel(in).
 is_spatial_rel(on).
 is_spatial_rel(exit).
 
-update_running(StateInfo):- get_advstate(S0),!,declare(StateInfo,S0,S1),init_objects(S1, S2),set_advstate(S2),!.
-update_running(_StateInfo).
+update_running(StateInfo):- ignore((get_advstate(S0),!,declare(StateInfo,S0,S1),!,set_advstate(S1))),!.
+% update_running(_StateInfo).
 
-push_to_state(StateInfo):- \+ compound(StateInfo), !.
+%push_to_state(State):- push_to_obj(world,State).
+
+
+push_to_state(StateInfo):- end_of_list == StateInfo, !.  
+push_to_state(StateInfo):- is_codelist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
+push_to_state(StateInfo):- is_charlist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
+push_to_state(StateInfo):- string(StateInfo), parse_for_kind(state,StateInfo,Logic), push_to_state(Logic).
 push_to_state(StateInfo):- is_list(StateInfo), !, maplist(push_to_state, StateInfo).
+push_to_state(StateInfo):- \+ compound(StateInfo),trace_or_throw(unknown_push_to_state(StateInfo)),!.
 push_to_state(type(Type, Conj)):-  !, push_to_state(props(type(Type), Conj)).
 push_to_state(props(type(Type), Conj)):- !, props_to_list(Conj, List), push_to_state(type_props(Type, List)).
 push_to_state(props(Obj, Conj)):-  props_to_list(Conj, List) -> Conj\== List, !, push_to_state(props(Obj, List)).
@@ -461,3 +468,4 @@ correct_prop(~(has_rel(Verb)), has_rel(Verb, f)):- nop(check_atom(Verb)).
 correct_prop(  Other,Other).
 
 
+% for  the "TheSims" bot AI which will make the bots do what TheSims characters do... (they dont use the planner they use a simple priority routine)  

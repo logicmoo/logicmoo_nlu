@@ -17,7 +17,6 @@
 %
 */
 
-:- ensure_loaded(adv_eng2txt).
 
 same_agent(A,B):- A=@=B.
 
@@ -143,6 +142,10 @@ logic2eng(_Obj, Prop, [String]):- compound(Prop), no_english, !, format(atom(Str
 logic2eng( Obj, ~(Type), ['(','logically','not','(',Out, '))']):- must_mw1(logic2eng(Obj, Type, Out)), !.
 
 logic2eng(_Context, time_passes(Agent), ['Time passes for',Agent,'']).
+logic2eng(_Context, attempts(Agent,Doing), [anglify(Agent,Agent),'attempts to',anglify(Agent,Doing)]).
+logic2eng( Context, go_dir(Agent,How,Dir), [How,Dir]):- Context=Agent.
+logic2eng(_Context, go_dir(Agent,How,Dir), [Agent,How,Dir]).
+logic2eng(_Context, Doing, [Agent,did,Did|More]):- is_logic(doing,Doing),Doing=..[Did,Agent|More].
 
 logic2eng(_Context, percept(_Agent, How, _, _), ''):- How == know,!.
 
@@ -256,7 +259,7 @@ logic2eng(_Obj, h(Held_by , Object, Speaker), [the(Object), aux(be), Held_by, Sp
 logic2eng(_Obj, EmittingLight, [aux(be), 'glowing']):- EmittingLight == emitting(see,light), !.
 logic2eng(_Obj, emitting(See,X), [aux(be), emitting, X, that, can, aux(be), tense(See, past)]):-!.
 logic2eng(_Obj, breaks_into(_), ['looks breakable']).
-logic2eng(_Obj, shiny, [aux(be), 'shiny!']).
+logic2eng(_Obj, shiny, ['shiny!']).
 
 
 
@@ -308,11 +311,12 @@ logic2eng(_Obj, has_rel(on), ['has a surface']).
 logic2eng(_Obj, has_rel(worn_by), ['can be dressed up']).
 logic2eng(_Obj, has_rel(held_by), ['can hold objects']).
 logic2eng(_Obj, has_rel(exit(_)), ['can have exits']).
-logic2eng(_Obj, can_be(eat), ['looks tasty ', '!']).
-logic2eng(_Obj, can_be(take), ['can be taken!']).
-logic2eng(_Obj, can_be(take,f), ['cannot be taken!']).
+%logic2eng(_Obj, can_be(eat,t), ['looks tasty ', '!']).
+%logic2eng(_Obj, can_be(take), ['can be taken!']).
+%logic2eng(_Obj, can_be(take,f), ['cannot be taken!']).
 logic2eng(_Obj, can_be(Verb), ['Can', be, tense(Verb, past)]).
-logic2eng(_Obj, can_be(Verb, f), ['Can\'t', aux(be), tense(Verb, past)]).
+logic2eng(_Obj, can_be(Verb, t), ['Can', be, tense(Verb, past)]).
+logic2eng(_Obj, can_be(Verb, f), ['Can\'t', be, tense(Verb, past)]).
 logic2eng(_Obj, knows_verbs(Verb), ['Able to', Verb ]).
 logic2eng(_Obj, knows_verbs(Verb, f), ['Unable to', Verb ]).
 
@@ -323,7 +327,12 @@ logic2eng( Obj, inherited(Type, f), ['isnt '|Out]):- logic2eng(Obj, [Type], Out)
 logic2eng( Obj, inherited(Type), ['inherits',Out]):- logic2eng(Obj, [Type], Out), !.
 logic2eng( Obj, msg(Msg), TxtL):- any2eng(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
 %logic2eng( Obj, msg(Msg), TxtL):- eng2txt(Obj, Obj, Msg, Txt), listify(Txt,TxtL), !.
-logic2eng(_Obj, class_desc(_), []).
+logic2eng(_Obj, class_desc(ClassDesc), [hidden(class_desc(ClassDesc))]).
+logic2eng(_Obj, $class, ['$class']).
+
+logic2eng( Obj, effect(Action,true) , [the,action,anglify(Obj,Action),has,no,effect]).
+
+
 logic2eng(_Obj, has_rel(Value,TF) , [TF,'that it has,',Value]).
 
 logic2eng( Obj, oper(Act,Precond,PostCond), OUT) :- 
@@ -388,6 +397,4 @@ logic2english( Doer, Logic, Text):- locally(tl_loop:in_logic2english(Logic),
 
 any2eng(_Speaker,_I, Eng, EngLO):- is_english(Eng),!,EngLO=Eng.
 any2eng(_Speaker, I, Eng, EngLO):- logic2eng(I, Eng, EngLO).
-
-:- ensure_loaded(adv_portray).
 

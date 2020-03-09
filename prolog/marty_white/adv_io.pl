@@ -168,7 +168,7 @@ bugout4(_, _, _, _).
 pprint(Term, B) :-
  bug(B),
  setup_call_cleanup(
-  flag('english',ELevel,ELevel+1), % put a little English on it
+  flag('english',ELevel,ELevel+0), % put a little English on it
   player_format('~N~@~N',[mu:prolog_pprint(Term,[])]),
   flag('english',_,ELevel)),!.
 pprint(_, _).

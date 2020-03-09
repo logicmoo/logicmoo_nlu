@@ -90,7 +90,7 @@ is_prop_public_at(know,4, held_by).
 is_prop_public_at(know,4, class_desc).
 is_prop_public_at(know,4, has_sense).
 is_prop_public_at(know,4, knows_verbs).
-is_prop_public_at(know,4, can).
+is_prop_public_at(know,4, can_be).
 
 is_prop_public_at(see, 5, co(_)).
 
