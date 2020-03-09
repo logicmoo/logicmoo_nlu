@@ -38,7 +38,7 @@ add_config_dir(Target):-
 
 :- add_config_dir('../config_nomicmu/').
 :- add_config_dir(app_preferences('.config/nomicmu/')).
-adv_global:nomic_config_dir('~/.config/nomicmu/')).
+adv_global:nomic_config_dir('~/.config/nomicmu/').
 
 scan_and_load_plugins:- 
   forall(adv_global:nomic_config_dir(Dir),ignore(scan_and_load_plugins(Dir))).
