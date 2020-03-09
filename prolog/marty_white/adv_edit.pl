@@ -197,7 +197,7 @@ do_metacmd(Doer, WA, S0, S1) :-
 
 
 pred_holder(memory,memories).
-pred_holder(precepts,preceptq).
+pred_holder(precepts,perceptq).
 pred_holder(X,X).
 
 

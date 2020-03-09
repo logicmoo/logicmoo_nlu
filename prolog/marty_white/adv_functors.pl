@@ -95,7 +95,7 @@ type_functor(event, timestamp(ordinal, timept)).
 type_functor(state, type_props(type, list(nv))).
 type_functor(state, props(inst, list(nv))).
 type_functor(state, memories(inst, list(event))).
-type_functor(state, preceptq(inst, list(event))).
+type_functor(state, perceptq(inst, list(event))).
 type_functor(state, h(domrel, inst, inst)).
 
 
