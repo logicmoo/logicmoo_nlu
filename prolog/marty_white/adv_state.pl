@@ -380,18 +380,16 @@ single_valued_prop(prefix).
 single_valued_prop(mass).
 single_valued_prop(volume).
 
+
 :- export(is_state_info/1).
 
 is_state_info(StateInfo):- \+ compound(StateInfo), !, fail.
 is_state_info(StateInfo):- functor(StateInfo, F, A),
    (functor_arity_state(F, A)->true; (A>2, functor_arity_state(F, 2))).
 
-functor_arity_state(F, A):- functor(TypeFunctor, F, A), type_functor(state, TypeFunctor).
-functor_arity_state(props, 2).
-functor_arity_state(type, 2).
-%functor_arity_state(F, A):- is_spatial_rel(F).
 
-%functor_arity_state(F, A):- is_spatial_rel(F).
+functor_arity_state(F, A):- is_type_functor(state, F, A).
+functor_arity_state(type, 2).
 
 is_spatial_rel(worn_by).
 is_spatial_rel(held_by).

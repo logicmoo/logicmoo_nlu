@@ -145,7 +145,7 @@ logic2eng(_Context, time_passes(Agent), ['Time passes for',Agent,'']).
 logic2eng(_Context, attempts(Agent,Doing), [anglify(Agent,Agent),'attempts to',anglify(Agent,Doing)]).
 logic2eng( Context, go_dir(Agent,How,Dir), [How,Dir]):- Context=Agent.
 logic2eng(_Context, go_dir(Agent,How,Dir), [Agent,How,Dir]).
-logic2eng(_Context, Doing, [Agent,did,Did|More]):- is_logic(doing,Doing),Doing=..[Did,Agent|More].
+logic2eng(_Context, Doing, [Agent,does,Did|More]):- is_type_functor(doing,Doing),Doing=..[Did,Agent|More].
 
 logic2eng(_Context, percept(_Agent, How, _, _), ''):- How == know,!.
 

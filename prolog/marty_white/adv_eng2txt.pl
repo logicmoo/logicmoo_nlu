@@ -135,6 +135,8 @@ compile_eng(Context, Inst, TheThing):- atom(Inst),!, must_mw1(compile_eng_atom(C
 /*compile_eng(Context, String, Text):- string(String),
  name(Atom, String), compile_eng(Context, Atom, Text).
 */
+compile_eng(_Context, Inst, Inst):- string(Inst),!.
+compile_eng(_Context, Inst, Text):- string(Inst),!, format(atom(Text),'~q',[Inst]).
 compile_eng(_Context, Inst, Text):- \+ compound(Inst),!, format(atom(Text),'~w',[Inst]).
 
 compile_eng(Context, s(Word), Textually) :- % TODO make actually plural

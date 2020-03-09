@@ -35,7 +35,7 @@ action_handle_goals(Agent, Mem0, Mem9) :-
  forget(goals([G0|GS]), Mem0, Mem1),
  memorize(goals([]), Mem1, Mem2),
  bugout3('~w: Can\'t solve goals ~p. Forgetting them.~n', [Agent,[G0|GS]], planner),
- memorize_appending(skipped_goals([G0|GS]),Mem2,Mem9),!.
+ memorize_appending(goals_skipped([G0|GS]),Mem2,Mem9),!.
 
 
 

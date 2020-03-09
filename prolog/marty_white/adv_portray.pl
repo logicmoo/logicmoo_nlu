@@ -100,7 +100,7 @@ was_simple_english_line_0(String):-
  freeze(C, member(C,`\n\r[{?`)),
  \+ member(C,String).
 
-adv_prolog_portray(Term):- is_logic(Type,Term),!,
+adv_prolog_portray(Term):- is_type_functor(Type,Term),!,
   format(atom(Fmt),'{|i7||<~w> ~~s |}',[Type]),
   print_english_simple_only(Fmt,Term),!.  
 
@@ -119,3 +119,5 @@ adv_prolog_portray(Term):- fail,
 :- module_transparent user:portray/1.
 
 user:portray(Term) :- \+ tracing, adv_prolog_portray(Term),!.
+
+

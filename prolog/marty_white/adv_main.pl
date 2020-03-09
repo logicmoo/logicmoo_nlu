@@ -62,14 +62,16 @@ extra :- true. % Fuller, but questionable if needed yet.
 :- ensure_loaded(adv_physics).
 :- ensure_loaded(adv_plan).
 
+:- ensure_loaded(adv_functors).
 :- ensure_loaded(adv_eng2txt).
 :- ensure_loaded(adv_log2eng).
 :- ensure_loaded(adv_eng2cmd).
-:- ensure_loaded(adv_portray).
 
 :- ensure_loaded(adv_state).
 
+:- ensure_loaded(adv_quasiquote).
 :- ensure_loaded(adv_data).
+:- ensure_loaded(adv_portray).
 
 :- ensure_loaded(adv_plugins).
 

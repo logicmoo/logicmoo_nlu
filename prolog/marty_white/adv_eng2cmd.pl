@@ -68,11 +68,6 @@ convert_reflexive_self(Agent, Words, NewWords) :-
     Token = Word )),
    NewWords).
 
-is_type_functor(Type,Term):- \+ is_list(Term), compound(Term), functor(Term,F,A), !,
-                              functor(Skel,F,A),
-                              type_functor(Type,Skel).
-
-
 :- discontiguous(eng2logic/4).
 :- discontiguous(parse_cmd/4).
 
@@ -99,8 +94,7 @@ is_text_mw(Text):- string(Text),!.
 is_text_mw(Text):- atom_contains(Text,' '),!.
 is_text_mw(Text):- name(Text,Codes),last(Codes,L),code_type(L,punct).
 
-is_logic(Logic):- is_logic(E,Logic), E\==eng, !.
-is_logic(E,Logic):- strip_module(Logic,_,Data), compound(Data), is_type_functor(E,Data).
+is_logic(Logic):- is_type_functor(E,Logic), E\==eng, !.
 
 is_english(Eng):- is_ftVar(Eng),!,fail. 
 is_english([Eng|_]):- !, is_english(Eng).

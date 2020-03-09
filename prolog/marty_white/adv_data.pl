@@ -5,7 +5,7 @@
 %
 % Bits and pieces:
 %
-% LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
+% LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty"s Prolog Adventure Prototype
 %
 % Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
@@ -20,9 +20,9 @@
 % Some Inform properties:
 % light - rooms that have light in them
 % can(eat) - can be eaten
-% static - can't be taken or moved
+% static - can"t be taken or moved
 % scenery - assumed to be in the room description (implies static)
-% concealed - obscured, not listed, not part of 'all', but there
+% concealed - obscured, not listed, not part of "all", but there
 % found_in - lists places where scenery objects are seen
 % absent - hides object entirely
 % clothing - can be worn
@@ -35,7 +35,7 @@
 % can(lock), with_key
 % enterable
 % supporter
-% article - specifies indefinite article ('a', 'le')
+% article - specifies indefinite article ("a", "le")
 % cant_go
 % daemon - called each turn, if it is enabled for this object
 % description
@@ -68,134 +68,6 @@ dest_target(spatially(in, Dest), Target):- nonvar(Dest), !, dest_target(Dest, Ta
 dest_target(spatially(to, Dest), Target):- nonvar(Dest), !, dest_target(Dest, Target).
 dest_target(loc(_, _, _, Target), Target):- nonvar(Target), !.
 
-
-type_functor(dest, spatially(in, inst)).
-type_functor(dest, spatially(at, inst)).
-type_functor(dest, spatially(on, inst)).
-type_functor(dest, of(up, $here)).
-type_functor(dest, of(west, $here)).
-
-
-type_functor(memory, goals(list(goals))).
-type_functor(memory, goals_skipped(list(goals))).
-type_functor(memory, goals_satisfied(list(goals))).
-type_functor(memory, todo(list(doing))).
-%type_functor(memory, model(list(state_with_stamps))).
-type_functor(event, timestamp(ordinal, timept)).
-
-
-%type_functor(state_with_stamps, holds_at(h(domrel, inst, inst), timept)).
-
-type_functor(state, type_props(type, list(nv))).
-type_functor(state, props(inst, list(nv))).
-type_functor(state, memories(inst, list(event))).
-type_functor(state, preceptq(inst, list(event))).
-type_functor(state, h(domrel, inst, inst)).
-
-
-type_functor(doing, inventory(agent)).
-type_functor(doing, look(agent)).
-type_functor(doing, examine(agent, optional(sense, see), optional(inst, here), optional(depth, 1))).
-type_functor(event, percept_props(agent, sense, inst, depth, list(nv))).
-
-type_functor(event, time_passes(agent)).
-type_functor(event, attempts(agent,doing)).
-
-type_functor(doing, dig(agent, holetype, prep, dest, inst)).
-type_functor(doing, create(type)).
-
-type_functor(doing, eat(agent, inst)).
-type_functor(doing, hit(agent, inst, with)).
-type_functor(doing, destroy(inst)).
-
-type_functor(doing, switch(agent, tfstate, tf, inst)).
-type_functor(doing, touch(agent, inst)).
-
-%type_functor(doing, touchable(agent, instance)).
-
-
-%type_functor(doing, say(Message)).  % undirected message
-type_functor(doing, emote(agent, emotype, dest, statement)).
-type_functor(event, emoted(agent, emotype, dest, statement)).
-
-
-type_functor(doing, auto(agent)).
-
-type_functor(doing, wait(agent)).
-type_functor(event, time_passes(agent)).
-
-
-type_functor(doing, recall(agent, prop, inst2)).
-type_functor(doing, properties(inst)).
-type_functor(doing, inspect(agent, getprop(inst, nv))).
-type_functor(doing, setprop(inst, nv)).
-type_functor(doing, print_(agent, msg)). % for debug and agent feedback
-
-type_functor(doing, give(agent, inst, agnt2)).
-type_functor(doing, take(agent, inst)).
-type_functor(doing, drop(agent, inst)).
-
-type_functor(doing, go_dir(agent, movetype, dir)).
-type_functor(doing, goto_obj(agent, movetype, obj)).
-type_functor(doing, goto_prep_obj(agent, movetype, domrel, obj)).
-
-type_functor(doing, goto_loc(agent, movetype, dest)).
-
-type_functor(doing, throw(agent, inst, dest)).
-type_functor(doing, put(agent, inst, dest)).
-
-% Access ot planner ops
-%type_functor(prolog, oper_db(agent,doing,list(nv),list(nv)).
-% Data representing planner midway state
-%type_functor(prolog, oper_in_step(agent,doing,list(nv)).
-
-
-
-type_functor(event, moved(agent, how, inst, from, prop, to)).
-
-type_functor(event, carrying(agent, list(inst))).
-type_functor(event, destroyed(inst)).
-type_functor(event, did(action)).
-type_functor(event, percept(agent,sense,depth,props)).
-type_functor(event, percept(agent, exit_list(in, dest, list(exit)))). % paths noticable
-type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))). 
-type_functor(event, failed(doing, msg)). % some action has failed
-type_functor(event, transformed(inst, inst2)). % inst1 got derezed and rerezed as inst2
-
-% DATA
-type_functor(nv_of_any, propOf(term,term)).
-
-type_functor(nv, adjs(list(text))).
-type_functor(nv, nominals(list(text))).
-type_functor(nv, nouns(list(text))).
-
-type_functor(nv, '<mystery>'(reason,preprel,inst2)).
-type_functor(nv, can_beyeah(actverb, tf)).
-type_functor(nv, knows_verbs(actverb, tf)).  % can use these actions
-type_functor(nv, cant_go(inst, dir, text)). % region prevents dir
-type_functor(nv, class_desc(list(text))). % class description
-type_functor(nv, co(list(nv))).  % item is created
-type_functor(nv, desc(sv(text))).
-type_functor(nv, prefix(sv(text))).
-type_functor(nv, door_to(inst)).
-type_functor(nv, effect(verb_targeted, script)). % 
-type_functor(nv, breaks_into = type).
-type_functor(nv, has_rel(domrel, tf)).
-type_functor(nv, has_sense(sense)). 
-type_functor(nv, can_be(verb, tf)). 
-type_functor(nv, initial(sv(text))). 
-
-type_functor(nv, has_sense(sense)). 
-type_functor(nv, isnt(type)). % stops inheritance into some type
-type_functor(nv, inherit(type, tf)).
-type_functor(nv, inherited(type)).
-type_functor(nv, inheriting(type)).
-type_functor(nv, default_rel=type).
-type_functor(nv, inst(sv(term))).
-type_functor(nv, name = (sv(text))).  
-type_functor(nv, oper(doing, preconds, postconds)).
-type_functor(nv, =(_Name, _Value)).
-% type_functor(nv, domrel=value).
 
 :- dynamic(istate/1).
 % empty intial state
@@ -274,7 +146,7 @@ food type
    measurable.  % xformed:  inherits(measurable)
 
 basement props place,
-   desc('This is a very dark basement.'),
+   desc("This is a very dark basement."),
    (dark= t).
 
 dining_room props place.
@@ -285,17 +157,17 @@ dining_room props place.
    props(garden,
      [place,
    % goto($agent, Prep, Dir, dir, result) provides special handling for going in a direction.
-   cant_go($agent, up, 'You lack the ability to fly.'),
+   cant_go($agent, up, "You lack the ability to fly."),
    oper(/*garden, */ go_dir($agent, _, south),
    % precond(Test, FailureMessage)
-     precond(getprop(screendoor, (opened = t)), ['you must_mw open the door first']),
+     precond(getprop(screendoor, (opened = t)), ["you must_mw open the door first"]),
    % body(clause)
      body(inherited)),
    % cant_go provides last-ditch special handling for Go.
    desc = "this is the garden",
-   cant_go($agent, _Dir, 'The fence surrounding the garden is too tall and solid to pass.')]),
+   cant_go($agent, _Dir, "The fence surrounding the garden is too tall and solid to pass.")]),
 
-   props(kitchen, [inherit(place), desc('cooking happens here')]),
+   props(kitchen, [inherit(place), desc("cooking happens here")]),
 
    h(reverse(on), the(table), the(table_leg)),
    on(the(box), the(table)),
@@ -317,7 +189,7 @@ props(pantry, [
    volume_capacity = 1000,
    nouns(closet),
    nominals(kitchen),
-   desc('You\'re in a dark kitchen pantry.'),
+   desc("You're in a dark kitchen pantry."),
    dark = t,
    inherit(place)
 ]).
@@ -326,9 +198,9 @@ props(pantry, [
 
 props(brklamp,
    inherit(broken),
-   name = ('possibly broken lamp'),
+   name = ("possibly broken lamp"),
    effect(switch(on), print_(_Agent, "Switch is flipped")),
-   effect(hit, ['print_'("Hit brklamp"), setprop($self, inherit(broken))]),
+   effect(hit, [print_("Hit brklamp"), setprop($self, inherit(broken))]),
    inherit(lamp)).
 
     
@@ -343,7 +215,7 @@ props(screendoor, [
 
 :- push_to_state([
  type_props(broken, [
-    name = ('definately broken'),
+    name = ("definately broken"),
     effect(switch(on), true),
     effect(switch(off), true),
     can(switch),
@@ -353,21 +225,21 @@ props(screendoor, [
 
  type_props(mushroom, [
    % See DM4
-   name = ('speckled mushroom'),
+   name = ("speckled mushroom"),
    % singular,                     
    food,
    nouns(eachOf([mushroom, fungus, toadstool])),
    adjs([speckled]),
    % initial(description used until initial state changes)
-   initial('A speckled mushroom grows out of the sodden earth, on a long stalk.'),
+   initial("A speckled mushroom grows out of the sodden earth, on a long stalk."),
    % description(examination description)
-   desc('The mushroom is capped with blotches, and you aren\'t at all sure it\'s not a toadstool.'),
+   desc("The mushroom is capped with blotches, and you aren't at all sure it's not a toadstool."),
    can(eat),
    % before(VERB, CODE) -- Call CODE before default code for VERB.
-   %  If CODE succeeds, don't call VERB.
-   before(eat, (random100 =< 30, die('It was poisoned!'); 'yuck!')),
+   %  If CODE succeeds, don"t call VERB.
+   before(eat, (random100 =< 30, die("It was poisoned!"); "yuck!")),
    after(take,
-    (initial, 'You pick the mushroom, neatly cleaving its thin stalk.'))]),
+    (initial, "You pick the mushroom, neatly cleaving its thin stalk."))]),
                                
  type_props(door, [
    % ~can(take),
@@ -381,13 +253,13 @@ props(screendoor, [
  type_props(unthinkable, [
    ~can(examine),
     adjs($class),
-    class_desc(['kind is normally unthinkable'])]),
+    class_desc(["kind is normally unthinkable"])]),
 
  type_props(thinkable, [
     can(examine),
     nouns($self),
     adjs($class),
-    class_desc(['kind is normally thinkable'])]),
+    class_desc(["kind is normally thinkable"])]),
 
  type_props(noncorporial, [
     can(examine)=f,
@@ -395,19 +267,19 @@ props(screendoor, [
     inherit(thinkable),
     adjs($class),
    ~inherit(fully_corporial),
-    class_desc(['direct inheriters are completely noncorporial'])]),
+    class_desc(["direct inheriters are completely noncorporial"])]),
 
  type_props(only_conceptual, [
    adjs($class),
    inherit(noncorporial),
    inherit(thinkable),
-   class_desc(['kind is only conceptual'])]),
+   class_desc(["kind is only conceptual"])]),
 
  type_props(partly_noncorporial, [
    inherit(fully_corporial),
    adjs($class),
    inherit(noncorporial),
-   class_desc(['kind is both partly corporial and non-corporial'])]),
+   class_desc(["kind is both partly corporial and non-corporial"])]),
    
  type_props(fully_corporial, [
    can(touch),
@@ -415,7 +287,7 @@ props(screendoor, [
    inherit(thinkable),
    cleanliness = clean,
    adjs($class),
-   class_desc(['kind is corporial'])]),
+   class_desc(["kind is corporial"])]),
    
  type_props(moveable, [
     can(examine),
@@ -425,12 +297,12 @@ props(screendoor, [
     can(move),
     inherit(fully_corporial),
     inherit(thinkable),
-    class_desc(['kind is an Movable Object'])]),
+    class_desc(["kind is an Movable Object"])]),
    
  type_props(untakeable, [
     adjs($class),
    ~can(take),
-    class_desc(['kind is an Immobile Object'])]),
+    class_desc(["kind is an Immobile Object"])]),
    
    
  type_props(furnature, [
@@ -441,11 +313,11 @@ props(screendoor, [
    inherit(surface),
    inherit(thinkable),
    adjs(physical),
-   class_desc(['kind is furnature'])]),
+   class_desc(["kind is furnature"])]),
    
 
  % People
- props(floyd, [name = ('Floyd the robot'), powered = f, inherit(autonomous),inherit(robot)]),
+ props(floyd, [name = ("Floyd the robot"), powered = f, inherit(autonomous),inherit(robot)]),
 
  type_props(telnet, [adjs(remote), inherit(player), nouns([player])]),
  type_props(player, [name = ($self),
@@ -479,31 +351,31 @@ props(screendoor, [
   ]),
    
  type_props(autonomous, [inherit(autoscan),inherit(impulsive),
-   class_desc(['like Floyd the robot will, instances will automatically use its planner 
-        about planning to decide on what to do'])]),
+   class_desc(["like Floyd the robot will, instances will automatically use its planner 
+        about planning to decide on what to do"])]),
 
  type_props(decider, [       
-       class_desc(['agents of this type/class call decide_action/3 hooks (and per plugin)'])]),
+       class_desc(["agents of this type/class call decide_action/3 hooks (and per plugin)"])]),
 
   type_props(nomicmu_plugin, [
         nouns(plugin),
         prefix ='$error'("required config var"),
-        class_desc(['Nomicmu plugin'])]),
+        class_desc(["Nomicmu plugin"])]),
 
   type_props(decider_plugin, [
         adjs(decider),
         inherit(nomicmu_plugin),
-        class_desc(['plugins that contain decide_action hooks'])]),
+        class_desc(["plugins that contain decide_action hooks"])]),
 
  type_props(autoscan, [
       adjs(perceptive),
         inherit(autolook),
-           class_desc(['Sensory precepts that discover new objects request further details (notice dirty plates are in the sink)'])]),
+           class_desc(["Sensory precepts that discover new objects request further details (notice dirty plates are in the sink)"])]),
 
  type_props(autolook, [
       adjs($class),
-          class_desc(['When entering a new area the Agent will automatically 
-            get an overview of the env (without purposeful looking)'])]),
+          class_desc(["When entering a new area the Agent will automatically 
+            get an overview of the env (without purposeful looking)"])]),
 
 
  type_props(character, [
@@ -533,7 +405,7 @@ props(screendoor, [
    volume = 50, mass = 200, % density 4 % kilograms per liter
    nouns([robot]),
    adjs([metallic]),
-   desc('Your classic robot: metallic with glowing red eyes, enthusiastic but not very clever.'),
+   desc("Your classic robot: metallic with glowing red eyes, enthusiastic but not very clever."),
    can(switch),
    inherit(memorizer),
    nouns($class),
@@ -569,7 +441,7 @@ props(screendoor, [
   ~can(move),
   ~can(take),
    oper(discard($agent, Thing),
-    precond(h(child, $agent, Thing), ['dont have']), % precond(Test, FailureMessage)
+    precond(h(child, $agent, Thing), ["dont have"]), % precond(Test, FailureMessage)
     body(take($agent, Thing, in, $self))), % body(clause)
    % inherit(container),
    has_rel(exit(_))
@@ -581,7 +453,7 @@ props(screendoor, [
    can(open),
    has_rel(in),
   oper(put($agent, Thing, in, $self),
-   precond(~getprop(Thing, inherit(liquid)), ['liquids would spill out']), % precond(Test, FailureMessage)
+   precond(~getprop(Thing, inherit(liquid)), ["liquids would spill out"]), % precond(Test, FailureMessage)
    body(take($agent, Thing, in, $self)))  % body(clause)
   ]),
 
@@ -598,7 +470,7 @@ props(screendoor, [
    adjs(physical),
   oper(put($agent, Thing, in, $self),
    % precond(Test, FailureMessage)
-   precond(getprop(Thing, inherit(fully_corporial)), ['non-physical would spill out']),
+   precond(getprop(Thing, inherit(fully_corporial)), ["non-physical would spill out"]),
    % body(clause)
    body(take($agent, Thing, in, $self))),
    inherit(container),
@@ -611,8 +483,8 @@ props(screendoor, [
    volume_capacity = 2,
    breaks_into = shards,
    cleanliness = dirty,
-   name = ('porcelain bowl'),
-   desc('This is a modest glass cooking bowl with a yellow flower motif glazed into the outside surface.')
+   name = ("porcelain bowl"),
+   desc("This is a modest glass cooking bowl with a yellow flower motif glazed into the outside surface.")
   ]),
 
  type_props(plate, [
@@ -710,7 +582,7 @@ props(screendoor, [
  type_props(flour, [inherit(food), inherit(measurable)]),
 
  type_props(lamp, [
-   name = ('shiny brass lamp'),
+   name = ("shiny brass lamp"),
    powered = t,
    can(switch),
    nouns(light),
@@ -724,8 +596,8 @@ props(screendoor, [
   ]),
 
  type_props(broken_lamp, [
-   name = ('dented brass lamp'),
-   % TODO: prevent user from referring to 'broken_lamp'
+   name = ("dented brass lamp"),
+   % TODO: prevent user from referring to "broken_lamp"
    nouns(light),
    nominals(brass),
    adjs(dented),

@@ -123,7 +123,7 @@ do_metacmd(Doer, model, S0, S0) :-
 do_metacmd(Doer, mem, S0, S0) :-
  security_of(Doer,admin),
  declared(memories(Doer, Memory), S0),
- player_pprint(Doer, Memory, always),
+ player_pprint(Doer, memories(Doer, Memory), always),
  maybe_pause(Doer).
 do_metacmd(Doer, make, S0, S0) :-
  security_of(Doer,wizard),
