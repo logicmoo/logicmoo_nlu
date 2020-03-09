@@ -201,6 +201,7 @@ type_functor(nv, inst(sv(term))).
 type_functor(nv, name = (sv(text))).  
 type_functor(nv, oper(doing, preconds, postconds)).
 type_functor(nv, =(_Name, _Value)).
+type_functor(nv, emitting(sense,type)).
 % type_functor(nv, domrel=value).
 
 
@@ -259,7 +260,6 @@ type_functor(unk,reverse(on)).
 type_functor(unk,A+2).
 type_functor(unk,no_copy(t)).
 type_functor(unk,mem(A)).
-type_functor(unk,perceptq(A,[])).
 type_functor(unk,with-using:(A/B)).
 type_functor(unk,sv(text)).
 type_functor(unk,child_list(sense,dest,domrel,depth,list(inst))).
@@ -309,10 +309,7 @@ type_functor(unk,believe(A,~{|i7||<state> the C has $VAR 1 to D |})).
 type_functor(unk,updateprop_(A)).
 type_functor(unk,moving_in_dir(A,B,C,D,E,D,F)).
 type_functor(unk,delprop_always_(A)).
-type_functor(unk,s(A)).
-type_functor(unk,a(rock)).
 type_functor(unk,to_upper(A)).
-type_functor(unk,txt(A)).
 type_functor(unk,oper(A,do_nothing(A),[],[])).
 type_functor(unk,step(start,oper(A,do_nothing(A),[],[]))).
 type_functor(unk,add_todo(A,{|i7||<doing> A does goto loc walk pantry |})).
@@ -326,7 +323,13 @@ type_functor(unk,via(exit(A))).
 type_functor(unk,from(place(A))).
 type_functor(unk,does(A)).
 type_functor(unk,actor(A)).
+
 type_functor(unk,cap(subj(actor(A)))).
+type_functor(unk,s(A)).
+type_functor(unk,a(rock)).
+type_functor(unk,to_upper(A)).
+type_functor(unk,txt(A)).
+
 type_functor(unk,msg([cap(subj(actor(A))),does(B),from(place(C)),via(exit(D)),E,to(place(F))])).
 type_functor(unk,leaves(A,B,C)).
 type_functor(unk,notice(A,leaves(B,A,C))).
@@ -381,7 +384,7 @@ type_functor(unk,success(followed_plan(A,B))).
 type_functor(unk,assert_text(A,B)).
 type_functor(unk,assert_text(A)).
 type_functor(unk,eng2log(A)).
-type_functor(unk,type(A,B)).
+type_functor(unk,type(A,B)).            
 type_functor(unk,unknown_push_to_state(A)).
 type_functor(unk,parse_for_kind(state,A,B)).
 type_functor(unk,bprocess_percept(A,B,C)).
@@ -462,7 +465,7 @@ type_functor(unk,after(take,(initial,"You pick the mushroom, neatly cleaving its
 type_functor(unk,die("It was poisoned!")).
 type_functor(unk,eachOf([mushroom,fungus,toadstool])).
 type_functor(unk,'$error'("required config var")).
-type_functor(unk,emitting(see,light)).
+
 type_functor(unk,delprop($self,emitting(see,light))).
 type_functor(unk,single_event([A,B|C])).
 type_functor(unk,need_redraw(A)).
