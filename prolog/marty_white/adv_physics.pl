@@ -42,7 +42,7 @@ related_with_prop(At, Object, Place, Prop, S0) :-
   h(At, Object, Place, S0),
   getprop(Object, Prop, S0).
 
-% getprop(Object, can(open, S0),
+% getprop(Object, can_be(open, S0),
 % \+ getprop(Object, =(open, t), S0).
 
 
@@ -122,8 +122,8 @@ h(touchable, X, Z, S0):-
 h(takeable, X, Z, S0):- 
   h(touchable, X, Z, S0),
   X \= Z, % cant take self
-  \+ getprop(Z,can(move, f)),
-  \+ getprop(Z,can(take, f)),
+  \+ getprop(Z,can_be(move, f)),
+  \+ getprop(Z,can_be(take, f)),
   \+ h(inside, X, Z, S0),  % cant take outer object
   \+ h(held_by, Z, X, S0). % cant take what already have
 

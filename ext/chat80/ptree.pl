@@ -23,14 +23,24 @@
 /* Print term as a tree */
 
 print_tree(T) :-
-   numbervars80(T,111,_),
-   pt0('','',T,0), nl, fail.
-print_tree(_).
+   ignore((numbervars80(T,111,_),
+   pt('','',T,0),nl, fail)).
+
 
 inperent(In,TTs,T,Ts):- 
       TTs=..[In,T,Ts], 
       functor(TTsS,In,2),     
      ((nonvar(T), T=TTsS);(nonvar(Ts), Ts=TTsS)).
+
+pt(In,LC,[T|Ts],I) :- !,
+  tab(I),write('['),
+  I2 is I+2,
+  I1 is I+1,
+   pt0(In,',',T,I1),
+   format(atom(NLC),'  ]~w',[LC]),
+   pt1(In,NLC,Ts,I2),!.
+
+pt(In,LC,TTs,I):- pt0(In,LC,TTs,I),!.
 
 pt0(_,LC,A,I) :-
    as_is(A), !,

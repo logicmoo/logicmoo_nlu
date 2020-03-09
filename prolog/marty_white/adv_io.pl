@@ -40,7 +40,7 @@
  %setup_console/0, 
  setup_console/1,
 
- our_current_portray_level/1,
+ get_current_portray_level/1,
 
  current_error_io/1,set_error/1, redirect_error_to_string/2
    
@@ -131,7 +131,7 @@ bug(_) :- debugging(adv(unknown),YN),!,YN.
 
 term_to_pretty_string(L,LinePrefix,SO):- 
   string_concat("\n",LinePrefix,SC),
-  sformat(S,'~@',[print_reply(L)]), 
+  sformat(S,'~@',[prolog_pprint(L,[])]), 
   split_string(S, "", "\s\t\n", [SS]), 
   replace_in_string("\n",SC,SS,SSS),
   string_concat(LinePrefix,SSS,SO).
@@ -167,33 +167,11 @@ bugout4(_, _, _, _).
 
 pprint(Term, B) :-
  bug(B),
- !,
- player_format('~N~@~N',[our_pretty_printer(Term)]),!.
+ setup_call_cleanup(
+  flag('english',ELevel,ELevel+1), % put a little English on it
+  player_format('~N~@~N',[mu:prolog_pprint(Term,[])]),
+  flag('english',_,ELevel)),!.
 pprint(_, _).
-
-:- use_module(library(logicmoo/portray_vars)).
-
-set_our_portray_level(N):- flag(our_pretty_printer,_,N).
-
-:- set_our_portray_level(1).
-
-our_current_portray_level(Level) :- flag(our_pretty_printer,Was,Was),Was=Level.
-:- export(our_current_portray_level/1).
-
-
-%our_pretty_printer(Term):- !, fmt90(Term).
-our_pretty_printer(Term):- compound(Term),
- \+ \+ setup_call_cleanup( flag(our_pretty_printer,Was,Was+1),
-                     \+ \+ our_prolog_pretty_print(Term),
-                     flag(our_pretty_printer,_,Was)),!.
-% our_pretty_printer(Term):- format(current_output,'~w',[Term]).
-our_pretty_printer(Term):- fmt90(Term),!.
-
-
-
-our_prolog_pretty_print(Term):- 
-  \+ \+ ((portray_vars:pretty_numbervars(Term,Term2),
-      prolog_pretty_print:print_term(Term2, [ output(current_output)]))).
 
 
 :- export(stdio_player/1).
@@ -237,19 +215,6 @@ player_format(Agent,Fmt,List):- must_det(format(Fmt,List)),
  overwrote_prompt(Agent).
 
 
-
-
-:- dynamic user:portray/1.
-:- multifile user:portray/1.
-:- module_transparent user:portray/1.
-user:portray(Logic) :- fail,  
- compound(Logic), 
- our_current_portray_level(Level),
- our_portray_at_level(Level, Logic),!.
-
-our_portray_at_level(Level,Logic):- 
- Level<2,
- our_pretty_printer(Logic).
 
 %user:portray(ItemToPrint) :- print_item_list(ItemToPrint). % called by print.
 
@@ -470,4 +435,5 @@ whsp --> [X], {X<48}.
 :- initialization(setup_console,program).
 
 :- initialization(setup_console,restore).
+
 

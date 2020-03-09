@@ -451,10 +451,9 @@ correct_prop(HPRED, h(FS, X, Y)):- HPRED=..[F, S, X, Y], is_spatial_rel(F), !, F
 correct_prop(HPRED, h(F, X, Y)):- HPRED=..[F, X, Y], is_spatial_rel(F), !.
 correct_prop(          SV, N=V):- SV=..[N, V], single_valued_prop(N), !.
 
-correct_prop( (can_be(Verb)), can(Verb, t)):- nop(check_atom(Verb)).
-correct_prop(~(can_be(Verb)), can(Verb, f)):- nop(check_atom(Verb)).
-correct_prop( (can(Verb)),    can(Verb, t)):- nop(check_atom(Verb)).
-correct_prop(~(can(Verb)),    can(Verb, f)):- nop(check_atom(Verb)).
+correct_prop( (can(Verb)), can_be(Verb, t)):- nop(check_atom(Verb)).
+correct_prop(~(can(Verb)), can_be(Verb, f)):- nop(check_atom(Verb)).
+correct_prop( (can(Verb,TF)),    can_be(Verb, TF)):- nop(check_atom(Verb)).
 correct_prop( (knows_verbs(Verb)), knows_verbs(Verb, t)):- nop(check_atom(Verb)).
 correct_prop(~(knows_verbs(Verb)), knows_verbs(Verb, f)):- nop(check_atom(Verb)).
 correct_prop( (has_rel(Verb)), has_rel(Verb, t)):- nop(check_atom(Verb)).

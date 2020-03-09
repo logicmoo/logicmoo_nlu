@@ -130,7 +130,7 @@ flp_test3(Words0) :-
 	figure_out_action(Words0, Agent, Mem0, Mem2),
 	declare(memories(Agent, Mem2), S1, _S).
 
-flp_test3(Words0) :-
+flp_test3f(Words0) :-
 	get_advstate_fork(S0),
 	undeclare(memories(Agent, Mem0), S0, S1),
 	pprint(Mem0,general),

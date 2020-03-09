@@ -128,7 +128,7 @@ do_introspect(Agent1, recall(Agent, WHQ, Target), Answer, M0) :-
 do_introspect(Agent1, recall(Agent, Target), Answer, M0) :- !,
   do_introspect(Agent1, recall(Agent,what, Target), Answer, M0).
 
-:- set_prolog_flag(debugger_write_options, [quoted(true), portray(true), max_depth(100), attributes(portray)]).
+:- set_prolog_flag(debugger_write_options, [quoted(true), portray(false), max_depth(50), attributes(portray)]).
 
 recall_whereis(_S0,_Self,  _WHQ, There, Answer, ModelData) :-
  findall(Data, (member(Data,ModelData), nonvar_subterm(There, Data)), Memories),

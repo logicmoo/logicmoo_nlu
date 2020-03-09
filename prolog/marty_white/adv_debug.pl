@@ -112,7 +112,7 @@ system_default_debug(YN):-
   reset_prolog_flag(YN, answer_format, '~p', '~q'), 
   reset_prolog_flag(YN, answer_write_options, [quoted(true), portray(true), max_depth(10), spacing(next_argument)], 
    [quoted(true), portray(true), max_depth(4), spacing(next_argument)]), 
-  reset_prolog_flag(YN, debugger_write_options, [quoted(true), portray(true), max_depth(10), attributes(portray), spacing(next_argument)], 
+  reset_prolog_flag(YN, debugger_write_options, [quoted(true), portray(false), max_depth(10), attributes(portray), spacing(next_argument)], 
    [quoted(true), portray(true), max_depth(4), attributes(portray), spacing(next_argument)]), 
   reset_prolog_flag(YN, print_write_options, [portray(true), quoted(true), numbervars(true)], 
    [portray(true), quoted(true), numbervars(true)]), 

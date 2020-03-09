@@ -99,7 +99,8 @@ is_text_mw(Text):- string(Text),!.
 is_text_mw(Text):- atom_contains(Text,' '),!.
 is_text_mw(Text):- name(Text,Codes),last(Codes,L),code_type(L,punct).
 
-is_logic(Logic):- strip_module(Logic,_,Data), compound(Data), is_type_functor(E,Data), E\==eng,!.
+is_logic(Logic):- is_logic(E,Logic), E\==eng, !.
+is_logic(E,Logic):- strip_module(Logic,_,Data), compound(Data), is_type_functor(E,Data).
 
 is_english(Eng):- is_ftVar(Eng),!,fail. 
 is_english([Eng|_]):- !, is_english(Eng).

@@ -304,22 +304,22 @@ aXiom(dig(Agent, Hole, Where, Tool)) ==>>
   % OK, dig the hole.
   declare(h(in, Hole, Where)),
   setprop(Hole, default_rel(in)),
-  setprop(Hole, can(move, f)),
-  setprop(Hole, can(take, f)),
+  setprop(Hole, can_be(move, f)),
+  setprop(Hole, can_be(take, f)),
   declare(h(in, dirt, Where)),
   queue_event(
     [ created(Hole, Where),
       [cap(subj(Agent)), person(dig, digs), 'a', Hole, 'in the', Where, '.']]).
 
 aXiom(eat(Agent, Thing)) ==>>
-  (getprop(Thing, can(eat,t)) -> 
+  (getprop(Thing, can_be(eat,t)) -> 
   (undeclare(h(_, Thing, _)),send_1precept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
   send_1precept(Agent, [failure(eat(Thing)), 'It''s inedible!'])).
 
 
 aXiom(switch(Agent, OnOff, Thing)) ==>>
   will_touch(Agent, Thing),
-  getprop(Thing, can(switched(OnOff), t)),
+  getprop(Thing, can_be(switched(OnOff), t)),
   getprop(Thing, effect(switch(OnOff), Term0)),
   {adv_subst(equivalent, ($(self)), Thing, Term0, Term)},
   call(Term),
@@ -394,7 +394,7 @@ aXiom(true) ==>> [].
 aXiom(switch(Open, Thing)) ==>>
  act_prevented_by(Open, TF),
  will_touch(Agent, Thing),
- %getprop(Thing, can(open),
+ %getprop(Thing, can_be(open),
  %\+ getprop(Thing, =(open, t)),
  Open = open, traverses(Sense, Open)
  %delprop(Thing, =(Open, f)),
@@ -405,7 +405,7 @@ aXiom(switch(Open, Thing)) ==>>
 
 aXiom(switch(OnOff, Thing)) ==>>
  will_touch(Agent, Thing),
- getprop(Thing, can(switch, t)),
+ getprop(Thing, can_be(switch, t)),
  getprop(Thing, effect(switch(OnOff), Term0)),
  adv_subst(equivalent, $self, Thing, Term0, Term),
  call(Term),
@@ -418,7 +418,7 @@ aXiom( Action) ==>> fail,
   action_doer(Action, Agent),
   copy_term(Action,ActionG),
   from_loc(Agent, Here, S0),  
-  % queue_local_event(spatial, [attempting(Agent, Action)], [Here], S0, S1),
+  % queue_local_event(spatial, [attempts(Agent, Action)], [Here], S0, S1),
   act( Action), !,
   queue_local_event([emoted(Agent, aXiom, '*'(Here), ActionG)], [Here], S0, S9).
 */

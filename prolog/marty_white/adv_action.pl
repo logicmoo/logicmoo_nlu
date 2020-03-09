@@ -158,19 +158,18 @@ do_todo(_Agent, S0, S0).
 do_action(Agent, Action, S0, S3) :-
  quietly_must((
  undeclare(memories(Agent, Mem0), S0, S1),
- memorize_doing(Action, Mem0, Mem1),
+ memorize_doing(Agent, Action, Mem0, Mem1),
  declare(memories(Agent, Mem1), S1, S2))),
- set_advstate(S2),
  dmust_tracing(must_act( Action, S2, S3)), !.
 
-memorize_doing(Action, Mem0, Mem0):- has_depth(Action),!.
-memorize_doing(Action, Mem0, Mem2):- 
+memorize_doing(_Agent, Action, Mem0, Mem0):- has_depth(Action),!.
+memorize_doing(Agent, Action, Mem0, Mem2):- 
   copy_term(Action,ActionG),
   mw_numbervars(ActionG,999,_),
   ( has_depth(Action) 
     -> Mem0 = Mem1 ; 
     (thought(timestamp(T0,_OldNow), Mem0), T1 is T0 + 1,clock_time(Now), memorize(timestamp(T1,Now), Mem0, Mem1))), 
-  memorize(attempting(ActionG), Mem1, Mem2).
+  memorize(attempts(Agent, ActionG), Mem1, Mem2).
 
 has_depth(Action):- compound(Action), functor(Action,_,A),arg(A,Action,E),compound(E),E=depth(_),!.
 

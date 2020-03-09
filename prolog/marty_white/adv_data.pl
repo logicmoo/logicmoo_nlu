@@ -96,6 +96,8 @@ type_functor(doing, look(agent)).
 type_functor(doing, examine(agent, optional(sense, see), optional(inst, here), optional(depth, 1))).
 type_functor(event, percept_props(agent, sense, inst, depth, list(nv))).
 
+type_functor(event, time_passes(agent)).
+type_functor(event, attempts(agent,doing)).
 
 type_functor(doing, dig(agent, holetype, prep, dest, inst)).
 type_functor(doing, create(type)).
