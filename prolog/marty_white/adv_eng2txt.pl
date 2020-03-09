@@ -126,7 +126,7 @@ compile_eng(_Context, silent(_Eng), '').
 compile_eng(_Context, extra_verbose_eng(_Eng), '...' ):- debugging(noverbose,true),!.
 compile_eng(Context, extra_verbose_eng(Eng), O ):- 
  compile_eng_txt(Context, Eng, Compiled), 
- format(atom(O)," /* \u001b[31m~w\u001b[0m */ ",[Compiled]), !.
+ format(atom(O),"\u001b[31m~w\u001b[0m",[Compiled]), !.
 %compile_eng(Context, extra_verbose_eng(Eng), '...verbose...'(Compiled) ):- 
 % compile_eng_txt(Context, Eng, Compiled).
 
