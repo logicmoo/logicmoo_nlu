@@ -1,5 +1,9 @@
 
-flatten_ul(NewData,NewDataF):- flatten(NewData,NewDataM),NewData\==NewDataM,!,flatten_ul(NewDataM,NewDataF).
+
+parse_kind(Type,String,Logic):- trace_or_throw(parse_kind(Type,String,Logic)).
+
+flatten_ul(NewData,NewDataF):- var(NewData),!,NewDataF=NewData.
+flatten_ul(NewData,NewDataF):- is_list(NewDataM),flatten(NewData,NewDataM),NewData\==NewDataM,!,flatten_ul(NewDataM,NewDataF).
 flatten_ul([NewData],NewDataF):- !, flatten_ul(NewData,NewDataF).
 flatten_ul(NewData,NewDataF):- NewData=NewDataF.
 
@@ -33,10 +37,11 @@ cleanup_elements( Ctx,Dom,Term):-
 
 i7_term(Ctx, Dom):- dmsg(i7_term(Ctx, Dom)).
 
-i7_syntax_term(TiM, M, Vars, Dict, Dom, i7_term(Out, Term)):-
+i7_syntax_term(TiM, M, Vars, Dict, Dom, i7_term(Out, TermF)):-
   Ctx = v(TiM, M, Vars, Dict),
-  cleanup_elements(Ctx,Dom,Term),
-  cleanup_elements(Ctx,Ctx,Out).
+  copy_term(Ctx:Dom,CtxC:DomC),
+  cleanup_elements(CtxC,DomC,Term),flatten_ul(Term,TermF),
+  cleanup_elements(CtxC,CtxC,Out).
 
 i7_syntax(TiM, M, Content, Vars, Dict, Term):-
     must_be(list, Dict),

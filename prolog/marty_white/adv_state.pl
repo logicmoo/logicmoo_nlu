@@ -406,7 +406,7 @@ update_running(StateInfo):- ignore((get_advstate(S0),!,declare(StateInfo,S0,S1),
 push_to_state(StateInfo):- end_of_list == StateInfo, !.  
 push_to_state(StateInfo):- is_codelist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
 push_to_state(StateInfo):- is_charlist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
-push_to_state(StateInfo):- string(StateInfo), parse_for_kind(state,StateInfo,Logic), push_to_state(Logic).
+push_to_state(StateInfo):- string(StateInfo), parse_kind(state,StateInfo,Logic), push_to_state(Logic).
 push_to_state(StateInfo):- is_list(StateInfo), !, maplist(push_to_state, StateInfo).
 push_to_state(StateInfo):- \+ compound(StateInfo),trace_or_throw(unknown_push_to_state(StateInfo)),!.
 push_to_state(type(Type, Conj)):-  !, push_to_state(props(type(Type), Conj)).

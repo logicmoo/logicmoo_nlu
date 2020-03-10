@@ -3,8 +3,9 @@
 % =================================================================
 
 verb_phrase(Frame, X, Out) --> 
+  dcg_thru_2args(verb_pre_mod(X, Frame), LF, Mid),
   verb_phrase1(Frame, X, LF), 
-  dcg_thru_2args(verb_phrase_post_mod(X, Frame), LF, Out).
+  dcg_thru_2args(verb_phrase_post_mod(X, Frame), Mid, Out).
                                    
 % verb_phrase1(Frame, X, AssnOut) --> verb_phrase1(Frame, X, AssnOut).
 verb_phrase1( Frame, X, ~(LFOut)) --> theText1(not), !, verb_phrase1(Frame, X, LFOut).
@@ -282,7 +283,8 @@ verb_post_mod(X, Frame, LFIn, FLOut) -->  prepositional_phrase(obj(indir), X, Fr
 adverb(X, MProps) --> quietly(adverb1(X, MProps)).
 adverb1(X, MProps) --> named_var_match(startsWith('ADV'), Var, iza(X, Var), MProps).
 adverb1(X, MProps)  -->      theText1(Adv), {adv_lf(X, Adv, MProps)}.
- adv_lf(X, Adv, ISA) :-  fail, %TODO UNDO
+
+ adv_lf(X, Adv, ISA) :-  % fail, %TODO UNDO
    ((    clex_iface:clex_adv(Adv, RAdv, _);
          talkdb:talk_db(_, RAdv, Adv);
         (((parser_chat80:comp_adv_db(Adv);parser_chat80:sup_adv_db(Adv);parser_chat80:adverb_db(Adv))),RAdv=Adv);

@@ -132,7 +132,7 @@ reframed_call(Pred, Text, Logic):-
 
 reframed_call(_Pred, _Self,  [], [], _Mem) :-!.
 reframed_call(Pred,  Self,  Logic, NewLogic, Mem) :- compound(Logic), \+ is_list(Logic), is_logic(Logic),
-  log2eng(Self, Logic, Words), reframed_call(Pred, Self, Words, NewLogic, Mem),!.
+  logic2eng(Self, Logic, Words), reframed_call(Pred, Self, Words, NewLogic, Mem),!.
 reframed_call( Pred,  Self, NonText,   Logic, Mem) :- \+ is_list(NonText), into_text80(NonText, Text), !, reframed_call( Pred,  Self, Text,   Logic, Mem).
 reframed_call( Pred,  Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, reframed_call( Pred,  Self, NonText, Logic, Mem) .
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).

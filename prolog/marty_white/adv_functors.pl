@@ -58,12 +58,19 @@
 % eliminate objs not visalbe, touchable, etc.
 % check preconditions for acting on a candidate object
 
-is_type_functor(Type,Logic):- 
-  strip_module(Logic,_,Term),
+
+is_type_functor(Type,Logic):-
+  strip_module(Logic,M,Term),
+  is_m_type_functor(M,Type,Term).
+
+is_m_type_functor(_,Type,Logic):- var(Logic),!,type_functor(Type,Logic).
+is_m_type_functor(_, _,=(Name, _Value)):- var(Name),!,fail.
+is_m_type_functor(_,Type,Term):-
   compound(Term),
  \+ is_list(Term),
   functor(Term,F,A), !,
   is_type_functor(Type,F,A).
+
 
 is_type_functor(Type,F,A):- 
    functor(Skel,F,A),
@@ -200,7 +207,6 @@ type_functor(nv, default_rel=type).
 type_functor(nv, inst(sv(term))).
 type_functor(nv, name = (sv(text))).  
 type_functor(nv, oper(doing, preconds, postconds)).
-type_functor(nv, =(_Name, _Value)).
 type_functor(nv, emitting(sense,type)).
 % type_functor(nv, domrel=value).
 

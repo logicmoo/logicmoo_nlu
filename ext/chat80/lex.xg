@@ -100,10 +100,10 @@ verb_form(Verb,Tense,Agmt,_Role) ---> theText1(W), {no_repeats(verb_form_db(W,Ve
 %verb_form(Verb,Tense,Agmt,_Role) ---> theTextC(W,VerbPOS,v_db(W,Verb,Tense,Agmt,VerbPOS)).
 
 name(Obj) ---> opt_the, theText80(Name), {no_repeats(name_db(Name,Obj))}.
-name(Obj) ---> opt_the, theText1(W1),theText1(W2), {atomic_list_concat([W1,'_',W2],Name), no_repeats(name_db(Name,Obj))},!.
+name(Obj) ---> opt_the, theText1(W1),theText1(W2), {atomic_list_concat([W1,'_',W2],Name), no_repeats(name_db(Name,Obj))},{!}.
 name(Obj) ---> opt_the, some_var(Obj).
 
-some_var(Obj) ---> opt_the, theText1(?), theText1(VarName), {foc_framevar(VarName,_VarFn,Obj)},!.
+some_var(Obj) ---> opt_the, theText1(?), theText1(VarName), {foc_framevar(VarName,_VarFn,Obj)},{!}.
 % name(Obj) ---> opt_the, theTextC(Name,'ProperNoun',name_db([Name],Obj)).
 
 % covered next int_art (X,pl,quant(same,wh(X))) ---> [how,many].
