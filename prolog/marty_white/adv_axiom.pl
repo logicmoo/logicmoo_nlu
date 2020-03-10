@@ -185,6 +185,7 @@ aXiom(follow_plan(Agent, Name, [])) ==>> !,
   send_1precept(Agent, [success(followed_plan(Agent,Name))]).
 
 aXiom(follow_plan(Agent, Name, [Step|Route])) ==>>
+  % %% update_flp(Agent,Name,Route,Step),
   eVent(Agent,follow_step(Agent, Name, Step)),
   eVent(Agent,follow_plan(Agent, Name, Route)).
 
