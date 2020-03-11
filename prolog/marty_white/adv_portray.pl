@@ -95,6 +95,7 @@ was_simple_english_line_0(_,String):-
  freeze(C, member(C,`\n\r[{?`)),
  \+ member(C,String),!.
 
+% Called from portary and we _might_insert english also we _might_ fail if we are not supposed to do anything
 adv_prolog_portray(Term):- var(Term),!,fail.
 adv_prolog_portray(_   ):- flag('english',0,_),!,fail.
 adv_prolog_portray(Term):- string(Term),!,portray_string(string,Term).

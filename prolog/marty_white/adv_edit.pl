@@ -155,7 +155,7 @@ do_metacmd(Doer, inspect(Self, getprop(Target,NamedProperty)), S0, S0) :-
  player_pprint(Self, DataList, always),
  maybe_pause(Doer).
 
-do_metacmd(Doer, create(Type), S0, S9) :-
+do_metacmd(Doer, rez(Type), S0, S9) :-
  security_of(Doer,wizard),
  must_mw1((mu_current_agent(Agent),
  h(Prep, Agent, Here, S0),
@@ -163,24 +163,22 @@ do_metacmd(Doer, create(Type), S0, S9) :-
  declare(h(Prep, Object, Here), S1, S9),
  player_format('You now see a ~w.~n', [Object]))).
 
-do_metacmd(Doer, destroy(Object), S0, S1) :-
+do_metacmd(Doer, derez(Object), S0, S1) :-
  security_of(Doer,wizard),
  undeclare(h(_, Object, _), S0, S1),
  player_format('It vanishes instantly.~n', []).
-do_metacmd(Doer, AddProp, S0, S1) :-
+
+do_metacmd(Doer, PropCmd, S0, S1) :-
+ action_verb_agent_args(PropCmd, setprop, _, [Object | Args]), Prop =.. Args,
  security_of(Doer,wizard),
- AddProp =.. [setprop, Object | Args],
- Args \= [],
- Prop =.. Args,
  setprop(Object, Prop, S0, S1),
  player_format('Properties of ~p now include ~w~n', [Object, Prop]).
 do_metacmd(Doer, DelProp, S0, S1) :-
- security_of(Doer,wizard),
- DelProp =.. [delprop, Object | Args],
- Args \= [],
- Prop =.. Args,
+ action_verb_agent_args(DelProp, delprop, _, [Object | Args]), Prop =.. Args,
+ security_of(Doer,wizard), 
  delprop(Object, Prop, S0, S1),
  player_format('Deleted.~n', []).
+
 do_metacmd(Doer, properties(Object), S0, S0) :-
  security_of(Doer,wizard),
  (declared(props(Object, PropList), S0);declared(type_props(Object, PropList), S0)),!,

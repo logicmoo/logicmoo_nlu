@@ -172,9 +172,9 @@ user:parse_chat80(Text,Q):-
    try_maybe_p(parser_chat80:qplan,C,Q))).
 */
 
-eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_one_or_zero_arg(Verb), !, 
+eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_one_or_zero_arg(Verb), !,  
   (Args =[A|Text] ->
-     Logic =.. [Verb,A|Text]; 
+     Logic =.. [Verb,[A|Text]]; 
      Logic = Verb).
 
 eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_n_args(Verb), !, 
@@ -286,7 +286,7 @@ parse_cmd(Doer, emote(Doer, Say, Dest, Emoted)) --> [Ask], {ask_to_say(Ask,Say)}
 %parse_cmd(Doer, say(Doer, Emoted)) --> [say], eng2assert_text(Emoted).
 
 parse_cmd( Self,  Logic, [F|Words],[]):-  
-    type_functor(doing, P), P =..[Fun,Ag|_Rest],
+    type_functor(action, P), P =..[Fun, Ag|_Rest],
     same_verb(F,Fun),
     % @TODO start using coerce(...).
     must_maplist(coerce_text_to_args,Words,Args),
@@ -826,7 +826,7 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
  prolog, make, cls, 
  mem, types, props, debug, 
  ls, cd, pwd, 
- useragent, create, delprop, destroy, echo, halt, english,
+ useragent,  echo, halt, english,
  memory, model, properties, state, status, perceptq, help, threads,
  spy, nospy, call,
  rtrace, nortrace, 
@@ -835,7 +835,7 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
 
 verbatum_anon_one_or_zero_arg(N):- current_predicate(N/0).
 
-verbatum_anon_n_args(Verb):- member(Verb, [getprops, setprop, path  %, %whereami, whereis, whoami
+verbatum_anon_n_args(Verb):- member(Verb, [getprops, setprop, path, delprop, rez, derez  %, %whereami, whereis, whoami
  ]).
 
 

@@ -145,14 +145,14 @@ logic2eng(_Context, time_passes(Agent), ['Time passes for',Agent,'']).
 logic2eng(_Context, attempts(Agent,Doing), [anglify(Agent,Agent),'attempts to',anglify(Agent,Doing)]).
 logic2eng( Context, go_dir(Agent,How,Dir), [How,Dir]):- Context=Agent.
 logic2eng(_Context, go_dir(Agent,How,Dir), [Agent,How,Dir]).
-logic2eng(_Context, Doing, [Agent,does,Did|More]):- is_type_functor(doing,Doing),Doing=..[Did,Agent|More].
+logic2eng(_Context, Doing, [Agent,does,Did|More]):- is_type_functor(action,Doing),Doing=..[Did,Agent|More].
 
 logic2eng(_Context, percept(_Agent, How, _, _), ''):- How == know,!.
 
 logic2eng(_Context, percept(_Agent, see, Depth, props(Object,[shape=What])),[]):- 
   (Depth == 1;Depth == 2), atom(Object),atom_contains(Object,What),!.
 
-logic2eng(_Context, percept(Agent, see, Depth, props(Object,[shape=What])),  extra_verbose_eng(percept(Agent, see, Depth, props(Object,[shape=What])))).
+logic2eng(_Context, percept(Agent, see, Depth, props(Object,[shape=What])),  extra_verbose_logic(percept(Agent, see, Depth, props(Object,[has_shape=What])))).
 
 logic2eng(Context,  percept(_Agent, _, _Depth, exit_list(Relation, Here, Exits)), ['Exits',Relation,Here,' are:', ExitText, '\n']):-  list2eng(Context, Exits, ExitText).
 
@@ -166,7 +166,7 @@ logic2eng(Context,  percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby
 logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)), 
  [cap(subj(Agent)), person(Sense, es(Sense)),Prep,Here, ':', SeeText]):-  list2eng(Context, Nearby, SeeText).
                                  
-logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose_eng(notices(Agent,How,Depth,What))):-  Depth=1,
+logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose_logic(notices(Agent,How,Depth,What))):-  Depth=1,
   logic2eng(Context, Info, What).
 
 logic2eng(Context, percept(Agent, How, _, Info), notices(Agent,How, What)):- 

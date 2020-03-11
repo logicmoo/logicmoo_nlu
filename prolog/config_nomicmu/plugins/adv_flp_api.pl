@@ -23,7 +23,7 @@ update_flp(Agent,Name,Plan,Step) :-
 	Agent = 'player~1',
 	(   query_agent(flp,'127.0.0.1',flp_update(0,0,[current(name,Name),current(plan,Plan),current(step,Step)],Result1),Result2) 
           -> true ; true).
-
+                  
 :- defn_state_none(flp_words()).
 flp_words :-
 	flp_words0(Words),

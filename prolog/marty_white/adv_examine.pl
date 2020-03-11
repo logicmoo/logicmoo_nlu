@@ -83,7 +83,6 @@ is_prop_public_at(know,2, eat).
 % debugging
 is_prop_public_at(know,3, inherit).
 is_prop_public_at(know,3, isnt).
-is_prop_public_at(know,3, inheriting).
 is_prop_public_at(know,3, inherited).
 
 is_prop_public_at(know,4, held_by).
