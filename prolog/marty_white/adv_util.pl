@@ -16,6 +16,8 @@
 % Main file.
 %
 */
+:- op(700,xfx, (univ_safe)).
+
 
 % Miscellaneous generic utility predicates.
 
@@ -39,28 +41,28 @@ clock_time(T):- statistics(walltime,[X,_]),T is ('//'(X , 100))/10.
 
 
 :- dynamic(is_state_pred/2).
-is_state_pred(F,N):- atom(F),!,is_state_pred(P,N),functor(P,F,_).
+is_state_pred(F,N):- atom(F),!,is_state_pred(P,N),safe_functor(P,F,_).
 
 defn_state_pred(P,N):- is_state_pred(P,N),!.
 defn_state_pred(P,N):- asserta(is_state_pred(P,N)),
   strip_module(P,M,PP),
-  assertion(compound(PP)),functor(PP,F,A),            
+  assertion(compound(PP)),safe_functor(PP,F,A),            
   ignore(defn_state_pred_wrapper(M,F,A,PP,N)).
 
 defn_state_pred_wrapper(M,F,A,_,0):- 
   assertion(F\==('/')),assertion(F\==('//')),
-  functor(PP,F,A),PP=..[F|Args],
+  safe_functor(PP,F,A),PP univ_safe [F|Args],
   append(Args,[S0,S9],NewArgs),
-  PPS09=..[F|NewArgs],
+  PPS09 univ_safe [F|NewArgs],
   asserta_if_undef(M, PPS09, (M:PP, S0 = S9)).
 
 defn_state_pred_wrapper(M,F,A,_,1):- 
   assertion(F\==('/')),assertion(F\==('//')),
-  functor(PP,F,A),PP=..[F|Args],
+  safe_functor(PP,F,A),PP univ_safe [F|Args],
   append(Args,[S0],NewArgs0),
-  PPS0 =..[F|NewArgs0],
+  PPS0 univ_safe [F|NewArgs0],
   append(Args,[S0,S9],NewArgs09),
-  PPS09 =..[F|NewArgs09],  
+  PPS09 univ_safe [F|NewArgs09],  
   asserta_if_undef(M, PPS09,( M:PPS0, S0 = S9)),
   asserta_if_undef(M, PP, (get_advstate(S0),M:PPS0)).
  
@@ -123,7 +125,7 @@ apply_mapl_rest_state(Front, [E|List], Rest, S0, S2) :-
  apply_state_rest(Front, E, Rest, S0, S1),
  apply_mapl_rest_state(FrontC, List, RestC, S1, S2).
 
-as_rest_list(Rest,RestL):- is_list(Rest)->Rest=RestL;Rest=..[_|RestL].
+as_rest_list(Rest,RestL):- is_list(Rest)->Rest=RestL;Rest univ_safe [_|RestL].
 
 apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest,RestL),
    append(E,RestL,ERestL),append(ERestL,[S0,S1],APPLYARGS),
@@ -132,7 +134,7 @@ apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest,RestL),
 
 append_goal_mw(Goal,List,Call):- 
  notrace((compound_name_arguments(Goal, F, GoalL), 
-  append(GoalL, List, NewGoalL), Call=..[F|NewGoalL])).
+  append(GoalL, List, NewGoalL), Call univ_safe [F|NewGoalL])).
 
  
 
@@ -163,20 +165,20 @@ ignore(Goal,S0,S2):- apply_state(call,ignore(Goal), S0, S2).
 :- meta_predicate with_state(*,0,*,*).
 with_state(S,Goal,S0,S2):- S0=S,call(Goal),S0=S2.
 
-is_state_getter(P):- compound(P),functor(P,F,Am1),A is Am1+1, current_predicate(F/A),!.
-is_state_getter(P):- \+ atom(P),!,compound(P),functor(P,F,_),!,is_state_getter(F).
+is_state_getter(P):- compound(P),safe_functor(P,F,Am1),A is Am1+1, current_predicate(F/A),!.
+is_state_getter(P):- \+ atom(P),!,compound(P),safe_functor(P,F,_),!,is_state_getter(F).
 is_state_getter(F):- is_state_pred(F,1).
 
-is_state_setter(P):- \+ atom(P),!,compound(P),functor(P,F,_),!,is_state_setter(F).
+is_state_setter(P):- \+ atom(P),!,compound(P),safe_functor(P,F,_),!,is_state_setter(F).
 is_state_setter(F):- is_state_pred(F,2).
 
-is_state_meta(P,N):- \+ atom(P),!,compound(P),functor(P,F,_),!,is_state_meta(F,N).
+is_state_meta(P,N):- \+ atom(P),!,compound(P),safe_functor(P,F,_),!,is_state_meta(F,N).
 is_state_meta(rtrace,0).
 is_state_meta(findall,1).
 is_state_meta(dshow_failure,1).
 is_state_meta(dshow_success,1).
 
-is_state_ignorer(P):- \+ atom(P),!,compound(P),functor(P,F,_),!,is_state_ignorer(F).
+is_state_ignorer(P):- \+ atom(P),!,compound(P),safe_functor(P,F,_),!,is_state_ignorer(F).
 is_state_ignorer(F):- is_state_pred(F,1).
 %is_state_ignorer('{}'(term)).
 
@@ -247,7 +249,7 @@ apply_state(Z,Goal, S0, S2) :- is_state_ignorer(Goal),!,call_z(Z,Goal), S0=S2.
 apply_state(Z,Goal, S0, S2) :- is_state_getter(Goal),!,call_z(Z,call(Goal,S0)), S0=S2.
 apply_state(Z,sg(Goal), S0, S2) :- !, call_z(Z,call(Goal,S0)), S0 = S2.
 apply_state(Z,Goal, S0, S2) :- is_state_setter(Goal),!, call_z(Z,call(Goal,S0,S2)),!,notrace(must_output_state(S2)).
-apply_state(Z,Meta, S0, S2) :- is_state_meta(Meta,N), length(Left,N),Meta=..[F|MetaL], !, 
+apply_state(Z,Meta, S0, S2) :- is_state_meta(Meta,N), length(Left,N),Meta univ_safe [F|MetaL], !, 
    append(Left,[Goal|MetaR],MetaL),
    append(Left,[apply_state(Z,Goal, S0, S2)|MetaR],MetaC),
    apply(call(F),MetaC),
@@ -266,7 +268,7 @@ apply_first_arg_state(Arg, Goal, S0, S2) :-
  notrace((compound_name_arguments(Goal, F, GoalL),
  append(GoalL, [S0, S2], NewGoalL),
  must_input_state(S0),
- Call=..[F, Arg|NewGoalL])),
+ Call univ_safe [F, Arg|NewGoalL])),
  must_mw1(Call),
  notrace(must_output_state(S2)).
 
@@ -286,7 +288,7 @@ findterm(Term, [_|Tail]) :- nonvar(Tail),
 findterm(Term, T) :-
  compound(T),
  \+ is_list(T),
- T =.. List,
+ T univ_safe List,
  findterm(Term, List).
 
 user:adv_subst(Prop,Find,Replace,NewProp):- adv_subst(equivalent,Find,Replace,Prop,NewProp).
@@ -331,11 +333,11 @@ adv_subst(BindType, Find, Replace, T0, T) :-
  compound(T0),
  % \+ is_list(T0),
  !,
- T0 =.. [Functor0|Args0],
+ T0 univ_safe [Functor0|Args0],
  adv_subst(BindType, Find, Replace, Functor0, Functor1),
  adv_subst(BindType, Find, Replace, Args0, Args1),
  % If Replacement would cause invalid functor, don't adv_subst.
- ( atom(Functor1) -> T =.. [Functor1|Args1] ; T =.. [Functor0|Args1]).
+ ( atom(Functor1) -> T univ_safe [Functor1|Args1] ; T univ_safe [Functor0|Args1]).
 adv_subst(_BindType, _Find, _Replace, T, T).
 
 % Call adv_subst on T for each Find-Replace pair in the given list.
@@ -359,7 +361,7 @@ uninstantiated([Head|_]) :- uninstantiated(Head).
 uninstantiated([_|List]) :- !, uninstantiated(List).
 uninstantiated(Term) :-
  compound(Term),
- Term =.. [Head | Tail],
+ Term univ_safe [Head | Tail],
  (uninstantiated(Head); uninstantiated(Tail)).
 
 % ground(Term) :- \+ uninstantiated(Term)

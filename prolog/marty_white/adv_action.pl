@@ -92,10 +92,10 @@ subsetof(SpatialVerb1, SpatialVerb2):- compound(SpatialVerb1), compound(SpatialV
  subsetof(Verb1, Verb2),
  subsetof(Arg1, Arg2).
 
-subsetof(SpatialVerb, Verb2):- compound(SpatialVerb), functor(SpatialVerb, Verb, _), !,
+subsetof(SpatialVerb, Verb2):- compound(SpatialVerb), safe_functor(SpatialVerb, Verb, _), !,
  subsetof(Verb, Verb2).
 
-subsetof(Verb, SpatialVerb2):- compound(SpatialVerb2), functor(SpatialVerb2, Verb2, _), !,
+subsetof(Verb, SpatialVerb2):- compound(SpatialVerb2), safe_functor(SpatialVerb2, Verb2, _), !,
  subsetof(Verb, Verb2).
 
 % proper subset - C may not be a subset of itself.
@@ -171,7 +171,7 @@ memorize_doing(Agent, Action, Mem0, Mem2):-
     (thought(timestamp(T0,_OldNow), Mem0), T1 is T0 + 1,clock_time(Now), memorize(timestamp(T1,Now), Mem0, Mem1))), 
   memorize(attempts(Agent, ActionG), Mem1, Mem2).
 
-has_depth(Action):- compound(Action), functor(Action,_,A),arg(A,Action,E),compound(E),E=depth(_),!.
+has_depth(Action):- compound(Action), safe_functor(Action,_,A),arg(A,Action,E),compound(E),E=depth(_),!.
 
 trival_act(V):- \+ callable(V), !, fail.
 trival_act(sub__examine(_,_,_,_,_)).
@@ -330,7 +330,7 @@ add_look(Agent) -->
 
 :- defn_state_none(action_doer(action,-agent)).
 action_doer(Action,Agent):- \+ compound(Action),!, must_mw(mu_current_agent(Agent)),!.
-action_doer(Action,Agent):- functor(Action,Verb,_),verbatum_anon(Verb),mu_current_agent(Agent),!.
+action_doer(Action,Agent):- safe_functor(Action,Verb,_),verbatum_anon(Verb),mu_current_agent(Agent),!.
 action_doer(Action,Agent):- arg(1,Action,Agent), nonvar(Agent), \+ preposition(_,Agent),!.
 action_doer(Action,Agent):- trace,throw(missing(action_doer(Action,Agent))).
 

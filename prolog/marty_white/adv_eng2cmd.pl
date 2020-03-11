@@ -661,7 +661,7 @@ sortDeref(P,PP):- \+ compound(P),!, P=PP.
 %sortDeref(isa(X,Y),visa(X,Y)):-!.
 sortDeref(~(P),PP):-!,sortDeref(P,PP).
 sortDeref(P,PP):- arg(1,P,PP),compound(PP).
-sortDeref(P,PP):- functor(P,F,N),wrapper_funct_sortin(F),arg(N,P,E),!,sortDeref(E,PP).
+sortDeref(P,PP):- safe_functor(P,F,N),wrapper_funct_sortin(F),arg(N,P,E),!,sortDeref(E,PP).
 sortDeref(P,P).
 
 
@@ -688,7 +688,7 @@ frcmp(P1,P2,Cmp):- (\+ compound(P1) ; \+ compound(P2)),!, compare(P1,P2,Cmp).
 frcmp(P2,P1,Cmp):- sortDeref(P1,PP1)->P1\=@=PP1,!,frcmp(P2,PP1,Cmp).
 frcmp(P1,P2,Cmp):- sortDeref(P1,PP1)->P1\=@=PP1,!,frcmp(PP1,P2,Cmp).
 frcmp(P1,P2,Cmp):- N=1,arg(N,P1,F1),arg(N,P2,F2),F1==F2,!,compare(P1,P2,Cmp).
-frcmp(P1,P2,Cmp):- functor(P1,F1,_),functor(P2,F2,_),F1\==F2,compare(F1,F2,Cmp),Cmp \= (=),!.
+frcmp(P1,P2,Cmp):- safe_functor(P1,F1,_),safe_functor(P2,F2,_),F1\==F2,compare(F1,F2,Cmp),Cmp \= (=),!.
 frcmp(P1,P2,Cmp):- arg(N,P1,F1),arg(N,P2,F2),frcmp(F1,F2,Cmp),Cmp \= (=),!.
 frcmp(P1,P2,Cmp):- compare(P1,P2,Cmp).
 %reframed_call( Pred, Doer, [give, Object, to, Recipient], give(Doer, Object, Recipient), _Mem):- !.

@@ -68,12 +68,12 @@ is_m_type_functor(_, _,=(Name, _Value)):- var(Name),!,fail.
 is_m_type_functor(_,Type,Term):-
   compound(Term),
  \+ is_list(Term),
-  functor(Term,F,A), !,
+  safe_functor(Term,F,A), !,
   is_type_functor(Type,F,A).
 
 
 is_type_functor(Type,F,A):- 
-   functor(Skel,F,A),
+   safe_functor(Skel,F,A),
    type_functor(Type,Skel).
 
 %functor_arity_state(F, A):- is_spatial_rel(F).
@@ -213,7 +213,7 @@ type_functor(nv, emitting(sense,type)).
 
 current_mfa(M,F,A,P):- 
   current_predicate(M:F/A),
-  functor(P,F,A),
+  safe_functor(P,F,A),
   \+ predicate_property(M:P, imported_from(_)).
 
 :- dynamic(new_type_functor/3).
@@ -230,7 +230,7 @@ scan_predicate(M,P):- forall(clause(M:P,Body),(scan_functors(P),scan_functors(Bo
 
 scan_functors(Body):- \+ compound(Body),!.
 scan_functors(Body):- compound_name_arity(Body,_,0),!.
-scan_functors(Body):- functor(Body,F,A),  \+ \+ remember_functor(Body,F,A),
+scan_functors(Body):- safe_functor(Body,F,A),  \+ \+ remember_functor(Body,F,A),
   Body=..[_|Args], must_maplist(scan_functors,Args),!.
 
 

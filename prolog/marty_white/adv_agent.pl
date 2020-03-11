@@ -283,7 +283,7 @@ run_agent_pass_2(Agent, S0, S0) :-
 
   
 :- meta_predicate match_functor_or_arg(1,*).
-match_functor_or_arg(Q,P):- compound(P),functor(P,F,_),(call(Q,F)->true;(arg(1,P,E),call(Q,E))),!.
+match_functor_or_arg(Q,P):- compound(P),safe_functor(P,F,_),(call(Q,F)->true;(arg(1,P,E),call(Q,E))),!.
 
  
 % --------

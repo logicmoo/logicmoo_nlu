@@ -69,7 +69,6 @@ adv_pretty_print(Level, Term):- compound(Term),
 adv_pretty_print(_Level, Term):- fmt90(Term),!.
 
 adv_pretty_print_goal(Term,_Options):- adv_prolog_portray(Term),!.
-adv_pretty_print_goal(Term,_Options):- trace,adv_pretty_print(Term).
 
 our_portray_english(Fmt,Logic):-  
  english_codes(Logic,Codes),
@@ -103,8 +102,8 @@ adv_prolog_portray(Term):- \+ compound(Term),!, fail.
 adv_prolog_portray(Term):- is_charlist(Term),!,portray_string(chars,Term).
 adv_prolog_portray(Term):- is_codelist(Term),!,portray_string(codes,Term).
 adv_prolog_portray(Term):- is_list(Term),!,fail,prolog_pprint(Term,[ portray_goal(mu:adv_pretty_print_goal)]).
-%adv_prolog_portray(Term):- functor(Term,i7_term,2),!,display(Term),!.
-adv_prolog_portray(Term):- functor(Term,i7_term,2),!,writeq(Term),!.
+%adv_prolog_portray(Term):- safe_functor(Term,i7_term,2),!,display(Term),!.
+adv_prolog_portray(Term):- safe_functor(Term,i7_term,2),!,writeq(Term),!.
 adv_prolog_portray( A=B):- (var(A);var(B)),!,fail.
 adv_prolog_portray(Term):- is_type_functor(Type,Term),!,
   format(atom(Fmt),'{|i7||<~w> ~~s |}',[Type]),
@@ -127,6 +126,8 @@ portray_string(Type,Term):- current_prolog_flag(double_quotes,Type),format('"~s"
 :- multifile user:portray/1.
 :- module_transparent user:portray/1.
 
-user:portray(Term) :- \+ tracing, adv_prolog_portray(Term),!.
+:- thread_local(t_l:no_english/0).
+
+user:portray(Term) :- \+ tracing, \+ t_l:no_english, adv_prolog_portray(Term),!.
 
 

@@ -136,12 +136,13 @@ term_to_pretty_string(L,LinePrefix,SO):-
   replace_in_string("\n",SC,SS,SSS),
   string_concat(LinePrefix,SSS,SO).
 
-  
+
+:- thread_local(t_l:no_english/0).
 
 bugout1(Fmt) :- 
   \+ \+ 
    ((mu:simplify_dbug(Fmt, FmtS), 
-     term_to_pretty_string(FmtS,"% ",SSS), 
+     locally(t_l:no_english,term_to_pretty_string(FmtS,"% ",SSS)), 
      bugout4("",'~s~n', [SSS], always))).
 
 bugout3(Fmt, DebugDest) :- 

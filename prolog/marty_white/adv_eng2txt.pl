@@ -44,7 +44,7 @@ english_directve(the(_)).
 english_directve(num(_,_,_)).
 english_directve(aux(_)).
 english_directve(silent(_)).
-english_directve(P):- english_suffix(S), functor(P,S,1).
+english_directve(P):- english_suffix(S), safe_functor(P,S,1).
 
 english_suffix(s).
 english_suffix(es).
@@ -144,7 +144,7 @@ compile_eng(Context, s(Word), Textually) :- % TODO make actually plural
  atom(Textual),
  atom_concat(Textual,"s", Textually).
 
-compile_eng(Context, Wordly, Textually) :- functor(Wordly,S,1), english_suffix(S),
+compile_eng(Context, Wordly, Textually) :- safe_functor(Wordly,S,1), english_suffix(S),
  Wordly =..[S, Word],
  compile_eng_txt(Context, Word, Textual),
  atom(Textual), add_suffix(Textual, S, Textually),!.
