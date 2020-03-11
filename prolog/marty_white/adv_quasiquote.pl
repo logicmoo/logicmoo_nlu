@@ -75,6 +75,7 @@ testi7(c) :- Y={|i7(7)|| fooSubj |}, writeln(Y).
 
 :- dynamic(system:i7/4).
 :- module_transparent(system:i7/4).
+:- export(system:i7/4).
 :- mu:import(system:i7/4).
 % so we recognize {|i7(type(Subj))||.... |}
 :- quasi_quotation_syntax(system:i7).

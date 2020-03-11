@@ -335,8 +335,14 @@ action_doer(Action,Agent):- arg(1,Action,Agent), nonvar(Agent), \+ preposition(_
 action_doer(Action,Agent):- trace,throw(missing(action_doer(Action,Agent))).
 
 action_verb_agent_thing(Action, Verb, Agent, Thing):-
-  notrace((compound(Action),Action=..[Verb,Agent|Args], \+ verbatum_anon(Verb))), !,
+  action_verb_agent_args(Action, Verb, Agent, Args),
   (Args=[Thing]->true;Thing=_),!.
+
+action_verb_agent_args(Action, Verb, Agent, Args):- show_failure(get_functor_types(action,Action,Types)),
+  univ_safe(Action,[Verb|Rest]),!,
+  ((Types = [agent|_]) -> Rest = [Agent|Args] ; Args=Rest).
+%action_verb_agent_args(Action, Verb, Agent, Args):-
+% notrace((compound(Action),Action=..[Verb,Agent|Args], \+ verbatum_anon(Verb))), !.
 
 
 

@@ -66,7 +66,7 @@ aXiom((A*->B;C)) ==>> !,
 aXiom((A*->B)) ==>> !,
   (aXiom(A) *-> aXiom(B)).
 
-:- defn_state_getter(eng2log(agent, english, doing)).
+:- defn_state_getter(eng2log(agent, english, action)).
 aXiom(do_english(Agent,English)) ==>>
  eng2log(Agent, English, Action),
  add_todo(Action).
@@ -305,7 +305,7 @@ aXiom(dig(Agent, Hole, Where, Tool)) ==>>
   \+  h(_At, Hole, Where),
   % OK, dig the hole.
   declare(h(in, Hole, Where)),
-  setprop(Hole, default_rel(in)),
+  setprop(Hole, default_rel = in),
   setprop(Hole, can_be(move, f)),
   setprop(Hole, can_be(take, f)),
   declare(h(in, dirt, Where)),
@@ -321,7 +321,7 @@ aXiom(eat(Agent, Thing)) ==>>
 
 aXiom(switch(Agent, OnOff, Thing)) ==>>
   will_touch(Agent, Thing),
-  getprop(Thing, can_be(switched(OnOff), t)),
+  getprop(Thing, can_be(switch(OnOff), t)),
   getprop(Thing, effect(switch(OnOff), Term0)),
   {adv_subst(equivalent, ($(self)), Thing, Term0, Term)},
   call(Term),

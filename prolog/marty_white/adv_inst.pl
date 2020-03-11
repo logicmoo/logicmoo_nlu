@@ -156,8 +156,9 @@ create_objprop(_Why, Object, Prop, S0, S2):-
 
 
 create_missing_instances(S0,S2):- 
- gensym('~',Sym),
- create_instances(Sym,S0,S0,S0,S2).
+ %gensym('~',Sym),
+ Sym='~1',
+ create_instances(Sym,S0,S0,S0,S2),!.
 
 may_contain_insts(h).
 % may_contain_insts(holds_at).
