@@ -30,6 +30,8 @@ syntaxify_slots(or(isa(X,Y),Z),np(X),np(X,[or(isa(X,Y),Z)])).
 syntaxify_slots(or(isa(X,Y),Z),np(X,L),np(X,[or(isa(X,Y),Z)|L])).
 syntaxify_slots(_,X,X).
 
+into_lf(X,X).
+
 varify_frames:- 
  ((Cl = 
    (verbnet_frame(N1,N2,L,A1,A2,B,Frame):-

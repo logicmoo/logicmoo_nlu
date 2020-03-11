@@ -31,11 +31,11 @@ print_reply(C,O):- notrace(((is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[p
 
 
 irc_cmd:irc_invoke_e2c(Channel,Agent,_Say,Args):- 
- irc_process(Channel,Agent,   
+ eggdrop:irc_process(Channel,Agent,   
    e2c(Args)).
 
 irc_cmd:irc_invoke_nlp(Channel,Agent,_Say,Args):- 
- irc_process(Channel,Agent,irc_e2c(Args)).
+ eggdrop:irc_process(Channel,Agent,irc_e2c(Args)).
 
 irc_e2c(Args):- e2c(Args, Out),print_reply(Out).
 

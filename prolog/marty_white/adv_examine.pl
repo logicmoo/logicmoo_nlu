@@ -102,11 +102,11 @@ is_prop_public_at(action,5, before).
 is_prop_public_at(action,5, breaks_into).
 is_prop_public_at(action,5, oper).
 is_prop_public_at(action,5, cant_go).
-is_prop_public_at(_, N, P):- var(N), compound(P), functor(P,F,_), is_prop_public_at(action, 5, F), !, N = 5.
+is_prop_public_at(_, N, P):- var(N), compound(P), safe_functor(P,F,_), is_prop_public_at(action, 5, F), !, N = 5.
 
 is_prop_public_at(_,_, P):- \+ compound(P), !, fail.
 is_prop_public_at(S,N, F = _):- !, is_prop_public_at(S, N, F).
-is_prop_public_at(S,N, P):- functor(P,F,_), is_prop_public_at(S, N, F).
+is_prop_public_at(S,N, P):- safe_functor(P,F,_), is_prop_public_at(S, N, F).
 is_prop_public_at(S,N, P) :- arg(1, P, F), is_prop_public_at(S, N, F).
 
 object_props(Object, Sense, PropDepth, PropList, S0):- 

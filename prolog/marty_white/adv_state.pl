@@ -135,8 +135,8 @@ declare_list(Fact, State, NewState) :- assertion(compound(Fact)),assertion(var(N
 declare_list((Fact1,Fact2), State, NewState) :- !,declare_list(Fact1, State, MidState),declare_list(Fact2, MidState, NewState).
 declare_list([Fact1|Fact2], State, NewState) :- !,declare_list(Fact1, State, MidState),declare_list(Fact2, MidState, NewState).
 declare_list(HasList, State, [NewFront|NewState]) :- 
-  functor(HasList,F,A), arg(A,HasList,PropList),is_list(PropList),
-  functor(Functor,F,A), \+ \+ type_functor(state,Functor),
+  safe_functor(HasList,F,A), arg(A,HasList,PropList),is_list(PropList),
+  safe_functor(Functor,F,A), \+ \+ type_functor(state,Functor),
   arg(1,HasList,Object), arg(1,Functor,Object),
   select_from(Functor,State,NewState),!,
   arg(A,Functor,OldPropList),assertion(is_list(OldPropList)),
@@ -299,7 +299,7 @@ setprop(Object, Prop, S0, S2) :- notrace((correct_props(Object,Prop,PropList), e
 setprop_(Object, Prop, S0, S2) :-  
  direct_props_or(Object, PropList, [], S0),
  undeclare_always(props(Object, _), S0, S1),
- functor(Prop,F,A),
+ safe_functor(Prop,F,A),
  duplicate_term(Prop,Old),
  nb_setarg(A,Old,_),
  (select_from(Old, PropList, PropList2) ->
@@ -322,7 +322,7 @@ updateprop_(Object, Prop, S0, S2) :-
  updateprop_1(Object, Prop, PropList, S1, S2))).
 
 updateprop_1(Object, Prop, PropList, S0, S2) :-
- functor(Prop,F,A),
+ safe_functor(Prop,F,A),
  duplicate_term(Prop,Old),
  nb_setarg(A,Old,_),
 
@@ -384,7 +384,7 @@ single_valued_prop(volume).
 :- export(is_state_info/1).
 
 is_state_info(StateInfo):- \+ compound(StateInfo), !, fail.
-is_state_info(StateInfo):- functor(StateInfo, F, A),
+is_state_info(StateInfo):- safe_functor(StateInfo, F, A),
    (functor_arity_state(F, A)->true; (A>2, functor_arity_state(F, 2))).
 
 
@@ -406,7 +406,7 @@ update_running(StateInfo):- ignore((get_advstate(S0),!,declare(StateInfo,S0,S1),
 push_to_state(StateInfo):- end_of_list == StateInfo, !.  
 push_to_state(StateInfo):- is_codelist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
 push_to_state(StateInfo):- is_charlist(StateInfo),any_to_string(StateInfo,SStateInfo),!,push_to_state(SStateInfo).
-push_to_state(StateInfo):- string(StateInfo), parse_for_kind(state,StateInfo,Logic), push_to_state(Logic).
+push_to_state(StateInfo):- string(StateInfo), parse_kind(state,StateInfo,Logic), push_to_state(Logic).
 push_to_state(StateInfo):- is_list(StateInfo), !, maplist(push_to_state, StateInfo).
 push_to_state(StateInfo):- \+ compound(StateInfo),trace_or_throw(unknown_push_to_state(StateInfo)),!.
 push_to_state(type(Type, Conj)):-  !, push_to_state(props(type(Type), Conj)).

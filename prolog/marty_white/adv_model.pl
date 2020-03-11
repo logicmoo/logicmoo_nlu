@@ -199,7 +199,7 @@ update_model(Agent, Percept, Timestamp, _Memory, M, M):-
 
 well_remembered(none).
 
-maybe_remember(Percept, M0, M0):- functor(Percept,F,_),well_remembered(F),!.
+maybe_remember(Percept, M0, M0):- safe_functor(Percept,F,_),well_remembered(F),!.
 %maybe_remember(percept_props(Whom,see,What,Depth,_List),M0,M1):- maybe_remember(percept_props(Whom,see,WhatDepth,),M0,M1),!.
 maybe_remember(Percept, M0, M1):- append([Percept], M0, M1).
 

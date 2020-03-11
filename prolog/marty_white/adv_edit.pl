@@ -28,7 +28,7 @@
 printable_state(S,S).
 
 
-include_functor(List,P):- compound(P),functor(P,F,_),member(F,List),!.
+include_functor(List,P):- compound(P),safe_functor(P,F,_),member(F,List),!.
 
 % do_metacmd(Doer, Action, S0, S1)
 :- add_help(quit,"Quits the game.").
