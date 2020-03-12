@@ -38,6 +38,21 @@
  op(300,fx,'-').
 
 
+:- discontiguous(test_e2c/2).
+:- export(test_e2c/2).
+:- multifile(test_e2c/2).
+:- dynamic(test_e2c/2).
+:- system:import(test_e2c/2).
+:- parser_all:import(test_e2c/2).
+
+
+:- discontiguous(test_e2c/1).
+:- export(test_e2c/1).
+:- multifile(test_e2c/1).
+:- dynamic(test_e2c/1).
+:- system:import(test_e2c/1).
+:- parser_all:import(test_e2c/1).
+
 :- op(50, xfx, +).
 :- op(1200, xfx, -->).
 :- op(100, fx, '`').
@@ -131,11 +146,12 @@ is_testing_e2c(S, Traits, Type1-Type2):- !,
 run_e2c_test(S, _T):- e2c(S).
 
 
+:- export(test_e2c/1).
+:- export(test_e2c/2).
 test_e2c(String) :- string(String), !, run_e2c_test(String, [requested]).
 test_e2c(TestTypes) :- 
   forall((test_e2c(S,T), is_testing_e2c(S, T, TestTypes)), 
          (flatten([T, TestTypes],TestInfo), run_e2c_test(S, TestInfo))).
-:- system:import(test_e2c/1).
 
 
 
@@ -143,10 +159,6 @@ test_e2c(TestTypes) :-
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
-:- discontiguous(test_e2c/2).
-:- export(test_e2c/2).
-:- multifile(test_e2c/2).
-:- dynamic(test_e2c/2).
 
 % sanity = ran as a sanity test
 % regression = ran as regression test

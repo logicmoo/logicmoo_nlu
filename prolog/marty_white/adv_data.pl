@@ -125,7 +125,7 @@ in(brklamp, garden)
 ]).
 
 
-mu:term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_state_info(StateInfo),PosO=Pos.
+term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_state_info(StateInfo),PosO=Pos.
 
 %:- listing(term_expansion).
 

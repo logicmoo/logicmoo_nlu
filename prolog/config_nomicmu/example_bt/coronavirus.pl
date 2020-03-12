@@ -1,7 +1,7 @@
 daily(Person) ==>>
   (   has_symptoms_of_covid19(Person) ->
       (  begin(Person,treatment_of_covid19),
-    asserta(k(Person,has_illness,covid19))) ;
+    asserta(k(has_illness,Person,covid19))) ;
       true).
 
 daily(Person) ==>>

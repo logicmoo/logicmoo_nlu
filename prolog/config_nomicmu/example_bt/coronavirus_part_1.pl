@@ -49,7 +49,7 @@ household_has_members(Household,HouseholdMembers) ==>> cwc,
 
 %%% You should base the details of your household plan on the needs and daily routine of your household members.
 
-:- discontiguous(create_a_household_plan/1).
+:- discontiguous(create_a_household_plan/3).
 
 %%% Talk with the people who need to be included in your plan.
 create_a_household_plan(Household) ==>> cwc,

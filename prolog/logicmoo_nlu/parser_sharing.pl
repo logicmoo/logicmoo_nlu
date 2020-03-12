@@ -333,8 +333,8 @@ try_maybe_p(M:F,X,R):- P=..[F,X,R],!,try_maybe_f(F,M:P,R).
 
 try_maybe_f(F,P,R):- P*->true;(fail;fail;R=error(F,P)).
 
-:- multifile(parser_sharing:term_expansion/4).
-:- dynamic(parser_sharing:term_expansion/4).
-parser_sharing:term_expansion(G,I,GG,O):- notrace((nonvar(I),compound(G))),importing_clause_change(G,GG), I=O.
+%:- multifile(system:term_expansion/4).
+%:- dynamic(system:term_expansion/4).
+% system:term_expansion(G,I,GG,O):- notrace((nonvar(I),compound(G))),importing_clause_change(G,GG), I=O.
 
 :- fixup_exports.

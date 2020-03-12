@@ -13,7 +13,7 @@
 
 
 % ==============================================================================
-:- use_module(library(logicmoo_nlu/parser_sharing),except([term_expansion/4])).
+:- use_module(library(logicmoo_nlu/parser_sharing)).
 :- shared_parser_data(talkdb:talk_db/3).
 
 :- absolute_file_name(logicmoo_nlu_ext('ape'),Dir,[file_type(directory)]),

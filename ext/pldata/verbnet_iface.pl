@@ -144,7 +144,7 @@ ppfs(_):-!.
 set_themerole_vars(V,Props):- nb_setval(themerole_vars, []),nb_setval(themerole_props, Props), extend_themerole_vars(V).
 get_themerole_vars(V,Props):- nb_current(themerole_vars, V),nb_getval(themerole_props, Props).
 
-extend_themerole_vars(X):- must_maplist(into_var,X,XX),must_maplist(add_var,XX).
+extend_themerole_vars(X):- must_maplist(into_var,X,XX),must_maplist(add_var_vn,XX).
 
 print_themeroles(ID,P):- 
    must(get_themerole_vars(X,Y)),
@@ -157,7 +157,7 @@ rewrite_sem(STUFF,STUFFY):- is_list(STUFF),!, must_maplist(rewrite_sem,STUFF,STU
 rewrite_sem(STUFF,STUFF):- \+ compound(STUFF),!.
 rewrite_sem(STUFF,STUFFY):- STUFF=..List,must_maplist(rewrite_sem,List,ListO),STUFFY=..ListO.
 
-into_var('ThemRole':V,V):-atom(V),!,add_var(V).
+into_var('ThemRole':V,V):-atom(V),!,add_var_vn(V).
 into_var(verb(X,Y),verb(X,Y)):-!.
 into_var('VerbSpecific',verb(ID,'VerbSpecific')):- nb_current(verbnet_id,ID),nb_current('$frame_VERB',true).
 %into_var('VerbSpecific',verb(ID,'VerbSpecific')):- nb_current(verbnet_id,ID),nb_current('$frame_VERB',true).
@@ -176,11 +176,11 @@ de_to_d_e(DE,D,P,E):- atom_to_term(DE,T,Vars),compound(T),must(de_to_d_e(DE,T,Va
 de_to_d_e(_DE,FA,[EVar=A],EVar,EVar,P):-FA=..[during,A],!,P=true.
 de_to_d_e(_DE,FA,[EVar=A],EVar,E,P):-FA=..[F,A],!,
   toPropercase(F,FP),
-  atom_concat(FP,EVar,E),add_var(EVar),add_var(E),P=..[F,EVar,E].
+  atom_concat(FP,EVar,E),add_var_vn(EVar),add_var_vn(E),P=..[F,EVar,E].
 
-add_var('$FVAR'(X)):- !, add_var(X).
-add_var('$VAR'(X)):- !, add_var(X).
-add_var(X):- trim_varname(X,XX), extend_val(themerole_vars,XX).
+add_var_vn('$FVAR'(X)):- !, add_var_vn(X).
+add_var_vn('$VAR'(X)):- !, add_var_vn(X).
+add_var_vn(X):- trim_varname(X,XX), extend_val(themerole_vars,XX).
 
 
 make_conjs(X,XX,OrProps):- is_list(XX),!,  
@@ -202,7 +202,7 @@ correct_type(XX,XXX):- atom_contains(XX,"_"),!,XXX=XX.
 correct_type(XX,XX):-!.
 
 
-add_var_prop(X,XX):- trim_varname(X,V),add_var(V),add_var_prop_0(V,XX).
+add_var_prop(X,XX):- trim_varname(X,V),add_var_vn(V),add_var_prop_0(V,XX).
 add_var_prop_0(X,XX):- is_list(XX),!,must_maplist(add_var_prop_0(X),XX).
 add_var_prop_0(_,XX):- XX==true,!.
 add_var_prop_0(X,XX):- make_conjs(X,XX,OrProps),extend_val(themerole_props,OrProps).
@@ -362,27 +362,27 @@ simplify_sem(element('ARG',[type=T,value=V],MORE),'$$$$$$$$$$$$$$  XXXXXXXXXXXXX
 simplify_sem(element('PRED',[bool=(!)|More],ARGS),~(P)):- !, simplify_sem(element('PRED',More,ARGS),P).
 
 simplify_sem(element('PRED',[value='Pred'],[args(ARGS)]),P):- 
-  Cause = 'Pred',add_var(Cause),add_var_prop(Cause,'$VERB'),
+  Cause = 'Pred',add_var_vn(Cause),add_var_prop(Cause,'$VERB'),
   nb_setval('$frame_Pred',Cause),
   P=..[holds,Cause|ARGS],!,
   length(ARGS,A),assert_if_new(vndata:verbnet_pred(Cause,A)).
 
 
 simplify_sem(element('PRED',[value='Adv'],[args(ARGS)]),P):- 
-  Cause = 'Adv',add_var(Cause),add_var_prop(Cause,'$ADV'),
+  Cause = 'Adv',add_var_vn(Cause),add_var_prop(Cause,'$ADV'),
   nb_setval('$frame_Pred',Cause),
   P=..[holds,Cause|ARGS],!,
   length(ARGS,A),assert_if_new(vndata:verbnet_pred(Cause,A)).
 
 simplify_sem(element('PRED',[value='Prep'],[args(ARGS)]),P):- 
-  Cause = 'Prep',add_var(Cause),add_var_prop(Cause,'$PREP'),
+  Cause = 'Prep',add_var_vn(Cause),add_var_prop(Cause,'$PREP'),
   nb_setval('$frame_Pred',Cause),
   P=..[holds,Cause|ARGS],!,
   length(ARGS,A),assert_if_new(vndata:verbnet_pred(Cause,A)).
 
 
 simplify_sem(element('PRED',[value='Adj'],[args(ARGS)]),P):- 
-  Cause = 'Adj',add_var(Cause),add_var_prop(Cause,'$ADJ'),
+  Cause = 'Adj',add_var_vn(Cause),add_var_prop(Cause,'$ADJ'),
   nb_setval('$frame_Pred',Cause),
   P=..[holds,Cause|ARGS],!,
   length(ARGS,A),assert_if_new(vndata:verbnet_pred(Cause,A)).
@@ -425,7 +425,7 @@ simplify_syn([np(Theme-[])|More],[np(Theme)|MoreO]):- simplify_syn(More,MoreO).
 simplify_syn([np(Theme-Types)|More],[np(Theme,Types)|MoreO]):- simplify_syn(More,MoreO).
 
 % simplify_syn(STUFF,STUFFY):- is_list(STUFF),!, must_maplist(simplify_syn,STUFF,STUFFY).
-simplify_syn([[LOC]|T],TT):- is_list(LOC), !, simplify_syn([prep('Prep',LOC)|T],TT),add_var('Prep').
+simplify_syn([[LOC]|T],TT):- is_list(LOC), !, simplify_syn([prep('Prep',LOC)|T],TT),add_var_vn('Prep').
 simplify_syn([H|T],[HH|TT]):- !, simplify_syn(H,HH),simplify_syn(T,TT).
 
 

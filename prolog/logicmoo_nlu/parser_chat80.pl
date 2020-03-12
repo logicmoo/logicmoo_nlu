@@ -44,7 +44,7 @@
 %:- use_module(pldata(clex_iface)).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
 
-:- use_module(library(logicmoo_nlu/parser_sharing),except([term_expansion/4])).
+:- use_module(library(logicmoo_nlu/parser_sharing)).
 :- use_module(library(pfc_lib)).
 
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
