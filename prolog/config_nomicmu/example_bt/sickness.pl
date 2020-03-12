@@ -5,13 +5,16 @@ declare_a_sick_day ==>>
   treat_sickness.
 
 treat_sickness ==>>
-     treat_cold ; true_flu.
+     treat_cold ; treat_flu.
 
 treat_cold ==>>
   has_cold,
   drink_emergen_c_packet,
   schedule_meal_chicken_soup,
   schedule_nap.
+
+treat_flu ==>>
+  true.
 
 must_cough_or_sneeze ==>>
   covert_cough_or_sneeze_with_with_a_tissue,

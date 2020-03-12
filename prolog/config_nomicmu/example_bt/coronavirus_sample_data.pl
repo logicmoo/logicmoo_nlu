@@ -19,3 +19,5 @@ has_underlying_chronic_health_condition(bobGoulda).
 age(timSmith,45).
 age(elaineSmith,50).
 age(jessicaMasterman,60).
+
+%% types(room,cleaningSpray,cleaningWipe,bathroom,householdItem,gloves,facemask,person,quarter,shoppingBags).

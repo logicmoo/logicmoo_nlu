@@ -6,10 +6,32 @@
 % %% https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/marty_white/adv_implies.pl
 
 daily(Person) ==>>
-  (   has_symptoms_of_covid19(Person) ->
-      (  begin(Person,treatment_of_covid19),
-    asserta(k(has_illness,Person,covid19))) ;
-      true).
+  not(h(has_illness,Person,covid19)),
+  self_check_for_covid19_symptoms(Person).
+
+self_check_for_covid19_symptoms(Person) ==>
+  (   self_check_for_covid19_symptoms_is_positive(Person) ->
+      (
+       declare(h(needs_to_be_tested,Person,covid19)),
+       get_tested_for_covid19(Person),
+       patient_under_investigation(Person)
+      )).
+
+daily(Person) ==>>
+  not(h(has_illness,Person,covid19)),
+  true.
+
+get_tested_for_covid19(SymptomaticPerson)  ==>>
+  h(needs_to_be_tested,SymptomaticPerson,covid19),
+  (   tests_positive_for_covid19(SymptomaticPerson) ->
+      (
+       declare(h(has_illness,SymptomaticPerson,covid19)),
+       undeclare(h(needs_to_be_tested,SymptomaticPerson,covid19)),
+       patient_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson)
+      ) ;
+      (
+       undeclare(h(needs_to_be_tested,SymptomaticPerson,covid19))
+      )).
 
 daily(Person) ==>>
   has_household(Person,Household),
@@ -27,14 +49,15 @@ sanitize_enviornment(Household) ==>>
   ensure(clean_any_surfaces_that_may_have_blood__stool__or_body_fluids_on_them(Household)).
 
 clean_all__high_touch__surfaces(Household) ==>>
-  random(Person,has_household(Person,Household)),
+  household_has_members(Household,HouseholdMembers),
+  choose_one(Person,HouseholdMembers),
   member(SurfaceType,[counter,tabletop,doorknob,bathroom_fixtures,toilet,phone,keyboard,tablet,bedsideTable]),
   in(Surface,Household),
   isa(Surface,SurfaceType),
   sanitize_surface(Person,Surface).
 
 sanitize_surface(Person,Surface) ==>>
-  ensure(wearing_gloves(Person,_Gloves)),
+ensure(wearing_gloves(Person,_Gloves)),
   in(Surface,Room),
   isa(Room,room),
   ensure(well_ventilated(Room)),
@@ -46,13 +69,29 @@ sanitize_surface(Person,Surface) ==>>
 (wake_up) ==>>
   (   infectious_disease_outbreak -> grab_tissues).
 
-has_symptoms_of_covid19(Person) ==>>
-  (   check_temperature(Person,Temperature) ->
-      Temperature > 101.7 ;
-      true
-      ),
-  not(forall(has_symptom(covid19,Symptom),
-       not(has_symptom(Person,Symptom)))).
+self_check_for_covid19_symptoms_is_positive(Person) ==>>
+  check_temperature_fahrenheit(Person,Temperature),
+  sources([s(d('https://www.cdc.gov/coronavirus/2019-ncov/downloads/COVID-19_CAREKit_ENG.pdf'),s([56]))]),
+  (   Temperature > 100.4 ->
+      (
+       declare(h(has_illness,Person,fever)),
+       declare(h(is_symptomatic,Person,covid19))
+      )).
+
+self_check_for_covid19_symptoms_is_positive(Person) ==>>
+	not(forall(isa(Symptom,covid19Symptom),not(has_symptom(Person,Symptom)))).
+
+check_temperature_fahrenheit(Person,Temperature) ==>>
+	sources([s(d('https://www.cdc.gov/coronavirus/2019-ncov/downloads/COVID-19_CAREKit_ENG.pdf'),s([56]))]),
+	ensure_not('Have you exercised in the last 30 minutes?'),
+	ensure_not('Have you taken medication that can lower your temperature in the last 6 hours?'),
+	
+are([acetaminophen,paracetamol,aspirin],medicationThatCanLowerYourTemperature).
+
+ensure_not(Question) ==>>
+	ask_user(Person,Question,Result),
+	Result = yes.
+
 
 patient_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson) ==>>
   patient_either_under_investigation_or_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson).

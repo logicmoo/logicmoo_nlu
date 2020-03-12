@@ -7,7 +7,7 @@
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
-% Feb 20,2020 - Andrew Daughtery
+% Feb 20,2020 - Andrew Dougherty
 % Copyright (C) 2004 Marty White under the GNU GPL 
 % Sept 20,1999 - Douglas Miles
 % July 10,1996 - John Eikenberry 
