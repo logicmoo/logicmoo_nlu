@@ -50,6 +50,8 @@ extra :- true. % Fuller, but questionable if needed yet.
 :- ensure_loaded(adv_inst).
 :- ensure_loaded(adv_edit).
 
+:- ensure_loaded(adv_behavior_tree).
+
 :- ensure_loaded(adv_axiom).
 :- ensure_loaded(adv_implies).
 

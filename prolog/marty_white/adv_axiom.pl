@@ -1,20 +1,23 @@
+/*
+% NomicMUD: A MUD server written in Prolog
+% Maintainer: Douglas Miles
+% Dec 13, 2035
+%
+% Bits and pieces:
+%
+% LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
+% 
+% Feb 20,2020 - Andrew Daughtery
+% Copyright (C) 2004 Marty White under the GNU GPL 
+% Sept 20,1999 - Douglas Miles
+% July 10,1996 - John Eikenberry 
+%
+% Logicmoo Project changes:
+%
+%
+*/
 
-:- op(1200,xfy, ('==>>')).
-:- op(1200,xfy, ('::=')).
-                   
-term_expansion((H ::= B), (H:-B)):- 
-  assert(was_axiom((H ::= B))).
 
-term_expansion((H ==>> B), Out):- 
-  dcg_translate_rule((H-->B),Out),
-  assert(was_axiom((H ==>> B))).
-                   
-:- dynamic (aXiom//1, eVent//2
-   ).
-:- multifile (aXiom//1, eVent//2
-   ).
-:- discontiguous aXiom//1.
-:- discontiguous eVent//2.
  
 will_touch(Agent,Thing) ==>>
   h(touchable, Agent,Thing).
@@ -53,18 +56,6 @@ aXiom( Action) ==>>
  (((sg(member(failed(Why))),send_1precept(Agent, failed(Action,Why))))
     ; (satisfy_each(postCond(_),Postconds),send_1precept(Agent, success(Action)))),!.
 
-aXiom((A,B)) ==>> !,
-  aXiom(A), aXiom(B).
-aXiom((A;B)) ==>> !,
-  aXiom(A) ; aXiom(B).
-aXiom((A->B;C)) ==>> !,
-  (aXiom(A) -> aXiom(B) ; aXiom(C)).
-aXiom((A->B)) ==>> !,
-  (aXiom(A) -> aXiom(B)).
-aXiom((A*->B;C)) ==>> !,
-  (aXiom(A) *-> aXiom(B) ; aXiom(C)).
-aXiom((A*->B)) ==>> !,
-  (aXiom(A) *-> aXiom(B)).
 
 :- defn_state_getter(eng2log(agent, english, action)).
 aXiom(do_english(Agent,English)) ==>>
@@ -389,6 +380,20 @@ aXiom(Action, S0, S9) ::=
 
 
 aXiom(true) ==>> [].
+/*
+aXiom((A,B)) ==>> !,
+  aXiom(A), aXiom(B).
+aXiom((A;B)) ==>> !,
+  aXiom(A) ; aXiom(B).
+aXiom((A->B;C)) ==>> !,
+  (aXiom(A) -> aXiom(B) ; aXiom(C)).
+aXiom((A->B)) ==>> !,
+  (aXiom(A) -> aXiom(B)).
+aXiom((A*->B;C)) ==>> !,
+  (aXiom(A) *-> aXiom(B) ; aXiom(C)).
+aXiom((A*->B)) ==>> !,
+  (aXiom(A) *-> aXiom(B)).
+*/
 
 
 /*
