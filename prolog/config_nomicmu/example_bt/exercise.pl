@@ -1,4 +1,9 @@
 
+rest_dur(N) ==> {N<0},!.
+rest_dur(N) ==>> {N>0, N2 is N-1}, rest_one_second,rest_dur(N2).
+
+rest_one_second ==> add_todo(wait($self)).
+  
 
 do_exercises ==>>
   exercise_upper_body,
@@ -7,7 +12,7 @@ do_exercises ==>>
   skip_a_day,
   exercise_upper_body,
   skip_a_day,
-  exercise_lower_body,
+  exercise_lower_body
   .
 
 exercise_upper_body ==>>
@@ -31,17 +36,17 @@ post_exercise_routine ==>>
   .
 
 wait_between_30_mins_and_two_hours ==>> 
-  {dur 1800},
-  {dur 3600},
-  {dur 5400},
-  {dur 7200}
-  .
+  rest_dur(1800);
+  rest_dur(3600);
+  rest_dur(5400);
+  rest_dur(7200).
+  
 
 have_decent_meal_of_nutritious_food ==>>
   ensure_eat_20_grams_of_protein_and_ensure_40_grams_of_carbohydrates
   .
 
-ensure_eat_20_grams_of_protein_and_ensure_40_grams_of_carbohydrates ~?
+ensure_eat_20_grams_of_protein_and_ensure_40_grams_of_carbohydrates ==>>
   eat_bowl_of_oatmeal_and_a_couple_of_scrambled_eggs,
   eat_ham_sandwich,
   eat_gatorade_bar
@@ -75,6 +80,7 @@ do_3_to_5_sets_of_8_to_12_reps ==>>
   optional_set_of_8_to_12,
   rest_30_to_120_seconds,
   optional_set_of_8_to_12
+  .
 
 set_of_8_to_12 ==>>
   do_rep,
@@ -84,19 +90,18 @@ set_of_8_to_12 ==>>
   do_rep,
   do_rep,
   do_rep,
-  do_rep
+  do_rep,
   optional_do_rep,
   optional_do_rep,
   optional_do_rep,
   optional_do_rep
   .
   
-rest_30_to_120_seconds ~?
-  {dur 30},
-  {dur 60},
-  {dur 90},
-  {dur 120}
-  .
+rest_30_to_120_seconds ==>>
+  rest_dur(30);
+  rest_dur(60);
+  rest_dur(90);
+  rest_dur(120).
 
 exercise_lower_body ==>>
   pre_exercise_routine,
@@ -137,7 +142,7 @@ do_4_to_6_sets_of_4_to_6_reps ==>>
   optional_set_of_4_to_6_reps
   .
 
-rest_120_seconds dur 120.
+rest_120_seconds ==>> rest_dur(120).
 
 set_of_4_to_6_reps ==>>
   do_rep,

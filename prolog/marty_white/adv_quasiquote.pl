@@ -60,6 +60,8 @@ i7_syntax(TiM, M, Content, Vars, Dict, Term):-
     i7_syntax_term(TiM, M, Vars, Dict, Dom, Term).
 
 :- dynamic(system:i7/4).
+:- module_transparent(system:i7/4).
+:- export(system:i7/4).
 :- mu:import(system:i7/4).
 /*
 testi7(a) :- Subj=7, Y={|i7(Subj)|| fooSubj |}, writeln(Y).
@@ -73,10 +75,6 @@ testi7(c) :- Y={|i7(7)|| fooSubj |}, writeln(Y).
 
 :- use_module(library(quasi_quotations)).
 
-:- dynamic(system:i7/4).
-:- module_transparent(system:i7/4).
-:- export(system:i7/4).
-:- mu:import(system:i7/4).
 % so we recognize {|i7(type(Subj))||.... |}
 :- quasi_quotation_syntax(system:i7).
 %!	i7_syntax(+Vars:list, +Dict:list, -Term:list) is det

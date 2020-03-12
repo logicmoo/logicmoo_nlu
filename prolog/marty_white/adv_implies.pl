@@ -38,8 +38,7 @@ implications(event, arriving(Agent, In, Here, _Walk, ReverseExit),
     [~h(In, Agent, Here), h(exit(ReverseExit), Here, _)], [ h(In, Agent, Here)]).
 
 
-
-only_goto:- true.
+only_goto:- fail, true.
 
 :- discontiguous(oper_db/4).
 % oper_db(_Self, Action, Preconds, Effects)

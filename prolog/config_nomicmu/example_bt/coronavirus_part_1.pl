@@ -37,19 +37,22 @@ use_covid_19_planning_domain ==>>
   possibly_update_covid_19_planning_domain_with_local_recommendations.
 
 
+
 %%% Creating a household plan can help protect your health and the health of those you care about in the event of an outbreak of COVID-19 in your community.
-plan(Agent) ==>>
+plan(Agent) ==>> cwc,
+  has_household(Agent,Household),
   create_a_household_plan(Household).
 
-household_has_members(Household,HouseholdMembers) ==>>
+household_has_members(Household,HouseholdMembers) ==>> cwc,
   findall(Agent0,has_household(Agent0,Household),HouseholdMembers).
 
 
 %%% You should base the details of your household plan on the needs and daily routine of your household members.
 
+:- discontiguous(create_a_household_plan/1).
 
 %%% Talk with the people who need to be included in your plan.
-create_a_household_plan(Household) ==>>
+create_a_household_plan(Household) ==>> cwc,
   household_has_members(Household,HouseholdMembers),
   generate_household_plan(groupFn(HouseholdMembers),Household,HouseholdPlan),
   %%% forall((member(Agent0,HouseholdMembers),member(Agent1,HouseholdMembers),Agent0 \= Agent1),
@@ -58,14 +61,14 @@ create_a_household_plan(Household) ==>>
 
 
 %%% Meet with household members, other relatives, and friends to discuss what to do if a COVID-19 outbreak occurs in your community and what the needs of each person will be.
-meet_with_household_members__other_relatives__and_friends(Household) ==>>
+meet_with_household_members__other_relatives__and_friends(Household) ==>> cwc,
   household_has_members(Household,HouseholdMembers),
   get_household_members_comma_nearby_friends_or_relatives(groupFn(HouseholdMembers),groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives)),
   meet_with_for(groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives),
           discuss_what_to_do_if_a_covid_19_outbreak_occurs(groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives))).
 
 
-get_nearby_friends_or_relatives(groupFn(Agents),groupFn(NearbyFriendsAndRelatives)) ==>>
+get_nearby_friends_or_relatives(groupFn(Agents),groupFn(NearbyFriendsAndRelatives)) ==>> cwc,
   findall(FriendOrRelative,
     (   
         member(Agent,Agents),
@@ -74,9 +77,9 @@ get_nearby_friends_or_relatives(groupFn(Agents),groupFn(NearbyFriendsAndRelative
     ),
     NearbyFriendsAndRelatives).
 
-get_household_members_comma_nearby_friends_or_relatives(groupFn(HouseholdMembers),groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives)) ==>>
+get_household_members_comma_nearby_friends_or_relatives(groupFn(HouseholdMembers),groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives)) ==>> cwc,
   get_nearby_friends_or_relatives(groupFn(HouseholdMembers),groupFn(NearbyFriendsAndRelatives)),
-  append(HouseholdMembers,NearbyFriendsAndRelatives,HouseholdMembersTheirNearbyFriendsAndRelatives),.
+  append(HouseholdMembers,NearbyFriendsAndRelatives,HouseholdMembersTheirNearbyFriendsAndRelatives).
 
 
 %%% Plan ways to care for those who might be at greater risk for serious complications.
@@ -85,9 +88,11 @@ get_household_members_comma_nearby_friends_or_relatives(groupFn(HouseholdMembers
 
 %%% CDC will recommend actions to help keep people at high risk for complications healthy if a COVID-19 outbreak occurs in your community.
 
-plan_ways_to_care_for_those_who_might_be_at_greater_risk_for_serious_complications(Household,Ways) ==>>
+plan_ways_to_care_for_those_who_might_be_at_greater_risk_for_serious_complications(Household,Ways) ==>> cwc,
   household_has_members(Household,HouseholdMembers),
-  get_household_members_comma_nearby_friends_or_relatives(groupFn(HouseholdMembers),groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives)),
+  get_household_members_comma_nearby_friends_or_relatives(
+     groupFn(HouseholdMembers),
+     groupFn(HouseholdMembersTheirNearbyFriendsAndRelatives)),
   forall(member(Agent,HouseholdMembersTheirNearbyFriendsAndRelatives),
     (   is_at_greater_risk_for_serious_complications(Agent) ->
         (  generate_care_plan_for(Household,Agent,Plan1),
@@ -96,10 +101,10 @@ plan_ways_to_care_for_those_who_might_be_at_greater_risk_for_serious_complicatio
 
 
 %%% From the data that are available for COVID-19 patients, and from data for related coronaviruses such as SARS-CoV and MERS-CoV, it is possible that older adults and persons who have underlying chronic medical conditions may be at risk for more serious complications.
-is_at_greater_risk_for_serious_complications(Agent) ==>>
+is_at_greater_risk_for_serious_complications(Agent) ==>> cwc,
   (
    age(Agent,Age),
-   age >= 60
+   Age >= 60
   ) ;
   has_underlying_chronic_health_condition(Agent).
 
@@ -109,17 +114,17 @@ is_at_greater_risk_for_serious_complications(Agent) ==>>
 
 %%% Talk with your neighbors about emergency planning.
 
-create_a_household_plan(Household) ==>>
+create_a_household_plan(Household) ==>> cwc,
   household_has_members(Household,HouseholdMembers),
   has_neighboring_households(Household,NeighboringHouseholds),
   member(NeighboringHouseholds,Household0),
-  household_has_members(Household0,Household0Members)
+  household_has_members(Household0,Household0Members),
   get_to_know_your_neighbors(HouseholdMembers,Household0Members),
   talk_with_about_emergency_planning(HouseholdMembers,Household0Members).
 
 
 %%% If your neighborhood has a website or social media page, consider joining it to maintain access to neighbors, information, and resources.
-create_a_household_plan(Household) ==>>
+create_a_household_plan(Household) ==>> cwc,
   has_neighborhood(Household,Neighborhood),
   (   has_website(Neighborhood,NeighborhoodWebsite) ->
       (  consider_joining(Household,NeighborhoodWebsite),
@@ -135,7 +140,7 @@ create_a_household_plan(Household) ==>>
 
 %%% Consider including organizations that provide mental health or counseling services, food, and other supplies.
 
-create_a_household_plan(Household) ==>>
+create_a_household_plan(Household) ==>> cwc,
   findall(Organization,
     (
      has_community(Household,Community),
@@ -152,5 +157,5 @@ create_a_household_plan(Household) ==>>
 
 %%% Ensure your household has a current list of emergency contacts for family, friends, neighbors, carpool drivers, health care providers, teachers, employers, the local public health department, and other community resources.
 
-create_a_household_plan(Household) ==>>
-  create_an_emergency_contact_list(Household,EmergencyContactList).
+create_a_household_plan(Household) ==>> cwc,
+  create_an_emergency_contact_list(Household,_EmergencyContactList).

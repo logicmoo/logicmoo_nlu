@@ -1,3 +1,6 @@
+
+:- style_check(-discontiguous).
+
 has_household(timSmith,household1).
 has_household(elaineSmith,household1).
 

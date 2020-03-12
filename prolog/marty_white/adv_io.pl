@@ -136,6 +136,8 @@ term_to_pretty_string(L,LinePrefix,SO):-
   replace_in_string("\n",SC,SS,SSS),
   string_concat(LinePrefix,SSS,SO).
 
+prolog_pprint(Term,Options):- prolog_pretty_print:print_term(Term, [ portray(true), output(current_output)|Options]).
+
 
 :- thread_local(t_l:no_english/0).
 

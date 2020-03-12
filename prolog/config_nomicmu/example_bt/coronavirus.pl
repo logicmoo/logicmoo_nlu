@@ -21,8 +21,8 @@ sanitize_enviornment(Household) ==>>
 
 clean_all__high_touch__surfaces(Household) ==>>
   random(Person,has_household(Person,Household)),
-  member(SurfaceType,[counter,tabletop,doorknob,bathroom_fixtures,toilet,phone,keyboard,tablet,bedsideTable])
-  in(Surface,Household)
+  member(SurfaceType,[counter,tabletop,doorknob,bathroom_fixtures,toilet,phone,keyboard,tablet,bedsideTable]),
+  in(Surface,Household),
   isa(Surface,SurfaceType),
   sanitize_surface(Person,Surface).
 
@@ -45,7 +45,7 @@ has_symptoms_of_covid19(Person) ==>>
       true
       ),
   not(forall(has_symptom(covid19,Symptom),
-       not(has_symptom(Person,Symptom))).
+       not(has_symptom(Person,Symptom)))).
 
 patient_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson) ==>>
   patient_either_under_investigation_or_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson).
@@ -65,7 +65,7 @@ patient_either_under_investigation_or_with_symptomatic_laboratory_confirmed_covi
   must(use_separate_room_and_bathroom(Household,HealthyHouseholdMembers,SymptomaticPerson)).
 
 has_bathrooms(Household,Bathrooms) ==>>
-  findall(Bathroom,(isa(Bathroom,bathroom),k(Bathroom,in,Household))),Bathrooms).
+  findall(Bathroom,(isa(Bathroom,bathroom),k(in,Bathroom,Household)),Bathrooms).
 
 has_multiple_bathrooms(Household) ==>>
   has_bathrooms(Household,Bathrooms),
@@ -76,9 +76,9 @@ use_separate_room_and_bathroom(HealthyHouseholdMembers,SymptomaticPerson) ==>>
   has_household(SymptomaticPerson,Household),
   has_multiple_bathrooms(Household),
   has_bathrooms(Household,Bathrooms),
-  choose(BathroomForSick,member(Bathroom,Bathrooms))
-  choose(BathroomForHealthy,member(Bathroom,Bathrooms))
-  must(designate_bathroom_for(HealthyHouseholdMembers,BathroomForHealthy))
+  choose(BathroomForSick,member(Bathroom,Bathrooms)),
+  choose(BathroomForHealthy,member(Bathroom,Bathrooms)),
+  must(designate_bathroom_for(HealthyHouseholdMembers,BathroomForHealthy)),
   must(designate_bathroom_for([SymptomaticPerson],BathroomForSick)).
   
 avoid_sharing_household_items_with_the_patient(Person,SymptomaticPerson) ==>>
@@ -108,12 +108,12 @@ visit_person(Person,SymptomaticPerson) ==>>
       wear_facemask(SymptomaticPerson,Facemask1)).
 
 wash_laundry_thoroughly ==>>
-  immediately 
+  %immediately 
   wear_gloves(Person,Gloves),
   handle_soiled_items(Person,SoiledItems),
 
-  wear disposable gloves while handling soiled items and . clean your hands (with soap and water or an
-        alcohol-based hand sanitizer) immediately after removing your gloves
+  "wear disposable gloves while handling soiled items and . clean your hands (with soap and water or an
+        alcohol-based hand sanitizer) immediately after removing your gloves".
 
 
 handle_soiled_items(Person,SoiledItems) ==>>
@@ -274,7 +274,7 @@ prepare_for_prolonged_outbreak ==>>
 
 what_to_do_if_you_are_sick_with_coronavirus_disease_2019_covid_19 ==>>
   stay_home_except_to_get_medical_care,
-  separate_yourself_from_other_people_and_animals_in_your_home
+  separate_yourself_from_other_people_and_animals_in_your_home.
 
 separate_yourself_from_other_people_and_animals_in_your_home ==>>
   'as much as possible, you should stay in a specific room and away from other people in your home. Also, you should use a separate bathroom, if available'.

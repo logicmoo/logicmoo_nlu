@@ -1,30 +1,3 @@
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CODE FILE SECTION
-% :- ensure_loaded(adv_log2eng).
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-flag_level_compare(Flag,Prop):-flag(Flag,Level,Level),Prop=..[F|Args],apply(F,[Level|Args]).
-
-xtreme_english :- flag_level_compare('english',>(2)).
-any_english :- \+ no_english.
-no_english :- flag_level_compare('english',=(0)).
-
-:- ignore(flag('english',0,2)).
-
-pretty :- \+ flag_level_compare(pretty,=(0)).
-
-:- ignore(flag(pretty,0,1)).
-
-
-prolog_pprint(Term,Options):- prolog_pretty_print:print_term(Term, [ portray(true), output(current_output)|Options]).
-
-
-player_pprint(Doer, Logic, always):- xtreme_english,!, must(print_english(Doer, Logic)).
-player_pprint(_Doer, D,K):- pprint(D,K).
-
-% print_english(Doer, Logic):- is_list(Logic),!, maplist(print_english(Doer), Logic).
-print_english(Doer, Logic):- logic2english(Doer, Logic, Text), write(Text). % pprint(Text,always).
-
-
 % %%%%%%%%%%%%%%%
 % Our user:portray(Logic) English helpers
 % %%%%%%%%%%%%%%%

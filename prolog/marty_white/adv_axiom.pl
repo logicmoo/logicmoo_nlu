@@ -17,6 +17,13 @@
 %
 */
 
+                   
+:- dynamic (aXiom//1, eVent//2
+   ).
+:- multifile (aXiom//1, eVent//2
+   ).
+:- discontiguous aXiom//1.
+:- discontiguous eVent//2.  
 
  
 will_touch(Agent,Thing) ==>>
@@ -378,9 +385,10 @@ aXiom(Action, S0, S9) ::=
  act_change_state(Open, Opened, TF),!,
  eVent(Agent,change_state(Agent, Open, Thing, Opened, TF), S0, S9),!.
 
+:- add_bt_meta_processing(aXiom).
 
-aXiom(true) ==>> [].
 /*
+aXiom(true) ==>> [].
 aXiom((A,B)) ==>> !,
   aXiom(A), aXiom(B).
 aXiom((A;B)) ==>> !,
