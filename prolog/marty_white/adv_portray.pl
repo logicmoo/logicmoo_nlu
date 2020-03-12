@@ -106,7 +106,7 @@ adv_prolog_portray(Term):- is_list(Term),!,fail,prolog_pprint(Term,[ portray_goa
 %adv_prolog_portray(Term):- safe_functor(Term,i7_term,2),!,display(Term),!.
 adv_prolog_portray(Term):- safe_functor(Term,i7_term,2),!,writeq(Term),!.
 adv_prolog_portray( A=B):- (var(A);var(B)),!,fail.
-adv_prolog_portray(Term):- is_type_functor(Type,Term),!,
+adv_prolog_portray(Term):- ground(Term), \+ sub_term('$VAR'(_),Term),is_type_functor(Type,Term),!,
   format(atom(Fmt),'{|i7||<~w> ~~s |}',[Type]),
   print_english_simple_only(Fmt,Term),!.  
 
