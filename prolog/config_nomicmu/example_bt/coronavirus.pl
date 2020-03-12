@@ -1,3 +1,10 @@
+% %% this domain is under development, and a long ways from being able to work
+
+% %% for examples of working behaviors, see:
+
+% %% https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/marty_white/adv_axiom.pl
+% %% https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/marty_white/adv_implies.pl
+
 daily(Person) ==>>
   (   has_symptoms_of_covid19(Person) ->
       (  begin(Person,treatment_of_covid19),
@@ -112,8 +119,9 @@ wash_laundry_thoroughly ==>>
   wear_gloves(Person,Gloves),
   handle_soiled_items(Person,SoiledItems),
 
-  "wear disposable gloves while handling soiled items and . clean your hands (with soap and water or an
-        alcohol-based hand sanitizer) immediately after removing your gloves".
+% %% "wear disposable gloves while handling soiled items and . clean
+% %% your hands (with soap and water or an
+% %% alcohol-based hand sanitizer) immediately after removing your gloves".
 
 
 handle_soiled_items(Person,SoiledItems) ==>>

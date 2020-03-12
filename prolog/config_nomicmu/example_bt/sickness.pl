@@ -31,51 +31,11 @@ wash_hands_with_a_hand_sanitizer_that_is_at_least_70_percent_alcohol(Person) ==>
   wash_hands_with_hand_sanitzer_covering_all_surfaces_of_your_hands_and_rubbing_them_together_until_they_feel_dry(Person).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+has_symptoms(flu,[fever, feeling_feverish_andor_chills, cough, sore_throat, runny_or_stuffy_nose, muscle_or_body_aches, headaches, fatigue__tiredness]).
+has_symptoms(flu,[vomiting_and_diarrhea]).
 
 %%% Flu Symptoms
-
-%%% fever* or feeling feverish/chills.
-%%% cough.
-%%% sore throat.
-%%% runny or stuffy nose.
-%%% muscle or body aches.
-%%% headaches.
-%%% fatigue (tiredness)
-%%% some people may have vomiting and diarrhea, though this is more common in children than adults.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% The most common symptoms of fever include:
-
-%%% headache
-%%% warm forehead
-%%% chills
-%%% aching muscles
-%%% general feeling of weakness
-%%% sore eyes
-%%% loss of appetite
-%%% dehydration
-%%% swollen lymph nodes
-
-%%% Infants or young children who have a fever may also experience:
-
-%%% greater irritability than usual
-%%% lethargy
-%%% flushed skin
-%%% paleness
-%%% difficulty swallowing
-%%% refusal to eat, drink, or breastfeed
-
-%%% In severe cases, a fever may cause:
-
-%%% excessive sleepiness
-%%% confusion
-%%% convulsions
-%%% severe pain in other parts of the body
-%%% unusual vaginal discharge
-%%% pain during urination
-%%% skin rash
-%%% vomiting
-%%% diarrhea
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+has_symptoms(fever,[headache_warm_forehead_chills_aching_muscles_general_feeling_of_weakness_sore_eyes_loss_of_appetite_dehydration_swollen_lymph_nodes]).
+has_symptoms(fever,[greater_irritability_than_usual, lethargy, flushed_skin, paleness, difficulty_swallowing, refusal_to_eat__drink__or_breastfeed]).
+has_symptoms(fever,[excessive_sleepiness_confusion_convulsions_severe_pain_in_other_parts_of_the_body_unusual_vaginal_discharge_pain_during_urination_skin_rash_vomiting_diarrhea]).
+ 
