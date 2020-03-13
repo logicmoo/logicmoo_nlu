@@ -5,6 +5,20 @@
 % %% https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/marty_white/adv_axiom.pl
 % %% https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/marty_white/adv_implies.pl
 
+% %% ideas:
+
+% %% can have it post constraints, like "do_not_leave_the_house", and
+% %% then the web UI shows these.  when they ask to go shopping, it %%
+% %% brings up a troubleshooter, since they're not supposed to leave
+% %% the house
+
+% %% special predicates:
+
+% %% ensure, ensure_not, random, choose_one, ask_user, must, possible(k(...)), start/begin
+
+% %% isa, are, 
+
+
 daily(Person) ==>>
   not(h(has_illness,Person,covid19)),
   self_check_for_covid19_symptoms(Person).
@@ -39,6 +53,7 @@ daily(Person) ==>>
 
 frequently(Person) ==>>
   perform_hand_hygiene(Person).
+
 
 perform_hand_hygiene(Person) ==>>
   wash_hands(Person).
@@ -122,8 +137,8 @@ use_separate_room_and_bathroom(HealthyHouseholdMembers,SymptomaticPerson) ==>>
   has_household(SymptomaticPerson,Household),
   has_multiple_bathrooms(Household),
   has_bathrooms(Household,Bathrooms),
-  choose(BathroomForSick,member(Bathroom,Bathrooms)),
-  choose(BathroomForHealthy,member(Bathroom,Bathrooms)),
+  choose_one(BathroomForSick,Bathrooms),
+  choose_one(BathroomForHealthy,Bathrooms),
   must(designate_bathroom_for(HealthyHouseholdMembers,BathroomForHealthy)),
   must(designate_bathroom_for([SymptomaticPerson],BathroomForSick)).
   
@@ -258,7 +273,7 @@ restrict_all_unnecessary_travel ==>>
 
 if_there_is_a_confirmed_case_in_your_hometown ==>>
   stay_indoors_as_much_as_possible,
-  if_you_go_outside_stay_6_feet_or_more_from_passers_by,
+  if_you_go_outside_stay_9_feet_or_more_from_passers_by,
   shop_at_times_of_day_where_there_are_not_a_lot_of_people,
   have_home_gym.
 
@@ -285,7 +300,7 @@ if_our_loved_ones_insist_on_going_to_a_place_where_there_is_a_known_case ==>>
 
 institute_home_lockdown ==>>
   do_not_leave_rooms,
-  stay_6_feet_apart.
+  stay_9_feet_apart.
 
 what_if_someone_in_the_house_becomes_sick ==>>
   true.
