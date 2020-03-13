@@ -14,78 +14,83 @@
 
 % %% special predicates:
 
-% %% ensure, ensure_not, random, choose_one, ask_user, must, possible(k(...)), start/begin
+% %% ensure_state, ensure_not, random, choose_one, ask_user, must, possible(k(...)), start/begin
 
 % %% isa, are, 
 
+macro_expand((A->B), (A->B;true)).
 
-daily(Person) ==>>
-  not(h(has_illness,Person,covid19)),
-  self_check_for_covid19_symptoms(Person).
+% cond/1 means we are expecting to test a conditional in cases a b/k/h are not used
 
-self_check_for_covid19_symptoms(Person) ==>
-  (   self_check_for_covid19_symptoms_is_positive(Person) ->
+trigger(daily(Person)) ==>>
+   not(h(has_illness,Person,covid19)) -> 
+   act(self_check_for_covid19_symptoms(Person)).
+
+act(self_check_for_covid19_symptoms(Person)) ==>
+  (   cond(self_check_for_covid19_symptoms_is_positive(Person)) ->
       (
        declare(h(needs_to_be_tested,Person,covid19)),
-       get_tested_for_covid19(Person),
-       patient_under_investigation(Person)
+       act(get_tested_for_covid19(Person)),
+       begin_state(patient_under_investigation(Person))
       )).
 
+/*
 daily(Person) ==>>
   not(h(has_illness,Person,covid19)),
   true.
+*/
 
-get_tested_for_covid19(SymptomaticPerson)  ==>>
+act(get_tested_for_covid19(SymptomaticPerson))  ==>>
   h(needs_to_be_tested,SymptomaticPerson,covid19),
-  (   tests_positive_for_covid19(SymptomaticPerson) ->
+  (   cond(tests_positive_for_covid19(SymptomaticPerson)) ->
       (
        declare(h(has_illness,SymptomaticPerson,covid19)),
        undeclare(h(needs_to_be_tested,SymptomaticPerson,covid19)),
-       patient_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson)
+       begin_state(patient_with_symptomatic_laboratory_confirmed_covid_19(SymptomaticPerson))
       ) ;
       (
        undeclare(h(needs_to_be_tested,SymptomaticPerson,covid19))
       )).
 
-daily(Person) ==>>
-  has_household(Person,Household),
-  ensure(sanitize_enviornment(Household)).
+trigger(daily(Person)) ==>>
+  true_code(has_household(Person,Household)),
+  act(sanitize_enviornment(Household)).
 
-frequently(Person) ==>>
-  perform_hand_hygiene(Person).
+trigger(frequently(Person)) ==>>
+  act(perform_hand_hygiene(Person)).
 
 
-perform_hand_hygiene(Person) ==>>
-  wash_hands(Person).
+act(perform_hand_hygiene(Person)) ==>>
+  act(wash_hands(Person)).
 
-sanitize_enviornment(Household) ==>>
-  wipe_down_all_surfaces_in_the_household_with_virus_killing_hospital_grade_santizing_wipes(Household),
-  ensure(clean_all__high_touch__surfaces(Household)),
-  ensure(clean_any_surfaces_that_may_have_blood__stool__or_body_fluids_on_them(Household)).
+act(sanitize_enviornment(Household)) ==>>
+  act(wipe_down_all_surfaces_in_the_household_with_virus_killing_hospital_grade_santizing_wipes(Household)),
+  ensure_state(clean_all__high_touch__surfaces(Household)),
+  ensure_state(clean_any_surfaces_that_may_have_blood__stool__or_body_fluids_on_them(Household)).
 
 clean_all__high_touch__surfaces(Household) ==>>
   household_has_members(Household,HouseholdMembers),
   choose_one(Person,HouseholdMembers),
-  member(SurfaceType,[counter,tabletop,doorknob,bathroom_fixtures,toilet,phone,keyboard,tablet,bedsideTable]),
-  in(Surface,Household),
-  isa(Surface,SurfaceType),
+  {member(SurfaceType,[counter,tabletop,doorknob,bathroom_fixtures,toilet,phone,keyboard,tablet,bedsideTable])},
+  true_state(in(Surface,Household)),
+  true_code(isa(Surface,SurfaceType)),
   sanitize_surface(Person,Surface).
 
 sanitize_surface(Person,Surface) ==>>
-ensure(wearing_gloves(Person,_Gloves)),
-  in(Surface,Room),
-  isa(Room,room),
-  ensure(well_ventilated(Room)),
-  holding(Person,HouseholdCleaningSprayOrWipe),
-  (   isa(HouseholdCleaningSprayOrWipe,cleaningSpray) ; isa(HouseholdCleaningSprayOrWipe,cleaningWipe)),
-  read_label(Person,labelFn(HouseholdCleaningSprayOrWipe)),
-  use_as_directed_on(Person,HouseholdCleaningSprayOrWipe,Surface).
+  ensure_state(wearing_gloves(Person,_Gloves)),
+  true_state(in(Surface,Room)),
+  true_code(isa(Room,room)),
+  ensure_state(well_ventilated(Room)),
+  true_state(holding(Person,HouseholdCleaningSprayOrWipe)),
+  true_code( isa(HouseholdCleaningSprayOrWipe,cleaningSpray) ; isa(HouseholdCleaningSprayOrWipe,cleaningWipe)),
+  act(read_label(Person,labelFn(HouseholdCleaningSprayOrWipe))),
+  act(use_as_directed_on(Person,HouseholdCleaningSprayOrWipe,Surface)).
 
-(wake_up) ==>>
-  (   infectious_disease_outbreak -> grab_tissues).
+act(wake_up) ==>>
+  ignore(true_state(infectious_disease_outbreak) -> act(grab_tissues)).
 
-self_check_for_covid19_symptoms_is_positive(Person) ==>>
-  check_temperature_fahrenheit(Person,Temperature),
+act(self_check_for_covid19_symptoms_is_positive(Person)) ==>>
+  act(check_temperature_fahrenheit(Person,Temperature)),
   sources([s(d('https://www.cdc.gov/coronavirus/2019-ncov/downloads/COVID-19_CAREKit_ENG.pdf'),s([56]))]),
   (   Temperature > 100.4 ->
       (
@@ -100,8 +105,7 @@ check_temperature_fahrenheit(Person,Temperature) ==>>
 	sources([s(d('https://www.cdc.gov/coronavirus/2019-ncov/downloads/COVID-19_CAREKit_ENG.pdf'),s([56]))]),
 	ensure_not('Have you exercised in the last 30 minutes?'),
 	ensure_not('Have you taken medication that can lower your temperature in the last 6 hours?'),
-	
-are([acetaminophen,paracetamol,aspirin],medicationThatCanLowerYourTemperature).
+        are([acetaminophen,paracetamol,aspirin],medicationThatCanLowerYourTemperature).
 
 ensure_not(Question) ==>>
 	ask_user(Person,Question,Result),
@@ -164,7 +168,7 @@ close_contacts_should_monitor_their_health(Person) ==>>
 
 visit_person(Person,SymptomaticPerson) ==>>
   ensure_necessary,
-  (   possible(k(SymptomaticPerson,has_illness,covid19)) ->
+  (   possible(k(has_illness,SymptomaticPerson,covid19)) ->
       wear_facemask(Person,Facemask0),
       wear_facemask(SymptomaticPerson,Facemask1)).
 
@@ -179,7 +183,7 @@ wash_laundry_thoroughly ==>>
 
 
 handle_soiled_items(Person,SoiledItems) ==>>
-  ensure(wearing(Person,DisposableGloves)),
+  ensure_state(wearing(Person,DisposableGloves)),
   start(keep_soiled_items_away_from_your_body(Person,SoiledItems)),
   forall(member(SoiledItem,SoiledItems),
          (   disposable(SoiledItem) ->
@@ -315,9 +319,9 @@ what_if_we_have_to_go_out_of_the_house ==>>
 
 (buy_groceries_at(Person,AldiStore)) ==>>
   storeIsPartOfChain(AldiStore,aldi),
-        ensure(possesses(Person,Quarter)),
+        ensure_state(possesses(Person,Quarter)),
         isa(Quarter,quarter),
-        ensure(possesses(Person,Bags)),
+        ensure_state(possesses(Person,Bags)),
         isa(Bags,shoppingBags),
   go_to(Person,AldiStore).
 
