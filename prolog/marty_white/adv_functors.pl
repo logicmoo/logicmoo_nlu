@@ -272,7 +272,7 @@ type_functor(unk,b(A,[precept_local(B,departing(C,D,B,E,F)),in(A,G)])).
 type_functor(unk,arriving(A,B,C,D,E)).
 type_functor(unk,exit(west)).
 type_functor(unk,precept(A,{|i7||<state> the C has $VAR 1 to D |})).
-type_functor(unk,prop(A,{|i7||<nv> inherits preceptQ |})).
+type_functor(unk,prop(A,{|i7||<nv> inherits perceptq |})).
 type_functor(unk,handle_events(A)).
 type_functor(unk,looky(A)).
 type_functor(unk,b(exit(A),B,C)).

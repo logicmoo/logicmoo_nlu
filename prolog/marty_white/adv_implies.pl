@@ -114,7 +114,7 @@ oper_db(Agent, looky(Agent),
 oper_db(world, handle_events(Here),
      [ precept_local(Here, Event)],               
      [ ~precept_local(Here, Event), 
-       foreach((h(in, Agent, Here),prop(Agent,inherited(preceptQ))),precept(Agent,Event))]):- \+ only_goto.
+       foreach((h(in, Agent, Here),prop(Agent,inherited(perceptq))),precept(Agent,Event))]):- \+ only_goto.
 
 
 % deducer Agents who preceive leavers from some exit believe the departing point is an exit 
