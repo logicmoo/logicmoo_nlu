@@ -65,8 +65,8 @@ act(perform_hand_hygiene(Person)) ==>>
 
 act(sanitize_enviornment(Household)) ==>>
   act(wipe_down_all_surfaces_in_the_household_with_virus_killing_hospital_grade_santizing_wipes(Household)),
-  ensure_state(clean_all__high_touch__surfaces(Household)),
-  ensure_state(clean_any_surfaces_that_may_have_blood__stool__or_body_fluids_on_them(Household)).
+  act(clean_all__high_touch__surfaces(Household)),
+  act(clean_any_surfaces_that_may_have_blood__stool__or_body_fluids_on_them(Household)).
 
 clean_all__high_touch__surfaces(Household) ==>>
   household_has_members(Household,HouseholdMembers),
