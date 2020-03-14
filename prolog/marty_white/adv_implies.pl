@@ -132,7 +132,7 @@ oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
        believe(Agent, h(In, Agent, Here)) ],
 
      [ believe(Agent, h(exit(ExitName), Here, _)),
-       believe(Agent, did(go_dir(Someone, Walk, ExitName))),
+       believe(Agent, did(go_dir(Someone, Walk, ExitName))), % also belive someone did soething to make it happen
        believe(Agent, h(In, Someone, Here)),
        believe(Agent, prop(Someone, inherited(actor)))]):- \+ only_goto.
 
