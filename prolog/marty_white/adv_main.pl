@@ -8,8 +8,8 @@
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
 % Copyright (C) 2004 Marty White under the GNU GPL 
-% Sept 20,1999 - Douglas Miles
-% July 10,1996 - John Eikenberry 
+% Sept 20, 1999 - Douglas Miles
+% July 10, 1996 - John Eikenberry 
 %
 % Logicmoo Project changes:
 %
@@ -22,19 +22,19 @@
 
 /*
 :- if(\+ exists_source(library(poor_bugger))).
-:- prolog_load_context(file,File),
- absolute_file_name('..',X,[relative_to(File),file_type(directory)]),
- asserta(user:file_search_path(library,X)).
+:- prolog_load_context(file, File),
+ absolute_file_name('..', X, [relative_to(File), file_type(directory)]),
+ asserta(user:file_search_path(library, X)).
 :- endif.
 */
 
 
-security_of(_,_Wiz).
+security_of(_, _Wiz).
 admin :- true. % Potential security hazzard.
 wizard :- true. % Potential to really muck up game.
 extra :- true. % Fuller, but questionable if needed yet.
 
-:- op(200,fx,'$').
+:- op(200, fx, '$').
 
 % :- user:ensure_loaded(library(parser_sharing)).
 
@@ -85,24 +85,24 @@ adventure_reset :-
  must_mw1((
  test_ordering,
  init_logging,
- retractall(advstate_db(_)),!,
- istate(S0),!,
+ retractall(advstate_db(_)), !,
+ istate(S0), !,
  player_format('=============================================~n', []),
  player_format('RESET STATE~n', []),
  player_format('=============================================~n', []),
- set_advstate(S0))),!.
+ set_advstate(S0))), !.
 
 
 adventure_init :- 
  (get_advstate(S0) -> true; (adventure_reset, get_advstate(S0))),
  must_mw1((
- init_objects(S0, S1),!,
+ init_objects(S0, S1), !,
  asserta(advstate_db(S1)))),
    player_format('=============================================~n', []),
    player_format('INIT STATE~n', []),
    player_format('=============================================~n', []),
- printable_state(S1,SP), 
- pprint(SP, state),!.
+ printable_state(S1, SP), 
+ pprint(SP, state), !.
 
 
 adventure:- 
@@ -124,26 +124,26 @@ adventure :-
 
 main(S0, S9) :-
  notrace((set_advstate(S0))),
- must_mw1(update_telnet_clients(S0,S1)),
+ must_mw1(update_telnet_clients(S0, S1)),
  ((set_advstate(S1),
- % pprint(S1,state),
+ % pprint(S1, state),
  get_live_agents(LiveAgents, S1),
  ttyflush)),
- %bugout1(liveAgents = LiveAgents),
+ %dbug(liveAgents = LiveAgents),
  apply_mapl_state(run_agent_pass_1(), LiveAgents, S1, S2),
  apply_mapl_state(run_agent_pass_2(), LiveAgents, S2, S9),
  notrace((set_advstate(S9))),
  !. % Don't allow future failure to redo main.
 main(S0, S0) :-
- bugout3('main FAILED~n', general).
+ dbug(general, 'main FAILED~n').
 
 :- dynamic(mu_global:agent_conn/4).
 
-update_telnet_clients(S0,S2):-
- retract(mu_global:agent_conn(Agent,Named,_Alias,Info)),
- create_agent_conn(Agent,Named,Info,S0,S1),
- update_telnet_clients(S1,S2).
-update_telnet_clients(S0,S0).
+update_telnet_clients(S0, S2):-
+ retract(mu_global:agent_conn(Agent, Named, _Alias, Info)),
+ create_agent_conn(Agent, Named, Info, S0, S1),
+ update_telnet_clients(S1, S2).
+update_telnet_clients(S0, S0).
 
 
 
@@ -152,16 +152,16 @@ telnet_decide_action(Agent, Mem0, Mem0):-
  % If actions are queued, no further thinking required.
  thought(todo([Action|_]), Mem0),
  (declared_advstate(h(in, Agent, Here))->true;Here=somewhere),
- bugout3('~w @ ~w telnet: Already about to: ~w~n', [Agent, Here, Action], telnet).
+ dbug(telnet, '~w @ ~w telnet: Already about to: ~w~n', [Agent, Here, Action]).
 
 telnet_decide_action(Agent, Mem0, Mem1) :-
  %must_mw1(thought(timestamp(T0), Mem0)),
  retract(mu_global:console_tokens(Agent, Words)), !,
  must_mw1((eng2log(Agent, Words, Action, Mem0),
- if_tracing(bugout3('Telnet TODO ~p~n', [Agent: Words->Action], telnet)),
+ if_tracing(dbug(telnet, 'Telnet TODO ~p~n', [Agent: Words->Action])),
  add_todo(Action, Mem0, Mem1))), !.
 telnet_decide_action(Agent, Mem, Mem) :-
- nop(bugout3('~w: Can\'t think of anything to do.~n', [Agent], telnet)).
+ nop(dbug(telnet, '~w: Can\'t think of anything to do.~n', [Agent])).
 
 
 %:- if(\+ prolog_load_context(reloading, t)).
@@ -174,7 +174,7 @@ main_once:-
    main(S0, S1),
    must_output_state(S1),
    retractall(advstate_db(_)),
-   asserta(advstate_db(S1)))),!.
+   asserta(advstate_db(S1)))), !.
 
 mainloop :-
  repeat,
@@ -204,7 +204,7 @@ main_loop(S0) :-
  !,
  main_loop(S5).
 main_loop(_) :-
- bugout3('main_loop() FAILED!~n', general).
+ dbug(general, 'main_loop() FAILED!~n').
 */
 
 

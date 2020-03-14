@@ -8,8 +8,8 @@
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
 % Copyright (C) 2004 Marty White under the GNU GPL 
-% Sept 20,1999 - Douglas Miles
-% July 10,1996 - John Eikenberry 
+% Sept 20, 1999 - Douglas Miles
+% July 10, 1996 - John Eikenberry 
 %
 % Logicmoo Project changes:
 %
@@ -17,7 +17,7 @@
 %
 */
 % Marty's Tokenizer/Scanner/Lexer, written in Prolog.
-:- module(adv_io_key,[
+:- module(adv_io_key, [
 
 
  wait_for_key/0,
@@ -34,138 +34,138 @@
  %setup_console/0, 
  setup_console/1,
 
- current_error/1,set_error/1]).
+ current_error/1, set_error/1]).
 
 
-mutex_create_safe(M):- notrace(catch(mutex_create(M),_,true)).
+mutex_create_safe(M):- notrace(catch(mutex_create(M), _, true)).
 
 messages_init:-
  mutex_create_safe(messages).
 
-flag(N,V):-
- flag(N,_,V).
+flag(N, V):-
+ flag(N, _, V).
 
 % FIXME - word wrap
 % post_message(M):-
-% atom_length(M,N),N>72
+% atom_length(M, N), N>72
 post_message(M):-
- with_mutex(messages,(post_message_int(M),
-      flag(unacked_messages,_,1))),
- nop(request_screen_update(0,0,1,80)).
+ with_mutex(messages, (post_message_int(M),
+      flag(unacked_messages, _, 1))),
+ nop(request_screen_update(0, 0, 1, 80)).
 
-post_message(F,L):-
+post_message(F, L):-
  atom(A) = AtomStream,
- format(AtomStream,F,L),post_message(A).
+ format(AtomStream, F, L), post_message(A).
 
 post_message_int(M):-
- flag(line0,'',M),
- atom_length(M,L),
- flag(requested_cursor_row,_,0),
- flag(requested_cursor_col,_,L),!.
+ flag(line0, '', M),
+ atom_length(M, L),
+ flag(requested_cursor_row, _, 0),
+ flag(requested_cursor_col, _, L), !.
 post_message_int(M):-
  \+(more_prompt),
- flag(line0,OL),
- atom_length(OL,OLL),
- atom_length(M,ML),
+ flag(line0, OL),
+ atom_length(OL, OLL),
+ atom_length(M, ML),
  OLL+ML=<70,
- concat_atom([OL,' ',M],NL),
- flag(line0,_,NL),
- atom_length(NL,Len),
- flag(requested_cursor_row,_,0),
- flag(requested_cursor_col,_,Len),!.
+ concat_atom([OL, ' ', M], NL),
+ flag(line0, _, NL),
+ atom_length(NL, Len),
+ flag(requested_cursor_row, _, 0),
+ flag(requested_cursor_col, _, Len), !.
 post_message_int(M):-
  more_prompt,
- recordz(messages,M),!.
+ recordz(messages, M), !.
 post_message_int(M):-
- flag(more_prompt,_,1),
- flag(line0,OL),
- atom_concat(OL,' [More]',NL),
- flag(line0,_,NL),!,
+ flag(more_prompt, _, 1),
+ flag(line0, OL),
+ atom_concat(OL, ' [More]', NL),
+ flag(line0, _, NL), !,
  post_message_int(M).
 
-more_prompt:-flag(more_prompt,1).
+more_prompt:-flag(more_prompt, 1).
 
-ack_messages:-flag(unacked_messages,0).
+ack_messages:-flag(unacked_messages, 0).
 ack_messages:-
- with_mutex(messages,(
-  flag(line0,_,''),
-  flag(unacked_messages,_,0),
-  flag(more_prompt,_,0),
-  flag(requested_cursor_row,_,0),
-  flag(requested_cursor_col,_,0),
+ with_mutex(messages, (
+  flag(line0, _, ''),
+  flag(unacked_messages, _, 0),
+  flag(more_prompt, _, 0),
+  flag(requested_cursor_row, _, 0),
+  flag(requested_cursor_col, _, 0),
   gather_messages(L),
-  (L=[];flag(unacked_messages,_,1),resend_messages(L))
+  (L=[];flag(unacked_messages, _, 1), resend_messages(L))
  )),
- nop(request_screen_update(0,0,1,80)).
+ nop(request_screen_update(0, 0, 1, 80)).
 
 gather_messages([H|T]):-
- recorded(messages,H,R),
+ recorded(messages, H, R),
  erase(R),
- !,gather_messages(T).
+ !, gather_messages(T).
 gather_messages([]).
 
 resend_messages([H|T]):-
- post_message_int(H),!,resend_messages(T).
+ post_message_int(H), !, resend_messages(T).
 resend_messages([]).
 
 /*
-sv_message(S,V):-
+sv_message(S, V):-
  care_about(S),
- sconj(S,SC),
- vconj(S,V,VC),
- post_message('~w ~w.',[SC,VC]),!.
-sv_message(_,_).
+ sconj(S, SC),
+ vconj(S, V, VC),
+ post_message('~w ~w.', [SC, VC]), !.
+sv_message(_, _).
 
-svo_message(S,V,O):-
- care_about(S),care_about(O),
- sconj(S,SC),
- vconj(S,V,VC),
- oconj(S,O,OC),
- post_message('~w ~w ~w.',[SC,VC,OC]),!.
-svo_message(S,V,_):-
+svo_message(S, V, O):-
+ care_about(S), care_about(O),
+ sconj(S, SC),
+ vconj(S, V, VC),
+ oconj(S, O, OC),
+ post_message('~w ~w ~w.', [SC, VC, OC]), !.
+svo_message(S, V, _):-
  care_about(S), % not care_about(O),
- sconj(S,SC),
- vconj(S,V,VC),
- post_message('~w ~w it.',[SC,VC]),!.
-svo_message(_,V,O):-
+ sconj(S, SC),
+ vconj(S, V, VC),
+ post_message('~w ~w it.', [SC, VC]), !.
+svo_message(_, V, O):-
  care_about(O), % not care_about(S),
- vconj(it,V,VC),
- oconj(it,O,OC),
- post_message('It ~w ~w.',[VC,OC]),!.
-svo_message(_,_,_).
+ vconj(it, V, VC),
+ oconj(it, O, OC),
+ post_message('It ~w ~w.', [VC, OC]), !.
+svo_message(_, _, _).
 
-svi_message(S,V,I):-
+svi_message(S, V, I):-
  care_about(S),
- sconj(S,SC),
- vconj(S,V,VC),
- post_message('~w ~w ~w.',[SC,VC,I]),!.
-svi_message(_,_,_).
+ sconj(S, SC),
+ vconj(S, V, VC),
+ post_message('~w ~w ~w.', [SC, VC, I]), !.
+svi_message(_, _, _).
 
-svoi_message(S,V,O,I):-
- care_about(S),care_about(O),
- sconj(S,SC),
- vconj(S,V,VC),
- oconj(S,O,OC),
- post_message('~w ~w ~w ~w.',[SC,VC,OC,I]),!.
-svoi_message(S,V,_,I):-
+svoi_message(S, V, O, I):-
+ care_about(S), care_about(O),
+ sconj(S, SC),
+ vconj(S, V, VC),
+ oconj(S, O, OC),
+ post_message('~w ~w ~w ~w.', [SC, VC, OC, I]), !.
+svoi_message(S, V, _, I):-
  care_about(S), % not care_about(O),
- sconj(S,SC),
- vconj(S,V,VC),
- post_message('~w ~w it ~w.',[SC,VC,I]),!.
-svoi_message(_,V,O,I):-
+ sconj(S, SC),
+ vconj(S, V, VC),
+ post_message('~w ~w it ~w.', [SC, VC, I]), !.
+svoi_message(_, V, O, I):-
  care_about(O), % not care_about(S),
- vconj(it,V,VC),
- oconj(it,O,OC),
- post_message('It ~w ~w ~w.',[VC,OC,I]),!.
-svoi_message(_,_,_,_).
+ vconj(it, V, VC),
+ oconj(it, O, OC),
+ post_message('It ~w ~w ~w.', [VC, OC, I]), !.
+svoi_message(_, _, _, _).
 
 care_about(player).
 care_about(O):-
- attribute(player-dungeon,D),attribute(O-dungeon,D),
- attribute(player-level,L),attribute(O-level,L),
- attribute(O-row,R),attribute(O-column,C),
- visible(R,C),
-log_stuff('viz~n',[]).
+ attribute(player-dungeon, D), attribute(O-dungeon, D),
+ attribute(player-level, L), attribute(O-level, L),
+ attribute(O-row, R), attribute(O-column, C),
+ visible(R, C),
+log_stuff('viz~n', []).
 */
 
 :-dynamic key_translate/2.
@@ -177,66 +177,66 @@ log_stuff('viz~n',[]).
 
 % FIXME dynamify key translations
 
-key_translate(['\014\'],redraw). 
+key_translate(['\014\'], redraw). 
 
-key_translate(['\033\','[','A'],up).
-key_translate(['\033\','[','B'],down).
-key_translate(['\033\','[','C'],right).
-key_translate(['\033\','[','D'],left).
+key_translate(['\033\', '[', 'A'], up).
+key_translate(['\033\', '[', 'B'], down).
+key_translate(['\033\', '[', 'C'], right).
+key_translate(['\033\', '[', 'D'], left).
 
-key_translate(['\033\','[','5','~'],page_up).
-key_translate(['\033\','[','6','~'],page_down).
+key_translate(['\033\', '[', '5', '~'], page_up).
+key_translate(['\033\', '[', '6', '~'], page_down).
 
-key_translate(['\033\',K],meta(K)):-char_type(K,alnum). %'
+key_translate(['\033\', K], meta(K)):-char_type(K, alnum). %'
 
 keyboard_thread(Buffer):-
- set_stream(user_input,buffer(none)),
- get_single_char(Code),char_code(Key,Code),
- append(Buffer,[Key],NB),
- !,process_buffer(NB).
+ set_stream(user_input, buffer(none)),
+ get_single_char(Code), char_code(Key, Code),
+ append(Buffer, [Key], NB),
+ !, process_buffer(NB).
 
-process_buffer([]):-!,keyboard_thread([]).
+process_buffer([]):-!, keyboard_thread([]).
 process_buffer(NB):-
- key_translate(NNB,_),
- append(NB,X,NNB),X\=[],
- !,keyboard_thread(NB).
+ key_translate(NNB, _),
+ append(NB, X, NNB), X\=[],
+ !, keyboard_thread(NB).
 process_buffer(NB):-
- append(NBA,NBB,NB),
- key_translate(NBA,Key),
-% log_stuff('got key ~w.~n',[Key]),
+ append(NBA, NBB, NB),
+ key_translate(NBA, Key),
+% log_stuff('got key ~w.~n', [Key]),
  global_key_hook(Key),
- !,process_buffer(NBB).
+ !, process_buffer(NBB).
 process_buffer([K|T]):-
- nop(log_stuff('got key ~w.~n',[K])),global_key_hook(K),!,process_buffer(T).
+ nop(log_stuff('got key ~w.~n', [K])), global_key_hook(K), !, process_buffer(T).
 /*
-global_key_hook(redraw):-!,request_screen_update(redraw).
+global_key_hook(redraw):-!, request_screen_update(redraw).
 global_key_hook(meta(h)):-!,
- attribute(player-hit_points,H),
+ attribute(player-hit_points, H),
  HH is H+random(6)+1,
- attribute(player-hit_points,_,HH),
- request_screen_update(23,0,1,10).
-global_key_hook(meta(t)):-!,threads.
+ attribute(player-hit_points, _, HH),
+ request_screen_update(23, 0, 1, 10).
+global_key_hook(meta(t)):-!, threads.
 global_key_hook(meta(l)):-
- (dungeon:player_dungeon(R,C,A,B),
- log_stuff('~w~n',[player_dungeon(R,C,A,B)]),fail;true),!.
+ (dungeon:player_dungeon(R, C, A, B),
+ log_stuff('~w~n', [player_dungeon(R, C, A, B)]), fail;true), !.
 */
 keystrokes_thread_name(keystrokes).
 
 global_key_hook(Key):-
  keystrokes_thread_name(Keystrokes),
- with_mutex(messages,(
-  nop(more_prompt),(Key=' ',nop(ack_messages);true);
-  nop(ack_messages),thread_send_message(Keystrokes,Key)
- )),!.
+ with_mutex(messages, (
+  nop(more_prompt), (Key=' ', nop(ack_messages);true);
+  nop(ack_messages), thread_send_message(Keystrokes, Key)
+ )), !.
 
 keyboard_init:-
  keystrokes_thread_name(Keystrokes),
  (message_queue_property(_, alias(Keystrokes))->true;message_queue_create(Keystrokes)),
- thread_create(keyboard_thread([]),_,[]).
+ thread_create(keyboard_thread([]), _, []).
 
 wait_for_key(Key):-
  keystrokes_thread_name(Keystrokes),
- thread_get_message(Keystrokes,Key).
+ thread_get_message(Keystrokes, Key).
 
 wait_for_key:-wait_for_key(_).
 

@@ -8,8 +8,8 @@
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
 % Copyright (C) 2004 Marty White under the GNU GPL 
-% Sept 20,1999 - Douglas Miles
-% July 10,1996 - John Eikenberry 
+% Sept 20, 1999 - Douglas Miles
+% July 10, 1996 - John Eikenberry 
 %
 % Logicmoo Project changes:
 %
@@ -19,14 +19,14 @@
 
 action_handle_goals(Agent, Mem0, Mem0):- 
   \+ thought(goals([_|_]), Mem0), !,
- bugout3('~w: no goals exist~n', [Agent], planner).
+ dbug(planner, '~w: no goals exist~n', [Agent]).
 
 action_handle_goals(Agent, Mem0, Mem1):- 
- bugout3('~w: goals exist: generating a plan...~n', [Agent], planner),
+ dbug(planner, '~w: goals exist: generating a plan...~n', [Agent]),
  Knower = Agent,
  generate_plan(Knower, Agent, NewPlan, Mem0), !,
  serialize_plan(Knower, Agent, NewPlan, Actions), !,
- bugout3('Planned actions are ~w~n', [Actions], planner),
+ dbug(planner, 'Planned actions are ~w~n', [Actions]),
  Actions = [Action|_],
  add_todo(Action, Mem0, Mem1).
 
@@ -34,8 +34,8 @@ action_handle_goals(Agent, Mem0, Mem1):-
 action_handle_goals(Agent, Mem0, Mem9) :-
  forget(goals([G0|GS]), Mem0, Mem1),
  memorize(goals([]), Mem1, Mem2),
- bugout3('~w: Can\'t solve goals ~p. Forgetting them.~n', [Agent,[G0|GS]], planner),
- memorize_appending(goals_skipped([G0|GS]),Mem2,Mem9),!.
+ dbug(planner, '~w: Can\'t solve goals ~p. Forgetting them.~n', [Agent, [G0|GS]]),
+ memorize_appending(goals_skipped([G0|GS]), Mem2, Mem9), !.
 
 
 
@@ -47,10 +47,10 @@ clearable_satisfied_goals(Agent, Mem0, Mem3):-
  Goals = [G0|GS],
  agent_thought_model(Agent, ModelData, Mem0),
  select_unsatisfied_conditions(Goals, Unsatisfied, ModelData) ->
- subtract(Goals,Unsatisfied,Satisfied), !,
+ subtract(Goals, Unsatisfied, Satisfied), !,
  Satisfied \== [],
  memorize(goals(Unsatisfied), Mem1, Mem2),
- bugout3('~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied], planner),
+ dbug(planner, '~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied]),
  memorize_appending(goals_satisfied(Satisfied), Mem2, Mem3), !.
 
 has_unsatisfied_goals(Agent, Mem0, Mem0):-  
@@ -79,14 +79,14 @@ Person think doing what explorers do will make persons goal satisfaction easier.
 Person thinks being an explorer means to find unexplored exits and travel to them.
 Person thinks exits are known by looking.
 Person goal is to have looked
-Person the way to satifiy the goal to have looked is to: add_todo(Person,look(Person))
+Person the way to satifiy the goal to have looked is to: add_todo(Person, look(Person))
 Person DOES look(Person)
 Person notices exits: north, south, east, west.
 Person thinks north is unexplored
 Person thinks going north will be acting like an explorer
 Person goal is to go north
-Person makes plan to go north.. the plan is very simple: [go_dir(Person,walk,north)]
-Person DOES go_dir(Person,walk,north)
+Person makes plan to go north.. the plan is very simple: [go_dir(Person, walk, north)]
+Person DOES go_dir(Person, walk, north)
 Person leaves kitchen to the north
 Kitchen(thus Person) sees Person departing kitchen to the north
 Person enters pantry from the south
@@ -100,7 +100,7 @@ Person belives kitchen is where they end up if they go south from pantry
 look(Person) is a cheap and effective strategy
 
 
-event(trys(go_dir(Person,walk,north)))
+event(trys(go_dir(Person, walk, north)))
   
 
 
@@ -131,19 +131,19 @@ sequenced(_Self,
   \+ in_state(~(open), There),
   \+ in_state(~(open), Here),
   \+ in_state(~(open), Dir),
-  reverse_dir(Dir,RDir),
+  reverse_dir(Dir, RDir),
   h(exit(Dir), Here, There), % path(Here, There)
   % %Action:
   did(go_dir(Self, Walk, Dir)),
   %PostConds:
   ~h(WasRel, Self, Here),
-  notice(Here,leaves(Self,Here,WasRel)),
-  notice(Self,msg([cap(subj(actor(Self))),does(Walk), from(place(Here)), via(exit(Dir)) , Rel, to(place(There))])),
+  notice(Here, leaves(Self, Here, WasRel)),
+  notice(Self, msg([cap(subj(actor(Self))), does(Walk), from(place(Here)), via(exit(Dir)) , Rel, to(place(There))])),
   h(Rel, Self, There),
-  notice(There,enters(Self,There,RDir))]).
+  notice(There, enters(Self, There, RDir))]).
 
 
-planner_only:- nb_current(opers, planner).
+planner_only:- nb_current(opers).
 
 
 
@@ -154,7 +154,7 @@ operagent(Agent, Action, BConds, BEffects) :-
       oper_beliefs(Agent, Effects, BEffects))).
 
 oper_beliefs(_Agent, [], []):- !.
-oper_beliefs(Agent, [ believe(Agent2,H)|Conds], [H|BConds]):- Agent == Agent2, !,
+oper_beliefs(Agent, [ believe(Agent2, H)|Conds], [H|BConds]):- Agent == Agent2, !,
   oper_beliefs(Agent, Conds, BConds).
 oper_beliefs(Agent, [ A\=B|Conds], [A\=B|BConds]):- !,
   oper_beliefs(Agent, Conds, BConds).
@@ -193,12 +193,12 @@ new_plan(Self, CurrentState, GoalState, Plan) :-
   new_plan_newver(Self, CurrentState, GoalState, Plan).
 
 
-convert_state_to_goalstate(O,O):- pprint(convert_state_to_goalstate=O,planner).
+convert_state_to_goalstate(O, O):- pprint(convert_state_to_goalstate=O, planner).
 
 %                       ModelData, Goals, SeedPlan
 new_plan_newver(Self, CurrentState, GoalState, Plan) :-
- convert_state_to_goalstate(CurrentState,CurrentStateofGoals),
- gensym(ending_step_1,End),
+ convert_state_to_goalstate(CurrentState, CurrentStateofGoals),
+ gensym(ending_step_1, End),
  Plan = 
  plan([step(start , oper(Self, do_nothing(Self), [], CurrentStateofGoals)),
        step(completeFn(End), oper(Self, do_nothing(Self), GoalState, []))],
@@ -208,7 +208,7 @@ new_plan_newver(Self, CurrentState, GoalState, Plan) :-
 
 /*
  new_plan_oldver(Self, CurrentState, GoalState, Plan) :-
- gensym(ending_step_1,End),
+ gensym(ending_step_1, End),
  Plan = 
  plan([step(start , oper(Self, true, [], CurrentState)),
        step(completeFn(End), oper(Self, true, GoalState, []))],
@@ -235,9 +235,9 @@ isbefore(I, J, Orderings) :-
 %add_ordering(before(I, K), Orderings, [before(I, K)|Orderings]) :-
 % I \= K,
 % \+ isbefore(K, I, Orderings),
-% bugout3(' ADDED ~w to orderings.~n', [before(I, K)], planner).
+% dbug(planner, ' ADDED ~w to orderings.~n', [before(I, K)]).
 %add_ordering(B, O, O) :-
-% bugout3(' FAILED to add ~w to orderings.~n', [B], planner),
+% dbug(planner, ' FAILED to add ~w to orderings.~n', [B]),
 % fail.
 
 add_ordering(B, Orderings, Orderings) :-
@@ -248,7 +248,7 @@ add_ordering(before(I, J), Order0, Order1) :-
  add_ordering3(before(I, J), Order0, Order0, Order1).
 add_ordering(B, Order0, Order0) :-
  once(pick_ordering(Order0, List)),
- bugout3(' FAILED add_ordering ~w to ~w~n', [B, List], planner),
+ dbug(planner, ' FAILED add_ordering ~w to ~w~n', [B, List]),
  fail.
 
 % add_ordering3(NewOrder, ToCheck, OldOrderings, NewOrderings)
@@ -306,7 +306,7 @@ pick_ordering(Orderings, Nodes, [I|After]) :-
 pick_ordering(_Orderings, [], []).
 
 test_ordering :-
- bugout3('ORDERING TEST:~n', planner),
+ dbug(planner, 'ORDERING TEST:~n'),
  Unordered =
  [ 
   before(start, completeFn(End)),
@@ -320,12 +320,12 @@ test_ordering :-
  Unordered,
  [],
  Orderings)),
- bugout3(' unordered was ~w~n', [Unordered], planner),
- bugout3(' ordering is ~w~n', [Orderings], planner),
+ dbug(planner, ' unordered was ~w~n', [Unordered]),
+ dbug(planner, ' ordering is ~w~n', [Orderings]),
  pick_ordering(Orderings, List),
- bugout3(' picked ~w~n', [List], planner),
+ dbug(planner, ' picked ~w~n', [List]),
  fail.
-test_ordering :- bugout3(' END ORDERING TEST~n', planner).
+test_ordering :- dbug(planner, ' END ORDERING TEST~n').
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -338,9 +338,9 @@ cond_is_achieved(step(J, _Oper), C, plan(Steps, Orderings, _)) :-
  member(step(I, oper(_Self, _, _, Effects)), Steps),
  precondition_matches_effects(C, Effects),
  isbefore(I, J, Orderings),
- bugout3('  Cond ~w of step ~w is achieved!~n', [C, J], planner).
+ dbug(planner, '  Cond ~w of step ~w is achieved!~n', [C, J]).
 cond_is_achieved(step(J, _Oper), C, plan(_Steps, _Orderings, _)) :-
- bugout3('  Cond ~w of step ~w is NOT achieved.~n', [C, J], planner),
+ dbug(planner, '  Cond ~w of step ~w is NOT achieved.~n', [C, J]),
  !, fail.
 
 % Are the preconditions of a given step achieved by the effects of other
@@ -397,21 +397,21 @@ protect(causes(_StepI, Cond0, _StepJ), _StepK, Cond1, Order0, Order0) :-
  \+ cond_negates(Cond0, Cond1),
  !.
 protect(causes(StepI, Cond0, StepJ), StepK, _Cond1, Order0, Order0) :-
- bugout3(' THREAT: ~w <> causes(~w, ~w, ~w)~n',
-   [StepK, StepI, Cond0, StepJ], planner),
+ dbug(planner, ' THREAT: ~w <> causes(~w, ~w, ~w)~n',
+   [StepK, StepI, Cond0, StepJ]),
  fail.
 protect(causes(StepI, _Cond0, StepJ), StepK, _Cond1, Order0, Order1) :-
  % Protect by moving threatening step before or after this link.
  add_ordering(before(StepK, StepI), Order0, Order1),
- bugout3(' RESOLVED with ~w~n', [before(StepK, StepI)], planner)
+ dbug(planner, ' RESOLVED with ~w~n', [before(StepK, StepI)])
  ;
  add_ordering(before(StepJ, StepK), Order0, Order1),
- bugout3(' RESOLVED with ~w~n', [before(StepJ, StepK)], planner).
+ dbug(planner, ' RESOLVED with ~w~n', [before(StepJ, StepK)]).
 protect(causes(StepI, Cond0, StepJ), StepK, _Cond1, Order0, Order0) :-
- bugout3(' FAILED to resolve THREAT ~w <> causes(~w, ~w, ~w)~n',
-   [StepK, StepI, Cond0, StepJ], planner),
+ dbug(planner, ' FAILED to resolve THREAT ~w <> causes(~w, ~w, ~w)~n',
+   [StepK, StepI, Cond0, StepJ]),
  once(pick_ordering(Order0, Serial)),
- bugout3(' ORDERING is ~w~n', [Serial], planner),
+ dbug(planner, ' ORDERING is ~w~n', [Serial]),
  fail.
 
 % Protect 1 link from 1 step's multiple effects
@@ -445,15 +445,15 @@ bindings_valid([(X\=Y)|Bindings]) :-
  X \== Y,
  bindings_valid(Bindings).
 %bindings_valid(B) :-
-% bugout3(' BINDINGS are *INVALID*: ~w~n', [B], planner),
+% dbug(planner, ' BINDINGS are *INVALID*: ~w~n', [B]),
 % fail.
 
-bindings_safe([]) :- bugout3(' BINDINGS are SAFE~n', planner).
+bindings_safe([]) :- dbug(planner, ' BINDINGS are SAFE~n').
 bindings_safe([(X\=Y)|Bindings]) :-
  X \= Y,
  bindings_safe(Bindings).
 %bindings_safe(B) :-
-% bugout3(' BINDINGS are *UNSAFE*: ~w~n', [B], planner),
+% dbug(planner, ' BINDINGS are *UNSAFE*: ~w~n', [B]),
 % fail.
 
 
@@ -476,14 +476,14 @@ choose_operator([goal(GoalID, GoalCond)|Goals0], Goals0,
  protect_link_all(causes(StepID, GoalCond, GoalID), Steps, Order1, Order9),
  union([causes(StepID, GoalCond, GoalID)], OldLinks, NewLinks),
  bindings_valid(Bindings),
- bugout3(' EXISTING step ~w satisfies ~w~n', [StepID, GoalCond], planner).
+ dbug(planner, ' EXISTING step ~w satisfies ~w~n', [StepID, GoalCond]).
 choose_operator([goal(_GoalID, X \= Y)|Goals0], Goals0,
      _Operators,
      plan(Steps, Order, Bindings, Links),
      plan(Steps, Order, NewBindings, Links),
      Depth, Depth ) :-
  add_binding((X\=Y), Bindings, NewBindings),
- bugout3(' BINDING ADDED: ~w~n', [X\=Y], planner).
+ dbug(planner, ' BINDING ADDED: ~w~n', [X\=Y]).
 choose_operator([goal(GoalID, ~ GoalCond)|Goals0], Goals0,
      _Operators,
      plan(Steps, Order0, Bindings, OldLinks),
@@ -497,7 +497,7 @@ choose_operator([goal(GoalID, ~ GoalCond)|Goals0], Goals0,
  protect_link_all(causes(start, GoalCond, GoalID), Steps, Order1, Order9),
  union([causes(start, ~ GoalCond, GoalID)], OldLinks, NewLinks),
  bindings_valid(Bindings),
- bugout3(' START SATISFIES NOT ~w~n', [GoalCond], planner).
+ dbug(planner, ' START SATISFIES NOT ~w~n', [GoalCond]).
 choose_operator([goal(GoalID, exists(GoalCond))|Goals0], Goals0,
      _Operators,
      plan(Steps, Order0, Bindings, OldLinks),
@@ -511,7 +511,7 @@ choose_operator([goal(GoalID, exists(GoalCond))|Goals0], Goals0,
  protect_link_all(causes(start, GoalCond, GoalID), Steps, Order1, Order9),
  union([causes(start, exists(GoalCond), GoalID)], OldLinks, NewLinks),
  bindings_valid(Bindings),
- bugout3(' START SATISFIES exists(~w)~n', [GoalCond], planner).
+ dbug(planner, ' START SATISFIES exists(~w)~n', [GoalCond]).
 choose_operator([goal(GoalID, GoalCond)|Goals0], Goals2,
      Operators,
      plan(OldSteps, Order0, Bindings, OldLinks),
@@ -545,33 +545,38 @@ choose_operator([goal(GoalID, GoalCond)|Goals0], Goals2,
  conds_as_goals(StepID, Preconds, NewGoals),
  append(Goals0, NewGoals, Goals2),
  bindings_valid(Bindings),
- bugout3(' ~w CREATED ~w to satisfy ~w~n', [Depth, StepID, GoalCond], planner),
- pprint(oper(Self, Action, Preconds, Effects), planner),
+ dbug(planner, ' ~w CREATED ~w to satisfy ~w~n', [Depth, StepID, GoalCond]),
+ pprint(oper(Self, Action, Preconds, Effects), always),
  once(pick_ordering(Order9, List)),
- bugout3(' Orderings are ~w~n', [List], planner).
-choose_operator([goal(GoalID, GoalCond)|_G0], _G2, _Op, _P0, _P2, D, D) :-
- bugout3(' CHOOSE_OPERATOR FAILED on goal:~n goal(~w, ~w)~n',
-   [GoalID, GoalCond], planner),
+ dbug(planner, ' Orderings are ~w~n', [List]).
+
+choose_operator([goal(_GoalID, GoalCond)|G0], G2, Op, P0, P2, D, D) :- GoalCond = (_\=_), !,
+  choose_operator(G0, G2, Op, P0, P2, D, D).
+   
+
+choose_operator([goal(GoalID, GoalCond)|G0], _G2, _Op, _P0, _P2, D, D) :-
+ dbug(planner, ' CHOOSE_OPERATOR FAILED on goal:~n goal(~w, ~w):~w~n',
+   [GoalID, GoalCond,G0]),
  !, fail.
 choose_operator(G0, _G2, _Op, _P0, _P2, D, D) :-
- bugout3(' !!! CHOOSE_OPERATOR FAILED: G0 = ~w~n', [G0], planner), !, fail.
+ dbug(planner, ' !!! CHOOSE_OPERATOR FAILED: G0 = ~w~n', [G0]), !, fail.
 
 
 planning_loop([], _Operators, plan(S, O, B, L), plan(S, O, B, L), _Depth, _TO ) :-
- bugout3('FOUND SOLUTION?~n', planner),
+ dbug(planner, 'FOUND SOLUTION?~n'),
  bindings_safe(B).
 planning_loop(Goals0, Operators, Plan0, Plan2, Depth0, Timeout) :-
  %Limit > 0,
  get_time(Now),
  (Now > Timeout -> throw(timeout(planner)); true),
- bugout3('GOALS ARE: ~w~n', [Goals0], planner),
- bugout3('AVAILABLE OPERATORS ARE: ~w~n', [Operators], planner),
+ dbug(planner, 'GOALS ARE: ~w~n', [Goals0]),
+ % must_maplist(dbug(planner, 'AVAILABLE OPERATOR: ~w~n'), Operators),
  choose_operator(Goals0, Goals1, Operators, Plan0, Plan1, Depth0, Depth),
  %Limit2 is Limit - 1,
  planning_loop(Goals1, Operators, Plan1, Plan2, Depth, Timeout).
 %planning_loop(_Goals0, _Operators, Plan0, Plan0, _Limit) :-
 % Limit < 1,
-% bugout3('Search limit reached!~n', planner),
+% dbug(planner, 'Search limit reached!~n'),
 % fail.
 
 serialize_plan(_Knower, _Agent, plan([], _Orderings, _B, _L), []) :- !.
@@ -588,9 +593,9 @@ serialize_plan(Knower, Agent, plan(Steps, Orderings, B, L), [Action|Tail]) :-
  serialize_plan(Knower, Agent, plan(RemainingSteps, Orderings, B, L), Tail).
 
 serialize_plan(Knower, Agent, plan(_Steps, Orderings, _B, _L)) :-
- bugout3('serialize_plan FAILED: Knower=~p, Agent=~p !~n',[Knower, Agent], planner),
+ dbug(planner, 'serialize_plan FAILED: Knower=~p, Agent=~p !~n', [Knower, Agent]),
  pick_ordering(Orderings, List),
- bugout3(' Orderings are ~w~n', [List], planner),
+ dbug(planner, ' Orderings are ~w~n', [List]),
  fail.
 
 select_unsatisfied_conditions([], [], _Model) :- !.
@@ -609,7 +614,7 @@ select_unsatisfied_conditions([Cond|Tail], [Cond|Unsatisfied], ModelData) :-
 
 depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
      Depth, Timeout) :-
- bugout3('PLANNING DEPTH is ~w~n', [Depth], planner),
+ dbug(planner, 'PLANNING DEPTH is ~w~n', [Depth]),
  planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan, Depth, Timeout),
  !.
 depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
@@ -621,14 +626,14 @@ depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
 
 generate_plan(Knower, Agent, FullPlan, Mem0) :-
  initial_operators(Knower, Operators),
- bugout3('OPERATORS are:~n', planner), pprint(Operators, planner),
+ dbug(planner, 'OPERATORS are:~n'), pprint(Operators),
 
  agent_thought_model(Agent, ModelData, Mem0),
 
- %bugout3('CURRENT STATE is ~w~n', [Model0], planner),
+ %dbug(planner, 'CURRENT STATE is ~w~n', [Model0]),
  thought(goals(Goals), Mem0),
  new_plan(Agent, ModelData, Goals, SeedPlan),
- bugout3('SEED PLAN is:~n', planner), pprint(SeedPlan, planner),
+ dbug(planner, 'SEED PLAN is:~n'), pprint(SeedPlan),
  !,
  %planning_loop(Operators, SeedPlan, FullPlan),
  conds_as_goals(completeFn(_End), Goals, PlannerGoals),
@@ -638,9 +643,9 @@ generate_plan(Knower, Agent, FullPlan, Mem0) :-
  depth_planning_loop(PlannerGoals, Operators, SeedPlan, FullPlan,
       1, Timeout),
  timeout(planner),
- (bugout3('PLANNER TIMEOUT~n', planner), fail)
+ (dbug(planner, 'PLANNER TIMEOUT~n'), fail)
  ),
- bugout3('FULL PLAN is:~n', planner), pprint(FullPlan, planner).
+ dbug(planner, 'FULL PLAN is:~n'), pprint(FullPlan).
 
 % ----
 
@@ -650,11 +655,11 @@ path2dir1(Doer, Here, There, go_dir(Doer, _Walk, Dir), ModelData):-
 path2dir1(Doer, Here, There, goto_obj(Doer, _Walk, There), ModelData) :-
  in_model(h(descended, Here, There), ModelData).
 
-path2directions(Doer,[Here, There], [GOTO], ModelData):-
-  path2dir1(Doer,Here, There, GOTO, ModelData).
-path2directions(Doer,[Here, Next|Trail], [GOTO|Tail], ModelData) :-
- path2dir1(Doer,Here, Next, GOTO, ModelData),
- path2directions(Doer,[Next|Trail], Tail, ModelData).
+path2directions(Doer, [Here, There], [GOTO], ModelData):-
+  path2dir1(Doer, Here, There, GOTO, ModelData).
+path2directions(Doer, [Here, Next|Trail], [GOTO|Tail], ModelData) :-
+ path2dir1(Doer, Here, Next, GOTO, ModelData),
+ path2directions(Doer, [Next|Trail], Tail, ModelData).
 
 
 find_path1([First|_Rest], Dest, First, _ModelData) :-

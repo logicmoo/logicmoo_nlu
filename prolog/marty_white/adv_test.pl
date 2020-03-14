@@ -8,8 +8,8 @@
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
 % Copyright (C) 2004 Marty White under the GNU GPL 
-% Sept 20,1999 - Douglas Miles
-% July 10,1996 - John Eikenberry 
+% Sept 20, 1999 - Douglas Miles
+% July 10, 1996 - John Eikenberry 
 %
 % Logicmoo Project changes:
 %
@@ -23,13 +23,13 @@ adv_reset:-
  adventure_init,
  main_once,
  main_once,
- main_once,!.
+ main_once, !.
 
 test_adv :- test_adv(1).
 
 test_adv(M-N) :- !,
  forall(
- between(M,N,O),
+ between(M, N, O),
  test_adv(O)).
 
 test_adv(N) :- 
@@ -89,7 +89,7 @@ adv_tst(6):-
  nlu_assert("She finishes the letter."),
  nlu_assert("She writes a letter to her cousin."),
  nlu_assert("She tells her cousin all the latest news at home."),
- nlu_assert("She thanks her cousin for the letter."),!.
+ nlu_assert("She thanks her cousin for the letter."), !.
  
 adv_tst(7):- 
  nlu_assert("She is a model."),
@@ -130,7 +130,7 @@ adv_tst(9):-
  nlu_assert("She is smart."),
  nlu_assert("She likes him too."),
  nlu_assert("She gives him A's on his homework."),
- nlu_assert("She gives him gold stars for his class work."),!.
+ nlu_assert("She gives him gold stars for his class work."), !.
  
 adv_tst(10):- 
  nlu_assert("It is winter."),
@@ -142,7 +142,7 @@ adv_tst(10):-
  nlu_assert("Nobody else is on the pond."),
  nlu_assert("He has it all to himself."),
  nlu_assert("It is quiet on the pond."),
- nlu_assert("The only sound is his skates on the ice."),!.
+ nlu_assert("The only sound is his skates on the ice."), !.
  
 adv_tst(11):- 
  nlu_assert("He has a pocketknife."),
@@ -154,8 +154,8 @@ adv_tst(11):-
  nlu_assert("He cuts wood with the knife."),
  nlu_assert("The other part is a file."),
  nlu_assert("The file is two inches long."),
- nlu_assert("He files his nails with the file."),!.
+ nlu_assert("He files his nails with the file."), !.
  
 
-:- initialization(test_adv,main).
+:- initialization(test_adv, main).
 

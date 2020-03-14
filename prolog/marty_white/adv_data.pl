@@ -72,7 +72,7 @@ dest_target(loc(_, _, _, Target), Target):- nonvar(Target), !.
 :- dynamic(istate/1).
 % empty intial state
 :- retractall(istate(_)).
-:- asserta(istate([ structure_label(istate), propOf(istate,world) ])).
+:- asserta(istate([ structure_label(istate), propOf(istate, world) ])).
 
 % this hacks the state above 
 :- push_to_state([
@@ -105,11 +105,11 @@ exit(west, kitchen, living_room),
 
 in(the(shelf), pantry),  % the shelf is in pantry
 in(the(locker), pantry), % the locker is in pantry
-in(the(rock), garden),   % xformed:  in('rock~1',garden).
+in(the(rock), garden),   % xformed:  in('rock~1', garden).
 % there are rocks in the garden
-in(a(rock), garden),     % xformed:  in('rock~11',garden).
-%in(s(rock), garden),     % in('rock~21',garden).
-% in({atLeast(2)}/in(a(rock),garden)).
+in(a(rock), garden),     % xformed:  in('rock~11', garden).
+%in(s(rock), garden),     % in('rock~21', garden).
+% in({atLeast(2)}/in(a(rock), garden)).
                          % 
 in(the(fountain), garden),
 in(the(mushroom), garden),
@@ -125,7 +125,7 @@ in(brklamp, garden)
 ]).
 
 
-term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_state_info(StateInfo),PosO=Pos.
+term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_state_info(StateInfo), PosO=Pos.
 
 %:- listing(term_expansion).
 
@@ -317,7 +317,7 @@ props(screendoor, [
    
 
  % People
- props(floyd, [name = ("Floyd the robot"), powered = f, inherit(autonomous),inherit(robot)]),
+ props(floyd, [name = ("Floyd the robot"), powered = f, inherit(autonomous), inherit(robot)]),
 
  type_props(telnet, [adjs(remote), inherit(player), nouns([player])]),
  type_props(player, [name = ($self),
@@ -329,12 +329,12 @@ props(screendoor, [
    inherit(autoscan),
    look_depth = 2, 
    user_mode = 2, % 1 = fun-only, normal, debug
-   access_level = admin, % guest,user,admin,wizard
+   access_level = admin, % guest, user, admin, wizard
    inherit(console), inherit(humanoid)]),
  type_props(console, [adjs(physical), nominals([console]), nouns([player])]),
 
- % p(a,b,c).
- % c1_p_a1(a),c1_p_a1(b),c1_p_a1(c):-
+ % p(a, b, c).
+ % c1_p_a1(a), c1_p_a1(b), c1_p_a1(c):-
 
 
 
@@ -350,7 +350,7 @@ props(screendoor, [
    can(switch(off), f), powered = t
   ]),
    
- type_props(autonomous, [inherit(autoscan),inherit(impulsive),
+ type_props(autonomous, [inherit(autoscan), inherit(impulsive),
    class_desc(["like Floyd the robot will, instances will automatically use its planner 
         about planning to decide on what to do"])]),
 
@@ -370,7 +370,7 @@ props(screendoor, [
  type_props(autoscan, [
       adjs(perceptive),
         inherit(autolook),
-           class_desc(["Sensory precepts that discover new objects request further details (notice dirty plates are in the sink)"])]),
+           class_desc(["Sensory percepts that discover new objects request further details (notice dirty plates are in the sink)"])]),
 
  type_props(autolook, [
       adjs($class),
@@ -640,5 +640,5 @@ extra_decl0(T, P):- member(type_props(T, P), [  ]).
 :- op(0, xfx, props).
 
 :- listing(istate).
-%:- istate(IState),sort(IState,SIState),reverse(SIState,RIState), pprint(RIState, always).
+%:- istate(IState), sort(IState, SIState), reverse(SIState, RIState), pprint(RIState, always).
 

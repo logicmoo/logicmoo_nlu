@@ -7,10 +7,10 @@
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
 % 
-% Feb 20,2020 - Andrew Dougherty
+% Feb 20, 2020 - Andrew Dougherty
 % Copyright (C) 2004 Marty White under the GNU GPL 
-% Sept 20,1999 - Douglas Miles
-% July 10,1996 - John Eikenberry 
+% Sept 20, 1999 - Douglas Miles
+% July 10, 1996 - John Eikenberry 
 %
 % Logicmoo Project changes:
 %
@@ -44,9 +44,9 @@ only_goto:- fail, true.
 % oper_db(_Self, Action, Preconds, Effects)
 oper_db(Self, Action, Preconds, Effects):- fail,  % Hooks to KR above
   sequenced(Self, Whole),
- append(Preconds,[did(Action)|Effects],Whole).
+ append(Preconds, [did(Action)|Effects], Whole).
 
-oper_db(Agent, do_nothing(Agent), [],[]).
+oper_db(Agent, do_nothing(Agent), [], []).
 
 oper_db(Agent, go_dir(Agent, Walk, ExitName),
    [ Here \= Agent, There \= Agent, Here \= There, 
@@ -57,13 +57,13 @@ oper_db(Agent, go_dir(Agent, Walk, ExitName),
     h(exit(ReverseExit), There, Here)],
    [ 
      % implies believe(Agent, ~h(in, Agent, Here)),
-     precept_local(Here, departing(Agent, In, Here, Walk, ExitName)),        
+     percept_local(Here, departing(Agent, In, Here, Walk, ExitName)),        
    ~h(In, Agent, Here),  
     h(In, Agent, There),
    %b(exit(ExitName), Here, There),
    %b(exit(ReverseExit), There, Here),
-   % implies, believe(Agent, h(in, Agent, There)),
-    precept_local(There, arriving(Agent, In, There, Walk,  ReverseExit))
+   % implies, believe(Agent, h(in, Agent, There)),  
+    percept_local(There, arriving(Agent, In, There, Walk,  ReverseExit))
    %  ~b(In, Agent, Here),  
    %   b(In, Agent, There),
      % There \= Here
@@ -80,7 +80,7 @@ oper_db(Agent, go_dir(Agent, _Walk, ExitName),
         b(in, Agent, There)
      ]):- fail.
 
-% equiv(precept_local(Here, departing(Agent, In, Here, Walk, ExitName)))  ~h(in, Agent, Here)
+% equiv(percept_local(Here, departing(Agent, In, Here, Walk, ExitName)))  ~h(in, Agent, Here)
 
 oper_db(Agent, go_dir(Agent, Walk, Escape),
      [ Object \= Agent, Here \= Agent,
@@ -89,11 +89,11 @@ oper_db(Agent, go_dir(Agent, Walk, Escape),
        Object \= Here      
      ],
      [ 
-        precept_local(Object, departing(Agent, OldIn, Object, Walk, Escape)),
+        percept_local(Object, departing(Agent, OldIn, Object, Walk, Escape)),
         % implies believe(Agent, ~h(in, Agent, Object)),
        ~k(OldIn, Agent, Object),        
         k(NewIn, Agent, Here),        
-        precept_local(Here, arriving(Agent, NewIn, Here, Walk, EscapedObject))
+        percept_local(Here, arriving(Agent, NewIn, Here, Walk, EscapedObject))
         % implies, believe(Agent, h(in, Agent, Here))
      ]) :- Escape = escape, EscapedObject = escaped, \+ only_goto.
 
@@ -106,49 +106,50 @@ oper_db(Agent, looky(Agent),
        ], 
      [ foreach(
          (h(Sub, Child, Here), must_mw1(h(At, Child, Where))), 
-             precept(Agent, h(At, Child, Where))) ] ) :- \+ only_goto.
+             percept(Agent, h(At, Child, Where))) ] ) :- \+ only_goto.
 
 
 
 % the World agent has a *goal that no events go unhandled
 oper_db(world, handle_events(Here),
-     [ precept_local(Here, Event)],               
-     [ ~precept_local(Here, Event), 
-       foreach((h(in, Agent, Here),prop(Agent,inherited(perceptq))),precept(Agent,Event))]):- \+ only_goto.
+     [ percept_local(Here, Event)],               
+     [ ~percept_local(Here, Event), 
+       foreach((h(in, Agent, Here), prop(Agent, inherited(perceptq))), percept(Agent, Event))]):- \+ only_goto.
 
 
 % deducer Agents who preceive leavers from some exit believe the departing point is an exit 
-oper_db(Agent, precept(Agent, departing(Someone, In, Here, Walk, ExitName)),
+oper_db(Agent, percept(Agent, departing(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
-       prop(Agent,inherited(deducer)),
+       prop(Agent, inherited(deducer)),
        h(In, Agent, Here) ],
      [ believe(Agent, h(exit(ExitName), Here, _)),
-       believe(Agent, prop(Someone,inherited(actor)))]):- \+ only_goto.
+       believe(Agent, prop(Someone, inherited(actor)))]):- \+ only_goto.
 
 % deducer Agents who preceive arivers from some entrance believe the entry location is an exit 
-oper_db(Agent, precept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
+oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
-       prop(Agent,inherited(deducer)),
+       prop(Agent, inherited(deducer)),
        believe(Agent, h(In, Agent, Here)) ],
 
      [ believe(Agent, h(exit(ExitName), Here, _)),
        believe(Agent, did(go_dir(Someone, Walk, ExitName))),
        believe(Agent, h(In, Someone, Here)),
-       believe(Agent, prop(Someone,inherited(actor)))]):- \+ only_goto.
+       believe(Agent, prop(Someone, inherited(actor)))]):- \+ only_goto.
 
 % deducer Agents who preceive arivers from some entrance believe the entry location is an exit 
-oper_db(Agent, precept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
+oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
-       isa(Agent,deducer),
+       isa(Agent, deducer),
        b(Agent, 
-                [precept_local(There, departing(Someone, In, There, Walk, EnterName)),
+                [percept_local(There, departing(Someone, In, There, Walk, EnterName)),
                 in(Agent, Here)]) ],
      [ b(Agent, 
                 [exit(ExitName, Here, There),
                 did(go_dir(Someone, Walk, EnterName)),
                 in(Someone, Here),
-                isa(Someone,actor)])]):- \+ only_goto.
+                isa(Someone, actor)])]):- \+ only_goto.
 
+% ~h(Prep,'<mystery>'(closed,Prep,Object),Object)
 
 % h = is really true
 % b = is belived

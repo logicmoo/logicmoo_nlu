@@ -37,14 +37,14 @@
 english_directve(quoted(_)).
 english_directve(cap(_)).
 english_directve(subj(_)).
-english_directve(person(_,_)).
-english_directve(tense(_,_)).
+english_directve(person(_, _)).
+english_directve(tense(_, _)).
 english_directve(a(_)).
 english_directve(the(_)).
-english_directve(num(_,_,_)).
+english_directve(num(_, _, _)).
 english_directve(aux(_)).
 english_directve(silent(_)).
-english_directve(P):- english_suffix(S), safe_functor(P,S,1).
+english_directve(P):- english_suffix(S), safe_functor(P, S, 1).
 
 english_suffix(s).
 english_suffix(es).
@@ -63,7 +63,7 @@ capitalize(Atom, Capitalized) :-
  upcase_atom(First, Upper),
  atom_chars(Capitalized, [Upper|Rest]).
 
-context_agent(Agent, Context):- atom(Context),!,Context=Agent.
+context_agent(Agent, Context):- atom(Context), !, Context=Agent.
 context_agent(Agent, Context):-
  declared(agent(Agent), Context), !.
 context_agent(Agent, Context):-
@@ -77,34 +77,34 @@ context_agent(Agent, Context):- \+ is_list(Context),
 % If subject is agent, convert to 2nd person, else use 3rd person.
 % Context specifies agent, and (if found) subject of sentence.
 
-compile_eng(_Context, _Done, Text) :- assertion(var(Text)),fail.
+compile_eng(_Context, _Done, Text) :- assertion(var(Text)), fail.
 compile_eng(_Context, Done, '') :- Done == [], !.
 
 compile_eng(Context, [cap(subj(Agent)), aux(be)|More], Person) :- !,
  compile_eng(Context, [cap(subj(Agent)), person(are, is)|More], Person) . 
 
 compile_eng(Context, [AN, Apple|More], Text) :- 
- (AN==a;AN==an),!,
+ (AN==a;AN==an), !,
  compile_eng_txt(Context, [Apple|More], TxtApple),
- name(TxtApple,[A|_]),
- char_type(A,to_lower(Vowel)), 
- (vowel(Vowel) -> atom_concat('an ', TxtApple,Text);atom_concat('a ', TxtApple,Text)).
-% mu:compile_eng([agent('player~1'),person('player~1')],a(floyd),_64404)
+ name(TxtApple, [A|_]),
+ char_type(A, to_lower(Vowel)), 
+ (vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
+% mu:compile_eng([agent('player~1'), person('player~1')], a(floyd), _64404)
 compile_eng(Context, [First|Rest], [First2|Rest2]) :-
  compile_eng(Context, First, First2),
- compile_eng(Context, Rest, Rest2),!.
+ compile_eng(Context, Rest, Rest2), !.
 
-compile_eng(_Context, Object, Text) :- atom(Object),atom_contains(Object,"~"),atomic_list_concat([Wo,_Rds],'~',Object),
- atomic_list_concat([Wo/*,'#',Rds*/], Text).
+compile_eng(_Context, Object, Text) :- atom(Object), atom_contains(Object, "~"), atomic_list_concat([Wo, _Rds], '~', Object),
+ atomic_list_concat([Wo/*, '#', Rds*/], Text).
 
 
 compile_eng(_Context, aux(be), 'is') :- !.
-compile_eng(Context, aux(Can), Text) :- !,compile_eng_txt(Context, Can, Text).
-compile_eng(Context, quoted(Can), Out) :- !,compile_eng_txt(Context, Can, Text), atomic_list_concat([' "',Text,'" '],Out).
+compile_eng(Context, aux(Can), Text) :- !, compile_eng_txt(Context, Can, Text).
+compile_eng(Context, quoted(Can), Out) :- !, compile_eng_txt(Context, Can, Text), atomic_list_concat([' "', Text, '" '], Out).
 
 compile_eng(Context, subj(Agent), Person) :-
  context_agent(Agent, Context),
- declared(person(Person), Context),!.
+ declared(person(Person), Context), !.
 compile_eng(Context, subj(Other), Compiled) :- !,
  compile_eng(Context, Other, Compiled).
 compile_eng(Context, Agent, Person) :-
@@ -123,40 +123,40 @@ compile_eng(Context, cap(Eng), Compiled) :-
  capitalize(Lowercase, Compiled))).
 compile_eng(_Context, silent(_Eng), '').
 
-compile_eng(_Context, extra_verbose_eng(_Eng), '...' ):- debugging(noverbose,true),!.
+compile_eng(_Context, extra_verbose_eng(_Eng), '...' ):- debugging(noverbose, true), !.
 compile_eng(Context, extra_verbose_eng(Eng), O ):- 
  compile_eng_txt(Context, Eng, Compiled), 
- format(atom(O),"\u001b[31m~w\u001b[0m",[Compiled]), !.
+ format(atom(O), "\u001b[31m~w\u001b[0m", [Compiled]), !.
 %compile_eng(Context, extra_verbose_eng(Eng), '...verbose...'(Compiled) ):- 
 % compile_eng_txt(Context, Eng, Compiled).
 
-compile_eng(Context, Inst, TheThing):- atom(Inst),!, must_mw1(compile_eng_atom(Context, Inst, TheThing)).
+compile_eng(Context, Inst, TheThing):- atom(Inst), !, must_mw1(compile_eng_atom(Context, Inst, TheThing)).
 
 /*compile_eng(Context, String, Text):- string(String),
  name(Atom, String), compile_eng(Context, Atom, Text).
 */
-compile_eng(_Context, Inst, Inst):- string(Inst),!.
-compile_eng(_Context, Inst, Text):- string(Inst),!, format(atom(Text),'~q',[Inst]).
-compile_eng(_Context, Inst, Text):- \+ compound(Inst),!, format(atom(Text),'~w',[Inst]).
+compile_eng(_Context, Inst, Inst):- string(Inst), !.
+compile_eng(_Context, Inst, Text):- string(Inst), !, format(atom(Text), '~q', [Inst]).
+compile_eng(_Context, Inst, Text):- \+ compound(Inst), !, format(atom(Text), '~w', [Inst]).
 
 compile_eng(Context, s(Word), Textually) :- % TODO make actually plural
  compile_eng_txt(Context, Word, Textual),
  atom(Textual),
- atom_concat(Textual,"s", Textually).
+ atom_concat(Textual, "s", Textually).
 
-compile_eng(Context, Wordly, Textually) :- safe_functor(Wordly,S,1), english_suffix(S),
+compile_eng(Context, Wordly, Textually) :- safe_functor(Wordly, S, 1), english_suffix(S),
  Wordly =..[S, Word],
  compile_eng_txt(Context, Word, Textual),
- atom(Textual), add_suffix(Textual, S, Textually),!.
+ atom(Textual), add_suffix(Textual, S, Textually), !.
 
 compile_eng(Context, DetWord, AThing) :-
  compound(DetWord), DetWord=..[Det, Word],
  member(Det, [the, some, a, an, '']),
- compile_eng(Context, [Det, Word], AThing),!.
+ compile_eng(Context, [Det, Word], AThing), !.
 
 /*compile_eng(Context, Prop, Text):- \+ atomic(Prop),
- logic2eng(you,Prop,TextMid),!,
- compile_eng(Context,['\n'|TextMid],Text), !.
+ logic2eng(you, Prop, TextMid), !,
+ compile_eng(Context, ['\n'|TextMid], Text), !.
 */
 compile_eng(_Context, Prop, Prop).
 
@@ -165,15 +165,15 @@ compile_eng(_Context, Prop, Prop).
 
 compile_eng_atom(Context, Inst, TheThing):- 
   inst_of(Inst, Type, N), N\==0, !,
- (nth0(N, [(unknown), '', the, thee, old, some, a], Det) -> true; atom_concat('#',N,Det)),
+ (nth0(N, [(unknown), '', the, thee, old, some, a], Det) -> true; atom_concat('#', N, Det)),
  compile_eng(Context, [Det, Type], TheThing).
 
-compile_eng_atom(Context, Atom, Text):- fail, atom(Atom), must_mw1(atomic_list_concat(ABC,' ',Atom)),
- ABC=[A,B|C],!, compile_eng_txt(Context, [A,B|C], Text).
-%compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word,L),L>3, atom_contains(Word,' '), into_text80(Word,Words),!,compile_eng_txt(Context, Words, Textually).
-compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word,L),L>3, 
-  atom_contains(Word,'_'),\+ atom_contains(Word,'('),atomic_list_concat(Words,'_',Word),!,compile_eng_txt(Context, Words, Textually).
-compile_eng_atom(_Context, Inst, Text):- \+ compound(Inst),!, format(atom(Text),'~w',[Inst]).
+compile_eng_atom(Context, Atom, Text):- fail, atom(Atom), must_mw1(atomic_list_concat(ABC, ' ', Atom)),
+ ABC=[A, B|C], !, compile_eng_txt(Context, [A, B|C], Text).
+%compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word, L), L>3, atom_contains(Word, ' '), into_text80(Word, Words), !, compile_eng_txt(Context, Words, Textually).
+compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word, L), L>3, 
+  atom_contains(Word, '_'), \+ atom_contains(Word, '('), atomic_list_concat(Words, '_', Word), !, compile_eng_txt(Context, Words, Textually).
+compile_eng_atom(_Context, Inst, Text):- \+ compound(Inst), !, format(atom(Text), '~w', [Inst]).
 
 
 vowel(a). vowel(e). vowel(i). vowel(o). vowel(u).
@@ -187,12 +187,12 @@ verb_tensed(Context, Verb, _Tense, Compiled):-
 add_suffix(Textual, es, Textually):- atom_concat(Textual, s, Textually). 
 add_suffix(Textual, S, Textually):- atom_concat(Textual, S, Textually). 
 
-pasitfy_word(take,took).
-pasitfy_word(make,made).
-pasitfy_word(move,moved).
-pasitfy_word(eat,ate).
-pasitfy_word(Verb,Compiled):- \+ atom(Verb),!,Compiled=Verb.
-pasitfy_word(Verb,Compiled):- atomic_concat(Verb,'ed', Compiled).
+pasitfy_word(take, took).
+pasitfy_word(make, made).
+pasitfy_word(move, moved).
+pasitfy_word(eat, ate).
+pasitfy_word(Verb, Compiled):- \+ atom(Verb), !, Compiled=Verb.
+pasitfy_word(Verb, Compiled):- atomic_concat(Verb, 'ed', Compiled).
 
 
 nospace(_, ',').
@@ -231,46 +231,46 @@ insert_spaces([], []).
 
 make_atomic(_, Atom, Atom) :- atomic(Atom), !.
 make_atomic(Context, Some, Text):- is_list(Some),
-  maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff,' ',Text),!. 
+  maplist(make_atomic(Context), Some, Stuff), atomic_list_concat(Stuff, ' ', Text), !. 
 
-make_atomic(_Context, anglify(NewCtx,Some), Text):- !,
+make_atomic(_Context, anglify(NewCtx, Some), Text):- !,
   logic2english(NewCtx, Some, Term),
-  term_to_atom(Term, Text),!.
+  term_to_atom(Term, Text), !.
 
 make_atomic(Context, cap(subj(Some)), Text):- !,
   compile_eng(Context, cap(Some), Term),
-  term_to_atom(Term, Text),!.
+  term_to_atom(Term, Text), !.
 
 make_atomic(Context, cap(Some), Text):- !,
   compile_eng(Context, cap(Some), Term),
-  term_to_atom(Term, Text),!.
+  term_to_atom(Term, Text), !.
 
 
 make_atomic(Context, Logic, Text):- fail, Logic =.. [F|Some],
   maplist(logic2english(Context), Some, Stuff),
   Term =.. [F|Stuff],
-  term_to_atom(Term, Text),!.
-make_atomic(_,Term, Atom) :-  format(atom(Atom), '~p',[Term]),!.
-make_atomic(_,Term, Atom) :-  term_to_atom(Term, Atom),!.
+  term_to_atom(Term, Text), !.
+make_atomic(_, Term, Atom) :-  format(atom(Atom), '~p', [Term]), !.
+make_atomic(_, Term, Atom) :-  term_to_atom(Term, Atom), !.
 
-eng2txt(Agent, _Person, LogicalEnglish, Text) :- compound(LogicalEnglish), \+ is_list(LogicalEnglish),!,  
-  logic2english(Agent, LogicalEnglish, Text),!.
-eng2txt(Agent, Person, LogicalEnglish, Text) :- \+ is_list(LogicalEnglish),!,  
+eng2txt(Agent, _Person, LogicalEnglish, Text) :- compound(LogicalEnglish), \+ is_list(LogicalEnglish), !,  
+  logic2english(Agent, LogicalEnglish, Text), !.
+eng2txt(Agent, Person, LogicalEnglish, Text) :- \+ is_list(LogicalEnglish), !,  
   eng2txt(Agent, Person, [LogicalEnglish], Text), !.
 eng2txt(Agent, Person, Eng, Text) :- assertion(nonvar(Eng)),
  % Find subject, if any.
  quietly((
   findall(subj(Subject), findterm(subj(Subject), Eng), Context),
-  list_to_set([agent(Agent), person(Person)| Context],NewContext),
+  list_to_set([agent(Agent), person(Person)| Context], NewContext),
   compile_eng_txt(NewContext, Eng, Text))).
 eng2txt(_Agent, _Person, Text, Text).
 
 compile_eng_txt(_Context, Done, '') :- Done == [], !.
-compile_eng_txt(Context, [First], Text):- compile_eng_txt(Context, First, Text),!.
+compile_eng_txt(Context, [First], Text):- compile_eng_txt(Context, First, Text), !.
 compile_eng_txt(Context, Eng, Text):- 
- flatten([Eng],FEng),
+ flatten([Eng], FEng),
  compile_eng_txt_pt2(Context, FEng, FText), 
- format(atom(Text),'~w',FText),!.
+ format(atom(Text), '~w', FText), !.
 
 % Compile recognized structures.
 compile_eng_txt_pt2(Context, EngIn, Text) :- 
@@ -282,21 +282,21 @@ compile_eng_txt_pt2(Context, EngIn, Text) :-
  % Convert terms to atom-strings.
  findall(Atom, (member(Term, FlatList), make_atomic(Context, Term, Atom)), AtomList),
  findall(Atom2, (member(Atom2, AtomList), Atom2\=''), AtomList1),
- grammar_check(Context,AtomList1,AtomList2),
+ grammar_check(Context, AtomList1, AtomList2),
  % Add spaces.
- bugout3('insert_spaces(~w)~n', [AtomList2], printer),
+ dbug(printer, 'insert_spaces(~w)~n', [AtomList2]),
  insert_spaces(AtomList2, SpacedList),
  % Return concatenated atoms.
- concat_atom(SpacedList, Text),!.
+ concat_atom(SpacedList, Text), !.
 
 
 grammar_check(_Context, [], []).
 grammar_check(Context, [AN, Apple|More], Text) :- fail,
- (AN==a;AN==an),!,
+ (AN==a;AN==an), !,
  compile_eng_txt(Context, [Apple|More], TxtApple),
- name(TxtApple,[A|_]),
- char_type(A,to_lower(Vowel)), 
- (vowel(Vowel) -> atom_concat('an ', TxtApple,Text);atom_concat('a ', TxtApple,Text)).
+ name(TxtApple, [A|_]),
+ char_type(A, to_lower(Vowel)), 
+ (vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
 
 grammar_check(Context, [Word|More], [Word|MoreN]) :- 
  grammar_check(Context, More, MoreN).
