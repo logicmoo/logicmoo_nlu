@@ -22,29 +22,23 @@
 
 /* Print term as a tree */
 
+
+
 print_tree(T) :-
    ignore((numbervars80(T,111,_),
-   pt('','',T,0),nl, fail)).
+   pt0('','',T,0),nl, fail)).
 
+may_tab(A):- line_position(current_output,0), tab(A),!.
+may_tab(_):- write(' ').
 
 inperent(In,TTs,T,Ts):- 
       TTs=..[In,T,Ts], 
       functor(TTsS,In,2),     
      ((nonvar(T), T=TTsS);(nonvar(Ts), Ts=TTsS)).
 
-pt(In,LC,[T|Ts],I) :- !,
-  tab(I),write('['),
-  I2 is I+2,
-  I1 is I+1,
-   pt0(In,',',T,I1),
-   format(atom(NLC),'  ]~w',[LC]),
-   pt1(In,NLC,Ts,I2),!.
-
-pt(In,LC,TTs,I):- pt0(In,LC,TTs,I),!.
-
 pt0(_,LC,A,I) :-
    as_is(A), !,
-   tab(I), write_simple(A),write(LC), nl.
+   may_tab(I), write_simple(A),write(LC), nl.
 
 /*
 pt0(In,LC,TTs,I) :- 
@@ -53,27 +47,32 @@ pt0(In,LC,TTs,I) :-
    pt0(In,LC,T,I0),   
    pt0(In,LC,Ts,I).
 */
+
 pt0(In,LC,[T|Ts],I) :- !,
-   pt0(In,LC,T,I),
-   pt1(In,LC,Ts,I).
+  may_tab(I),write('['),
+  I2 is I+2,
+  I1 is I+1,
+   pt0(In,',',T,I1),
+   format(atom(NLC),'  ]~w',[LC]),
+   pt1(In,NLC,Ts,I2),!.
 
 pt0(In,LC,q(E,V,G),I):- atom(E), !, T=..[E,V,G],!, pt0(In,LC,T,I).
 
 pt0(_In,LC,T,I) :- T=..[F,A], !,
-   tab(I), format('~p(',[F]),
+   may_tab(I), format('~p(',[F]),
    I0 is I+1, format(atom(LC2),')~w',[LC]),   
    pt1(F,LC2,[A],I0).
 
 pt0(_In, LC,T,I) :-    
    T=..[F,A0,A|As], as_is(A0), append([L1|Left],[R|Rest],[A|As]), \+ is_arity_lt1(R), !,
-   tab(I), format('~p( ',[F]),
+   may_tab(I), format('~p( ',[F]),
    write_simple(A0), write_simple_each([L1|Left]), format(', '), nl,
    I0 is I+3, format(atom(LC2),')~w',[LC]),   
    pt1(F,LC2,[R|Rest],I0).
 
 
 pt0(_In,LC,T,I) :- T=..[F,A,B|As], is_arity_lt1(A), !, 
-   tab(I), format('~p( ~p,',[F,A]), nl,
+   may_tab(I), format('~p( ~p,',[F,A]), nl,
    I0 is I+2, format(atom(LC2),')~w',[LC]),
    pt1(F,LC2,[B|As],I0).
 
@@ -81,7 +80,7 @@ pt0(In,LC,T,I) :- !,
    T=..[F|As],   
    (((In==F, F == & )
      -> (I0 is I+1,LCO='~w' )
-      ; (tab(I), format('~p(',[F]), I0 is I+3, nl, LCO=')~w'))),
+      ; (may_tab(I), format('~p(',[F]), I0 is I+3, nl, LCO=')~w'))),
    format(atom(LC2),LCO,[LC]),
    pt1(F,LC2,As,I0).
 
@@ -89,7 +88,7 @@ pt1(_In,_LC,[],_) :- !.
 pt1( In, LC,[A],I) :- !,
    pt0(In,LC,A,I).
 pt1( In, LC,[A0,A|As],I) :- is_arity_lt1(A0), append([L1|Left],[R|Rest],[A|As]), \+ is_arity_lt1(R), !,
-   tab(I), write_simple(A0), write_simple_each([L1|Left]), nl,
+   may_tab(I), write_simple(A0), write_simple_each([L1|Left]), nl,
    pt0(In,',',R,I),
    pt1(In,LC,Rest,I).  
 pt1( In, LC,[A|As],I) :- !,

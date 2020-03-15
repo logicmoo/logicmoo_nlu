@@ -1,4 +1,5 @@
 :- use_module(library(nomic_mu)).
+:- use_module(library(pengines)).
 
 :- dynamic command_from_flp/1.
 :- dynamic flp_words0/1.

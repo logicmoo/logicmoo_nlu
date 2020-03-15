@@ -8,6 +8,7 @@ is_sicstus:- \+ current_prolog_flag(version_data,swi(_,_,_,_)).
 :- style_check(-singleton).
 /* Emulates the writenl(1) function */
 
+:- use_module(ec_loader).
 % =========================================
 % Axiom Access
 % =========================================

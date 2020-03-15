@@ -165,8 +165,12 @@ resolve_file(S0,SS):- atom(S0), file_base_name(S0,S1), S0\==S1, resolve_file(S1,
 needs_resolve_local_files(F, L):- \+ is_stream(F), \+ is_filename(F),
   resolve_local_files(F, L), !,  L \= [], L \= [F].
 
+chop_e(InputNameE,InputName):- atom_concat(InputName,'.e',InputNameE),!.
+chop_e(InputName,InputName).
+
 :- export(calc_where_to/3).
-calc_where_to(outdir(Dir, Ext), InputName, OutputFile):- 
+calc_where_to(outdir(Dir, Ext), InputNameE, OutputFile):- 
+    chop_e(InputNameE,InputName),
     atomic_list_concat([InputName, '.', Ext], OutputName),
     make_directory_path(Dir),
     absolute_file_name(OutputName, OutputFile, [relative_to(Dir)]).
@@ -649,7 +653,7 @@ ec_on_read(Why, S):- must(glean_data(Why, S)), must(call(Why, S)).
 
 :- use_module(library(logicmoo/misc_terms)).
 
-ec_on_each_read(Why, NonlistF, E):- Cmp univ_safe [NonlistF, E], ec_on_read(Why, Cmp).
+ec_on_each_read(Why, NonlistF, E):- univ_safe(Cmp , [NonlistF, E]), ec_on_read(Why, Cmp).
 
 %must(G):- tracing, !, notrace(G).
 %must(G):- call(G)->true;(trace,ignore(rtrace(G)),break).

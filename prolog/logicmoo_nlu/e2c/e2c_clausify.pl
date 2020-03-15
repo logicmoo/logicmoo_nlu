@@ -270,7 +270,7 @@ var_1trait(X, pl, ~numberOf(X, 1)).
 % var_1trait(_, pl, true). %
 var_1trait(_, infpl, true).
 var_1trait(_, fin, true).
-var_1trait(X, the(X), true).
+%var_1trait(X, the(X), true).
 var_1trait(X, past, iza(X,timeFn(vPast))).
 var_1trait(X, pres, iza(X,timeFn(vNow))).
 

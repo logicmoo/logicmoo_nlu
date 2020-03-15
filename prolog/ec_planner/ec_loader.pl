@@ -17,7 +17,7 @@
 % =========================================
 % Goal/Plan translating
 % =========================================
-:- module(ec_loader,[load_e/1, needs_proccess/2,process_ec/2]).
+:- module(ec_loader,[load_e/1, needs_proccess/2,process_ec/2,fix_time_args/3]).
 
 :- use_module(library(logicmoo_utils_all)).
 
@@ -31,10 +31,10 @@
 :- wdmsg("WARNING: PFC_NOT_LEAN").
 :- endif.
 
-%:- use_module(library(pfc_lib)).
-:- use_module(library(pfc)).
-:- baseKB:export(baseKB:spft/3).
-:- system:import(baseKB:spft/3).
+:- use_module(library(pfc_lib)).
+%:- include(library(pfc)).
+:- baseKB:export(baseKB:spft/4).
+:- system:import(baseKB:spft/4).
 
 export_transparent(P):-
   export(P),
@@ -83,7 +83,7 @@ cond_load_e(Cond,F):-
 :- export_transparent(load_e_pl/1).
 load_e_pl(F):- needs_resolve_local_files(F, L), !, maplist(load_e_pl, L).  
 load_e_pl(F):-
-  calc_where_to(outdir('.', pl), F, OutputName), !,
+  calc_where_to(outdir('.', pel), F, OutputName), !,
  ( 
  (( ( fail, \+ should_update(OutputName))) -> true ;
   setup_call_cleanup(open(OutputName, write, Outs),

@@ -143,7 +143,7 @@ sequenced(_Self,
   notice(There, enters(Self, There, RDir))]).
 
 
-planner_only:- nb_current(opers).
+% planner_only:- nb_current(opers).
 
 
 

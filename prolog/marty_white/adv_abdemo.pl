@@ -226,14 +226,12 @@ abresolve(G, R, Gs, R, false) :- axiom(G, Gs).
 */
 
 add_neg(N, Ns, Ns) :- member(N, Ns), !.
-
 add_neg(N, Ns, [N|Ns]).
 
 
 /* append_negs is just append, but ignoring duplicates. */
 
 append_negs([], [], []).
-
 append_negs([N|Ns1], Ns2, Ns4) :- add_neg(N, Ns2, Ns3), append(Ns1, Ns3, Ns4).
 
 
@@ -257,7 +255,6 @@ append_negs([N|Ns1], Ns2, Ns4) :- add_neg(N, Ns2, Ns3), append(Ns1, Ns3, Ns4).
 
 
 abdemo_nafs([], R, R, N, N).
-
 abdemo_nafs([N|Ns], R1, R3, N1, N3) :-
      abdemo_naf(N, R1, R2, N1, N2), abdemo_nafs(Ns, R2, R3, N2, N3).
 
@@ -664,26 +661,30 @@ abdemo:or(true, B, true) :- !.
 abdemo:or(false, false, false).
 abdemo:or(false, true, true).
 
-
+:- dynamic(axiom/2).
 axiom(initiates(wake_up(X), awake(X), _T), []).
 axiom(initiates(open(_, Y), opened(Y), _T), []).
 axiom(terminates(fall_asleep(X), awake(X), _T), []). 
 axiom(initially(neg(awake(N))), [N=nathan]). 
 axiom(initially(neg(opened(cont1))), []). 
+
+:- dynamic(abducible/1).
 abducible(dummy).
 
+:- dynamic(executable/1).
 executable(wake_up(_X)).
 executable(fall_asleep(_X)).
 executable(open(_X, _Y)).
-/*
-?- abdemo([holds_at(awake(nathan), t)], R).
 
+:- ec:abdemo([holds_at(awake(nathan), t)], R), writeq(R).
+/*
   R = [[happens(wake_up(nathan), t1, t1)], [before(t1, t)]]
 
                                             abdemo([holds_at(awake(nathan), t), holds_at(opened(foo), t)], R)
-
-
-?- abdemo([holds_at(awake(nathan), t), before(t, t2), holds_at(neg(awake(nathan)), t2)], R).
-
-
 */
+
+%:- ec:abdemo([holds_at(awake(nathan), t), before(t, t2), holds_at(neg(awake(nathan)), t2)], R),writeq(R).
+
+
+
+

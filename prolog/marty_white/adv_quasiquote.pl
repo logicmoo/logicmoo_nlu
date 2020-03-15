@@ -35,7 +35,7 @@ cleanup_elements( Ctx, Dom, Term):-
    ; (Term=MArgs)).
   
 
-i7_term(Ctx, Dom):- dmsg(i7_term(Ctx, Dom)).
+i7_term(Ctx, Dom):- dmsg(dont_call(i7_term(Ctx, Dom))).
 
 i7_syntax_term(TiM, M, Vars, Dict, Dom, i7_term(Out, TermF)):-
   Ctx = v(TiM, M, Vars, Dict),

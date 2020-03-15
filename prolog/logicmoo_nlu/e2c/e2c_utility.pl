@@ -93,6 +93,7 @@ into_isa3_0(X, Y, iza(X, YY)):- compound(Y), Y=.. [Fn, Word], atom_concat(_, 'Fn
 into_isa3_0(X, Y, iza(X, Y)):-!.
 
 % maybe_toPropercase(X,Y):- downcase_atom(X,DC),DC\==X,!,X=Y.
+maybe_toPropercase(X,Y):- upcase_atom(X,U),X==U,toPropercase(X,Y),!.
 maybe_toPropercase(X,Y):- first_char_to_upper(X,Y).
 
 

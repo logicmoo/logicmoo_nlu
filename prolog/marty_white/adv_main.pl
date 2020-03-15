@@ -20,6 +20,8 @@
 
 :- use_module(library(logicmoo_common)).
 
+:- use_module(library(ec_planner/ec_loader)).
+
 /*
 :- if(\+ exists_source(library(poor_bugger))).
 :- prolog_load_context(file, File),

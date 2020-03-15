@@ -117,9 +117,10 @@ kill_old_preds:-
 :- is_reloading(kill_old_preds).
 
 ppfs:- cls, make, kill_old_preds, ppfs0, !.
-ppfs0 :- ppfs(pldata('verbnet-3.2/*.xml')), 
-  % listing(vndata:verbnet_pred), %listing(vndata:verbnet_type),nb_setval(verbnet_iface_loaded,true),
-  varify_frames.
+ppfs0 :- ppfs(pldata('verbnet-3.2/*.xml')),   
+  %listing(vndata:verbnet_type),nb_setval(verbnet_iface_loaded,true),
+  varify_frames,
+  listing(vndata:verbnet_pred).
 
 ppfs1 :- cls, make, kill_old_preds,
           ppfs('verbnet-3.2/weather-57.xml'),
@@ -166,7 +167,7 @@ into_var(V:List,V):- is_list(List),!,must_maplist(add_var_prop(V),List).
 into_var(V:or(List),V):- is_list(List),!,add_var_prop(V,or(List)).
 %into_var([[+Spatial]],prep(Spatial,'Prep')):- add_var_prop('Prep',Spatial).
 %into_var([+Spatial],prep(Spatial,'Prep')):- add_var_prop('Prep',Spatial).
-into_var('Event':DE,E):- de_to_d_e(DE,D,P,E),!,add_var_prop(D,+'Event'),add_var_prop(E,+'Event'),add_var_prop(D,P),add_var_prop(E,P).
+into_var('Event':DE,E):- de_to_d_e(DE,D,P,E),!,add_var_prop(D,+'actEvent'),add_var_prop(E,+'actEvent'),add_var_prop(D,P),add_var_prop(E,P).
 into_var(T:V-P,V):-!,add_var_prop(V,P),add_var_prop(V,+T).
 into_var(T:V,V):-!,add_var_prop(V,+T).
 into_var(V-P,V):-!,add_var_prop(V,P).
@@ -192,14 +193,19 @@ make_conjs(X,+XX,isa(X,XXX)):- correct_type(XX,XXX).
 make_conjs(X,-XX,~(isa(X,XXX))):- correct_type(XX,XXX).
 make_conjs(X,XX,O):- XX=='VerbSpecific',!,make_conjs(X,'$VERB',O).
 make_conjs(X,XX,isa(X,XXX)):- atom(XX), atom_contains(XX,"?"),trim_varname(XX,XXX).
-make_conjs(X,XX,isa(X,XXX)):- atom(XX), correct_type(XX,XXX).
+make_conjs(X,XX,isa(X,XXX)):- atom(XX), correct_type(XX,XXX),!.
 make_conjs(_,XXX,XXX).
 
 correct_type(XX,XX):- \+ atom(XX),!.
+correct_type('Event','actEvent').
+correct_type(body_part,'tBodyPart').
+correct_type(XX,XXX):- atom_contains(XX,"$"),!,XXX=XX.
+correct_type(XX,XXX):- upcase_atom(XX,U),XX==U,toPropercase(XX,Y),atom_concat('t',Y,XXX),!.
 correct_type(XX,XXX):- downcase_atom(XX,DC),XX\==DC,!,XXX=XX.
 correct_type(XX,XXX):- atom_contains(XX,"_"),!,XXX=XX.
-% correct_type(XX,XXX):- toPropercase(XX,XXX),!.
+correct_type(XX,XXX):- first_char_to_upper(XX,XX0),atom_concat('t',XX0,XXX),!.
 correct_type(XX,XX):-!.
+
 
 
 add_var_prop(X,XX):- trim_varname(X,V),add_var_vn(V),add_var_prop_0(V,XX).

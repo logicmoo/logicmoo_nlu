@@ -29,6 +29,9 @@ print_reply(C,O):- notrace(((is_list(C)->CC=C;CC=[fg(C)]),ansi_format(CC,'~@',[p
 % %%%%%%%%%%%%%%%%%%%%%%% IRC-REPLY %%%%%%%%%%%%%%%%%%%%%%%
 % =================================================================
 
+:- if(exists_source(library(eggdrop))).
+
+:- use_module(library(eggdrop)).
 
 irc_cmd:irc_invoke_e2c(Channel,Agent,_Say,Args):- 
  eggdrop:irc_process(Channel,Agent,   
@@ -39,7 +42,7 @@ irc_cmd:irc_invoke_nlp(Channel,Agent,_Say,Args):-
 
 irc_e2c(Args):- e2c(Args, Out),print_reply(Out).
 
-
+:- endif.
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% GLEAN CMDS %%%%%%%%%%%%%%%%%%%%%%%
