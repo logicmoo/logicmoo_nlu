@@ -171,6 +171,10 @@ set_mpred_props(MF,E):- strip_module(MF,M,P),MF==P,!,must(set_mpred_props(M:P,E)
 set_mpred_props(M:F/A,E):- !, (var(A)-> true ; ain(mpred_prop(M,F,A,E))).
 set_mpred_props(M:P,E):- \+ compound(P),!,set_mpred_props(M:P/_,E).
 set_mpred_props(M:P,E):- compound_name_arity(P,F,A),set_mpred_props(M:F/A,E),
+   add_mat(P),!.
+
+add_mat(P):- compound_name_arity(P,_,0),!.
+add_mat(P):-
    assert_ready(red, (==>meta_argtypes(P))),
    ain(meta_argtypes(P)).
 
@@ -253,9 +257,11 @@ fix_axiom_head(T, P, PP):-
    must(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)).
 %fix_axiom_head(T, P, P).
 %fix_axiom_head(T,X,Y):- trace, ec_to_ax(T, X,Y).
-fix_axiom_head(_, P, call(P)):- predicate_property(P,foreign),!.
 fix_axiom_head(_, holds_at(G, T), holds_at(G, T)):-!.
-fix_axiom_head(T, G, GG):- trace, GG = holds_at(G, T).
+fix_axiom_head(T, (G1,G2), (GG1,GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
+fix_axiom_head(_, P, call(P)):- predicate_property(P,foreign),!.
+% fix_axiom_head(T, exists(Vars,B->H), HBO)
+fix_axiom_head(T, G, GG):- GG = holds_at(G, T), !.
 
 :- export(show_fix_axiom_head/3).
 show_fix_axiom_head(T, HT, HTTermO):- 
