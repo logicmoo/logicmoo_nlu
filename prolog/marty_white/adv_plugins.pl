@@ -22,16 +22,17 @@
 :- dynamic(adv_global:nomic_config_dir/1).
 
 
-local_resolve_dir(Target, Res):- \+ atom(Target), expand_file_search_path(Target, Mid), !, local_resolve_dir(Mid, Res).
-local_resolve_dir(Target, Res):- prolog_load_context(directory, Dir), 
-   absolute_file_name(Target, Res, [relative_to(Dir), file_type(directory), access(read)]), !.
+local_resolve_dir(Target, Res):- \+ atom(Target), !, expand_file_search_path(Target, Mid), local_resolve_dir(Mid, Res), !.
+local_resolve_dir(Target, Res):- prolog_load_context(directory, Dir), absolute_file_name(Target, Res, [relative_to(Dir), file_type(directory), access(read), file_errors(fail)]), !.
 local_resolve_dir(Target, Res):- absolute_file_name(Target, Res, [file_type(directory), access(read), file_errors(fail)]), !.
+local_resolve_dir(Target, Res):- absolute_file_name(Target, Res, [file_type(directory), access(none)]), !.
 
 add_config_dir(Target):- is_list(Target), !, must_maplist(add_config_dir, Target).
 add_config_dir(Target):- 
-  local_resolve_dir(Target, Where),
-  exists_directory(Where),
-  assert_if_new(adv_global:nomic_config_dir(Where)).
+  catch(local_resolve_dir(Target, Where),error(existence_error(source_sink,Where),_),true),
+  (\+ exists_directory(Where) -> catch(make_directory_path(Where),_,true); true),
+  (\+ exists_directory(Where) -> dbug1(no_dir(Where)); assert_if_new(adv_global:nomic_config_dir(Where))),!.
+  
 
 %add_config_dir(Target):- expand_file_search_path(Target, Result)*->add_config_dir(Result);add_config_dir_0(Target ).
 
@@ -40,7 +41,8 @@ add_config_dir(Target):-
 :- add_config_dir(app_preferences('.config/nomicmu/')).
 
 scan_and_load_plugins:- 
-  forall(adv_global:nomic_config_dir(Dir), ignore(scan_and_load_plugins(Dir))).
+  forall(adv_global:nomic_config_dir(Dir), 
+    ignore(scan_and_load_plugins(Dir))).
 
 scan_and_load_plugins(Dir):-
    directory_file_path(Dir, 'plugins/*.pl', Expand),

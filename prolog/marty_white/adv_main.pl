@@ -69,9 +69,12 @@ extra :- true. % Fuller, but questionable if needed yet.
 :- ensure_loaded(adv_log2eng).
 :- ensure_loaded(adv_eng2cmd).
 
-:- ensure_loaded(adv_state).
+:- ensure_loaded(adv_lexicon).
 
 :- ensure_loaded(adv_quasiquote).
+
+:- ensure_loaded(adv_state).
+
 :- ensure_loaded(adv_data).
 :- ensure_loaded(adv_portray).
 
@@ -129,7 +132,7 @@ main(S0, S9) :-
  % pprint(S1, state),
  get_live_agents(LiveAgents, S1),
  ttyflush)),
- %dbug(liveAgents = LiveAgents),
+ %dbug1(liveAgents = LiveAgents),
  apply_mapl_state(run_agent_pass_1(), LiveAgents, S1, S2),
  apply_mapl_state(run_agent_pass_2(), LiveAgents, S2, S9),
  notrace((set_advstate(S9))),

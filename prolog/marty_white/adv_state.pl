@@ -117,7 +117,8 @@ declare(Fact, type(Type), type(Type)):- !,
    select_always(type_props(Type, _), State, MidState),
    append([type_props(Type, NewPropList)], MidState, NewState),
    set_advstate(NewState).
-declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name), append_term(Pred1Name, State, DBPred), (retract(DBPred);State=[]), !, declare_list(Fact, State, NewState), DBPredNewState=..[Pred1Name, NewState], asserta(DBPredNewState).
+declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name), append_term(Pred1Name, State, DBPred), (retract(DBPred);State=[]), !, 
+   declare_list(Fact, State, NewState), append_term(Pred1Name,NewState,DBPredNewState), asserta(DBPredNewState).
 declare(Fact, VarName, VarName):- atom(VarName), nb_current(VarName, PropList), declare_list(Fact, PropList, NewPropList), b_setval(VarName, NewPropList).
 declare(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List], 
   Call=..[F, NewArg|List], 

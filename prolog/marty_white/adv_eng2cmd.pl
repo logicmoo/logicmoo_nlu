@@ -133,7 +133,9 @@ reframed_call(Pred, Text, Logic):-
 
 reframed_call(_Pred, _Self,  [], [], _Mem) :-!.
 reframed_call(Pred,  Self,  Logic, NewLogic, Mem) :- compound(Logic), \+ is_list(Logic), is_logic(Logic),
-  logic2eng(Self, Logic, Words), reframed_call(Pred, Self, Words, NewLogic, Mem), !.
+  (Logic = NewLogic -> true;
+  (logic2eng(Self, Logic, Words), reframed_call(Pred, Self, Words, NewLogic, Mem))), !.
+
 reframed_call( Pred,  Self, NonText,   Logic, Mem) :- \+ is_list(NonText), into_text80(NonText, Text), !, reframed_call( Pred,  Self, Text,   Logic, Mem).
 reframed_call( Pred,  Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, reframed_call( Pred,  Self, NonText, Logic, Mem) .
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).
@@ -290,9 +292,9 @@ parse_cmd( Self,  Logic, [F|Words], []):-
     type_functor(action, P), P =..[Fun, Ag|_Rest],
     same_verb(F, Fun),
     % @TODO start using coerce(...).
-    must_maplist(coerce_text_to_args, Words, Args),
+    coerce_text_to_args(Words, Args),
      (Ag==agent -> 
-       Logic =..[Fun, Self|Args];
+       Logic =..[Fun,Self|Args];
        Logic =..[Fun|Args]).
 
 ask_to_say(Ask, say):- arg(_, v(ask, say, tell, talk), Ask).
@@ -834,7 +836,7 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
  trace, notrace %, %whereami, whereis, whoami
  ]).
 
-verbatum_anon_one_or_zero_arg(N):- current_predicate(N/0).
+verbatum_anon_one_or_zero_arg(N):- atom(N), atom_length(N,L),L>1, current_predicate(N/0).
 
 verbatum_anon_n_args(Verb):- member(Verb, [getprops, setprop, path, delprop, rez, derez  %, %whereami, whereis, whoami
  ]).
@@ -920,13 +922,18 @@ sub_term_atom(Term, T) :-
 
 
 
+call_lf(X,LFOut):- freeze(X,ignore(LFOut)).
 
-
-coerce_text_to_args(List, Args):- is_list(List), !, must_maplist(coerce_text_to_args, List, Args).
-coerce_text_to_args(Var, Arg):- is_ftVar(Var), Arg=Var, !.
-coerce_text_to_args(Atom, Arg):- is_already_an_arg(Atom), !, Atom=Arg.
+coerce_text_to_args(X,[]):- []==X, !.
+coerce_text_to_args(List, [X|Args]):- is_list(List), to_wordlist_atoms(List, WL), 
+   noun_phrase(_SO, X, true, LFOut, WL, Rest),!,
+   must((call_lf(X,LFOut),
+   from_wordlist_atoms(Rest,More),
+   coerce_text_to_args(More, Args))).
+coerce_text_to_args(Var,  [Arg]):- is_ftVar(Var), Arg=Var, !.
+coerce_text_to_args(Atom, [Arg]):- is_already_an_arg(Atom), !, Atom=Arg.
+coerce_text_to_args(Word, [Thing]):- as1object(Word, Thing, _Mem), !.
 coerce_text_to_args(Atomic, Arg):- \+ atom(Atomic), !, any_to_atom(Atomic, Atom), !, coerce_text_to_args(Atom, Arg).
-coerce_text_to_args(Word, Thing):- as1object(Word, Thing, _Mem), !.
 
 is_already_an_arg(Var):- is_ftVar(Var), !, fail.
 is_already_an_arg(NonAtomic):- compound(NonAtomic), !.

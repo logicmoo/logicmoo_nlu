@@ -143,9 +143,10 @@ prolog_pprint(Term, Options):-
 
 :- thread_local(t_l:no_english/0).
 
-dbug(Fmt) :- 
+dbug1(Fmt) :- 
   \+ \+ 
-   ((mu:simplify_dbug(Fmt, FmtS),
+   ((mu:simplify_dbug(Fmt, FmtSS),
+     portray_vars:pretty_numbervars(FmtSS, FmtS),
      locally(t_l:no_english, term_to_pretty_string(FmtS, "% ", SSS)), 
      bugout4("", '~s~n', [SSS], always))).
 
@@ -320,14 +321,6 @@ line_to_tokens([], _, []):-!.
 line_to_tokens(NegOne, NegOne, end_of_file):-!.
 line_to_tokens([NegOne], NegOne, end_of_file):-!.
 
-line_to_tokens(LineCodes, NegOne, Tokens) :- 
- append([L], NewLineCodes, LineCodes),
- member(L, [10, 13, 32]), !,
- line_to_tokens(NewLineCodes, NegOne, Tokens).
-line_to_tokens(LineCodes, NegOne, Tokens) :- 
- append(NewLineCodes, [L], LineCodes),
- member(L, [10, 13, 32]), !,
- line_to_tokens(NewLineCodes, NegOne, Tokens).
 
 line_to_tokens(LineCodes, _NegOne, Tokens) :- 
  last(LineCodes, L),
@@ -338,6 +331,15 @@ line_to_tokens(LineCodes, _NegOne, Tokens) :-
   variable_names(VNs), cycles(true), dotlists(true), singletons(_)])), _, fail)),
  nb_setval('$variable_names', VNs),
  Tokens=Term, !.
+
+line_to_tokens(LineCodes, NegOne, Tokens) :- 
+ append([L], NewLineCodes, LineCodes),
+ member(L, [10, 13, 32]), !,
+ line_to_tokens(NewLineCodes, NegOne, Tokens).
+line_to_tokens(LineCodes, NegOne, Tokens) :- 
+ append(NewLineCodes, [L], LineCodes),
+ member(L, [10, 13, 32]), !,
+ line_to_tokens(NewLineCodes, NegOne, Tokens).
 
 line_to_tokens(LineCodes, _, Tokens):- 
  ignore(log_codes(LineCodes)), !,

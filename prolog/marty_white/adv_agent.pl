@@ -26,7 +26,7 @@ each_live_agent(NewGoal, S0, S2) :-
 each_sensing_thing(Sense, NewGoal, S0, S2) :-
  must_mw1((get_sensing_objects(Sense, List, S0),
   List\==[],
-  %dbug(each_sensing_thing(Sense)=(List=NewGoal)),
+  %dbug1(each_sensing_thing(Sense)=(List=NewGoal)),
  apply_mapl_state(NewGoal, List, S0, S2))).
 
 each_agent(Precond, NewGoal, S0, S2) :-
@@ -144,7 +144,7 @@ get_agent_prompt(Agent, Prompt):- get_agent_memory(Agent, Mem),
 
 console_decide_action(Agent, Mem0, Mem1):- 
  %thought(timestamp(T0), Mem0),
- %dbug(read_pending_codes(In, Codes, Found, Missing)),
+ %dbug1(read_pending_codes(In, Codes, Found, Missing)),
  % repeat,
  notrace((
  ttyflush,
@@ -156,7 +156,7 @@ console_decide_action(Agent, Mem0, Mem1):-
  (Words0==[]->(Words=[wait], makep);Words=Words0))),
  eng2log(Agent, Words, Action, Mem0),      
  !,
- if_tracing(dbug(general, telnet, 'Console TODO ~p~n', [Agent: Words->Action])),
+ if_tracing(dbug(telnet, 'Console TODO ~p~n', [Agent: Words->Action])),
  add_todo(Action, Mem0, Mem1), ttyflush, !.
 
 makep:-
@@ -182,7 +182,7 @@ makep:-
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION
-%:- dbug(ensure_loaded('adv_agents')).
+%:- dbug1(ensure_loaded('adv_agents')).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 decide_action(Agent, Mem0, Mem2):- 

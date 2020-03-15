@@ -89,6 +89,7 @@ in(the(coins), the(bag)),
 held_by(the(wrench), floyd),
 
 % eng2log("A pantry exits south to a kitchen", exit(south, pantry, kitchen)),
+% add_e2c_trans("?NP1 exits ?DIR to ?NP2", exit(DIR, NP1, NP2)),
 exit(south, pantry, kitchen),
 exit(north, kitchen, pantry),
 exit(down, pantry, basement),

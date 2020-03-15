@@ -77,7 +77,7 @@ can_sense(Agent, Sense, Thing, S0) :-
  (Thing=Here; h(Sense, Thing, Here, S0)).
 */
 can_sense(Agent, Sense, Thing, _State):- 
- dbug(pretending_can_sense(Agent, Sense, Thing, Agent)), !.
+ dbug1(pretending_can_sense(Agent, Sense, Thing, Agent)), !.
 
 as_single_event([Event], SEvent):- !, as_single_event(Event, SEvent).
 as_single_event([E1, E2|More], single_event([E1, E2|More])).

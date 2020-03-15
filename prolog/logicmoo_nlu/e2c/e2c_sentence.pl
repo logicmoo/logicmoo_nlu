@@ -17,6 +17,25 @@ utterance(tell, LF) -->  declarative(LF).
 parse_for('evtState',Evt, LF, LFOut) --> theText1(to), verb_phrase(Evt, _, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
 parse_for('evtState',Evt, LF, LFOut) --> frame_sentence(Evt, VerbLF), conjoin_lf(LF,VerbLF,LFOut).
 
+system:sentence_breaker(A) :-
+    parser_e2c:
+    (   make,
+        to_wordlist_atoms(A, C),
+        call_print_reply(list(List)=B,
+                         parser_e2c:sentence_breaker(true, List, B, C, D)),
+        !,
+        D=[]
+    ).
+
+sentence_breaker(LFIn,[H|List],LFOut) -->  dcg_when([_|_],sentence_part(LFIn,H,LFMid)),sentence_breaker(LFMid,List,LFOut).
+sentence_breaker(LFMid,[],LFMid) --> !.
+
+sentence_part(LF,any(X), LFOut) --> named_var_match(contains(''), X, LF, LFOut),!.
+sentence_part(LF,prep(Prep),LF) --> theText1(Prep), {prep_dict(Prep),ok_prep(Prep)}.
+sentence_part(LF,verb_tensed(Verb,Formed),LF) --> theText1(Formed), {clex_verb(Formed, Verb, _Tv, _Type)}.
+sentence_part(LF,np(X), LFOut) --> noun_phrase0(_SO, X, LF, LFOut),!.
+sentence_part(LF,verb(Word),LF) --> [w(Word,open)],!.
+sentence_part(LF,Other,LF) --> [Other].
 
 % =================================================================
 % Imperative sentences

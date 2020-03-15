@@ -73,7 +73,7 @@ defn_state_none(P):- defn_state_pred(P, 0).
 defn_state_getter(P):- defn_state_pred(P, 1).
 defn_state_setter(P):- defn_state_pred(P, 2).
 
-:- defn_state_none(dbug(term)).
+:- defn_state_none(dbug1(term)).
 :- defn_state_none(dbug(atom, string)).
 :- defn_state_none(dbug(atom, string, list(term))).
 :- defn_state_none(==(term, term)).

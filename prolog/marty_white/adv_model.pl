@@ -191,10 +191,10 @@ update_model(_Agent, emote(_, _, _, _), _Timestamp, _Mem, M0, M0) :- !.
 update_model(_Agent, msg(_), _Timestamp, _Mem, M0, M0) :- !.
 
 update_model(Agent, time_passes(Target), Timestamp, _Memory, M, M):-
- nop(dbug(unused_update_model(Agent, time_passes(Target), Timestamp, M))).
+ nop(dbug1(unused_update_model(Agent, time_passes(Target), Timestamp, M))).
 
 update_model(Agent, Percept, Timestamp, _Memory, M, M):-
- nop(dbug(failed_update_model(Agent, Percept, Timestamp), model)).
+ nop(dbug1(failed_update_model(Agent, Percept, Timestamp), model)).
 
 
 well_remembered(none).

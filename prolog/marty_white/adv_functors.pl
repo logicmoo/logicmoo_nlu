@@ -367,7 +367,7 @@ type_functor(unk, create_1obj(A, B, C, D)).
 type_functor(unk, holds_at(neg(A), B)).
 type_functor(unk, frame(A)).
 type_functor(unk, failed_update_model(A, B, C)).
-type_functor(unk, dbug(failed_update_model(A, B, C), model)).
+type_functor(unk, dbug1(failed_update_model(A, B, C), model)).
 type_functor(unk, unused_update_model(A, {|i7||<event> Time passes for B |}, C, D)).
 type_functor(unk, failure(eat(A))).
 type_functor(unk, success(true, 'OK')).

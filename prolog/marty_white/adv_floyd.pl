@@ -17,7 +17,7 @@
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION
-%:- dbug(ensure_loaded('adv_robot_floyd')).
+%:- dbug1(ensure_loaded('adv_robot_floyd')).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 random_noise(Agent, [cap(subj(Agent)), Msg]) :-  
@@ -36,7 +36,7 @@ do_autonomous_cycle(Agent):-
  time_since_last_action(Other, When),
  Other \== Agent, When < 1, !, 
  retractall(mu_global:agent_last_action(Other, _, _)),
- nop(dbug(time_since_last_action_for(Other, When, Agent))).
+ nop(dbug1(time_since_last_action_for(Other, When, Agent))).
 
 
 % If actions are queued, no further thinking required. 

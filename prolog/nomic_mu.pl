@@ -116,7 +116,7 @@ srv_mu:-
 run_mu:- 
    asserta(no_autostart),
    setup_console,
-   must(adventure),!.
+   must(mu:adventure),!.
 
 srv_mu_main:- no_autostart,!.
 srv_mu_main:- srv_mu.

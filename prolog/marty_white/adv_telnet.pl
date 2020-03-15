@@ -28,7 +28,7 @@
 :- use_module(library(socket)).
 
 adv_server(Port) :-
- dbug(adv_server(Port)),
+ dbug1(adv_server(Port)),
  tcp_socket(ServerSocket), 
  tcp_setopt(ServerSocket, reuseaddr), 
  tcp_bind(ServerSocket, Port), 
@@ -98,7 +98,7 @@ adv_serve_client(InStream, OutStream, Host, Peer, Alias) :-
  call_cleanup(srv_catch(adventure_client_process(Id, Alias, InStream, OutStream, Host, Peer)), 
    adventure_client_cleanp(Id, Alias, InStream, OutStream)).
 
-srv_catch(Goal):- catch(once(call(call, Goal)), E, ((notrace(dbug(error_srv_catch(E, Goal))), !, fail))).
+srv_catch(Goal):- catch(once(call(call, Goal)), E, ((notrace(dbug1(error_srv_catch(E, Goal))), !, fail))).
 ignore_srv_catch(Goal):- ignore(srv_catch(Goal)).
 tflush(OutStream):- ignore_srv_catch((flush_output(OutStream), ttyflush)).
 
@@ -117,7 +117,7 @@ notice_agent_discon(Id, Alias, InStream, OutStream):-
     (mu_global:console_io_conn_history(_, Alias, _, _, _, _, Agent), \+ mu_global:console_io_player(_, _, Agent));
     (mu_global:console_io_conn_history(Id, _, _, _, _, _, Agent), \+ mu_global:console_io_player(_, _, Agent)))),
  assertz(mu_global:agent_discon(Agent)),
- dbug((mu_global:agent_discon(Agent))), !.
+ dbug1((mu_global:agent_discon(Agent))), !.
 
 
 :- dynamic(mu_global:peer_character/2).

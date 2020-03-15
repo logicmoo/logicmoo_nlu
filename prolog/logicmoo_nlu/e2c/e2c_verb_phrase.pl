@@ -250,6 +250,7 @@ prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(Prep), {prep_dict(Prep
 prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO, Y, about(X, Y) & LF, Out).
 
    prep_dict(to).
+   prep_dict(X):- loc_pred_prep_db(X,_,_).
    prep_dict(X):- talkdb:talk_db(preposition, X).
 
    ok_prep(M):- M\==a.

@@ -34,7 +34,7 @@ eVent(Agent, Event) ==>>
  aXiom(Event).
 
 
-aXiom(Action, _S0, _S9)::= notrace(( \+ trival_act(Action), dbug(aXiom(Action)))), notrace(fail).
+aXiom(Action, _S0, _S9)::= notrace(( \+ trival_act(Action), dbug1(aXiom(Action)))), notrace(fail).
 
 
 aXiom( Action) ==>> 
@@ -189,7 +189,7 @@ aXiom(follow_plan(Agent, Name, [Step|Route])) ==>>
   eVent(Agent, follow_plan(Agent, Name, Route)).
 
 aXiom(follow_step(Agent, Name, Step)) ==>>
-  {dbug(follow_step(Agent, Name, Step))},
+  {dbug1(follow_step(Agent, Name, Step))},
   must_act(Step).
 
 
