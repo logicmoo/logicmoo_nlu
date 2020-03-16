@@ -21,15 +21,19 @@ dm(TF,P):- format('~N~n~w ~p.~n',[TF,P]).
 
 These tests Pass
 
+
+*/
 do_test(test_np_box_1) :-  local_demo([holds_at(directlyIn(lisa,livingRoom),t)],R).
 do_test(test_np_box_2) :-  local_demo([holds_at(inRoom(lisa,livingRoom),t)],R).
 do_test(test_np_box_3) :-  local_demo([holds_at(directlyIn(lisa,kitchen),t)],R).
-
-*/
-%do_test(test_np_box_4) :-  local_demo([holds_at(inRoom(lisa,kitchen),t)],R).
+do_test(test_np_box_4) :-  local_demo([holds_at(inRoom(lisa,kitchen),t)],R).
+do_test(test_np_box_5) :-  local_demo([holds_at(directlyIn(box,kitchen),t)],R).
 
 % fix this next test and the "test_np_box_occurs" should pass
 %do_test(has_occured) :-  local_demo([has_occured(move(lisa,box,livingRoom,lisa))],R).
+
+
+
 
 % 
 do_test(happened) :-  local_demo([happens(move(lisa,box,livingRoom,lisa),T)],R).
@@ -305,6 +309,8 @@ noninertial(inRoom).
 
 %
 executable(move(_agent,_object0,_object1,_object2)).
+==> meta_argtypes(move(agent,object,object,object)).
+
 abducible(dummy).
 %
 % ectest/TestBoxRoom.e:38
