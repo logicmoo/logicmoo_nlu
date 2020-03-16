@@ -49,6 +49,7 @@ non_list_functor(completion).
 is_non_sort(range).
 is_non_sort(option).
 is_non_sort(load).
+is_non_sort(include).
 is_non_sort(xor).
 is_non_sort(P):- verbatum_functor(P).
 is_non_sort(NoListF):- non_list_functor(NoListF).
@@ -154,6 +155,7 @@ resolve_local_files(S0,SS):- atom(S0), file_base_name(S0,S1), S0\==S1, resolve_l
 relative_from(F):- nb_current('$ec_input_file', F).
 relative_from(D):- working_directory(D,D).
 relative_from(F):- stream_property(_,file_name(F)).
+relative_from(D):- expand_file_search_path(library(ec_planner),D),exists_directory(D).
 
 /*
 resolve_file(S0,SS):- atom(S0), exists_file(S0), !, SS=S0. 
@@ -499,8 +501,8 @@ e_to_ec(Prop,O):-
 %e_to_ec(neg(C),O):-e_to_ec(holds_at(neg(N),V),O):- compound(C),holds_at(N,V)=C,
 %e_to_ec(neg(holds_at(N,V)),O):-e_to_ec((holds_at(neg(N),V)),O).
 e_to_ec(t(X, [Y]), O):- nonvar(Y), !, e_to_ec(t(X, Y), O).
-e_to_ec(load(X), load(X)).
-e_to_ec(include(X), include(X)).
+e_to_ec(load(X), load(X)):-!.
+e_to_ec(include(X), include(X)):-!.
 e_to_ec(option([N, V]), O):- !, e_to_ec(option(N, V), O).
 e_to_ec(range([N, V, H]), O):- !, e_to_ec(range(N, V, H), O).
 

@@ -95,7 +95,7 @@ OnOppositeTeams(ballgame,agent1,agent2) <->
 (HomeTeamPlayer(ballgame,agent2) &
  VisitingTeamPlayer(ballgame,agent1)).
 
-[ballgame,agent1,hardball,agent2,pitchermound,homeplate]
+[ballgame,agent1,hardball,agent2,pitchermound,homeplate,time]
 Happens(Pitch(ballgame,agent1,hardball,agent2),time) &
 PitchermoundOf(ballgame) = pitchermound &
 HomeplateOf(ballgame) = homeplate ->

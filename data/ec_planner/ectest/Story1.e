@@ -32,10 +32,13 @@ agent Bob, Jilly
 !HoldsAt(Raining(),0).
 !HoldsAt(SunShining(),0).
 
+
+;; must play same game
 (HoldsAt(PlaySoccer(Bob),1) & HoldsAt(PlaySoccer(Jilly),1)) |
 (HoldsAt(PlayHideAndSeek(Bob),1) & HoldsAt(PlayHideAndSeek(Jilly),1)) |
 (HoldsAt(PlayComputerGame(Bob),1) & HoldsAt(PlayComputerGame(Jilly),1)).
 
+;; one wins
 HoldsAt(Win(Bob),1) | HoldsAt(Win(Jilly),1).
 
 range time 0 1
