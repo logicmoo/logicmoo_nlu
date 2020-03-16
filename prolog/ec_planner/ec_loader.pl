@@ -232,12 +232,14 @@ fix_numbered_argtypes(_Time, _NthArg, _FType, [], []).
 
 :- export_transparent(fix_axiom_head/3).
 fix_axiom_head(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
+fix_axiom_head(_, before(X,Y),b(X,Y)).
 fix_axiom_head(_T, option(X,Y),option(X,Y)):-!.
 fix_axiom_head(T, X\=Y, O):- must(fix_axiom_head(T, not(X=Y), O)).
 fix_axiom_head(T, P, PP):- cvt0(T, P,PP),!.
 fix_axiom_head(T, neg(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
 fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
 fix_axiom_head(T, happens(F, T1, T2), O):- T1==T2, fix_axiom_head(T, happens(F, T1), O).
+fix_axiom_head(_, =(X,Y),equals(X,Y)).
 fix_axiom_head(_, equals(X,Y),equals(X,Y)).
 fix_axiom_head(T, HT, HTTerm):-  
  compound_name_arguments(HT, F, L),
@@ -292,6 +294,8 @@ assert_ready(Type,Value):-
 assert_ele(EOF) :- notrace((EOF == end_of_file)),!.
 assert_ele(SS):- notrace(is_list(SS)),!,maplist(assert_ele,SS).
 assert_ele(I):- notrace(\+ callable(I)),!,assert_ele(uncallable(I)).
+assert_ele(HB):- sub_term(Sub,HB),compound(Sub),Sub=before(X,Y),!,
+  subst(HB,before(X,Y),b(X,Y),HTM),assert_ele(HTM).
 assert_ele(_):- notrace((echo_format('~N'), fail)).
 assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
 assert_ele(load(S0)):- !, assert_ele(load(changed,S0)).

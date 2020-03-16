@@ -73,14 +73,15 @@ ec_prove(G):-
   abdemo_solve(G,_).
 
 :- export(abdemo_solve/2).
-abdemo_solve(Gs,R):- abdemo_solve(Gs,R,1,4).
+abdemo_solve(Gs,R):- abdemo_solve(Gs,R,1,20).
 :- export(abdemo_solve/4).
-abdemo_solve(Gs,R,H,L):- 
-  When = now,
+abdemo_solve(Gss,R,H,L):- 
+/*  When = now,
   must(fix_goal(When,Gs,Gs0)), !,
   must(fix_time_args(When,Gs0,Gss)), !,  
-  dbginfo(all, [nl,realGoal=Gss,nl]),
+  dbginfo(all, [nl,realGoal=Gss,nl]),*/
   abdemo_special(depth(H,L), Gss, R).
+
 
 :- meta_predicate test_body(*,0,*,*).
 test_body(N,(Was=G,Body),Info,Vs):- Was==N,!, copy_term(G,NewN),!,Was=G, test_body(NewN,(Body),Info,Vs).

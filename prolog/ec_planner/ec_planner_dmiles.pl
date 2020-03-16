@@ -121,6 +121,7 @@ next_d(D1, D2):- D2 is D1+300.
 
 % abdemo_special(long,Gs,R):-abdemo_timed(Gs,R).
 abdemo_special(W,Gs,R):- \+ is_list(Gs), !, functor(Gs,F,_),!, abdemo_special(W+F,[Gs],R).
+
 abdemo_special(depth(Low,High),Gs,R):- 
    b_setval(last_d,High),!,
    abdemo_top(Gs,[[[],[]],[[],[]]],[[HA,HC],[BA,BC]],[],N,Low),
@@ -145,8 +146,15 @@ abdemo_timed(Gs,[HA,BA]) :-
 
 
 abdemo_top(Gs,R1,R3,N1,N3,D) :-
-     abdemo_id(Gs,R1,R2,N1,N2,D), !, abdemo_cont(R2,R3,N2,N3).
+  abdemo_top_xfrm(Gs,Gss),
+     abdemo_id(Gss,R1,R2,N1,N2,D), !, abdemo_cont(R2,R3,N2,N3).
 
+
+abdemo_top_xfrm(Gs,Gss):- 
+  When = now,
+  must(fix_goal(When,Gs,Gs0)), !,
+  must(fix_time_args(When,Gs0,Gss)), !,  
+  dbginfo(all, [nl,realGoal=Gss,nl]),!.
 
 /*
    abdemo_cont carries out one step of refinement, if necessary. It then

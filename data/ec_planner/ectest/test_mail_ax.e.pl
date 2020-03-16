@@ -19,9 +19,9 @@ fluent(inRoom(package,room)).
 
 axiom(happens(shift_pack(Agnt,P,R1,R2,R3),T1,T6),
      [happens(go_to_room(Agnt,R1,R2),T1,T2),
-     b(T2,T3), not(clipped(T2,atRoom(Agnt,R2),T3)), not(clipped(T1,inRoom(P,R2),T3)),
-     happens(pick_up(Agnt,P),T3), b(T3,T4), happens(go_to_room(Agnt,R2,R3),T4,T5),
-     b(T5,T6), not(clipped(T3,got(Agnt,P),T6)), not(clipped(T5,atRoom(Agnt,R3),T6)),
+     before(T2,T3), not(clipped(T2,atRoom(Agnt,R2),T3)), not(clipped(T1,inRoom(P,R2),T3)),
+     happens(pick_up(Agnt,P),T3), before(T3,T4), happens(go_to_room(Agnt,R2,R3),T4,T5),
+     before(T5,T6), not(clipped(T3,got(Agnt,P),T6)), not(clipped(T5,atRoom(Agnt,R3),T6)),
      happens(put_down(Agnt,P),T6)]).
 
 <-(initiates(shift_pack(Agnt,P,R1,R2,R3),inRoom(P,R3)),
@@ -32,12 +32,12 @@ axiom(happens(go_to_room(Agnt,R,R),T,T),[]).
 
 axiom(happens(go_to_room(Agnt,R1,R3),T1,T3),
      [connects(D,R1,R2), towards(R2,R3,R1),
-     happens(go_to_room(Agnt,R2,R3),T2,T3), b(T1,T2), happens(go_through(Agnt,D),T1),
+     happens(go_to_room(Agnt,R2,R3),T2,T3), before(T1,T2), happens(go_through(Agnt,D),T1),
      not(clipped(T1,atRoom(Agnt,R2),T2))]).
 
 axiom(happens(go_to_room(Agnt,R1,R3),T1,T3),
      [connects(D,R1,R2), happens(go_through(Agnt,D),T1),
-     happens(go_to_room(Agnt,R2,R3),T2,T3), b(T1,T2),
+     happens(go_to_room(Agnt,R2,R3),T2,T3), before(T1,T2),
      not(clipped(T1,atRoom(Agnt,R2),T2))]).
 
 axiom(initiates(go_to_room(Agnt,R1,R2),atRoom(Agnt,R2),T),[holds_at(atRoom(Agnt,R1),T)]).

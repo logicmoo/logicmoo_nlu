@@ -60,6 +60,7 @@ builtin_pred(holds_at).
 builtin_pred(happens).
 builtin_pred(declipped).
 builtin_pred(clipped).
+builtin_pred(b).
 builtin_pred(before).
 builtin_pred(after).
 builtin_pred(sort).

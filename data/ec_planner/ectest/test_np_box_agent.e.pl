@@ -7,7 +7,7 @@
 % ec_io(do_ec_load, <stream>(0x55638dfa3da0)).
 % ectest/TestBoxRoom.e:1
 :- include('../ec_test_incl').
-
+:- module(ec).
 
 do_test_gen(What) :- ec_current_domain(fluent(P)),functor(P,F,A),functor(What,F,A).
 
@@ -57,7 +57,7 @@ do_test(happend2r) :- fail, local_demo(
 do_test(test_np_box_occurs) :- test_np_box_occurs.
 
 test_np_box_occurs:- 
- findall(E, (ec_axiom(E,[]),functor(E,happens,_)), UHapsList),
+ findall(E, (axiom(E,[]),functor(E,happens,_)), UHapsList),
  predsort(compare_on_time_arg,UHapsList,HapsList),
  dbginfo('HapsList'=HapsList), 
  /* 
