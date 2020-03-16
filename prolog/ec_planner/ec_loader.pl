@@ -85,8 +85,6 @@ cond_load_e(include,_):- nb_current('$load_cond', load_e_pl),!.
 cond_load_e(Cond,F):- Req = [pl],
    \+ nb_current('$output_lang',Req), !,
    locally(b_setval('$output_lang',Req), cond_load_e(Cond,F)).
-
-
 cond_load_e(Cond,F):-
    pprint_ecp_cmt(green, loading(Cond, F)),
    (nb_current('$load_cond', OldCond);OldCond=[]),
@@ -258,66 +256,60 @@ fix_numbered_argtypes(_Time, _NthArg, _FType, [], []).
 
 
 :- export_transparent(fix_axiom_head/3).
-fix_axiom_head(T,X,O):- must(fix_axiom_head_1(T,X,Y)), !, (X==Y -> X=O ; fix_axiom_head(T,Y,O)),!.
+fix_axiom_head_full(T,X,O):- must(fix_axiom_head(T,X,Y)), !, (X==Y -> X=O ; fix_axiom_head(T,Y,O)),!.
 
-fix_axiom_head_1(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
-fix_axiom_head_1(_, before(X,Y),b(X,Y)).
-fix_axiom_head_1(_T, option(X,Y),option(X,Y)):-!.
-% fix_axiom_head_1(T, X\=Y, holds_at(neg(P),T)):- compound(X),!, append_term(X,Y,P).
-fix_axiom_head_1(T, X\=Y, not(O)):- must(fix_axiom_head_1(T, X=Y, O)).
-fix_axiom_head_1(_, =(X,Y),P):- !, as_equals(X,Y,P).
-fix_axiom_head_1(_, equals(X,Y),P):- !, as_equals(X,Y,P).
+fix_axiom_head(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
+fix_axiom_head(_, before(X,Y),b(X,Y)).
+fix_axiom_head(_T, option(X,Y),option(X,Y)):-!.
+fix_axiom_head(T, X\=Y, O):- must(fix_axiom_head(T, not(X=Y), O)).
+fix_axiom_head(T, P, PP):- cvt0(T, P,PP), P\==PP, !.
 
-fix_axiom_head_1(T, neg(I),O):- !, fix_axiom_head_1(T, I,M), correct_holds(neg, not(M), O). 
-fix_axiom_head_1(T, not(I),O):- !, fix_axiom_head_1(T, I,M), correct_holds(neg, not(M), O). 
-% fix_axiom_head_1(T, happens(F, T1, T2), O):- (T==T1;T==T2),T1=T2, fix_axiom_head_1(T, happens(F, T1), O).
-fix_axiom_head_1(T, happens(F, T1, T2), O):- T1==T2, !, fix_axiom_head_1(T, happens(F, T1), O).
-fix_axiom_head_1(_T, happens(F, T1), happens(F, T1)):- !.
-fix_axiom_head_1(_, ec_current_domain_db(X), ec_current_domain_db(X)).
-fix_axiom_head_1(_, ec_current_domain_db(X,Y), ec_current_domain_db(X,Y)).
+fix_axiom_head(_, =(X,Y),P):- !, as_equals(X,Y,P).
+fix_axiom_head(_, equals(X,Y),P):- !, as_equals(X,Y,P).
 
-fix_axiom_head_1(T, [G1|G2], [GG1|GG2]):- !, fix_axiom_head_1(T, G1, GG1),fix_axiom_head_1(T, G2, GG2). 
-fix_axiom_head_1(T, (G1,G2), (GG1,GG2)):- !, fix_axiom_head_1(T, G1, GG1),fix_axiom_head_1(T, G2, GG2). 
-fix_axiom_head_1(T, (G1;G2), (GG1;GG2)):- !, fix_axiom_head_1(T, G1, GG1),fix_axiom_head_1(T, G2, GG2). 
-%fix_axiom_head_1(_, predicate(G), predicate(P)):- functor_skel(G,P),!.
-fix_axiom_head_1(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
-fix_axiom_head_1(T, G, happens(G,T)):- functor_skel(G,P), (syntx_term_check(event(P));executable(P)),!.
-fix_axiom_head_1(T, G, holds_at(G,T)):- functor_skel(G,P), syntx_term_check(fluent(P)),!.
-fix_axiom_head_1(T, G, Gs):- fix_goal_add_on_arg( T, G, Gs, _TExtra),!.
-fix_axiom_head_1(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
-%fix_axiom_head_1(T,(G1,G2),GGs):- !, fix_axiom_head_1(T,G1,GG1),fix_axiom_head_1(T,G2,GG2).
-%fix_axiom_head_1(T, P, P).
-%fix_axiom_head_1(T,X,Y):- trace, ec_to_ax(T, X,Y).
-fix_axiom_head_1(_, holds_at(G, T), holds_at(G, T)):-!.
-fix_axiom_head_1(_, holds_at(G, T, T2), holds_at(G, T, T2)):-!.
+fix_axiom_head(T, neg(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
+fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
+fix_axiom_head(T, happens(F, T1, T2), O):- T1==T2, fix_axiom_head(T, happens(F, T1), O).
+% fix_axiom_head(_T, happens(F, T1), happens(F, T1)):- !.
+fix_axiom_head(_, ec_current_domain_db(X), ec_current_domain_db(X)).
+fix_axiom_head(_, ec_current_domain_db(X,Y), ec_current_domain_db(X,Y)).
 
-fix_axiom_head_1(_, exists(Vars,BH), HBO):- convert_exists( exists(Vars,BH), HBO),!.
-fix_axiom_head_1(T, P, PP):-  
+fix_axiom_head(T, [G1|G2], [GG1|GG2]):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
+fix_axiom_head(T, (G1,G2), (GG1,GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
+fix_axiom_head(T, (G1;G2), (GG1;GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
+
+fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
+fix_axiom_head(T, G, happens(G,T)):- functor_skel(G,P), (syntx_term_check(event(P));executable(P)),!.
+fix_axiom_head(T, G, holds_at(G,T)):- functor_skel(G,P), syntx_term_check(fluent(P)),!.
+fix_axiom_head(T, G, Gs):- fix_goal_add_on_arg( T, G, Gs, _TExtra),!.
+%fix_axiom_head(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
+%fix_axiom_head(T,(G1,G2),GGs):- !, fix_axiom_head(T,G1,GG1),fix_axiom_head(T,G2,GG2).
+%fix_axiom_head(T, P, P).
+%fix_axiom_head(T,X,Y):- trace, ec_to_ax(T, X,Y).
+fix_axiom_head(T, P, PP):-  
    P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),!,
    functor(Arity,_,N), 
    must(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)).
-fix_axiom_head_1(_T, exists(X,Y), exists(X,Y)):-!.
-fix_axiom_head_1(T, P, PP):- cvt0(T, P,PP), PP\==P, !.
-fix_axiom_head_1(T, HT, HTTerm):-  
+fix_axiom_head(T, HT, HTTerm):-  
  compound_name_arguments(HT, F, L),
  upcase_atom(F,U),downcase_atom(F,U),
- maplist(fix_axiom_head_1(T),L,LL),
+ maplist(fix_axiom_head_full(T),L,LL),
  ( LL\==L -> compound_name_arguments(HTTerm, F, LL) ; HT = HTTerm ), !.
-fix_axiom_head_1(_, P, call(P)):- predicate_property(P,foreign),!.
-fix_axiom_head_1(T, not(G), GG):- break, !, GG = holds_at(neg(G), T), !.
-fix_axiom_head_1(T, G, GG):- GG = holds_at(G, T), !.
+fix_axiom_head(_, P, call(P)):- predicate_property(P,foreign),!.
+fix_axiom_head(_, holds_at(G, T), holds_at(G, T)):-!.
+fix_axiom_head(_, holds_at(G, T, T2), holds_at(G, T, T2)):-!.
+fix_axiom_head(T, G, GG):- GG = holds_at(G, T).
 
 :- export(show_fix_axiom_head/3).
 show_fix_axiom_head(T, HT, HTTermO):- 
-    fix_axiom_head(T, HT, HTTermO),!,
+    fix_axiom_head_full(T, HT, HTTermO),!,
     ignore((HT\==HTTermO, HT \= not(holds_at(_,_)), dmsg(fix_axiom_head -> (HT -> HTTermO)))),!.
-
 show_fix_axiom_head(T, HT, HTTermO):- dumpST, 
  compound_name_arguments(HT, F, L),
  upcase_atom(F,U),downcase_atom(F,U),
  maplist(show_fix_axiom_head(T),L,LL),
  compound_name_arguments(HTTerm, F, LL),
- show_fix_axiom_head(T, HTTerm, HTTermO),!.
+ show_fix_axiom_head(T, HTTerm, HTTermO), !.
 
 show_fix_axiom_head(T, HT, HTTermO):- trace, rtrace(fix_axiom_head(T, HT, HTTermO)),!.
 
@@ -337,38 +329,34 @@ assert_ready(Type,(:-Body)):-
 assert_ready(Type,'==>'(Value)):- 
    pprint_ecp(Type,'==>'(Value)),
    mpred_fwc('==>'(Value)),
-   Value = ValueO, % fix_assert(_Time,Value,ValueO),
+   fix_assert(_Time,Value,ValueO),
    into_current_domain_db(ValueO),!.
 assert_ready(Type,Value):- 
    pprint_ecp(Type,Value),
    notrace((echo_format('~N'))),
    mpred_fwc(Value),
-   Value = ValueO, % fix_assert(_Time,Value,ValueO),
+   fix_assert(_Time,Value,ValueO),
    into_current_domain_db(ValueO),!.
-
-
-into_current_domain_db('==>'(Value)):- !, into_current_domain_db((Value)).
+into_current_domain_db('==>'(Value)):-!,into_current_domain_db((Value)).
 into_current_domain_db(ec_current_domain_db(Value)):- !, into_current_domain_db((Value)).
 into_current_domain_db(ec_current_domain_db(Value,T)):- !, 
    Value = ValueO, assertz_if_new(user:ec_current_domain_db(ValueO,T)).
-into_current_domain_db(Value):- Value = ValueO,
+into_current_domain_db(Value):-Value=ValueO,
    assertz_if_new(user:ec_current_domain_db(ValueO,_)).
 
 :- export_transparent(assert_ele/1).
 assert_ele(EOF) :- notrace((EOF == end_of_file)),!.
 assert_ele(I):- notrace(\+ callable(I)),!,assert_ele(uncallable(I)).
-assert_ele(exists(Vars,BH)):- convert_exists(exists(Vars,BH), HBO),assert_ele(HBO).
 assert_ele(SS):- notrace(is_list(SS)),!,maplist(assert_ele,SS).
 assert_ele(HB):- sub_term(Sub,HB),compound(Sub),Sub=before(X,Y),!,
   subst(HB,Sub,b(X,Y),HTM),assert_ele(HTM).
-assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
 assert_ele(_):- notrace((echo_format('~N'), fail)).
+assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
 %assert_ele(==>(S0)):- !, assert_ready( ==>(S0)).
 assert_ele(:- S0):- !, assert_ready( (:-(S0))).
 assert_ele(include(S0)):- !, assert_ready( :-(load_e(S0,include))).
 assert_ele(load(S0)):- !, assert_ready( :-(load_e(S0,changed))).
 assert_ele(load(Cond, S0)):- !, assert_ready( :-(load_e(S0,Cond))).
-
 assert_ele(ec_current_domain_db(P)):- !, assert_ready( ec_current_domain_db(P)).
 
 assert_ele(HB):- \+ compound_gt(HB, 0), !, assert_axiom(HB, []).
@@ -382,17 +370,9 @@ assert_ele(HB):- HB=..[=, Function, Value],
 assert_ele(HB):- HB=..[function, RelSpec, RetType], 
   append_term(RelSpec,RetType,PredSpec),
   assert_ele(functional_predicate(PredSpec)),
-  assert_ele(predicate(PredSpec)),
   %assert_ele(function(RelSpec)),
   get_functor(RelSpec,F),
   assert_ele(==>resultIsa(F, RetType)).
-
-/*
-assert_ele(predicate(G)):- functor_skel(G,P),!,
-  assert_ready( ==> mpred_prop(G,predicate)),
-  assert_ready( ==> meta_argtypes(G)),
-  assert_ready( predicate(P)).
-*/
 
 assert_ele(HB):- HB=..[RelType,RelSpec],arg_info(domain,RelType,arginfo), !, 
   functor_skel(RelSpec,P),!, 
@@ -741,7 +721,7 @@ ec_to_ax(T, '->'(B,H),O):- !, into_axiom(T,H,B,O).
 ec_to_ax(T, '<->'(HB1,HB2),[A,B]):- !, ec_to_ax(T, '->'(HB1,HB2),A),ec_to_ax(T, '->'(HB2,HB1),B).
 ec_to_ax(T, axiom(H,B),O):- into_axiom(T,H,B,O), !.
 ec_to_ax(_, axiom(H,B), axiom(H,B)):- !.
-ec_to_ax(T,X,O):- fix_axiom_head_1(T,X,Y), !, (X==Y -> X=O ; ec_to_ax(T,Y,O)),!.
+ec_to_ax(T,X,O):- fix_axiom_head(T,X,Y), !, (X==Y -> X=O ; ec_to_ax(T,Y,O)),!.
 ec_to_ax(_, X,X).
 
 to_axiom_body(T,G,GGs) :-  fix_goal(T,G,GGs).
@@ -755,7 +735,8 @@ into_axiom(T,H,B,'->'(ABNonList,AH)):- to_axiom_head(T1,H,AH),
 
 
 
-as_equals(X,Y,Equals):- compound(X),append_term(X,Y, Equals).
+as_equals(X,Y,equals(X,Y)):-!.
+as_equals(X,Y,Equals):- compound(X),append_term(X,Y, Equals),!.
 as_equals(X,Y,equals(X,Y)).
 
 
@@ -1008,6 +989,7 @@ arg_info(abducible,range,v(atomic,int,int)).
 arg_info(abducible,t,v(sort,term)).
 %arg_info(domain,axiom,v(axiom,list)).
 
+arg_info(axiom_head,happens,v(event,time,time)).
 arg_info(axiom_head,happens,v(event,time)).
 arg_info(axiom_head,holds_at,v(fluent,time)).
 arg_info(axiom_head,initially,v(fluent)).
