@@ -755,8 +755,8 @@ into_axiom(T,H,B,'->'(ABNonList,AH)):- to_axiom_head(T1,H,AH),
 
 
 
-as_equals(X,Y,equals(X,Y)).
 as_equals(X,Y,Equals):- compound(X),append_term(X,Y, Equals).
+as_equals(X,Y,equals(X,Y)).
 as_equals(X,Y,equals(X,Y)).
 
 
