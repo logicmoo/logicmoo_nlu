@@ -265,22 +265,16 @@ fix_axiom_head_1(_, before(X,Y),b(X,Y)).
 fix_axiom_head_1(_T, option(X,Y),option(X,Y)):-!.
 % fix_axiom_head_1(T, X\=Y, holds_at(neg(P),T)):- compound(X),!, append_term(X,Y,P).
 fix_axiom_head_1(T, X\=Y, not(O)):- must(fix_axiom_head_1(T, X=Y, O)).
-fix_axiom_head_1(_, =(X,Y),P):- compound(X),append_term(X,Y,P).
-fix_axiom_head_1(_, =(X,Y),equals(X,Y)).
-fix_axiom_head_1(_, equals(X,Y),P):- compound(X),append_term(X,Y,P).
-fix_axiom_head_1(_, equals(X,Y),equals(X,Y)).
+fix_axiom_head_1(_, =(X,Y),P):- !, as_equals(X,Y,P).
+fix_axiom_head_1(_, equals(X,Y),P):- !, as_equals(X,Y,P).
+
 fix_axiom_head_1(T, neg(I),O):- !, fix_axiom_head_1(T, I,M), correct_holds(neg, not(M), O). 
 fix_axiom_head_1(T, not(I),O):- !, fix_axiom_head_1(T, I,M), correct_holds(neg, not(M), O). 
-fix_axiom_head_1(T, happens(F, T1, T2), O):- T1==T2, fix_axiom_head_1(T, happens(F, T1), O).
+% fix_axiom_head_1(T, happens(F, T1, T2), O):- (T==T1;T==T2),T1=T2, fix_axiom_head_1(T, happens(F, T1), O).
+fix_axiom_head_1(T, happens(F, T1, T2), O):- T1==T2, !, fix_axiom_head_1(T, happens(F, T1), O).
+fix_axiom_head_1(_T, happens(F, T1), happens(F, T1)):- !.
 fix_axiom_head_1(_, ec_current_domain_db(X), ec_current_domain_db(X)).
 fix_axiom_head_1(_, ec_current_domain_db(X,Y), ec_current_domain_db(X,Y)).
-fix_axiom_head_1(_, equals(X,Y),P):- compound(X),append_term(X,Y,P).
-fix_axiom_head_1(_, equals(X,Y),equals(X,Y)).
-fix_axiom_head_1(T, HT, HTTerm):-  
- compound_name_arguments(HT, F, L),
- upcase_atom(F,U),downcase_atom(F,U),
- maplist(fix_axiom_head_1(T),L,LL),
- ( LL\==L -> compound_name_arguments(HTTerm, F, LL) ; HT = HTTerm ), !.
 
 fix_axiom_head_1(T, [G1|G2], [GG1|GG2]):- !, fix_axiom_head_1(T, G1, GG1),fix_axiom_head_1(T, G2, GG2). 
 fix_axiom_head_1(T, (G1,G2), (GG1,GG2)):- !, fix_axiom_head_1(T, G1, GG1),fix_axiom_head_1(T, G2, GG2). 
@@ -296,14 +290,20 @@ fix_axiom_head_1(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
 %fix_axiom_head_1(T,X,Y):- trace, ec_to_ax(T, X,Y).
 fix_axiom_head_1(_, holds_at(G, T), holds_at(G, T)):-!.
 fix_axiom_head_1(_, holds_at(G, T, T2), holds_at(G, T, T2)):-!.
-fix_axiom_head_1(_, P, call(P)):- predicate_property(P,foreign),!.
+
 fix_axiom_head_1(_, exists(Vars,BH), HBO):- convert_exists( exists(Vars,BH), HBO),!.
 fix_axiom_head_1(T, P, PP):-  
    P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),!,
    functor(Arity,_,N), 
    must(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)).
 fix_axiom_head_1(_T, exists(X,Y), exists(X,Y)):-!.
-fix_axiom_head_1(T, P, PP):- cvt0(T, P,PP),!.
+fix_axiom_head_1(T, P, PP):- cvt0(T, P,PP), PP\==P, !.
+fix_axiom_head_1(T, HT, HTTerm):-  
+ compound_name_arguments(HT, F, L),
+ upcase_atom(F,U),downcase_atom(F,U),
+ maplist(fix_axiom_head_1(T),L,LL),
+ ( LL\==L -> compound_name_arguments(HTTerm, F, LL) ; HT = HTTerm ), !.
+fix_axiom_head_1(_, P, call(P)):- predicate_property(P,foreign),!.
 fix_axiom_head_1(T, not(G), GG):- break, !, GG = holds_at(neg(G), T), !.
 fix_axiom_head_1(T, G, GG):- GG = holds_at(G, T), !.
 
@@ -756,7 +756,6 @@ into_axiom(T,H,B,'->'(ABNonList,AH)):- to_axiom_head(T1,H,AH),
 
 
 as_equals(X,Y,Equals):- compound(X),append_term(X,Y, Equals).
-as_equals(X,Y,equals(X,Y)).
 as_equals(X,Y,equals(X,Y)).
 
 
