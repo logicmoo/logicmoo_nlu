@@ -10,28 +10,28 @@
 %do_test(num_cakes(0)).
 %do_test(num_cakes(1)).
 
-do_test(G) :- G= neg(num_cakes(0)), abdemo_solve(G,R).
-do_test(G) :- G= neg(num_cakes(1)), abdemo_solve(G,R).
+do_test(G) :- G= neg(num_cakes(0)), ec_prove(G).
+do_test(G) :- G= neg(num_cakes(1)), ec_prove(G).
 
-do_test(G) :- G= eat_cakes(0), abdemo_solve(G,R).
-do_test(G) :- G= eat_cakes(1), abdemo_solve(G,R).
+do_test(G) :- G= eat_cakes(0), ec_prove(G).
+do_test(G) :- G= eat_cakes(1), ec_prove(G).
 
 %do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(0),now)], fail_solve_goal(G,R).
-%do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(1),now)], abdemo_solve(G,R).
+%do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(1),now)], ec_prove(G).
 
 do_test(G) :-  G= [ b(start, now), b(now, aft), b(aft, end), happens(eat_cakes(1), now), holds_at(num_cakes(0), aft) ], 
-  abdemo_solve(G,R).
+  ec_prove(G).
 
-do_test(G) :- G= {eat_cakes(1),num_cakes(0)}, abdemo_solve(G,R).
+do_test(G) :- G= {eat_cakes(1),num_cakes(0)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),start)}, abdemo_solve(G,R).
+do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),start)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),now-1)}, abdemo_solve(G,R).
+do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),now-1)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(0),aft)}, abdemo_solve(G,R).
+do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(0),aft)}, ec_prove(G).
 
 % rus out of stack but should just fail
-% do_test(G) :- G= {happens(eat_cakes(1),start),holds_at(num_cakes(1),aft)}, abdemo_solve(G,R).
+% do_test(G) :- G= {happens(eat_cakes(1),start),holds_at(num_cakes(1),aft)}, ec_prove(G).
 
 fluent(num_cakes(integer)).
 
