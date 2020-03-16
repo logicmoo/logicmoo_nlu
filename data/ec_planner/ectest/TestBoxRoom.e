@@ -153,8 +153,8 @@ HoldsAt(directlyIn(Newspaper,LivingRoom),0).
 HoldsAt(directlyIn(Box,LivingRoom),0).
 
 ; added:                                                 
-[room1,room2,time] !HoldsAt(inRoom(room1,room2),time).
-[room,object,time] !HoldsAt(directlyIn(room,object),time).
+; DMILES REMOVED [room1,room2,time] !HoldsAt(inRoom(room1,room2),time).
+; DMILES REMOVED [room,object,time] !HoldsAt(directlyIn(room,object),time).
 
 ; entailed:
 ; HoldsAt(directlyIn(Lisa,LivingRoom),5).

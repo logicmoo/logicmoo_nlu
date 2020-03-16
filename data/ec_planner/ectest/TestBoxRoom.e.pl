@@ -339,16 +339,14 @@ axiom(initially(directlyIn(box, livingRoom)),
  % !HoldsAt(inRoom(room1,room2),time).
  %  not(holds_at(inRoom(Room1,Room2),Time)).
 % From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ectest/TestBoxRoom.e:155
-axiom(not(holds_at(inRoom(InRoom_Param, InRoom_Ret), Time3)),
-    []).
+% DMILES REMOVED axiom(not(holds_at(inRoom(InRoom_Param, InRoom_Ret), Time3)),[]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ectest/TestBoxRoom.e:156
 % [room,object,time]
  % !HoldsAt(directlyIn(room,object),time).
  %  not(holds_at(directlyIn(Room,Object),Time)).
-axiom(not(holds_at(directlyIn(DirectlyIn_Param, DirectlyIn_Ret), Time3)),
-    []).
+% DMILES REMOVED axiom(not(holds_at(directlyIn(DirectlyIn_Param, DirectlyIn_Ret), Time3)), []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ectest/TestBoxRoom.e:158

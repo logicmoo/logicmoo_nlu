@@ -1,15 +1,14 @@
 
 :- include('../ec_test_incl').
 
+:- module(ec).
 /*
    Test queries:
 
 */
 
-% end_of_file.
-
-do_test(num_cakes(0)).
-do_test(num_cakes(1)).
+%do_test(num_cakes(0)).
+%do_test(num_cakes(1)).
 
 do_test(G) :- G= neg(num_cakes(0)), abdemo_solve(G,R).
 do_test(G) :- G= neg(num_cakes(1)), abdemo_solve(G,R).
@@ -19,6 +18,9 @@ do_test(G) :- G= eat_cakes(1), abdemo_solve(G,R).
 
 %do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(0),now)], fail_solve_goal(G,R).
 %do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(1),now)], abdemo_solve(G,R).
+
+do_test(G) :-  G= [ b(start, now), b(now, aft), b(aft, end), happens(eat_cakes(1), now), holds_at(num_cakes(0), aft) ], 
+  abdemo_solve(G,R).
 
 do_test(G) :- G= {eat_cakes(1),num_cakes(0)}, abdemo_solve(G,R).
 

@@ -8,7 +8,6 @@ is_sicstus:- \+ current_prolog_flag(version_data,swi(_,_,_,_)).
 :- style_check(-singleton).
 /* Emulates the writenl(1) function */
 
-:- use_module(ec_loader).
 % =========================================
 % Axiom Access
 % =========================================
@@ -45,6 +44,7 @@ system:executable(A):- ec_current_domain_bi(executable(A)).
 
 
 :- reexport(library(ec_planner/ec_loader)).
+:- use_module(library(ec_planner/ec_loader)).
 
 ec_predicate_template(Var):- ec_current_domain(predicate(Pred)), functor(Pred,F,A), functor(Var,F,A).
 
