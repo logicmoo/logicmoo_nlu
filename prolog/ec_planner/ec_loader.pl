@@ -17,7 +17,7 @@
 % =========================================
 % Goal/Plan translating
 % =========================================
-:- module(ec_loader,[load_e/1, needs_proccess/2,process_ec/2,fix_time_args/3]).
+:- module(ec_loader,[load_e/1, needs_proccess/2,process_ec/2,fix_time_args/3,fix_goal/3, brk_on_bind/1]).
 
 :- use_module(library(logicmoo_common)).
 
@@ -68,10 +68,10 @@ foundations_file('foundations/EC.e').
 foundations_file('foundations/Root.e').
 :- export_transparent(cond_load_e/2).
 
-load_e(S0,How):- !,
+load_e(S0,How):-
  must((
-  resolve_local_files(S0,SS), 
-  (SS\==[] 
+  ((resolve_local_files(S0,SS), 
+  SS\==[])
    -> maplist(cond_load_e(How), SS)
    ; pprint_ecp_cmt(red, load(How,S0))))),!.
 
@@ -87,16 +87,19 @@ cond_load_e(Cond,F):- Req = [pl],
    locally(b_setval('$output_lang',Req), cond_load_e(Cond,F)).
 cond_load_e(Cond,F):-
    pprint_ecp_cmt(green, loading(Cond, F)),
+   current_prolog_flag(occurs_check,Was),
    (nb_current('$load_cond', OldCond);OldCond=[]),
    setup_call_cleanup(
 
      (set_ec_option(load(F), loading),
       set_ec_option(load_cond, Cond),
+      set_prolog_flag(occurs_check,error),
       nb_setval('$load_cond', Cond)),
 
-      e_to_pl(assert_ele, current_output, F),
+      e_to_pl(assert_ele_cond_load_e, current_output, F),
 
      (set_ec_option(load(F), unknown),
+      set_prolog_flag(occurs_check,Was),
       nb_setval('$load_cond', OldCond))),
    set_ec_option(load(F), loaded).
 
@@ -255,55 +258,36 @@ fix_numbered_argtypes(Time, NthArg, FType, [H|T], [HH|TT]):- !,
 fix_numbered_argtypes(_Time, _NthArg, _FType, [], []).
 
 
-:- export_transparent(fix_axiom_head/3).
-fix_axiom_head_full(T,X,O):- must(fix_axiom_head(T,X,Y)), !, (X==Y -> X=O ; fix_axiom_head(T,Y,O)),!.
-
 fix_axiom_head(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
-fix_axiom_head(_, before(X,Y),b(X,Y)).
-fix_axiom_head(_T, option(X,Y),option(X,Y)):-!.
-fix_axiom_head(T, X\=Y, O):- must(fix_axiom_head(T, not(X=Y), O)).
-fix_axiom_head(T, P, PP):- cvt0(T, P,PP), P\==PP, !.
-
-fix_axiom_head(_, =(X,Y),P):- !, as_equals(X,Y,P).
-fix_axiom_head(_, equals(X,Y),P):- !, as_equals(X,Y,P).
-
-fix_axiom_head(T, neg(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
-fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
-fix_axiom_head(T, happens(F, T1, T2), O):- T1==T2, fix_axiom_head(T, happens(F, T1), O).
-% fix_axiom_head(_T, happens(F, T1), happens(F, T1)):- !.
-fix_axiom_head(_, ec_current_domain_db(X), ec_current_domain_db(X)).
-fix_axiom_head(_, ec_current_domain_db(X,Y), ec_current_domain_db(X,Y)).
-
 fix_axiom_head(T, [G1|G2], [GG1|GG2]):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
 fix_axiom_head(T, (G1,G2), (GG1,GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
 fix_axiom_head(T, (G1;G2), (GG1;GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_head(T, G2, GG2). 
-
+fix_axiom_head(T, (G1:-B), (GG1:-B)):- !, fix_axiom_head(T, G1, GG1),!.
+fix_axiom_head(T, neg(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
+fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
+fix_axiom_head(T, G, GG):- must_or_dumpst(cvt0_full(T,G,Y)), (G==Y -> fail; fix_axiom_head(T,Y,GG)),!.
+fix_axiom_head(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
+fix_axiom_head(T, exists(X,G), exists(X,GG)):-!,fix_axiom_head(T, G, GG).
 fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
-fix_axiom_head(T, G, happens(G,T)):- functor_skel(G,P), (syntx_term_check(event(P));executable(P)),!.
+fix_axiom_head(T, G, happens(G,T)):- functor_skel(G,P), (syntx_term_check(event(P);executable(P))),!.
 fix_axiom_head(T, G, holds_at(G,T)):- functor_skel(G,P), syntx_term_check(fluent(P)),!.
-fix_axiom_head(T, G, Gs):- fix_goal_add_on_arg( T, G, Gs, _TExtra),!.
-%fix_axiom_head(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
-%fix_axiom_head(T,(G1,G2),GGs):- !, fix_axiom_head(T,G1,GG1),fix_axiom_head(T,G2,GG2).
-%fix_axiom_head(T, P, P).
-%fix_axiom_head(T,X,Y):- trace, ec_to_ax(T, X,Y).
 fix_axiom_head(T, P, PP):-  
    P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),!,
    functor(Arity,_,N), 
-   must(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)).
-fix_axiom_head(T, HT, HTTerm):-  
- compound_name_arguments(HT, F, L),
- upcase_atom(F,U),downcase_atom(F,U),
- maplist(fix_axiom_head_full(T),L,LL),
- ( LL\==L -> compound_name_arguments(HTTerm, F, LL) ; HT = HTTerm ), !.
-fix_axiom_head(_, P, call(P)):- predicate_property(P,foreign),!.
-fix_axiom_head(_, holds_at(G, T), holds_at(G, T)):-!.
-fix_axiom_head(_, holds_at(G, T, T2), holds_at(G, T, T2)):-!.
-fix_axiom_head(T, G, GG):- GG = holds_at(G, T).
+   must_or_dumpst(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)). 
+fix_axiom_head(T, P, Out):- predicate_property(P,foreign),!,if_debugging(ec,((call(dumpST), wdmsg(fix_axiom_head(T, call(P))),break))),!,Out=call(P).
+fix_axiom_head(T, G, GG):- if_debugging(ec, ((call(dumpST), wdmsg(fix_axiom_head(T, G)), break))), GG = holds_at(G, T).
+
+:- export_transparent(fix_axiom_head/3).
+
+maybe_show_diff(T, F, O):- copy_term_nat(F+O,HT+HTTermO),
+  ignore((HT\==HTTermO, HT \= not(holds_at(_,_)), dmsg(fix_axiom_head(T) -> (HT -> HTTermO)))),!.
 
 :- export(show_fix_axiom_head/3).
 show_fix_axiom_head(T, HT, HTTermO):- 
-    fix_axiom_head_full(T, HT, HTTermO),!,
-    ignore((HT\==HTTermO, HT \= not(holds_at(_,_)), dmsg(fix_axiom_head -> (HT -> HTTermO)))),!.
+    fix_axiom_head(T, HT, HTTermO),!,
+    ignore(maybe_show_diff(T, HT, HTTermO)).
+    
 show_fix_axiom_head(T, HT, HTTermO):- dumpST, 
  compound_name_arguments(HT, F, L),
  upcase_atom(F,U),downcase_atom(F,U),
@@ -329,7 +313,7 @@ assert_ready(Type,(:-Body)):-
 assert_ready(Type,'==>'(Value)):- 
    pprint_ecp(Type,'==>'(Value)),
    mpred_fwc('==>'(Value)),
-   fix_assert(_Time,Value,ValueO),
+   Value = ValueO, % fix_assert(_Time,Value,ValueO),
    into_current_domain_db(ValueO),!.
 assert_ready(Type,Value):- 
    pprint_ecp(Type,Value),
@@ -337,19 +321,32 @@ assert_ready(Type,Value):-
    mpred_fwc(Value),
    fix_assert(_Time,Value,ValueO),
    into_current_domain_db(ValueO),!.
+
 into_current_domain_db('==>'(Value)):-!,into_current_domain_db((Value)).
 into_current_domain_db(ec_current_domain_db(Value)):- !, into_current_domain_db((Value)).
+into_current_domain_db(ec_current_domain_db(Value,T)):- var(T),!,into_current_domain_db(Value).
 into_current_domain_db(ec_current_domain_db(Value,T)):- !, 
    Value = ValueO, assertz_if_new(user:ec_current_domain_db(ValueO,T)).
-into_current_domain_db(Value):-Value=ValueO,
+into_current_domain_db(Value):- copy_term_nat(Value,ValueO),
    assertz_if_new(user:ec_current_domain_db(ValueO,_)).
+
+some_renames(O,O):- \+ compound(O),!.
+some_renames(HB,O):- sub_term(Sub,HB),compound(Sub),Sub=before(X,Y),!,
+  subst(HB,Sub,b(X,Y),HTM),some_renames(HTM,O).
+some_renames(HB,O):- sub_term(Sub,HB),compound(Sub),compound_name_arity(Sub,Name,0),!,
+  subst(HB,Sub,Name,HTM),some_renames(HTM,O).
+some_renames(O,O).
+
+:- export_transparent(assert_ele_cond_load_e/1).
+assert_ele_cond_load_e(EOF) :- must(brk_on_bind(EOF)), must(assert_ele(EOF)),!.
 
 :- export_transparent(assert_ele/1).
 assert_ele(EOF) :- notrace((EOF == end_of_file)),!.
 assert_ele(I):- notrace(\+ callable(I)),!,assert_ele(uncallable(I)).
 assert_ele(SS):- notrace(is_list(SS)),!,maplist(assert_ele,SS).
-assert_ele(HB):- sub_term(Sub,HB),compound(Sub),Sub=before(X,Y),!,
-  subst(HB,Sub,b(X,Y),HTM),assert_ele(HTM).
+assert_ele(Cvt1):-  (some_renames(Cvt1,Cvt2) -> Cvt1\=@=Cvt2), !, assert_ele(Cvt2).
+
+
 assert_ele(_):- notrace((echo_format('~N'), fail)).
 assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
 %assert_ele(==>(S0)):- !, assert_ready( ==>(S0)).
@@ -358,6 +355,7 @@ assert_ele(include(S0)):- !, assert_ready( :-(load_e(S0,include))).
 assert_ele(load(S0)):- !, assert_ready( :-(load_e(S0,changed))).
 assert_ele(load(Cond, S0)):- !, assert_ready( :-(load_e(S0,Cond))).
 assert_ele(ec_current_domain_db(P)):- !, assert_ready( ec_current_domain_db(P)).
+
 
 assert_ele(HB):- \+ compound_gt(HB, 0), !, assert_axiom(HB, []).
 
@@ -387,18 +385,21 @@ assert_ele(subsort(F, W)):- !, maplist(assert_ready(yellow),[sort(F),sort(W),sub
 assert_ele(option(X,Y)):- set_ec_option(X,Y), maplist(assert_ready(yellow),[:- set_ec_option(X,Y)]).
 assert_ele(xor(XORS)):- conjuncts_to_list(XORS,List),  !, assert_ready(red, ==>xor(List)).
 assert_ele(t(F, W)):- !, maplist(assert_ready(yellow),[==>(sort(F)), ==>(t(F, W))]).
-                                                    
+
+% assert_ele(not(holds_at(H,T))):- assert_ele(holds_at(neg(H),T)).
+assert_ele(Cvt1):-  (cvt0(_T, Cvt1,Cvt2) -> Cvt1\=@=Cvt2), !, assert_ele(Cvt2).
+
   %locally(b_setval('$output_lang',[ec]), assert_ele(P)).
 assert_ele('<->'(H,B)):- 
   pprint_ecp_cmt(green, '<->'(H,B)), !,
+  atoms_of(H,HH), atoms_of(B,BB), pprint_ecp_cmt(yellow, '<->'(HH,BB)), !,
   assert_ele('->'(H,B)),
   assert_ele('->'(B,H)).
-% assert_ele(not(holds_at(H,T))):- assert_ele(holds_at(neg(H),T)).
-assert_ele(Cvt1):- cvt0(_T, Cvt1,Cvt2), Cvt1\=@=Cvt2, !, assert_ele(Cvt2).
 
-assert_ele(directive(F)):- !, assert_ele(next_axiom_uses(F)).
 
 assert_ele(initially(F)):- !, assert_axiom(initially(F),[]).
+assert_ele(directive(F)):- !, assert_ele(next_axiom_uses(F)).
+
 /*
 assert_ele('->'(H,B)):- nonvar(B),
   B=(BP,(B1;B2)),!,
@@ -413,12 +414,13 @@ assert_ele('->'(B,H)):- nonvar(B),B=((B1;B2)),!,assert_ele('->'(B1,H)),assert_el
 */
 
 assert_ele('<-'(H,B)):- conjuncts_to_list(B,BL), !, must(assert_axiom(H,BL)).
-% assert_ele((H :- B)):- (H=not(_);is_axiom_head(H)), !, conjuncts_to_list(B,BL), assert_axiom(H,BL).
 assert_ele((H :- B)):- !,  assert_ready( (H :- B)).
+% assert_ele((H :- B)):- (H=not(_);is_axiom_head(H)), !, conjuncts_to_list(B,BL), assert_axiom(H,BL).
 assert_ele(axiom(H,B)):- echo_format('~N'), !,
   correct_axiom_time_args(t,H,B,HH,BB),
   assert_ready( axiom(HH,BB)).
-assert_ele(HB):- correct_holds(outward,HB, HBC), HB\=@=HBC, !, assert_ele(HB).
+
+assert_ele(HB):- correct_holds(outward,HB, HBC), HB\=@=HBC, !, assert_ele(HBC).
 
 % , assert_ready(e, HB),
 %assert_ele(SS):- syntx_term_check(SS),!.
@@ -427,6 +429,7 @@ assert_ele('->'(Body,EffectAx)):- EffectAx=..[Effect|_],
   member(Effect,[initiates,terminates,releases]),
   conjuncts_to_list_body(Body, Conds), 
   assert_axiom(EffectAx, Conds).
+
 assert_ele(EffectAx):- EffectAx=..[Effect|_],
   member(Effect,[initiates,terminates,releases]),
   assert_axiom(EffectAx, []).
@@ -437,14 +440,24 @@ assert_ele(if(happens(A,T),Holds)):-
 */
 assert_ele(happens(A,T)):-  !, assert_axiom(happens(A,T), [is_time(T)]).
 
-assert_ele('->'(B,H)):-  conjuncts_to_list_body(B,BL), !, assert_axiom(H,BL).
+assert_ele('->'(B,H)):-  term_variables(B+H,Vars), Vars=[_,_|_], 
+   atoms_of('->'(B,H),Atoms), \+ member(allDifferent,Atoms),!,
+   assert_m_axiom('->'(allDifferent(Vars),'->'(B,H))).
+
+assert_ele('->'(B,H)):-  !, assert_m_axiom('->'(B,H)).
+% assert_ele('->'(B,H)):-  conjuncts_to_list_body(B,BL), !, assert_axiom(H,BL).
 
 assert_ele(H):- compound_name_arity(H, F, 2),
   needs_cononicalization(F),
   e_to_ec(H,P), !, assert_m_axiom(P).
+
 assert_ele(not(H)):-  !,  assert_m_axiom(not(H)).
 
+assert_ele(==>(SS)):- echo_format('~N'), !,
+  assert_ready(red, ==>(SS)).
+
 assert_ele(SS):- echo_format('~N'), 
+  dmsg(warn(assert_ele(SS))),
   assert_ready(red, SS).
 
 correct_axiom_time_args(Stem,H,B,HH,BB):- 
@@ -464,15 +477,58 @@ ForAll([event,animal,time],
    (Exists([human1].  event=ThrowOff(animal,human1)))))).
 */
 
-cvt0(_, P, _):- \+ callable(P),!, fail.
+cvt0_full(T,G,GG):- must(cvt0(T,G,Y)), !, (G==Y -> G=GG ; cvt0(T,Y,GG)),!.
+
+cvt0(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
 cvt0(_, X\=Y, diff(X,Y)) :- !.
 cvt0(_, X=Y, Equals):- !,as_equals(X,Y,Equals).
-cvt0(T, holds_at(not(H),T),O):- !, cvt0(T, holds_at(neg(H),T), O).
+cvt0(T0, holds_at(NotH,T),O):- compound(NotH),not(H)= NotH, !, cvt0(T0, holds_at(neg(H),T), O).
 %cvt0(T, P, call(P)):- predicate_property(P,foreign),!.
 %cvt0(_, not(exists(_Vars, holds_at(P, Time))),not(holds_at(neg(P), Time))).
 cvt0(_, holds_at(N,AT),initially(N)):- AT==0,!.
-cvt0(T, not(I),not(O)) :- cvt0(T,I,O).
-                                                    
+
+cvt0(_, before(X,Y),b(X,Y)).
+cvt0(_T, option(X,Y),option(X,Y)):-!.
+cvt0(T, X\=Y, O):- must(cvt0(T, not(X=Y), O)).
+
+cvt0(_, =(X,Y),P):- !, as_equals(X,Y,P).
+cvt0(_, equals(X,Y),P):- !, as_equals(X,Y,P).
+
+cvt0(T, neg(I),O):- !, cvt0(T, I,M), correct_holds(neg, not(M), O). 
+cvt0(T, not(I),O):- !, cvt0(T, I,M), correct_holds(neg, not(M), O). 
+cvt0(T, happens(F, T1, T2), O):- T1==T2, cvt0(T, happens(F, T1), O).
+% cvt0(_T, happens(F, T1), happens(F, T1)):- !.
+cvt0(_, ec_current_domain_db(X), ec_current_domain_db(X)).
+cvt0(_, ec_current_domain_db(X,Y), ec_current_domain_db(X,Y)).
+
+/*
+cvt0(T, [G1|G2], [GG1|GG2]):- !, cvt0(T, G1, GG1),cvt0(T, G2, GG2). 
+cvt0(T, (G1,G2), (GG1,GG2)):- !, cvt0(T, G1, GG1),cvt0(T, G2, GG2). 
+cvt0(T, (G1;G2), (GG1;GG2)):- !, cvt0(T, G1, GG1),cvt0(T, G2, GG2). 
+
+cvt0(_, happens(G, T), happens(G, T)):-!.
+cvt0(_, happens(G, T, T2), happens(G, T, T2)):-!.
+cvt0(_, holds_at(G, T), holds_at(G, T)):-!.
+cvt0(_, holds_at(G, T, T2), holds_at(G, T, T2)):-!.
+*/
+cvt0(T, G, Gs):- fix_goal_add_on_arg( T, G, Gs, _TExtra),!.
+%cvt0(T,(G1,G2),GGs):- !, cvt0(T,G1,GG1),cvt0(T,G2,GG2).
+%cvt0(T, P, P).
+%cvt0(T,X,Y):- trace, ec_to_ax(T, X,Y).
+cvt0(T, P, PP):-  
+   P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),!,
+   functor(Arity,_,N), 
+   must_or_dumpst(correct_ax_args(T,F,A,Args,AxH,Arity,N,PP)). 
+% cvt0(_T, exists(X,Y), exists(X,Y)):-!.
+cvt0(T, HT, HTTerm):-  
+ compound_name_arguments(HT, F, L),
+ % upcase_atom(F,U),downcase_atom(F,U),
+ must_maplist(cvt0(T),L,LL),
+ ( LL\==L -> compound_name_arguments(HTTerm, F, LL) ; HT = HTTerm ), !.
+cvt0(_, G, G).
+
+must_or_dumpst(G):- call(G),!.
+must_or_dumpst(G):- ignore(rtrace(G)),dumpST,break.
 
 needs_cononicalization(',').
 needs_cononicalization(';').
@@ -506,6 +562,12 @@ conjuncts_to_list_body(Body, Conds):-
   append(CondsLI,Conds).
   
 
+skipped_head(H):- \+ compound(H),!,fail.
+skipped_head(diff(_,_)).
+skipped_head(not(H)):- !, skipped_negated_head(H).
+skipped_negated_head(H):- \+ compound(H),!,fail.
+skipped_negated_head(allDifferent(_)).
+skipped_negated_head(equals(_,_)).
 
 assert_ele_clauses(X,L,L):- is_list(L), !, 
  length(L,N), 
@@ -518,6 +580,9 @@ assert_ele_clauses(X,L,L):- is_list(L), !,
    ; maplist(assert_ele_clauses(X,L),L)).
 
 
+assert_ele_clauses(_X,_L,(H:-B)):- skipped_head(H), !,
+   pprint_ecp_cmt(yellow,skipped_head(H):-B),!.
+
 assert_ele_clauses(_X,_L,(H:-B)):- !,
   pprint_ecp_cmt(red,(H:-B)),
   conjuncts_to_list_body(B, BL),
@@ -525,7 +590,8 @@ assert_ele_clauses(_X,_L,(H:-B)):- !,
 assert_ele_clauses(_X,_L,H):-  
   assert_axiom(H , []). 
 
-assert_m_axiom(X):- 
+assert_m_axiom(Ax):- 
+  e_to_ec(Ax,X),
   pprint_ecp_cmt(green, X),
   with_output_to(string(_), clausify_pnf(X,Conds)), 
   conjuncts_to_list(Conds,CondsL),
@@ -693,7 +759,7 @@ ect1:-
 
 
 fix_goal_add_on_arg(T, G, G0, [b(T,T2),b(T2,end)]):- G =.. [F,A], already_good(F,2), G0 =.. [F,A,T].%, next_t(T,T2).
-fix_goal_add_on_arg(T, G, G0, [b(T,T2),b(T2,end)]):- G =.. [F,A,B], already_good(F,3), G0 =.. [F,A,B,T]. %, next_t(T,T2).
+fix_goal_add_on_arg(T, G, G0, [b(T,T2),b(T2,end)]):- G =.. [F,A,B], already_good(F,3), \+ already_good(F,2), G0 =.. [F,A,B,T]. %, next_t(T,T2).
 
 
 :- export_transparent(fix_goal/3).
@@ -740,6 +806,8 @@ as_equals(X,Y,Equals):- compound(X),append_term(X,Y, Equals),!.
 as_equals(X,Y,equals(X,Y)).
 
 
+syntx_term_check(G):- var(G),!,fail.
+syntx_term_check((G1;G2)):- !, syntx_term_check(G1); syntx_term_check(G2).
 syntx_term_check(G):- clause(G,_).
 syntx_term_check(G):- clause(ec_current_domain_db(G, _),_).
 
@@ -821,6 +889,7 @@ visit_time_args(Stem,In,declipped(T1,A,T2),declipped(T1R,A,T2R),Out):-
 visit_time_args(_,In,G,G,In).
 
 correct_time_arg(_Stem,In, TN, TN, In):- var(TN), !.
+correct_time_arg(_Stem,In, AM1,T, In):- compound(AM1),(AM1 = (AfterT- N)),compound(AfterT),after(T)=AfterT, N==1, var(T), !.
 correct_time_arg(_Stem,In, TN, TN, In):- atom(TN), !.
 correct_time_arg(Stem, In, TN, TpN, Out):- number(TN), !, correct_time_arg(Stem,In, Stem+TN, TpN, Out).
 correct_time_arg(_Stem,In, v, _, In):- !.
@@ -832,8 +901,8 @@ correct_time_arg(Stem,In, Now+N, T, [ignore(Now+N=T)|Out]):- concat_time_arg_sym
   correct_time_arg(Stem, Mid, Tm2+NN, T, Out).
 correct_time_arg(Stem,In, Now-N, T, [ignore(Now-N=T)|Out]):- concat_time_arg_syms, number(N), N<1, NN is N+1, correct_time_arg(_Stem,In, Now-1, Tm2, Mid),
   correct_time_arg(Stem, Mid, Tm2-NN, T, Out).
-correct_time_arg(_Stem,In, T+0, T, In):-!.
-correct_time_arg(_Stem,In, T-0, T, In):-!.
+correct_time_arg(_Stem,In, T+N, T, In):- N==0,!.
+correct_time_arg(_Stem,In, T-N, T, In):- N==0,!.
 correct_time_arg(_Stem,In, T-N, TN, Out):- !, t_plus_or_minus_1(In, T-N, TN, Out).
 correct_time_arg(_Stem,In, T+N, TN, Out):- !, t_plus_or_minus_1(In, T+N, TN, Out).
 correct_time_arg(_Stem,In, TN, TN, In).
@@ -843,14 +912,15 @@ concat_time_arg_syms:- fail.
 lookup_time_val(TN,TpN,In):- copy_term(TN,TNS),member(ignore(TNS=TpN),In),TNS=@=TN,!.
 
 t_plus_or_minus_1(In, TN, TpN, In):- lookup_time_val(TN,TpN,In).
-t_plus_or_minus_1(In, T+1, TN, In):- memberchk(b(T,TN),In),!.
-t_plus_or_minus_1(In, T-1, TN, In):- memberchk(b(TN,T),In),!.
-t_plus_or_minus_1(In, T-1, TN, [b(TN,T),ignore(T-1=TN)|In]):- next_t(TN,T),!.
-t_plus_or_minus_1(In, T+1, TN, [b(T,TN),ignore(T+1=TN)|In]):- next_t(T,TN),!.
-t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N=TN)|In]):- atom_concat(T,N,TN).
-t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N=TN)|In]):- atomic_list_concat([T,N],minus,TN).
+t_plus_or_minus_1(In, T+N, TN, In):- N==1, memberchk(b(T,TN),In),!.
+t_plus_or_minus_1(In, T-N, TN, In):- N==1, memberchk(b(TN,T),In),!.
+t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N=TN)|In]):- N==1, next_t(TN,T),!.
+t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N=TN)|In]):- N==1, next_t(T,TN),!.
+t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N=TN)|In]):- ground(T+N), atom_concat(T,N,TN).
+t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N=TN)|In]):- ground(T+N), atomic_list_concat([T,N],minus,TN).
 
-
+next_t(T,Var):- var(T),var(Var),!.
+next_t(T,Var):- var(T),!,Var=after(T).
 next_t(t,start).
 next_t(start,now).
 next_t(now,aft).
@@ -867,10 +937,13 @@ already_good(happens, 2).
 already_good(happens, 3).
 already_good(some, 1).
 already_good(holds_at, 2).
+already_good(holds_at, 3).
 already_good(b, 2).
+already_good(equals, 2).
 already_good(is, 2).
 already_good(diff, 2).
 already_good(dif, 2).
+already_good(allDifferent, 1).
 already_good(terms_or_rels,3).
 already_good(F,A):- functor(P,F,A),syntx_term_check(abducible(PP)),compound(PP),PP=P.
 already_good(F,A):- functor(P,F,A),syntx_term_check(predicate(PP)),compound(PP),PP=P.
@@ -902,9 +975,21 @@ process_ec( HB ):- notrace(must(get_linfo(T))), process_ec( T, HB ).
 %:- export_transparent(process_ec/2).
 %process_ec( _, HB , T):- !,process_ec( T, HB ).
 
+
+
+brk_on(Whole):- !, dumpST,dmsg(brk_on(Whole)),break.
+brk_on(Whole):- if_debugging(ec,((dumpST,dmsg(brk_on(Whole)),break))).
+brk_on_same_vars([]).
+brk_on_same_vars([_]).
+brk_on_same_vars([X|Vars]):- must_maplist(dif(X),Vars),brk_on_same_vars(Vars).
+brk_on_bind(G):- ground(G),!.
+brk_on_bind(Whole):- var(Whole),!, freeze(Whole,brk_on(Whole)).
+brk_on_bind(HB):- term_variables(HB,Vars),brk_on_same_vars(Vars),maplist(brk_on_bind,Vars).
+
+
 :- export_transparent(process_ec/2).
 :- export_transparent(process_ec/2).
-process_ec( _, HB ):- assert_ele(HB).
+process_ec( _, HB ):- brk_on_bind(HB), assert_ele(HB).
 
 process_ec( lsvm(L,S,Vs,M), HB ):-  
   must(convert_to_axiom(lsvm(L,S,Vs,M),HB,NEWHB)),
@@ -989,13 +1074,14 @@ arg_info(abducible,range,v(atomic,int,int)).
 arg_info(abducible,t,v(sort,term)).
 %arg_info(domain,axiom,v(axiom,list)).
 
-arg_info(axiom_head,happens,v(event,time,time)).
+%arg_info(axiom_head,happens,v(event,time,time)).
 arg_info(axiom_head,happens,v(event,time)).
+%arg_info(axiom_head,holds_at,v(fluent,time,time)).
 arg_info(axiom_head,holds_at,v(fluent,time)).
 arg_info(axiom_head,initially,v(fluent)).
 arg_info(axiom_head,initiates,v(event,fluent,time)).
 arg_info(axiom_head,terminates,v(event,fluent,time)).
-arg_info(axiom_head,releases,v(event,fluent,time)).
+arg_info(axiom_head,releases,v(event,fluent,time)). 
 arg_info(axiom_head,trajectory,v(fluent,time,fluent,offset)).
 %arg_info(axiom_head,releasesAt,v(fluent,time)).
 

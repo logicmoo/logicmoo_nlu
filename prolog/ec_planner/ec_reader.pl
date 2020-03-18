@@ -484,7 +484,7 @@ e_to_ec(not(Term),not(O)):- !, e_to_ec(Term, O).
 e_to_ec(Prop,O):- 
   Prop =.. [ThereExists,NotVars,Term0],
   is_quantifier_type(ThereExists,_Exists),
-  conjuncts_to_list(NotVars,NotVarsL), select(not(Vars),NotVarsL,Rest),
+  conjuncts_to_list(NotVars,NotVarsL), select(NotVs,NotVarsL,Rest),compound(NotVs),not(Vars)=NotVs,
   is_list(Vars),%forall(member(E,Vars),ground(E)),!,
   (Rest==[]->Term1= Term0 ; list_to_conjuncts(Rest,NotVarsRest),conjoin(NotVarsRest,Term0,Term1)), 
   QProp =.. [ThereExists,Vars,Term1], 

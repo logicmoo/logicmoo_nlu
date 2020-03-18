@@ -117,7 +117,7 @@ correct_holds(_,Fml,Fml):- arg(1,Fml,Var), var(Var),!.
 correct_holds(neg, not(holds_at(P,T)),holds_at(neg(P),T)).
 correct_holds(neg, holds_at(not(P),T),holds_at(neg(P),T)).
 correct_holds(inward,  not(holds_at(P,T)),holds_at(not(P),T)).
-correct_holds(outward, holds_at(neg(P),T),not(holds_at(P,T))).
+correct_holds(outward2, holds_at(neg(P),T),not(holds_at(P,T))).
 correct_holds(outward, holds_at(not(P),T),not(holds_at(P,T))).
 correct_holds(IO, P,PP):-
   compound_name_arguments(P,F,Args),
@@ -2042,6 +2042,8 @@ xlit(neq(A,B),{dif(A,B)}).
 xlit(\=(A,B),{dif(A,B)}).
 xlit(>(A,B),comparison(A,B,>)).
 xlit(<(A,B),comparison(A,B,<)).
+xlit(>=(A,B),comparison(A,B,>=)).
+xlit(=<(A,B),comparison(A,B,=<)).
 xlit([F|Args],OUT):- maplist(xlit,[F|Args],OUT).
 xlit(P,PP):- 
   compound_name_arguments(P,F,Args),
