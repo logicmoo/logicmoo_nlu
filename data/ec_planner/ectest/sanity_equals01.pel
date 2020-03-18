@@ -1,0 +1,3 @@
+:-include(library('ec_planner/ec_test_incl')).
+:-expects_dialect(pfc).
+ %  loading(load_e_pl,'sanity_equals01.e').
