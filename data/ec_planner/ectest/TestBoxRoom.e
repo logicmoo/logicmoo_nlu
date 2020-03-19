@@ -21,8 +21,8 @@
 ;   publisher = "Morgan Kaufmann/Elsevier",
 ; }
 ;
- load foundations/Root.e
-load foundations/EC.e
+include foundations/Root.e
+include foundations/EC.e
 
 sort object
 sort agent: object

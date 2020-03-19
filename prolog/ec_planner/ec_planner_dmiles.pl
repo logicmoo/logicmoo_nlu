@@ -112,7 +112,7 @@ next_d(D1, D2):- D1<5,!,D2 is D1+1.
 next_d(D1, D2):- next_d(D2),D2>D1,!.
 
 */
-last_d(D):- nb_current(last_d,D)->true; D = 3000.
+last_d(D):- (nb_current(last_d,D),number(D))->true; D = 3000.
 
 next_d(D1, _):- last_d(D), D1>D, !, fail.
 next_d(D1, D2):- D1<9,!,D2 is D1+3.
@@ -215,6 +215,17 @@ abdemo([],R,R,N,N,D).
 abdemo([G|Gs],R1,R2,N1,N2,D):-
   abdemo_cons(G,Gs,R1,R2,N1,N2,D).
 
+:- discontiguous abdemo_cons/7.
+% merge H
+abdemo_cons(H,[H|Gs],R1,R4,N1,N3,D):- !,
+ abdemo_cons(H,Gs,R1,R4,N1,N3,D).
+% push call for later
+abdemo_cons(call(P),[H,I|Gs],R1,R4,N1,N3,D):- H\=call(_), !,
+ abdemo_cons(H,[I,call(P)|Gs],R1,R4,N1,N3,D).
+% push call for later
+abdemo_cons(call(P),[H|Gs],R1,R4,N1,N3,D):- H\=call(_), !,
+ abdemo_cons(H,[call(P)|Gs],R1,R4,N1,N3,D).
+
 abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N3,D):- 
   abdemo_cons_holds_at(F1,T,Gs1,R1,R3,N1,N3,D).
 
@@ -234,7 +245,6 @@ abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N3,D):-
    the residue. Resolving happens goals is the job of the refinement phase.
 */
 
-:- discontiguous abdemo_cons/7.
 abdemo_cons_holds_at(F1,T,Gs1,R1,R3,N1,N4,D) :-
      F1 \= neg(F2), abresolve(initially(F1),R1,Gs2,R1,B),
      append(Gs2,Gs1,Gs3), add_neg_car(clipped(0,F1,T),N1,N2),
@@ -463,7 +473,7 @@ check_clipping([G|Gs],R1,R2,N1,N2,D) :-
 
 
 ammed_preconds(A, T, Gs,Gss):- 
-  findall(PrecondL, axiom(requires(A, T),PrecondL),PrecondLs), 
+  findall(PrecondL, axiom_db(requires(A, T),PrecondL),PrecondLs), 
   append([Gs|PrecondLs],Gss).
 
 
@@ -481,13 +491,13 @@ ammed_preconds(A, T, Gs,Gss):-
 
 abresolve(G,R1,Gs,R2,B):- notrace(var(G)),!,throw(var_abresolve(G,R1,Gs,R2,B)).
 
-abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- axiom(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
 
-abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- !, axiom(terminates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(terminates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
 
-abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- axiom(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
 
-abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- !, axiom(initiates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(initiates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
 
 
 /*
@@ -510,7 +520,7 @@ abresolve(happens(A,T1,T2),[[HA,TC],RB],[],[[HA,TC],RB],false) :-
      member(happens(A,T1,T2),HA).
 
 abresolve(happens(A,T,T),[[HA,TC],RB],[],[[[happens(A,T,T)|HA],TC],RB],B) :-
-     executable(A), !, B = true, skolemise(T).
+     into_db(executable(A)), !, B = true, skolemise(T).
 
 abresolve(happens(A,T1,T2),R1,[],R2,B) :-  !, B = true, 
      skolemise(T1), skolemise(T2), add_happens(A,T1,T2,R1,R2).
@@ -533,10 +543,12 @@ abresolve(b(X,Y),R1,[],R2,B) :- !, B = false,
 */
 
 abresolve(diff(X,Y),R,[],R,false) :- !, X \= Y.
+abresolve(ignore(_),R,[],R,false) :- !.
+abresolve(allDifferent(_),R,[],R,false) :- !.
 abresolve(is(X,Y),R,[],R,false) :- !, X is Y.
 
 abresolve(dif(X,Y),R,[],R,false) :- !, dif(X,Y).
-abresolve(call(G),R,[],R,false) :- !, call(G).
+abresolve(call(G),R,[],R,false) :- !, into_db(call(G)).
 
 % INTERP-OR-AND
 abresolve((G1;G2),ResidueIn,Goals,ResidueOut,Flag):- !,
@@ -550,12 +562,12 @@ abresolve((G1,G2),ResidueIn,Goals,ResidueOut,Flag):- !,
 
 
 
-abresolve(G,R,[],[G|R],false) :- abducible(G).
+abresolve(G,R,[],[G|R],false) :- into_db(abducible(G)).
 
-abresolve(G,R,Gs,R,false) :- axiom(G,Gs).
+abresolve(G,R,Gs,R,false) :- axiom_db(G,Gs).
 
 
-/* ABDEMO_NAFS and CHECK_NAFS */
+/*ABDEMO_NAFS and CHECK_NAFS */
 
 
 /*
@@ -1076,3 +1088,8 @@ opposite(F,neg(F)).
 
 
 %:- endif.
+axiom_db(H,B):- into_db(axiom(H,B)).
+into_db(G):- call(G).
+
+
+

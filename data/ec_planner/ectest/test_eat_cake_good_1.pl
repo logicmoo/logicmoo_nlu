@@ -38,10 +38,10 @@ fluent(num_cakes(integer)).
 axiom(initially(hypothesizing(num_cakes(1))),[]).
 axiom(initially(hypothesizing(num_cakes(0))),[]).
 
-axiom(initially(num_cakes(1))).
+axiom(initially(num_cakes(5))).
 
-axiom(initiates(eat_cakes(1),num_cakes(0),T), [holds_at(num_cakes(1),T)]).
-axiom(terminates(eat_cakes(1),num_cakes(N),T), [holds_at(num_cakes(N),T)]).
+axiom( initiates(eat_cakes(Eat),num_cakes(Remaining),T), [holds_at(num_cakes(Start),T),call((plus(Remaining, Eat, Start),Start>=0,Remaining>=0,Eat>=0))]).
+axiom(terminates(eat_cakes(Eat),num_cakes(N),T), [call((number(E),Eat>0)),holds_at(num_cakes(N),T)]).
 
 %axiom(initiates(eat_cakes(0),num_cakes(0),T), [holds_at(num_cakes(0),T)]).
 %axiom(initiates(eat_cakes(0),num_cakes(1),T), [holds_at(num_cakes(1),T)]).
@@ -65,14 +65,12 @@ axiom(terminates(imagine_terminates(neg(Propostion)),neg(Propostion),T), [holds_
 %axiom(terminates(immagine_terminates(Holds),Holds,T), [holds_at(Holds,T)]).
 %axiom(releases(immagine_releases(Holds),Holds,T), [holds_at(Holds,T)]).
 
-axiom(holds_at(num_cakes(0),T),
-     [holds_at(neg(num_cakes(1)),T)]).
+%axiom(holds_at(num_cakes(0),T), [holds_at(neg(num_cakes(1)),T)]).
 
 %axiom(holds_at(neg(num_cakes(0)),T),
 %     [holds_at(num_cakes(1),T)]).
 
-axiom(holds_at(num_cakes(1),T),
-     [holds_at(neg(num_cakes(0)),T)]).
+%axiom(holds_at(num_cakes(1),T),[holds_at(neg(num_cakes(0)),T)]).
 
 % Why causes loops?
 %axiom(holds_at(neg(num_cakes(1)),T),

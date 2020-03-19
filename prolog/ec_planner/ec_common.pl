@@ -30,19 +30,6 @@ is_sicstus:- \+ current_prolog_flag(version_data,swi(_,_,_,_)).
 :- system:import(user:ec_current_domain_db/2).
 
 
-:- module_transparent(system:axiom/2).
-system:axiom(X,Y):- ec_current_domain_bi(axiom(X,Y)).
-:- lock_predicate(system:axiom/2).
-
-:- module_transparent(system:abducible/1).
-system:abducible(A):- ec_current_domain_bi(abducible(A)).
-:- lock_predicate(system:abducible/1).
-
-:- module_transparent(system:executable/1).
-system:executable(A):- ec_current_domain_bi(executable(A)).
-:- lock_predicate(system:executable/1).
-
-
 :- reexport(library(ec_planner/ec_loader)).
 :- use_module(library(ec_planner/ec_loader)).
 
@@ -55,7 +42,7 @@ ec_current_domain(Var):- ec_current_domain_bi(Var).
 ec_current_domain_bi(Var):- notrace(var(Var)),!, throw(ec_current_domain_var(Var)).
 %ec_current_domain_bi(axiom(G,Gs)):- !, axiom(G,Gs).
 ec_current_domain_bi(G):- ec_current_domain_db(G).
-ec_current_domain_bi(executable(G)):- var(G), ec_current_domain_bi(event(Ax)), functor(G,F,A), functor(Ax,F,A).
+ec_current_domain_bi(executable(G)):- var(G), ec_current_domain_bi(event(Ax)), functor(Ax,F,A), functor(G,F,A).
 ec_current_domain_bi(executable(G)):- compound(G), functor(G,F,A), functor(Ax,F,A), ec_current_domain_bi(event(Ax)).
 
 ec_current_domain_db(G):- user:ec_current_domain_db(G, _REF).

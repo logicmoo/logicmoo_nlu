@@ -661,30 +661,4 @@ abdemo:or(true, B, true) :- !.
 abdemo:or(false, false, false).
 abdemo:or(false, true, true).
 
-:- dynamic(axiom/2).
-axiom(initiates(wake_up(X), awake(X), _T), []).
-axiom(initiates(open(_, Y), opened(Y), _T), []).
-axiom(terminates(fall_asleep(X), awake(X), _T), []). 
-axiom(initially(neg(awake(N))), [N=nathan]). 
-axiom(initially(neg(opened(cont1))), []). 
-
-:- dynamic(abducible/1).
-abducible(dummy).
-
-:- dynamic(executable/1).
-executable(wake_up(_X)).
-executable(fall_asleep(_X)).
-executable(open(_X, _Y)).
-
-:- ec:abdemo([holds_at(awake(nathan), t)], R), writeq(R).
-/*
-  R = [[happens(wake_up(nathan), t1, t1)], [before(t1, t)]]
-
-                                            abdemo([holds_at(awake(nathan), t), holds_at(opened(foo), t)], R)
-*/
-
-%:- ec:abdemo([holds_at(awake(nathan), t), before(t, t2), holds_at(neg(awake(nathan)), t2)], R),writeq(R).
-
-
-
 

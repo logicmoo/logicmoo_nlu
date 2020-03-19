@@ -2,9 +2,7 @@
 :-expects_dialect(pfc).
  %  loading(load_e_pl,'sanity_equals_03.e').
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_03.e:1
 % predicate Neighbor(position,position)
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_03.e:2
 predicate(neighbor(Neighbor_Param,Neighbor_Ret)).
 ==> mpred_prop(neighbor(position,position),predicate).
 ==> meta_argtypes(neighbor(position,position)).
@@ -39,10 +37,126 @@ predicate(neighbor(Neighbor_Param,Neighbor_Ret)).
 %  (position2=7 & position1=8) |
 %  (position1=4 & position2=7) |
 %  (position2=4 & position1=7)).
+
+ /*  axiom_head(Axiom_head_Ret) ->
+       (   Position1=1,
+           Position2=2
+       ;   Position1=1,
+           Position2=3
+       ;   Position1=1,
+           Position2=4
+       ;   Position1=2,
+           Position2=3
+       ;   Position1=2,
+           Position2=4
+       ;   Position1=3,
+           Position2=4
+       ;   Position1=5,
+           Position2=6
+       ;   Position1=5,
+           Position2=7
+       ;   Position1=5,
+           Position2=8
+       ;   Position1=6,
+           Position2=7
+       ;   Position1=6,
+           Position2=8
+       ;   Position1=7,
+           Position2=8
+       ;   Position2=1,
+           Position1=2
+       ;   Position2=1,
+           Position1=3
+       ;   Position2=1,
+           Position1=4
+       ;   Position2=2,
+           Position1=3
+       ;   Position2=2,
+           Position1=4
+       ;   Position2=3,
+           Position1=4
+       ;   Position2=5,
+           Position1=6
+       ;   Position2=5,
+           Position1=7
+       ;   Position2=5,
+           Position1=8
+       ;   Position2=6,
+           Position1=7
+       ;   Position2=6,
+           Position1=8
+       ;   Position2=7,
+           Position1=8
+       ;   Position1=4,
+           Position2=7
+       ;   Position2=4,
+           Position1=7
+       ).
+ */
+
+ /*  fix_axiom_head(Axiom_head_Ret) ->
+       (   call(Position1=1),
+           call(Position2=2)
+       ;   call(Position1=1),
+           call(Position2=3)
+       ;   call(Position1=1),
+           call(Position2=4)
+       ;   call(Position1=2),
+           call(Position2=3)
+       ;   call(Position1=2),
+           call(Position2=4)
+       ;   call(Position1=3),
+           call(Position2=4)
+       ;   call(Position1=5),
+           call(Position2=6)
+       ;   call(Position1=5),
+           call(Position2=7)
+       ;   call(Position1=5),
+           call(Position2=8)
+       ;   call(Position1=6),
+           call(Position2=7)
+       ;   call(Position1=6),
+           call(Position2=8)
+       ;   call(Position1=7),
+           call(Position2=8)
+       ;   call(Position2=1),
+           call(Position1=2)
+       ;   call(Position2=1),
+           call(Position1=3)
+       ;   call(Position2=1),
+           call(Position1=4)
+       ;   call(Position2=2),
+           call(Position1=3)
+       ;   call(Position2=2),
+           call(Position1=4)
+       ;   call(Position2=3),
+           call(Position1=4)
+       ;   call(Position2=5),
+           call(Position1=6)
+       ;   call(Position2=5),
+           call(Position1=7)
+       ;   call(Position2=5),
+           call(Position1=8)
+       ;   call(Position2=6),
+           call(Position1=7)
+       ;   call(Position2=6),
+           call(Position1=8)
+       ;   call(Position2=7),
+           call(Position1=8)
+       ;   call(Position1=4),
+           call(Position2=7)
+       ;   call(Position2=4),
+           call(Position1=7)
+       ).
+ */
+
+ /*  [(call(Position1=1), call(Position2=2);call(Position1=1), call(Position2=3);call(Position1=1), call(Position2=4);call(Position1=2), call(Position2=3);call(Position1=2), call(Position2=4);call(Position1=3), call(Position2=4);call(Position1=5), call(Position2=6);call(Position1=5), call(Position2=7);call(Position1=5), call(Position2=8);call(Position1=6), call(Position2=7);call(Position1=6), call(Position2=8);call(Position1=7), call(Position2=8);call(Position2=1), call(Position1=2);call(Position2=1), call(Position1=3);call(Position2=1), call(Position1=4);call(Position2=2), call(Position1=3);call(Position2=2), call(Position1=4);call(Position2=3), call(Position1=4);call(Position2=5), call(Position1=6);call(Position2=5), call(Position1=7);call(Position2=5), call(Position1=8);call(Position2=6), call(Position1=7);call(Position2=6), call(Position1=8);call(Position2=7), call(Position1=8);call(Position1=4), call(Position2=7);call(Position2=4), call(Position1=7))] ->
+       ta(Axiom_head_Ret, neighbor(Position1, Position2)).
+ */
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_03.e:30
 axiom(neighbor(Position1, Position2),
    
-    [  (equals(Position1, 1), equals(Position2, 2);equals(Position1, 1), equals(Position2, 3);equals(Position1, 1), equals(Position2, 4);equals(Position1, 2), equals(Position2, 3);equals(Position1, 2), equals(Position2, 4);equals(Position1, 3), equals(Position2, 4);equals(Position1, 5), equals(Position2, 6);equals(Position1, 5), equals(Position2, 7);equals(Position1, 5), equals(Position2, 8);equals(Position1, 6), equals(Position2, 7);equals(Position1, 6), equals(Position2, 8);equals(Position1, 7), equals(Position2, 8);equals(Position2, 1), equals(Position1, 2);equals(Position2, 1), equals(Position1, 3);equals(Position2, 1), equals(Position1, 4);equals(Position2, 2), equals(Position1, 3);equals(Position2, 2), equals(Position1, 4);equals(Position2, 3), equals(Position1, 4);equals(Position2, 5), equals(Position1, 6);equals(Position2, 5), equals(Position1, 7);equals(Position2, 5), equals(Position1, 8);equals(Position2, 6), equals(Position1, 7);equals(Position2, 6), equals(Position1, 8);equals(Position2, 7), equals(Position1, 8);equals(Position1, 4), equals(Position2, 7);equals(Position2, 4), equals(Position1, 7))
+    [  (call(Position1=1), call(Position2=2);call(Position1=1), call(Position2=3);call(Position1=1), call(Position2=4);call(Position1=2), call(Position2=3);call(Position1=2), call(Position2=4);call(Position1=3), call(Position2=4);call(Position1=5), call(Position2=6);call(Position1=5), call(Position2=7);call(Position1=5), call(Position2=8);call(Position1=6), call(Position2=7);call(Position1=6), call(Position2=8);call(Position1=7), call(Position2=8);call(Position2=1), call(Position1=2);call(Position2=1), call(Position1=3);call(Position2=1), call(Position1=4);call(Position2=2), call(Position1=3);call(Position2=2), call(Position1=4);call(Position2=3), call(Position1=4);call(Position2=5), call(Position1=6);call(Position2=5), call(Position1=7);call(Position2=5), call(Position1=8);call(Position2=6), call(Position1=7);call(Position2=6), call(Position1=8);call(Position2=7), call(Position1=8);call(Position1=4), call(Position2=7);call(Position2=4), call(Position1=7))
     ]).
 
 

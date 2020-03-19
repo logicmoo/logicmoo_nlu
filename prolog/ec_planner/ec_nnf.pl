@@ -114,6 +114,9 @@ non_expandable0(Fml):- arg(_,Fml,E), var(E),!.
 
 correct_holds(_,Fml,Fml):- var_or_atomic(Fml),!.
 correct_holds(_,Fml,Fml):- arg(1,Fml,Var), var(Var),!.
+correct_holds(neg, not(initially(NegP)),initially((P))):- compound(NegP),NegP=neg(P).
+correct_holds(neg, not(initially(P)),initially(neg(P))):-!.
+correct_holds(neg, not(holds_at(NegP,T)),holds_at((P),T)):- compound(NegP),NegP=neg(P).
 correct_holds(neg, not(holds_at(P,T)),holds_at(neg(P),T)).
 correct_holds(neg, holds_at(not(P),T),holds_at(neg(P),T)).
 correct_holds(inward,  not(holds_at(P,T)),holds_at(not(P),T)).
