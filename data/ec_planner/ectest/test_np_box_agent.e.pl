@@ -6,7 +6,6 @@
 % ec_in_to_pl(do_ec_load, current_output, <stream>(0x55638dfa3da0)).
 % ec_io(do_ec_load, <stream>(0x55638dfa3da0)).
 % ectest/TestBoxRoom.e:1
-:- include('../ec_test_incl').
 :- module(ec).
 
 do_test_gen(What) :- ec_current_domain(fluent(P)),functor(P,F,A),functor(What,F,A).
@@ -109,6 +108,9 @@ test_np_box_occurs:-
 
 do_test(test_np_box_agent) :-  forall(do_test_gen(What), local_demo([holds_at(What,When)],R)).
 
+
+
+:-include(library('ec_planner/ec_test_incl')).
 
 /*
 
