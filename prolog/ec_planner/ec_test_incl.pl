@@ -4,9 +4,7 @@
 %:- consult(planner115).
 %:- consult(ec_common).
 
-:- consult(ec_planner_dmiles).
-
-testing_msg(_).
+:- ec:use_module(ec_planner_dmiles).
 
 :- discontiguous do_test/1.
 :- multifile do_test/1.

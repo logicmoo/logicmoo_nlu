@@ -17,6 +17,8 @@
 
 :- module(ec,[abdemo_special/3]).
 
+testing_msg(X):- wdmsg(X).
+
 :- use_module(library((pfc_lib))).
 
 %%executable(P):- mpred_props(

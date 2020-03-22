@@ -64,6 +64,8 @@ e_reader_testec:- with_e_sample_tests(load_e_pl).
 :- export_transparent(load_e/1).
 load_e(F):- load_e(F, always).
 
+
+
 foundations_file('foundations/EC.e').
 foundations_file('foundations/Root.e').
 :- export_transparent(cond_load_e/2).
@@ -104,13 +106,18 @@ cond_load_e(Cond,F):-
    set_ec_option(load(F), loaded).
 
 :- export_transparent(load_e_pl/1).
-load_e_pl(F):- needs_resolve_local_files(F, L), !, must_maplist(load_e_pl, L).  
-load_e_pl(F):- atom_concat(Was,'.pel',F),!,atom_concat(Was,'.e',FE),load_e_pl(FE,F).
-load_e_pl(F):- atom_concat(Was,'.e.pl',F),!,atom_concat(Was,'.e',FE),load_e_pl(FE,F).
-load_e_pl(F):- atom_concat(Was,'.pl',F),!,atom_concat(Was,'.e',FE),load_e_pl(FE,F).
-load_e_pl(F):- calc_where_to(outdir('.', 'pel'), F, OutputName),load_e_pl(F,OutputName).
+load_e_pl(F):- needs_resolve_local_files(F, L), !, must_maplist(load_e_pl, L). 
+load_e_pl(F):- to_e_pl(F,E,PL),load_e_pl(E,PL).
+load_e_pl(E,PL):- cvt_e_pl(E,PL),consult(PL).
 
-load_e_pl(F,OutputName):-
+to_e_pl(F,FE,F):- atom_concat(Was,'.pel',F),!,atom_concat(Was,'.e',FE).
+to_e_pl(F,FE,F):- atom_concat(Was,'.e.pl',F),!,atom_concat(Was,'.e',FE).
+to_e_pl(F,FE,F):- atom_concat(Was,'.pl',F),!,atom_concat(Was,'.e',FE).
+to_e_pl(F,F,OutputName):- calc_where_to(outdir('.', 'pel'), F, OutputName).
+
+
+cvt_e_pl(F0,OutputName):-
+ absolute_file_name(F0,F),
  ( 
  (( ( fail, \+ should_update(OutputName))) -> true ;
   setup_call_cleanup(open(OutputName, write, Outs),
@@ -343,15 +350,14 @@ assert_ready_now(Type,Value):-
 into_current_domain_db('==>'(Value)):-!,into_current_domain_db((Value)).
 into_current_domain_db(ec_current_domain_db(Value)):- !, into_current_domain_db((Value)).
 into_current_domain_db(ec_current_domain_db(Value,T)):- var(T),!,into_current_domain_db(Value).
+into_current_domain_db(ec_current_domain_db(Value,T)):- !, assertz_if_new_domain_db(Value,T).
+into_current_domain_db(Value):- copy_term_nat(Value,ValueO), assertz_if_new_domain_db(ValueO,_).
 
-into_current_domain_db(ec_current_domain_db(Value,T)):- !,   
-   Value = ValueO, assertz_if_new_domain_db(ValueO,T).
+assertz_if_new_domain_db((H:-B),T):- !, assertz_if_new_msg((user:ec_current_domain_db(H,T):-B)).
+assertz_if_new_domain_db(ValueO,T):- assertz_if_new_msg(user:ec_current_domain_db(ValueO,T)).
 
-into_current_domain_db(Value):- copy_term_nat(Value,ValueO),
-   assertz_if_new_domain_db(ValueO,_).
-
-assertz_if_new_domain_db((H:-B),T):- !, assertz_if_new((user:ec_current_domain_db(H,T):-B)).
-assertz_if_new_domain_db(ValueO,T):- assertz_if_new(user:ec_current_domain_db(ValueO,T)).
+assertz_if_new_msg(Stuff):- clause_asserted(Stuff),wdmsg(already(Stuff)).
+assertz_if_new_msg(Stuff):- assertz_if_new(Stuff).
 
 some_renames(O,O):- \+ compound(O),!.
 some_renames(HB,O):- sub_term(Sub,HB),compound(Sub),Sub=before(X,Y),!,
@@ -449,14 +455,14 @@ assert_ele(HB):- correct_holds(outward,HB, HBC), HB\=@=HBC, !, assert_ele(HBC).
 % , assert_ready(e, HB),
 %assert_ele(SS):- syntx_term_check(SS),!.
 
-assert_ele('->'(Body,EffectAx)):- EffectAx=..[Effect|_],
+assert_ele('->'(Body,AxHead)):- AxHead=..[Effect|_],
   member(Effect,[initiates,terminates,releases]),
   conjuncts_to_list_body(Body, Conds), 
-  assert_axiom(EffectAx, Conds).
+  assert_axiom(AxHead, Conds).
 
-assert_ele(EffectAx):- EffectAx=..[Effect|_],
+assert_ele(AxHead):- AxHead=..[Effect|_],
   member(Effect,[initiates,terminates,releases]),
-  assert_axiom(EffectAx, []).
+  assert_axiom(AxHead, []).
 
 /*
 assert_ele(if(happens(A,T),Holds)):- 
@@ -464,7 +470,7 @@ assert_ele(if(happens(A,T),Holds)):-
 */
 assert_ele(happens(A,T)):-  !, assert_axiom(happens(A,T), [is_time(T)]).
 
-assert_ele('->'(B,H)):-  term_variables(B+H,Vars), Vars=[_,_|_], 
+assert_ele('->'(B,H)):-  fail, term_variables(B+H,Vars), Vars=[_,_|_], 
    atoms_of('->'(B,H),Atoms), \+ member(allDifferent,Atoms),!,
    assert_m_axiom('->'(allDifferent(Vars),'->'(B,H))).
 
@@ -632,13 +638,13 @@ assert_m_axiom(Ax):-
 
 
 assert_axiom(Conds, []):- is_list(Conds),!, must_maplist(assert_ele,Conds).
-assert_axiom(EffectAx, append3(L1,L2,LL)):- 
+assert_axiom(AxHead, append3(L1,L2,LL)):- 
    conjuncts_to_list_body(L1,LL1),conjuncts_to_list_body(L2,LL2),
    append([LL1,LL2,LL],L12),!,
-   assert_axiom(EffectAx, L12).
-assert_axiom(EffectAx, B) :- \+ is_list(B), !,
+   assert_axiom(AxHead, L12).
+assert_axiom(AxHead, B) :- \+ is_list(B), !,
   conjuncts_to_list_body(B,Bs),
-  assert_axiom(EffectAx, Bs).
+  assert_axiom(AxHead, Bs).
 
 assert_axiom(happens(A,T), []):- !,
    assert_axiom(happens(A,T), [is_time(T)]).  
@@ -655,10 +661,21 @@ assert_axiom(Conds, [happens(A,T)]):-
    functors_are(\+ happens, B), !,
    assert_axiom(requires(A,T),Conds),!.
 
-assert_axiom(EffectAx, Some):- is_list(Some), select(E,Some,Rest), compound(E), E = (A,B), !,
+assert_axiom(AxHead, Some):- is_list(Some), select(E,Some,Rest), compound(E), E = (A,B), !,
    conjuncts_to_list_body((A,B), Conds),
    append(Conds,Rest,BReast),
-   assert_axiom(EffectAx, BReast).
+   assert_axiom(AxHead, BReast).
+
+assert_axiom(AxHead, B):-
+  semi_legit_time(AxHead,T),
+  fix_goal(T,B,Bs), B\=@=Bs, !, 
+  assert_axiom(AxHead, Bs).
+
+assert_axiom(AxHead, B):-
+  AxHead=..[Effect,Event,Fluent,T],
+  callable(Event),
+  member(Effect,[initiates,terminates,releases]),
+  assert_effect(Effect,Event,Fluent, T, B), !.
 
 assert_axiom(H,B) :- 
   ignore((semi_legit_time(H+B,Time),var(Time));semi_legit_time(H+B,Time)),
@@ -690,40 +707,53 @@ correct_axiom_time_args_other(Time,HH,BB,HHH,[ignore(Sub==NewTime),b(Lo,Hi)|BBB]
    ((F == +) -> Lo+Hi=Time+NewTime ; Lo+Hi=NewTime+Time),correct_axiom_time_args_other(NewTime,H,B,HHH,BBB),!.
 correct_axiom_time_args_other(_Time,HH,BB,HHH,BBB):- correct_axiom_time_args(t,HH,BB,HHH,BBB),!.
 
+is_symetric_pred(equals).
+is_symetric_pred(diff).
+
+fix_symetrics(_,O,O):- \+ compound(O),!.
+fix_symetrics(_, allDifferent(List), allDifferent(List2)):- sort(List,List2),!.
+fix_symetrics(H, BXY, BYX):- compound_name_arguments(BXY, F, [X,Y]), 
+  is_symetric_pred(F), \+ compound(X),
+  contains_var(Y,H), \+ contains_var(X,H), !, 
+  compound_name_arguments(BYX, F, [Y,X]).
+
+fix_symetrics(H, BT, BTTerm):-  
+ compound_name_arguments(BT, F, L),
+ must_maplist(fix_symetrics(H),L,LL),
+ compound_name_arguments(BTTerm, F, LL), !.
 
 /*
-assert_axiom(EffectAx, Some):- select(E,Some,Rest), E = (A;B), !, nnf(A,NotA), nnf(B,NotB),
-   assert_axiom(EffectAx, append3(A,NotB,Rest)),
-   assert_axiom(EffectAx, append3(B,NotA,Rest)).
+assert_axiom(AxHead, Some):- select(E,Some,Rest), E = (A;B), !, nnf(A,NotA), nnf(B,NotB),
+   assert_axiom(AxHead, append3(A,NotB,Rest)),
+   assert_axiom(AxHead, append3(B,NotA,Rest)).
 */
-assert_axiom_2(EffectAx, Some):- use_proxy_kr, Some=[_,_|_],  member(E,Some), E = (_;_), 
+assert_axiom_2(AxHead, B) :- \+ is_list(B), !,
+  conjuncts_to_list_body(B,Bs),
+  assert_axiom_2(AxHead, Bs).
+
+assert_axiom_2(AxHead, B) :- 
+  must_maplist(fix_symetrics(AxHead), B,Bs)-> B\== Bs,
+  assert_axiom_2(AxHead, Bs).
+
+assert_axiom_2(AxHead, Some):- use_proxy_kr, Some=[_,_|_],  member(E,Some), E = (_;_), 
    term_variables(E,Vars),
    gensym(disj_,Ref),
    P =.. [Ref|Vars],
    subst(Some,E,P,NewSome), !,
    assert_ele('->'(E,P)),
-   assert_axiom_2(EffectAx, NewSome).
+   assert_axiom_2(AxHead, NewSome).
 
-assert_axiom_2(EffectAx, Some):- use_proxy_kr, select(E,Some,Rest), E = (_;_), Rest\==[], !,
+assert_axiom_2(AxHead, Some):- use_proxy_kr, select(E,Some,Rest), E = (_;_), Rest\==[], !,
    term_variables(E,Vars),
    gensym(disj_,Ref),
    P =.. [Ref|Vars],
    assert_ele('->'(E,P)),
-   assert_axiom_2(EffectAx, [P|Rest]).
+   assert_axiom_2(AxHead, [P|Rest]).
 
-assert_axiom_2(EffectAx, Some):- breakup_ors, select(E,Some,Rest), E = (A;B), !,
-   assert_axiom_2(EffectAx, [A|Rest]),
-   assert_axiom_2(EffectAx, [B|Rest]).
+assert_axiom_2(AxHead, Some):- breakup_ors, select(E,Some,Rest), E = (A;B), !,
+   assert_axiom_2(AxHead, [A|Rest]),
+   assert_axiom_2(AxHead, [B|Rest]).
 
-assert_axiom_2(EffectAx, B):-
-  semi_legit_time(EffectAx,T),
-  fix_goal(T,B,Bs), B\=@=Bs, !, 
-  assert_axiom_2(EffectAx, Bs).
-
-assert_axiom_2(EffectAx, B):-
-  EffectAx=..[Effect,Event,Fluent,T],
-  member(Effect,[initiates,terminates,releases]),
-  assert_effect(Effect,Event,Fluent,T,B).
 /*
 assert_axiom((A1,A2), B):- 
   assert_axiom(A1, [possible(A2)|B]),
@@ -739,22 +769,16 @@ assert_axiom_2(H,B):-
   list_to_conjuncts(B, BB),
   assert_m_axiom('->'(BB,H)).
 
-assert_axiom_2(H,B):- 
+assert_axiom_2(H,B):-
   assert_ready(axiom(H,B)).
 
 % Normals
-assert_effect(Effect,Event,Fluent,T,B):- \+ callable(Event), !,
-  EffectAx=..[Effect,Event,Fluent,T],
-  assert_ready(axiom(EffectAx,B)).
 assert_effect(Effect,(A1,A2),Fluent,T,B):- !,
    assert_effect(Effect,A1,Fluent,T,[possible(A2)|B]),
    assert_effect(Effect,A2,Fluent,T,[possible(A1)|B]).
 assert_effect(Effect,(A1;A2),Fluent,T,B):- !,
    assert_effect(Effect,A1,Fluent,T,[possible(not(A2))|B]),
    assert_effect(Effect,A2,Fluent,T,[possible(not(A2))|B]).
-assert_effect(Effect,Event,Fluent,T,B):-
-  EffectAx=..[Effect,Event,Fluent,T],
-  assert_ready(axiom(EffectAx,B)).
 
 breakup_ors:- fail.
 use_proxy_kr:- fail.
@@ -1041,16 +1065,16 @@ brk_on(Vars,X):- ord_del_element(Vars,X,Rest),put_attr(X,brk_on,Rest).
 
 :- module_transparent(process_ec/2).
 :- export(process_ec/2).
-process_ec( _, HB ):- brk_on_bind(HB), assert_ele(HB).
-process_ec( lsvm(L,S,Vs,M), HB ):-  
+process_ec( _, HB ):- brk_on_bind(HB), assert_ele(HB),!.
+process_ec( lsvm(L,S,Vs,M), HB ):- fail,  
   must(convert_to_axiom(lsvm(L,S,Vs,M),HB,NEWHB)),
   do_process_ec(assertz,M, NEWHB).
 
 merge_into_body(X,_Y,Z):- Z = X.
 
-:- export_transparent(do_process_ec/3).
-:- export_transparent(do_process_ec/3).
-do_process_ec(_Why, M, NonCallable) :- assertion((current_module(M),callable(NonCallable))), fail.
+:- module_transparent(do_process_ec/3).
+:- export(do_process_ec/3).
+do_process_ec(_Why, M, NonCallable) :- break, assertion((current_module(M),callable(NonCallable))), fail.
 do_process_ec(Why, M, NEWHB):- is_list(NEWHB), !, must_maplist(do_process_ec(Why, M), NEWHB).
 do_process_ec(_Why, M, (:- GOAL)):- !, must(M:GOAL).
 do_process_ec(_Why, M, (?- GOAL)):- !, (M:forall(GOAL, true)).
@@ -1215,6 +1239,28 @@ hook_ec_axioms(_What, File):- atom(File), exists_file(File),
     forall(((clause(axiom(_, _), _Body, Ref), File==S)),
        erase(Ref)),!.
 */
+:- export(falling_edges/6).
+
+falling_edges(V2,Stem_plus_, T_minus_1_Start, [Haps|List], Edges, Out):-
+  make_falling_edges(V2,Stem_plus_, T_minus_1_Start, [], [Haps|List], Edges, Out).
+  
+
+make_falling_edges(V2,Stem_plus_, T_minus_1_Start, SoFar, [Haps|List], Edges, Out):-
+  make_falling_edges(V2,Stem_plus_, T_minus_1_Start, SoFar, Haps, Edges1, Out1),
+  make_falling_edges(V2,Stem_plus_, T_minus_1_Start, Out1, List, Edges2, Out),
+  append(Edges1,Edges2,Edges).
+
+make_falling_edges(V2,Stem_plus_, T_minus_1_Start, SoFar, happens(Event,Time), Edges, Out):-
+  nop(vars(V2,Stem_plus_, T_minus_1_Start, SoFar, Edges, Out)),
+  Edges = [holds_at(has_occured(Event),Time)],
+  Out = SoFar,!.
+make_falling_edges(V2,Stem_plus_, T_minus_1_Start, SoFar, Was, Edges, Out):- 
+  nop(vars(V2,Stem_plus_, T_minus_1_Start, SoFar, Was, Edges, Out)),
+  Edges = [Was], Out = SoFar,!.
+
+
+
+:- fixup_exports.
 
 :- multifile(user:message_hook/3).
 :- dynamic(user:message_hook/3).
@@ -1229,8 +1275,6 @@ prolog:make_hook(before, Files):-  must_maplist(hook_ec_axioms(make(before)),Fil
 prolog:message(welcome) -->  {hook_ec_axioms(welcome, welcome),fail}.
 
 
-:- fixup_exports.
-
 
 
 :- multifile(user:term_expansion/4).
@@ -1243,7 +1287,7 @@ user:term_expansion(In,P,Out,PO):- source_location(File,_),
       needs_proccess(File, In, Type),PO=P)),
   Out = ( :- call(Type, In) ).
 
-
+  
 
 
 % :- dynamic(axiom/2).

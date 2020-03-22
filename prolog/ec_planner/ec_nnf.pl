@@ -1868,7 +1868,7 @@ make_anc(not(Goal)) :-
 
 make_anc(Goal) :-
    Goal =.. [Pred|Args],
-   same_length(Args,Nargs),
+   same_length_nnf(Args,Nargs),
    NG =.. [Pred|Nargs],
    make_bodies(assertable,NG,_,[ths(T,T,D,D),anc(P,N),ans(A,A)],ProveG,ExG),
    make_bodies(assertable,not(NG),_,[ths(T,T,D,D),anc(P,N),ans(A,A)],ProvenG,ExnG),
@@ -2314,7 +2314,7 @@ mergeinto(L,[A|R],[A|N]) :-
 
 
 instance_of(D,S) :-
-   remove_all(D,S,_).
+   remove_all_nnf(D,S,_).
                            
 
 /* \end{verbatim}
@@ -2642,32 +2642,32 @@ id_member(A,[_|R]) :-
 \begin{verbatim} */
 
 
-same_length([],[]).
-same_length([_|L1],[_|L2]) :-
-   same_length(L1,L2).
+same_length_nnf([],[]).
+same_length_nnf([_|L1],[_|L2]) :-
+   same_length_nnf(L1,L2).
 
 
 /* \end{verbatim}
 
-\index{remove}
+\index{remove_nnf}
 \begin{verbatim} */
 
 
-remove(A,[A|B],B).
-remove(A,[H|T],[H|R]) :-
-   remove(A,T,R).
+remove_nnf(A,[A|B],B).
+remove_nnf(A,[H|T],[H|R]) :-
+   remove_nnf(A,T,R).
 
 
 /* \end{verbatim}
 
-\index{remove\_all}
+\index{remove_nnf\_all}
 \begin{verbatim} */
 
 
-remove_all([],L,L).
-remove_all([H|T],L,L2) :-
-   remove(H,L,L1),
-   remove_all(T,L1,L2).
+remove_all_nnf([],L,L).
+remove_all_nnf([H|T],L,L2) :-
+   remove_nnf(H,L,L1),
+   remove_all_nnf(T,L1,L2).
 
 
 /* \end{verbatim}
