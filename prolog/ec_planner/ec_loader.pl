@@ -113,6 +113,9 @@ load_e_pl(E,PL):- cvt_e_pl(E,PL),consult(PL).
 to_e_pl(F,FE,F):- atom_concat(Was,'.pel',F),!,atom_concat(Was,'.e',FE).
 to_e_pl(F,FE,F):- atom_concat(Was,'.e.pl',F),!,atom_concat(Was,'.e',FE).
 to_e_pl(F,FE,F):- atom_concat(Was,'.pl',F),!,atom_concat(Was,'.e',FE).
+to_e_pl(F,F,PL):- atom_concat(Was,'.e',F), atom_concat(Was,'.pel',PL),exists_file(PL).
+to_e_pl(F,F,PL):- atom_concat(Was,'.e',F), atom_concat(Was,'.e.pl',PL),exists_file(PL).
+to_e_pl(F,F,PL):- atom_concat(Was,'.e',F), atom_concat(Was,'.pl',PL),exists_file(PL).
 to_e_pl(F,F,OutputName):- calc_where_to(outdir('.', 'pel'), F, OutputName).
 
 
@@ -810,17 +813,17 @@ ect:- call(call,ect1).
 
 :- export_transparent(ect1/0).
 ect1:- 
-   cls, make,  Out = cond_load_e(always),
- % call(Out, 'examples/FrankEtAl2003/Story1.e'),
- % call(Out, 'ecnet/GSpace.e'),
- % call(Out, 'ecnet/Diving.e'),
- % call(Out, 'ecnet/RTSpace.e'),
+   cls, make,  Out = load_e_pl,
+  call(Out, 'examples/FrankEtAl2003/Story1.e'),
+  call(Out, 'ecnet/GSpace.e'),
+  call(Out, 'ecnet/Diving.e'),
+  call(Out, 'ecnet/RTSpace.e'),
   call(Out, 'examples/AkmanEtAl2004/ZooWorld.e'),
-  % call(Out, 'ectest/ec_reader_test_ecnet.e'),
-   % call(Out, 'ecnet/SpeechAct.e'),
-   %call(Out, 'ecnet/Kidnapping.e'),
+  call(Out, 'ectest/ec_reader_test_ecnet.e'),
+   call(Out, 'ecnet/SpeechAct.e'),
+   call(Out, 'ecnet/Kidnapping.e'),
    
-   % cond_load_e(always,'examples/Mueller2006/Exercises/MixingPaints.e'),
+   cond_load_e(always,'examples/Mueller2006/Exercises/MixingPaints.e'),
    list_undefined,
    list_void_declarations,  
   !.
@@ -934,31 +937,42 @@ fix_time_args(T,[G|Gs],Gss):-
 fix_time_args2(_,Gs,Gss):-
   Gss = [b(start,now),b(now,aft),b(aft,end)|Gs].
 
-visit_time_args(_,   In,[],[],In).
+visit_time_args(_,   In,G,G,In):- \+ compound(G),!.
 visit_time_args(Stem,In,[G|Gs],[GO|GsO],Out):- !, 
     visit_time_args(Stem,In,G,GO,Mid),
     visit_time_args(Stem,Mid,Gs,GsO,Out).
-visit_time_args(Stem,In,holds_at(A,T1),holds_at(A,T1R),Out):- 
+visit_time_args(Stem,In,holds_at(A,T1),holds_at(A,T1R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,Out).
-visit_time_args(Stem,In,happens(A,T1,T2),happens(A,T1R,T2R),Out):- 
+visit_time_args(Stem,In,happens(A,T1,T2),happens(A,T1R,T2R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,B0),
    correct_time_arg(Stem,B0,T2,T2R,Out).
-visit_time_args(Stem,In,happens(A,T1),happens(A,T1R),Out):- 
+visit_time_args(Stem,In,happens(A,T1),happens(A,T1R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,Out).
-visit_time_args(Stem,In,b(T1,T2),b(T1R,T2R),Out):- 
+visit_time_args(Stem,In,b(T1,T2),b(T1R,T2R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,B0),
    correct_time_arg(Stem,B0,T2,T2R,Out).
 visit_time_args(Stem,In,not(G),not(GG),Out):- !, visit_time_args(Stem,In,G,GG,Out).
-visit_time_args(Stem,In,beq(T1,T2),beq(T1R,T2R),Out):- 
+visit_time_args(Stem,In,beq(T1,T2),beq(T1R,T2R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,B0),
    correct_time_arg(Stem,B0,T2,T2R,Out).
-visit_time_args(Stem,In,clipped(T1,A,T2),clipped(T1R,A,T2R),Out):- 
+visit_time_args(Stem,In,clipped(T1,A,T2),clipped(T1R,A,T2R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,B0),
    correct_time_arg(Stem,B0,T2,T2R,Out).
-visit_time_args(Stem,In,declipped(T1,A,T2),declipped(T1R,A,T2R),Out):- 
+visit_time_args(Stem,In,declipped(T1,A,T2),declipped(T1R,A,T2R),Out):- !,
    correct_time_arg(Stem,In,T1,T1R,B0),
    correct_time_arg(Stem,B0,T2,T2R,Out).
-visit_time_args(_,   In,G,G,In).
+visit_time_args(Stem,In, HT, HTO,Out):- compound_name_arguments(HT, F, L), !,
+  visit_time_f_args(Stem,In,F,1,L, LL,Out),
+  compound_name_arguments(HTO, F, LL).
+
+visit_time_f_args(_Stem,InOut,_, _, [], [],InOut):-!.
+visit_time_f_args(Stem,In,F, N, [T2|L], [T2R|LL],Out):- time_arg(F,N),!,
+   correct_time_arg(Stem,In, T2,T2R,MID),N2 is N+1,
+   visit_time_f_args(Stem,MID,F, N2, L, LL,Out).
+visit_time_f_args(Stem,In,F, N, [HT|L], [HTO|LL], Out):- N2 is N+1,
+   visit_time_args(Stem,In, HT, HTO, MID),
+   visit_time_f_args(Stem,MID,F, N2, L, LL,Out).
+
 
 correct_time_arg(_Stem,In, TN, TN, In):- var(TN), !.
 correct_time_arg(_Stem,In, AM1,T, In):- compound(AM1),(AM1 = (AfterT- N)),compound(AfterT),after(T)=AfterT, N==1, var(T), !.
@@ -988,8 +1002,10 @@ t_plus_or_minus_1(In, T-N, TN, In):- N==1, memberchk(b(TN,T),In),!.
 t_plus_or_minus_1(In, T+N, TN, In):- N==1, memberchk(b(T,TN),In),!.
 t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- N==1, must((next_t(TN,T))),!.
 t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- N==1, must((next_t(T,TN))),!.
-t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- must((ground(T+N), atomic_list_concat([T,N],minus,TN))),!.
-t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- must((ground(T+N), atom_concat(T,N,TN))),!.
+t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- ((ground(T+N), atomic_list_concat([T,N],minus,TN))),!.
+t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- ((ground(T+N), atom_concat(T,N,TN))),!.
+t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- gensym(t_less,TN).
+t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- gensym(t_more,TN).
 
 next_t(T,Var):- var(T),var(Var),!.
 next_t(start,t).

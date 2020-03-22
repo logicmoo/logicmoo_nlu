@@ -1,6 +1,11 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/SpeechAct.e').
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.pel:3
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_ecnet.e',4638).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -32,22 +37,31 @@
 %; agent1 invites agent2 into room.
 
 % event InviteIn(agent,agent,room)
- %  event(inviteIn(agent,agent,room)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',31).
+event(inviteIn(InviteIn_Param,_,InviteIn_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',31).
 ==> mpred_prop(inviteIn(agent,agent,room),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',31).
 ==> meta_argtypes(inviteIn(agent,agent,room)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:32
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',31).
 %; agent1 is invited into room by agent2.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',34).
 % fluent InvitedIn(agent,room,agent)
- %  fluent(invitedIn(agent,room,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',34).
+fluent(invitedIn(InvitedIn_Param,_,InvitedIn_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',34).
 ==> mpred_prop(invitedIn(agent,room,agent),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',34).
 ==> meta_argtypes(invitedIn(agent,room,agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:35
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',36).
 %; A precondition axiom states that for
 %; an agent to invite another agent into a room,
 %; the first agent must be in the room and
@@ -55,194 +69,188 @@
 %; the second agent is at the outside area and
 %; the outside area is adjacent to the room:
 % [agent1,agent2,room,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:42
 % Happens(InviteIn(agent1,agent2,room),time) ->
 % HoldsAt(At(agent1,room),time) &
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:44
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',42).
 % {outside}% 
 % HoldsAt(At(agent2,outside),time) &
 % Adjacent(room,outside).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
 
- /*   exists([Outside],
-             if(happens(inviteIn(Agent1, Agent2, Room),
-                        Time),
-                 (holds_at(at(Agent1, Room), Time), holds_at(at(Agent2, Outside), Time), adjacent(Room, Outside)))).
+ /*  exists([Outside],
+    happens(inviteIn(Agent1, Agent2, Room), Time) ->
+       holds_at(at(Agent1, Room), Time),
+       holds_at(at(Agent2, Outside), Time),
+       adjacent(Room, Outside)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
 
- /*  not(some(Location8, '$kolem_Fn_188'(Fn_188_Param, At_Param, Location, Maptime))) :-
-       happens(inviteIn(Fn_188_Param, At_Param, Location),
-               Maptime),
-       (   not(holds_at(at(Fn_188_Param, Location), Maptime))
-       ;   not(holds_at(at(At_Param, Location8), Maptime))
-       ;   not(adjacent(Location, Location8))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:46
-axiom(not(some(Location8, '$kolem_Fn_188'(Fn_188_Param, At_Param, Location, Maptime))),
-   
-    [ not(holds_at(at(Fn_188_Param, Location), Maptime)),
-      happens(inviteIn(Fn_188_Param, At_Param, Location),
-              Maptime)
-    ]).
-axiom(not(some(Location8, '$kolem_Fn_188'(Fn_188_Param, At_Param, Location, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location8), Maptime)),
-      happens(inviteIn(Fn_188_Param, At_Param, Location),
-              Maptime)
-    ]).
-axiom(not(some(Location8, '$kolem_Fn_188'(Fn_188_Param, At_Param, Location, Maptime))),
-   
-    [ not(adjacent(Location, Location8)),
-      happens(inviteIn(Fn_188_Param, At_Param, Location),
-              Maptime)
-    ]).
-
- /*  not(happens(inviteIn(InviteIn_Param, At_Param15, Location12), Maptime11)) :-
-       (   not(holds_at(at(InviteIn_Param, Location12),
-                        Maptime11))
-       ;   not(holds_at(at(At_Param15, Location13), Maptime11))
-       ;   not(adjacent(Location12, Location13))
+ /*  not(happens(inviteIn(Agent1, Agent2, Room), Time)) :-
+       (   not(holds_at(at(Agent1, Room), Time))
+       ;   not(holds_at(at(Agent2, Outside), Time))
+       ;   not(adjacent(Room, Outside))
        ),
-       some(Location13,
-            '$kolem_Fn_188'(InviteIn_Param,
-                            At_Param15,
-                            Location12,
-                            Maptime11)).
+       some(Outside,
+            '$kolem_Fn_278'(Agent1, Agent2, Room, Time)).
  */
-axiom(not(happens(inviteIn(InviteIn_Param, At_Param15, Location12), Maptime11)),
-   
-    [ not(holds_at(at(InviteIn_Param, Location12), Maptime11)),
-      some(Location13,
-           '$kolem_Fn_188'(InviteIn_Param,
-                           At_Param15,
-                           Location12,
-                           Maptime11))
-    ]).
-axiom(not(happens(inviteIn(InviteIn_Param, At_Param15, Location12), Maptime11)),
-   
-    [ not(holds_at(at(At_Param15, Location13), Maptime11)),
-      some(Location13,
-           '$kolem_Fn_188'(InviteIn_Param,
-                           At_Param15,
-                           Location12,
-                           Maptime11))
-    ]).
-axiom(not(happens(inviteIn(InviteIn_Param, At_Param15, Location12), Maptime11)),
-   
-    [ not(adjacent(Location12, Location13)),
-      some(Location13,
-           '$kolem_Fn_188'(InviteIn_Param,
-                           At_Param15,
-                           Location12,
-                           Maptime11))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
 
- /*  holds_at(at(At_Param18, Location16), Time17) :-
-       happens(inviteIn(At_Param18, A, Location16), Time17),
-       some(Some_Param,
-            '$kolem_Fn_188'(At_Param18, A, Location16, Time17)).
+ /*  [(holds_at(neg(at(Agent1, Room)), Time);holds_at(neg(at(Agent2, Outside)), Time);not(adjacent(Room, Outside))), some(Outside, '$kolem_Fn_278'(Agent1, Agent2, Room, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(inviteIn(Agent1, Agent2, Room), Time))).
  */
-axiom(holds_at(at(At_Param18, Location16), Time17),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+axiom(not(happens(inviteIn(Agent1, Agent2, Room), Time)),
    
-    [ happens(inviteIn(At_Param18, A, Location16),
-              Time17),
-      some(Some_Param,
-           '$kolem_Fn_188'(At_Param18,
-                           A,
-                           Location16,
-                           Time17))
+    [  (holds_at(neg(at(Agent1, Room)), Time);holds_at(neg(at(Agent2, Outside)), Time);not(adjacent(Room, Outside))),
+      some(Outside,
+           '$kolem_Fn_278'(Agent1, Agent2, Room, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
 
- /*  holds_at(at(At_Param22, Location20), Time21) :-
-       happens(inviteIn(InviteIn_Param23,
-                        At_Param22,
-                        InviteIn_Ret),
-               Time21),
-       some(Location20,
-            '$kolem_Fn_188'(InviteIn_Param23,
-                            At_Param22,
-                            InviteIn_Ret,
-                            Time21)).
+ /*  holds_at(at(Agent1, Room), Time) :-
+       happens(inviteIn(Agent1, Agent2, Room), Time),
+       some(Outside,
+            '$kolem_Fn_278'(Agent1, Agent2, Room, Time)).
  */
-axiom(holds_at(at(At_Param22, Location20), Time21),
-   
-    [ happens(inviteIn(InviteIn_Param23,
-                       At_Param22,
-                       InviteIn_Ret),
-              Time21),
-      some(Location20,
-           '$kolem_Fn_188'(InviteIn_Param23,
-                           At_Param22,
-                           InviteIn_Ret,
-                           Time21))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
 
- /*  adjacent(Adjacent_Param, Some_Param28) :-
-       happens(inviteIn(InviteIn_Param27, A, Adjacent_Param),
-               Maptime25),
-       some(Some_Param28,
-            '$kolem_Fn_188'(InviteIn_Param27,
-                            A,
-                            Adjacent_Param,
-                            Maptime25)).
+ /*  [happens(inviteIn(Agent1, Agent2, Room), Time), some(Outside, '$kolem_Fn_278'(Agent1, Agent2, Room, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent1, Room), Time)).
  */
-axiom(adjacent(Adjacent_Param, Some_Param28),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+axiom(holds_at(at(Agent1, Room), Time),
    
-    [ happens(inviteIn(InviteIn_Param27, A, Adjacent_Param),
-              Maptime25),
-      some(Some_Param28,
-           '$kolem_Fn_188'(InviteIn_Param27,
-                           A,
-                           Adjacent_Param,
-                           Maptime25))
+    [ happens(inviteIn(Agent1, Agent2, Room), Time),
+      some(Outside,
+           '$kolem_Fn_278'(Agent1, Agent2, Room, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+
+ /*  holds_at(at(Agent2, Outside), Time) :-
+       happens(inviteIn(Agent1, Agent2, Room), Time),
+       some(Outside,
+            '$kolem_Fn_278'(Agent1, Agent2, Room, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+
+ /*  [happens(inviteIn(Agent1, Agent2, Room), Time), some(Outside, '$kolem_Fn_278'(Agent1, Agent2, Room, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent2, Outside), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+axiom(holds_at(at(Agent2, Outside), Time),
+   
+    [ happens(inviteIn(Agent1, Agent2, Room), Time),
+      some(Outside,
+           '$kolem_Fn_278'(Agent1, Agent2, Room, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+
+ /*  adjacent(Room, Outside) :-
+       happens(inviteIn(Agent1, Agent2, Room), Time),
+       some(Outside,
+            '$kolem_Fn_278'(Agent1, Agent2, Room, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+
+ /*  [happens(inviteIn(Agent1, Agent2, Room), Time), some(Outside, '$kolem_Fn_278'(Agent1, Agent2, Room, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          adjacent(Room, Outside)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',45).
+axiom(adjacent(Room, Outside),
+   
+    [ happens(inviteIn(Agent1, Agent2, Room), Time),
+      some(Outside,
+           '$kolem_Fn_278'(Agent1, Agent2, Room, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:48
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:48
 %; An effect axiom states that if
 %; an agent invites another agent into a room,
 %; the second agent will be invited into the room by the first agent:
 % [agent1,agent2,room,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:52
 % Initiates(InviteIn(agent1,agent2,room),
 %           InvitedIn(agent2,room,agent1),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',52).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(inviteIn(Agent1, Agent2, Room),
+                    invitedIn(Agent2, Room, Agent1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',52).
 axiom(initiates(inviteIn(Agent1, Agent2, Room), invitedIn(Agent2, Room, Agent1), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:56
 %; agent intends to walk into room.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',58).
 % event IntendToWalkIn(agent,room)
- %  event(intendToWalkIn(agent,room)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',58).
+event(intendToWalkIn(IntendToWalkIn_Param,
+		     IntendToWalkIn_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',58).
 ==> mpred_prop(intendToWalkIn(agent,room),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',58).
 ==> meta_argtypes(intendToWalkIn(agent,room)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:58
 %; agent has the intention to walk into room.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',60).
 % fluent IntentionToWalkIn(agent,room)
- %  fluent(intentionToWalkIn(agent,room)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:60
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',60).
+fluent(intentionToWalkIn(IntentionToWalkIn_Param,
+			 IntentionToWalkIn_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',60).
 ==> mpred_prop(intentionToWalkIn(agent,room),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',60).
 ==> meta_argtypes(intentionToWalkIn(agent,room)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:60
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:60
 %; agent acts on the intention to walk into room.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',62).
 % fluent ActOnIntentionToWalkIn(agent,room)
- %  fluent(actOnIntentionToWalkIn(agent,room)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',62).
+fluent(actOnIntentionToWalkIn(ActOnIntentionToWalkIn_Param,
+			      ActOnIntentionToWalkIn_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',62).
 ==> mpred_prop(actOnIntentionToWalkIn(agent,room),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',62).
 ==> meta_argtypes(actOnIntentionToWalkIn(agent,room)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:62
 % noninertial ActOnIntentionToWalkIn
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',62).
 ==> noninertial(actOnIntentionToWalkIn).
 %; A trigger axiom states that
 %; if an agent is invited into a room by another agent,
@@ -251,35 +259,135 @@ axiom(initiates(inviteIn(Agent1, Agent2, Room), invitedIn(Agent2, Room, Agent1),
 %; walk into the room,
 %; the first agent intends to walk into the room:
 % [agent1,agent2,room,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:71
 % HoldsAt(InvitedIn(agent1,room,agent2),time) &
 % HoldsAt(Like(agent1,agent2),time) &
 % !HoldsAt(IntentionToWalkIn(agent1,room),time) ->
 % Happens(IntendToWalkIn(agent1,room),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  holds_at(invitedIn(Agent1, Room, Agent2), Time), holds_at(like(Agent1, Agent2), Time), holds_at(neg(intentionToWalkIn(Agent1, Room)), Time) ->
+       happens(intendToWalkIn(Agent1, Room), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  happens(intendToWalkIn(Agent1, Room), Time) :-
+       holds_at(invitedIn(Agent1, Room, Agent2), Time),
+       holds_at(like(Agent1, Agent2), Time),
+       holds_at(neg(intentionToWalkIn(Agent1, Room)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  [holds_at(invitedIn(Agent1, Room, Agent2), Time), holds_at(like(Agent1, Agent2), Time), holds_at(neg(intentionToWalkIn(Agent1, Room)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(intendToWalkIn(Agent1, Room), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
 axiom(happens(intendToWalkIn(Agent1, Room), Time),
    
     [ holds_at(invitedIn(Agent1, Room, Agent2), Time),
       holds_at(like(Agent1, Agent2), Time),
-      not(holds_at(intentionToWalkIn(Agent1, Room), Time))
+      holds_at(neg(intentionToWalkIn(Agent1, Room)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  not(holds_at(invitedIn(Agent1, Room, Agent2), Time)) :-
+       ( holds_at(like(Agent1, Agent2), Time),
+         holds_at(neg(intentionToWalkIn(Agent1, Room)), Time)
+       ),
+       not(happens(intendToWalkIn(Agent1, Room), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  [holds_at(like(Agent1, Agent2), Time), holds_at(neg(intentionToWalkIn(Agent1, Room)), Time), not(happens(intendToWalkIn(Agent1, Room), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(invitedIn(Agent1, Room, Agent2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+axiom(holds_at(neg(invitedIn(Agent1, Room, Agent2)), Time),
+   
+    [ holds_at(like(Agent1, Agent2), Time),
+      holds_at(neg(intentionToWalkIn(Agent1, Room)), Time),
+      not(happens(intendToWalkIn(Agent1, Room), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  not(holds_at(like(Agent1, Agent2), Time)) :-
+       holds_at(neg(intentionToWalkIn(Agent1, Room)), Time),
+       holds_at(invitedIn(Agent1, Room, Agent2), Time),
+       not(happens(intendToWalkIn(Agent1, Room), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  [holds_at(neg(intentionToWalkIn(Agent1, Room)), Time), holds_at(invitedIn(Agent1, Room, Agent2), Time), not(happens(intendToWalkIn(Agent1, Room), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(like(Agent1, Agent2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+axiom(holds_at(neg(like(Agent1, Agent2)), Time),
+   
+    [ holds_at(neg(intentionToWalkIn(Agent1, Room)), Time),
+      holds_at(invitedIn(Agent1, Room, Agent2), Time),
+      not(happens(intendToWalkIn(Agent1, Room), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  not(holds_at(neg(intentionToWalkIn(Agent1, Room)), Time)) :-
+       holds_at(like(Agent1, Agent2), Time),
+       holds_at(invitedIn(Agent1, Room, Agent2), Time),
+       not(happens(intendToWalkIn(Agent1, Room), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+
+ /*  [holds_at(like(Agent1, Agent2), Time), holds_at(invitedIn(Agent1, Room, Agent2), Time), not(happens(intendToWalkIn(Agent1, Room), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(intentionToWalkIn(Agent1, Room), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',71).
+axiom(holds_at(intentionToWalkIn(Agent1, Room), Time),
+   
+    [ holds_at(like(Agent1, Agent2), Time),
+      holds_at(invitedIn(Agent1, Room, Agent2), Time),
+      not(happens(intendToWalkIn(Agent1, Room), Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:76
 %; An effect axiom states that
 %; if an agent intends to walk into a room,
 %; the agent will have the intention to walk into the room:
 % [agent,room,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:80
 % Initiates(IntendToWalkIn(agent,room),
 %           IntentionToWalkIn(agent,room),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',80).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(intendToWalkIn(Agent, Room),
+                    intentionToWalkIn(Agent, Room),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',80).
 axiom(initiates(intendToWalkIn(Agent, Room), intentionToWalkIn(Agent, Room), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:84
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:84
 %; Two trigger axioms state that
 %; if an agent has the intention to walk into a room,
 %; the agent acts on the intention to walk into the room,
@@ -288,14 +396,37 @@ axiom(initiates(intendToWalkIn(Agent, Room), intentionToWalkIn(Agent, Room), Tim
 %; side two (one) of the door is the location,
 %; agent will walk through side two (one) of the door:
 % [agent,room,location,door,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:92
 % HoldsAt(IntentionToWalkIn(agent,room),time) &
 % HoldsAt(ActOnIntentionToWalkIn(agent,room),time) &
 % HoldsAt(At(agent,location),time) &
 % Side1(door)=room &
 % Side2(door)=location ->
 % Happens(WalkThroughDoor21(agent,door),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:97
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:97
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  holds_at(intentionToWalkIn(Agent, Room), Time), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side1(Door), Room), equals(side2(Door), Location) ->
+       happens(walkThroughDoor21(Agent, Door), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  happens(walkThroughDoor21(Agent, Door), Time) :-
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+       holds_at(at(Agent, Location), Time),
+       equals(side1(Door), Room),
+       equals(side2(Door), Location).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  [holds_at(intentionToWalkIn(Agent, Room), Time), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side1(Door), Room), equals(side2(Door), Location)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(walkThroughDoor21(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
 axiom(happens(walkThroughDoor21(Agent, Door), Time),
    
     [ holds_at(intentionToWalkIn(Agent, Room), Time),
@@ -304,9 +435,91 @@ axiom(happens(walkThroughDoor21(Agent, Door), Time),
       equals(side1(Door), Room),
       equals(side2(Door), Location)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  not(holds_at(intentionToWalkIn(Agent, Room), Time)) :-
+       ( holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+         holds_at(at(Agent, Location), Time),
+         equals(side1(Door), Room),
+         equals(side2(Door), Location)
+       ),
+       not(happens(walkThroughDoor21(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  [holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side1(Door), Room), equals(side2(Door), Location), not(happens(walkThroughDoor21(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(intentionToWalkIn(Agent, Room)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+axiom(holds_at(neg(intentionToWalkIn(Agent, Room)), Time),
+   
+    [ holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+      holds_at(at(Agent, Location), Time),
+      equals(side1(Door), Room),
+      equals(side2(Door), Location),
+      not(happens(walkThroughDoor21(Agent, Door), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  not(holds_at(actOnIntentionToWalkIn(Agent, Room), Time)) :-
+       ( holds_at(at(Agent, Location), Time),
+         equals(side1(Door), Room),
+         equals(side2(Door), Location)
+       ),
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       not(happens(walkThroughDoor21(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  [holds_at(at(Agent, Location), Time), equals(side1(Door), Room), equals(side2(Door), Location), holds_at(intentionToWalkIn(Agent, Room), Time), not(happens(walkThroughDoor21(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(actOnIntentionToWalkIn(Agent, Room)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+axiom(holds_at(neg(actOnIntentionToWalkIn(Agent, Room)), Time),
+   
+    [ holds_at(at(Agent, Location), Time),
+      equals(side1(Door), Room),
+      equals(side2(Door), Location),
+      holds_at(intentionToWalkIn(Agent, Room), Time),
+      not(happens(walkThroughDoor21(Agent, Door), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  not(holds_at(at(Agent, Location), Time)) :-
+       ( equals(side1(Door), Room),
+         equals(side2(Door), Location)
+       ),
+       holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       not(happens(walkThroughDoor21(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+
+ /*  [equals(side1(Door), Room), equals(side2(Door), Location), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(intentionToWalkIn(Agent, Room), Time), not(happens(walkThroughDoor21(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Agent, Location)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',92).
+axiom(holds_at(neg(at(Agent, Location)), Time),
+   
+    [ equals(side1(Door), Room),
+      equals(side2(Door), Location),
+      holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+      holds_at(intentionToWalkIn(Agent, Room), Time),
+      not(happens(walkThroughDoor21(Agent, Door), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:99
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:99
 % [agent,room,location,door,time]
 % HoldsAt(IntentionToWalkIn(agent,room),time) &
 % HoldsAt(ActOnIntentionToWalkIn(agent,room),time) &
@@ -314,7 +527,30 @@ axiom(happens(walkThroughDoor21(Agent, Door), Time),
 % Side2(door)=room &
 % Side1(door)=location ->
 % Happens(WalkThroughDoor12(agent,door),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:105
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:105
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  holds_at(intentionToWalkIn(Agent, Room), Time), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side2(Door), Room), equals(side1(Door), Location) ->
+       happens(walkThroughDoor12(Agent, Door), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  happens(walkThroughDoor12(Agent, Door), Time) :-
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+       holds_at(at(Agent, Location), Time),
+       equals(side2(Door), Room),
+       equals(side1(Door), Location).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  [holds_at(intentionToWalkIn(Agent, Room), Time), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side2(Door), Room), equals(side1(Door), Location)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(walkThroughDoor12(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
 axiom(happens(walkThroughDoor12(Agent, Door), Time),
    
     [ holds_at(intentionToWalkIn(Agent, Room), Time),
@@ -323,799 +559,1001 @@ axiom(happens(walkThroughDoor12(Agent, Door), Time),
       equals(side2(Door), Room),
       equals(side1(Door), Location)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  not(holds_at(intentionToWalkIn(Agent, Room), Time)) :-
+       ( holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+         holds_at(at(Agent, Location), Time),
+         equals(side2(Door), Room),
+         equals(side1(Door), Location)
+       ),
+       not(happens(walkThroughDoor12(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  [holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(at(Agent, Location), Time), equals(side2(Door), Room), equals(side1(Door), Location), not(happens(walkThroughDoor12(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(intentionToWalkIn(Agent, Room)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+axiom(holds_at(neg(intentionToWalkIn(Agent, Room)), Time),
+   
+    [ holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+      holds_at(at(Agent, Location), Time),
+      equals(side2(Door), Room),
+      equals(side1(Door), Location),
+      not(happens(walkThroughDoor12(Agent, Door), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  not(holds_at(actOnIntentionToWalkIn(Agent, Room), Time)) :-
+       ( holds_at(at(Agent, Location), Time),
+         equals(side2(Door), Room),
+         equals(side1(Door), Location)
+       ),
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       not(happens(walkThroughDoor12(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  [holds_at(at(Agent, Location), Time), equals(side2(Door), Room), equals(side1(Door), Location), holds_at(intentionToWalkIn(Agent, Room), Time), not(happens(walkThroughDoor12(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(actOnIntentionToWalkIn(Agent, Room)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+axiom(holds_at(neg(actOnIntentionToWalkIn(Agent, Room)), Time),
+   
+    [ holds_at(at(Agent, Location), Time),
+      equals(side2(Door), Room),
+      equals(side1(Door), Location),
+      holds_at(intentionToWalkIn(Agent, Room), Time),
+      not(happens(walkThroughDoor12(Agent, Door), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  not(holds_at(at(Agent, Location), Time)) :-
+       ( equals(side2(Door), Room),
+         equals(side1(Door), Location)
+       ),
+       holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+       holds_at(intentionToWalkIn(Agent, Room), Time),
+       not(happens(walkThroughDoor12(Agent, Door), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+
+ /*  [equals(side2(Door), Room), equals(side1(Door), Location), holds_at(actOnIntentionToWalkIn(Agent, Room), Time), holds_at(intentionToWalkIn(Agent, Room), Time), not(happens(walkThroughDoor12(Agent, Door), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Agent, Location)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',101).
+axiom(holds_at(neg(at(Agent, Location)), Time),
+   
+    [ equals(side2(Door), Room),
+      equals(side1(Door), Location),
+      holds_at(actOnIntentionToWalkIn(Agent, Room), Time),
+      holds_at(intentionToWalkIn(Agent, Room), Time),
+      not(happens(walkThroughDoor12(Agent, Door), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:107
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:107
 %; Two effect axioms state that
 %; if side one (two) of a door is a room and
 %; an agent walks through side two (one) of the door,
 %; the agent will no longer have the intention to
 %; walk into the room:
 % [agent,room,door,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:113
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:113
 % Side1(door)=room ->
 % Terminates(WalkThroughDoor21(agent,door),
 %            IntentionToWalkIn(agent,room),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:116
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:116
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',113).
+
+ /*  [equals(side1(Door), Room)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(walkThroughDoor21(Agent, Door),
+                     intentionToWalkIn(Agent, Room),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',113).
 axiom(terminates(walkThroughDoor21(Agent, Door), intentionToWalkIn(Agent, Room), Time),
     [equals(side1(Door), Room)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:118
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:118
 % [agent,room,door,time]
 % Side2(door)=room ->
 % Terminates(WalkThroughDoor12(agent,door),
 %            IntentionToWalkIn(agent,room),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:122
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:122
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',120).
+
+ /*  [equals(side2(Door), Room)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(walkThroughDoor12(Agent, Door),
+                     intentionToWalkIn(Agent, Room),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',120).
 axiom(terminates(walkThroughDoor12(Agent, Door), intentionToWalkIn(Agent, Room), Time),
     [equals(side2(Door), Room)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:124
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:124
 %; agent greets object.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:125
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',126).
 % event Greet(agent,object)
- %  event(greet(agent,object)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:126
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',126).
+event(greet(Greet_Param,Greet_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',126).
 ==> mpred_prop(greet(agent,object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',126).
 ==> meta_argtypes(greet(agent,object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:127
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',128).
 % event SayPleasedToMeet(agent,agent)
- %  event(sayPleasedToMeet(agent,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:128
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',128).
+event(sayPleasedToMeet(SayPleasedToMeet_Param,
+		       SayPleasedToMeet_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',128).
 ==> mpred_prop(sayPleasedToMeet(agent,agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',128).
 ==> meta_argtypes(sayPleasedToMeet(agent,agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:129
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:129
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',130).
 %; agent says goodbye to object.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:130
 % event SayGoodbye(agent,object)
- %  event(sayGoodbye(agent,object)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:131
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',130).
+event(sayGoodbye(SayGoodbye_Param,SayGoodbye_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',130).
 ==> mpred_prop(sayGoodbye(agent,object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',130).
 ==> meta_argtypes(sayGoodbye(agent,object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:132
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',133).
 % event TalkAbout(agent,content)
- %  event(talkAbout(agent,content)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:133
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',133).
+event(talkAbout(TalkAbout_Param,TalkAbout_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',133).
 ==> mpred_prop(talkAbout(agent,content),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',133).
 ==> meta_argtypes(talkAbout(agent,content)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:134
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',135).
 % event Converse(agent,agent)
- %  event(converse(agent,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:135
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',135).
+event(converse(Converse_Param,Converse_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',135).
 ==> mpred_prop(converse(agent,agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',135).
 ==> meta_argtypes(converse(agent,agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:136
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:136
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',137).
 % [agent1,agent2,time]
 % Happens(Converse(agent1,agent2),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:138
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:138
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',137).
 % {location}% 
 % HoldsAt(At(agent1,location),time) &
 % HoldsAt(At(agent2,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:140
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
 
- /*   exists([Location],
-             if(happens(converse(Agent1, Agent2), Time),
-                 (holds_at(at(Agent1, Location), Time), holds_at(at(Agent2, Location), Time)))).
+ /*  exists([Location],
+    happens(converse(Agent1, Agent2), Time) ->
+       holds_at(at(Agent1, Location), Time),
+       holds_at(at(Agent2, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
 
- /*  not(some(Location6, '$kolem_Fn_189'(Fn_189_Param, At_Param, Maptime))) :-
-       happens(converse(Fn_189_Param, At_Param), Maptime),
-       (   not(holds_at(at(Fn_189_Param, Location6), Maptime))
-       ;   not(holds_at(at(At_Param, Location6), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:140
-axiom(not(some(Location6, '$kolem_Fn_189'(Fn_189_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(Fn_189_Param, Location6), Maptime)),
-      happens(converse(Fn_189_Param, At_Param), Maptime)
-    ]).
-axiom(not(some(Location6, '$kolem_Fn_189'(Fn_189_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location6), Maptime)),
-      happens(converse(Fn_189_Param, At_Param), Maptime)
-    ]).
-
- /*  not(happens(converse(Converse_Param, At_Param12), Maptime9)) :-
-       (   not(holds_at(at(Converse_Param, Location10), Maptime9))
-       ;   not(holds_at(at(At_Param12, Location10), Maptime9))
+ /*  not(happens(converse(Agent1, Agent2), Time)) :-
+       (   not(holds_at(at(Agent1, Location), Time))
+       ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location10,
-            '$kolem_Fn_189'(Converse_Param, At_Param12, Maptime9)).
+       some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time)).
  */
-axiom(not(happens(converse(Converse_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(Converse_Param, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_189'(Converse_Param, At_Param12, Maptime9))
-    ]).
-axiom(not(happens(converse(Converse_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(At_Param12, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_189'(Converse_Param, At_Param12, Maptime9))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
 
- /*  holds_at(at(At_Param15, Location13), Time14) :-
-       happens(converse(At_Param15, Converse_Ret), Time14),
-       some(Location13,
-            '$kolem_Fn_189'(At_Param15, Converse_Ret, Time14)).
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(converse(Agent1, Agent2), Time))).
  */
-axiom(holds_at(at(At_Param15, Location13), Time14),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+axiom(not(happens(converse(Agent1, Agent2), Time)),
    
-    [ happens(converse(At_Param15, Converse_Ret), Time14),
-      some(Location13,
-           '$kolem_Fn_189'(At_Param15, Converse_Ret, Time14))
+    [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
+      some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
 
- /*  holds_at(at(At_Param19, Location17), Time18) :-
-       happens(converse(Converse_Param20, At_Param19), Time18),
-       some(Location17,
-            '$kolem_Fn_189'(Converse_Param20, At_Param19, Time18)).
+ /*  holds_at(at(Agent1, Location), Time) :-
+       happens(converse(Agent1, Agent2), Time),
+       some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time)).
  */
-axiom(holds_at(at(At_Param19, Location17), Time18),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+
+ /*  [happens(converse(Agent1, Agent2), Time), some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent1, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+axiom(holds_at(at(Agent1, Location), Time),
    
-    [ happens(converse(Converse_Param20, At_Param19), Time18),
-      some(Location17,
-           '$kolem_Fn_189'(Converse_Param20, At_Param19, Time18))
+    [ happens(converse(Agent1, Agent2), Time),
+      some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+
+ /*  holds_at(at(Agent2, Location), Time) :-
+       happens(converse(Agent1, Agent2), Time),
+       some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+
+ /*  [happens(converse(Agent1, Agent2), Time), some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent2, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',139).
+axiom(holds_at(at(Agent2, Location), Time),
+   
+    [ happens(converse(Agent1, Agent2), Time),
+      some(Location, '$kolem_Fn_279'(Agent1, Agent2, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:142
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:142
 %; A precondition axiom states that for
 %; an agent to greet an object,
 %; there must be a location such that
 %; the agent is at the location and
 %; the object is at the location:
 % [agent,object,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:148
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:148
 % Happens(Greet(agent,object),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:149
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:149
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',148).
 % {location}% 
 % HoldsAt(At(agent,location),time) &
 % HoldsAt(At(object,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:151
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
 
- /*   exists([Location],
-             if(happens(greet(Agent, Object), Time),
-                 (holds_at(at(Agent, Location), Time), holds_at(at(Object, Location), Time)))).
+ /*  exists([Location],
+    happens(greet(Agent, Object), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Object, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
 
- /*  not(some(Location6, '$kolem_Fn_190'(Fn_190_Param, At_Param, Maptime))) :-
-       happens(greet(Fn_190_Param, At_Param), Maptime),
-       (   not(holds_at(at(Fn_190_Param, Location6), Maptime))
-       ;   not(holds_at(at(At_Param, Location6), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:151
-axiom(not(some(Location6, '$kolem_Fn_190'(Fn_190_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(Fn_190_Param, Location6), Maptime)),
-      happens(greet(Fn_190_Param, At_Param), Maptime)
-    ]).
-axiom(not(some(Location6, '$kolem_Fn_190'(Fn_190_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location6), Maptime)),
-      happens(greet(Fn_190_Param, At_Param), Maptime)
-    ]).
-
- /*  not(happens(greet(Greet_Param, At_Param12), Maptime9)) :-
-       (   not(holds_at(at(Greet_Param, Location10), Maptime9))
-       ;   not(holds_at(at(At_Param12, Location10), Maptime9))
+ /*  not(happens(greet(Agent, Object), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Object, Location), Time))
        ),
-       some(Location10,
-            '$kolem_Fn_190'(Greet_Param, At_Param12, Maptime9)).
+       some(Location, '$kolem_Fn_280'(Agent, Object, Time)).
  */
-axiom(not(happens(greet(Greet_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(Greet_Param, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_190'(Greet_Param, At_Param12, Maptime9))
-    ]).
-axiom(not(happens(greet(Greet_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(At_Param12, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_190'(Greet_Param, At_Param12, Maptime9))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
 
- /*  holds_at(at(At_Param15, Location13), Time14) :-
-       happens(greet(At_Param15, Greet_Ret), Time14),
-       some(Location13,
-            '$kolem_Fn_190'(At_Param15, Greet_Ret, Time14)).
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_280'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(greet(Agent, Object), Time))).
  */
-axiom(holds_at(at(At_Param15, Location13), Time14),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+axiom(not(happens(greet(Agent, Object), Time)),
    
-    [ happens(greet(At_Param15, Greet_Ret), Time14),
-      some(Location13,
-           '$kolem_Fn_190'(At_Param15, Greet_Ret, Time14))
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Object, Location)), Time)),
+      some(Location, '$kolem_Fn_280'(Agent, Object, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
 
- /*  holds_at(at(At_Param19, Location17), Time18) :-
-       happens(greet(Greet_Param20, At_Param19), Time18),
-       some(Location17,
-            '$kolem_Fn_190'(Greet_Param20, At_Param19, Time18)).
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(greet(Agent, Object), Time),
+       some(Location, '$kolem_Fn_280'(Agent, Object, Time)).
  */
-axiom(holds_at(at(At_Param19, Location17), Time18),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+
+ /*  [happens(greet(Agent, Object), Time), some(Location, '$kolem_Fn_280'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+axiom(holds_at(at(Agent, Location), Time),
    
-    [ happens(greet(Greet_Param20, At_Param19), Time18),
-      some(Location17,
-           '$kolem_Fn_190'(Greet_Param20, At_Param19, Time18))
+    [ happens(greet(Agent, Object), Time),
+      some(Location, '$kolem_Fn_280'(Agent, Object, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+
+ /*  holds_at(at(Object, Location), Time) :-
+       happens(greet(Agent, Object), Time),
+       some(Location, '$kolem_Fn_280'(Agent, Object, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+
+ /*  [happens(greet(Agent, Object), Time), some(Location, '$kolem_Fn_280'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Object, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',150).
+axiom(holds_at(at(Object, Location), Time),
+   
+    [ happens(greet(Agent, Object), Time),
+      some(Location, '$kolem_Fn_280'(Agent, Object, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:153
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:153
 % [agent,object,time]
 % Happens(SayGoodbye(agent,object),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:155
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:155
 % {location}% 
 % HoldsAt(At(agent,location),time) &
 % HoldsAt(At(object,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:157
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
 
- /*   exists([Location],
-             if(happens(sayGoodbye(Agent, Object), Time),
-                 (holds_at(at(Agent, Location), Time), holds_at(at(Object, Location), Time)))).
+ /*  exists([Location],
+    happens(sayGoodbye(Agent, Object), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Object, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
 
- /*  not(some(Location6, '$kolem_Fn_191'(Fn_191_Param, At_Param, Maptime))) :-
-       happens(sayGoodbye(Fn_191_Param, At_Param), Maptime),
-       (   not(holds_at(at(Fn_191_Param, Location6), Maptime))
-       ;   not(holds_at(at(At_Param, Location6), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:157
-axiom(not(some(Location6, '$kolem_Fn_191'(Fn_191_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(Fn_191_Param, Location6), Maptime)),
-      happens(sayGoodbye(Fn_191_Param, At_Param), Maptime)
-    ]).
-axiom(not(some(Location6, '$kolem_Fn_191'(Fn_191_Param, At_Param, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location6), Maptime)),
-      happens(sayGoodbye(Fn_191_Param, At_Param), Maptime)
-    ]).
-
- /*  not(happens(sayGoodbye(SayGoodbye_Param, At_Param12), Maptime9)) :-
-       (   not(holds_at(at(SayGoodbye_Param, Location10),
-                        Maptime9))
-       ;   not(holds_at(at(At_Param12, Location10), Maptime9))
+ /*  not(happens(sayGoodbye(Agent, Object), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Object, Location), Time))
        ),
-       some(Location10,
-            '$kolem_Fn_191'(SayGoodbye_Param, At_Param12, Maptime9)).
+       some(Location, '$kolem_Fn_281'(Agent, Object, Time)).
  */
-axiom(not(happens(sayGoodbye(SayGoodbye_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(SayGoodbye_Param, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_191'(SayGoodbye_Param,
-                           At_Param12,
-                           Maptime9))
-    ]).
-axiom(not(happens(sayGoodbye(SayGoodbye_Param, At_Param12), Maptime9)),
-   
-    [ not(holds_at(at(At_Param12, Location10), Maptime9)),
-      some(Location10,
-           '$kolem_Fn_191'(SayGoodbye_Param,
-                           At_Param12,
-                           Maptime9))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
 
- /*  holds_at(at(At_Param15, Location13), Time14) :-
-       happens(sayGoodbye(At_Param15, SayGoodbye_Ret), Time14),
-       some(Location13,
-            '$kolem_Fn_191'(At_Param15, SayGoodbye_Ret, Time14)).
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_281'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(sayGoodbye(Agent, Object), Time))).
  */
-axiom(holds_at(at(At_Param15, Location13), Time14),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+axiom(not(happens(sayGoodbye(Agent, Object), Time)),
    
-    [ happens(sayGoodbye(At_Param15, SayGoodbye_Ret), Time14),
-      some(Location13,
-           '$kolem_Fn_191'(At_Param15, SayGoodbye_Ret, Time14))
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Object, Location)), Time)),
+      some(Location, '$kolem_Fn_281'(Agent, Object, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
 
- /*  holds_at(at(At_Param19, Location17), Time18) :-
-       happens(sayGoodbye(SayGoodbye_Param20, At_Param19),
-               Time18),
-       some(Location17,
-            '$kolem_Fn_191'(SayGoodbye_Param20, At_Param19, Time18)).
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(sayGoodbye(Agent, Object), Time),
+       some(Location, '$kolem_Fn_281'(Agent, Object, Time)).
  */
-axiom(holds_at(at(At_Param19, Location17), Time18),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+
+ /*  [happens(sayGoodbye(Agent, Object), Time), some(Location, '$kolem_Fn_281'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+axiom(holds_at(at(Agent, Location), Time),
    
-    [ happens(sayGoodbye(SayGoodbye_Param20, At_Param19),
-              Time18),
-      some(Location17,
-           '$kolem_Fn_191'(SayGoodbye_Param20,
-                           At_Param19,
-                           Time18))
+    [ happens(sayGoodbye(Agent, Object), Time),
+      some(Location, '$kolem_Fn_281'(Agent, Object, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+
+ /*  holds_at(at(Object, Location), Time) :-
+       happens(sayGoodbye(Agent, Object), Time),
+       some(Location, '$kolem_Fn_281'(Agent, Object, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+
+ /*  [happens(sayGoodbye(Agent, Object), Time), some(Location, '$kolem_Fn_281'(Agent, Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Object, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',155).
+axiom(holds_at(at(Object, Location), Time),
+   
+    [ happens(sayGoodbye(Agent, Object), Time),
+      some(Location, '$kolem_Fn_281'(Agent, Object, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:159
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:159
 %; speech: expression of emotions
 %; agent cries for joy.
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:162
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:162
 % event CryForJoy(agent)
- %  event(cryForJoy(agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:163
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',162).
+event(cryForJoy(CryForJoy_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',162).
 ==> mpred_prop(cryForJoy(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',162).
 ==> meta_argtypes(cryForJoy(agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:164
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:164
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',165).
 %; A precondition axiom states that for
 %; an agent to cry for joy,
 %; the agent must be happy:
 % [agent,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:168
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:168
 % Happens(CryForJoy(agent),time) ->
 % HoldsAt(Happy(agent),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:169
-axiom(requires(cryForJoy(Agent), Time),
-    [holds_at(happy(Agent), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:171
+ /*  happens(cryForJoy(Agent), Time) ->
+       holds_at(happy(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+
+ /*  holds_at(happy(Agent), Time) :-
+       happens(cryForJoy(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+
+ /*  [holds_at(metreqs(cryForJoy(Agent)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(cryForJoy(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+axiom(requires(cryForJoy(Agent), Time),
+    [holds_at(metreqs(cryForJoy(Agent)), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+
+ /*  [holds_at(happy(Agent), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(cryForJoy(Agent)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+axiom(holds_at(requirements(cryForJoy(Agent)), Time),
+    [holds_at(happy(Agent), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+
+ /*  not(happens(cryForJoy(Agent), Time)) :-
+       not(holds_at(happy(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+
+ /*  [holds_at(neg(happy(Agent)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(cryForJoy(Agent), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',168).
+axiom(not(happens(cryForJoy(Agent), Time)),
+    [holds_at(neg(happy(Agent)), Time)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:171
 % event Threaten(agent,agent,weapon)
- %  event(threaten(agent,agent,weapon)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:172
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',171).
+event(threaten(Threaten_Param,_,Threaten_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',171).
 ==> mpred_prop(threaten(agent,agent,weapon),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',171).
 ==> meta_argtypes(threaten(agent,agent,weapon)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:173
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',174).
 % event ReleaseFromThreat(agent,agent)
- %  event(releaseFromThreat(agent,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:174
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',174).
+event(releaseFromThreat(ReleaseFromThreat_Param,
+			ReleaseFromThreat_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',174).
 ==> mpred_prop(releaseFromThreat(agent,agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',174).
 ==> meta_argtypes(releaseFromThreat(agent,agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:175
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',176).
 % fluent ThreatenedBy(agent,agent)
- %  fluent(threatenedBy(agent,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:176
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',176).
+fluent(threatenedBy(ThreatenedBy_Param,ThreatenedBy_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',176).
 ==> mpred_prop(threatenedBy(agent,agent),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',176).
 ==> meta_argtypes(threatenedBy(agent,agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:177
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:177
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',178).
 % [agent1,agent2,weapon,time]
 % Happens(Threaten(agent1,agent2,weapon), time) ->
 % HoldsAt(Holding(agent1,weapon),time) &
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:180
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:180
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',178).
 % {location}% 
 % HoldsAt(At(agent1,location),time) &
 % HoldsAt(At(agent2,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:182
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
 
- /*   exists([Location],
-             if(happens(threaten(Agent1, Agent2, Weapon),
-                        Time),
-                 (holds_at(holding(Agent1, Weapon), Time), holds_at(at(Agent1, Location), Time), holds_at(at(Agent2, Location), Time)))).
+ /*  exists([Location],
+    happens(threaten(Agent1, Agent2, Weapon), Time) ->
+       holds_at(holding(Agent1, Weapon), Time),
+       holds_at(at(Agent1, Location), Time),
+       holds_at(at(Agent2, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
 
- /*  not(some(Location7, '$kolem_Fn_192'(Fn_192_Param, At_Param, Threaten_Ret, Maptime))) :-
-       happens(threaten(Fn_192_Param, At_Param, Threaten_Ret),
-               Maptime),
-       (   not(holds_at(holding(Fn_192_Param, Threaten_Ret),
-                        Maptime))
-       ;   not(holds_at(at(Fn_192_Param, Location7), Maptime))
-       ;   not(holds_at(at(At_Param, Location7), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:182
-axiom(not(some(Location7, '$kolem_Fn_192'(Fn_192_Param, At_Param, Threaten_Ret, Maptime))),
-   
-    [ not(holds_at(holding(Fn_192_Param, Threaten_Ret),
-                   Maptime)),
-      happens(threaten(Fn_192_Param, At_Param, Threaten_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location7, '$kolem_Fn_192'(Fn_192_Param, At_Param, Threaten_Ret, Maptime))),
-   
-    [ not(holds_at(at(Fn_192_Param, Location7), Maptime)),
-      happens(threaten(Fn_192_Param, At_Param, Threaten_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location7, '$kolem_Fn_192'(Fn_192_Param, At_Param, Threaten_Ret, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location7), Maptime)),
-      happens(threaten(Fn_192_Param, At_Param, Threaten_Ret),
-              Maptime)
-    ]).
-
- /*  not(happens(threaten(Threaten_Param, At_Param14, Threaten_Ret15), Maptime11)) :-
-       (   not(holds_at(holding(Threaten_Param, Threaten_Ret15),
-                        Maptime11))
-       ;   not(holds_at(at(Threaten_Param, Location12),
-                        Maptime11))
-       ;   not(holds_at(at(At_Param14, Location12), Maptime11))
+ /*  not(happens(threaten(Agent1, Agent2, Weapon), Time)) :-
+       (   not(holds_at(holding(Agent1, Weapon), Time))
+       ;   not(holds_at(at(Agent1, Location), Time))
+       ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location12,
-            '$kolem_Fn_192'(Threaten_Param,
-                            At_Param14,
-                            Threaten_Ret15,
-                            Maptime11)).
+       some(Location,
+            '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time)).
  */
-axiom(not(happens(threaten(Threaten_Param, At_Param14, Threaten_Ret15), Maptime11)),
-   
-    [ not(holds_at(holding(Threaten_Param, Threaten_Ret15),
-                   Maptime11)),
-      some(Location12,
-           '$kolem_Fn_192'(Threaten_Param,
-                           At_Param14,
-                           Threaten_Ret15,
-                           Maptime11))
-    ]).
-axiom(not(happens(threaten(Threaten_Param, At_Param14, Threaten_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(Threaten_Param, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_192'(Threaten_Param,
-                           At_Param14,
-                           Threaten_Ret15,
-                           Maptime11))
-    ]).
-axiom(not(happens(threaten(Threaten_Param, At_Param14, Threaten_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(At_Param14, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_192'(Threaten_Param,
-                           At_Param14,
-                           Threaten_Ret15,
-                           Maptime11))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
 
- /*  holds_at(holding(Holding_Param, Holding_Ret), Time16) :-
-       happens(threaten(Holding_Param, A, Holding_Ret),
-               Time16),
-       some(Some_Param,
-            '$kolem_Fn_192'(Holding_Param,
-                            A,
-                            Holding_Ret,
-                            Time16)).
+ /*  [(holds_at(neg(holding(Agent1, Weapon)), Time);holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(threaten(Agent1, Agent2, Weapon),
+                      Time))).
  */
-axiom(holds_at(holding(Holding_Param, Holding_Ret), Time16),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+axiom(not(happens(threaten(Agent1, Agent2, Weapon), Time)),
    
-    [ happens(threaten(Holding_Param, A, Holding_Ret),
-              Time16),
-      some(Some_Param,
-           '$kolem_Fn_192'(Holding_Param,
-                           A,
-                           Holding_Ret,
-                           Time16))
+    [  (holds_at(neg(holding(Agent1, Weapon)), Time);holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
 
- /*  holds_at(at(At_Param22, Location20), Time21) :-
-       happens(threaten(At_Param22, A, Threaten_Ret23),
-               Time21),
-       some(Location20,
-            '$kolem_Fn_192'(At_Param22,
-                            A,
-                            Threaten_Ret23,
-                            Time21)).
+ /*  holds_at(holding(Agent1, Weapon), Time) :-
+       happens(threaten(Agent1, Agent2, Weapon), Time),
+       some(Location,
+            '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time)).
  */
-axiom(holds_at(at(At_Param22, Location20), Time21),
-   
-    [ happens(threaten(At_Param22, A, Threaten_Ret23),
-              Time21),
-      some(Location20,
-           '$kolem_Fn_192'(At_Param22,
-                           A,
-                           Threaten_Ret23,
-                           Time21))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
 
- /*  holds_at(at(At_Param26, Location24), Time25) :-
-       happens(threaten(Threaten_Param27,
-                        At_Param26,
-                        Threaten_Ret28),
-               Time25),
-       some(Location24,
-            '$kolem_Fn_192'(Threaten_Param27,
-                            At_Param26,
-                            Threaten_Ret28,
-                            Time25)).
+ /*  [happens(threaten(Agent1, Agent2, Weapon), Time), some(Location, '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(holding(Agent1, Weapon), Time)).
  */
-axiom(holds_at(at(At_Param26, Location24), Time25),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+axiom(holds_at(holding(Agent1, Weapon), Time),
    
-    [ happens(threaten(Threaten_Param27,
-                       At_Param26,
-                       Threaten_Ret28),
-              Time25),
-      some(Location24,
-           '$kolem_Fn_192'(Threaten_Param27,
-                           At_Param26,
-                           Threaten_Ret28,
-                           Time25))
+    [ happens(threaten(Agent1, Agent2, Weapon), Time),
+      some(Location,
+           '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+
+ /*  holds_at(at(Agent1, Location), Time) :-
+       happens(threaten(Agent1, Agent2, Weapon), Time),
+       some(Location,
+            '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+
+ /*  [happens(threaten(Agent1, Agent2, Weapon), Time), some(Location, '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent1, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+axiom(holds_at(at(Agent1, Location), Time),
+   
+    [ happens(threaten(Agent1, Agent2, Weapon), Time),
+      some(Location,
+           '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+
+ /*  holds_at(at(Agent2, Location), Time) :-
+       happens(threaten(Agent1, Agent2, Weapon), Time),
+       some(Location,
+            '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+
+ /*  [happens(threaten(Agent1, Agent2, Weapon), Time), some(Location, '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent2, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',181).
+axiom(holds_at(at(Agent2, Location), Time),
+   
+    [ happens(threaten(Agent1, Agent2, Weapon), Time),
+      some(Location,
+           '$kolem_Fn_282'(Agent1, Agent2, Weapon, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:184
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:184
 % [agent1,agent2,weapon,time]
 % Happens(Threaten(agent1,agent2,weapon), time) ->
 % Happens(BecomeAngryAt(agent2,agent1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:186
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:186
+
+ /*  happens(threaten(Agent1, Agent2, Weapon), Time) ->
+       happens(becomeAngryAt(Agent2, Agent1), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
+
+ /*  happens(becomeAngryAt(Agent2, Agent1), Time) :-
+       happens(threaten(Agent1, Agent2, Weapon), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
+
+ /*  [happens(threaten(Agent1, Agent2, Weapon), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(becomeAngryAt(Agent2, Agent1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
 axiom(happens(becomeAngryAt(Agent2, Agent1), Time),
     [happens(threaten(Agent1, Agent2, Weapon), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
+
+ /*  not(happens(threaten(Agent1, Agent2, Weapon), Time)) :-
+       not(happens(becomeAngryAt(Agent2, Agent1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
+
+ /*  [not(happens(becomeAngryAt(Agent2, Agent1), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(threaten(Agent1, Agent2, Weapon),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',186).
+axiom(not(happens(threaten(Agent1, Agent2, Weapon), Time)),
+    [not(happens(becomeAngryAt(Agent2, Agent1), Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:188
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:188
 % [agent1,agent2,weapon,time]
 % Initiates(Threaten(agent1,agent2,weapon),
 %           ThreatenedBy(agent2,agent1),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:191
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:191
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',190).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(threaten(Agent1, Agent2, Weapon),
+                    threatenedBy(Agent2, Agent1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',190).
 axiom(initiates(threaten(Agent1, Agent2, Weapon), threatenedBy(Agent2, Agent1), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:193
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:193
 % [agent1,agent2,time]
 % Terminates(ReleaseFromThreat(agent1,agent2),
 %            ThreatenedBy(agent2,agent1),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:196
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:196
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',195).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(releaseFromThreat(Agent1, Agent2),
+                     threatenedBy(Agent2, Agent1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',195).
 axiom(terminates(releaseFromThreat(Agent1, Agent2), threatenedBy(Agent2, Agent1), Time),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:198
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:198
 % event Order(agent,agent,physobj)
- %  event(order(agent,agent,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:199
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',198).
+event(order(Order_Param,_,Order_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',198).
 ==> mpred_prop(order(agent,agent,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',198).
 ==> meta_argtypes(order(agent,agent,physobj)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:200
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',201).
 % fluent KnowOrder(agent,agent,physobj)
- %  fluent(knowOrder(agent,agent,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:201
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',201).
+fluent(knowOrder(KnowOrder_Param,_,KnowOrder_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',201).
 ==> mpred_prop(knowOrder(agent,agent,physobj),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',201).
 ==> meta_argtypes(knowOrder(agent,agent,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:202
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:202
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',203).
 % [agent1,agent2,physobj,time]
 % Initiates(Order(agent1,agent2,physobj),
 %           KnowOrder(agent2,agent1,physobj),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:205
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:205
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',203).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(order(Agent1, Agent2, Physobj),
+                    knowOrder(Agent2, Agent1, Physobj),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',203).
 axiom(initiates(order(Agent1, Agent2, Physobj), knowOrder(Agent2, Agent1, Physobj), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:207
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:207
 % [agent1,agent2,physobj,time]
 % Happens(Order(agent1,agent2,physobj),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:209
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:209
 % {location}% 
 % HoldsAt(At(agent1,location),time) &
 % HoldsAt(At(agent2,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:211
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
 
- /*   exists([Location],
-             if(happens(order(Agent1, Agent2, Physobj),
-                        Time),
-                 (holds_at(at(Agent1, Location), Time), holds_at(at(Agent2, Location), Time)))).
+ /*  exists([Location],
+    happens(order(Agent1, Agent2, Physobj), Time) ->
+       holds_at(at(Agent1, Location), Time),
+       holds_at(at(Agent2, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
 
- /*  not(some(Location7, '$kolem_Fn_193'(Fn_193_Param, At_Param, Order_Ret, Maptime))) :-
-       happens(order(Fn_193_Param, At_Param, Order_Ret),
-               Maptime),
-       (   not(holds_at(at(Fn_193_Param, Location7), Maptime))
-       ;   not(holds_at(at(At_Param, Location7), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:211
-axiom(not(some(Location7, '$kolem_Fn_193'(Fn_193_Param, At_Param, Order_Ret, Maptime))),
-   
-    [ not(holds_at(at(Fn_193_Param, Location7), Maptime)),
-      happens(order(Fn_193_Param, At_Param, Order_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location7, '$kolem_Fn_193'(Fn_193_Param, At_Param, Order_Ret, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location7), Maptime)),
-      happens(order(Fn_193_Param, At_Param, Order_Ret),
-              Maptime)
-    ]).
-
- /*  not(happens(order(Order_Param, At_Param14, Order_Ret15), Maptime11)) :-
-       (   not(holds_at(at(Order_Param, Location12), Maptime11))
-       ;   not(holds_at(at(At_Param14, Location12), Maptime11))
+ /*  not(happens(order(Agent1, Agent2, Physobj), Time)) :-
+       (   not(holds_at(at(Agent1, Location), Time))
+       ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location12,
-            '$kolem_Fn_193'(Order_Param,
-                            At_Param14,
-                            Order_Ret15,
-                            Maptime11)).
+       some(Location,
+            '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time)).
  */
-axiom(not(happens(order(Order_Param, At_Param14, Order_Ret15), Maptime11)),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(order(Agent1, Agent2, Physobj), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+axiom(not(happens(order(Agent1, Agent2, Physobj), Time)),
    
-    [ not(holds_at(at(Order_Param, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_193'(Order_Param,
-                           At_Param14,
-                           Order_Ret15,
-                           Maptime11))
+    [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))
     ]).
-axiom(not(happens(order(Order_Param, At_Param14, Order_Ret15), Maptime11)),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+
+ /*  holds_at(at(Agent1, Location), Time) :-
+       happens(order(Agent1, Agent2, Physobj), Time),
+       some(Location,
+            '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+
+ /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent1, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+axiom(holds_at(at(Agent1, Location), Time),
    
-    [ not(holds_at(at(At_Param14, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_193'(Order_Param,
-                           At_Param14,
-                           Order_Ret15,
-                           Maptime11))
+    [ happens(order(Agent1, Agent2, Physobj), Time),
+      some(Location,
+           '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+
+ /*  holds_at(at(Agent2, Location), Time) :-
+       happens(order(Agent1, Agent2, Physobj), Time),
+       some(Location,
+            '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+
+ /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent2, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',209).
+axiom(holds_at(at(Agent2, Location), Time),
+   
+    [ happens(order(Agent1, Agent2, Physobj), Time),
+      some(Location,
+           '$kolem_Fn_283'(Agent1, Agent2, Physobj, Time))
     ]).
 
- /*  holds_at(at(At_Param18, Location16), Time17) :-
-       happens(order(At_Param18, A, Order_Ret19), Time17),
-       some(Location16,
-            '$kolem_Fn_193'(At_Param18,
-                            A,
-                            Order_Ret19,
-                            Time17)).
- */
-axiom(holds_at(at(At_Param18, Location16), Time17),
-   
-    [ happens(order(At_Param18, A, Order_Ret19), Time17),
-      some(Location16,
-           '$kolem_Fn_193'(At_Param18,
-                           A,
-                           Order_Ret19,
-                           Time17))
-    ]).
-
- /*  holds_at(at(At_Param22, Location20), Time21) :-
-       happens(order(Order_Param23, At_Param22, Order_Ret24),
-               Time21),
-       some(Location20,
-            '$kolem_Fn_193'(Order_Param23,
-                            At_Param22,
-                            Order_Ret24,
-                            Time21)).
- */
-axiom(holds_at(at(At_Param22, Location20), Time21),
-   
-    [ happens(order(Order_Param23, At_Param22, Order_Ret24),
-              Time21),
-      some(Location20,
-           '$kolem_Fn_193'(Order_Param23,
-                           At_Param22,
-                           Order_Ret24,
-                           Time21))
-    ]).
-
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:213
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:213
 % event Request(agent,agent,physobj)
- %  event(request(agent,agent,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:214
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',213).
+event(request(Request_Param,_,Request_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',213).
 ==> mpred_prop(request(agent,agent,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',213).
 ==> meta_argtypes(request(agent,agent,physobj)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:215
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',216).
 % fluent KnowRequest(agent,agent,physobj)
- %  fluent(knowRequest(agent,agent,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:216
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',216).
+fluent(knowRequest(KnowRequest_Param,
+		   _,
+		   KnowRequest_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',216).
 ==> mpred_prop(knowRequest(agent,agent,physobj),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',216).
 ==> meta_argtypes(knowRequest(agent,agent,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:217
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:217
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',218).
 % [agent1,agent2,physobj,time]
 % Initiates(Request(agent1,agent2,physobj),
 %           KnowRequest(agent2,agent1,physobj),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:220
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:220
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',218).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(request(Agent1, Agent2, Physobj),
+                    knowRequest(Agent2, Agent1, Physobj),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',218).
 axiom(initiates(request(Agent1, Agent2, Physobj), knowRequest(Agent2, Agent1, Physobj), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:222
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:222
 % [agent1,agent2,physobj,time]
 % Happens(Request(agent1,agent2,physobj),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:224
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:224
 % {location}% 
 % HoldsAt(At(agent1,location),time) &
 % HoldsAt(At(agent2,location),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:226
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
 
- /*   exists([Location],
-             if(happens(request(Agent1, Agent2, Physobj),
-                        Time),
-                 (holds_at(at(Agent1, Location), Time), holds_at(at(Agent2, Location), Time)))).
+ /*  exists([Location],
+    happens(request(Agent1, Agent2, Physobj), Time) ->
+       holds_at(at(Agent1, Location), Time),
+       holds_at(at(Agent2, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
 
- /*  not(some(Location7, '$kolem_Fn_194'(Fn_194_Param, At_Param, Request_Ret, Maptime))) :-
-       happens(request(Fn_194_Param, At_Param, Request_Ret),
-               Maptime),
-       (   not(holds_at(at(Fn_194_Param, Location7), Maptime))
-       ;   not(holds_at(at(At_Param, Location7), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:226
-axiom(not(some(Location7, '$kolem_Fn_194'(Fn_194_Param, At_Param, Request_Ret, Maptime))),
-   
-    [ not(holds_at(at(Fn_194_Param, Location7), Maptime)),
-      happens(request(Fn_194_Param, At_Param, Request_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location7, '$kolem_Fn_194'(Fn_194_Param, At_Param, Request_Ret, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location7), Maptime)),
-      happens(request(Fn_194_Param, At_Param, Request_Ret),
-              Maptime)
-    ]).
-
- /*  not(happens(request(Request_Param, At_Param14, Request_Ret15), Maptime11)) :-
-       (   not(holds_at(at(Request_Param, Location12), Maptime11))
-       ;   not(holds_at(at(At_Param14, Location12), Maptime11))
+ /*  not(happens(request(Agent1, Agent2, Physobj), Time)) :-
+       (   not(holds_at(at(Agent1, Location), Time))
+       ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location12,
-            '$kolem_Fn_194'(Request_Param,
-                            At_Param14,
-                            Request_Ret15,
-                            Maptime11)).
+       some(Location,
+            '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time)).
  */
-axiom(not(happens(request(Request_Param, At_Param14, Request_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(Request_Param, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_194'(Request_Param,
-                           At_Param14,
-                           Request_Ret15,
-                           Maptime11))
-    ]).
-axiom(not(happens(request(Request_Param, At_Param14, Request_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(At_Param14, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_194'(Request_Param,
-                           At_Param14,
-                           Request_Ret15,
-                           Maptime11))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
 
- /*  holds_at(at(At_Param18, Location16), Time17) :-
-       happens(request(At_Param18, A, Request_Ret19),
-               Time17),
-       some(Location16,
-            '$kolem_Fn_194'(At_Param18,
-                            A,
-                            Request_Ret19,
-                            Time17)).
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(request(Agent1, Agent2, Physobj),
+                      Time))).
  */
-axiom(holds_at(at(At_Param18, Location16), Time17),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+axiom(not(happens(request(Agent1, Agent2, Physobj), Time)),
    
-    [ happens(request(At_Param18, A, Request_Ret19),
-              Time17),
-      some(Location16,
-           '$kolem_Fn_194'(At_Param18,
-                           A,
-                           Request_Ret19,
-                           Time17))
+    [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
 
- /*  holds_at(at(At_Param22, Location20), Time21) :-
-       happens(request(Request_Param23,
-                       At_Param22,
-                       Request_Ret24),
-               Time21),
-       some(Location20,
-            '$kolem_Fn_194'(Request_Param23,
-                            At_Param22,
-                            Request_Ret24,
-                            Time21)).
+ /*  holds_at(at(Agent1, Location), Time) :-
+       happens(request(Agent1, Agent2, Physobj), Time),
+       some(Location,
+            '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time)).
  */
-axiom(holds_at(at(At_Param22, Location20), Time21),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+
+ /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent1, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+axiom(holds_at(at(Agent1, Location), Time),
    
-    [ happens(request(Request_Param23,
-                      At_Param22,
-                      Request_Ret24),
-              Time21),
-      some(Location20,
-           '$kolem_Fn_194'(Request_Param23,
-                           At_Param22,
-                           Request_Ret24,
-                           Time21))
+    [ happens(request(Agent1, Agent2, Physobj), Time),
+      some(Location,
+           '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+
+ /*  holds_at(at(Agent2, Location), Time) :-
+       happens(request(Agent1, Agent2, Physobj), Time),
+       some(Location,
+            '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+
+ /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent2, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+axiom(holds_at(at(Agent2, Location), Time),
+   
+    [ happens(request(Agent1, Agent2, Physobj), Time),
+      some(Location,
+           '$kolem_Fn_284'(Agent1, Agent2, Physobj, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/SpeechAct.e:228
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e:228
 %; End of file.
