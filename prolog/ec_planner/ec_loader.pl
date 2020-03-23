@@ -293,9 +293,9 @@ fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(
 fix_axiom_head(T, G, GG):- must_or_dumpst(cvt0_full(T,G,Y)), (G==Y -> fail; fix_axiom_head(T,Y,GG)),!.
 fix_axiom_head(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
 fix_axiom_head(T, exists(X,G), exists(X,GG)):-!,fix_axiom_head(T, G, GG).
-fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
 fix_axiom_head(T, G, happens(G,T)):- functor_skel(G,P), (syntx_term_check(event(P);executable(P))),!.
 fix_axiom_head(T, G, holds_at(G,T)):- functor_skel(G,P), syntx_term_check(fluent(P)),!.
+fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
 fix_axiom_head(T, P, PP):-  
    P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),
    functor(Arity,_,N),  correct_ax_args(T,F,A,Args,AxH,Arity,N,PP),!. 
