@@ -1,12 +1,27 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'includes/SaaSPatterns/sorts.e').
+% Mon, 23 Mar 2020 02:26:22 GMT
+% From ../includes/SaaSPatterns/sorts.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/ordering.e',7).
 
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e').
+ */
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e:0
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 % sort rule,subject,object,action,ruleeffect,policy,policyset
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(rule).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(subject).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(object).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(action).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(ruleeffect).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(policy).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',1).
 ==> sort(policyset).

@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Shanahan1997/BusRide.e').
+% Mon, 23 Mar 2020 02:26:19 GMT
+% From ../examples/Shanahan1997/BusRide.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',71).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -36,173 +42,384 @@
 %; timestamps
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:36
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',39).
 % fluent HasTicket()
- %  fluent(hasTicket()).
-==> mpred_prop(hasTicket(),fluent).
-==> meta_argtypes(hasTicket()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',39).
+fluent(hasTicket).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',39).
+==> mpred_prop(hasTicket,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:39
 % fluent OnRed()
- %  fluent(onRed()).
-==> mpred_prop(onRed(),fluent).
-==> meta_argtypes(onRed()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',39).
+fluent(onRed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',39).
+==> mpred_prop(onRed,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',41).
 % fluent OnYellow()
- %  fluent(onYellow()).
-==> mpred_prop(onYellow(),fluent).
-==> meta_argtypes(onYellow()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',41).
+fluent(onYellow).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',41).
+==> mpred_prop(onYellow,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:41
 % event Buy()
- %  event(buy()).
-==> mpred_prop(buy(),event).
-==> meta_argtypes(buy()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',41).
+event(buy).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',41).
+==> mpred_prop(buy,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',43).
 % event Board()
- %  event(board()).
-==> mpred_prop(board(),event).
-==> meta_argtypes(board()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',43).
+event(board).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',43).
+==> mpred_prop(board,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:43
 % event BoardRed()
- %  event(boardRed()).
-==> mpred_prop(boardRed(),event).
-==> meta_argtypes(boardRed()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',43).
+event(boardRed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',43).
+==> mpred_prop(boardRed,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',45).
 % event BoardYellow()
- %  event(boardYellow()).
-==> mpred_prop(boardYellow(),event).
-==> meta_argtypes(boardYellow()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',45).
+event(boardYellow).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',45).
+==> mpred_prop(boardYellow,event).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
 % [time]
  % Happens(Board(),time) -> Happens(BoardRed(),time) | Happens(BoardYellow(),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
 
- /*   if(happens(board(), Time),
-          (happens(boardRed(), Time);happens(boardYellow(), Time))).
+ /*  happens(board, Time) ->
+       (   happens(boardRed, Time)
+       ;   happens(boardYellow, Time)
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
 
- /*  happens(boardRed(), Maptime) :-
-       not(happens(boardYellow(), Maptime)),
-       happens(board(), Maptime).
+ /*  happens(boardRed, Time) :-
+       not(happens(boardYellow, Time)),
+       happens(board, Time).
  */
-axiom(happens(boardRed(), Maptime),
-    [not(happens(boardYellow(), Maptime)), happens(board(), Maptime)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
 
- /*  happens(boardYellow(), Maptime2) :-
-       not(happens(boardRed(), Maptime2)),
-       happens(board(), Maptime2).
+ /*  [not(happens(boardYellow, Time)), happens(board, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(boardRed, Time)).
  */
-axiom(happens(boardYellow(), Maptime2),
-    [not(happens(boardRed(), Maptime2)), happens(board(), Maptime2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+axiom(happens(boardRed, Time),
+    [not(happens(boardYellow, Time)), happens(board, Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
 
- /*  not(happens(board(), Maptime3)) :-
-       not(happens(boardRed(), Maptime3)),
-       not(happens(boardYellow(), Maptime3)).
+ /*  happens(boardYellow, Time) :-
+       not(happens(boardRed, Time)),
+       happens(board, Time).
  */
-axiom(not(happens(board(), Maptime3)),
-   
-    [ not(happens(boardRed(), Maptime3)),
-      not(happens(boardYellow(), Maptime3))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+
+ /*  [not(happens(boardRed, Time)), happens(board, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(boardYellow, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+axiom(happens(boardYellow, Time),
+    [not(happens(boardRed, Time)), happens(board, Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+
+ /*  not(happens(board, Time)) :-
+       not(happens(boardRed, Time)),
+       not(happens(boardYellow, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+
+ /*  [not(happens(boardRed, Time)), not(happens(boardYellow, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(board, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',47).
+axiom(not(happens(board, Time)),
+    [not(happens(boardRed, Time)), not(happens(boardYellow, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:48
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',49).
 % [time]
  % Initiates(Buy(),HasTicket(),time).
-axiom(initiates(buy(), hasTicket(), Time),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',49).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(buy, hasTicket, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',49).
+axiom(initiates(buy, hasTicket, Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:49
 % [time]
  % HoldsAt(HasTicket(),time) -> Initiates(BoardRed(),OnRed(),time).
-axiom(initiates(boardRed(), onRed(), Time),
-    [holds_at(hasTicket(), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',49).
+
+ /*  [holds_at(hasTicket, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(boardRed, onRed, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',49).
+axiom(initiates(boardRed, onRed, Time),
+    [holds_at(hasTicket, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:50
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',51).
 % [time]
  % HoldsAt(HasTicket(),time) -> Initiates(BoardYellow(),OnYellow(),time).
-axiom(initiates(boardYellow(), onYellow(), Time),
-    [holds_at(hasTicket(), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',51).
+
+ /*  [holds_at(hasTicket, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(boardYellow, onYellow, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',51).
+axiom(initiates(boardYellow, onYellow, Time),
+    [holds_at(hasTicket, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
 % [time]
  % !(HoldsAt(OnRed(),time) & HoldsAt(OnYellow(),time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
 
- /*   not(( holds_at(onRed(), Time),
-            holds_at(onYellow(), Time)
+ /*   not(( holds_at(onRed, Time),
+            holds_at(onYellow, Time)
           )).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
 
- /*  not(holds_at(onRed(), Time1)) :-
-       holds_at(onYellow(), Time1).
+ /*  not(holds_at(onRed, Time)) :-
+       holds_at(onYellow, Time).
  */
-axiom(not(holds_at(onRed(), Time1)),
-    [holds_at(onYellow(), Time1)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
 
- /*  not(holds_at(onYellow(), Time2)) :-
-       holds_at(onRed(), Time2).
+ /*  [holds_at(onYellow, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onRed), Time)).
  */
-axiom(not(holds_at(onYellow(), Time2)),
-    [holds_at(onRed(), Time2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+axiom(holds_at(neg(onRed), Time),
+    [holds_at(onYellow, Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  not(holds_at(onYellow, Time)) :-
+       holds_at(onRed, Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  [holds_at(onRed, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onYellow), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+axiom(holds_at(neg(onYellow), Time),
+    [holds_at(onRed, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:53
 % [time]
  % HoldsAt(OnRed(),time) -> HoldsAt(HasTicket(),time).
-axiom(holds_at(hasTicket(), Time),
-    [holds_at(onRed(), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  holds_at(onRed, Time) ->
+       holds_at(hasTicket, Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  holds_at(hasTicket, Time) :-
+       holds_at(onRed, Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  [holds_at(onRed, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(hasTicket, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+axiom(holds_at(hasTicket, Time),
+    [holds_at(onRed, Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  not(holds_at(onRed, Time)) :-
+       not(holds_at(hasTicket, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+
+ /*  [holds_at(neg(hasTicket), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onRed), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',53).
+axiom(holds_at(neg(onRed), Time),
+    [holds_at(neg(hasTicket), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
 % [time]
  % HoldsAt(OnYellow(),time) -> HoldsAt(HasTicket(),time).
-axiom(holds_at(hasTicket(), Time),
-    [holds_at(onYellow(), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+
+ /*  holds_at(onYellow, Time) ->
+       holds_at(hasTicket, Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+
+ /*  holds_at(hasTicket, Time) :-
+       holds_at(onYellow, Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+
+ /*  [holds_at(onYellow, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(hasTicket, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+axiom(holds_at(hasTicket, Time),
+    [holds_at(onYellow, Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+
+ /*  not(holds_at(onYellow, Time)) :-
+       not(holds_at(hasTicket, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+
+ /*  [holds_at(neg(hasTicket), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onYellow), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',55).
+axiom(holds_at(neg(onYellow), Time),
+    [holds_at(neg(hasTicket), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',57).
 % HoldsAt(OnRed(),2).
-holds_at(onRed(),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',57).
+holds_at(onRed,2).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',59).
 % !HoldsAt(HasTicket(),0).
- %  not(initially(hasTicket())).
-axiom(not(initially(hasTicket())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',59).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(hasTicket))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',59).
+axiom(initially(neg(hasTicket)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:59
 % Happens(Buy(),0).
-axiom(happens(buy(), t),
-    [is_time(0)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',59).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(buy, t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',59).
+axiom(happens(buy, t),
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:60
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:60
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',61).
 % Happens(Board(),1).
-axiom(happens(board(), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',61).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(board, now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',61).
+axiom(happens(board, now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:61
 %; ABDUCED Happens(BoardRed(), 1).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',64).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:64
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',64).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:65
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',66).
 % range time 0 2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',66).
 ==> range(time,0,2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e:66
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/BusRide.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',66).
 ==> range(offset,1,1).
 %; End of file.

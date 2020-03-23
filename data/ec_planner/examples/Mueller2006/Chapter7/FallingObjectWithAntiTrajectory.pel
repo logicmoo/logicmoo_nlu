@@ -1,8 +1,11 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
+% Mon, 23 Mar 2020 02:25:56 GMT
+% From ../examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',91).
 
- /*  loading(always,
-   	'examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e').
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e').
  */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
@@ -23,175 +26,486 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:19
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
 % option encoding 3
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
 :- set_ec_option(encoding, 3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:20
 % option trajectory on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
 :- set_ec_option(trajectory, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',20).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:23
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',26).
 % sort object
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',26).
 ==> sort(object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:26
 % sort agent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',26).
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',28).
 % sort height: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',28).
 ==> subsort(height,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',30).
 % agent Nathan
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',30).
 ==> t(agent,nathan).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:30
 % object Apple
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',30).
 ==> t(object,apple).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
 % fluent Falling(object)
- %  fluent(falling(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
+fluent(falling(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
 ==> mpred_prop(falling(object),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
 ==> meta_argtypes(falling(object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:33
 % fluent Height(object,height)
- %  fluent(height(object,height)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
+fluent(height(object,height)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
 ==> mpred_prop(height(object,height),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',33).
 ==> meta_argtypes(height(object,height)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',35).
 % noninertial Height
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',35).
 ==> noninertial(height).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
 % event Drop(agent,object)
- %  event(drop(agent,object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
+event(drop(agent,object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
 ==> mpred_prop(drop(agent,object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
 ==> meta_argtypes(drop(agent,object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:37
 % event HitGround(object)
- %  event(hitGround(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
+event(hitGround(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
 ==> mpred_prop(hitGround(object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',37).
 ==> meta_argtypes(hitGround(object)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:39
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',40).
 %; Sigma
 % [agent,object,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:42
 % Initiates(Drop(agent,object),Falling(object),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',42).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(drop(Agent, Object),
+                    falling(Object),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',42).
 axiom(initiates(drop(Agent, Object), falling(Object), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:44
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:44
 % [object,time]
 % Terminates(HitGround(object),Falling(object),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',46).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(hitGround(Object), falling(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',46).
 axiom(terminates(hitGround(Object), falling(Object), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',48).
 %; Delta
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
 % [object,time]
 % HoldsAt(Falling(object),time) &
 % HoldsAt(Height(object,0),time) ->
 % Happens(HitGround(object),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  holds_at(falling(Object), Time), holds_at(height(Object, 0), Time) ->
+       happens(hitGround(Object), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  happens(hitGround(Object), Time) :-
+       holds_at(falling(Object), Time),
+       holds_at(height(Object, 0), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  [holds_at(falling(Object), Time), holds_at(height(Object, 0), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(hitGround(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
 axiom(happens(hitGround(Object), Time),
    
     [ holds_at(falling(Object), Time),
       holds_at(height(Object, 0), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:54
+ /*  not(holds_at(falling(Object), Time)) :-
+       holds_at(height(Object, 0), Time),
+       not(happens(hitGround(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  [holds_at(height(Object, 0), Time), not(happens(hitGround(Object), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(falling(Object)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+axiom(holds_at(neg(falling(Object)), Time),
+   
+    [ holds_at(height(Object, 0), Time),
+      not(happens(hitGround(Object), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  not(holds_at(height(Object, 0), Time)) :-
+       holds_at(falling(Object), Time),
+       not(happens(hitGround(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+
+ /*  [holds_at(falling(Object), Time), not(happens(hitGround(Object), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, 0)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',50).
+axiom(holds_at(neg(height(Object, 0)), Time),
+   
+    [ holds_at(falling(Object), Time),
+      not(happens(hitGround(Object), Time))
+    ]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:54
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',54).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:54
 % Happens(Drop(Nathan,Apple),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',54).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(drop(nathan, apple), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',54).
 axiom(happens(drop(nathan, apple), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:56
 %; Psi
 % [object,height1,height2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:59
 % HoldsAt(Height(object,height1),time) &
 % HoldsAt(Height(object,height2),time) ->
 % height1=height2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:61
-axiom(Height1=Height2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+
+ /*  holds_at(height(Object, Height1), Time), holds_at(height(Object, Height2), Time) ->
+       equals(Height1, Height2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+
+ /*  not(holds_at(height(Object, Height1), Time)) :-
+       holds_at(height(Object, Height2), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+
+ /*  [holds_at(height(Object, Height2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+axiom(holds_at(neg(height(Object, Height1)), Time),
+   
+    [ holds_at(height(Object, Height2), Time),
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+
+ /*  not(holds_at(height(Object, Height2), Time)) :-
+       holds_at(height(Object, Height1), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+
+ /*  [holds_at(height(Object, Height1), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',59).
+axiom(holds_at(neg(height(Object, Height2)), Time),
    
     [ holds_at(height(Object, Height1), Time),
-      holds_at(height(Object, Height2), Time)
+      not(equals(Height2, Height1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:63
 %; Pi
 % [object,height1,height2,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:66
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:66
 % HoldsAt(Height(object,height1),time) &
 % height2 = (height1 - offset) ->
 % Trajectory(Falling(object),time,Height(object,height2),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+
+ /*  holds_at(height(Object, Height1), Time), equals(Height2, Height1-Offset) ->
+       trajectory(falling(Object),
+                  Time,
+                  height(Object, Height2),
+                  Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+
+ /*  trajectory(falling(Object), Time, height(Object, Height2), Offset) :-
+       holds_at(height(Object, Height1), Time),
+       equals(Height2, Height1-Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+
+ /*  [holds_at(height(Object, Height1), Time), equals(Height2, Height1-Offset)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          trajectory(falling(Object),
+                     Time,
+                     height(Object, Height2),
+                     Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
 axiom(trajectory(falling(Object), Time, height(Object, Height2), Offset),
    
     [ holds_at(height(Object, Height1), Time),
       equals(Height2, Height1-Offset)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+
+ /*  not(holds_at(height(Object, Height1), Time)) :-
+       equals(Height2, Height1-Offset),
+       not(trajectory(falling(Object),
+                      Time,
+                      height(Object, Height2),
+                      Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+
+ /*  [equals(Height2, Height1-Offset), not(trajectory(falling(Object), Time, height(Object, Height2), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',66).
+axiom(holds_at(neg(height(Object, Height1)), Time),
+   
+    [ equals(Height2, Height1-Offset),
+      not(trajectory(falling(Object),
+                     Time,
+                     height(Object, Height2),
+                     Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:70
 % [object,height,offset,time]
 % HoldsAt(Height(object,height),time) ->
 % AntiTrajectory(Falling(object),time,Height(object,height),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:72
+
+ /*  holds_at(height(Object, Height), Time) ->
+       antiTrajectory(falling(Object),
+                      Time,
+                      height(Object, Height),
+                      Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
+
+ /*  antiTrajectory(falling(Object), Time, height(Object, Height), Offset) :-
+       holds_at(height(Object, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
+
+ /*  [holds_at(height(Object, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          antiTrajectory(falling(Object),
+                         Time,
+                         height(Object, Height),
+                         Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
 axiom(antiTrajectory(falling(Object), Time, height(Object, Height), Offset),
     [holds_at(height(Object, Height), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
+
+ /*  not(holds_at(height(Object, Height), Time)) :-
+       not(antiTrajectory(falling(Object),
+                          Time,
+                          height(Object, Height),
+                          Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
+
+ /*  [not(antiTrajectory(falling(Object), Time, height(Object, Height), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',72).
+axiom(holds_at(neg(height(Object, Height)), Time),
+   
+    [ not(antiTrajectory(falling(Object),
+                         Time,
+                         height(Object, Height),
+                         Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:74
 %; Gamma
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:76
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',77).
 % !HoldsAt(Falling(Apple),0).
- %  not(initially(falling(apple))).
-axiom(not(initially(falling(apple))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',77).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(falling(apple)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',77).
+axiom(initially(neg(falling(apple))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:77
 % HoldsAt(Height(Apple,3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',77).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(height(apple, 3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',77).
 axiom(initially(height(apple, 3)),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:79
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:79
 % completion Delta Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:80
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',79).
 ==> completion(delta).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',79).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',82).
 % range time 0 5
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',82).
 ==> range(time,0,5).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:82
 % range height 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',82).
 ==> range(height,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',84).
 % range offset 1 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e:84
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',84).
 ==> range(offset,1,3).
 %; End of file.

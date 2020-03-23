@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Exercises/MixingPaints.e').
+% Mon, 23 Mar 2020 02:29:17 GMT
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',16).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -21,54 +27,102 @@
 %;
 
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- endif.
 
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',20).
+:- endif.
 
 % sort palette
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',23).
 ==> sort(palette).
 
 % sort color
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',23).
 ==> sort(color).
 
 % palette Palette1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',26).
 ==> t(palette,palette1).
 
 % color Red, Yellow, Blue, Green
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',26).
 ==> t(color,red).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',26).
 ==> t(color,yellow).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',26).
 ==> t(color,blue).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',26).
 ==> t(color,green).
 
 % event PlaceOnPalette(palette,color)
- %  event(placeOnPalette(palette,color)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
+event(placeOnPalette(palette,color)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
 ==> mpred_prop(placeOnPalette(palette,color),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
 ==> meta_argtypes(placeOnPalette(palette,color)).
 
 % fluent OnPalette(palette,color)
- %  fluent(onPalette(palette,color)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
+fluent(onPalette(palette,color)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
 ==> mpred_prop(onPalette(palette,color),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',29).
 ==> meta_argtypes(onPalette(palette,color)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:31
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',32).
 % [palette,color,time]
 % !Happens(PlaceOnPalette(palette,Yellow),time) |
 % !Happens(PlaceOnPalette(palette,Blue),time) ->
 % Initiates(PlaceOnPalette(palette,color),OnPalette(palette,color),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:34
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',32).
+
+ /*  [(not(happens(placeOnPalette(Palette, yellow), Time));not(happens(placeOnPalette(Palette, blue), Time)))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(placeOnPalette(Palette, Color),
+                    onPalette(Palette, Color),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',32).
 axiom(initiates(placeOnPalette(Palette, Color), onPalette(Palette, Color), Time),
-    [not(happens(placeOnPalette(Palette, yellow), Time))]).
-axiom(initiates(placeOnPalette(Palette, Color), onPalette(Palette, Color), Time),
-    [not(happens(placeOnPalette(Palette, blue), Time))]).
+   
+    [  (not(happens(placeOnPalette(Palette, yellow), Time));not(happens(placeOnPalette(Palette, blue), Time)))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:36
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:36
 % [palette,color1,color2,time]
 % Happens(PlaceOnPalette(palette,Yellow),time) &
 % color1 = Blue &
 % color2 = Green ->
 % Initiates(PlaceOnPalette(palette,color1),OnPalette(palette,color2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:40
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',38).
+
+ /*  [happens(placeOnPalette(Palette, yellow), Time), equals(Color1, blue), equals(Color2, green)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(placeOnPalette(Palette, Color1),
+                    onPalette(Palette, Color2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',38).
 axiom(initiates(placeOnPalette(Palette, Color1), onPalette(Palette, Color2), Time),
    
     [ happens(placeOnPalette(Palette, yellow), Time),
@@ -77,176 +131,296 @@ axiom(initiates(placeOnPalette(Palette, Color1), onPalette(Palette, Color2), Tim
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:42
 % [palette,color1,color2,time]
 % !(Happens(PlaceOnPalette(palette,Yellow),time) &
 %   Happens(PlaceOnPalette(palette,Blue),time)) &
 % HoldsAt(OnPalette(palette,color1),time) &
 % color1 != color2 ->
 % Terminates(PlaceOnPalette(palette,color2),OnPalette(palette,color1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',44).
+
+ /*  [(not(happens(placeOnPalette(Palette, yellow), Time));not(happens(placeOnPalette(Palette, blue), Time))), holds_at(onPalette(Palette, Color1), Time), diff(Color1, Color2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(placeOnPalette(Palette, Color2),
+                     onPalette(Palette, Color1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',44).
 axiom(terminates(placeOnPalette(Palette, Color2), onPalette(Palette, Color1), Time),
    
-    [ not(happens(placeOnPalette(Palette, yellow), Time)),
+    [  (not(happens(placeOnPalette(Palette, yellow), Time));not(happens(placeOnPalette(Palette, blue), Time))),
       holds_at(onPalette(Palette, Color1), Time),
-      { dif(Color1, Color2)
-      }
-    ]).
-axiom(terminates(placeOnPalette(Palette, Color2), onPalette(Palette, Color1), Time),
-   
-    [ not(happens(placeOnPalette(Palette, blue), Time)),
-      holds_at(onPalette(Palette, Color1), Time),
-      { dif(Color1, Color2)
-      }
+      diff(Color1, Color2)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:49
 % [palette,color1,color2,time]
 % Happens(PlaceOnPalette(palette,Yellow),time) &
 % HoldsAt(OnPalette(palette,color2),time) &
 % color1 = Blue &
 % color2 != Green ->
 % Terminates(PlaceOnPalette(palette,color1),OnPalette(palette,color2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',51).
+
+ /*  [happens(placeOnPalette(Palette, yellow), Time), holds_at(onPalette(Palette, Color2), Time), equals(Color1, blue), diff(Color2, green)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(placeOnPalette(Palette, Color1),
+                     onPalette(Palette, Color2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',51).
 axiom(terminates(placeOnPalette(Palette, Color1), onPalette(Palette, Color2), Time),
    
     [ happens(placeOnPalette(Palette, yellow), Time),
       holds_at(onPalette(Palette, Color2), Time),
       equals(Color1, blue),
-      { dif(Color2, green)
-      }
+      diff(Color2, green)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:56
 %; state constraint
 % [palette,color1,color2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:59
 % HoldsAt(OnPalette(palette,color1),time) &
 % HoldsAt(OnPalette(palette,color2),time) ->
 % color1 = color2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:61
-axiom(Color1=Color2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+
+ /*  holds_at(onPalette(Palette, Color1), Time), holds_at(onPalette(Palette, Color2), Time) ->
+       equals(Color1, Color2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+
+ /*  not(holds_at(onPalette(Palette, Color1), Time)) :-
+       holds_at(onPalette(Palette, Color2), Time),
+       not(equals(Color1, Color2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+
+ /*  [holds_at(onPalette(Palette, Color2), Time), not(equals(Color1, Color2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onPalette(Palette, Color1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+axiom(holds_at(neg(onPalette(Palette, Color1)), Time),
+   
+    [ holds_at(onPalette(Palette, Color2), Time),
+      not(equals(Color1, Color2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+
+ /*  not(holds_at(onPalette(Palette, Color2), Time)) :-
+       holds_at(onPalette(Palette, Color1), Time),
+       not(equals(Color1, Color2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+
+ /*  [holds_at(onPalette(Palette, Color1), Time), not(equals(Color1, Color2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(onPalette(Palette, Color2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',59).
+axiom(holds_at(neg(onPalette(Palette, Color2)), Time),
    
     [ holds_at(onPalette(Palette, Color1), Time),
-      holds_at(onPalette(Palette, Color2), Time)
+      not(equals(Color2, Color1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:63
 %; (1) place green over red
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:64
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 % HoldsAt(OnPalette(Palette1,Red),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(onPalette(palette1, red))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 axiom(initially(onPalette(palette1, red)),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:65
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:65
 % Happens(PlaceOnPalette(Palette1,Green),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(placeOnPalette(palette1, green), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 axiom(happens(placeOnPalette(palette1, green), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:67
 %; (2) place yellow+blue over green
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 % Happens(PlaceOnPalette(Palette1,Yellow),1).
-axiom(happens(placeOnPalette(palette1, yellow), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:69
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(placeOnPalette(palette1, yellow), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
+axiom(happens(placeOnPalette(palette1, yellow), now),
+    [is_time(now), b(t, now)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:69
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:69
 % Happens(PlaceOnPalette(Palette1,Blue),1).
-axiom(happens(placeOnPalette(palette1, blue), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(placeOnPalette(palette1, blue), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
+axiom(happens(placeOnPalette(palette1, blue), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:71
 %; (3) place yellow
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:72
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:72
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 % Happens(PlaceOnPalette(Palette1,Yellow),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(placeOnPalette(palette1, yellow), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 axiom(happens(placeOnPalette(palette1, yellow), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
 %; (4) place blue
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:75
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:75
 % Happens(PlaceOnPalette(Palette1,Blue),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(placeOnPalette(palette1, blue), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
 axiom(happens(placeOnPalette(palette1, blue), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:77
 %; (5) place green
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 % Happens(PlaceOnPalette(Palette1,Yellow),4).
-axiom(happens(placeOnPalette(palette1, yellow), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:79
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(placeOnPalette(palette1, yellow), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
+axiom(happens(placeOnPalette(palette1, yellow), t4),
+    [is_time(t4), b(t, t4)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:79
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:79
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:79
 % Happens(PlaceOnPalette(Palette1,Blue),4).
-axiom(happens(placeOnPalette(palette1, blue), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:81
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(placeOnPalette(palette1, blue), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
+axiom(happens(placeOnPalette(palette1, blue), t4),
+    [is_time(t4), b(t, t4)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:81
 % completion Delta Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',81).
 ==> completion(delta).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',81).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',84).
 % range time 0 5
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:84
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',84).
 ==> range(time,0,5).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:84
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',84).
 ==> range(offset,1,1).
 %; End of file.

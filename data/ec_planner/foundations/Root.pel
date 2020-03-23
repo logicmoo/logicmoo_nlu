@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'foundations/Root.e').
+% Mon, 23 Mar 2020 02:29:17 GMT
+% From ../foundations/Root.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',46).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -12,17 +18,29 @@
 %; IBM - Initial implementation
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:10
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
 % sort boolean
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
 ==> sort(boolean).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:11
 % sort integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
 ==> sort(integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:12
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
 % reified sort predicate
- %  reified_sort(predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+reified_sort(predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
 ==> mpred_prop(predicate,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:13
 % reified sort function
- %  reified_sort(function).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+reified_sort(function).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
 ==> mpred_prop(function,reified_sort).
 %; End of file.

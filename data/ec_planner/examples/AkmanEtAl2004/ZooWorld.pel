@@ -1,7 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.pel:3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',326).
+% Mon, 23 Mar 2020 02:26:04 GMT
+% From ../examples/AkmanEtAl2004/ZooWorld.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',52).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e').
@@ -68,49 +69,79 @@
 
 % function Loc(position): location
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-functional_predicate(loc(Loc_Param,Loc_Ret)).
+function(loc(position)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-==> mpred_prop(loc(position,location),functional_predicate).
+==> mpred_prop(loc(position),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-==> meta_argtypes(loc(position,location)).
+==> meta_argtypes(loc(position)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+predicate(locPred(position,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+==> mpred_prop(locPred(position,location),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+==> meta_argtypes(locPred(position,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+functional_predicate(loc,locPred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
 ==> resultIsa(loc,location).
 
 % function Side1(gate): position
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-functional_predicate(side1(Side1_Param,Side1_Ret)).
+function(side1(gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-==> mpred_prop(side1(gate,position),functional_predicate).
+==> mpred_prop(side1(gate),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
-==> meta_argtypes(side1(gate,position)).
+==> meta_argtypes(side1(gate)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+predicate(side1Pred(gate,position)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+==> mpred_prop(side1Pred(gate,position),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+==> meta_argtypes(side1Pred(gate,position)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
+functional_predicate(side1,side1Pred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',32).
 ==> resultIsa(side1,position).
 
 % function Side2(gate): position
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-functional_predicate(side2(Side2_Param,Side2_Ret)).
+function(side2(gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-==> mpred_prop(side2(gate,position),functional_predicate).
+==> mpred_prop(side2(gate),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-==> meta_argtypes(side2(gate,position)).
+==> meta_argtypes(side2(gate)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+predicate(side2Pred(gate,position)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+==> mpred_prop(side2Pred(gate,position),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+==> meta_argtypes(side2Pred(gate,position)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+functional_predicate(side2,side2Pred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
 ==> resultIsa(side2,position).
 
 % function Species(animal): species
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-functional_predicate(species(Species_Param,Species_Ret)).
+function(species(animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-==> mpred_prop(species(animal,species),functional_predicate).
+==> mpred_prop(species(animal),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
-==> meta_argtypes(species(animal,species)).
+==> meta_argtypes(species(animal)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+predicate(speciesPred(animal,species)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+==> mpred_prop(speciesPred(animal,species),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+==> meta_argtypes(speciesPred(animal,species)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
+functional_predicate(species,speciesPred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',34).
 ==> resultIsa(species,species).
 
 % predicate Accessible(position,position,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
-predicate(accessible(Accessible_Param,
-		     _,
-		     Accessible_Ret)).
+predicate(accessible(position,position,time)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
 ==> mpred_prop(accessible(position,position,time),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
@@ -118,7 +149,7 @@ predicate(accessible(Accessible_Param,
 
 % predicate Adult(animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
-predicate(adult(Adult_Ret)).
+predicate(adult(animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
 ==> mpred_prop(adult(animal),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',37).
@@ -126,7 +157,7 @@ predicate(adult(Adult_Ret)).
 
 % predicate Large(animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
-predicate(large(Large_Ret)).
+predicate(large(animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
 ==> mpred_prop(large(animal),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
@@ -134,7 +165,7 @@ predicate(large(Large_Ret)).
 
 % predicate LargeSpecies(species)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
-predicate(largeSpecies(LargeSpecies_Ret)).
+predicate(largeSpecies(species)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
 ==> mpred_prop(largeSpecies(species),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',39).
@@ -142,7 +173,7 @@ predicate(largeSpecies(LargeSpecies_Ret)).
 
 % predicate Neighbor(position,position)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
-predicate(neighbor(Neighbor_Param,Neighbor_Ret)).
+predicate(neighbor(position,position)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
 ==> mpred_prop(neighbor(position,position),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
@@ -150,7 +181,7 @@ predicate(neighbor(Neighbor_Param,Neighbor_Ret)).
 
 % predicate Sides(position,position,gate)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
-predicate(sides(Sides_Param,_,Sides_Ret)).
+predicate(sides(position,position,gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
 ==> mpred_prop(sides(position,position,gate),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',41).
@@ -158,7 +189,7 @@ predicate(sides(Sides_Param,_,Sides_Ret)).
 
 % event Close(human,gate)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
-event(close(Close_Param,Close_Ret)).
+event(close(human,gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
 ==> mpred_prop(close(human,gate),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
@@ -166,7 +197,7 @@ event(close(Close_Param,Close_Ret)).
 
 % event GetOff(human,animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
-event(getOff(GetOff_Param,GetOff_Ret)).
+event(getOff(human,animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
 ==> mpred_prop(getOff(human,animal),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',44).
@@ -174,7 +205,7 @@ event(getOff(GetOff_Param,GetOff_Ret)).
 
 % event Mount(human,animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
-event(mount(Mount_Param,Mount_Ret)).
+event(mount(human,animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
 ==> mpred_prop(mount(human,animal),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
@@ -182,7 +213,7 @@ event(mount(Mount_Param,Mount_Ret)).
 
 % event Move(animal,position)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
-event(move(Move_Param,Move_Ret)).
+event(move(animal,position)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
 ==> mpred_prop(move(animal,position),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',46).
@@ -190,7 +221,7 @@ event(move(Move_Param,Move_Ret)).
 
 % event Open(human,gate)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
-event(open(Open_Param,Open_Ret)).
+event(open(human,gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
 ==> mpred_prop(open(human,gate),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
@@ -198,7 +229,7 @@ event(open(Open_Param,Open_Ret)).
 
 % event ThrowOff(animal,human)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
-event(throwOff(ThrowOff_Param,ThrowOff_Ret)).
+event(throwOff(animal,human)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
 ==> mpred_prop(throwOff(animal,human),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',48).
@@ -206,7 +237,7 @@ event(throwOff(ThrowOff_Param,ThrowOff_Ret)).
 
 % fluent AbnormalEncroachment(human)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',51).
-fluent(abnormalEncroachment(AbnormalEncroachment_Ret)).
+fluent(abnormalEncroachment(human)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',51).
 ==> mpred_prop(abnormalEncroachment(human),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',51).
@@ -218,7 +249,7 @@ fluent(abnormalEncroachment(AbnormalEncroachment_Ret)).
 
 % fluent DoneBy(event,animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',53).
-fluent(doneBy(DoneBy_Param,DoneBy_Ret)).
+fluent(doneBy(event,animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',53).
 ==> mpred_prop(doneBy(event,animal),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',53).
@@ -230,7 +261,7 @@ fluent(doneBy(DoneBy_Param,DoneBy_Ret)).
 
 % fluent Mounted(human,animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
-fluent(mounted(Mounted_Param,Mounted_Ret)).
+fluent(mounted(human,animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
 ==> mpred_prop(mounted(human,animal),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
@@ -238,7 +269,7 @@ fluent(mounted(Mounted_Param,Mounted_Ret)).
 
 % fluent MountFails(human)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
-fluent(mountFails(MountFails_Ret)).
+fluent(mountFails(human)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
 ==> mpred_prop(mountFails(human),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',55).
@@ -250,7 +281,7 @@ fluent(mountFails(MountFails_Ret)).
 
 % fluent Moves(animal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',57).
-fluent(moves(Moves_Ret)).
+fluent(moves(animal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',57).
 ==> mpred_prop(moves(animal),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',57).
@@ -262,7 +293,7 @@ fluent(moves(Moves_Ret)).
 
 % fluent Opened(gate)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',59).
-fluent(opened(Opened_Ret)).
+fluent(opened(gate)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',59).
 ==> mpred_prop(opened(gate),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',59).
@@ -270,7 +301,7 @@ fluent(opened(Opened_Ret)).
 
 % fluent Pos(animal,position)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
-fluent(pos(Pos_Param,Pos_Ret)).
+fluent(pos(animal,position)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
 ==> mpred_prop(pos(animal,position),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
@@ -278,8 +309,7 @@ fluent(pos(Pos_Param,Pos_Ret)).
 
 % fluent PosDeterminingFluent(human,position)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
-fluent(posDeterminingFluent(PosDeterminingFluent_Param,
-			    PosDeterminingFluent_Ret)).
+fluent(posDeterminingFluent(human,position)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
 ==> mpred_prop(posDeterminingFluent(human,position),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',61).
@@ -291,7 +321,7 @@ fluent(posDeterminingFluent(PosDeterminingFluent_Param,
 
 % fluent ThrowOffFails(animal,human)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',63).
-fluent(throwOffFails(ThrowOffFails_Param,ThrowOffFails_Ret)).
+fluent(throwOffFails(animal,human)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',63).
 ==> mpred_prop(throwOffFails(animal,human),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',63).
@@ -706,11 +736,11 @@ axiom(not(largeSpecies(species(Animal))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',91).
 
  /*  neighbor(Position, Position1) :-
-       some(Position1, '$kolem_Fn_175'(Position)).
+       some(Position1, '$kolem_Fn_197'(Position)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',91).
 
- /*  [some(Position1, '$kolem_Fn_175'(Position))] ->
+ /*  [some(Position1, '$kolem_Fn_197'(Position))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -718,7 +748,7 @@ axiom(not(largeSpecies(species(Animal))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',91).
 axiom(neighbor(Position, Position1),
-    [some(Position1, '$kolem_Fn_175'(Position))]).
+    [some(Position1, '$kolem_Fn_197'(Position))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:93
@@ -962,11 +992,11 @@ axiom(not(sides(Position1, Position2, Gate)),
        ( diff(loc(Position1), loc(Position2)),
          neighbor(Position1, Position2)
        ),
-       some(Gate, '$kolem_Fn_176'(Position1, Position2)).
+       some(Gate, '$kolem_Fn_198'(Position1, Position2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
- /*  [diff(loc(Position1), loc(Position2)), neighbor(Position1, Position2), some(Gate, '$kolem_Fn_176'(Position1, Position2))] ->
+ /*  [diff(loc(Position1), loc(Position2)), neighbor(Position1, Position2), some(Gate, '$kolem_Fn_198'(Position1, Position2))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -977,18 +1007,18 @@ axiom(sides(Position1, Position2, Gate),
    
     [ diff(loc(Position1), loc(Position2)),
       neighbor(Position1, Position2),
-      some(Gate, '$kolem_Fn_176'(Position1, Position2))
+      some(Gate, '$kolem_Fn_198'(Position1, Position2))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
  /*  not(neighbor(Position1, Position2)) :-
        diff(loc(Position1), loc(Position2)),
        not(sides(Position1, Position2, Gate)),
-       some(Gate, '$kolem_Fn_176'(Position1, Position2)).
+       some(Gate, '$kolem_Fn_198'(Position1, Position2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
- /*  [diff(loc(Position1), loc(Position2)), not(sides(Position1, Position2, Gate)), some(Gate, '$kolem_Fn_176'(Position1, Position2))] ->
+ /*  [diff(loc(Position1), loc(Position2)), not(sides(Position1, Position2, Gate)), some(Gate, '$kolem_Fn_198'(Position1, Position2))] ->
        ta(Ta_Param5,
           tvs1=[],
           tvs2=[],
@@ -999,7 +1029,7 @@ axiom(not(neighbor(Position1, Position2)),
    
     [ diff(loc(Position1), loc(Position2)),
       not(sides(Position1, Position2, Gate)),
-      some(Gate, '$kolem_Fn_176'(Position1, Position2))
+      some(Gate, '$kolem_Fn_198'(Position1, Position2))
     ]).
 
 
@@ -1070,11 +1100,11 @@ axiom(holds_at(neg(pos(Animal, Position2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',131).
 
  /*  holds_at(pos(Animal, Position), Time) :-
-       some(Position, '$kolem_Fn_177'(Animal, Time)).
+       some(Position, '$kolem_Fn_199'(Animal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',131).
 
- /*  [some(Position, '$kolem_Fn_177'(Animal, Time))] ->
+ /*  [some(Position, '$kolem_Fn_199'(Animal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1082,7 +1112,7 @@ axiom(holds_at(neg(pos(Animal, Position2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',131).
 axiom(holds_at(pos(Animal, Position), Time),
-    [some(Position, '$kolem_Fn_177'(Animal, Time))]).
+    [some(Position, '$kolem_Fn_199'(Animal, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:132
@@ -1747,11 +1777,11 @@ axiom(terminates(close(Human, Gate), opened(Gate), Time),
        ;   not(holds_at(pos(Human, Position), Time))
        ),
        some(Position,
-            '$kolem_Fn_183'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_205'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [(holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)), some(Position, '$kolem_Fn_183'(Human, Gate, Time, Animal))] ->
+ /*  [(holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)), some(Position, '$kolem_Fn_205'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1762,18 +1792,18 @@ axiom(not(happens(close(Human, Gate), Time)),
    
     [  (holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)),
       some(Position,
-           '$kolem_Fn_183'(Human, Gate, Time, Animal))
+           '$kolem_Fn_205'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  holds_at(opened(Gate), Time) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_183'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_205'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_183'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_205'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1784,18 +1814,18 @@ axiom(holds_at(opened(Gate), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_183'(Human, Gate, Time, Animal))
+           '$kolem_Fn_205'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  not(holds_at(mounted(Human, Animal), Time)) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_183'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_205'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_183'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_205'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1806,18 +1836,18 @@ axiom(holds_at(neg(mounted(Human, Animal)), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_183'(Human, Gate, Time, Animal))
+           '$kolem_Fn_205'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  holds_at(pos(Human, Position), Time) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_183'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_205'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_183'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_205'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1828,7 +1858,7 @@ axiom(holds_at(pos(Human, Position), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_183'(Human, Gate, Time, Animal))
+           '$kolem_Fn_205'(Human, Gate, Time, Animal))
     ]).
 
 
@@ -2644,11 +2674,11 @@ axiom(not(happens(mount(Human, Animal), Time)),
 
  /*  holds_at(mounted(Human2, Animal), Time) :-
        happens(mount(Human1, Human2), Time),
-       some(Animal, '$kolem_Fn_191'(Human1, Human2, Time)).
+       some(Animal, '$kolem_Fn_213'(Human1, Human2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
- /*  [happens(mount(Human1, Human2), Time), some(Animal, '$kolem_Fn_191'(Human1, Human2, Time))] ->
+ /*  [happens(mount(Human1, Human2), Time), some(Animal, '$kolem_Fn_213'(Human1, Human2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2658,17 +2688,17 @@ axiom(not(happens(mount(Human, Animal), Time)),
 axiom(holds_at(mounted(Human2, Animal), Time),
    
     [ happens(mount(Human1, Human2), Time),
-      some(Animal, '$kolem_Fn_191'(Human1, Human2, Time))
+      some(Animal, '$kolem_Fn_213'(Human1, Human2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
  /*  not(happens(mount(Human1, Human2), Time)) :-
        not(holds_at(mounted(Human2, Animal), Time)),
-       some(Animal, '$kolem_Fn_191'(Human1, Human2, Time)).
+       some(Animal, '$kolem_Fn_213'(Human1, Human2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
- /*  [holds_at(neg(mounted(Human2, Animal)), Time), some(Animal, '$kolem_Fn_191'(Human1, Human2, Time))] ->
+ /*  [holds_at(neg(mounted(Human2, Animal)), Time), some(Animal, '$kolem_Fn_213'(Human1, Human2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2678,7 +2708,7 @@ axiom(holds_at(mounted(Human2, Animal), Time),
 axiom(not(happens(mount(Human1, Human2), Time)),
    
     [ holds_at(neg(mounted(Human2, Animal)), Time),
-      some(Animal, '$kolem_Fn_191'(Human1, Human2, Time))
+      some(Animal, '$kolem_Fn_213'(Human1, Human2, Time))
     ]).
 
 
@@ -5130,52 +5160,52 @@ axiom(not(sides(Position1, Position2, Gate)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',398).
 % Loc(1)=CageA.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',398).
-loc(1,cageA).
+equals(loc(1),cageA).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:398
 % Loc(2)=CageA.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',398).
-loc(2,cageA).
+equals(loc(2),cageA).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:399
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',400).
 % Loc(3)=CageA.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',400).
-loc(3,cageA).
+equals(loc(3),cageA).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:400
 % Loc(4)=CageA.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',400).
-loc(4,cageA).
+equals(loc(4),cageA).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:401
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',402).
 % Loc(5)=Outside.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',402).
-loc(5,outside).
+equals(loc(5),outside).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:402
 % Loc(6)=Outside.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',402).
-loc(6,outside).
+equals(loc(6),outside).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:403
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',404).
 % Loc(7)=Outside.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',404).
-loc(7,outside).
+equals(loc(7),outside).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:404
 % Loc(8)=Outside.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',404).
-loc(8,outside).
+equals(loc(8),outside).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:406
@@ -5605,14 +5635,14 @@ axiom(neighbor(Position1, Position2),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:435
 % Side1(GateAO)=4.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',435).
-side1(gateAO,4).
+equals(side1(gateAO),4).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:436
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',437).
 % Side2(GateAO)=7.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',437).
-side2(gateAO,7).
+equals(side2(gateAO),7).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:438

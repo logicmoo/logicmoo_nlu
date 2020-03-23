@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/MakingAnAcquaintance.e').
+% Mon, 23 Mar 2020 02:26:42 GMT
+% From ../ecnet/MakingAnAcquaintance.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',127).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -22,237 +28,517 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',22).
 % option modeldiff on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',22).
 :- set_ec_option(modeldiff, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:23
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(lookOutOnto).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(floor).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(buildingOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(skyOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(groundOf).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:24
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(near).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(walkFrom).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(walkFromTo).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',24).
 ignore(runFromTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 % ignore Side1, Side2
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 ignore(side1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 ignore(side2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:26
 % ignore FriendOf, NeutralOf, EnemyOf,
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 ignore(friendOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 ignore(neutralOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',26).
 ignore(enemyOf).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 % ignore BecomeFriends, BecomeNeutral, BecomeEnemies
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(becomeFriends).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(becomeNeutral).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(becomeEnemies).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:28
 % ignore Happy, Calm, Unhappy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(happy).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(calm).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',28).
 ignore(unhappy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 % ignore BecomeHappy, BecomeCalm, BecomeUnhappy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 ignore(becomeHappy).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 ignore(becomeCalm).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 ignore(becomeUnhappy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:30
 % ignore AngryAt, BecomeAngryAt
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 ignore(angryAt).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',30).
 ignore(becomeAngryAt).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 % ignore Like, Love, Dislike, LikeSnow
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 ignore(like).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 ignore(love).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 ignore(dislike).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 ignore(likeSnow).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:32
 % ignore HandTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',32).
 ignore(handTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 % ignore InviteIn, InvitedIn, IntendToWalkIn, IntentionToWalkIn
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(inviteIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(invitedIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(intendToWalkIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(intentionToWalkIn).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:34
 % ignore ActOnIntentionToWalkIn, Greet, SayGoodbye, CryForJoy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(actOnIntentionToWalkIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(greet).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(sayGoodbye).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',34).
 ignore(cryForJoy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 % ignore Threaten, ReleaseFromThreat, ThreatenedBy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(threaten).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(releaseFromThreat).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(threatenedBy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:36
 % ignore Order, KnowOrder, Request, KnowRequest
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(order).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(knowOrder).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(request).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',36).
 ignore(knowRequest).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:39
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',39).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
 % load answers/Mueller2003/Ontology.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- load_e('answers/Mueller2003/Ontology.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:41
 % load answers/Mueller2003/Feeling.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- load_e('answers/Mueller2003/Feeling.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',41).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
 % load answers/Mueller2004c/HandTo.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- load_e('answers/Mueller2004c/HandTo.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:43
 % load answers/Mueller2004c/RTSpaceM.e
-load('answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',43).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
 % load answers/Mueller2003/Sleep.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- load_e('answers/Mueller2003/Sleep.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:45
 % load answers/Mueller2003/SpeechAct.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- load_e('answers/Mueller2003/SpeechAct.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',45).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',47).
 % load answers/Mueller2004c/IPRel.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',47).
+:- load_e('answers/Mueller2004c/IPRel.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',47).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',47).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',49).
 % location Location1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',49).
 ==> t(location,location1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',51).
 % portal DummyPortal1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',51).
 ==> t(portal,dummyPortal1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',53).
 % agent Introducer1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',53).
 ==> t(agent,introducer1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',55).
 % agent Introducee1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',55).
 ==> t(agent,introducee1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',57).
 % agent Introduced1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',57).
 ==> t(agent,introduced1).
 %; initial state
 % [agent,physobj]
- % !HoldsAt(SittingOn(agent,physobj),0).
- %  not(initially(sittingOn(Agent,Physobj))).
-axiom(not(initially(sittingOn(SittingOn_Param, SittingOn_Ret))),
+ 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:59
+% !HoldsAt(SittingOn(agent,physobj),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',59).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(sittingOn(Agent, Physobj)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',59).
+axiom(initially(neg(sittingOn(Agent, Physobj))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:60
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:60
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
 % [agent,physobj]
  % !HoldsAt(LyingOn(agent,physobj),0).
- %  not(initially(lyingOn(Agent,Physobj))).
-axiom(not(initially(lyingOn(LyingOn_Param, LyingOn_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(lyingOn(Agent, Physobj)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
+axiom(initially(neg(lyingOn(Agent, Physobj))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:61
 % [agent]
  % HoldsAt(Dressed(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
 axiom(initially(dressed(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
 % [agent]
  % HoldsAt(Awake(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
 axiom(initially(awake(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:63
 % [agent]
  % HoldsAt(Sleep3(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
 axiom(initially(sleep3(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:64
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
 % [agent]
  % HoldsAt(Standing(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
 axiom(initially(standing(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:65
 % HoldsAt(AcquaintanceOf(Introducer1,Introducee1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(acquaintanceOf(introducer1, introducee1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
 axiom(initially(acquaintanceOf(introducer1, introducee1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:66
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
 % HoldsAt(AcquaintanceOf(Introducer1,Introduced1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(acquaintanceOf(introducer1, introduced1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
 axiom(initially(acquaintanceOf(introducer1, introduced1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:67
 % !HoldsAt(AcquaintanceOf(Introducee1,Introduced1),0).
- %  not(initially(acquaintanceOf(introducee1,introduced1))).
-axiom(not(initially(acquaintanceOf(introducee1, introduced1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(acquaintanceOf(introducee1, introduced1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
+axiom(initially(neg(acquaintanceOf(introducee1, introduced1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:69
 %; narrative
 %;Happens(IntroduceMutual(Introducer1,Introducee1,Introduced1),0).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',72).
 % Happens(Introduce(Introducee1,Introduced1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',72).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(introduce(introducee1, introduced1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',72).
 axiom(happens(introduce(introducee1, introduced1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:72
 %;Happens(Introduce(Introduced1,Introducee1),0).
 %;Happens(Smile(Introducer1),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
 % Happens(Smile(Introducee1),1).
-axiom(happens(smile(introducee1), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(smile(introducee1), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
+axiom(happens(smile(introducee1), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:75
 % Happens(Smile(Introduced1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(smile(introduced1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
 axiom(happens(smile(introduced1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:76
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
 % Happens(SayPleasedToMeet(Introducee1,Introduced1),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3,
+          tvs1=[3],
+          tvs2=[t, t3],
+          happens(sayPleasedToMeet(introducee1, introduced1), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
 axiom(happens(sayPleasedToMeet(introducee1, introduced1), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:77
 % Happens(SayPleasedToMeet(Introduced1,Introducee1),4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
+
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4,
+          tvs1=[4],
+          tvs2=[t, t4],
+          happens(sayPleasedToMeet(introduced1, introducee1), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
 axiom(happens(sayPleasedToMeet(introduced1, introducee1), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+    [is_time(t4), b(t, t4)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',79).
 % Happens(ShakeHands(Introducee1,Introduced1),5).
-axiom(happens(shakeHands(introducee1, introduced1), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',79).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:80
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(shakeHands(introducee1, introduced1), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',79).
+axiom(happens(shakeHands(introducee1, introduced1), t5),
+    [is_time(t5), b(t, t5)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:80
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',81).
 % range time 0 6
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',81).
 ==> range(time,0,6).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:81
 % range offset 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',81).
 ==> range(offset,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',83).
 % range diameter 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',83).
 ==> range(diameter,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:84
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',85).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/MakingAnAcquaintance.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',85).
 ==> completion(happens).
 %; End of file.

@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Chapter10/TwoScreens.e').
+% Mon, 23 Mar 2020 02:25:37 GMT
+% From ../examples/Mueller2006/Chapter10/TwoScreens.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/OneScreen.e',110).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -28,56 +34,116 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:28
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',28).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',31).
 % sort object
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',31).
 ==> sort(object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:31
 % sort location
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',31).
 ==> sort(location).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 % object O1, O2
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(object,o1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(object,o2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:34
 % location L1, L2, L3, L4, L5
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(location,l1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(location,l2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(location,l3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(location,l4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',34).
 ==> t(location,l5).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
 % predicate Adjacent(location,location)
- %  predicate(adjacent(location,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
+predicate(adjacent(location,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
 ==> mpred_prop(adjacent(location,location),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
 ==> meta_argtypes(adjacent(location,location)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:37
 % predicate Equal(object,object)
- %  predicate(equal(object,object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
+predicate(equal(object,object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
 ==> mpred_prop(equal(object,object),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',37).
 ==> meta_argtypes(equal(object,object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
 % fluent At(object,location)
- %  fluent(at(object,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
+fluent(at(object,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
 ==> mpred_prop(at(object,location),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
 ==> meta_argtypes(at(object,location)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:40
 % event Move(object,location,location)
- %  event(move(object,location,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
+event(move(object,location,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
 ==> mpred_prop(move(object,location,location),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',40).
 ==> meta_argtypes(move(object,location,location)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',43).
 %; Sigma
 % [object,location1,location2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:45
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:45
 % HoldsAt(At(object,location1),time) &
 % Adjacent(location1,location2) ->
 % Initiates(Move(object,location1,location2),At(object,location2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',45).
+
+ /*  [holds_at(at(Object, Location1), Time), adjacent(Location1, Location2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(move(Object, Location1, Location2),
+                    at(Object, Location2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',45).
 axiom(initiates(move(Object, Location1, Location2), at(Object, Location2), Time),
    
     [ holds_at(at(Object, Location1), Time),
@@ -85,12 +151,23 @@ axiom(initiates(move(Object, Location1, Location2), at(Object, Location2), Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:49
 % [object,location1,location2,time]
 % HoldsAt(At(object,location1),time) &
 % Adjacent(location1,location2) ->
 % Terminates(Move(object,location1,location2),At(object,location1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',51).
+
+ /*  [holds_at(at(Object, Location1), Time), adjacent(Location1, Location2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(move(Object, Location1, Location2),
+                     at(Object, Location1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',51).
 axiom(terminates(move(Object, Location1, Location2), at(Object, Location1), Time),
    
     [ holds_at(at(Object, Location1), Time),
@@ -98,90 +175,219 @@ axiom(terminates(move(Object, Location1, Location2), at(Object, Location1), Time
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:54
 %; Psi
 % [object,location1,location2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:57
 % HoldsAt(At(object,location1),time) &
 % HoldsAt(At(object,location2),time) ->
 % location1=location2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:59
-axiom(Location1=Location2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+
+ /*  holds_at(at(Object, Location1), Time), holds_at(at(Object, Location2), Time) ->
+       equals(Location1, Location2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+
+ /*  not(holds_at(at(Object, Location1), Time)) :-
+       holds_at(at(Object, Location2), Time),
+       not(equals(Location1, Location2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+
+ /*  [holds_at(at(Object, Location2), Time), not(equals(Location1, Location2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Object, Location1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+axiom(holds_at(neg(at(Object, Location1)), Time),
+   
+    [ holds_at(at(Object, Location2), Time),
+      not(equals(Location1, Location2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+
+ /*  not(holds_at(at(Object, Location2), Time)) :-
+       holds_at(at(Object, Location1), Time),
+       not(equals(Location1, Location2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+
+ /*  [holds_at(at(Object, Location1), Time), not(equals(Location1, Location2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Object, Location2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',57).
+axiom(holds_at(neg(at(Object, Location2)), Time),
    
     [ holds_at(at(Object, Location1), Time),
-      holds_at(at(Object, Location2), Time)
+      not(equals(Location2, Location1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:61
 % [object,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 % {location} % HoldsAt(At(object,location),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 
  /*  exists([Location],
-          holds_at(at(Object,Location),Time)).
+    holds_at(at(Object,Location),Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 
- /*  holds_at(at(At_Param, Location4), Time5) :-
-       some(Location4, '$kolem_Fn_2'(At_Param, Time5)).
+ /*  holds_at(at(Object, Location), Time) :-
+       some(Location, '$kolem_Fn_148'(Object, Time)).
  */
-axiom(holds_at(at(At_Param, Location4), Time5),
-    [some(Location4, '$kolem_Fn_2'(At_Param, Time5))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 
- /*  not(some(Location7, '$kolem_Fn_2'(Fn_2_Param, Time8))) :-
-       not(holds_at(at(Fn_2_Param, Location7), Time8)).
+ /*  [some(Location, '$kolem_Fn_148'(Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Object, Location), Time)).
  */
-axiom(not(some(Location7, '$kolem_Fn_2'(Fn_2_Param, Time8))),
-    [not(holds_at(at(Fn_2_Param, Location7), Time8))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
+axiom(holds_at(at(Object, Location), Time),
+    [some(Location, '$kolem_Fn_148'(Object, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:64
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
 % [object1,object2,location,time]
 % HoldsAt(At(object1,location),time) &
 % HoldsAt(At(object2,location),time) ->
 % Equal(object1,object2).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  holds_at(at(Object1, Location), Time), holds_at(at(Object2, Location), Time) ->
+       equal(Object1, Object2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  equal(Object1, Object2) :-
+       holds_at(at(Object1, Location), Time),
+       holds_at(at(Object2, Location), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  [holds_at(at(Object1, Location), Time), holds_at(at(Object2, Location), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          equal(Object1, Object2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
 axiom(equal(Object1, Object2),
    
     [ holds_at(at(Object1, Location), Time),
       holds_at(at(Object2, Location), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  not(holds_at(at(Object1, Location), Time)) :-
+       holds_at(at(Object2, Location), Time),
+       not(equal(Object1, Object2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  [holds_at(at(Object2, Location), Time), not(equal(Object1, Object2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Object1, Location)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+axiom(holds_at(neg(at(Object1, Location)), Time),
+   
+    [ holds_at(at(Object2, Location), Time),
+      not(equal(Object1, Object2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  not(holds_at(at(Object2, Location), Time)) :-
+       holds_at(at(Object1, Location), Time),
+       not(equal(Object1, Object2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+
+ /*  [holds_at(at(Object1, Location), Time), not(equal(Object1, Object2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Object2, Location)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',65).
+axiom(holds_at(neg(at(Object2, Location)), Time),
+   
+    [ holds_at(at(Object1, Location), Time),
+      not(equal(Object1, Object2))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:69
 % [location1, location2]
 % Adjacent(location1,location2) <->
 % Adjacent(location2,location1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:71
 
  /*  adjacent(Location1, Location2) <->
        adjacent(Location2, Location1).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:71
-axiom(adjacent(Location1, Location2),
-    [adjacent(Location2, Location1)]).
-axiom(adjacent(Location2, Location1),
-    [adjacent(Location1, Location2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',71).
+
+ /*  [adjacent] <->
+       [adjacent].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',71).
+
+ /*  adjacent(Location1, Location2) ->
+       adjacent(Location2, Location1).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',71).
+
+ /*  adjacent(Location2, Location1) ->
+       adjacent(Location1, Location2).
+ */
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:73
 % [object1,object2]
 % Equal(object1,object2) <->
 % Equal(object2,object1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:75
 
  /*  equal(Object1, Object2) <->
        equal(Object2, Object1).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:75
-axiom(equal(Object1, Object2),
-    [equal(Object2, Object1)]).
-axiom(equal(Object2, Object1),
-    [equal(Object1, Object2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',75).
+
+ /*  [equal] <->
+       [equal].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',75).
+
+ /*  equal(Object1, Object2) ->
+       equal(Object2, Object1).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',75).
+
+ /*  equal(Object2, Object1) ->
+       equal(Object1, Object2).
+ */
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:77
 %; Gamma
 % [location1,location2]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:80
 % Adjacent(location1,location2) <->
 % (location1=L1 & location2=L2) |
 % (location1=L2 & location2=L1) |
@@ -191,121 +397,421 @@ axiom(equal(Object2, Object1),
 % (location1=L4 & location2=L3) |
 % (location1=L4 & location2=L5) |
 % (location1=L5 & location2=L4).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:88
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
 
  /*  adjacent(Location1, Location2) <->
-       (   Location1=l1,
-           Location2=l2
-       ;   Location1=l2,
-           Location2=l1
-       ;   Location1=l2,
-           Location2=l3
-       ;   Location1=l3,
-           Location2=l2
-       ;   Location1=l3,
-           Location2=l4
-       ;   Location1=l4,
-           Location2=l3
-       ;   Location1=l4,
-           Location2=l5
-       ;   Location1=l5,
-           Location2=l4
+       (   equals(Location1, l1),
+           equals(Location2, l2)
+       ;   equals(Location1, l2),
+           equals(Location2, l1)
+       ;   equals(Location1, l2),
+           equals(Location2, l3)
+       ;   equals(Location1, l3),
+           equals(Location2, l2)
+       ;   equals(Location1, l3),
+           equals(Location2, l4)
+       ;   equals(Location1, l4),
+           equals(Location2, l3)
+       ;   equals(Location1, l4),
+           equals(Location2, l5)
+       ;   equals(Location1, l5),
+           equals(Location2, l4)
        ).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:88
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l1), equals(Location2, l2)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l2), equals(Location2, l1)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l2), equals(Location2, l3)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l3), equals(Location2, l2)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l3), equals(Location2, l4)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l4), equals(Location2, l3)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l4), equals(Location2, l5)]).
-axiom(adjacent(Location1, Location2),
-    [equals(Location1, l5), equals(Location2, l4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
 
- /*   if(adjacent(Location1, Location2),
-          (Location1=l1, Location2=l2;Location1=l2, Location2=l1;Location1=l2, Location2=l3;Location1=l3, Location2=l2;Location1=l3, Location2=l4;Location1=l4, Location2=l3;Location1=l4, Location2=l5;Location1=l5, Location2=l4)).
+ /*  [adjacent] <->
+       
+       [  (;),
+         equals,
+         l1,
+         equals,
+         l2,
+          (;),
+         equals,
+         l2,
+         equals,
+         l1,
+          (;),
+         equals,
+         l2,
+         equals,
+         l3,
+          (;),
+         equals,
+         l3,
+         equals,
+         l2,
+          (;),
+         equals,
+         l3,
+         equals,
+         l4,
+          (;),
+         equals,
+         l4,
+         equals,
+         l3,
+          (;),
+         equals,
+         l4,
+         equals,
+         l5,
+         equals,
+         l5,
+         equals,
+         l4
+       ].
  */
-todo_later(if(adjacent(Location1, Location2),  (Location1=l1, Location2=l2;Location1=l2, Location2=l1;Location1=l2, Location2=l3;Location1=l3, Location2=l2;Location1=l3, Location2=l4;Location1=l4, Location2=l3;Location1=l4, Location2=l5;Location1=l5, Location2=l4)), [(not(adjacent(Adjacent_Param, Equals_Param)):-(not(equals(Adjacent_Param, l1));not(equals(Equals_Param, l2))), (not(equals(Adjacent_Param, l2));not(equals(Equals_Param, l1))), (not(equals(Adjacent_Param, l2));not(equals(Equals_Param, l3))), (not(equals(Adjacent_Param, l3));not(equals(Equals_Param, l2))), (not(equals(Adjacent_Param, l3));not(equals(Equals_Param, l4))), (not(equals(Adjacent_Param, l4));not(equals(Equals_Param, l3))), (not(equals(Adjacent_Param, l4));not(equals(Equals_Param, l5))), (not(equals(Adjacent_Param, l5));not(equals(Equals_Param, l4)))),  (equals(Equals_Param4, l1):-((not(equals(Equals_Param4, l2));not(equals(Equals_Param5, l1))), (not(equals(Equals_Param4, l2));not(equals(Equals_Param5, l3))), (not(equals(Equals_Param4, l3));not(equals(Equals_Param5, l2))), (not(equals(Equals_Param4, l3));not(equals(Equals_Param5, l4))), (not(equals(Equals_Param4, l4));not(equals(Equals_Param5, l3))), (not(equals(Equals_Param4, l4));not(equals(Equals_Param5, l5))), (not(equals(Equals_Param4, l5));not(equals(Equals_Param5, l4)))), adjacent(Equals_Param4, Equals_Param5)),  (equals(Equals_Param6, l2):-((not(equals(Equals_Param7, l2));not(equals(Equals_Param6, l1))), (not(equals(Equals_Param7, l2));not(equals(Equals_Param6, l3))), (not(equals(Equals_Param7, l3));not(equals(Equals_Param6, l2))), (not(equals(Equals_Param7, l3));not(equals(Equals_Param6, l4))), (not(equals(Equals_Param7, l4));not(equals(Equals_Param6, l3))), (not(equals(Equals_Param7, l4));not(equals(Equals_Param6, l5))), (not(equals(Equals_Param7, l5));not(equals(Equals_Param6, l4)))), adjacent(Equals_Param7, Equals_Param6)),  (equals(Equals_Param8, l2):-((not(equals(Equals_Param8, l2));not(equals(Equals_Param9, l3))), (not(equals(Equals_Param8, l3));not(equals(Equals_Param9, l2))), (not(equals(Equals_Param8, l3));not(equals(Equals_Param9, l4))), (not(equals(Equals_Param8, l4));not(equals(Equals_Param9, l3))), (not(equals(Equals_Param8, l4));not(equals(Equals_Param9, l5))), (not(equals(Equals_Param8, l5));not(equals(Equals_Param9, l4)))), (not(equals(Equals_Param8, l1));not(equals(Equals_Param9, l2))), adjacent(Equals_Param8, Equals_Param9)),  (equals(Equals_Param10, l1):-((not(equals(Equals_Param11, l2));not(equals(Equals_Param10, l3))), (not(equals(Equals_Param11, l3));not(equals(Equals_Param10, l2))), (not(equals(Equals_Param11, l3));not(equals(Equals_Param10, l4))), (not(equals(Equals_Param11, l4));not(equals(Equals_Param10, l3))), (not(equals(Equals_Param11, l4));not(equals(Equals_Param10, l5))), (not(equals(Equals_Param11, l5));not(equals(Equals_Param10, l4)))), (not(equals(Equals_Param11, l1));not(equals(Equals_Param10, l2))), adjacent(Equals_Param11, Equals_Param10)),  (equals(Equals_Param12, l2):-((not(equals(Equals_Param12, l3));not(equals(Equals_Param13, l2))), (not(equals(Equals_Param12, l3));not(equals(Equals_Param13, l4))), (not(equals(Equals_Param12, l4));not(equals(Equals_Param13, l3))), (not(equals(Equals_Param12, l4));not(equals(Equals_Param13, l5))), (not(equals(Equals_Param12, l5));not(equals(Equals_Param13, l4)))), (not(equals(Equals_Param12, l2));not(equals(Equals_Param13, l1))), (not(equals(Equals_Param12, l1));not(equals(Equals_Param13, l2))), adjacent(Equals_Param12, Equals_Param13)),  (equals(Equals_Param14, l3):-((not(equals(Equals_Param15, l3));not(equals(Equals_Param14, l2))), (not(equals(Equals_Param15, l3));not(equals(Equals_Param14, l4))), (not(equals(Equals_Param15, l4));not(equals(Equals_Param14, l3))), (not(equals(Equals_Param15, l4));not(equals(Equals_Param14, l5))), (not(equals(Equals_Param15, l5));not(equals(Equals_Param14, l4)))), (not(equals(Equals_Param15, l2));not(equals(Equals_Param14, l1))), (not(equals(Equals_Param15, l1));not(equals(Equals_Param14, l2))), adjacent(Equals_Param15, Equals_Param14)),  (equals(Equals_Param16, l3):-((not(equals(Equals_Param16, l3));not(equals(Equals_Param17, l4))), (not(equals(Equals_Param16, l4));not(equals(Equals_Param17, l3))), (not(equals(Equals_Param16, l4));not(equals(Equals_Param17, l5))), (not(equals(Equals_Param16, l5));not(equals(Equals_Param17, l4)))), (not(equals(Equals_Param16, l2));not(equals(Equals_Param17, l3))), (not(equals(Equals_Param16, l2));not(equals(Equals_Param17, l1))), (not(equals(Equals_Param16, l1));not(equals(Equals_Param17, l2))), adjacent(Equals_Param16, Equals_Param17)),  (equals(Equals_Param18, l2):-((not(equals(Equals_Param19, l3));not(equals(Equals_Param18, l4))), (not(equals(Equals_Param19, l4));not(equals(Equals_Param18, l3))), (not(equals(Equals_Param19, l4));not(equals(Equals_Param18, l5))), (not(equals(Equals_Param19, l5));not(equals(Equals_Param18, l4)))), (not(equals(Equals_Param19, l2));not(equals(Equals_Param18, l3))), (not(equals(Equals_Param19, l2));not(equals(Equals_Param18, l1))), (not(equals(Equals_Param19, l1));not(equals(Equals_Param18, l2))), adjacent(Equals_Param19, Equals_Param18)),  (equals(Equals_Param20, l3):-((not(equals(Equals_Param20, l4));not(equals(Equals_Param21, l3))), (not(equals(Equals_Param20, l4));not(equals(Equals_Param21, l5))), (not(equals(Equals_Param20, l5));not(equals(Equals_Param21, l4)))), (not(equals(Equals_Param20, l3));not(equals(Equals_Param21, l2))), (not(equals(Equals_Param20, l2));not(equals(Equals_Param21, l3))), (not(equals(Equals_Param20, l2));not(equals(Equals_Param21, l1))), (not(equals(Equals_Param20, l1));not(equals(Equals_Param21, l2))), adjacent(Equals_Param20, Equals_Param21)),  (equals(Equals_Param22, l4):-((not(equals(Equals_Param23, l4));not(equals(Equals_Param22, l3))), (not(equals(Equals_Param23, l4));not(equals(Equals_Param22, l5))), (not(equals(Equals_Param23, l5));not(equals(Equals_Param22, l4)))), (not(equals(Equals_Param23, l3));not(equals(Equals_Param22, l2))), (not(equals(Equals_Param23, l2));not(equals(Equals_Param22, l3))), (not(equals(Equals_Param23, l2));not(equals(Equals_Param22, l1))), (not(equals(Equals_Param23, l1));not(equals(Equals_Param22, l2))), adjacent(Equals_Param23, Equals_Param22)),  (equals(Equals_Param24, l4):-((not(equals(Equals_Param24, l4));not(equals(Equals_Param25, l5))), (not(equals(Equals_Param24, l5));not(equals(Equals_Param25, l4)))), (not(equals(Equals_Param24, l3));not(equals(Equals_Param25, l4))), (not(equals(Equals_Param24, l3));not(equals(Equals_Param25, l2))), (not(equals(Equals_Param24, l2));not(equals(Equals_Param25, l3))), (not(equals(Equals_Param24, l2));not(equals(Equals_Param25, l1))), (not(equals(Equals_Param24, l1));not(equals(Equals_Param25, l2))), adjacent(Equals_Param24, Equals_Param25)),  (equals(Equals_Param26, l3):-((not(equals(Equals_Param27, l4));not(equals(Equals_Param26, l5))), (not(equals(Equals_Param27, l5));not(equals(Equals_Param26, l4)))), (not(equals(Equals_Param27, l3));not(equals(Equals_Param26, l4))), (not(equals(Equals_Param27, l3));not(equals(Equals_Param26, l2))), (not(equals(Equals_Param27, l2));not(equals(Equals_Param26, l3))), (not(equals(Equals_Param27, l2));not(equals(Equals_Param26, l1))), (not(equals(Equals_Param27, l1));not(equals(Equals_Param26, l2))), adjacent(Equals_Param27, Equals_Param26)),  (equals(Equals_Param28, l4):-(not(equals(Equals_Param28, l5));not(equals(Equals_Param29, l4))), (not(equals(Equals_Param28, l4));not(equals(Equals_Param29, l3))), (not(equals(Equals_Param28, l3));not(equals(Equals_Param29, l4))), (not(equals(Equals_Param28, l3));not(equals(Equals_Param29, l2))), (not(equals(Equals_Param28, l2));not(equals(Equals_Param29, l3))), (not(equals(Equals_Param28, l2));not(equals(Equals_Param29, l1))), (not(equals(Equals_Param28, l1));not(equals(Equals_Param29, l2))), adjacent(Equals_Param28, Equals_Param29)),  (equals(Equals_Param30, l5):-(not(equals(Equals_Param31, l5));not(equals(Equals_Param30, l4))), (not(equals(Equals_Param31, l4));not(equals(Equals_Param30, l3))), (not(equals(Equals_Param31, l3));not(equals(Equals_Param30, l4))), (not(equals(Equals_Param31, l3));not(equals(Equals_Param30, l2))), (not(equals(Equals_Param31, l2));not(equals(Equals_Param30, l3))), (not(equals(Equals_Param31, l2));not(equals(Equals_Param30, l1))), (not(equals(Equals_Param31, l1));not(equals(Equals_Param30, l2))), adjacent(Equals_Param31, Equals_Param30)),  (equals(Equals_Param32, l5):-(not(equals(Equals_Param32, l4));not(equals(Equals_Param33, l5))), (not(equals(Equals_Param32, l4));not(equals(Equals_Param33, l3))), (not(equals(Equals_Param32, l3));not(equals(Equals_Param33, l4))), (not(equals(Equals_Param32, l3));not(equals(Equals_Param33, l2))), (not(equals(Equals_Param32, l2));not(equals(Equals_Param33, l3))), (not(equals(Equals_Param32, l2));not(equals(Equals_Param33, l1))), (not(equals(Equals_Param32, l1));not(equals(Equals_Param33, l2))), adjacent(Equals_Param32, Equals_Param33)),  (equals(Equals_Param34, l4):-(not(equals(Equals_Param35, l4));not(equals(Equals_Param34, l5))), (not(equals(Equals_Param35, l4));not(equals(Equals_Param34, l3))), (not(equals(Equals_Param35, l3));not(equals(Equals_Param34, l4))), (not(equals(Equals_Param35, l3));not(equals(Equals_Param34, l2))), (not(equals(Equals_Param35, l2));not(equals(Equals_Param34, l3))), (not(equals(Equals_Param35, l2));not(equals(Equals_Param34, l1))), (not(equals(Equals_Param35, l1));not(equals(Equals_Param34, l2))), adjacent(Equals_Param35, Equals_Param34))], 17==17).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  adjacent(Location1, Location2) ->
+       (   equals(Location1, l1),
+           equals(Location2, l2)
+       ;   equals(Location1, l2),
+           equals(Location2, l1)
+       ;   equals(Location1, l2),
+           equals(Location2, l3)
+       ;   equals(Location1, l3),
+           equals(Location2, l2)
+       ;   equals(Location1, l3),
+           equals(Location2, l4)
+       ;   equals(Location1, l4),
+           equals(Location2, l3)
+       ;   equals(Location1, l4),
+           equals(Location2, l5)
+       ;   equals(Location1, l5),
+           equals(Location2, l4)
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  not(adjacent(Location1, Location2)) :-
+       (   not(equals(Location1, l1))
+       ;   not(equals(Location2, l2))
+       ),
+       (   not(equals(Location1, l2))
+       ;   not(equals(Location2, l1))
+       ),
+       (   not(equals(Location1, l2))
+       ;   not(equals(Location2, l3))
+       ),
+       (   not(equals(Location1, l3))
+       ;   not(equals(Location2, l2))
+       ),
+       (   not(equals(Location1, l3))
+       ;   not(equals(Location2, l4))
+       ),
+       (   not(equals(Location1, l4))
+       ;   not(equals(Location2, l3))
+       ),
+       (   not(equals(Location1, l4))
+       ;   not(equals(Location2, l5))
+       ),
+       (   not(equals(Location1, l5))
+       ;   not(equals(Location2, l4))
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  [(not(equals(Location1, l1));not(equals(Location2, l2))),  (not(equals(Location1, l2));not(equals(Location2, l1))),  (not(equals(Location1, l2));not(equals(Location2, l3))),  (not(equals(Location1, l3));not(equals(Location2, l2))),  (not(equals(Location1, l3));not(equals(Location2, l4))),  (not(equals(Location1, l4));not(equals(Location2, l3))),  (not(equals(Location1, l4));not(equals(Location2, l5))),  (not(equals(Location1, l5));not(equals(Location2, l4)))] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          not(adjacent(Location1, Location2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+axiom(not(adjacent(Location1, Location2)),
+   
+    [  (not(equals(Location1, l1));not(equals(Location2, l2))),
+       (not(equals(Location1, l2));not(equals(Location2, l1))),
+       (not(equals(Location1, l2));not(equals(Location2, l3))),
+       (not(equals(Location1, l3));not(equals(Location2, l2))),
+       (not(equals(Location1, l3));not(equals(Location2, l4))),
+       (not(equals(Location1, l4));not(equals(Location2, l3))),
+       (not(equals(Location1, l4));not(equals(Location2, l5))),
+       (not(equals(Location1, l5));not(equals(Location2, l4)))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  equals(Location1, l1), equals(Location2, l2);equals(Location1, l2), equals(Location2, l1);equals(Location1, l2), equals(Location2, l3);equals(Location1, l3), equals(Location2, l2);equals(Location1, l3), equals(Location2, l4);equals(Location1, l4), equals(Location2, l3);equals(Location1, l4), equals(Location2, l5);equals(Location1, l5), equals(Location2, l4) ->
+       adjacent(Location1, Location2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  adjacent(Location1, Location2) :-
+       (   equals(Location1, l1),
+           equals(Location2, l2)
+       ;   equals(Location1, l2),
+           equals(Location2, l1)
+       ;   equals(Location1, l2),
+           equals(Location2, l3)
+       ;   equals(Location1, l3),
+           equals(Location2, l2)
+       ;   equals(Location1, l3),
+           equals(Location2, l4)
+       ;   equals(Location1, l4),
+           equals(Location2, l3)
+       ;   equals(Location1, l4),
+           equals(Location2, l5)
+       ;   equals(Location1, l5),
+           equals(Location2, l4)
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+
+ /*  [(equals(Location1, l1), equals(Location2, l2);equals(Location1, l2), equals(Location2, l1);equals(Location1, l2), equals(Location2, l3);equals(Location1, l3), equals(Location2, l2);equals(Location1, l3), equals(Location2, l4);equals(Location1, l4), equals(Location2, l3);equals(Location1, l4), equals(Location2, l5);equals(Location1, l5), equals(Location2, l4))] ->
+       ta(Ta_Param3,
+          tvs1=[],
+          tvs2=[],
+          adjacent(Location1, Location2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',80).
+axiom(adjacent(Location1, Location2),
+   
+    [  (equals(Location1, l1), equals(Location2, l2);equals(Location1, l2), equals(Location2, l1);equals(Location1, l2), equals(Location2, l3);equals(Location1, l3), equals(Location2, l2);equals(Location1, l3), equals(Location2, l4);equals(Location1, l4), equals(Location2, l3);equals(Location1, l4), equals(Location2, l5);equals(Location1, l5), equals(Location2, l4))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:90
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:90
 % HoldsAt(At(O1,L1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',90).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(o1, l1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',90).
 axiom(initially(at(o1, l1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:91
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',92).
 % [object]
  % !HoldsAt(At(object,L5),0).
- %  not(initially(at(Object,l5))).
-axiom(not(initially(at(At_Param, l5))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',92).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(at(Object, l5)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',92).
+axiom(initially(neg(at(Object, l5))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:93
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',94).
 % HoldsAt(At(O2,L5),4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',94).
 holds_at(at(o2,l5),4).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:94
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:94
 % [object]
  % !HoldsAt(At(object,L1),4).
- %  not(holds_at(at(Object,l1),4)).
-axiom(not(holds_at(at(At_Param, l1), t4)),
-    [b(t, t4), ignore(t+4=t4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',94).
+holds_at(neg(at(Object,l1)),4).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:96
 % [object,time]
  % !HoldsAt(At(object,L3),time).
- %  not(holds_at(at(Object,l3),Time)).
-axiom(not(holds_at(at(At_Param, l3), Time2)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',96).
+holds_at(neg(at(Object,l3)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:98
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:98
 %; ADDED:
 % [object,location1,location2,time]
 % Happens(Move(object,location1,location2),time) ->
 % HoldsAt(At(object,location1),time) &
 % Adjacent(location1,location2).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:102
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  happens(move(Object, Location1, Location2), Time) ->
+       holds_at(at(Object, Location1), Time),
+       adjacent(Location1, Location2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  not(happens(move(Object, Location1, Location2), Time)) :-
+       (   not(holds_at(at(Object, Location1), Time))
+       ;   not(adjacent(Location1, Location2))
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  [(holds_at(neg(at(Object, Location1)), Time);not(adjacent(Location1, Location2)))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(move(Object, Location1, Location2),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+axiom(not(happens(move(Object, Location1, Location2), Time)),
+   
+    [  (holds_at(neg(at(Object, Location1)), Time);not(adjacent(Location1, Location2)))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  holds_at(at(Object, Location1), Time) :-
+       happens(move(Object, Location1, Location2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  [holds_at(metreqs(move(Object, Location1, Location2)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(move(Object, Location1, Location2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
 axiom(requires(move(Object, Location1, Location2), Time),
    
-    [ holds_at(at(Object, Location1), Time),
-      adjacent(Location1, Location2)
+    [ holds_at(metreqs(move(Object, Location1, Location2)),
+               Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  [holds_at(at(Object, Location1), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(move(Object,
+                                     Location1,
+                                     Location2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+axiom(holds_at(requirements(move(Object, Location1, Location2)), Time),
+    [holds_at(at(Object, Location1), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  adjacent(Location1, Location2) :-
+       happens(move(Object, Location1, Location2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  [holds_at(metreqs(move(Object, Location1, Location2)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(move(Object, Location1, Location2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+axiom(requires(move(Object, Location1, Location2), Time),
+   
+    [ holds_at(metreqs(move(Object, Location1, Location2)),
+               Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+
+ /*  [adjacent(Location1, Location2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(move(Object,
+                                     Location1,
+                                     Location2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',100).
+axiom(holds_at(requirements(move(Object, Location1, Location2)), Time),
+    [adjacent(Location1, Location2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:104
 % [object1,object2,location1,location2,time]
 % Equal(object1,object2) &
 % Happens(Move(object1,location1,location2),time) ->
 % Happens(Move(object2,location1,location2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:107
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:107
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  equal(Object1, Object2), happens(move(Object1, Location1, Location2), Time) ->
+       happens(move(Object2, Location1, Location2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  happens(move(Object2, Location1, Location2), Time) :-
+       equal(Object1, Object2),
+       happens(move(Object1, Location1, Location2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  [equal(Object1, Object2), happens(move(Object1, Location1, Location2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(move(Object2, Location1, Location2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
 axiom(happens(move(Object2, Location1, Location2), Time),
    
     [ equal(Object1, Object2),
       happens(move(Object1, Location1, Location2), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  not(equal(Object1, Object2)) :-
+       happens(move(Object1, Location1, Location2), Time),
+       not(happens(move(Object2, Location1, Location2),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  [happens(move(Object1, Location1, Location2), Time), not(happens(move(Object2, Location1, Location2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(equal(Object1, Object2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+axiom(not(equal(Object1, Object2)),
+   
+    [ happens(move(Object1, Location1, Location2), Time),
+      not(happens(move(Object2, Location1, Location2),
+                  Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  not(happens(move(Object1, Location1, Location2), Time)) :-
+       equal(Object1, Object2),
+       not(happens(move(Object2, Location1, Location2),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+
+ /*  [equal(Object1, Object2), not(happens(move(Object2, Location1, Location2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(move(Object1, Location1, Location2),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',106).
+axiom(not(happens(move(Object1, Location1, Location2), Time)),
+   
+    [ equal(Object1, Object2),
+      not(happens(move(Object2, Location1, Location2),
+                  Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:109
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:109
 %; entailed: !Equal(O1,O2).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:111
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:111
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',112).
 % range time 0 4
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:112
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',112).
 ==> range(time,0,4).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:112
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:113
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',112).
 ==> range(offset,1,1).
 %; End of file.

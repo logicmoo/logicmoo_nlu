@@ -1,5 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
+% Mon, 23 Mar 2020 02:29:15 GMT
+% From ../foundations/DEC.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',171).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e').
@@ -27,87 +30,130 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:23
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 % sort time: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 ==> subsort(time,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:24
 % sort offset: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 ==> subsort(offset,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 % reified sort fluent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 reified_sort(fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 ==> mpred_prop(fluent,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:27
 % reified sort event
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 reified_sort(event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 ==> mpred_prop(event,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 % predicate Happens(event,time)
-predicate(happens(Happens_Param,Maptime)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
+predicate(happens(event,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> mpred_prop(happens(event,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> meta_argtypes(happens(event,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:30
 % predicate HoldsAt(fluent,time)
-predicate(holds_at(Holds_at_Param,Time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
+predicate(holds_at(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> mpred_prop(holds_at(fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> meta_argtypes(holds_at(fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 % predicate ReleasedAt(fluent,time)
-predicate(releasedAt(ReleasedAt_Param,Time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
+predicate(releasedAt(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 % predicate Initiates(event,fluent,time)
-predicate(initiates(Initiates_Param,_,Initiates_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
+predicate(initiates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:34
 % predicate Terminates(event,fluent,time)
-predicate(terminates(Terminates_Param,
-		     _,
-		     Terminates_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
+predicate(terminates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 % predicate Releases(event,fluent,time)
-predicate(releases(Releases_Param,_,Releases_Ret)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
+predicate(releases(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 ==> mpred_prop(releases(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 ==> meta_argtypes(releases(event,fluent,time)).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:37
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 % [fluent,time]
 % (HoldsAt(fluent,time) &
 %  !ReleasedAt(fluent,time+1) &
 %  !({event} Happens(event,time) & Terminates(event,fluent,time))) ->
 % HoldsAt(fluent,time+1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  allDifferent([Fluent, Time, Event]) ->
-       ( holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time))))->holds_at(Fluent, Time+1)
-       ).
+ /*  holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time)))) ->
+       holds_at(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  holds_at(Fluent, Time+1) :-
-       ( holds_at(Fluent, Time),
-         not(releasedAt(Fluent, Time+1)),
-         (   not(happens(Event, Time))
-         ;   not(terminates(Event, Fluent, Time))
-         )
-       ),
-       allDifferent([Fluent, Time, Event]).
+       holds_at(Fluent, Time),
+       not(releasedAt(Fluent, Time+1)),
+       (   not(happens(Event, Time))
+       ;   not(terminates(Event, Fluent, Time))
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  [holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(terminates(Event, Fluent, Time))), allDifferent([Fluent, Time, Event]), b(Time, Time3), ignore(Time+1==Time3)] ->
-       ta(Time, holds_at(Fluent, Time3)).
+ /*  [holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(terminates(Event, Fluent, Time))), b(Time, Time3), ignore(Time+1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time3],
+          holds_at(Fluent, Time3)).
  */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 axiom(holds_at(Fluent, Time3),
    
     [ holds_at(Fluent, Time),
       not(releasedAt(Fluent, Time3)),
        (not(happens(Event, Time));not(terminates(Event, Fluent, Time))),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time3)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  not(holds_at(Fluent, Time)) :-
        ( not(releasedAt(Fluent, Time+1)),
@@ -115,78 +161,93 @@ axiom(holds_at(Fluent, Time3),
          ;   not(terminates(Event, Fluent, Time))
          )
        ),
-       not(holds_at(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  [not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(terminates(Event, Fluent, Time))), holds_at(neg(Fluent), Time4), allDifferent([Fluent, Time, Event]), b(Time, Time4), ignore(Time+1==Time4)] ->
-       ta(Time, holds_at(neg(Fluent), Time)).
+ /*  [not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(terminates(Event, Fluent, Time))), holds_at(neg(Fluent), Time4), b(Time, Time4), ignore(Time+1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time4],
+          holds_at(neg(Fluent), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 axiom(holds_at(neg(Fluent), Time),
    
     [ not(releasedAt(Fluent, Time4)),
        (not(happens(Event, Time));not(terminates(Event, Fluent, Time))),
       holds_at(neg(Fluent), Time4),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time4)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  releasedAt(Fluent, Time+1) :-
        (   not(happens(Event, Time))
        ;   not(terminates(Event, Fluent, Time))
        ),
        holds_at(Fluent, Time),
-       not(holds_at(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  [(not(happens(Event, Time));not(terminates(Event, Fluent, Time))), holds_at(Fluent, Time), holds_at(neg(Fluent), Time5), allDifferent([Fluent, Time, Event]), b(Time, Time5), ignore(Time+1==Time5)] ->
-       ta(Time, releasedAt(Fluent, Time+1)).
+ /*  [(not(happens(Event, Time));not(terminates(Event, Fluent, Time))), holds_at(Fluent, Time), holds_at(neg(Fluent), Time5), b(Time, Time5), ignore(Time+1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time5],
+          releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 axiom(releasedAt(Fluent, Time5),
    
     [  (not(happens(Event, Time));not(terminates(Event, Fluent, Time))),
       holds_at(Fluent, Time),
       holds_at(neg(Fluent), Time5),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time5)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  happens(Event, Time) :-
        not(releasedAt(Fluent, Time+1)),
        holds_at(Fluent, Time),
-       not(holds_at(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  [not(releasedAt(Fluent, Time+1)), holds_at(Fluent, Time), holds_at(neg(Fluent), Time6), allDifferent([Fluent, Time, Event]), b(Time, Time6), ignore(Time+1==Time6)] ->
-       ta(Time, happens(Event, Time)).
+ /*  [not(releasedAt(Fluent, Time+1)), holds_at(Fluent, Time), holds_at(neg(Fluent), Time6), b(Time, Time6), ignore(Time+1==Time6)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time6],
+          happens(Event, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 axiom(happens(Event, Time),
    
     [ not(releasedAt(Fluent, Time6)),
       holds_at(Fluent, Time),
       holds_at(neg(Fluent), Time6),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time6)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  terminates(Event, Fluent, Time) :-
        not(releasedAt(Fluent, Time+1)),
        holds_at(Fluent, Time),
-       not(holds_at(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
- /*  [not(releasedAt(Fluent, Time+1)), holds_at(Fluent, Time), holds_at(neg(Fluent), Time7), allDifferent([Fluent, Time, Event]), b(Time, Time7), ignore(Time+1==Time7)] ->
-       ta(Time, terminates(Event, Fluent, Time)).
+ /*  [not(releasedAt(Fluent, Time+1)), holds_at(Fluent, Time), holds_at(neg(Fluent), Time7), b(Time, Time7), ignore(Time+1==Time7)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time7],
+          terminates(Event, Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 axiom(terminates(Event, Fluent, Time),
    
     [ not(releasedAt(Fluent, Time7)),
       holds_at(Fluent, Time),
       holds_at(neg(Fluent), Time7),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time7)
     ]).
 
@@ -197,34 +258,38 @@ axiom(terminates(Event, Fluent, Time),
 %  !ReleasedAt(fluent,time+1) &
 %  !({event} Happens(event,time) & Initiates(event,fluent,time))) ->
 % !HoldsAt(fluent,time+1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  allDifferent([Fluent, Time, Event]) ->
-       ( holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time))))->holds_at(neg(Fluent), Time+1)
-       ).
+ /*  holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time)))) ->
+       holds_at(neg(Fluent), Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  holds_at(neg(Fluent), Time+1) :-
-       ( holds_at(neg(Fluent), Time),
-         not(releasedAt(Fluent, Time+1)),
-         (   not(happens(Event, Time))
-         ;   not(initiates(Event, Fluent, Time))
-         )
-       ),
-       allDifferent([Fluent, Time, Event]).
+       holds_at(neg(Fluent), Time),
+       not(releasedAt(Fluent, Time+1)),
+       (   not(happens(Event, Time))
+       ;   not(initiates(Event, Fluent, Time))
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  [holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time))), allDifferent([Fluent, Time, Event]), b(Time, Time3), ignore(Time+1==Time3)] ->
-       ta(Time, holds_at(neg(Fluent), Time3)).
+ /*  [holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time))), b(Time, Time3), ignore(Time+1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time3],
+          holds_at(neg(Fluent), Time3)).
  */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 axiom(holds_at(neg(Fluent), Time3),
    
     [ holds_at(neg(Fluent), Time),
       not(releasedAt(Fluent, Time3)),
        (not(happens(Event, Time));not(initiates(Event, Fluent, Time))),
-      allDifferent([Fluent, Time, Event]),
       b(Time, Time3)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  not(holds_at(neg(Fluent), Time)) :-
        ( not(releasedAt(Fluent, Time+1)),
@@ -232,78 +297,93 @@ axiom(holds_at(neg(Fluent), Time3),
          ;   not(initiates(Event, Fluent, Time))
          )
        ),
-       not(holds_at(neg(Fluent), Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(neg(Fluent), Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  [not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time))), holds_at(neg(neg(Fluent)), Time4), allDifferent([Fluent, Time, Event]), b(Time, Time4), ignore(Time+1==Time4)] ->
-       ta(Time, holds_at(neg(neg(Fluent)), Time)).
+ /*  [not(releasedAt(Fluent, Time+1)),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time))), holds_at(Fluent, Time4), b(Time, Time4), ignore(Time+1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time4],
+          holds_at(Fluent, Time)).
  */
-axiom(holds_at(neg(neg(Fluent)), Time),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
+axiom(holds_at(Fluent, Time),
    
     [ not(releasedAt(Fluent, Time4)),
        (not(happens(Event, Time));not(initiates(Event, Fluent, Time))),
-      holds_at(neg(neg(Fluent)), Time4),
-      allDifferent([Fluent, Time, Event]),
+      holds_at(Fluent, Time4),
       b(Time, Time4)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  releasedAt(Fluent, Time+1) :-
        (   not(happens(Event, Time))
        ;   not(initiates(Event, Fluent, Time))
        ),
        holds_at(neg(Fluent), Time),
-       not(holds_at(neg(Fluent), Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(neg(Fluent), Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  [(not(happens(Event, Time));not(initiates(Event, Fluent, Time))), holds_at(neg(Fluent), Time), holds_at(neg(neg(Fluent)), Time5), allDifferent([Fluent, Time, Event]), b(Time, Time5), ignore(Time+1==Time5)] ->
-       ta(Time, releasedAt(Fluent, Time+1)).
+ /*  [(not(happens(Event, Time));not(initiates(Event, Fluent, Time))), holds_at(neg(Fluent), Time), holds_at(Fluent, Time5), b(Time, Time5), ignore(Time+1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time5],
+          releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 axiom(releasedAt(Fluent, Time5),
    
     [  (not(happens(Event, Time));not(initiates(Event, Fluent, Time))),
       holds_at(neg(Fluent), Time),
-      holds_at(neg(neg(Fluent)), Time5),
-      allDifferent([Fluent, Time, Event]),
+      holds_at(Fluent, Time5),
       b(Time, Time5)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  happens(Event, Time) :-
        not(releasedAt(Fluent, Time+1)),
        holds_at(neg(Fluent), Time),
-       not(holds_at(neg(Fluent), Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(neg(Fluent), Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  [not(releasedAt(Fluent, Time+1)), holds_at(neg(Fluent), Time), holds_at(neg(neg(Fluent)), Time6), allDifferent([Fluent, Time, Event]), b(Time, Time6), ignore(Time+1==Time6)] ->
-       ta(Time, happens(Event, Time)).
+ /*  [not(releasedAt(Fluent, Time+1)), holds_at(neg(Fluent), Time), holds_at(Fluent, Time6), b(Time, Time6), ignore(Time+1==Time6)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time6],
+          happens(Event, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 axiom(happens(Event, Time),
    
     [ not(releasedAt(Fluent, Time6)),
       holds_at(neg(Fluent), Time),
-      holds_at(neg(neg(Fluent)), Time6),
-      allDifferent([Fluent, Time, Event]),
+      holds_at(Fluent, Time6),
       b(Time, Time6)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  initiates(Event, Fluent, Time) :-
        not(releasedAt(Fluent, Time+1)),
        holds_at(neg(Fluent), Time),
-       not(holds_at(neg(Fluent), Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(holds_at(neg(Fluent), Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
- /*  [not(releasedAt(Fluent, Time+1)), holds_at(neg(Fluent), Time), holds_at(neg(neg(Fluent)), Time7), allDifferent([Fluent, Time, Event]), b(Time, Time7), ignore(Time+1==Time7)] ->
-       ta(Time, initiates(Event, Fluent, Time)).
+ /*  [not(releasedAt(Fluent, Time+1)), holds_at(neg(Fluent), Time), holds_at(Fluent, Time7), b(Time, Time7), ignore(Time+1==Time7)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time7],
+          initiates(Event, Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 axiom(initiates(Event, Fluent, Time),
    
     [ not(releasedAt(Fluent, Time7)),
       holds_at(neg(Fluent), Time),
-      holds_at(neg(neg(Fluent)), Time7),
-      allDifferent([Fluent, Time, Event]),
+      holds_at(Fluent, Time7),
       b(Time, Time7)
     ]).
 
@@ -313,84 +393,99 @@ axiom(initiates(Event, Fluent, Time),
 % (!ReleasedAt(fluent,time) &
 %  !({event} Happens(event,time) & Releases(event,fluent,time))) ->
 % !ReleasedAt(fluent,time+1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
- /*  allDifferent([Fluent, Time, Event]) ->
-       ( not(releasedAt(Fluent, Time)), not(exists([Event],  (happens(Event, Time), releases(Event, Fluent, Time))))->not(releasedAt(Fluent, Time+1))
-       ).
+ /*  not(releasedAt(Fluent, Time)), not(exists([Event],  (happens(Event, Time), releases(Event, Fluent, Time)))) ->
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
  /*  not(releasedAt(Fluent, Time+1)) :-
-       ( not(releasedAt(Fluent, Time)),
-         (   not(happens(Event, Time))
-         ;   not(releases(Event, Fluent, Time))
-         )
-       ),
-       allDifferent([Fluent, Time, Event]).
+       not(releasedAt(Fluent, Time)),
+       (   not(happens(Event, Time))
+       ;   not(releases(Event, Fluent, Time))
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
- /*  [ignore(Time+1==Time3), b(Time, Time3), not(releasedAt(Fluent, Time)),  (not(happens(Event, Time));not(releases(Event, Fluent, Time))), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, not(releasedAt(Fluent, Time3))).
+ /*  [ignore(Time+1==Time3), b(Time, Time3), not(releasedAt(Fluent, Time)),  (not(happens(Event, Time));not(releases(Event, Fluent, Time)))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time3],
+          not(releasedAt(Fluent, Time3))).
  */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 axiom(not(releasedAt(Fluent, Time3)),
    
     [ b(Time, Time3),
       not(releasedAt(Fluent, Time)),
-       (not(happens(Event, Time));not(releases(Event, Fluent, Time))),
-      allDifferent([Fluent, Time, Event])
+       (not(happens(Event, Time));not(releases(Event, Fluent, Time)))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
  /*  releasedAt(Fluent, Time) :-
        (   not(happens(Event, Time))
        ;   not(releases(Event, Fluent, Time))
        ),
-       releasedAt(Fluent, Time+1),
-       allDifferent([Fluent, Time, Event]).
+       releasedAt(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
- /*  [ignore(Time+1==Time4), b(Time, Time4),  (not(happens(Event, Time));not(releases(Event, Fluent, Time))), releasedAt(Fluent, Time4), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, releasedAt(Fluent, Time)).
+ /*  [ignore(Time+1==Time4), b(Time, Time4),  (not(happens(Event, Time));not(releases(Event, Fluent, Time))), releasedAt(Fluent, Time4)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time4],
+          releasedAt(Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 axiom(releasedAt(Fluent, Time),
    
     [ b(Time, Time4),
        (not(happens(Event, Time));not(releases(Event, Fluent, Time))),
-      releasedAt(Fluent, Time4),
-      allDifferent([Fluent, Time, Event])
+      releasedAt(Fluent, Time4)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
  /*  happens(Event, Time) :-
        not(releasedAt(Fluent, Time)),
-       releasedAt(Fluent, Time+1),
-       allDifferent([Fluent, Time, Event]).
+       releasedAt(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
- /*  [ignore(Time+1==Time5), b(Time, Time5), not(releasedAt(Fluent, Time)), releasedAt(Fluent, Time5), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, happens(Event, Time)).
+ /*  [ignore(Time+1==Time5), b(Time, Time5), not(releasedAt(Fluent, Time)), releasedAt(Fluent, Time5)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time5],
+          happens(Event, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 axiom(happens(Event, Time),
    
     [ b(Time, Time5),
       not(releasedAt(Fluent, Time)),
-      releasedAt(Fluent, Time5),
-      allDifferent([Fluent, Time, Event])
+      releasedAt(Fluent, Time5)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
  /*  releases(Event, Fluent, Time) :-
        not(releasedAt(Fluent, Time)),
-       releasedAt(Fluent, Time+1),
-       allDifferent([Fluent, Time, Event]).
+       releasedAt(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
- /*  [ignore(Time+1==Time6), b(Time, Time6), not(releasedAt(Fluent, Time)), releasedAt(Fluent, Time6), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, releases(Event, Fluent, Time)).
+ /*  [ignore(Time+1==Time6), b(Time, Time6), not(releasedAt(Fluent, Time)), releasedAt(Fluent, Time6)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time6],
+          releases(Event, Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 axiom(releases(Event, Fluent, Time),
    
     [ b(Time, Time6),
       not(releasedAt(Fluent, Time)),
-      releasedAt(Fluent, Time6),
-      allDifferent([Fluent, Time, Event])
+      releasedAt(Fluent, Time6)
     ]).
 
 
@@ -401,107 +496,126 @@ axiom(releases(Event, Fluent, Time),
 %    (Initiates(event,fluent,time) |
 %     Terminates(event,fluent,time)))) ->
 % ReleasedAt(fluent,time+1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  allDifferent([Fluent, Time, Event]) ->
-       ( releasedAt(Fluent, Time), not(exists([Event],  (happens(Event, Time), (initiates(Event, Fluent, Time);terminates(Event, Fluent, Time)))))->releasedAt(Fluent, Time+1)
-       ).
+ /*  releasedAt(Fluent, Time), not(exists([Event],  (happens(Event, Time), (initiates(Event, Fluent, Time);terminates(Event, Fluent, Time))))) ->
+       releasedAt(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  releasedAt(Fluent, Time+1) :-
-       ( releasedAt(Fluent, Time),
-         (   not(happens(Event, Time))
-         ;   not(initiates(Event, Fluent, Time)),
-             not(terminates(Event, Fluent, Time))
-         )
-       ),
-       allDifferent([Fluent, Time, Event]).
+       releasedAt(Fluent, Time),
+       (   not(happens(Event, Time))
+       ;   not(initiates(Event, Fluent, Time)),
+           not(terminates(Event, Fluent, Time))
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  [ignore(Time+1==Time3), b(Time, Time3), releasedAt(Fluent, Time),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time))), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, releasedAt(Fluent, Time3)).
+ /*  [ignore(Time+1==Time3), b(Time, Time3), releasedAt(Fluent, Time),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time)))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time3],
+          releasedAt(Fluent, Time3)).
  */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 axiom(releasedAt(Fluent, Time3),
    
     [ b(Time, Time3),
       releasedAt(Fluent, Time),
-       (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time))),
-      allDifferent([Fluent, Time, Event])
+       (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time)))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  not(releasedAt(Fluent, Time)) :-
        (   not(happens(Event, Time))
        ;   not(initiates(Event, Fluent, Time)),
            not(terminates(Event, Fluent, Time))
        ),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  [ignore(Time+1==Time4), b(Time, Time4),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time))), not(releasedAt(Fluent, Time4)), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, not(releasedAt(Fluent, Time))).
+ /*  [ignore(Time+1==Time4), b(Time, Time4),  (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time))), not(releasedAt(Fluent, Time4))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time4],
+          not(releasedAt(Fluent, Time))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 axiom(not(releasedAt(Fluent, Time)),
    
     [ b(Time, Time4),
        (not(happens(Event, Time));not(initiates(Event, Fluent, Time)), not(terminates(Event, Fluent, Time))),
-      not(releasedAt(Fluent, Time4)),
-      allDifferent([Fluent, Time, Event])
+      not(releasedAt(Fluent, Time4))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  happens(Event, Time) :-
        releasedAt(Fluent, Time),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  [ignore(Time+1==Time5), b(Time, Time5), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time5)), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, happens(Event, Time)).
+ /*  [ignore(Time+1==Time5), b(Time, Time5), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time5))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time5],
+          happens(Event, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 axiom(happens(Event, Time),
    
     [ b(Time, Time5),
       releasedAt(Fluent, Time),
-      not(releasedAt(Fluent, Time5)),
-      allDifferent([Fluent, Time, Event])
+      not(releasedAt(Fluent, Time5))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  initiates(Event, Fluent, Time) :-
        not(terminates(Event, Fluent, Time)),
        releasedAt(Fluent, Time),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  [ignore(Time+1==Time6), b(Time, Time6), not(terminates(Event, Fluent, Time)), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time6)), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, initiates(Event, Fluent, Time)).
+ /*  [ignore(Time+1==Time6), b(Time, Time6), not(terminates(Event, Fluent, Time)), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time6))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time6],
+          initiates(Event, Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 axiom(initiates(Event, Fluent, Time),
    
     [ b(Time, Time6),
       not(terminates(Event, Fluent, Time)),
       releasedAt(Fluent, Time),
-      not(releasedAt(Fluent, Time6)),
-      allDifferent([Fluent, Time, Event])
+      not(releasedAt(Fluent, Time6))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  terminates(Event, Fluent, Time) :-
        not(initiates(Event, Fluent, Time)),
        releasedAt(Fluent, Time),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Fluent, Time, Event]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
- /*  [ignore(Time+1==Time7), b(Time, Time7), not(initiates(Event, Fluent, Time)), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time7)), allDifferent([Fluent, Time, Event])] ->
-       ta(Time, terminates(Event, Fluent, Time)).
+ /*  [ignore(Time+1==Time7), b(Time, Time7), not(initiates(Event, Fluent, Time)), releasedAt(Fluent, Time), not(releasedAt(Fluent, Time7))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time7],
+          terminates(Event, Fluent, Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 axiom(terminates(Event, Fluent, Time),
    
     [ b(Time, Time7),
       not(initiates(Event, Fluent, Time)),
       releasedAt(Fluent, Time),
-      not(releasedAt(Fluent, Time7)),
-      allDifferent([Fluent, Time, Event])
+      not(releasedAt(Fluent, Time7))
     ]).
 
 
@@ -509,109 +623,99 @@ axiom(terminates(Event, Fluent, Time),
 % [event,fluent,time]
 % (Happens(event,time) & Initiates(event,fluent,time)) ->
 % (HoldsAt(fluent,time+1) & !ReleasedAt(fluent,time+1)).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:63
 
- /*  allDifferent([Event, Time, Fluent]) ->
-       ( happens(Event, Time), initiates(Event, Fluent, Time)->holds_at(Fluent, Time+1), not(releasedAt(Fluent, Time+1))
-       ).
+ /*  happens(Event, Time), initiates(Event, Fluent, Time) ->
+       holds_at(Fluent, Time+1),
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
  /*  not(happens(Event, Time)) :-
        initiates(Event, Fluent, Time),
        (   not(holds_at(Fluent, Time+1))
        ;   releasedAt(Fluent, Time+1)
-       ),
-       allDifferent([Event, Time, Fluent]).
- */
-
- /*  axiom_head(Time) ->
-       (   not(holds_at(Fluent, Time+1))
-       ;   releasedAt(Fluent, Time+1)
        ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
- /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(Fluent), Time+1)
-       ;   releasedAt(Fluent, Time+1)
-       ).
+ /*  [initiates(Event, Fluent, Time),  (holds_at(neg(Fluent), Time3);releasedAt(Fluent, Time+1)), b(Time, Time3), ignore(Time+1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time3],
+          not(happens(Event, Time))).
  */
-
- /*  [ignore(Time+1==Time3), b(Time, Time3), initiates(Event, Fluent, Time),  (holds_at(neg(Fluent), Time3);releasedAt(Fluent, Time3)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(happens(Event, Time))).
- */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 axiom(not(happens(Event, Time)),
    
-    [ b(Time, Time3),
-      initiates(Event, Fluent, Time),
+    [ initiates(Event, Fluent, Time),
        (holds_at(neg(Fluent), Time3);releasedAt(Fluent, Time3)),
-      allDifferent([Event, Time, Fluent])
+      b(Time, Time3)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
  /*  not(initiates(Event, Fluent, Time)) :-
        happens(Event, Time),
        (   not(holds_at(Fluent, Time+1))
        ;   releasedAt(Fluent, Time+1)
-       ),
-       allDifferent([Event, Time, Fluent]).
- */
-
- /*  axiom_head(Time) ->
-       (   not(holds_at(Fluent, Time+1))
-       ;   releasedAt(Fluent, Time+1)
        ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
- /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(Fluent), Time+1)
-       ;   releasedAt(Fluent, Time+1)
-       ).
+ /*  [happens(Event, Time),  (holds_at(neg(Fluent), Time4);releasedAt(Fluent, Time+1)), b(Time, Time4), ignore(Time+1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time4],
+          not(initiates(Event, Fluent, Time))).
  */
-
- /*  [ignore(Time+1==Time4), b(Time, Time4), happens(Event, Time),  (holds_at(neg(Fluent), Time4);releasedAt(Fluent, Time4)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(initiates(Event, Fluent, Time))).
- */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 axiom(not(initiates(Event, Fluent, Time)),
    
-    [ b(Time, Time4),
-      happens(Event, Time),
+    [ happens(Event, Time),
        (holds_at(neg(Fluent), Time4);releasedAt(Fluent, Time4)),
-      allDifferent([Event, Time, Fluent])
+      b(Time, Time4)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
  /*  holds_at(Fluent, Time+1) :-
-       ( happens(Event, Time),
-         initiates(Event, Fluent, Time)
-       ),
-       allDifferent([Event, Time, Fluent]).
+       happens(Event, Time),
+       initiates(Event, Fluent, Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
- /*  [happens(Event, Time), initiates(Event, Fluent, Time), allDifferent([Event, Time, Fluent]), b(Time, Time5), ignore(Time+1==Time5)] ->
-       ta(Time, holds_at(Fluent, Time5)).
+ /*  [happens(Event, Time), initiates(Event, Fluent, Time), b(Time, Time5), ignore(Time+1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time5],
+          holds_at(Fluent, Time5)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 axiom(holds_at(Fluent, Time5),
    
     [ happens(Event, Time),
       initiates(Event, Fluent, Time),
-      allDifferent([Event, Time, Fluent]),
       b(Time, Time5)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
  /*  not(releasedAt(Fluent, Time+1)) :-
-       ( happens(Event, Time),
-         initiates(Event, Fluent, Time)
-       ),
-       allDifferent([Event, Time, Fluent]).
+       happens(Event, Time),
+       initiates(Event, Fluent, Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 
- /*  [ignore(Time+1==Time6), b(Time, Time6), happens(Event, Time), initiates(Event, Fluent, Time), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(releasedAt(Fluent, Time6))).
+ /*  [ignore(Time+1==Time6), b(Time, Time6), happens(Event, Time), initiates(Event, Fluent, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time6],
+          not(releasedAt(Fluent, Time6))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',63).
 axiom(not(releasedAt(Fluent, Time6)),
    
     [ b(Time, Time6),
       happens(Event, Time),
-      initiates(Event, Fluent, Time),
-      allDifferent([Event, Time, Fluent])
+      initiates(Event, Fluent, Time)
     ]).
 
 
@@ -619,109 +723,99 @@ axiom(not(releasedAt(Fluent, Time6)),
 % [event,fluent,time]
 % (Happens(event,time) & Terminates(event,fluent,time)) ->
 % (!HoldsAt(fluent,time+1) & !ReleasedAt(fluent,time+1)).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:67
 
- /*  allDifferent([Event, Time, Fluent]) ->
-       ( happens(Event, Time), terminates(Event, Fluent, Time)->holds_at(neg(Fluent), Time+1), not(releasedAt(Fluent, Time+1))
-       ).
+ /*  happens(Event, Time), terminates(Event, Fluent, Time) ->
+       holds_at(neg(Fluent), Time+1),
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
  /*  not(happens(Event, Time)) :-
        terminates(Event, Fluent, Time),
        (   not(holds_at(neg(Fluent), Time+1))
        ;   releasedAt(Fluent, Time+1)
-       ),
-       allDifferent([Event, Time, Fluent]).
- */
-
- /*  axiom_head(Time) ->
-       (   not(holds_at(neg(Fluent), Time+1))
-       ;   releasedAt(Fluent, Time+1)
        ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
- /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(neg(Fluent)), Time+1)
-       ;   releasedAt(Fluent, Time+1)
-       ).
+ /*  [terminates(Event, Fluent, Time),  (holds_at(Fluent, Time3);releasedAt(Fluent, Time+1)), b(Time, Time3), ignore(Time+1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time3],
+          not(happens(Event, Time))).
  */
-
- /*  [ignore(Time+1==Time3), b(Time, Time3), terminates(Event, Fluent, Time),  (holds_at(neg(neg(Fluent)), Time3);releasedAt(Fluent, Time3)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(happens(Event, Time))).
- */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 axiom(not(happens(Event, Time)),
    
-    [ b(Time, Time3),
-      terminates(Event, Fluent, Time),
-       (holds_at(neg(neg(Fluent)), Time3);releasedAt(Fluent, Time3)),
-      allDifferent([Event, Time, Fluent])
+    [ terminates(Event, Fluent, Time),
+       (holds_at(Fluent, Time3);releasedAt(Fluent, Time3)),
+      b(Time, Time3)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
  /*  not(terminates(Event, Fluent, Time)) :-
        happens(Event, Time),
        (   not(holds_at(neg(Fluent), Time+1))
        ;   releasedAt(Fluent, Time+1)
-       ),
-       allDifferent([Event, Time, Fluent]).
- */
-
- /*  axiom_head(Time) ->
-       (   not(holds_at(neg(Fluent), Time+1))
-       ;   releasedAt(Fluent, Time+1)
        ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
- /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(neg(Fluent)), Time+1)
-       ;   releasedAt(Fluent, Time+1)
-       ).
+ /*  [happens(Event, Time),  (holds_at(Fluent, Time4);releasedAt(Fluent, Time+1)), b(Time, Time4), ignore(Time+1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time4],
+          not(terminates(Event, Fluent, Time))).
  */
-
- /*  [ignore(Time+1==Time4), b(Time, Time4), happens(Event, Time),  (holds_at(neg(neg(Fluent)), Time4);releasedAt(Fluent, Time4)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(terminates(Event, Fluent, Time))).
- */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 axiom(not(terminates(Event, Fluent, Time)),
    
-    [ b(Time, Time4),
-      happens(Event, Time),
-       (holds_at(neg(neg(Fluent)), Time4);releasedAt(Fluent, Time4)),
-      allDifferent([Event, Time, Fluent])
+    [ happens(Event, Time),
+       (holds_at(Fluent, Time4);releasedAt(Fluent, Time4)),
+      b(Time, Time4)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
  /*  holds_at(neg(Fluent), Time+1) :-
-       ( happens(Event, Time),
-         terminates(Event, Fluent, Time)
-       ),
-       allDifferent([Event, Time, Fluent]).
+       happens(Event, Time),
+       terminates(Event, Fluent, Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
- /*  [happens(Event, Time), terminates(Event, Fluent, Time), allDifferent([Event, Time, Fluent]), b(Time, Time5), ignore(Time+1==Time5)] ->
-       ta(Time, holds_at(neg(Fluent), Time5)).
+ /*  [happens(Event, Time), terminates(Event, Fluent, Time), b(Time, Time5), ignore(Time+1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time+1],
+          tvs2=[Time, Time5],
+          holds_at(neg(Fluent), Time5)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 axiom(holds_at(neg(Fluent), Time5),
    
     [ happens(Event, Time),
       terminates(Event, Fluent, Time),
-      allDifferent([Event, Time, Fluent]),
       b(Time, Time5)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
  /*  not(releasedAt(Fluent, Time+1)) :-
-       ( happens(Event, Time),
-         terminates(Event, Fluent, Time)
-       ),
-       allDifferent([Event, Time, Fluent]).
+       happens(Event, Time),
+       terminates(Event, Fluent, Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 
- /*  [ignore(Time+1==Time6), b(Time, Time6), happens(Event, Time), terminates(Event, Fluent, Time), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(releasedAt(Fluent, Time6))).
+ /*  [ignore(Time+1==Time6), b(Time, Time6), happens(Event, Time), terminates(Event, Fluent, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time6],
+          not(releasedAt(Fluent, Time6))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',67).
 axiom(not(releasedAt(Fluent, Time6)),
    
     [ b(Time, Time6),
       happens(Event, Time),
-      terminates(Event, Fluent, Time),
-      allDifferent([Event, Time, Fluent])
+      terminates(Event, Fluent, Time)
     ]).
 
 
@@ -729,63 +823,73 @@ axiom(not(releasedAt(Fluent, Time6)),
 % [event,fluent,time]
 % (Happens(event,time) & Releases(event,fluent,time)) ->
 % ReleasedAt(fluent,time+1).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:71
 
- /*  allDifferent([Event, Time, Fluent]) ->
-       ( happens(Event, Time), releases(Event, Fluent, Time)->releasedAt(Fluent, Time+1)
-       ).
+ /*  happens(Event, Time), releases(Event, Fluent, Time) ->
+       releasedAt(Fluent, Time+1).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
  /*  releasedAt(Fluent, Time+1) :-
-       ( happens(Event, Time),
-         releases(Event, Fluent, Time)
-       ),
-       allDifferent([Event, Time, Fluent]).
+       happens(Event, Time),
+       releases(Event, Fluent, Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
- /*  [ignore(Time+1==Time3), b(Time, Time3), happens(Event, Time), releases(Event, Fluent, Time), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, releasedAt(Fluent, Time3)).
+ /*  [ignore(Time+1==Time3), b(Time, Time3), happens(Event, Time), releases(Event, Fluent, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time3],
+          releasedAt(Fluent, Time3)).
  */
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 axiom(releasedAt(Fluent, Time3),
    
     [ b(Time, Time3),
       happens(Event, Time),
-      releases(Event, Fluent, Time),
-      allDifferent([Event, Time, Fluent])
+      releases(Event, Fluent, Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
  /*  not(happens(Event, Time)) :-
        releases(Event, Fluent, Time),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Event, Time, Fluent]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
- /*  [ignore(Time+1==Time4), b(Time, Time4), releases(Event, Fluent, Time), not(releasedAt(Fluent, Time4)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(happens(Event, Time))).
+ /*  [ignore(Time+1==Time4), b(Time, Time4), releases(Event, Fluent, Time), not(releasedAt(Fluent, Time4))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time4],
+          not(happens(Event, Time))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 axiom(not(happens(Event, Time)),
    
     [ b(Time, Time4),
       releases(Event, Fluent, Time),
-      not(releasedAt(Fluent, Time4)),
-      allDifferent([Event, Time, Fluent])
+      not(releasedAt(Fluent, Time4))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
  /*  not(releases(Event, Fluent, Time)) :-
        happens(Event, Time),
-       not(releasedAt(Fluent, Time+1)),
-       allDifferent([Event, Time, Fluent]).
+       not(releasedAt(Fluent, Time+1)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 
- /*  [ignore(Time+1==Time5), b(Time, Time5), happens(Event, Time), not(releasedAt(Fluent, Time5)), allDifferent([Event, Time, Fluent])] ->
-       ta(Time, not(releases(Event, Fluent, Time))).
+ /*  [ignore(Time+1==Time5), b(Time, Time5), happens(Event, Time), not(releasedAt(Fluent, Time5))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time, Time5],
+          not(releases(Event, Fluent, Time))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',71).
 axiom(not(releases(Event, Fluent, Time)),
    
     [ b(Time, Time5),
       happens(Event, Time),
-      not(releasedAt(Fluent, Time5)),
-      allDifferent([Event, Time, Fluent])
+      not(releasedAt(Fluent, Time5))
     ]).
 
 

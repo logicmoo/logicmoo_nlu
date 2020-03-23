@@ -1,24 +1,41 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
+% Mon, 23 Mar 2020 02:26:02 GMT
+% From ../includes/SaaSPatterns/RulesPatterns/ConditionsVerification.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/PolicySetPatterns/policySetModel.e',33).
 
- /*  loading(always,
-   	'includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e').
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e').
  */
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:0
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 % fluent F_ConditionSatisfied(rule)
- %  fluent(f_conditionSatisfied(rule)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
+fluent(f_conditionSatisfied(rule)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 ==> mpred_prop(f_conditionSatisfied(rule),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 ==> meta_argtypes(f_conditionSatisfied(rule)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:1
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:1
 %;event E_ConditionSatisfied(rule)
 %;[rule,time] Initiates(E_ConditionSatisfied(rule),F_ConditionSatisfied(rule),time).
 %;[rule,time] Happens(E_ConditionSatisfied(rule),time) -> HoldsAt(F_TargetHolds(rule),time).
 %;[rule,time] Happens(E_ConditionSatisfied(rule), time) -> !HoldsAt(F_ConditionSatisfied(rule),time).
 % [rule]
  
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:11
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:11
 % HoldsAt(F_ConditionSatisfied(rule),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',11).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(f_conditionSatisfied(Rule))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',11).
 axiom(initially(f_conditionSatisfied(Rule)),
     []).

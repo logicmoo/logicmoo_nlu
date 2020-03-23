@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'foundations/EC.e').
+% Mon, 23 Mar 2020 02:29:17 GMT
+% From ../foundations/EC.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',49).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -27,55 +33,100 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
 % sort time: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
 ==> subsort(time,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:27
 % sort offset: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
 ==> subsort(offset,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
 % reified sort fluent
- %  reified_sort(fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+reified_sort(fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
 ==> mpred_prop(fluent,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:30
 % reified sort event
- %  reified_sort(event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+reified_sort(event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
 ==> mpred_prop(event,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 % predicate Happens(event,time)
- %  predicate(happens(event,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
+predicate(happens(event,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 ==> mpred_prop(happens(event,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 ==> meta_argtypes(happens(event,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:33
 % predicate HoldsAt(fluent,time)
- %  predicate(holds_at(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
+predicate(holds_at(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 ==> mpred_prop(holds_at(fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 ==> meta_argtypes(holds_at(fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 % predicate ReleasedAt(fluent,time)
- %  predicate(releasedAt(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
+predicate(releasedAt(fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:35
 % predicate Initiates(event,fluent,time)
- %  predicate(initiates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
+predicate(initiates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 % predicate Terminates(event,fluent,time)
- %  predicate(terminates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
+predicate(terminates(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:37
 % predicate Releases(event,fluent,time)
- %  predicate(releases(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
+predicate(releases(event,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 ==> mpred_prop(releases(event,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 ==> meta_argtypes(releases(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
 % predicate Trajectory(fluent,time,fluent,offset)
- %  predicate(trajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
+predicate(trajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
 ==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
 ==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/EC.e:40
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',41).
 %; End of file.

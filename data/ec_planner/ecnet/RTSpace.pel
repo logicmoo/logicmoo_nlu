@@ -1,7 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.pel:3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',682).
+% Mon, 23 Mar 2020 02:27:01 GMT
+% From ../ecnet/RTSpace.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',185).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e').
@@ -30,7 +31,7 @@
 
 % fluent At(object,location)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',22).
-fluent(at(At_Param,Location)).
+fluent(at(object,location)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',22).
 ==> mpred_prop(at(object,location),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',22).
@@ -58,11 +59,11 @@ manualrelease(at).
 
  /*  releasedAt(at(Object1, Location), Time) :-
        partOf(Object1, Object2),
-       some(Object2, '$kolem_Fn_160'(Object1, Location, Time)).
+       some(Object2, '$kolem_Fn_310'(Object1, Location, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
- /*  [partOf(Object1, Object2), some(Object2, '$kolem_Fn_160'(Object1, Location, Time))] ->
+ /*  [partOf(Object1, Object2), some(Object2, '$kolem_Fn_310'(Object1, Location, Time))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -73,17 +74,17 @@ axiom(releasedAt(at(Object1, Location), Time),
    
     [ partOf(Object1, Object2),
       some(Object2,
-           '$kolem_Fn_160'(Object1, Location, Time))
+           '$kolem_Fn_310'(Object1, Location, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
  /*  not(partOf(Object1, Object2)) :-
        not(releasedAt(at(Object1, Location), Time)),
-       some(Object2, '$kolem_Fn_160'(Object1, Location, Time)).
+       some(Object2, '$kolem_Fn_310'(Object1, Location, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
- /*  [not(releasedAt(at(Object1, Location), Time)), some(Object2, '$kolem_Fn_160'(Object1, Location, Time))] ->
+ /*  [not(releasedAt(at(Object1, Location), Time)), some(Object2, '$kolem_Fn_310'(Object1, Location, Time))] ->
        ta(Ta_Param6,
           tvs1=[],
           tvs2=[],
@@ -94,7 +95,7 @@ axiom(not(partOf(Object1, Object2)),
    
     [ not(releasedAt(at(Object1, Location), Time)),
       some(Object2,
-           '$kolem_Fn_160'(Object1, Location, Time))
+           '$kolem_Fn_310'(Object1, Location, Time))
     ]).
 
 
@@ -161,11 +162,19 @@ axiom(holds_at(neg(at(Object, Location2)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:39
 % function Side1(portal): location
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
-functional_predicate(side1(Side1_Param,Side1_Ret)).
+function(side1(portal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
-==> mpred_prop(side1(portal,location),functional_predicate).
+==> mpred_prop(side1(portal),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
-==> meta_argtypes(side1(portal,location)).
+==> meta_argtypes(side1(portal)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
+predicate(side1Pred(portal,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
+==> mpred_prop(side1Pred(portal,location),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
+==> meta_argtypes(side1Pred(portal,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
+functional_predicate(side1,side1Pred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',39).
 ==> resultIsa(side1,location).
 %; Side two of portal is location.
@@ -174,11 +183,19 @@ functional_predicate(side1(Side1_Param,Side1_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
 % function Side2(portal): location
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
-functional_predicate(side2(Side2_Param,Side2_Ret)).
+function(side2(portal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
-==> mpred_prop(side2(portal,location),functional_predicate).
+==> mpred_prop(side2(portal),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
-==> meta_argtypes(side2(portal,location)).
+==> meta_argtypes(side2(portal)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
+predicate(side2Pred(portal,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
+==> mpred_prop(side2Pred(portal,location),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
+==> meta_argtypes(side2Pred(portal,location)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
+functional_predicate(side2,side2Pred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',42).
 ==> resultIsa(side2,location).
 %; The building of room is building.
@@ -186,12 +203,19 @@ functional_predicate(side2(Side2_Param,Side2_Ret)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:44
 % function BuildingOf(room): building
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
-functional_predicate(buildingOf(BuildingOf_Param,
-				BuildingOf_Ret)).
+function(buildingOf(room)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
-==> mpred_prop(buildingOf(room,building),functional_predicate).
+==> mpred_prop(buildingOf(room),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
-==> meta_argtypes(buildingOf(room,building)).
+==> meta_argtypes(buildingOf(room)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
+predicate(building(room,building)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
+==> mpred_prop(building(room,building),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
+==> meta_argtypes(building(room,building)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
+functional_predicate(buildingOf,building).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',44).
 ==> resultIsa(buildingOf,building).
 %; object is at a location that has portal.
@@ -199,7 +223,7 @@ functional_predicate(buildingOf(BuildingOf_Param,
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:47
 % fluent NearPortal(object,portal)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',47).
-fluent(nearPortal(NearPortal_Param,NearPortal_Ret)).
+fluent(nearPortal(object,portal)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',47).
 ==> mpred_prop(nearPortal(object,portal),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',47).
@@ -240,11 +264,11 @@ fluent(nearPortal(NearPortal_Param,NearPortal_Ret)).
            not(equals(side2(Portal), Location))
        ;   not(holds_at(at(Object, Location), Time))
        ),
-       some(Location, '$kolem_Fn_161'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_311'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_161'(Object, Portal, Time))] ->
+ /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_311'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -254,17 +278,17 @@ fluent(nearPortal(NearPortal_Param,NearPortal_Ret)).
 axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
    
     [  (not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)),
-      some(Location, '$kolem_Fn_161'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_311'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
  /*  holds_at(at(Object, Location), Time) :-
        holds_at(nearPortal(Object, Portal), Time),
-       some(Location, '$kolem_Fn_161'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_311'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_161'(Object, Portal, Time))] ->
+ /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_311'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -274,7 +298,7 @@ axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
 axiom(holds_at(at(Object, Location), Time),
    
     [ holds_at(nearPortal(Object, Portal), Time),
-      some(Location, '$kolem_Fn_161'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_311'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
@@ -284,11 +308,11 @@ axiom(holds_at(at(Object, Location), Time),
          ;   equals(side2(Portal), Location)
          )
        ),
-       some(Location, '$kolem_Fn_161'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_311'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_161'(Object, Portal, Time))] ->
+ /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_311'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -299,7 +323,7 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
    
     [ holds_at(at(Object, Location), Time),
        (equals(side1(Portal), Location);equals(side2(Portal), Location)),
-      some(Location, '$kolem_Fn_161'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_311'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
@@ -308,11 +332,11 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
        ;   equals(side2(Portal), Location)
        ),
        not(holds_at(nearPortal(Object, Portal), Time)),
-       some(Location, '$kolem_Fn_161'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_311'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_161'(Object, Portal, Time))] ->
+ /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_311'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -323,7 +347,7 @@ axiom(holds_at(neg(at(Object, Location)), Time),
    
     [  (equals(side1(Portal), Location);equals(side2(Portal), Location)),
       holds_at(neg(nearPortal(Object, Portal)), Time),
-      some(Location, '$kolem_Fn_161'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_311'(Object, Portal, Time))
     ]).
 
 
@@ -334,7 +358,7 @@ axiom(holds_at(neg(at(Object, Location)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:64
 % event DoorUnlock(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',64).
-event(doorUnlock(DoorUnlock_Param,DoorUnlock_Ret)).
+event(doorUnlock(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',64).
 ==> mpred_prop(doorUnlock(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',64).
@@ -349,7 +373,7 @@ event(doorUnlock(DoorUnlock_Param,DoorUnlock_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',67).
 % event DoorLock(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',67).
-event(doorLock(DoorLock_Param,DoorLock_Ret)).
+event(doorLock(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',67).
 ==> mpred_prop(doorLock(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',67).
@@ -363,7 +387,7 @@ event(doorLock(DoorLock_Param,DoorLock_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',69).
 % fluent DoorUnlocked(door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',69).
-fluent(doorUnlocked(DoorUnlocked_Ret)).
+fluent(doorUnlocked(door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',69).
 ==> mpred_prop(doorUnlocked(door),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',69).
@@ -715,7 +739,7 @@ axiom(holds_at(neg(doorIsOpen(Door)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:112
 % event DoorOpen(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',112).
-event(doorOpen(DoorOpen_Param,DoorOpen_Ret)).
+event(doorOpen(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',112).
 ==> mpred_prop(doorOpen(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',112).
@@ -730,7 +754,7 @@ event(doorOpen(DoorOpen_Param,DoorOpen_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',115).
 % event DoorClose(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',115).
-event(doorClose(DoorClose_Param,DoorClose_Ret)).
+event(doorClose(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',115).
 ==> mpred_prop(doorClose(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',115).
@@ -744,7 +768,7 @@ event(doorClose(DoorClose_Param,DoorClose_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',117).
 % fluent DoorIsOpen(door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',117).
-fluent(doorIsOpen(DoorIsOpen_Ret)).
+fluent(doorIsOpen(door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',117).
 ==> mpred_prop(doorIsOpen(door),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',117).
@@ -1113,8 +1137,7 @@ axiom(terminates(doorClose(Agent, Door), doorIsOpen(Door), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:159
 % event WalkThroughDoor12(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',159).
-event(walkThroughDoor12(WalkThroughDoor12_Param,
-			WalkThroughDoor12_Ret)).
+event(walkThroughDoor12(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',159).
 ==> mpred_prop(walkThroughDoor12(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',159).
@@ -1129,8 +1152,7 @@ event(walkThroughDoor12(WalkThroughDoor12_Param,
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',162).
 % event WalkThroughDoor21(agent,door)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',162).
-event(walkThroughDoor21(WalkThroughDoor21_Param,
-			WalkThroughDoor21_Ret)).
+event(walkThroughDoor21(agent,door)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',162).
 ==> mpred_prop(walkThroughDoor21(agent,door),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',162).
@@ -1536,7 +1558,7 @@ axiom(terminates(walkThroughDoor21(Agent, Door), at(Agent, Location), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:205
 % event WalkStreet12(agent,street)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',205).
-event(walkStreet12(WalkStreet12_Param,WalkStreet12_Ret)).
+event(walkStreet12(agent,street)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',205).
 ==> mpred_prop(walkStreet12(agent,street),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',205).
@@ -1551,7 +1573,7 @@ event(walkStreet12(WalkStreet12_Param,WalkStreet12_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',208).
 % event WalkStreet21(agent,street)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',208).
-event(walkStreet21(WalkStreet21_Param,WalkStreet21_Ret)).
+event(walkStreet21(agent,street)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',208).
 ==> mpred_prop(walkStreet21(agent,street),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',208).
@@ -1894,11 +1916,19 @@ axiom(terminates(walkStreet21(Agent, Street), at(Agent, Location), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:248
 % function Floor(room): integer
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
-functional_predicate(floor(Floor_Param,Floor_Ret)).
+function(floor(room)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
-==> mpred_prop(floor(room,integer),functional_predicate).
+==> mpred_prop(floor(room),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
-==> meta_argtypes(floor(room,integer)).
+==> meta_argtypes(floor(room)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
+predicate(floorPred(room,integer)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
+==> mpred_prop(floorPred(room,integer),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
+==> meta_argtypes(floorPred(room,integer)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
+functional_predicate(floor,floorPred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',248).
 ==> resultIsa(floor,integer).
 %; walking up and down staircases
@@ -1907,8 +1937,7 @@ functional_predicate(floor(Floor_Param,Floor_Ret)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:253
 % event WalkDownStaircase(agent,staircase)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',253).
-event(walkDownStaircase(WalkDownStaircase_Param,
-			WalkDownStaircase_Ret)).
+event(walkDownStaircase(agent,staircase)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',253).
 ==> mpred_prop(walkDownStaircase(agent,staircase),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',253).
@@ -1923,8 +1952,7 @@ event(walkDownStaircase(WalkDownStaircase_Param,
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',256).
 % event WalkUpStaircase(agent,staircase)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',256).
-event(walkUpStaircase(WalkUpStaircase_Param,
-		      WalkUpStaircase_Ret)).
+event(walkUpStaircase(agent,staircase)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',256).
 ==> mpred_prop(walkUpStaircase(agent,staircase),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',256).
@@ -2330,12 +2358,19 @@ axiom(holds_at(neg(at(Agent, Outside)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
 % function LookOutOnto(room): outside
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
-functional_predicate(lookOutOnto(LookOutOnto_Param,
-				 LookOutOnto_Ret)).
+function(lookOutOnto(room)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
-==> mpred_prop(lookOutOnto(room,outside),functional_predicate).
+==> mpred_prop(lookOutOnto(room),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
-==> meta_argtypes(lookOutOnto(room,outside)).
+==> meta_argtypes(lookOutOnto(room)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
+predicate(lookOutOntoPred(room,outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
+==> mpred_prop(lookOutOntoPred(room,outside),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
+==> meta_argtypes(lookOutOntoPred(room,outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
+functional_predicate(lookOutOnto,lookOutOntoPred).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',300).
 ==> resultIsa(lookOutOnto,outside).
 %; location1 is adjacent to location2.
@@ -2343,7 +2378,7 @@ functional_predicate(lookOutOnto(LookOutOnto_Param,
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e:302
 % predicate Adjacent(location,location)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',302).
-predicate(adjacent(Adjacent_Param,Adjacent_Ret)).
+predicate(adjacent(location,location)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',302).
 ==> mpred_prop(adjacent(location,location),predicate).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',302).
@@ -2385,11 +2420,11 @@ predicate(adjacent(Adjacent_Param,Adjacent_Ret)).
        ;   equals(side2(Portal), Location1),
            equals(side1(Portal), Location2)
        ),
-       some(Portal, '$kolem_Fn_162'(Location1, Location2)).
+       some(Portal, '$kolem_Fn_312'(Location1, Location2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
- /*  [(equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)), some(Portal, '$kolem_Fn_162'(Location1, Location2))] ->
+ /*  [(equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)), some(Portal, '$kolem_Fn_312'(Location1, Location2))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -2399,7 +2434,7 @@ predicate(adjacent(Adjacent_Param,Adjacent_Ret)).
 axiom(adjacent(Location1, Location2),
    
     [  (equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)),
-      some(Portal, '$kolem_Fn_162'(Location1, Location2))
+      some(Portal, '$kolem_Fn_312'(Location1, Location2))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
@@ -2411,11 +2446,11 @@ axiom(adjacent(Location1, Location2),
          ;   not(equals(side1(Portal), Location2))
          )
        ),
-       some(Portal, '$kolem_Fn_162'(Location1, Location2)).
+       some(Portal, '$kolem_Fn_312'(Location1, Location2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
- /*  [(not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),  (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))), some(Portal, '$kolem_Fn_162'(Location1, Location2))] ->
+ /*  [(not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),  (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))), some(Portal, '$kolem_Fn_312'(Location1, Location2))] ->
        ta(Ta_Param5,
           tvs1=[],
           tvs2=[],
@@ -2426,7 +2461,7 @@ axiom(not(adjacent(Location1, Location2)),
    
     [  (not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),
        (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))),
-      some(Portal, '$kolem_Fn_162'(Location1, Location2))
+      some(Portal, '$kolem_Fn_312'(Location1, Location2))
     ]).
 
 
@@ -2437,11 +2472,19 @@ axiom(not(adjacent(Location1, Location2)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
 % function GroundOf(outside): ground
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
-functional_predicate(groundOf(GroundOf_Param,GroundOf_Ret)).
+function(groundOf(outside)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
-==> mpred_prop(groundOf(outside,ground),functional_predicate).
+==> mpred_prop(groundOf(outside),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
-==> meta_argtypes(groundOf(outside,ground)).
+==> meta_argtypes(groundOf(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
+predicate(ground(outside,ground)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
+==> mpred_prop(ground(outside,ground),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
+==> meta_argtypes(ground(outside,ground)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
+functional_predicate(groundOf,ground).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',316).
 ==> resultIsa(groundOf,ground).
 %; The sky of outside is sky.
@@ -2450,11 +2493,19 @@ functional_predicate(groundOf(GroundOf_Param,GroundOf_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
 % function SkyOf(outside): sky
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
-functional_predicate(skyOf(SkyOf_Param,SkyOf_Ret)).
+function(skyOf(outside)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
-==> mpred_prop(skyOf(outside,sky),functional_predicate).
+==> mpred_prop(skyOf(outside),function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
-==> meta_argtypes(skyOf(outside,sky)).
+==> meta_argtypes(skyOf(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
+predicate(sky(outside,sky)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
+==> mpred_prop(sky(outside,sky),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
+==> meta_argtypes(sky(outside,sky)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
+functional_predicate(skyOf,sky).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',318).
 ==> resultIsa(skyOf,sky).
 %; State constraints fix the location of ground and sky:

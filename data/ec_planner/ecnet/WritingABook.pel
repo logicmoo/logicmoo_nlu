@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/WritingABook.e').
+% Mon, 23 Mar 2020 02:27:16 GMT
+% From ../ecnet/WritingABook.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',75).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -22,270 +28,569 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',22).
 % option modeldiff on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',22).
 :- set_ec_option(modeldiff, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:23
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 % ignore Love, ThreatenedBy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(love).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(threatenedBy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:24
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(lookOutOnto).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(floor).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(buildingOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(skyOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',24).
 ignore(groundOf).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 % ignore Inside
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 ignore(inside).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:26
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 ignore(near).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 ignore(walkFrom).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 ignore(walkFromTo).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',26).
 ignore(runFromTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',28).
 % ignore See
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',28).
 ignore(see).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',30).
 % option renaming off
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',30).
 :- set_ec_option(renaming, off).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',30).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',30).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:32
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
 % load answers/Mueller2003/Ontology.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- load_e('answers/Mueller2003/Ontology.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:34
 % load answers/Mueller2004c/RTSpaceM.e
-load('answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
 % load answers/Mueller2004c/OTSpaceM.e
-load('answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:36
 % load answers/Mueller2004c/HandTo.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- load_e('answers/Mueller2004c/HandTo.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:37
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
 % load answers/Mueller2003/Sleep.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- load_e('answers/Mueller2003/Sleep.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:38
 % load answers/Mueller2004c/Cognition.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- load_e('answers/Mueller2004c/Cognition.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',41).
 % door Door1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',41).
 ==> t(door,door1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',43).
 % room Room0
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',43).
 ==> t(room,room0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',45).
 % room Room1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',45).
 ==> t(room,room1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',47).
 % Side1(Door1)=Room0.
-side1(door1,room0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',47).
+equals(side1(door1),room0).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:47
 % Side2(Door1)=Room1.
-side2(door1,room1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',47).
+equals(side2(door1),room1).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:49
 % agent Writer1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',49).
 ==> t(agent,writer1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',52).
 % paper Paper1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',52).
 ==> t(paper,paper1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',54).
 % pen Pen1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',54).
 ==> t(pen,pen1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',56).
 % chair Chair1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',56).
 ==> t(chair,chair1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',58).
 % physobj Desk1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',58).
 ==> t(physobj,desk1).
 %; initial state
 % [agent,object]
- % !HoldsAt(Holding(agent,object),0).
- %  not(initially(holding(Agent,Object))).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:60
-axiom(not(initially(holding(Holding_Param, Holding_Ret))),
+ 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:60
+% !HoldsAt(Holding(agent,object),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',60).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(Agent, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',60).
+axiom(initially(neg(holding(Agent, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
 % [agent,physobj]
  % !HoldsAt(SittingOn(agent,physobj),0).
- %  not(initially(sittingOn(Agent,Physobj))).
-axiom(not(initially(sittingOn(SittingOn_Param, SittingOn_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(sittingOn(Agent, Physobj)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
+axiom(initially(neg(sittingOn(Agent, Physobj))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:62
 % [agent,physobj]
  % !HoldsAt(LyingOn(agent,physobj),0).
- %  not(initially(lyingOn(Agent,Physobj))).
-axiom(not(initially(lyingOn(LyingOn_Param, LyingOn_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(lyingOn(Agent, Physobj)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
+axiom(initially(neg(lyingOn(Agent, Physobj))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
 % [physobj1,physobj2]
 % !(physobj1=Pen1 & physobj2=Desk1) &
 % !(physobj1=Paper1 & physobj2=Desk1) ->
 % !HoldsAt(On(physobj1, physobj2),0).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:66
-axiom(not(holds_at(on(Physobj1, Physobj2), t)),
-    [not(equals(Physobj1, paper1)), not(equals(Physobj1, pen1))]).
-axiom(not(holds_at(on(Physobj1, Physobj2), t)),
-    [not(equals(Physobj2, desk1)), not(equals(Physobj1, pen1))]).
-axiom(not(holds_at(on(Physobj1, Physobj2), t)),
-    [not(equals(Physobj1, paper1)), not(equals(Physobj2, desk1))]).
-axiom(not(holds_at(on(Physobj1, Physobj2), t)),
-    [not(equals(Physobj2, desk1)), not(equals(Physobj2, desk1))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
+
+ /*  not((equals(Physobj1, pen1), equals(Physobj2, desk1))), not((equals(Physobj1, paper1), equals(Physobj2, desk1))) ->
+       initially(neg(on(Physobj1, Physobj2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
+
+ /*  initially(neg(on(Physobj1, Physobj2))) :-
+       (   not(equals(Physobj1, pen1))
+       ;   not(equals(Physobj2, desk1))
+       ),
+       (   not(equals(Physobj1, paper1))
+       ;   not(equals(Physobj2, desk1))
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
+
+ /*  [(not(equals(Physobj1, pen1));not(equals(Physobj2, desk1))),  (not(equals(Physobj1, paper1));not(equals(Physobj2, desk1)))] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(on(Physobj1, Physobj2)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
+axiom(initially(neg(on(Physobj1, Physobj2))),
+   
+    [  (not(equals(Physobj1, pen1));not(equals(Physobj2, desk1))),
+       (not(equals(Physobj1, paper1));not(equals(Physobj2, desk1)))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 % HoldsAt(On(Paper1,Desk1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(on(paper1, desk1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 axiom(initially(on(paper1, desk1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:68
 % HoldsAt(On(Pen1,Desk1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(on(pen1, desk1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 axiom(initially(on(pen1, desk1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:69
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 % HoldsAt(Dressed(Writer1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(writer1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 axiom(initially(dressed(writer1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:70
 % HoldsAt(Awake(Writer1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(writer1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 axiom(initially(awake(writer1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 % HoldsAt(Sleep3(Writer1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(writer1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 axiom(initially(sleep3(writer1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:72
 % HoldsAt(Standing(Writer1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(writer1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 axiom(initially(standing(writer1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:73
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
 % HoldsAt(DoorUnlocked(Door1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(door1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
 axiom(initially(doorUnlocked(door1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:74
 % HoldsAt(DoorIsOpen(Door1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorIsOpen(door1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
 axiom(initially(doorIsOpen(door1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 % HoldsAt(At(Writer1,Room0),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(writer1, room0))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 axiom(initially(at(writer1, room0)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:76
 % HoldsAt(At(Chair1,Room1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(chair1, room1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 axiom(initially(at(chair1, room1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:77
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',78).
 % HoldsAt(At(Desk1,Room1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',78).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(desk1, room1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',78).
 axiom(initially(at(desk1, room1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:79
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:79
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',80).
 %; narrative
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:80
 % Happens(WalkThroughDoor12(Writer1,Door1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',80).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(walkThroughDoor12(writer1, door1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',80).
 axiom(happens(walkThroughDoor12(writer1, door1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:81
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
 % Happens(SitOn(Writer1,Chair1),1).
-axiom(happens(sitOn(writer1, chair1), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(sitOn(writer1, chair1), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
+axiom(happens(sitOn(writer1, chair1), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:82
 % Happens(TakeOffOf(Writer1,Pen1,Desk1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(takeOffOf(writer1, pen1, desk1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
 axiom(happens(takeOffOf(writer1, pen1, desk1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:83
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
 % Happens(Think(Writer1),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(think(writer1), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
 axiom(happens(think(writer1), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:84
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:84
 % Happens(WriteOn(Writer1,Paper1,Pen1),4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
+
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(writeOn(writer1, paper1, pen1), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
 axiom(happens(writeOn(writer1, paper1, pen1), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+    [is_time(t4), b(t, t4)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
 % Happens(WriteOn(Writer1,Paper1,Pen1),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(writeOn(writer1, paper1, pen1), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
 axiom(happens(writeOn(writer1, paper1, pen1), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:86
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:86
 % Happens(PlaceOn(Writer1,Pen1,Desk1),6).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
+
+ /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
+       ta(6, tvs1=[6], tvs2=[t, t6], happens(placeOn(writer1, pen1, desk1), t6)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
 axiom(happens(placeOn(writer1, pen1, desk1), t6),
-    [is_time(6), b(t, t6), ignore(t+6=t6)]).
+    [is_time(t6), b(t, t6)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:87
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
 % Happens(RiseFrom(Writer1,Chair1),7).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
+
+ /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
+       ta(7, tvs1=[7], tvs2=[t, t7], happens(riseFrom(writer1, chair1), t7)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
 axiom(happens(riseFrom(writer1, chair1), t7),
-    [is_time(7), b(t, t7), ignore(t+7=t7)]).
+    [is_time(t7), b(t, t7)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:88
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:88
 % Happens(WalkThroughDoor21(Writer1,Door1),8).
-axiom(happens(walkThroughDoor21(writer1, door1), t8),
-    [is_time(8), b(t, t8), ignore(t+8=t8)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:90
+ /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
+       ta(8, tvs1=[8], tvs2=[t, t8], happens(walkThroughDoor21(writer1, door1), t8)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
+axiom(happens(walkThroughDoor21(writer1, door1), t8),
+    [is_time(t8), b(t, t8)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:90
 % range time 0 9
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',90).
 ==> range(time,0,9).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',92).
 % range offset 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:92
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',92).
 ==> range(offset,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:92
 % range diameter 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:93
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',92).
 ==> range(diameter,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e:94
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',95).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/WritingABook.e:95
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',95).
 ==> completion(happens).
 %; End of file.

@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/AkmanEtAl2004/ZooTest2.e').
+% Mon, 23 Mar 2020 02:26:03 GMT
+% From ../examples/AkmanEtAl2004/ZooTest2.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest1.e',58).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -21,123 +27,157 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:20
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',21).
 % option encoding 3
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',21).
 :- set_ec_option(encoding, 3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',21).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',21).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:23
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',25).
 % load examples/AkmanEtAl2004/ZooWorld.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',25).
+:- load_e('examples/AkmanEtAl2004/ZooWorld.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',25).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',25).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',27).
 % human Homer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',27).
 ==> t(human,homer).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:28
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',29).
 % Species(Homer)=HumanSpecies.
-species(homer,humanSpecies).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',29).
+equals(species(homer),humanSpecies).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:29
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:29
 % Adult(Homer).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',29).
 adult(homer).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:31
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:31
 % !HoldsAt(Opened(GateAO),0).
- %  not(initially(opened(gateAO))).
-axiom(not(initially(opened(gateAO))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',31).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(opened(gateAO)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',31).
+axiom(initially(neg(opened(gateAO))),
     []).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:32
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 % {position} 
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:32
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 % HoldsAt(Pos(Homer,position),0) & Outside=Loc(position).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*   exists([Position],
-              (holds_at(pos(homer, Position), 0), outside=loc(Position))).
+ /*  exists([Position],
+     initially(pos(homer, Position)),
+      equals(outside, loc(Position))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*  not(some(Some_Param, '$kolem_Fn_59')) :-
-       (   not(holds_at(pos(homer, Some_Param), 0))
-       ;   not(equals(outside, loc(Some_Param)))
-       ).
+ /*  initially(pos(homer, Position)) :-
+       some(Position, '$kolem_Fn_169').
  */
-axiom(not(some(Some_Param, '$kolem_Fn_59')),
-    [not(holds_at(pos(homer, Some_Param), t))]).
-axiom(not(some(Some_Param, '$kolem_Fn_59')),
-    [not(equals(outside, loc(Some_Param)))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*  holds_at(pos(homer, Some_Param3), 0) :-
-       some(Some_Param3, '$kolem_Fn_59').
+ /*  [some(Position, '$kolem_Fn_169')] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(pos(homer, Position))).
  */
-axiom(holds_at(pos(homer, Some_Param3), t),
-    [some(Some_Param3, '$kolem_Fn_59')]).
-
- /*  equals(outside, loc(Some_Param4)) :-
-       some(Some_Param4, '$kolem_Fn_59').
- */
-axiom(equals(outside, loc(Some_Param4)),
-    [some(Some_Param4, '$kolem_Fn_59')]).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
+axiom(initially(pos(homer, Position)),
+    [some(Position, '$kolem_Fn_169')]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:33
 % {position} 
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:33
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:33
 % HoldsAt(Pos(Homer,position),2) & CageA=Loc(position).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*   exists([Position],
-              (holds_at(pos(homer, Position), 2), cageA=loc(Position))).
+ /*  exists([Position],
+     holds_at(pos(homer, Position), 2),
+      equals(cageA, loc(Position))).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*  not(some(Some_Param, '$kolem_Fn_60')) :-
-       (   not(holds_at(pos(homer, Some_Param), 2))
-       ;   not(equals(cageA, loc(Some_Param)))
-       ).
+ /*  holds_at(pos(homer, Position), 2) :-
+       some(Position, '$kolem_Fn_170').
  */
-axiom(not(some(Some_Param, '$kolem_Fn_60')),
-    [not(holds_at(pos(homer, Some_Param), t2)), b(t, t2), ignore(t+2=t2)]).
-axiom(not(some(Some_Param, '$kolem_Fn_60')),
-    [not(equals(cageA, loc(Some_Param)))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
 
- /*  holds_at(pos(homer, Some_Param3), 2) :-
-       some(Some_Param3, '$kolem_Fn_60').
+ /*  [some(Position, '$kolem_Fn_170'), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], holds_at(pos(homer, Position), t2)).
  */
-axiom(holds_at(pos(homer, Some_Param3), t2),
-    [some(Some_Param3, '$kolem_Fn_60'), b(t, t2), ignore(t+2=t2)]).
-
- /*  equals(cageA, loc(Some_Param4)) :-
-       some(Some_Param4, '$kolem_Fn_60').
- */
-axiom(equals(cageA, loc(Some_Param4)),
-    [some(Some_Param4, '$kolem_Fn_60')]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',33).
+axiom(holds_at(pos(homer, Position), t2),
+    [some(Position, '$kolem_Fn_170'), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:35
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:35
 % [human]
  % HoldsAt(PosDeterminingFluent(human,1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',35).
 holds_at(posDeterminingFluent(Human,1),2).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:36
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',37).
 % [event,animal]
  % !HoldsAt(DoneBy(event,animal),2).
- %  not(holds_at(doneBy(Event,Animal),2)).
-axiom(not(holds_at(doneBy(DoneBy_Param, DoneBy_Ret), t2)),
-    [b(t, t2), ignore(t+2=t2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',37).
+holds_at(neg(doneBy(Event,Animal)),2).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:38
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',39).
 % range time 0 2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',39).
 ==> range(time,0,2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:39
 % range position 1 8
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',39).
 ==> range(position,1,8).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',41).
 % range offset 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',41).
 ==> range(offset,0,0).
 %; End of file.

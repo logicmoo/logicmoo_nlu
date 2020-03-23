@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Shanahan1997/Supermarket.e').
+% Mon, 23 Mar 2020 02:26:20 GMT
+% From ../examples/Shanahan1997/Supermarket.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',71).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -45,171 +51,352 @@
 %; !HoldsAt(Spinning(), 0).
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:45
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 % event Push()
- %  event(push()).
-==> mpred_prop(push(),event).
-==> meta_argtypes(push()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
+event(push).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
+==> mpred_prop(push,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:48
 % event Pull()
- %  event(pull()).
-==> mpred_prop(pull(),event).
-==> meta_argtypes(pull()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
+event(pull).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
+==> mpred_prop(pull,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 % fluent Forwards()
- %  fluent(forwards()).
-==> mpred_prop(forwards(),fluent).
-==> meta_argtypes(forwards()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
+fluent(forwards).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
+==> mpred_prop(forwards,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:50
 % fluent Backwards()
- %  fluent(backwards()).
-==> mpred_prop(backwards(),fluent).
-==> meta_argtypes(backwards()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
+fluent(backwards).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
+==> mpred_prop(backwards,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
 % fluent Spinning()
- %  fluent(spinning()).
-==> mpred_prop(spinning(),fluent).
-==> meta_argtypes(spinning()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
+fluent(spinning).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
+==> mpred_prop(spinning,fluent).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',54).
 % [time]
 % !Happens(Pull(), time) ->
 % Initiates(Push(), Forwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:55
-axiom(initiates(push(), forwards(), Time),
-    [not(happens(pull(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',54).
+
+ /*  [not(happens(pull, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(push, forwards, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',54).
+axiom(initiates(push, forwards, Time),
+    [not(happens(pull, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:57
 % [time]
 % !Happens(Pull(), time) ->
 % Terminates(Push(), Backwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:59
-axiom(terminates(push(), backwards(), Time),
-    [not(happens(pull(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:59
+
+ /*  [not(happens(pull, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(push, backwards, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',59).
+axiom(terminates(push, backwards, Time),
+    [not(happens(pull, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:61
 % [time]
 % !Happens(Push(), time) ->
 % Initiates(Pull(), Backwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:63
-axiom(initiates(pull(), backwards(), Time),
-    [not(happens(push(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:63
+
+ /*  [not(happens(push, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(pull, backwards, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',63).
+axiom(initiates(pull, backwards, Time),
+    [not(happens(push, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:65
 % [time]
 % !Happens(Push(), time) ->
 % Terminates(Pull(), Forwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:67
-axiom(terminates(pull(), forwards(), Time),
-    [not(happens(push(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:67
+
+ /*  [not(happens(push, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(pull, forwards, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',67).
+axiom(terminates(pull, forwards, Time),
+    [not(happens(push, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:69
 % [time]
 % Happens(Push(), time) ->
 % Initiates(Pull(), Spinning(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:71
-axiom(requires(push(), Time),
-    [initiates(pull(), spinning(), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:71
+
+ /*  [holds_at(metreqs(push), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(push, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
+axiom(requires(push, Time),
+    [holds_at(metreqs(push), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
+
+ /*  [initiates(pull, spinning, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(push), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
+axiom(holds_at(requirements(push), Time),
+    [initiates(pull, spinning, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:73
 % [time]
 % Happens(Push(), time) ->
 % Terminates(Pull(), Forwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:75
-axiom(requires(push(), Time),
-    [terminates(pull(), forwards(), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:75
+
+ /*  [holds_at(metreqs(push), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(push, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
+axiom(requires(push, Time),
+    [holds_at(metreqs(push), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
+
+ /*  [terminates(pull, forwards, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(push), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
+axiom(holds_at(requirements(push), Time),
+    [terminates(pull, forwards, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:77
 % [time]
 % Happens(Push(), time) ->
 % Terminates(Pull(), Backwards(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:79
-axiom(requires(push(), Time),
-    [terminates(pull(), backwards(), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:79
+
+ /*  [holds_at(metreqs(push), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(push, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
+axiom(requires(push, Time),
+    [holds_at(metreqs(push), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
+
+ /*  [terminates(pull, backwards, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(push), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
+axiom(holds_at(requirements(push), Time),
+    [terminates(pull, backwards, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:81
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:81
 % [time]
 % !Happens(Pull(), time) ->
 % Terminates(Push(), Spinning(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:83
-axiom(terminates(push(), spinning(), Time),
-    [not(happens(pull(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:83
+
+ /*  [not(happens(pull, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(push, spinning, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',83).
+axiom(terminates(push, spinning, Time),
+    [not(happens(pull, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:85
 % [time]
 % !Happens(Push(), time) ->
 % Terminates(Pull(), Spinning(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:87
-axiom(terminates(pull(), spinning(), Time),
-    [not(happens(push(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:87
+
+ /*  [not(happens(push, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(pull, spinning, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',87).
+axiom(terminates(pull, spinning, Time),
+    [not(happens(push, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:89
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:89
 % !HoldsAt(Forwards(), 0).
- %  not(initially(forwards())).
-axiom(not(initially(forwards())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',89).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(forwards))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',89).
+axiom(initially(neg(forwards)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:90
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:90
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 % !HoldsAt(Backwards(), 0).
- %  not(initially(backwards())).
-axiom(not(initially(backwards())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(backwards))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
+axiom(initially(neg(backwards)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:91
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:91
 % !HoldsAt(Spinning(), 0).
- %  not(initially(spinning())).
-axiom(not(initially(spinning())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(spinning))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
+axiom(initially(neg(spinning)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:93
 % Happens(Push(), 5).
-axiom(happens(push(), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',93).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(push, t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',93).
+axiom(happens(push, t5),
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:94
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:94
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
 % Happens(Pull(), 5).
-axiom(happens(pull(), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(pull, t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
+axiom(happens(pull, t5),
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:95
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:95
 % Happens(Pull(), 10).
-axiom(happens(pull(), t10),
-    [is_time(10), b(t, t10), ignore(t+10=t10)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
+
+ /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
+       ta(10, tvs1=[10], tvs2=[t, t10], happens(pull, t10)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
+axiom(happens(pull, t10),
+    [is_time(t10), b(t, t10)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:96
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
 % Happens(Push(), 10).
-axiom(happens(push(), t10),
-    [is_time(10), b(t, t10), ignore(t+10=t10)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:98
+ /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
+       ta(10, tvs1=[10], tvs2=[t, t10], happens(push, t10)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
+axiom(happens(push, t10),
+    [is_time(t10), b(t, t10)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:98
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',99).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:99
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',99).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:100
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',101).
 % range time 0 12
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:101
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',101).
 ==> range(time,0,12).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:101
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:102
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',101).
 ==> range(offset,1,1).
 %; End of file.

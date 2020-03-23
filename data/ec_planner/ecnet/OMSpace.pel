@@ -1,9 +1,16 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/OMSpace.e').
+% Mon, 23 Mar 2020 02:26:43 GMT
+% From ../ecnet/OMSpace.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Money.e',12).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e').
+ */
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:0
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:0
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Money.e',12).
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -38,112 +45,187 @@
 %; }
 %;
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:34
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',35).
 % sort height: integer
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',35).
 ==> subsort(height,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:35
 % sort distance: integer
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',35).
 ==> subsort(distance,integer).
 %; Height
 %; The height of object is height.
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:40
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:40
 % fluent Height(object,height)
- %  fluent(height(object,height)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
+fluent(height(object,height)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
 ==> mpred_prop(height(object,height),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
 ==> meta_argtypes(height(object,height)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',43).
 %; State constraint represent the fact that each
 %; object has a unique height:
 % [object,height1,height2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:45
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:45
 % HoldsAt(Height(object,height1),time) &
 % HoldsAt(Height(object,height2),time) ->
 % height1=height2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:47
-axiom(Height1=Height2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+
+ /*  holds_at(height(Object, Height1), Time), holds_at(height(Object, Height2), Time) ->
+       equals(Height1, Height2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+
+ /*  not(holds_at(height(Object, Height1), Time)) :-
+       holds_at(height(Object, Height2), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+
+ /*  [holds_at(height(Object, Height2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+axiom(holds_at(neg(height(Object, Height1)), Time),
+   
+    [ holds_at(height(Object, Height2), Time),
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+
+ /*  not(holds_at(height(Object, Height2), Time)) :-
+       holds_at(height(Object, Height1), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+
+ /*  [holds_at(height(Object, Height1), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
+axiom(holds_at(neg(height(Object, Height2)), Time),
    
     [ holds_at(height(Object, Height1), Time),
-      holds_at(height(Object, Height2), Time)
+      not(equals(Height2, Height1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:49
 % [object,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:50
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 % {height}% HoldsAt(Height(object,height),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
  /*  exists([Height],
-          holds_at(height(Object,Height),Time)).
+    holds_at(height(Object,Height),Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
- /*  holds_at(height(Height_Param, Some_Param), Time4) :-
-       some(Some_Param, '$kolem_Fn_147'(Height_Param, Time4)).
+ /*  holds_at(height(Object, Height), Time) :-
+       some(Height, '$kolem_Fn_272'(Object, Time)).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:51
-axiom(holds_at(height(Height_Param, Some_Param), Time4),
-    [some(Some_Param, '$kolem_Fn_147'(Height_Param, Time4))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
- /*  not(some(Some_Param8, '$kolem_Fn_147'(Fn_147_Param, Time7))) :-
-       not(holds_at(height(Fn_147_Param, Some_Param8), Time7)).
+ /*  [some(Height, '$kolem_Fn_272'(Object, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(height(Object, Height), Time)).
  */
-axiom(not(some(Some_Param8, '$kolem_Fn_147'(Fn_147_Param, Time7))),
-    [not(holds_at(height(Fn_147_Param, Some_Param8), Time7))]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
+axiom(holds_at(height(Object, Height), Time),
+    [some(Height, '$kolem_Fn_272'(Object, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:53
 %; falling
 %; physobj1 is falling from physobj2 to physobj3.
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:56
 % fluent FallingFromTo(physobj,physobj,physobj)
- %  fluent(fallingFromTo(physobj,physobj,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
+fluent(fallingFromTo(physobj,physobj,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 ==> mpred_prop(fallingFromTo(physobj,physobj,physobj),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 ==> meta_argtypes(fallingFromTo(physobj,physobj,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 %; physobj1 starts falling from physobj2 to physobj3.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 % event StartFallingFromTo(physobj,physobj,physobj)
- %  event(startFallingFromTo(physobj,physobj,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
+event(startFallingFromTo(physobj,physobj,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 ==> mpred_prop(startFallingFromTo(physobj,physobj,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 ==> meta_argtypes(startFallingFromTo(physobj,physobj,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:59
 %; physobj1 collides with physobj2.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:60
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 % event CollideWith(physobj,physobj)
- %  event(collideWith(physobj,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
+event(collideWith(physobj,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 ==> mpred_prop(collideWith(physobj,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 ==> meta_argtypes(collideWith(physobj,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',63).
 %; An effect axiom states that if a first physical object starts
 %; falling from a second physical object to a third physical
 %; object, the first physical object will be falling from the
 %; second physical object to the third physical object:
 % [physobj1,physobj2,physobj3,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:67
 % Initiates(StartFallingFromTo(physobj1,physobj2,physobj3),
 %           FallingFromTo(physobj1,physobj2,physobj3),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:69
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',67).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(startFallingFromTo(Physobj1,
+                                       Physobj2,
+                                       Physobj3),
+                    fallingFromTo(Physobj1, Physobj2, Physobj3),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',67).
 axiom(initiates(startFallingFromTo(Physobj1, Physobj2, Physobj3), fallingFromTo(Physobj1, Physobj2, Physobj3), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:71
 %; A precondition axiom states that for
 %; a first physical object to start
 %; falling from a second physical object to a third physical
@@ -151,126 +233,176 @@ axiom(initiates(startFallingFromTo(Physobj1, Physobj2, Physobj3), fallingFromTo(
 %; the height of the first physical object and the
 %; second physical object must be the same.
 % [physobj1,physobj2,physobj3,height1,height2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:78
 % Happens(StartFallingFromTo(physobj1,physobj2,physobj3),time) &
 % HoldsAt(Height(physobj1,height1),time) &
 % HoldsAt(Height(physobj2,height2),time) ->
 % height1=height2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:81
-axiom(Height1=Height2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time), holds_at(height(Physobj1, Height1), Time), holds_at(height(Physobj2, Height2), Time) ->
+       equals(Height1, Height2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  not(happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time)) :-
+       ( holds_at(height(Physobj1, Height1), Time),
+         holds_at(height(Physobj2, Height2), Time)
+       ),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  [holds_at(height(Physobj1, Height1), Time), holds_at(height(Physobj2, Height2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(startFallingFromTo(Physobj1,
+                                         Physobj2,
+                                         Physobj3),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+axiom(not(happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time)),
    
-    [ happens(startFallingFromTo(Physobj1, Physobj2, Physobj3),
+    [ holds_at(height(Physobj1, Height1), Time),
+      holds_at(height(Physobj2, Height2), Time),
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  not(holds_at(height(Physobj1, Height1), Time)) :-
+       holds_at(height(Physobj2, Height2), Time),
+       happens(startFallingFromTo(Physobj1, Physobj2, Physobj3),
+               Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  [holds_at(height(Physobj2, Height2), Time), happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj1, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+axiom(holds_at(neg(height(Physobj1, Height1)), Time),
+   
+    [ holds_at(height(Physobj2, Height2), Time),
+      happens(startFallingFromTo(Physobj1, Physobj2, Physobj3),
               Time),
-      holds_at(height(Physobj1, Height1), Time),
-      holds_at(height(Physobj2, Height2), Time)
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  not(holds_at(height(Physobj2, Height2), Time)) :-
+       holds_at(height(Physobj1, Height1), Time),
+       happens(startFallingFromTo(Physobj1, Physobj2, Physobj3),
+               Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+
+ /*  [holds_at(height(Physobj1, Height1), Time), happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj2, Height2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
+axiom(holds_at(neg(height(Physobj2, Height2)), Time),
+   
+    [ holds_at(height(Physobj1, Height1), Time),
+      happens(startFallingFromTo(Physobj1, Physobj2, Physobj3),
+              Time),
+      not(equals(Height2, Height1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:83
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:83
 %; A state constraint says that a physical object
 %; cannot fall from itself, cannot fall to itself,
 %; and cannot fall from and to the same physical object:
 % [physobj1,physobj2,physobj3,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:87
 % HoldsAt(FallingFromTo(physobj1,physobj2,physobj3),time) ->
 % physobj1!=physobj2 &
 % physobj1!=physobj3 &
 % physobj2!=physobj3.
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:90
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
 
- /*   if(holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
-                  Time),
-          (Physobj1\=Physobj2, Physobj1\=Physobj3, Physobj2\=Physobj3)).
+ /*  holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time) ->
+       diff(Physobj1, Physobj2),
+       diff(Physobj1, Physobj3),
+       diff(Physobj2, Physobj3).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
 
- /*  not(holds_at(fallingFromTo(FallingFromTo_Param, Dif_Param, FallingFromTo_Ret), Time4)) :-
-       (   not({dif(FallingFromTo_Param, Dif_Param)})
-       ;   not({dif(FallingFromTo_Param, FallingFromTo_Ret)})
-       ;   not({dif(Dif_Param, FallingFromTo_Ret)})
+ /*  not(holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time)) :-
+       (   not(diff(Physobj1, Physobj2))
+       ;   not(diff(Physobj1, Physobj3))
+       ;   not(diff(Physobj2, Physobj3))
        ).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:90
-axiom(not(holds_at(fallingFromTo(FallingFromTo_Param, Dif_Param, FallingFromTo_Ret), Time4)),
-    [not({dif(FallingFromTo_Param, Dif_Param)})]).
-axiom(not(holds_at(fallingFromTo(FallingFromTo_Param, Dif_Param, FallingFromTo_Ret), Time4)),
-    [not({dif(FallingFromTo_Param, FallingFromTo_Ret)})]).
-axiom(not(holds_at(fallingFromTo(FallingFromTo_Param, Dif_Param, FallingFromTo_Ret), Time4)),
-    [not({dif(Dif_Param, FallingFromTo_Ret)})]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
 
- /*  { dif(Dif_Param9, Dif_Ret)
-   } :-
-       holds_at(fallingFromTo(Dif_Param9,
-                              Dif_Ret,
-                              FallingFromTo_Ret11),
-                Time8).
+ /*  [(not(diff(Physobj1, Physobj2));not(diff(Physobj1, Physobj3));not(diff(Physobj2, Physobj3)))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(fallingFromTo(Physobj1,
+                                     Physobj2,
+                                     Physobj3)),
+                   Time)).
  */
-axiom({ dif(Dif_Param9, Dif_Ret)
-},
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
+axiom(holds_at(neg(fallingFromTo(Physobj1, Physobj2, Physobj3)), Time),
    
-    [ holds_at(fallingFromTo(Dif_Param9,
-                             Dif_Ret,
-                             FallingFromTo_Ret11),
-               Time8)
-    ]).
-
- /*  { dif(Dif_Param13, Dif_Ret14)
-   } :-
-       holds_at(fallingFromTo(Dif_Param13, _, Dif_Ret14),
-                Time12).
- */
-axiom({ dif(Dif_Param13, Dif_Ret14)
-},
-   
-    [ holds_at(fallingFromTo(Dif_Param13, _, Dif_Ret14),
-               Time12)
-    ]).
-
- /*  { dif(Dif_Param16, Dif_Ret18)
-   } :-
-       holds_at(fallingFromTo(FallingFromTo_Param17,
-                              Dif_Param16,
-                              Dif_Ret18),
-                Time15).
- */
-axiom({ dif(Dif_Param16, Dif_Ret18)
-},
-   
-    [ holds_at(fallingFromTo(FallingFromTo_Param17,
-                             Dif_Param16,
-                             Dif_Ret18),
-               Time15)
+    [  (not(diff(Physobj1, Physobj2));not(diff(Physobj1, Physobj3));not(diff(Physobj2, Physobj3)))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:92
 %; A state constraint says that the sky cannot fall:
 % [sky,physobj1,physobj2,time]
 % !HoldsAt(FallingFromTo(sky,physobj1,physobj2),time).
-
- /*  not(holds_at(fallingFromTo(Sky,Physobj1,Physobj2),
-   	     Time)).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:94
-axiom(not(holds_at(fallingFromTo(FallingFromTo_Param, _, FallingFromTo_Ret), Time4)),
-    []).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:94
+holds_at(neg(fallingFromTo(Sky,Physobj1,Physobj2)),
+	 Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:96
 %; A releases axiom states that if
 %; if a first physical object starts
 %; falling from a second physical object to a third physical
 %; object, the height of the first physical object
 %; will be released from inertia:
 % [physobj1,physobj2,physobj3,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:102
 % Releases(StartFallingFromTo(physobj1,physobj2,physobj3),
 %          Height(physobj1,height),
 %          time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:104
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',102).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          releases(startFallingFromTo(Physobj1,
+                                      Physobj2,
+                                      Physobj3),
+                   height(Physobj1, Height),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',102).
 axiom(releases(startFallingFromTo(Physobj1, Physobj2, Physobj3), height(Physobj1, Height), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:106
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:106
 %; A trajectory axiom states that
 %; if a first physical object starts falling
 %; from a second physical object
@@ -281,20 +413,74 @@ axiom(releases(startFallingFromTo(Physobj1, Physobj2, Physobj3), height(Physobj1
 %; equal to the height minus an offset
 %; at a time equal to the time plus the offset:
 % [physobj1,physobj2,physobj3,height1,height2,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:116
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:116
 % HoldsAt(Height(physobj1,height1),time) &
 % height2=height1-offset ->
 % Trajectory(FallingFromTo(physobj1,physobj2,physobj3),time,
 %            Height(physobj1,height2),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:119
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:119
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+
+ /*  holds_at(height(Physobj1, Height1), Time), equals(Height2, Height1-Offset) ->
+       trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                  Time,
+                  height(Physobj1, Height2),
+                  Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+
+ /*  trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3), Time, height(Physobj1, Height2), Offset) :-
+       holds_at(height(Physobj1, Height1), Time),
+       equals(Height2, Height1-Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+
+ /*  [holds_at(height(Physobj1, Height1), Time), equals(Height2, Height1-Offset)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                     Time,
+                     height(Physobj1, Height2),
+                     Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
 axiom(trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3), Time, height(Physobj1, Height2), Offset),
    
     [ holds_at(height(Physobj1, Height1), Time),
       equals(Height2, Height1-Offset)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+
+ /*  not(holds_at(height(Physobj1, Height1), Time)) :-
+       equals(Height2, Height1-Offset),
+       not(trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                      Time,
+                      height(Physobj1, Height2),
+                      Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+
+ /*  [equals(Height2, Height1-Offset), not(trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3), Time, height(Physobj1, Height2), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj1, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',116).
+axiom(holds_at(neg(height(Physobj1, Height1)), Time),
+   
+    [ equals(Height2, Height1-Offset),
+      not(trajectory(fallingFromTo(Physobj1,
+                                   Physobj2,
+                                   Physobj3),
+                     Time,
+                     height(Physobj1, Height2),
+                     Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:121
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:121
 %; A trigger axiom states that
 %; if a first physical object is falling
 %; from a second physical object
@@ -304,12 +490,34 @@ axiom(trajectory(fallingFromTo(Physobj1, Physobj2, Physobj3), Time, height(Physo
 %; the first physical object collides with the
 %; third physical object:
 % [physobj1,physobj2,physobj3,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:130
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:130
 % HoldsAt(FallingFromTo(physobj1,physobj2,physobj3),time) &
 % HoldsAt(Height(physobj1,height),time) &
 % HoldsAt(Height(physobj3,height),time) ->
 % Happens(CollideWith(physobj1,physobj3),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:133
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:133
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time), holds_at(height(Physobj1, Height), Time), holds_at(height(Physobj3, Height), Time) ->
+       happens(collideWith(Physobj1, Physobj3), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  happens(collideWith(Physobj1, Physobj3), Time) :-
+       holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                Time),
+       holds_at(height(Physobj1, Height), Time),
+       holds_at(height(Physobj3, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  [holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time), holds_at(height(Physobj1, Height), Time), holds_at(height(Physobj3, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(collideWith(Physobj1, Physobj3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
 axiom(happens(collideWith(Physobj1, Physobj3), Time),
    
     [ holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
@@ -317,9 +525,83 @@ axiom(happens(collideWith(Physobj1, Physobj3), Time),
       holds_at(height(Physobj1, Height), Time),
       holds_at(height(Physobj3, Height), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  not(holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time)) :-
+       ( holds_at(height(Physobj1, Height), Time),
+         holds_at(height(Physobj3, Height), Time)
+       ),
+       not(happens(collideWith(Physobj1, Physobj3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  [holds_at(height(Physobj1, Height), Time), holds_at(height(Physobj3, Height), Time), not(happens(collideWith(Physobj1, Physobj3), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(fallingFromTo(Physobj1,
+                                     Physobj2,
+                                     Physobj3)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+axiom(holds_at(neg(fallingFromTo(Physobj1, Physobj2, Physobj3)), Time),
+   
+    [ holds_at(height(Physobj1, Height), Time),
+      holds_at(height(Physobj3, Height), Time),
+      not(happens(collideWith(Physobj1, Physobj3), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  not(holds_at(height(Physobj1, Height), Time)) :-
+       holds_at(height(Physobj3, Height), Time),
+       holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                Time),
+       not(happens(collideWith(Physobj1, Physobj3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  [holds_at(height(Physobj3, Height), Time), holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time), not(happens(collideWith(Physobj1, Physobj3), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj1, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+axiom(holds_at(neg(height(Physobj1, Height)), Time),
+   
+    [ holds_at(height(Physobj3, Height), Time),
+      holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
+               Time),
+      not(happens(collideWith(Physobj1, Physobj3), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  not(holds_at(height(Physobj3, Height), Time)) :-
+       holds_at(height(Physobj1, Height), Time),
+       holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
+                Time),
+       not(happens(collideWith(Physobj1, Physobj3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+
+ /*  [holds_at(height(Physobj1, Height), Time), holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time), not(happens(collideWith(Physobj1, Physobj3), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj3, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
+axiom(holds_at(neg(height(Physobj3, Height)), Time),
+   
+    [ holds_at(height(Physobj1, Height), Time),
+      holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
+               Time),
+      not(happens(collideWith(Physobj1, Physobj3), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:135
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:135
 %; An effect axiom states that
 %; if a first physical object is falling
 %; from a second physical object
@@ -328,12 +610,23 @@ axiom(happens(collideWith(Physobj1, Physobj3), Time),
 %; the third physical object,
 %; the first physical object will be on the third physical object:
 % [physobj1,physobj2,physobj3,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:143
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:143
 % HoldsAt(FallingFromTo(physobj1,physobj2,physobj3),time) ->
 % Initiates(CollideWith(physobj1,physobj3),
 %           On(physobj1,physobj3),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:146
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:146
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',143).
+
+ /*  [holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(collideWith(Physobj1, Physobj3),
+                    on(Physobj1, Physobj3),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',143).
 axiom(initiates(collideWith(Physobj1, Physobj3), on(Physobj1, Physobj3), Time),
    
     [ holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
@@ -341,24 +634,35 @@ axiom(initiates(collideWith(Physobj1, Physobj3), on(Physobj1, Physobj3), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:148
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:148
 %; An effect axiom states that
 %; if a physical object collides with another
 %; physical object,
 %; the height of the first physical object will
 %; be the height of the second physical object:
 % [physobj1,physobj2,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:154
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:154
 % HoldsAt(Height(physobj2,height),time) ->
 % Initiates(CollideWith(physobj1,physobj2),
 %           Height(physobj1,height),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:157
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:157
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',154).
+
+ /*  [holds_at(height(Physobj2, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(collideWith(Physobj1, Physobj2),
+                    height(Physobj1, Height),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',154).
 axiom(initiates(collideWith(Physobj1, Physobj2), height(Physobj1, Height), Time),
     [holds_at(height(Physobj2, Height), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:159
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:159
 %;[physobj1,physobj2,height1,height2,time]
 %;HoldsAt(Height(physobj2,height1),time) &
 %;height1 != height2 ->
@@ -375,12 +679,23 @@ axiom(initiates(collideWith(Physobj1, Physobj2), height(Physobj1, Height), Time)
 %; falling from the second physical object to the
 %; third physical object:
 % [physobj1,physobj2,physobj3,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:176
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:176
 % HoldsAt(FallingFromTo(physobj1,physobj2,physobj3),time) ->
 % Terminates(CollideWith(physobj1,physobj3),
 %            FallingFromTo(physobj1,physobj2,physobj3),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:179
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:179
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',176).
+
+ /*  [holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(collideWith(Physobj1, Physobj3),
+                     fallingFromTo(Physobj1, Physobj2, Physobj3),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',176).
 axiom(terminates(collideWith(Physobj1, Physobj3), fallingFromTo(Physobj1, Physobj2, Physobj3), Time),
    
     [ holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
@@ -388,106 +703,228 @@ axiom(terminates(collideWith(Physobj1, Physobj3), fallingFromTo(Physobj1, Physob
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:181
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:181
 %; flying
 %; agent is flying from physobj1 to physobj2.
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:184
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:184
 % fluent FlyingFromTo(agent,physobj,physobj)
- %  fluent(flyingFromTo(agent,physobj,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:185
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
+fluent(flyingFromTo(agent,physobj,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 ==> mpred_prop(flyingFromTo(agent,physobj,physobj),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 ==> meta_argtypes(flyingFromTo(agent,physobj,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:185
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:185
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 %; agent starts flying from physobj1 to physobj2.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:186
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 % event StartFlyingFromTo(agent,physobj,physobj)
- %  event(startFlyingFromTo(agent,physobj,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:187
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
+event(startFlyingFromTo(agent,physobj,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 ==> mpred_prop(startFlyingFromTo(agent,physobj,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 ==> meta_argtypes(startFlyingFromTo(agent,physobj,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:187
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:187
 %; agent reaches physobj.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:188
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 % event Reach(agent,physobj)
- %  event(reach(agent,physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:189
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
+event(reach(agent,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 ==> mpred_prop(reach(agent,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 ==> meta_argtypes(reach(agent,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:190
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:190
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',191).
 %; An effect axiom states that if an agent starts
 %; flying from a physical object to another physical object,
 %; the agent will be flying from the first physical object
 %; to the second physical object:
 % [agent,physobj1,physobj2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:195
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:195
 % Initiates(StartFlyingFromTo(agent,physobj1,physobj2),
 %           FlyingFromTo(agent,physobj1,physobj2),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:197
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:197
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',195).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(startFlyingFromTo(Agent, Physobj1, Physobj2),
+                    flyingFromTo(Agent, Physobj1, Physobj2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',195).
 axiom(initiates(startFlyingFromTo(Agent, Physobj1, Physobj2), flyingFromTo(Agent, Physobj1, Physobj2), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:199
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:199
 %; A precondition axiom states that for
 %; an agent to start flying from a physical object to
 %; another physical object,
 %; the height of the agent and
 %; the first physical object must be the same:
 % [agent,physobj1,physobj2,height1,height2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:205
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:205
 % Happens(StartFlyingFromTo(agent,physobj1,physobj2),time) &
 % HoldsAt(Height(agent,height1),time) &
 % HoldsAt(Height(physobj1,height2),time) ->
 % height1=height2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:208
-axiom(Height1=Height2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:208
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time), holds_at(height(Agent, Height1), Time), holds_at(height(Physobj1, Height2), Time) ->
+       equals(Height1, Height2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  not(happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time)) :-
+       ( holds_at(height(Agent, Height1), Time),
+         holds_at(height(Physobj1, Height2), Time)
+       ),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  [holds_at(height(Agent, Height1), Time), holds_at(height(Physobj1, Height2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(startFlyingFromTo(Agent,
+                                        Physobj1,
+                                        Physobj2),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+axiom(not(happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time)),
    
-    [ happens(startFlyingFromTo(Agent, Physobj1, Physobj2),
+    [ holds_at(height(Agent, Height1), Time),
+      holds_at(height(Physobj1, Height2), Time),
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  not(holds_at(height(Agent, Height1), Time)) :-
+       holds_at(height(Physobj1, Height2), Time),
+       happens(startFlyingFromTo(Agent, Physobj1, Physobj2),
+               Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  [holds_at(height(Physobj1, Height2), Time), happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Agent, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+axiom(holds_at(neg(height(Agent, Height1)), Time),
+   
+    [ holds_at(height(Physobj1, Height2), Time),
+      happens(startFlyingFromTo(Agent, Physobj1, Physobj2),
               Time),
-      holds_at(height(Agent, Height1), Time),
-      holds_at(height(Physobj1, Height2), Time)
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  not(holds_at(height(Physobj1, Height2), Time)) :-
+       holds_at(height(Agent, Height1), Time),
+       happens(startFlyingFromTo(Agent, Physobj1, Physobj2),
+               Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+
+ /*  [holds_at(height(Agent, Height1), Time), happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj1, Height2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
+axiom(holds_at(neg(height(Physobj1, Height2)), Time),
+   
+    [ holds_at(height(Agent, Height1), Time),
+      happens(startFlyingFromTo(Agent, Physobj1, Physobj2),
+              Time),
+      not(equals(Height2, Height1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:210
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:210
 %; A state constraint says that an agent
 %; cannot fly from and to the same physical object:
 % [agent,physobj1,physobj2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:213
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:213
 % HoldsAt(FlyingFromTo(agent,physobj1,physobj2),time) ->
 % physobj1!=physobj2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:214
-axiom(Physobj1\=Physobj2,
-   
-    [ holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
-               Time)
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
+
+ /*  holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time) ->
+       diff(Physobj1, Physobj2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
+
+ /*  not(holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time)) :-
+       not(diff(Physobj1, Physobj2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
+
+ /*  [not(diff(Physobj1, Physobj2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(flyingFromTo(Agent, Physobj1, Physobj2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
+axiom(holds_at(neg(flyingFromTo(Agent, Physobj1, Physobj2)), Time),
+    [not(diff(Physobj1, Physobj2))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:216
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:216
 %; A releases axiom states that if an agent
 %; starts flying from a physical object to another
 %; physical object, the height of the agent will
 %; be released from inertia:
 % [agent,physobj1,physobj2,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:221
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:221
 % Releases(StartFlyingFromTo(agent,physobj1,physobj2),
 %          Height(agent,height),
 %          time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:223
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:223
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',221).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          releases(startFlyingFromTo(Agent, Physobj1, Physobj2),
+                   height(Agent, Height),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',221).
 axiom(releases(startFlyingFromTo(Agent, Physobj1, Physobj2), height(Agent, Height), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:225
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:225
 %; A trajectory axiom states that
 %; if an agent starts flying from
 %; from a physical object
@@ -498,20 +935,72 @@ axiom(releases(startFlyingFromTo(Agent, Physobj1, Physobj2), height(Agent, Heigh
 %; equal to the height plus an offset
 %; at a time equal to the time plus the offset:
 % [agent,physobj1,physobj2,height1,height2,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:235
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:235
 % HoldsAt(Height(agent,height1),time) &
 % height2=height1+offset ->
 % Trajectory(FlyingFromTo(agent,physobj1,physobj2),time,
 %            Height(agent,height2),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:238
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:238
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+
+ /*  holds_at(height(Agent, Height1), Time), equals(Height2, Height1+Offset) ->
+       trajectory(flyingFromTo(Agent, Physobj1, Physobj2),
+                  Time,
+                  height(Agent, Height2),
+                  Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+
+ /*  trajectory(flyingFromTo(Agent, Physobj1, Physobj2), Time, height(Agent, Height2), Offset) :-
+       holds_at(height(Agent, Height1), Time),
+       equals(Height2, Height1+Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+
+ /*  [holds_at(height(Agent, Height1), Time), equals(Height2, Height1+Offset)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          trajectory(flyingFromTo(Agent, Physobj1, Physobj2),
+                     Time,
+                     height(Agent, Height2),
+                     Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
 axiom(trajectory(flyingFromTo(Agent, Physobj1, Physobj2), Time, height(Agent, Height2), Offset),
    
     [ holds_at(height(Agent, Height1), Time),
       equals(Height2, Height1+Offset)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+
+ /*  not(holds_at(height(Agent, Height1), Time)) :-
+       equals(Height2, Height1+Offset),
+       not(trajectory(flyingFromTo(Agent, Physobj1, Physobj2),
+                      Time,
+                      height(Agent, Height2),
+                      Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+
+ /*  [equals(Height2, Height1+Offset), not(trajectory(flyingFromTo(Agent, Physobj1, Physobj2), Time, height(Agent, Height2), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Agent, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',235).
+axiom(holds_at(neg(height(Agent, Height1)), Time),
+   
+    [ equals(Height2, Height1+Offset),
+      not(trajectory(flyingFromTo(Agent, Physobj1, Physobj2),
+                     Time,
+                     height(Agent, Height2),
+                     Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:240
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:240
 %; A trigger axiom states that
 %; if an agent is flying
 %; from a physical object
@@ -520,12 +1009,34 @@ axiom(trajectory(flyingFromTo(Agent, Physobj1, Physobj2), Time, height(Agent, He
 %; is the same as the height of the second physical object,
 %; the agent reaches the second physical object:
 % [agent,physobj1,physobj2,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:248
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:248
 % HoldsAt(FlyingFromTo(agent,physobj1,physobj2),time) &
 % HoldsAt(Height(agent,height),time) &
 % HoldsAt(Height(physobj2,height),time) ->
 % Happens(Reach(agent,physobj2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:251
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:251
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time), holds_at(height(Agent, Height), Time), holds_at(height(Physobj2, Height), Time) ->
+       happens(reach(Agent, Physobj2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  happens(reach(Agent, Physobj2), Time) :-
+       holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
+                Time),
+       holds_at(height(Agent, Height), Time),
+       holds_at(height(Physobj2, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  [holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time), holds_at(height(Agent, Height), Time), holds_at(height(Physobj2, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(reach(Agent, Physobj2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
 axiom(happens(reach(Agent, Physobj2), Time),
    
     [ holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
@@ -533,23 +1044,105 @@ axiom(happens(reach(Agent, Physobj2), Time),
       holds_at(height(Agent, Height), Time),
       holds_at(height(Physobj2, Height), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  not(holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time)) :-
+       ( holds_at(height(Agent, Height), Time),
+         holds_at(height(Physobj2, Height), Time)
+       ),
+       not(happens(reach(Agent, Physobj2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  [holds_at(height(Agent, Height), Time), holds_at(height(Physobj2, Height), Time), not(happens(reach(Agent, Physobj2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(flyingFromTo(Agent, Physobj1, Physobj2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+axiom(holds_at(neg(flyingFromTo(Agent, Physobj1, Physobj2)), Time),
+   
+    [ holds_at(height(Agent, Height), Time),
+      holds_at(height(Physobj2, Height), Time),
+      not(happens(reach(Agent, Physobj2), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  not(holds_at(height(Agent, Height), Time)) :-
+       holds_at(height(Physobj2, Height), Time),
+       holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
+                Time),
+       not(happens(reach(Agent, Physobj2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  [holds_at(height(Physobj2, Height), Time), holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time), not(happens(reach(Agent, Physobj2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Agent, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+axiom(holds_at(neg(height(Agent, Height)), Time),
+   
+    [ holds_at(height(Physobj2, Height), Time),
+      holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
+               Time),
+      not(happens(reach(Agent, Physobj2), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  not(holds_at(height(Physobj2, Height), Time)) :-
+       holds_at(height(Agent, Height), Time),
+       holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
+                Time),
+       not(happens(reach(Agent, Physobj2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+
+ /*  [holds_at(height(Agent, Height), Time), holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time), not(happens(reach(Agent, Physobj2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Physobj2, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
+axiom(holds_at(neg(height(Physobj2, Height)), Time),
+   
+    [ holds_at(height(Agent, Height), Time),
+      holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
+               Time),
+      not(happens(reach(Agent, Physobj2), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:253
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:253
 %; An effect axiom states that
 %; if an agent reaches a physical object,
 %; the height of the agent will be the
 %; height of the physical object:
 % [agent,physobj,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:258
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:258
 % HoldsAt(Height(physobj,height),time) ->
 % Initiates(Reach(agent,physobj),Height(agent,height),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:259
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',258).
+
+ /*  [holds_at(height(Physobj, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(reach(Agent, Physobj),
+                    height(Agent, Height),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',258).
 axiom(initiates(reach(Agent, Physobj), height(Agent, Height), Time),
     [holds_at(height(Physobj, Height), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:261
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:261
 %;[agent,physobj,height1,height2,time]
 %;HoldsAt(Height(physobj,height1),time) &
 %;height1!=height2 ->
@@ -563,12 +1156,23 @@ axiom(initiates(reach(Agent, Physobj), height(Agent, Height), Time),
 %; flying from the first physical object
 %; to the second physical object:
 % [agent,physobj1,physobj2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:275
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:275
 % HoldsAt(FlyingFromTo(agent,physobj1,physobj2),time) ->
 % Terminates(Reach(agent,physobj2),
 %            FlyingFromTo(agent,physobj1,physobj2),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:278
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:278
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',275).
+
+ /*  [holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(reach(Agent, Physobj2),
+                     flyingFromTo(Agent, Physobj1, Physobj2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',275).
 axiom(terminates(reach(Agent, Physobj2), flyingFromTo(Agent, Physobj1, Physobj2), Time),
    
     [ holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
@@ -576,29 +1180,51 @@ axiom(terminates(reach(Agent, Physobj2), flyingFromTo(Agent, Physobj1, Physobj2)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:280
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:280
 %; A releases axiom states that
 %; if an agent holds a physical object,
 %; the height of the physical object is released from inertia:
 % [agent,physobj,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:284
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:284
 % Releases(Hold(agent,physobj),Height(physobj,height),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',284).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          releases(hold(Agent, Physobj),
+                   height(Physobj, Height),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',284).
 axiom(releases(hold(Agent, Physobj), height(Physobj, Height), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:286
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:286
 %;[agent,physobj,height1,height2,time]
 %;(!{object} PartOf(physobj,object)) &
 %;HoldsAt(Height(physobj,height1),time) &
 %;height1 != height2 ->
 %;Terminates(LetGoOf(agent,physobj),Height(physobj,height2),time).
 % [agent,physobj,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:293
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:293
 % (!{object} PartOf(physobj,object)) &
 % HoldsAt(Height(physobj,height),time) ->
 % Initiates(LetGoOf(agent,physobj),Height(physobj,height),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:295
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:295
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',293).
+
+ /*  [not(partOf(Physobj, Object)), holds_at(height(Physobj, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(letGoOf(Agent, Physobj),
+                    height(Physobj, Height),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',293).
 axiom(initiates(letGoOf(Agent, Physobj), height(Physobj, Height), Time),
    
     [ not(partOf(Physobj, Object)),
@@ -606,43 +1232,163 @@ axiom(initiates(letGoOf(Agent, Physobj), height(Physobj, Height), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:297
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:297
 %; A state constraint says that
 %; if an agent is holding a physical object and
 %; the height of the agent is height,
 %; the height of the physical object is height:
 % [agent,physobj,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:302
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:302
 % HoldsAt(Holding(agent,physobj),time) &
 % HoldsAt(Height(agent,height),time) ->
 % HoldsAt(Height(physobj,height),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:304
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:304
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  holds_at(holding(Agent, Physobj), Time), holds_at(height(Agent, Height), Time) ->
+       holds_at(height(Physobj, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  holds_at(height(Physobj, Height), Time) :-
+       holds_at(holding(Agent, Physobj), Time),
+       holds_at(height(Agent, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  [holds_at(holding(Agent, Physobj), Time), holds_at(height(Agent, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
 axiom(holds_at(height(Physobj, Height), Time),
    
     [ holds_at(holding(Agent, Physobj), Time),
       holds_at(height(Agent, Height), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  not(holds_at(holding(Agent, Physobj), Time)) :-
+       holds_at(height(Agent, Height), Time),
+       not(holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  [holds_at(height(Agent, Height), Time), holds_at(neg(height(Physobj, Height)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(holding(Agent, Physobj)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+axiom(holds_at(neg(holding(Agent, Physobj)), Time),
+   
+    [ holds_at(height(Agent, Height), Time),
+      holds_at(neg(height(Physobj, Height)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  not(holds_at(height(Agent, Height), Time)) :-
+       holds_at(holding(Agent, Physobj), Time),
+       not(holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+
+ /*  [holds_at(holding(Agent, Physobj), Time), holds_at(neg(height(Physobj, Height)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Agent, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
+axiom(holds_at(neg(height(Agent, Height)), Time),
+   
+    [ holds_at(holding(Agent, Physobj), Time),
+      holds_at(neg(height(Physobj, Height)), Time)
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:306
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:306
 %; A state constraint says that if a physical object
 %; is part of an object,
 %; the height of the physical object
 %; is the same as the height of the object:
 % [physobj,object,height,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:311
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:311
 % PartOf(physobj,object) &
 % HoldsAt(Height(object,height),time) ->
 % HoldsAt(Height(physobj,height),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:313
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:313
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  partOf(Physobj, Object), holds_at(height(Object, Height), Time) ->
+       holds_at(height(Physobj, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  holds_at(height(Physobj, Height), Time) :-
+       partOf(Physobj, Object),
+       holds_at(height(Object, Height), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  [partOf(Physobj, Object), holds_at(height(Object, Height), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 axiom(holds_at(height(Physobj, Height), Time),
    
     [ partOf(Physobj, Object),
       holds_at(height(Object, Height), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  not(partOf(Physobj, Object)) :-
+       holds_at(height(Object, Height), Time),
+       not(holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  [holds_at(height(Object, Height), Time), holds_at(neg(height(Physobj, Height)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(partOf(Physobj, Object))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+axiom(not(partOf(Physobj, Object)),
+   
+    [ holds_at(height(Object, Height), Time),
+      holds_at(neg(height(Physobj, Height)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  not(holds_at(height(Object, Height), Time)) :-
+       partOf(Physobj, Object),
+       not(holds_at(height(Physobj, Height), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
+ /*  [partOf(Physobj, Object), holds_at(neg(height(Physobj, Height)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Object, Height)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+axiom(holds_at(neg(height(Object, Height)), Time),
+   
+    [ partOf(Physobj, Object),
+      holds_at(neg(height(Physobj, Height)), Time)
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/OMSpace.e:315
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:315
 %;event Catch(agent,physobj)
 %;event HitFromTo(agent,physobj,object,object)
 %;fluent Distance(physobj,physobj,distance)

@@ -1,7 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.pel:3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',224).
+% Mon, 23 Mar 2020 02:26:41 GMT
+% From ../ecnet/Kidnapping.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/IPRel.e',142).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e').
@@ -363,7 +364,7 @@ axiom(initially(neg(inside(Physobj1, Physobj2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:65
 % event! Shoot(shoota,shootb,shooto)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',65).
-event(shoot(Shoot_Param,_,Shoot_Ret)).
+event(shoot(shoota,shootb,shooto)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',65).
 ==> mpred_prop(shoot(shoota,shootb,shooto),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',65).
@@ -373,9 +374,7 @@ event(shoot(Shoot_Param,_,Shoot_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
 % event! ShootInjure(shoota,shootb,shooth)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
-event(shootInjure(ShootInjure_Param,
-		  _,
-		  ShootInjure_Ret)).
+event(shootInjure(shoota,shootb,shooth)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
 ==> mpred_prop(shootInjure(shoota,shootb,shooth),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
@@ -384,7 +383,7 @@ event(shootInjure(ShootInjure_Param,
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:67
 % event! ShootKill(shoota,shootb,shooth)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
-event(shootKill(ShootKill_Param,_,ShootKill_Ret)).
+event(shootKill(shoota,shootb,shooth)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
 ==> mpred_prop(shootKill(shoota,shootb,shooth),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',67).
@@ -394,9 +393,7 @@ event(shootKill(ShootKill_Param,_,ShootKill_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
 % event! ShootDamage(shoota,shootb,shootp)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
-event(shootDamage(ShootDamage_Param,
-		  _,
-		  ShootDamage_Ret)).
+event(shootDamage(shoota,shootb,shootp)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
 ==> mpred_prop(shootDamage(shoota,shootb,shootp),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
@@ -405,9 +402,7 @@ event(shootDamage(ShootDamage_Param,
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:69
 % event! ShootDestroy(shoota,shootb,shootp)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
-event(shootDestroy(ShootDestroy_Param,
-		   _,
-		   ShootDestroy_Ret)).
+event(shootDestroy(shoota,shootb,shootp)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
 ==> mpred_prop(shootDestroy(shoota,shootb,shootp),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',69).
@@ -473,46 +468,46 @@ event(shootDestroy(ShootDestroy_Param,
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:82
 % Side1(Door1)=Outside2.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',82).
-side1(door1,outside2).
+equals(side1(door1),outside2).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:83
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',84).
 % Side2(Door1)=Inside1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',84).
-side2(door1,inside1).
+equals(side2(door1),inside1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:84
 % LookOutOnto(Inside1)=Outside1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',84).
-lookOutOnto(inside1,outside1).
+equals(lookOutOnto(inside1),outside1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:85
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',86).
 % Floor(Inside1)=1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',86).
-floor(inside1,1).
+equals(floor(inside1),1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:86
 % BuildingOf(Inside1)=Building1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',86).
-buildingOf(inside1,building1).
+equals(buildingOf(inside1),building1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:87
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',88).
 % Side1(Street1)=Outside1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',88).
-side1(street1,outside1).
+equals(side1(street1),outside1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:88
 % Side2(Street1)=Outside2.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',88).
-side2(street1,outside2).
+equals(side2(street1),outside2).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e:90

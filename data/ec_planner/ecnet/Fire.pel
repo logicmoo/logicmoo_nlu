@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/Fire.e').
+% Mon, 23 Mar 2020 02:26:38 GMT
+% From ../ecnet/Fire.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Feeling.e',133).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -16,375 +22,464 @@
 %; agent sets fire to physobj with burn time offset.
 
 % event SetFireTo(agent,physobj,fire,offset)
- %  event(setFireTo(agent,physobj,fire,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
+event(setFireTo(agent,physobj,fire,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
 ==> mpred_prop(setFireTo(agent,physobj,fire,offset),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
 ==> meta_argtypes(setFireTo(agent,physobj,fire,offset)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:16
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:16
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',17).
 %; An effect axioms states that
 %; if an agent sets a fire to a physical object with a burn time,
 %; the physical object will be burning with the fire and burn time:
 % [agent,physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:20
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:20
 % Initiates(SetFireTo(agent,physobj,fire,offset),
 %           Burning(physobj,fire,offset),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:22
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',20).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setFireTo(Agent, Physobj, Fire, Offset),
+                    burning(Physobj, Fire, Offset),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',20).
 axiom(initiates(setFireTo(Agent, Physobj, Fire, Offset), burning(Physobj, Fire, Offset), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:24
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:24
 %; agent puts out fire on physobj.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
 % event PutOutFire(agent,physobj,fire)
- %  event(putOutFire(agent,physobj,fire)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
+event(putOutFire(agent,physobj,fire)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
 ==> mpred_prop(putOutFire(agent,physobj,fire),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
 ==> meta_argtypes(putOutFire(agent,physobj,fire)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:27
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',28).
 %; An effect axiom states that
 %; if an agent puts out a fire on a physical object,
 %; the physical object will no longer be burning:
 % [agent,physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:31
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:31
 % Terminates(PutOutFire(agent,physobj,fire),
 %            Burning(physobj,fire,offset),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:33
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',31).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(putOutFire(Agent, Physobj, Fire),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',31).
 axiom(terminates(putOutFire(Agent, Physobj, Fire), burning(Physobj, Fire, Offset), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:35
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:35
 %; A precondition axiom states that
 %; for an agent to set fire to a physical object,
 %; there must be a location such that
 %; the agent is at the location and
 %; the physical object is at the location:
 % [agent,fire,physobj,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:41
 % Happens(SetFireTo(agent,physobj,fire,offset),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',41).
 % {location}%  HoldsAt(At(agent,location),time) &
 %            HoldsAt(At(physobj,location),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*   exists([Location],
-             if(happens(setFireTo(Agent,
-                                  Physobj,
-                                  Fire,
-                                  Offset),
-                        Time),
-                 (holds_at(at(Agent, Location), Time), holds_at(at(Physobj, Location), Time)))).
+ /*  exists([Location],
+    happens(setFireTo(Agent, Physobj, Fire, Offset), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Physobj, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  not(some(Location8, '$kolem_Fn_141'(Fn_141_Param, At_Param, A, SetFireTo_Ret, Maptime))) :-
-       happens(setFireTo(Fn_141_Param,
-                         At_Param,
-                         A,
-                         SetFireTo_Ret),
-               Maptime),
-       (   not(holds_at(at(Fn_141_Param, Location8), Maptime))
-       ;   not(holds_at(at(At_Param, Location8), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:43
-axiom(not(some(Location8, '$kolem_Fn_141'(Fn_141_Param, At_Param, A, SetFireTo_Ret, Maptime))),
-   
-    [ not(holds_at(at(Fn_141_Param, Location8), Maptime)),
-      happens(setFireTo(Fn_141_Param,
-                        At_Param,
-                        A,
-                        SetFireTo_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location8, '$kolem_Fn_141'(Fn_141_Param, At_Param, A, SetFireTo_Ret, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location8), Maptime)),
-      happens(setFireTo(Fn_141_Param,
-                        At_Param,
-                        A,
-                        SetFireTo_Ret),
-              Maptime)
-    ]).
-
- /*  not(happens(setFireTo(SetFireTo_Param, At_Param15, A, SetFireTo_Ret16), Maptime12)) :-
-       (   not(holds_at(at(SetFireTo_Param, Location13),
-                        Maptime12))
-       ;   not(holds_at(at(At_Param15, Location13), Maptime12))
+ /*  not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Physobj, Location), Time))
        ),
-       some(Location13,
-            '$kolem_Fn_141'(SetFireTo_Param,
-                            At_Param15,
-                            A,
-                            SetFireTo_Ret16,
-                            Maptime12)).
+       some(Location,
+            '$kolem_Fn_266'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
  */
-axiom(not(happens(setFireTo(SetFireTo_Param, At_Param15, A, SetFireTo_Ret16), Maptime12)),
-   
-    [ not(holds_at(at(SetFireTo_Param, Location13), Maptime12)),
-      some(Location13,
-           '$kolem_Fn_141'(SetFireTo_Param,
-                           At_Param15,
-                           A,
-                           SetFireTo_Ret16,
-                           Maptime12))
-    ]).
-axiom(not(happens(setFireTo(SetFireTo_Param, At_Param15, A, SetFireTo_Ret16), Maptime12)),
-   
-    [ not(holds_at(at(At_Param15, Location13), Maptime12)),
-      some(Location13,
-           '$kolem_Fn_141'(SetFireTo_Param,
-                           At_Param15,
-                           A,
-                           SetFireTo_Ret16,
-                           Maptime12))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  holds_at(at(At_Param19, Location17), Time18) :-
-       happens(setFireTo(At_Param19, A, B, SetFireTo_Ret20),
-               Time18),
-       some(Location17,
-            '$kolem_Fn_141'(At_Param19,
-                            A,
-                            B,
-                            SetFireTo_Ret20,
-                            Time18)).
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_266'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(setFireTo(Agent,
+                                Physobj,
+                                Fire,
+                                Offset),
+                      Time))).
  */
-axiom(holds_at(at(At_Param19, Location17), Time18),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)),
    
-    [ happens(setFireTo(At_Param19,
-                        A,
-                        B,
-                        SetFireTo_Ret20),
-              Time18),
-      some(Location17,
-           '$kolem_Fn_141'(At_Param19,
-                           A,
-                           B,
-                           SetFireTo_Ret20,
-                           Time18))
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_266'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  holds_at(at(At_Param23, Location21), Time22) :-
-       happens(setFireTo(SetFireTo_Param24,
-                         At_Param23,
-                         A,
-                         SetFireTo_Ret25),
-               Time22),
-       some(Location21,
-            '$kolem_Fn_141'(SetFireTo_Param24,
-                            At_Param23,
-                            A,
-                            SetFireTo_Ret25,
-                            Time22)).
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(setFireTo(Agent, Physobj, Fire, Offset),
+               Time),
+       some(Location,
+            '$kolem_Fn_266'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
  */
-axiom(holds_at(at(At_Param23, Location21), Time22),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_266'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(holds_at(at(Agent, Location), Time),
    
-    [ happens(setFireTo(SetFireTo_Param24,
-                        At_Param23,
-                        A,
-                        SetFireTo_Ret25),
-              Time22),
-      some(Location21,
-           '$kolem_Fn_141'(SetFireTo_Param24,
-                           At_Param23,
-                           A,
-                           SetFireTo_Ret25,
-                           Time22))
+    [ happens(setFireTo(Agent, Physobj, Fire, Offset),
+              Time),
+      some(Location,
+           '$kolem_Fn_266'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  holds_at(at(Physobj, Location), Time) :-
+       happens(setFireTo(Agent, Physobj, Fire, Offset),
+               Time),
+       some(Location,
+            '$kolem_Fn_266'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_266'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(holds_at(at(Physobj, Location), Time),
+   
+    [ happens(setFireTo(Agent, Physobj, Fire, Offset),
+              Time),
+      some(Location,
+           '$kolem_Fn_266'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:45
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:45
 %; A precondition axiom states that
 %; for an agent to put out a fire on a physical object,
 %; there must be a location such that
 %; the agent is at the location and
 %; the physical object is at the location:
 % [agent,fire,physobj,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:51
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:51
 % Happens(PutOutFire(agent,physobj,fire),time) ->
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',51).
 % {location}%  HoldsAt(At(agent,location),time) &
 %            HoldsAt(At(physobj,location),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*   exists([Location],
-             if(happens(putOutFire(Agent, Physobj, Fire),
-                        Time),
-                 (holds_at(at(Agent, Location), Time), holds_at(at(Physobj, Location), Time)))).
+ /*  exists([Location],
+    happens(putOutFire(Agent, Physobj, Fire), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Physobj, Location), Time)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  not(some(Location7, '$kolem_Fn_142'(Fn_142_Param, At_Param, PutOutFire_Ret, Maptime))) :-
-       happens(putOutFire(Fn_142_Param, At_Param, PutOutFire_Ret),
-               Maptime),
-       (   not(holds_at(at(Fn_142_Param, Location7), Maptime))
-       ;   not(holds_at(at(At_Param, Location7), Maptime))
-       ).
- */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:53
-axiom(not(some(Location7, '$kolem_Fn_142'(Fn_142_Param, At_Param, PutOutFire_Ret, Maptime))),
-   
-    [ not(holds_at(at(Fn_142_Param, Location7), Maptime)),
-      happens(putOutFire(Fn_142_Param,
-                         At_Param,
-                         PutOutFire_Ret),
-              Maptime)
-    ]).
-axiom(not(some(Location7, '$kolem_Fn_142'(Fn_142_Param, At_Param, PutOutFire_Ret, Maptime))),
-   
-    [ not(holds_at(at(At_Param, Location7), Maptime)),
-      happens(putOutFire(Fn_142_Param,
-                         At_Param,
-                         PutOutFire_Ret),
-              Maptime)
-    ]).
-
- /*  not(happens(putOutFire(PutOutFire_Param, At_Param14, PutOutFire_Ret15), Maptime11)) :-
-       (   not(holds_at(at(PutOutFire_Param, Location12),
-                        Maptime11))
-       ;   not(holds_at(at(At_Param14, Location12), Maptime11))
+ /*  not(happens(putOutFire(Agent, Physobj, Fire), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Physobj, Location), Time))
        ),
-       some(Location12,
-            '$kolem_Fn_142'(PutOutFire_Param,
-                            At_Param14,
-                            PutOutFire_Ret15,
-                            Maptime11)).
+       some(Location,
+            '$kolem_Fn_267'(Agent, Physobj, Fire, Time)).
  */
-axiom(not(happens(putOutFire(PutOutFire_Param, At_Param14, PutOutFire_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(PutOutFire_Param, Location12),
-                   Maptime11)),
-      some(Location12,
-           '$kolem_Fn_142'(PutOutFire_Param,
-                           At_Param14,
-                           PutOutFire_Ret15,
-                           Maptime11))
-    ]).
-axiom(not(happens(putOutFire(PutOutFire_Param, At_Param14, PutOutFire_Ret15), Maptime11)),
-   
-    [ not(holds_at(at(At_Param14, Location12), Maptime11)),
-      some(Location12,
-           '$kolem_Fn_142'(PutOutFire_Param,
-                           At_Param14,
-                           PutOutFire_Ret15,
-                           Maptime11))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  holds_at(at(At_Param18, Location16), Time17) :-
-       happens(putOutFire(At_Param18, A, PutOutFire_Ret19),
-               Time17),
-       some(Location16,
-            '$kolem_Fn_142'(At_Param18,
-                            A,
-                            PutOutFire_Ret19,
-                            Time17)).
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_267'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(putOutFire(Agent, Physobj, Fire),
+                      Time))).
  */
-axiom(holds_at(at(At_Param18, Location16), Time17),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(not(happens(putOutFire(Agent, Physobj, Fire), Time)),
    
-    [ happens(putOutFire(At_Param18, A, PutOutFire_Ret19),
-              Time17),
-      some(Location16,
-           '$kolem_Fn_142'(At_Param18,
-                           A,
-                           PutOutFire_Ret19,
-                           Time17))
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_267'(Agent, Physobj, Fire, Time))
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  holds_at(at(At_Param22, Location20), Time21) :-
-       happens(putOutFire(PutOutFire_Param23,
-                          At_Param22,
-                          PutOutFire_Ret24),
-               Time21),
-       some(Location20,
-            '$kolem_Fn_142'(PutOutFire_Param23,
-                            At_Param22,
-                            PutOutFire_Ret24,
-                            Time21)).
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(putOutFire(Agent, Physobj, Fire), Time),
+       some(Location,
+            '$kolem_Fn_267'(Agent, Physobj, Fire, Time)).
  */
-axiom(holds_at(at(At_Param22, Location20), Time21),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_267'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(holds_at(at(Agent, Location), Time),
    
-    [ happens(putOutFire(PutOutFire_Param23,
-                         At_Param22,
-                         PutOutFire_Ret24),
-              Time21),
-      some(Location20,
-           '$kolem_Fn_142'(PutOutFire_Param23,
-                           At_Param22,
-                           PutOutFire_Ret24,
-                           Time21))
+    [ happens(putOutFire(Agent, Physobj, Fire), Time),
+      some(Location,
+           '$kolem_Fn_267'(Agent, Physobj, Fire, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  holds_at(at(Physobj, Location), Time) :-
+       happens(putOutFire(Agent, Physobj, Fire), Time),
+       some(Location,
+            '$kolem_Fn_267'(Agent, Physobj, Fire, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_267'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(holds_at(at(Physobj, Location), Time),
+   
+    [ happens(putOutFire(Agent, Physobj, Fire), Time),
+      some(Location,
+           '$kolem_Fn_267'(Agent, Physobj, Fire, Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:55
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:55
 %; physobj is burning with fire and burn time offset.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
 % fluent Burning(physobj,fire,offset)
- %  fluent(burning(physobj,fire,offset)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
+fluent(burning(physobj,fire,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
 ==> mpred_prop(burning(physobj,fire,offset),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
 ==> meta_argtypes(burning(physobj,fire,offset)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',59).
 %; A state constraint says that a physical object burning with
 %; a fire has at most one burn time at a time:
 % [physobj,fire,offset1,offset2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:61
 % HoldsAt(Burning(physobj,fire,offset1),time) &
 % HoldsAt(Burning(physobj,fire,offset2),time) ->
 % offset1=offset2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:63
-axiom(Offset1=Offset2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  holds_at(burning(Physobj, Fire, Offset1), Time), holds_at(burning(Physobj, Fire, Offset2), Time) ->
+       equals(Offset1, Offset2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset1), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset2), Time),
+       not(equals(Offset1, Offset2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset2), Time), not(equals(Offset1, Offset2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset1)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset1)), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset2), Time),
+      not(equals(Offset1, Offset2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset2), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset1), Time),
+       not(equals(Offset1, Offset2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset1), Time), not(equals(Offset1, Offset2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset2)), Time),
    
     [ holds_at(burning(Physobj, Fire, Offset1), Time),
-      holds_at(burning(Physobj, Fire, Offset2), Time)
+      not(equals(Offset2, Offset1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:65
 %; The burn time of physobj is decremented.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
 % event DecrementBurning(physobj)
- %  event(decrementBurning(physobj)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
+event(decrementBurning(physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
 ==> mpred_prop(decrementBurning(physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
 ==> meta_argtypes(decrementBurning(physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',69).
 %; A trigger axiom states that
 %; if a physical object is burning with a fire and a burn time and
 %; the burn time is greater than zero,
 %; the burn time of the physical object is decremented:
 % [physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:73
 % HoldsAt(Burning(physobj,fire,offset),time) &
 % (offset > 0) ->
 % Happens(DecrementBurning(physobj),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  holds_at(burning(Physobj, Fire, Offset), Time), Offset>0 ->
+       happens(decrementBurning(Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  happens(decrementBurning(Physobj), Time) :-
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       comparison(Offset, 0, >).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time), comparison(Offset, 0, >)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(decrementBurning(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
 axiom(happens(decrementBurning(Physobj), Time),
    
     [ holds_at(burning(Physobj, Fire, Offset), Time),
       comparison(Offset, 0, >)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset), Time)) :-
+       comparison(Offset, 0, >),
+       not(happens(decrementBurning(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  [comparison(Offset, 0, >), not(happens(decrementBurning(Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset)), Time),
+   
+    [ comparison(Offset, 0, >),
+      not(happens(decrementBurning(Physobj), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:77
 %; An effect axiom states that if a physical object is
 %; burning with a fire and a burn time, and the burn time of a physical
 %; object is decremented, the burn time of the physical
 %; object will be the burn time minus one:
 % [physobj,fire,offset1,offset2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:82
 % HoldsAt(Burning(physobj,fire,offset1),time) &
 % offset2 = offset1-1 ->
 % Initiates(DecrementBurning(physobj),
 %           Burning(physobj,fire,offset2),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:86
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:86
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',82).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset1), Time), equals(Offset2, Offset1-1)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(decrementBurning(Physobj),
+                    burning(Physobj, Fire, Offset2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',82).
 axiom(initiates(decrementBurning(Physobj), burning(Physobj, Fire, Offset2), Time),
    
     [ holds_at(burning(Physobj, Fire, Offset1), Time),
@@ -392,72 +487,220 @@ axiom(initiates(decrementBurning(Physobj), burning(Physobj, Fire, Offset2), Time
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:88
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:88
 %; An effect axiom states that if a physical object is
 %; burning with a fire and a burn time, and the burn time of a physical
 %; object is decremented, the burn time of the physical
 %; object will no longer be the burn time:
 % [physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:93
 % HoldsAt(Burning(physobj,fire,offset),time) ->
 % Terminates(DecrementBurning(physobj),
 %            Burning(physobj,fire,offset),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:96
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',93).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(decrementBurning(Physobj),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',93).
 axiom(terminates(decrementBurning(Physobj), burning(Physobj, Fire, Offset), Time),
     [holds_at(burning(Physobj, Fire, Offset), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:98
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:98
 %; A trigger axiom states that
 %; if a physical object is burning with a fire and a burn time
 %; that is not equal to zero, the fire will damage the
 %; physical object:
 % [physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:103
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:103
 % offset!=% 0 &
 % HoldsAt(Burning(physobj,fire,offset),time) &
 % HoldsAt(Intact(physobj),time) ->
 % Happens(Damage(fire,physobj),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:106
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:106
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  diff(Offset, 0), holds_at(burning(Physobj, Fire, Offset), Time), holds_at(intact(Physobj), Time) ->
+       happens(damage(Fire, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  happens(damage(Fire, Physobj), Time) :-
+       diff(Offset, 0),
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       holds_at(intact(Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [diff(Offset, 0), holds_at(burning(Physobj, Fire, Offset), Time), holds_at(intact(Physobj), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
 axiom(happens(damage(Fire, Physobj), Time),
    
-    [ dif(Offset, 0),
+    [ diff(Offset, 0),
       holds_at(burning(Physobj, Fire, Offset), Time),
       holds_at(intact(Physobj), Time)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset), Time)) :-
+       holds_at(intact(Physobj), Time),
+       diff(Offset, 0),
+       not(happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [holds_at(intact(Physobj), Time), diff(Offset, 0), not(happens(damage(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset)), Time),
+   
+    [ holds_at(intact(Physobj), Time),
+      diff(Offset, 0),
+      not(happens(damage(Fire, Physobj), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  not(holds_at(intact(Physobj), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       diff(Offset, 0),
+       not(happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time), diff(Offset, 0), not(happens(damage(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(intact(Physobj)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+axiom(holds_at(neg(intact(Physobj)), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset), Time),
+      diff(Offset, 0),
+      not(happens(damage(Fire, Physobj), Time))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:108
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:108
 %; A trigger axiom states that
 %; if a physical object is burning with a fire and a burn time
 %; that is equal to zero, the fire will destroy the
 %; physical object:
 % [physobj,fire,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:113
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:113
 % HoldsAt(Burning(physobj,fire,0),time) &
 % !HoldsAt(Destroyed(physobj),time) ->
 % Happens(Destroy(fire,physobj),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:115
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:115
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  holds_at(burning(Physobj, Fire, 0), Time), holds_at(neg(destroyed(Physobj)), Time) ->
+       happens(destroy(Fire, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  happens(destroy(Fire, Physobj), Time) :-
+       holds_at(burning(Physobj, Fire, 0), Time),
+       holds_at(neg(destroyed(Physobj)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(burning(Physobj, Fire, 0), Time), holds_at(neg(destroyed(Physobj)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
 axiom(happens(destroy(Fire, Physobj), Time),
    
     [ holds_at(burning(Physobj, Fire, 0), Time),
-      not(holds_at(destroyed(Physobj), Time))
+      holds_at(neg(destroyed(Physobj)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  not(holds_at(burning(Physobj, Fire, 0), Time)) :-
+       holds_at(neg(destroyed(Physobj)), Time),
+       not(happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(neg(destroyed(Physobj)), Time), not(happens(destroy(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, 0)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+axiom(holds_at(neg(burning(Physobj, Fire, 0)), Time),
+   
+    [ holds_at(neg(destroyed(Physobj)), Time),
+      not(happens(destroy(Fire, Physobj), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  not(holds_at(neg(destroyed(Physobj)), Time)) :-
+       holds_at(burning(Physobj, Fire, 0), Time),
+       not(happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(burning(Physobj, Fire, 0), Time), not(happens(destroy(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(destroyed(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+axiom(holds_at(destroyed(Physobj), Time),
+   
+    [ holds_at(burning(Physobj, Fire, 0), Time),
+      not(happens(destroy(Fire, Physobj), Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:117
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:117
 %; An effect axiom states that if a fire destroys a physical
 %; object, the physical object will no longer be burning:
 % [physobj,fire,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:120
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:120
 % Terminates(Destroy(fire,physobj),
 %            Burning(physobj,fire,offset),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:122
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:122
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',120).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(destroy(Fire, Physobj),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',120).
 axiom(terminates(destroy(Fire, Physobj), burning(Physobj, Fire, Offset), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Fire.e:124
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:124
 %; End of file.

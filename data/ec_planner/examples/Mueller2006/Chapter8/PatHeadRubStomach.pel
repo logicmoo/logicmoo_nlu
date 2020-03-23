@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Chapter8/PatHeadRubStomach.e').
+% Mon, 23 Mar 2020 02:25:58 GMT
+% From ../examples/Mueller2006/Chapter8/PatHeadRubStomach.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/MovingRobot.e',137).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -20,50 +26,131 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:19
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:20
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',23).
 % sort agent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',23).
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 % event PatHead(agent)
- %  event(patHead(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
+event(patHead(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> mpred_prop(patHead(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> meta_argtypes(patHead(agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:25
 % event RubStomach(agent)
- %  event(rubStomach(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
+event(rubStomach(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> mpred_prop(rubStomach(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> meta_argtypes(rubStomach(agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',28).
 % agent Nathan
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',28).
 ==> t(agent,nathan).
 %; Delta
 % [agent,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:32
 % Happens(PatHead(agent),time) ->
 % !Happens(RubStomach(agent),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+
+ /*  happens(patHead(Agent), Time) ->
+       not(happens(rubStomach(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+
+ /*  not(happens(rubStomach(Agent), Time)) :-
+       happens(patHead(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+
+ /*  [happens(patHead(Agent), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(rubStomach(Agent), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
 axiom(not(happens(rubStomach(Agent), Time)),
     [happens(patHead(Agent), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+
+ /*  not(happens(patHead(Agent), Time)) :-
+       happens(rubStomach(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+
+ /*  [happens(rubStomach(Agent), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(patHead(Agent), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
+axiom(not(happens(patHead(Agent), Time)),
+    [happens(rubStomach(Agent), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:35
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:35
 % Happens(PatHead(Nathan),0) & Happens(RubStomach(Nathan),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 
  /*   happens(patHead(nathan), 0),
       happens(rubStomach(nathan), 0).
  */
-axiom(happens(patHead(nathan), t),
-    [is_time(0)]).
-axiom(happens(rubStomach(nathan), t),
-    [is_time(0)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:37
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(patHead(nathan), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
+axiom(happens(patHead(nathan), t),
+    [is_time(t)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(rubStomach(nathan), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
+axiom(happens(rubStomach(nathan), t),
+    [is_time(t)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:37
 % range time 0 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',37).
 ==> range(time,0,1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',39).
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',39).
 ==> range(offset,1,1).
 %; End of file.

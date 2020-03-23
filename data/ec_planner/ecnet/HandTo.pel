@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/HandTo.e').
+% Mon, 23 Mar 2020 02:26:40 GMT
+% From ../ecnet/HandTo.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Gun.e',82).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -12,49 +18,132 @@
 %; IBM - Initial implementation
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:11
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',12).
 % event HandTo(agent,agent,physobj)
- %  event(handTo(agent,agent,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',12).
+event(handTo(agent,agent,physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',12).
 ==> mpred_prop(handTo(agent,agent,physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',12).
 ==> meta_argtypes(handTo(agent,agent,physobj)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:13
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:13
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',14).
 % [agent1,agent2,physobj,time]
 % Initiates(HandTo(agent1,agent2,physobj),
 %           Holding(agent2,physobj),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:16
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:16
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',14).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(handTo(Agent1, Agent2, Physobj),
+                    holding(Agent2, Physobj),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',14).
 axiom(initiates(handTo(Agent1, Agent2, Physobj), holding(Agent2, Physobj), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:18
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:18
 % [agent1,agent2,physobj,time]
 % Terminates(HandTo(agent1,agent2,physobj),
 %            Holding(agent1,physobj),
 %            time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:21
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',20).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(handTo(Agent1, Agent2, Physobj),
+                     holding(Agent1, Physobj),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',20).
 axiom(terminates(handTo(Agent1, Agent2, Physobj), holding(Agent1, Physobj), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:23
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:23
 % [agent1,agent2,physobj,time]
 % Happens(HandTo(agent1,agent2,physobj),time) ->
 % HoldsAt(Holding(agent1,physobj),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:25
-axiom(requires(handTo(Agent1, Agent2, Physobj), Time),
-    [holds_at(holding(Agent1, Physobj), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:25
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:27
+ /*  happens(handTo(Agent1, Agent2, Physobj), Time) ->
+       holds_at(holding(Agent1, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+
+ /*  holds_at(holding(Agent1, Physobj), Time) :-
+       happens(handTo(Agent1, Agent2, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+
+ /*  [holds_at(metreqs(handTo(Agent1, Agent2, Physobj)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(handTo(Agent1, Agent2, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+axiom(requires(handTo(Agent1, Agent2, Physobj), Time),
+   
+    [ holds_at(metreqs(handTo(Agent1, Agent2, Physobj)),
+               Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+
+ /*  [holds_at(holding(Agent1, Physobj), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(handTo(Agent1, Agent2, Physobj)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+axiom(holds_at(requirements(handTo(Agent1, Agent2, Physobj)), Time),
+    [holds_at(holding(Agent1, Physobj), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+
+ /*  not(happens(handTo(Agent1, Agent2, Physobj), Time)) :-
+       not(holds_at(holding(Agent1, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+
+ /*  [holds_at(neg(holding(Agent1, Physobj)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(handTo(Agent1, Agent2, Physobj), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',25).
+axiom(not(happens(handTo(Agent1, Agent2, Physobj), Time)),
+    [holds_at(neg(holding(Agent1, Physobj)), Time)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:27
 % event ShakeHands(agent,agent)
- %  event(shakeHands(agent,agent)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',27).
+event(shakeHands(agent,agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',27).
 ==> mpred_prop(shakeHands(agent,agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',27).
 ==> meta_argtypes(shakeHands(agent,agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',30).
 % event WriteOn(agent,paper,pen)
- %  event(writeOn(agent,paper,pen)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/HandTo.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',30).
+event(writeOn(agent,paper,pen)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',30).
 ==> mpred_prop(writeOn(agent,paper,pen),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',30).
 ==> meta_argtypes(writeOn(agent,paper,pen)).

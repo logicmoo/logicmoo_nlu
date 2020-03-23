@@ -34,6 +34,6 @@ Neighbor(position1,position2) <->
 
 ; Prolog code starts with ;:-
 
-;:- include('sanity_equals_01_extra.e').
+;:- include('sanity_equals_01_extra').
 
 

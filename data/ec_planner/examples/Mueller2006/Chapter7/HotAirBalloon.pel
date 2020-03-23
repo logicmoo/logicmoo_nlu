@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Chapter7/HotAirBalloon.e').
+% Mon, 23 Mar 2020 02:25:57 GMT
+% From ../examples/Mueller2006/Chapter7/HotAirBalloon.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',85).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -29,176 +35,440 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
 % option encoding 3
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
 :- set_ec_option(encoding, 3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:29
 % option trajectory on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
 :- set_ec_option(trajectory, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',29).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:32
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',35).
 % sort balloon
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',35).
 ==> sort(balloon).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:35
 % sort agent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',35).
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',37).
 % sort height: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',37).
 ==> subsort(height,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',39).
 % agent Nathan
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',39).
 ==> t(agent,nathan).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:39
 % balloon Balloon
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',39).
 ==> t(balloon,balloon).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
 % fluent HeaterOn(balloon)
- %  fluent(heaterOn(balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
+fluent(heaterOn(balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
 ==> mpred_prop(heaterOn(balloon),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
 ==> meta_argtypes(heaterOn(balloon)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:42
 % fluent Height(balloon,height)
- %  fluent(height(balloon,height)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
+fluent(height(balloon,height)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
 ==> mpred_prop(height(balloon,height),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',42).
 ==> meta_argtypes(height(balloon,height)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:43
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',44).
 % noninertial Height
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',44).
 ==> noninertial(height).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
 % event TurnOnHeater(agent,balloon)
- %  event(turnOnHeater(agent,balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
+event(turnOnHeater(agent,balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
 ==> mpred_prop(turnOnHeater(agent,balloon),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
 ==> meta_argtypes(turnOnHeater(agent,balloon)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:46
 % event TurnOffHeater(agent,balloon)
- %  event(turnOffHeater(agent,balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
+event(turnOffHeater(agent,balloon)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
 ==> mpred_prop(turnOffHeater(agent,balloon),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',46).
 ==> meta_argtypes(turnOffHeater(agent,balloon)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:48
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',49).
 %; Sigma
 % [agent,balloon,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:51
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:51
 % Initiates(TurnOnHeater(agent,balloon),HeaterOn(balloon),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',51).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(turnOnHeater(Agent, Balloon),
+                    heaterOn(Balloon),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',51).
 axiom(initiates(turnOnHeater(Agent, Balloon), heaterOn(Balloon), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:53
 % [agent,balloon,time]
 % Terminates(TurnOffHeater(agent,balloon),HeaterOn(balloon),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',55).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(turnOffHeater(Agent, Balloon),
+                     heaterOn(Balloon),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',55).
 axiom(terminates(turnOffHeater(Agent, Balloon), heaterOn(Balloon), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',57).
 %; Delta
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 % Happens(TurnOnHeater(Nathan,Balloon),0).
-axiom(happens(turnOnHeater(nathan, balloon), t),
-    [is_time(0)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:59
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(turnOnHeater(nathan, balloon), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
+axiom(happens(turnOnHeater(nathan, balloon), t),
+    [is_time(t)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:59
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:59
 % Happens(TurnOffHeater(Nathan,Balloon),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(turnOffHeater(nathan, balloon), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 axiom(happens(turnOffHeater(nathan, balloon), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:61
 %; Psi
 % [balloon,height1,height2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:64
 % HoldsAt(Height(balloon,height1),time) &
 % HoldsAt(Height(balloon,height2),time) ->
 % height1=height2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:66
-axiom(Height1=Height2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+
+ /*  holds_at(height(Balloon, Height1), Time), holds_at(height(Balloon, Height2), Time) ->
+       equals(Height1, Height2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+
+ /*  not(holds_at(height(Balloon, Height1), Time)) :-
+       holds_at(height(Balloon, Height2), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+
+ /*  [holds_at(height(Balloon, Height2), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Balloon, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+axiom(holds_at(neg(height(Balloon, Height1)), Time),
+   
+    [ holds_at(height(Balloon, Height2), Time),
+      not(equals(Height1, Height2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+
+ /*  not(holds_at(height(Balloon, Height2), Time)) :-
+       holds_at(height(Balloon, Height1), Time),
+       not(equals(Height1, Height2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+
+ /*  [holds_at(height(Balloon, Height1), Time), not(equals(Height1, Height2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Balloon, Height2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',64).
+axiom(holds_at(neg(height(Balloon, Height2)), Time),
    
     [ holds_at(height(Balloon, Height1), Time),
-      holds_at(height(Balloon, Height2), Time)
+      not(equals(Height2, Height1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:68
 %; Pi
 % [balloon,height1,height2,offset,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:71
 % HoldsAt(Height(balloon,height1),time) &
 % height2 = (height1 + offset) ->
 % Trajectory(HeaterOn(balloon),time,Height(balloon,height2),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:73
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+
+ /*  holds_at(height(Balloon, Height1), Time), equals(Height2, Height1+Offset) ->
+       trajectory(heaterOn(Balloon),
+                  Time,
+                  height(Balloon, Height2),
+                  Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+
+ /*  trajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset) :-
+       holds_at(height(Balloon, Height1), Time),
+       equals(Height2, Height1+Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+
+ /*  [holds_at(height(Balloon, Height1), Time), equals(Height2, Height1+Offset)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          trajectory(heaterOn(Balloon),
+                     Time,
+                     height(Balloon, Height2),
+                     Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
 axiom(trajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset),
    
     [ holds_at(height(Balloon, Height1), Time),
       equals(Height2, Height1+Offset)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+
+ /*  not(holds_at(height(Balloon, Height1), Time)) :-
+       equals(Height2, Height1+Offset),
+       not(trajectory(heaterOn(Balloon),
+                      Time,
+                      height(Balloon, Height2),
+                      Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+
+ /*  [equals(Height2, Height1+Offset), not(trajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Balloon, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',71).
+axiom(holds_at(neg(height(Balloon, Height1)), Time),
+   
+    [ equals(Height2, Height1+Offset),
+      not(trajectory(heaterOn(Balloon),
+                     Time,
+                     height(Balloon, Height2),
+                     Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:75
 % [balloon,height1,height2,offset,time]
 % HoldsAt(Height(balloon,height1),time) &
 % height2 = (height1 - offset) ->
 % AntiTrajectory(HeaterOn(balloon),time,Height(balloon,height2),offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+
+ /*  holds_at(height(Balloon, Height1), Time), equals(Height2, Height1-Offset) ->
+       antiTrajectory(heaterOn(Balloon),
+                      Time,
+                      height(Balloon, Height2),
+                      Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+
+ /*  antiTrajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset) :-
+       holds_at(height(Balloon, Height1), Time),
+       equals(Height2, Height1-Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+
+ /*  [holds_at(height(Balloon, Height1), Time), equals(Height2, Height1-Offset)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          antiTrajectory(heaterOn(Balloon),
+                         Time,
+                         height(Balloon, Height2),
+                         Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
 axiom(antiTrajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset),
    
     [ holds_at(height(Balloon, Height1), Time),
       equals(Height2, Height1-Offset)
     ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+
+ /*  not(holds_at(height(Balloon, Height1), Time)) :-
+       equals(Height2, Height1-Offset),
+       not(antiTrajectory(heaterOn(Balloon),
+                          Time,
+                          height(Balloon, Height2),
+                          Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+
+ /*  [equals(Height2, Height1-Offset), not(antiTrajectory(heaterOn(Balloon), Time, height(Balloon, Height2), Offset))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(height(Balloon, Height1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',77).
+axiom(holds_at(neg(height(Balloon, Height1)), Time),
+   
+    [ equals(Height2, Height1-Offset),
+      not(antiTrajectory(heaterOn(Balloon),
+                         Time,
+                         height(Balloon, Height2),
+                         Offset))
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:80
 %; Gamma
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',83).
 % HoldsAt(Height(Balloon,0),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',83).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(height(balloon, 0))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',83).
 axiom(initially(height(balloon, 0)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:84
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:84
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',85).
 %; added:
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:85
 % !HoldsAt(HeaterOn(Balloon),0).
- %  not(initially(heaterOn(balloon))).
-axiom(not(initially(heaterOn(balloon))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',85).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(heaterOn(balloon)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',85).
+axiom(initially(neg(heaterOn(balloon))),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:87
 % completion Delta Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:88
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',87).
 ==> completion(delta).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',87).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:89
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',90).
 % range time 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:90
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',90).
 ==> range(time,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:90
 % range height 0 2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',90).
 ==> range(height,0,2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',92).
 % range offset 1 2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:92
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',92).
 ==> range(offset,1,2).
 %; End of file.

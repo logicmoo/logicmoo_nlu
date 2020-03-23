@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Shanahan1999/Happy.e').
+% Mon, 23 Mar 2020 02:26:21 GMT
+% From ../examples/Shanahan1999/Happy.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/CoinToss.e',67).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -32,135 +38,317 @@
 %; timestamps
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:32
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 % sort person
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> sort(person).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:35
 % event Feed(person)
- %  event(feed(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
+event(feed(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> mpred_prop(feed(person),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> meta_argtypes(feed(person)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 % event Clothe(person)
- %  event(clothe(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
+event(clothe(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> mpred_prop(clothe(person),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> meta_argtypes(clothe(person)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:37
 % fluent Happy(person)
- %  fluent(happy(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
+fluent(happy(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> mpred_prop(happy(person),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> meta_argtypes(happy(person)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 % fluent Hungry(person)
- %  fluent(hungry(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
+fluent(hungry(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> mpred_prop(hungry(person),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> meta_argtypes(hungry(person)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:39
 % fluent Cold(person)
- %  fluent(cold(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
+fluent(cold(person)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> mpred_prop(cold(person),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> meta_argtypes(cold(person)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',41).
 % noninertial Happy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',41).
 ==> noninertial(happy).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 % [person,time]
 % HoldsAt(Happy(person),time) <->
 % !HoldsAt(Hungry(person),time) &
 % !HoldsAt(Cold(person),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
  /*  holds_at(happy(Person), Time) <->
-       not(holds_at(hungry(Person), Time)),
-       not(holds_at(cold(Person), Time)).
+       holds_at(neg(hungry(Person)), Time),
+       holds_at(neg(cold(Person)), Time).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:45
-axiom(holds_at(happy(Person), Time),
-   
-    [ not(holds_at(hungry(Person), Time)),
-      not(holds_at(cold(Person), Time))
-    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
- /*   if(holds_at(happy(Person), Time),
-          (not(holds_at(hungry(Person), Time)), not(holds_at(cold(Person), Time)))).
+ /*  [holds_at, happy] <->
+       [holds_at, neg, hungry, holds_at, neg, cold].
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
- /*  not(holds_at(happy(Happy_Ret), Time2)) :-
-       (   holds_at(hungry(Happy_Ret), Time2)
-       ;   holds_at(cold(Happy_Ret), Time2)
+ /*  holds_at(happy(Person), Time) ->
+       holds_at(neg(hungry(Person)), Time),
+       holds_at(neg(cold(Person)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  not(holds_at(happy(Person), Time)) :-
+       (   not(holds_at(neg(hungry(Person)), Time))
+       ;   not(holds_at(neg(cold(Person)), Time))
        ).
  */
-axiom(not(holds_at(happy(Happy_Ret), Time2)),
-    [holds_at(hungry(Happy_Ret), Time2)]).
-axiom(not(holds_at(happy(Happy_Ret), Time2)),
-    [holds_at(cold(Happy_Ret), Time2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
- /*  not(holds_at(hungry(Hungry_Ret), Time4)) :-
-       holds_at(happy(Hungry_Ret), Time4).
+ /*  [(holds_at(hungry(Person), Time);holds_at(cold(Person), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(happy(Person)), Time)).
  */
-axiom(not(holds_at(hungry(Hungry_Ret), Time4)),
-    [holds_at(happy(Hungry_Ret), Time4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(neg(happy(Person)), Time),
+   
+    [  (holds_at(hungry(Person), Time);holds_at(cold(Person), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
- /*  not(holds_at(cold(Cold_Ret), Time6)) :-
-       holds_at(happy(Cold_Ret), Time6).
+ /*  holds_at(neg(hungry(Person)), Time) :-
+       holds_at(happy(Person), Time).
  */
-axiom(not(holds_at(cold(Cold_Ret), Time6)),
-    [holds_at(happy(Cold_Ret), Time6)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  [holds_at(happy(Person), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(hungry(Person)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(neg(hungry(Person)), Time),
+    [holds_at(happy(Person), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  holds_at(neg(cold(Person)), Time) :-
+       holds_at(happy(Person), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  [holds_at(happy(Person), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(cold(Person)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(neg(cold(Person)), Time),
+    [holds_at(happy(Person), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  holds_at(neg(hungry(Person)), Time), holds_at(neg(cold(Person)), Time) ->
+       holds_at(happy(Person), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  holds_at(happy(Person), Time) :-
+       holds_at(neg(hungry(Person)), Time),
+       holds_at(neg(cold(Person)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  [holds_at(neg(hungry(Person)), Time), holds_at(neg(cold(Person)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(happy(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(happy(Person), Time),
+   
+    [ holds_at(neg(hungry(Person)), Time),
+      holds_at(neg(cold(Person)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  not(holds_at(neg(hungry(Person)), Time)) :-
+       holds_at(neg(cold(Person)), Time),
+       not(holds_at(happy(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  [holds_at(neg(cold(Person)), Time), holds_at(neg(happy(Person)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(hungry(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(hungry(Person), Time),
+   
+    [ holds_at(neg(cold(Person)), Time),
+      holds_at(neg(happy(Person)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  not(holds_at(neg(cold(Person)), Time)) :-
+       holds_at(neg(hungry(Person)), Time),
+       not(holds_at(happy(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+
+ /*  [holds_at(neg(hungry(Person)), Time), holds_at(neg(happy(Person)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(cold(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
+axiom(holds_at(cold(Person), Time),
+   
+    [ holds_at(neg(hungry(Person)), Time),
+      holds_at(neg(happy(Person)), Time)
+    ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:47
 % [person,time]
 % Terminates(Feed(person),Hungry(person),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',49).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(feed(Person), hungry(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',49).
 axiom(terminates(feed(Person), hungry(Person), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:50
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',51).
 % [person,time]
 % Terminates(Clothe(person),Cold(person),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',51).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(clothe(Person), cold(Person), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',51).
 axiom(terminates(clothe(Person), cold(Person), Time),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:53
 % person Fred
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',53).
 ==> t(person,fred).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:55
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 % HoldsAt(Hungry(Fred),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(hungry(fred))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 axiom(initially(hungry(fred)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:56
 % !HoldsAt(Cold(Fred),0).
- %  not(initially(cold(fred))).
-axiom(not(initially(cold(fred))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(cold(fred)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
+axiom(initially(neg(cold(fred))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
 % Happens(Feed(Fred),1).
-axiom(happens(feed(fred), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:59
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(feed(fred), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
+axiom(happens(feed(fred), now),
+    [is_time(now), b(t, now)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',60).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:60
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',60).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',62).
 % range time 0 2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',62).
 ==> range(time,0,2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:62
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Shanahan1999/Happy.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',62).
 ==> range(offset,1,1).
 %; End of file.

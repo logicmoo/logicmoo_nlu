@@ -59,10 +59,10 @@ e_reader_teste2:-
      assert_ready(e,O).
 
 :- export_transparent(e_reader_testec/0).
-e_reader_testec:- with_e_sample_tests(load_e_pl).
+e_reader_testec:- with_e_sample_tests(cvt_e_pl).
 
 :- export_transparent(load_e/1).
-load_e(F):- load_e(F, always).
+load_e(F):- load_e(F, always),!.
 
 
 
@@ -106,10 +106,12 @@ cond_load_e(Cond,F):-
    set_ec_option(load(F), loaded).
 
 :- export_transparent(load_e_pl/1).
-load_e_pl(F):- needs_resolve_local_files(F, L), !, must_maplist(load_e_pl, L). 
-load_e_pl(F):- to_e_pl(F,E,PL),load_e_pl(E,PL).
-load_e_pl(E,PL):- cvt_e_pl(E,PL),consult(PL).
-
+load_e_pl(F):- needs_resolve_local_files(F, L), !, must_maplist(load_e_pl, L),!. 
+load_e_pl(F):- to_e_pl(F,E,PL),load_e_pl(E,PL),!.
+:- export_transparent(cvt_e_pl/1).
+cvt_e_pl(F):- needs_resolve_local_files(F, L), !, must_maplist(cvt_e_pl, L),!. 
+cvt_e_pl(F):- to_e_pl(F,E,PL), cvt_e_pl(E,PL),!.
+                        
 to_e_pl(F,FE,F):- atom_concat(Was,'.pel',F),!,atom_concat(Was,'.e',FE).
 to_e_pl(F,FE,F):- atom_concat(Was,'.e.pl',F),!,atom_concat(Was,'.e',FE).
 to_e_pl(F,FE,F):- atom_concat(Was,'.pl',F),!,atom_concat(Was,'.e',FE).
@@ -118,6 +120,12 @@ to_e_pl(F,F,PL):- atom_concat(Was,'.e',F), atom_concat(Was,'.e.pl',PL),exists_fi
 to_e_pl(F,F,PL):- atom_concat(Was,'.e',F), atom_concat(Was,'.pl',PL),exists_file(PL).
 to_e_pl(F,F,OutputName):- calc_where_to(outdir('.', 'pel'), F, OutputName).
 
+:- module_transparent(load_e_pl/2).
+load_e_pl(ME,PL):- strip_module(ME,M,E),cvt_e_pl(E,PL),M:user:consult(PL),!.
+
+get_date_atom(Atom):- 
+   get_time(Now),stamp_date_time(Now, Date, 'UTC'), 
+   format_time(atom(Atom),'%a, %d %b %Y %T GMT', Date, posix),!.
 
 cvt_e_pl(F0,OutputName):-
  absolute_file_name(F0,F),
@@ -126,7 +134,8 @@ cvt_e_pl(F0,OutputName):-
   setup_call_cleanup(open(OutputName, write, Outs),
   (must_maplist(format(Outs,'~N~q.~n'),
     [( :- include(library('ec_planner/ec_test_incl'))),
-     ( :- expects_dialect(pfc))]), 
+     ( :- expects_dialect(pfc))]),
+       get_date_atom(Atom),format(Outs,'% ~w',[Atom]),
   with_output_to(Outs, cond_load_e(load_e_pl,F))),
   close(Outs)))), %trace, %consult(OutputName),
   !.
@@ -372,6 +381,19 @@ some_renames(O,O).
 :- export_transparent(assert_ele_cond_load_e/1).
 assert_ele_cond_load_e(EOF) :- must(brk_on_bind(EOF)), must(assert_ele(EOF)),!.
 
+predform_to_functionform(PF,equals(Fn,LastArg)):- PF=..[F|Args],append(FnArgs,[LastArg],Args),predname_to_fnname(F,FnF),Fn=..[FnF|FnArgs].
+functionform_to_predform(equals(Fn,LastArg),PF):- Fn=..[FnF|FnArgs],append(FnArgs,[LastArg],Args),fnname_to_predname(FnF,F),PF=..[F|Args].
+
+predname_to_fnname(Pred,Fun):- clause_b(functional_predicate(Fun,Pred)).
+predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Pred,'Of',Fun),call_u(resultIsa(Templ,_)),functor(Templ,F,_),Fun==F,!.
+predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Pred,'Fn',Fun),!.
+predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Fun,'Pred',Pred),!.
+
+fnname_to_predname(Fun,Pred):- clause_b(functional_predicate(Fun,Pred)).
+fnname_to_predname(Fun,Pred):- atom(Fun),atom_concat(Pred,'Fn',Fun),!.
+fnname_to_predname(Fun,Pred):- atom(Fun),atom_concat(Pred,'Of',Fun),!.
+fnname_to_predname(Fun,Pred):- atom(Fun),atom_concat(Fun,'Pred',Pred),!.
+
 :- export_transparent(assert_ele/1).
 assert_ele(EOF) :- notrace((EOF == end_of_file)),!.
 assert_ele(I):- notrace(\+ callable(I)),!,assert_ele(uncallable(I)).
@@ -394,22 +416,29 @@ assert_ele(HB):- \+ compound_gt(HB, 0), !, assert_axiom(HB, []).
 
 assert_ele(HB):- HB=..[=, Function, Value],
   %get_functor(RelSpec,F), get_mpred_prop(Function,function),
-  must(compound(Function)),
-  append_term(Function,Value,Predicate), !,
-  assert_ele(Predicate).
+  %must(compound(Function)),
+  %append_term(Function,Value,Predicate), !,
+  assert_ele(equals(Function,Value)).
 
 assert_ele(HB):- HB=..[function, RelSpec, RetType], 
-  append_term(RelSpec,RetType,PredSpec),
-  assert_ele(functional_predicate(PredSpec)),
-  %assert_ele(function(RelSpec)),
-  get_functor(RelSpec,F),
-  assert_ele(==>resultIsa(F, RetType)).
+  %append_term(RelSpec,RetType,PredSpec),
+  %assert_ele(functional_predicate(PredSpec)),
+  must_det_l((
+   assert_ele(function(RelSpec)),
+
+   functionform_to_predform(equals(RelSpec,RetType),PredSpec),
+   assert_ele(predicate(PredSpec)),
+   get_functor(RelSpec,F),
+   get_functor(PredSpec,P),
+   assert_ele(functional_predicate(F,P)),
+   
+   assert_ele(==>resultIsa(F, RetType)))).
 
 assert_ele(HB):- HB=..[RelType,RelSpec],arg_info(domain,RelType,arginfo), !, 
   functor_skel(RelSpec,P),!, 
   RelTypeOpen=..[RelType,P],
-  assert_ready(blue, RelTypeOpen),
-  %assert_ready(blue, HB),
+  nop(assert_ready(blue, RelTypeOpen)),
+  assert_ready(blue, HB),
   assert_ready(red, (==>(mpred_prop(RelSpec, RelType)))),
   must(set_mpred_props(RelSpec,RelType)).
 
@@ -813,17 +842,17 @@ ect:- call(call,ect1).
 
 :- export_transparent(ect1/0).
 ect1:- 
-   cls, make,  Out = load_e_pl,
-  call(Out, 'examples/FrankEtAl2003/Story1.e'),
-  call(Out, 'ecnet/GSpace.e'),
-  call(Out, 'ecnet/Diving.e'),
-  call(Out, 'ecnet/RTSpace.e'),
-  call(Out, 'examples/AkmanEtAl2004/ZooWorld.e'),
-  call(Out, 'ectest/ec_reader_test_ecnet.e'),
+   cls, make,  Out = cvt_e_pl,
+   call(Out, 'examples/FrankEtAl2003/Story1.e'),
+   call(Out, 'ecnet/GSpace.e'),
+   call(Out, 'ecnet/Diving.e'),
+   call(Out, 'ecnet/RTSpace.e'),
+   call(Out, 'examples/AkmanEtAl2004/ZooWorld.e'),
+   call(Out, 'ectest/ec_reader_test_ecnet.e'),
    call(Out, 'ecnet/SpeechAct.e'),
    call(Out, 'ecnet/Kidnapping.e'),
-   
-   cond_load_e(always,'examples/Mueller2006/Exercises/MixingPaints.e'),
+   call(Out, ['../*/*/*/*.e','../*/*/*.e','../*/*.e']),
+   call(Out,'examples/Mueller2006/Exercises/MixingPaints.e'),
    list_undefined,
    list_void_declarations,  
   !.
@@ -1148,11 +1177,11 @@ is_axiom_head(P):- compound_name_arity(P,F,_), arg_info(axiom_head,F,_),!.
 is_axiom_head(P):- functor_skel(P, G), syntx_term_check(predicate(G)),!.
 
 
+arg_info(domain,event,arginfo).
 arg_info(domain,fluent,arginfo).
 arg_info(domain,predicate,arginfo).
 arg_info(domain,function,arginfo).
-arg_info(domain,functional_predicate,arginfo).
-arg_info(domain,event,arginfo).
+arg_info(domain,functional_predicate,v(pred,function)).
 
 arg_info(domain,reified_sort,arginfo).
 

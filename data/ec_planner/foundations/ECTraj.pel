@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'foundations/ECTraj.e').
+% Mon, 23 Mar 2020 02:29:17 GMT
+% From ../foundations/ECTraj.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',41).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -25,28 +31,47 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
 % predicate Clipped(time,fluent,time)
- %  predicate(clipped(time,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
+predicate(clipped(time,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
 ==> mpred_prop(clipped(time,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
 ==> meta_argtypes(clipped(time,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:25
 % predicate Declipped(time,fluent,time)
- %  predicate(declipped(time,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
+predicate(declipped(time,fluent,time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
 ==> mpred_prop(declipped(time,fluent,time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',25).
 ==> meta_argtypes(declipped(time,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
 % predicate Trajectory(fluent,time,fluent,offset)
- %  predicate(trajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
+predicate(trajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
 ==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
 ==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:28
 % predicate AntiTrajectory(fluent,time,fluent,offset)
- %  predicate(antiTrajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
+predicate(antiTrajectory(fluent,time,fluent,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
 ==> mpred_prop(antiTrajectory(fluent,time,fluent,offset),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',28).
 ==> meta_argtypes(antiTrajectory(fluent,time,fluent,offset)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/ECTraj.e:30
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
 % [event,fluent,fluent2,offset,time]
 % Happens(event,time) &
 % Initiates(event,fluent,time) &
@@ -54,18 +79,152 @@
 % Trajectory(fluent,time,fluent2,offset) &
 % !Clipped(time,fluent,time+offset) ->
 % HoldsAt(fluent2,time+offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/ECTraj.e:36
-axiom(holds_at(Fluent2, Time),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  happens(Event, Time), initiates(Event, Fluent, Time), 0<Offset, trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, Time+Offset)) ->
+       holds_at(Fluent2, Time+Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  holds_at(Fluent2, Time+Offset) :-
+       happens(Event, Time),
+       initiates(Event, Fluent, Time),
+       comparison(0, Offset, <),
+       trajectory(Fluent, Time, Fluent2, Offset),
+       not(clipped(Time, Fluent, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  [happens(Event, Time), initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more41)), b(Time, t_more41), ignore(Time+Offset==t_more41)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more41],
+          holds_at(Fluent2, t_more41)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+axiom(holds_at(Fluent2, t_more41),
    
     [ happens(Event, Time),
       initiates(Event, Fluent, Time),
-      comparison(0, 0, <),
-      trajectory(Fluent, Time, Fluent2, 0),
-      not(clipped(Time, Fluent, Time))
+      comparison(0, Offset, <),
+      trajectory(Fluent, Time, Fluent2, Offset),
+      not(clipped(Time, Fluent, t_more41)),
+      b(Time, t_more41)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  not(happens(Event, Time)) :-
+       ( initiates(Event, Fluent, Time),
+         comparison(0, Offset, <),
+         trajectory(Fluent, Time, Fluent2, Offset),
+         not(clipped(Time, Fluent, Time+Offset))
+       ),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  [initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more42)), holds_at(neg(Fluent2), t_more42), b(Time, t_more42), ignore(Time+Offset==t_more42)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more42],
+          not(happens(Event, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+axiom(not(happens(Event, Time)),
+   
+    [ initiates(Event, Fluent, Time),
+      comparison(0, Offset, <),
+      trajectory(Fluent, Time, Fluent2, Offset),
+      not(clipped(Time, Fluent, t_more42)),
+      holds_at(neg(Fluent2), t_more42),
+      b(Time, t_more42)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  not(initiates(Event, Fluent, Time)) :-
+       ( comparison(0, Offset, <),
+         trajectory(Fluent, Time, Fluent2, Offset),
+         not(clipped(Time, Fluent, Time+Offset))
+       ),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  [comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more43)), happens(Event, Time), holds_at(neg(Fluent2), t_more43), b(Time, t_more43), ignore(Time+Offset==t_more43)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more43],
+          not(initiates(Event, Fluent, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+axiom(not(initiates(Event, Fluent, Time)),
+   
+    [ comparison(0, Offset, <),
+      trajectory(Fluent, Time, Fluent2, Offset),
+      not(clipped(Time, Fluent, t_more43)),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more43),
+      b(Time, t_more43)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  not(trajectory(Fluent, Time, Fluent2, Offset)) :-
+       not(clipped(Time, Fluent, Time+Offset)),
+       comparison(0, Offset, <),
+       initiates(Event, Fluent, Time),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  [not(clipped(Time, Fluent, t_more44)), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more44), b(Time, t_more44), ignore(Time+Offset==t_more44)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more44],
+          not(trajectory(Fluent, Time, Fluent2, Offset))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+axiom(not(trajectory(Fluent, Time, Fluent2, Offset)),
+   
+    [ not(clipped(Time, Fluent, t_more44)),
+      comparison(0, Offset, <),
+      initiates(Event, Fluent, Time),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more44),
+      b(Time, t_more44)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  clipped(Time, Fluent, Time+Offset) :-
+       trajectory(Fluent, Time, Fluent2, Offset),
+       comparison(0, Offset, <),
+       initiates(Event, Fluent, Time),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+
+ /*  [trajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more45), b(Time, t_more45), ignore(Time+Offset==t_more45)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more45],
+          clipped(Time, Fluent, t_more45)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',31).
+axiom(clipped(Time, Fluent, t_more45),
+   
+    [ trajectory(Fluent, Time, Fluent2, Offset),
+      comparison(0, Offset, <),
+      initiates(Event, Fluent, Time),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more45),
+      b(Time, t_more45)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/ECTraj.e:38
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:38
 % [event,fluent,fluent2,offset,time]
 % Happens(event,time) &
 % Terminates(event,fluent,time) &
@@ -73,16 +232,150 @@ axiom(holds_at(Fluent2, Time),
 % AntiTrajectory(fluent,time,fluent2,offset) &
 % !Declipped(time,fluent,time+offset) ->
 % HoldsAt(fluent2,time+offset).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/ECTraj.e:44
-axiom(holds_at(Fluent2, Time),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  happens(Event, Time), terminates(Event, Fluent, Time), 0<Offset, antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, Time+Offset)) ->
+       holds_at(Fluent2, Time+Offset).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  holds_at(Fluent2, Time+Offset) :-
+       happens(Event, Time),
+       terminates(Event, Fluent, Time),
+       comparison(0, Offset, <),
+       antiTrajectory(Fluent, Time, Fluent2, Offset),
+       not(declipped(Time, Fluent, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  [happens(Event, Time), terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more46)), b(Time, t_more46), ignore(Time+Offset==t_more46)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more46],
+          holds_at(Fluent2, t_more46)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+axiom(holds_at(Fluent2, t_more46),
    
     [ happens(Event, Time),
       terminates(Event, Fluent, Time),
-      comparison(0, 0, <),
-      antiTrajectory(Fluent, Time, Fluent2, 0),
-      not(declipped(Time, Fluent, Time))
+      comparison(0, Offset, <),
+      antiTrajectory(Fluent, Time, Fluent2, Offset),
+      not(declipped(Time, Fluent, t_more46)),
+      b(Time, t_more46)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  not(happens(Event, Time)) :-
+       ( terminates(Event, Fluent, Time),
+         comparison(0, Offset, <),
+         antiTrajectory(Fluent, Time, Fluent2, Offset),
+         not(declipped(Time, Fluent, Time+Offset))
+       ),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  [terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more47)), holds_at(neg(Fluent2), t_more47), b(Time, t_more47), ignore(Time+Offset==t_more47)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more47],
+          not(happens(Event, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+axiom(not(happens(Event, Time)),
+   
+    [ terminates(Event, Fluent, Time),
+      comparison(0, Offset, <),
+      antiTrajectory(Fluent, Time, Fluent2, Offset),
+      not(declipped(Time, Fluent, t_more47)),
+      holds_at(neg(Fluent2), t_more47),
+      b(Time, t_more47)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  not(terminates(Event, Fluent, Time)) :-
+       ( comparison(0, Offset, <),
+         antiTrajectory(Fluent, Time, Fluent2, Offset),
+         not(declipped(Time, Fluent, Time+Offset))
+       ),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  [comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more48)), happens(Event, Time), holds_at(neg(Fluent2), t_more48), b(Time, t_more48), ignore(Time+Offset==t_more48)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more48],
+          not(terminates(Event, Fluent, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+axiom(not(terminates(Event, Fluent, Time)),
+   
+    [ comparison(0, Offset, <),
+      antiTrajectory(Fluent, Time, Fluent2, Offset),
+      not(declipped(Time, Fluent, t_more48)),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more48),
+      b(Time, t_more48)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  not(antiTrajectory(Fluent, Time, Fluent2, Offset)) :-
+       not(declipped(Time, Fluent, Time+Offset)),
+       comparison(0, Offset, <),
+       terminates(Event, Fluent, Time),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  [not(declipped(Time, Fluent, t_more49)), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more49), b(Time, t_more49), ignore(Time+Offset==t_more49)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more49],
+          not(antiTrajectory(Fluent, Time, Fluent2, Offset))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+axiom(not(antiTrajectory(Fluent, Time, Fluent2, Offset)),
+   
+    [ not(declipped(Time, Fluent, t_more49)),
+      comparison(0, Offset, <),
+      terminates(Event, Fluent, Time),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more49),
+      b(Time, t_more49)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  declipped(Time, Fluent, Time+Offset) :-
+       antiTrajectory(Fluent, Time, Fluent2, Offset),
+       comparison(0, Offset, <),
+       terminates(Event, Fluent, Time),
+       happens(Event, Time),
+       not(holds_at(Fluent2, Time+Offset)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+
+ /*  [antiTrajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more50), b(Time, t_more50), ignore(Time+Offset==t_more50)] ->
+       ta(Time,
+          tvs1=[Time, Time+Offset],
+          tvs2=[Time, t_more50],
+          declipped(Time, Fluent, t_more50)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e',40).
+axiom(declipped(Time, Fluent, t_more50),
+   
+    [ antiTrajectory(Fluent, Time, Fluent2, Offset),
+      comparison(0, Offset, <),
+      terminates(Event, Fluent, Time),
+      happens(Event, Time),
+      holds_at(neg(Fluent2), t_more50),
+      b(Time, t_more50)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/foundations/ECTraj.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECTraj.e:46
 %; End of file.

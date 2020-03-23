@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/Rain.e').
+% Mon, 23 Mar 2020 02:26:48 GMT
+% From ../ecnet/Rain.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PolySpace.e',116).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -15,82 +21,244 @@
 %;
 %; It starts raining at location outside.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:14
 % event StartRaining(outside)
- %  event(startRaining(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
+event(startRaining(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
 ==> mpred_prop(startRaining(outside),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
 ==> meta_argtypes(startRaining(outside)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:16
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:16
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 %; It stops raining at location outside.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:17
 % event StopRaining(outside)
- %  event(stopRaining(outside)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:18
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
+event(stopRaining(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 ==> mpred_prop(stopRaining(outside),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 ==> meta_argtypes(stopRaining(outside)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:19
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:19
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 %; It is raining at location outside.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:20
 % fluent Raining(outside)
- %  fluent(raining(outside)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
+fluent(raining(outside)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 ==> mpred_prop(raining(outside),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 ==> meta_argtypes(raining(outside)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 % event GetWet(object)
- %  event(getWet(object)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:23
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
+event(getWet(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 ==> mpred_prop(getWet(object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 ==> meta_argtypes(getWet(object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 % event Dry(object)
- %  event(dry(object)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
+event(dry(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 ==> mpred_prop(dry(object),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 ==> meta_argtypes(dry(object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 % fluent Wet(object)
- %  fluent(wet(object)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
+fluent(wet(object)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 ==> mpred_prop(wet(object),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 ==> meta_argtypes(wet(object)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:28
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
 % [agent,outside,time]
 % HoldsAt(At(agent,outside),time) &
 % HoldsAt(Raining(outside),time) &
 % !HoldsAt(Wet(agent),time) &
 % (!{umbrella} HoldsAt(Holding(agent,umbrella),time)) ->
 % Happens(GetWet(agent),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:33
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  holds_at(at(Agent, Outside), Time), holds_at(raining(Outside), Time), holds_at(neg(wet(Agent)), Time), not(exists([Umbrella], holds_at(holding(Agent, Umbrella), Time))) ->
+       happens(getWet(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  happens(getWet(Agent), Time) :-
+       holds_at(at(Agent, Outside), Time),
+       holds_at(raining(Outside), Time),
+       holds_at(neg(wet(Agent)), Time),
+       not(holds_at(holding(Agent, Umbrella), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  [holds_at(at(Agent, Outside), Time), holds_at(raining(Outside), Time), holds_at(neg(wet(Agent)), Time), holds_at(neg(holding(Agent, Umbrella)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(getWet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
 axiom(happens(getWet(Agent), Time),
    
     [ holds_at(at(Agent, Outside), Time),
       holds_at(raining(Outside), Time),
-      not(holds_at(wet(Agent), Time)),
-      not(holds_at(holding(Agent, Umbrella), Time))
+      holds_at(neg(wet(Agent)), Time),
+      holds_at(neg(holding(Agent, Umbrella)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  not(holds_at(at(Agent, Outside), Time)) :-
+       ( holds_at(raining(Outside), Time),
+         holds_at(neg(wet(Agent)), Time),
+         not(holds_at(holding(Agent, Umbrella), Time))
+       ),
+       not(happens(getWet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  [holds_at(raining(Outside), Time), holds_at(neg(wet(Agent)), Time), holds_at(neg(holding(Agent, Umbrella)), Time), not(happens(getWet(Agent), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(at(Agent, Outside)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+axiom(holds_at(neg(at(Agent, Outside)), Time),
+   
+    [ holds_at(raining(Outside), Time),
+      holds_at(neg(wet(Agent)), Time),
+      holds_at(neg(holding(Agent, Umbrella)), Time),
+      not(happens(getWet(Agent), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  not(holds_at(raining(Outside), Time)) :-
+       ( holds_at(neg(wet(Agent)), Time),
+         not(holds_at(holding(Agent, Umbrella), Time))
+       ),
+       holds_at(at(Agent, Outside), Time),
+       not(happens(getWet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  [holds_at(neg(wet(Agent)), Time), holds_at(neg(holding(Agent, Umbrella)), Time), holds_at(at(Agent, Outside), Time), not(happens(getWet(Agent), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(raining(Outside)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+axiom(holds_at(neg(raining(Outside)), Time),
+   
+    [ holds_at(neg(wet(Agent)), Time),
+      holds_at(neg(holding(Agent, Umbrella)), Time),
+      holds_at(at(Agent, Outside), Time),
+      not(happens(getWet(Agent), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  not(holds_at(neg(wet(Agent)), Time)) :-
+       not(holds_at(holding(Agent, Umbrella), Time)),
+       holds_at(raining(Outside), Time),
+       holds_at(at(Agent, Outside), Time),
+       not(happens(getWet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  [holds_at(neg(holding(Agent, Umbrella)), Time), holds_at(raining(Outside), Time), holds_at(at(Agent, Outside), Time), not(happens(getWet(Agent), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(wet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+axiom(holds_at(wet(Agent), Time),
+   
+    [ holds_at(neg(holding(Agent, Umbrella)), Time),
+      holds_at(raining(Outside), Time),
+      holds_at(at(Agent, Outside), Time),
+      not(happens(getWet(Agent), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  holds_at(holding(Agent, Umbrella), Time) :-
+       holds_at(neg(wet(Agent)), Time),
+       holds_at(raining(Outside), Time),
+       holds_at(at(Agent, Outside), Time),
+       not(happens(getWet(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+
+ /*  [holds_at(neg(wet(Agent)), Time), holds_at(raining(Outside), Time), holds_at(at(Agent, Outside), Time), not(happens(getWet(Agent), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(holding(Agent, Umbrella), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
+axiom(holds_at(holding(Agent, Umbrella), Time),
+   
+    [ holds_at(neg(wet(Agent)), Time),
+      holds_at(raining(Outside), Time),
+      holds_at(at(Agent, Outside), Time),
+      not(happens(getWet(Agent), Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:35
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:35
 % [object,time]
 % Initiates(GetWet(object),Wet(object),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',37).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(getWet(Object), wet(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',37).
 axiom(initiates(getWet(Object), wet(Object), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:38
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',39).
 % [object,time]
 % Terminates(Dry(object),Wet(object),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',39).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(dry(Object), wet(Object), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',39).
 axiom(terminates(dry(Object), wet(Object), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Rain.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:41
 %; End of file.

@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Exercises/TelephoneBugs.e').
+% Mon, 23 Mar 2020 02:26:00 GMT
+% From ../examples/Mueller2006/Exercises/TelephoneBugs.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',69).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -22,114 +28,234 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:22
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',25).
 % sort agent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',25).
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:25
 % sort phone
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',25).
 ==> sort(phone).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',28).
 % agent Agent1, Agent2
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',28).
 ==> t(agent,agent1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',28).
 ==> t(agent,agent2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:28
 % phone Phone1, Phone2
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',28).
 ==> t(phone,phone1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',28).
 ==> t(phone,phone2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
 % fluent Ringing(phone,phone)
- %  fluent(ringing(phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
+fluent(ringing(phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
 ==> mpred_prop(ringing(phone,phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
 ==> meta_argtypes(ringing(phone,phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:31
 % fluent DialTone(phone)
- %  fluent(dialTone(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
+fluent(dialTone(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
 ==> mpred_prop(dialTone(phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',31).
 ==> meta_argtypes(dialTone(phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
 % fluent BusySignal(phone)
- %  fluent(busySignal(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
+fluent(busySignal(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
 ==> mpred_prop(busySignal(phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
 ==> meta_argtypes(busySignal(phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:33
 % fluent Idle(phone)
- %  fluent(idle(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
+fluent(idle(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
 ==> mpred_prop(idle(phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',33).
 ==> meta_argtypes(idle(phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
 % fluent Connected(phone,phone)
- %  fluent(connected(phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
+fluent(connected(phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
 ==> mpred_prop(connected(phone,phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
 ==> meta_argtypes(connected(phone,phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:35
 % fluent Disconnected(phone)
- %  fluent(disconnected(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
+fluent(disconnected(phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
 ==> mpred_prop(disconnected(phone),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',35).
 ==> meta_argtypes(disconnected(phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:37
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
 % event PickUp(agent,phone)
- %  event(pickUp(agent,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
+event(pickUp(agent,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
 ==> mpred_prop(pickUp(agent,phone),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
 ==> meta_argtypes(pickUp(agent,phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:38
 % event SetDown(agent,phone)
- %  event(setDown(agent,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
+event(setDown(agent,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
 ==> mpred_prop(setDown(agent,phone),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',38).
 ==> meta_argtypes(setDown(agent,phone)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',40).
 % event Dial(agent,phone,phone)
- %  event(dial(agent,phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',40).
+event(dial(agent,phone,phone)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',40).
 ==> mpred_prop(dial(agent,phone,phone),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',40).
 ==> meta_argtypes(dial(agent,phone,phone)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',42).
 %; Sigma
 % [agent,phone,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:44
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:44
 % HoldsAt(Idle(phone),time) ->
 % Initiates(PickUp(agent,phone),DialTone(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',44).
+
+ /*  [holds_at(idle(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(pickUp(Agent, Phone),
+                    dialTone(Phone),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',44).
 axiom(initiates(pickUp(Agent, Phone), dialTone(Phone), Time),
     [holds_at(idle(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:47
 % [agent,phone,time]
 % HoldsAt(Idle(phone),time) ->
 % Terminates(PickUp(agent,phone),Idle(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:49
+
+ /*  [holds_at(idle(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(pickUp(Agent, Phone),
+                     idle(Phone),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',49).
 axiom(terminates(pickUp(Agent, Phone), idle(Phone), Time),
     [holds_at(idle(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:51
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:51
 % [agent,phone,time]
 % HoldsAt(DialTone(phone),time) ->
 % Initiates(SetDown(agent,phone),Idle(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:53
+
+ /*  [holds_at(dialTone(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone),
+                    idle(Phone),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',53).
 axiom(initiates(setDown(Agent, Phone), idle(Phone), Time),
     [holds_at(dialTone(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:55
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:55
 % [agent,phone,time]
 % HoldsAt(DialTone(phone),time) ->
 % Terminates(SetDown(agent,phone),DialTone(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:57
+
+ /*  [holds_at(dialTone(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone),
+                     dialTone(Phone),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',57).
 axiom(terminates(setDown(Agent, Phone), dialTone(Phone), Time),
     [holds_at(dialTone(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:59
 % [agent,phone1,phone2,time]
 % HoldsAt(DialTone(phone1),time) &
 % HoldsAt(Idle(phone2),time) ->
 % Initiates(Dial(agent,phone1,phone2),Ringing(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',61).
+
+ /*  [holds_at(dialTone(Phone1), Time), holds_at(idle(Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(dial(Agent, Phone1, Phone2),
+                    ringing(Phone1, Phone2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',61).
 axiom(initiates(dial(Agent, Phone1, Phone2), ringing(Phone1, Phone2), Time),
    
     [ holds_at(dialTone(Phone1), Time),
@@ -137,12 +263,23 @@ axiom(initiates(dial(Agent, Phone1, Phone2), ringing(Phone1, Phone2), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:64
 % [agent,phone1,phone2,time]
 % HoldsAt(DialTone(phone1),time) &
 % HoldsAt(Idle(phone2),time) ->
 % Terminates(Dial(agent,phone1,phone2),DialTone(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',66).
+
+ /*  [holds_at(dialTone(Phone1), Time), holds_at(idle(Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(dial(Agent, Phone1, Phone2),
+                     dialTone(Phone1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',66).
 axiom(terminates(dial(Agent, Phone1, Phone2), dialTone(Phone1), Time),
    
     [ holds_at(dialTone(Phone1), Time),
@@ -150,12 +287,23 @@ axiom(terminates(dial(Agent, Phone1, Phone2), dialTone(Phone1), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:69
 % [agent,phone1,phone2,time]
 % HoldsAt(DialTone(phone1),time) &
 % HoldsAt(Idle(phone2),time) ->
 % Terminates(Dial(agent,phone1,phone2),Idle(phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:72
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',71).
+
+ /*  [holds_at(dialTone(Phone1), Time), holds_at(idle(Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(dial(Agent, Phone1, Phone2),
+                     idle(Phone2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',71).
 axiom(terminates(dial(Agent, Phone1, Phone2), idle(Phone2), Time),
    
     [ holds_at(dialTone(Phone1), Time),
@@ -163,336 +311,695 @@ axiom(terminates(dial(Agent, Phone1, Phone2), idle(Phone2), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:74
 % [agent,phone1,phone2,time]
 % HoldsAt(DialTone(phone1),time) &
 % !HoldsAt(Idle(phone2),time) ->
 % Initiates(Dial(agent,phone1,phone2),BusySignal(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:77
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',76).
+
+ /*  [holds_at(dialTone(Phone1), Time), holds_at(neg(idle(Phone2)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(dial(Agent, Phone1, Phone2),
+                    busySignal(Phone1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',76).
 axiom(initiates(dial(Agent, Phone1, Phone2), busySignal(Phone1), Time),
    
     [ holds_at(dialTone(Phone1), Time),
-      not(holds_at(idle(Phone2), Time))
+      holds_at(neg(idle(Phone2)), Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:79
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:79
 % [agent,phone1,phone2,time]
 % HoldsAt(DialTone(phone1),time) &
 % !HoldsAt(Idle(phone2),time) ->
 % Terminates(Dial(agent,phone1,phone2),DialTone(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',81).
+
+ /*  [holds_at(dialTone(Phone1), Time), holds_at(neg(idle(Phone2)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(dial(Agent, Phone1, Phone2),
+                     dialTone(Phone1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',81).
 axiom(terminates(dial(Agent, Phone1, Phone2), dialTone(Phone1), Time),
    
     [ holds_at(dialTone(Phone1), Time),
-      not(holds_at(idle(Phone2), Time))
+      holds_at(neg(idle(Phone2)), Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:84
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:84
 % [agent,phone,time]
 % HoldsAt(BusySignal(phone),time) ->
 % Initiates(SetDown(agent,phone),Idle(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:86
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:86
+
+ /*  [holds_at(busySignal(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone),
+                    idle(Phone),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',86).
 axiom(initiates(setDown(Agent, Phone), idle(Phone), Time),
     [holds_at(busySignal(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:88
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:88
 % [agent,phone,time]
 % HoldsAt(BusySignal(phone),time) ->
 % Terminates(SetDown(agent,phone),BusySignal(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:90
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:90
+
+ /*  [holds_at(busySignal(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone),
+                     busySignal(Phone),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',90).
 axiom(terminates(setDown(Agent, Phone), busySignal(Phone), Time),
     [holds_at(busySignal(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:92
 % [agent,phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone1),Idle(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:94
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:94
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone1),
+                    idle(Phone1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',94).
 axiom(initiates(setDown(Agent, Phone1), idle(Phone1), Time),
     [holds_at(ringing(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:96
 % [agent,phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone1),Idle(phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:98
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:98
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone1),
+                    idle(Phone2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',98).
 axiom(initiates(setDown(Agent, Phone1), idle(Phone2), Time),
     [holds_at(ringing(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:100
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:100
 % [agent,phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) ->
 % Terminates(SetDown(agent,phone1),Ringing(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:102
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone1),
+                     ringing(Phone1, Phone2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',102).
 axiom(terminates(setDown(Agent, Phone1), ringing(Phone1, Phone2), Time),
     [holds_at(ringing(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:104
 % [agent,phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) ->
 % Initiates(PickUp(agent,phone2),Connected(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:106
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:106
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(pickUp(Agent, Phone2),
+                    connected(Phone1, Phone2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',106).
 axiom(initiates(pickUp(Agent, Phone2), connected(Phone1, Phone2), Time),
     [holds_at(ringing(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:108
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:108
 % [agent,phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) ->
 % Terminates(PickUp(agent,phone2),Ringing(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:110
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:110
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(pickUp(Agent, Phone2),
+                     ringing(Phone1, Phone2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',110).
 axiom(terminates(pickUp(Agent, Phone2), ringing(Phone1, Phone2), Time),
     [holds_at(ringing(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:112
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:112
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone1),Idle(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:114
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:114
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone1),
+                    idle(Phone1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',114).
 axiom(initiates(setDown(Agent, Phone1), idle(Phone1), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:116
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:116
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone1),Disconnected(phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:118
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:118
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone1),
+                    disconnected(Phone2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',118).
 axiom(initiates(setDown(Agent, Phone1), disconnected(Phone2), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:120
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:120
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Terminates(SetDown(agent,phone1),Connected(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:122
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:122
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone1),
+                     connected(Phone1, Phone2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',122).
 axiom(terminates(setDown(Agent, Phone1), connected(Phone1, Phone2), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:124
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:124
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone2),Idle(phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:126
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:126
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone2),
+                    idle(Phone2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',126).
 axiom(initiates(setDown(Agent, Phone2), idle(Phone2), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:128
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:128
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Initiates(SetDown(agent,phone2),Disconnected(phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:130
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:130
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone2),
+                    disconnected(Phone1),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',130).
 axiom(initiates(setDown(Agent, Phone2), disconnected(Phone1), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:132
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:132
 % [agent,phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) ->
 % Terminates(SetDown(agent,phone2),Connected(phone1,phone2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:134
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:134
+
+ /*  [holds_at(connected(Phone1, Phone2), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone2),
+                     connected(Phone1, Phone2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',134).
 axiom(terminates(setDown(Agent, Phone2), connected(Phone1, Phone2), Time),
     [holds_at(connected(Phone1, Phone2), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:136
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:136
 % [agent,phone,time]
 % HoldsAt(Disconnected(phone),time) ->
 % Initiates(SetDown(agent,phone),Idle(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:138
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:138
+
+ /*  [holds_at(disconnected(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setDown(Agent, Phone),
+                    idle(Phone),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',138).
 axiom(initiates(setDown(Agent, Phone), idle(Phone), Time),
     [holds_at(disconnected(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:140
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:140
 % [agent,phone,time]
 % HoldsAt(Disconnected(phone),time) ->
 % Terminates(SetDown(agent,phone),Disconnected(phone),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:142
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:142
+
+ /*  [holds_at(disconnected(Phone), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(setDown(Agent, Phone),
+                     disconnected(Phone),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',142).
 axiom(terminates(setDown(Agent, Phone), disconnected(Phone), Time),
     [holds_at(disconnected(Phone), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:144
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:144
 %; Delta
 %; (1) Two agents dial each other simultaneously without first
 %; picking up phone.
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:148
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:148
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
 % Happens(Dial(Agent1,Phone1,Phone2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(dial(agent1, phone1, phone2), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
 axiom(happens(dial(agent1, phone1, phone2), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:149
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:149
 % Happens(Dial(Agent2,Phone2,Phone1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(dial(agent2, phone2, phone1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
 axiom(happens(dial(agent2, phone2, phone1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:151
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:151
 %; (2) Two agents dial each other simultaneously.
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:152
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:152
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
 % Happens(PickUp(Agent1,Phone1),1).
-axiom(happens(pickUp(agent1, phone1), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(pickUp(agent1, phone1), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
+axiom(happens(pickUp(agent1, phone1), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:153
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:153
 % Happens(PickUp(Agent2,Phone2),1).
-axiom(happens(pickUp(agent2, phone2), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(pickUp(agent2, phone2), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
+axiom(happens(pickUp(agent2, phone2), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:154
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:154
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
 % Happens(Dial(Agent1,Phone1,Phone2),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(dial(agent1, phone1, phone2), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
 axiom(happens(dial(agent1, phone1, phone2), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:155
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:155
 % Happens(Dial(Agent2,Phone2,Phone1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(dial(agent2, phone2, phone1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
 axiom(happens(dial(agent2, phone2, phone1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:156
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:156
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
 % Happens(SetDown(Agent1,Phone1),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(setDown(agent1, phone1), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
 axiom(happens(setDown(agent1, phone1), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:157
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:157
 % Happens(SetDown(Agent2,Phone2),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(setDown(agent2, phone2), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
 axiom(happens(setDown(agent2, phone2), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:159
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:159
 %; (3) One agent dials another agent just as the other
 %; agent picks up the phone.
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:161
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:161
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
 % Happens(PickUp(Agent1,Phone1),4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
+
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(pickUp(agent1, phone1), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
 axiom(happens(pickUp(agent1, phone1), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+    [is_time(t4), b(t, t4)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:162
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:162
 % Happens(Dial(Agent1,Phone1,Phone2),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(dial(agent1, phone1, phone2), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
 axiom(happens(dial(agent1, phone1, phone2), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:163
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:163
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',164).
 % Happens(PickUp(Agent2,Phone2),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',164).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(pickUp(agent2, phone2), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',164).
 axiom(happens(pickUp(agent2, phone2), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:165
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:165
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',166).
 %; Psi
 % [phone,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:168
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:168
 % !HoldsAt(Ringing(phone,phone),time).
- %  not(holds_at(ringing(Phone,Phone),Time)).
-axiom(not(holds_at(ringing(Ringing_Param, Ringing_Param), Time2)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',168).
+holds_at(neg(ringing(Phone,Phone)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:170
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:170
 % [phone1,phone2,time]
 % HoldsAt(Ringing(phone1,phone2),time) &
 % phone1!=phone2 ->
 % !HoldsAt(Ringing(phone2,phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:173
-axiom(not(holds_at(ringing(Phone2, Phone1), Time)),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:173
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+
+ /*  holds_at(ringing(Phone1, Phone2), Time), diff(Phone1, Phone2) ->
+       holds_at(neg(ringing(Phone2, Phone1)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+
+ /*  holds_at(neg(ringing(Phone2, Phone1)), Time) :-
+       holds_at(ringing(Phone1, Phone2), Time),
+       diff(Phone1, Phone2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+
+ /*  [holds_at(ringing(Phone1, Phone2), Time), diff(Phone1, Phone2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(ringing(Phone2, Phone1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+axiom(holds_at(neg(ringing(Phone2, Phone1)), Time),
    
     [ holds_at(ringing(Phone1, Phone2), Time),
-      dif(Phone1, Phone2)
+      diff(Phone1, Phone2)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+
+ /*  not(holds_at(ringing(Phone1, Phone2), Time)) :-
+       diff(Phone1, Phone2),
+       not(holds_at(neg(ringing(Phone2, Phone1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+
+ /*  [diff(Phone1, Phone2), holds_at(ringing(Phone2, Phone1), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(ringing(Phone1, Phone2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',172).
+axiom(holds_at(neg(ringing(Phone1, Phone2)), Time),
+   
+    [ diff(Phone1, Phone2),
+      holds_at(ringing(Phone2, Phone1), Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:175
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:175
 % [phone,time]
 % !HoldsAt(Connected(phone,phone),time).
- %  not(holds_at(connected(Phone,Phone),Time)).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:176
-axiom(not(holds_at(connected(Connected_Param, Connected_Param), Time2)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',177).
+holds_at(neg(connected(Phone,Phone)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:178
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:178
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
 % [phone1,phone2,time]
 % HoldsAt(Connected(phone1,phone2),time) &
 % phone1!=phone2 ->
 % !HoldsAt(Connected(phone2,phone1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:181
-axiom(not(holds_at(connected(Phone2, Phone1), Time)),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:181
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+
+ /*  holds_at(connected(Phone1, Phone2), Time), diff(Phone1, Phone2) ->
+       holds_at(neg(connected(Phone2, Phone1)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+
+ /*  holds_at(neg(connected(Phone2, Phone1)), Time) :-
+       holds_at(connected(Phone1, Phone2), Time),
+       diff(Phone1, Phone2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+
+ /*  [holds_at(connected(Phone1, Phone2), Time), diff(Phone1, Phone2)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(connected(Phone2, Phone1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+axiom(holds_at(neg(connected(Phone2, Phone1)), Time),
    
     [ holds_at(connected(Phone1, Phone2), Time),
-      dif(Phone1, Phone2)
+      diff(Phone1, Phone2)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+
+ /*  not(holds_at(connected(Phone1, Phone2), Time)) :-
+       diff(Phone1, Phone2),
+       not(holds_at(neg(connected(Phone2, Phone1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+
+ /*  [diff(Phone1, Phone2), holds_at(connected(Phone2, Phone1), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(connected(Phone1, Phone2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',179).
+axiom(holds_at(neg(connected(Phone1, Phone2)), Time),
+   
+    [ diff(Phone1, Phone2),
+      holds_at(connected(Phone2, Phone1), Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:183
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:183
 % mutex Idle, DialTone, BusySignal, Disconnected
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:184
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',183).
 mutex(idle).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',183).
 mutex(dialTone).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',183).
 mutex(busySignal).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',183).
 mutex(disconnected).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:185
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:185
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
 % [phone1,phone2,time]
 % HoldsAt(Idle(phone1),time) ->
 % !HoldsAt(Ringing(phone1,phone2),time) &
 % !HoldsAt(Connected(phone1,phone2),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:188
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
 
- /*   if(holds_at(idle(Phone1), Time),
-          (not(holds_at(ringing(Phone1, Phone2), Time)), not(holds_at(connected(Phone1, Phone2), Time)))).
+ /*  holds_at(idle(Phone1), Time) ->
+       holds_at(neg(ringing(Phone1, Phone2)), Time),
+       holds_at(neg(connected(Phone1, Phone2)), Time).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
 
- /*  not(holds_at(idle(Ringing_Param), Time3)) :-
-       (   holds_at(ringing(Ringing_Param, Ringing_Ret), Time3)
-       ;   holds_at(connected(Ringing_Param, Ringing_Ret), Time3)
+ /*  not(holds_at(idle(Phone1), Time)) :-
+       (   not(holds_at(neg(ringing(Phone1, Phone2)), Time))
+       ;   not(holds_at(neg(connected(Phone1, Phone2)), Time))
        ).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:188
-axiom(not(holds_at(idle(Ringing_Param), Time3)),
-    [holds_at(ringing(Ringing_Param, Ringing_Ret), Time3)]).
-axiom(not(holds_at(idle(Ringing_Param), Time3)),
-    [holds_at(connected(Ringing_Param, Ringing_Ret), Time3)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
 
- /*  not(holds_at(ringing(Ringing_Param7, Ringing_Ret8), Time6)) :-
-       holds_at(idle(Ringing_Param7), Time6).
+ /*  [(holds_at(ringing(Phone1, Phone2), Time);holds_at(connected(Phone1, Phone2), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(idle(Phone1)), Time)).
  */
-axiom(not(holds_at(ringing(Ringing_Param7, Ringing_Ret8), Time6)),
-    [holds_at(idle(Ringing_Param7), Time6)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+axiom(holds_at(neg(idle(Phone1)), Time),
+   
+    [  (holds_at(ringing(Phone1, Phone2), Time);holds_at(connected(Phone1, Phone2), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
 
- /*  not(holds_at(connected(Connected_Param, Connected_Ret), Time9)) :-
-       holds_at(idle(Connected_Param), Time9).
+ /*  holds_at(neg(ringing(Phone1, Phone2)), Time) :-
+       holds_at(idle(Phone1), Time).
  */
-axiom(not(holds_at(connected(Connected_Param, Connected_Ret), Time9)),
-    [holds_at(idle(Connected_Param), Time9)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+
+ /*  [holds_at(idle(Phone1), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(ringing(Phone1, Phone2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+axiom(holds_at(neg(ringing(Phone1, Phone2)), Time),
+    [holds_at(idle(Phone1), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+
+ /*  holds_at(neg(connected(Phone1, Phone2)), Time) :-
+       holds_at(idle(Phone1), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+
+ /*  [holds_at(idle(Phone1), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(connected(Phone1, Phone2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',186).
+axiom(holds_at(neg(connected(Phone1, Phone2)), Time),
+    [holds_at(idle(Phone1), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:190
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:190
 %; contradicts (3) above:
 %;[phone1,phone2,time]
 %;HoldsAt(DialTone(phone2),time) ->
@@ -502,21 +1009,32 @@ axiom(not(holds_at(connected(Connected_Param, Connected_Ret), Time9)),
 %; Gamma
 % [phone]
  
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:200
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:200
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',201).
 % HoldsAt(Idle(phone),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',201).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(idle(Phone))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',201).
 axiom(initially(idle(Phone)),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:202
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:202
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',203).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:203
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',203).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:204
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',205).
 % range time 0 6
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:205
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',205).
 ==> range(time,0,6).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:205
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e:206
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',205).
 ==> range(offset,1,1).
 %; End of file.

@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Chapter4/BankAccountServiceFee.e').
+% Mon, 23 Mar 2020 02:25:52 GMT
+% From ../examples/Mueller2006/Chapter4/BankAccountServiceFee.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/AlarmClock.e',90).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -20,105 +26,214 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:19
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',20).
 % option modeldiff on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',20).
 :- set_ec_option(modeldiff, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',20).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',20).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:22
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',25).
 % sort account
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',25).
 ==> sort(account).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:25
 % sort value: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',25).
 ==> subsort(value,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',28).
 % account Account1, Account2
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',28).
 ==> t(account,account1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',28).
 ==> t(account,account2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
 % predicate EndOfMonth(time)
- %  predicate(endOfMonth(time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+predicate(endOfMonth(time)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
 ==> mpred_prop(endOfMonth(time),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
 ==> meta_argtypes(endOfMonth(time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:30
 % function ServiceFee(account): value
- %  functional_predicate(serviceFee(account,value)).
-==> mpred_prop(serviceFee(account,value),functional_predicate).
-==> meta_argtypes(serviceFee(account,value)).
-resultIsa(serviceFee,value).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+function(serviceFee(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+==> mpred_prop(serviceFee(account),function).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+==> meta_argtypes(serviceFee(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+predicate(serviceFeePred(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+==> mpred_prop(serviceFeePred(account,value),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+==> meta_argtypes(serviceFeePred(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+functional_predicate(serviceFee,serviceFeePred).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',30).
+==> resultIsa(serviceFee,value).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
 % function MinimumBalance(account): value
- %  functional_predicate(minimumBalance(account,value)).
-==> mpred_prop(minimumBalance(account,value),functional_predicate).
-==> meta_argtypes(minimumBalance(account,value)).
-resultIsa(minimumBalance,value).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+function(minimumBalance(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+==> mpred_prop(minimumBalance(account),function).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+==> meta_argtypes(minimumBalance(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+predicate(minimumBalancePred(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+==> mpred_prop(minimumBalancePred(account,value),predicate).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+==> meta_argtypes(minimumBalancePred(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+functional_predicate(minimumBalance,minimumBalancePred).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',32).
+==> resultIsa(minimumBalance,value).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
 % fluent ServiceFeeCharged(account)
- %  fluent(serviceFeeCharged(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
+fluent(serviceFeeCharged(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
 ==> mpred_prop(serviceFeeCharged(account),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
 ==> meta_argtypes(serviceFeeCharged(account)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:34
 % fluent Balance(account,value)
- %  fluent(balance(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
+fluent(balance(account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
 ==> mpred_prop(balance(account,value),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',34).
 ==> meta_argtypes(balance(account,value)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
 % event Transfer(account,account,value)
- %  event(transfer(account,account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
+event(transfer(account,account,value)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
 ==> mpred_prop(transfer(account,account,value),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
 ==> meta_argtypes(transfer(account,account,value)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:37
 % event MonthlyReset(account)
- %  event(monthlyReset(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
+event(monthlyReset(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
 ==> mpred_prop(monthlyReset(account),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',37).
 ==> meta_argtypes(monthlyReset(account)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',39).
 % event ChargeServiceFee(account)
- %  event(chargeServiceFee(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',39).
+event(chargeServiceFee(account)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',39).
 ==> mpred_prop(chargeServiceFee(account),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',39).
 ==> meta_argtypes(chargeServiceFee(account)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:40
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',41).
 %; Sigma
 % [account1,account2,value1,value2,value3,value4,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:43
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:43
 % HoldsAt(Balance(account1,value1),time) &
 % HoldsAt(Balance(account2,value2),time) &
 % value3>0 &
 % value1>=value3 &
 % value4=(value2+value3) ->
 % Initiates(Transfer(account1,account2,value3),Balance(account2,value4),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:48
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',43).
+
+ /*  [holds_at(balance(Account1, Value1), Time), holds_at(balance(Account2, Value2), Time), comparison(Value3, 0, >), comparison(Value1, Value3, >=), equals(Value4, Value2+Value3)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(transfer(Account1, Account2, Value3),
+                    balance(Account2, Value4),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',43).
 axiom(initiates(transfer(Account1, Account2, Value3), balance(Account2, Value4), Time),
    
     [ holds_at(balance(Account1, Value1), Time),
       holds_at(balance(Account2, Value2), Time),
       comparison(Value3, 0, >),
-      Value1>=Value3,
+      comparison(Value1, Value3, >=),
       equals(Value4, Value2+Value3)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:50
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:50
 % [account1,account2,value1,value2,value3,time]
 % HoldsAt(Balance(account1,value1),time) &
 % HoldsAt(Balance(account2,value2),time) &
 % value3>0 &
 % value1>=value3 ->
 % Terminates(Transfer(account1,account2,value3),Balance(account2,value2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:55
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',52).
+
+ /*  [holds_at(balance(Account1, Value1), Time), holds_at(balance(Account2, Value2), Time), comparison(Value3, 0, >), comparison(Value1, Value3, >=)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(transfer(Account1, Account2, Value3),
+                     balance(Account2, Value2),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',52).
 axiom(terminates(transfer(Account1, Account2, Value3), balance(Account2, Value2), Time),
    
     [ holds_at(balance(Account1, Value1), Time),
       holds_at(balance(Account2, Value2), Time),
       comparison(Value3, 0, >),
-      Value1>=Value3
+      comparison(Value1, Value3, >=)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:57
 % [account1,account2,value1,value2,value3,value4,time]
 % HoldsAt(Balance(account1,value1),time) &
 % HoldsAt(Balance(account2,value2),time) &
@@ -126,58 +241,112 @@ axiom(terminates(transfer(Account1, Account2, Value3), balance(Account2, Value2)
 % value1>=value3 &
 % value4=(value1-value3) ->
 % Initiates(Transfer(account1,account2,value3),Balance(account1,value4),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',59).
+
+ /*  [holds_at(balance(Account1, Value1), Time), holds_at(balance(Account2, Value2), Time), comparison(Value3, 0, >), comparison(Value1, Value3, >=), equals(Value4, Value1-Value3)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(transfer(Account1, Account2, Value3),
+                    balance(Account1, Value4),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',59).
 axiom(initiates(transfer(Account1, Account2, Value3), balance(Account1, Value4), Time),
    
     [ holds_at(balance(Account1, Value1), Time),
       holds_at(balance(Account2, Value2), Time),
       comparison(Value3, 0, >),
-      Value1>=Value3,
+      comparison(Value1, Value3, >=),
       equals(Value4, Value1-Value3)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:65
 % [account1,account2,value1,value2,value3,time]
 % HoldsAt(Balance(account1,value1),time) &
 % HoldsAt(Balance(account2,value2),time) &
 % value3>0 &
 % value1>=value3 ->
 % Terminates(Transfer(account1,account2,value3),Balance(account1,value1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:70
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',67).
+
+ /*  [holds_at(balance(Account1, Value1), Time), holds_at(balance(Account2, Value2), Time), comparison(Value3, 0, >), comparison(Value1, Value3, >=)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(transfer(Account1, Account2, Value3),
+                     balance(Account1, Value1),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',67).
 axiom(terminates(transfer(Account1, Account2, Value3), balance(Account1, Value1), Time),
    
     [ holds_at(balance(Account1, Value1), Time),
       holds_at(balance(Account2, Value2), Time),
       comparison(Value3, 0, >),
-      Value1>=Value3
+      comparison(Value1, Value3, >=)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:72
 % [account,time]
 % Initiates(ChargeServiceFee(account),ServiceFeeCharged(account),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:73
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',74).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(chargeServiceFee(Account),
+                    serviceFeeCharged(Account),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',74).
 axiom(initiates(chargeServiceFee(Account), serviceFeeCharged(Account), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',76).
 % [account,time]
 % Terminates(MonthlyReset(account),ServiceFeeCharged(account),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:76
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',76).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(monthlyReset(Account),
+                     serviceFeeCharged(Account),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',76).
 axiom(terminates(monthlyReset(Account), serviceFeeCharged(Account), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:78
 % [account,value1,value2,time]
 % HoldsAt(Balance(account,value1),time) &
 % value2 = (value1-ServiceFee(account)) ->
 % Initiates(ChargeServiceFee(account),
 %           Balance(account,value2),
 %           time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:83
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',80).
+
+ /*  [holds_at(balance(Account, Value1), Time), equals(Value2, Value1-serviceFee(Account))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(chargeServiceFee(Account),
+                    balance(Account, Value2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',80).
 axiom(initiates(chargeServiceFee(Account), balance(Account, Value2), Time),
    
     [ holds_at(balance(Account, Value1), Time),
@@ -185,139 +354,352 @@ axiom(initiates(chargeServiceFee(Account), balance(Account, Value2), Time),
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:85
 % [account,value,time]
 % HoldsAt(Balance(account,value),time) ->
 % Terminates(ChargeServiceFee(account),Balance(account,value),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:87
+
+ /*  [holds_at(balance(Account, Value), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(chargeServiceFee(Account),
+                     balance(Account, Value),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',87).
 axiom(terminates(chargeServiceFee(Account), balance(Account, Value), Time),
     [holds_at(balance(Account, Value), Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:89
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:89
 %; Delta
 % [account,value,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:92
 % HoldsAt(Balance(account,value),time) &
 % value<MinimumBalance(account) &
 % !HoldsAt(ServiceFeeCharged(account),time) ->
 % Happens(ChargeServiceFee(account),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:95
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:95
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  holds_at(balance(Account, Value), Time), Value<minimumBalance(Account), holds_at(neg(serviceFeeCharged(Account)), Time) ->
+       happens(chargeServiceFee(Account), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  happens(chargeServiceFee(Account), Time) :-
+       holds_at(balance(Account, Value), Time),
+       comparison(Value, minimumBalance(Account), <),
+       holds_at(neg(serviceFeeCharged(Account)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  [holds_at(balance(Account, Value), Time), comparison(Value, minimumBalance(Account), <), holds_at(neg(serviceFeeCharged(Account)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(chargeServiceFee(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
 axiom(happens(chargeServiceFee(Account), Time),
    
     [ holds_at(balance(Account, Value), Time),
       comparison(Value, minimumBalance(Account), <),
-      not(holds_at(serviceFeeCharged(Account), Time))
+      holds_at(neg(serviceFeeCharged(Account)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  not(holds_at(balance(Account, Value), Time)) :-
+       ( comparison(Value, minimumBalance(Account), <),
+         holds_at(neg(serviceFeeCharged(Account)), Time)
+       ),
+       not(happens(chargeServiceFee(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  [comparison(Value, minimumBalance(Account), <), holds_at(neg(serviceFeeCharged(Account)), Time), not(happens(chargeServiceFee(Account), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(balance(Account, Value)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+axiom(holds_at(neg(balance(Account, Value)), Time),
+   
+    [ comparison(Value, minimumBalance(Account), <),
+      holds_at(neg(serviceFeeCharged(Account)), Time),
+      not(happens(chargeServiceFee(Account), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  not(holds_at(neg(serviceFeeCharged(Account)), Time)) :-
+       comparison(Value, minimumBalance(Account), <),
+       holds_at(balance(Account, Value), Time),
+       not(happens(chargeServiceFee(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+
+ /*  [comparison(Value, minimumBalance(Account), <), holds_at(balance(Account, Value), Time), not(happens(chargeServiceFee(Account), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(serviceFeeCharged(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',92).
+axiom(holds_at(serviceFeeCharged(Account), Time),
+   
+    [ comparison(Value, minimumBalance(Account), <),
+      holds_at(balance(Account, Value), Time),
+      not(happens(chargeServiceFee(Account), Time))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:97
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:97
 % [account,time]
 % EndOfMonth(time) ->
 % Happens(MonthlyReset(account),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:99
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:99
+
+ /*  endOfMonth(Time) ->
+       happens(monthlyReset(Account), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
+
+ /*  happens(monthlyReset(Account), Time) :-
+       endOfMonth(Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
+
+ /*  [endOfMonth(Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(monthlyReset(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
 axiom(happens(monthlyReset(Account), Time),
     [endOfMonth(Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
+
+ /*  not(endOfMonth(Time)) :-
+       not(happens(monthlyReset(Account), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
+
+ /*  [not(happens(monthlyReset(Account), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(endOfMonth(Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',99).
+axiom(not(endOfMonth(Time)),
+    [not(happens(monthlyReset(Account), Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:101
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:101
 % Happens(Transfer(Account1,Account2,1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',101).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(transfer(account1, account2, 1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',101).
 axiom(happens(transfer(account1, account2, 1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:102
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',103).
 % Happens(Transfer(Account1,Account2,1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',103).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(transfer(account1, account2, 1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',103).
 axiom(happens(transfer(account1, account2, 1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:104
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',105).
 %; Psi
 % [account,value1,value2,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:107
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:107
 % HoldsAt(Balance(account,value1),time) &
 % HoldsAt(Balance(account,value2),time) ->
 % value1=value2.
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:109
-axiom(Value1=Value2,
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:109
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+
+ /*  holds_at(balance(Account, Value1), Time), holds_at(balance(Account, Value2), Time) ->
+       equals(Value1, Value2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+
+ /*  not(holds_at(balance(Account, Value1), Time)) :-
+       holds_at(balance(Account, Value2), Time),
+       not(equals(Value1, Value2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+
+ /*  [holds_at(balance(Account, Value2), Time), not(equals(Value1, Value2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(balance(Account, Value1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+axiom(holds_at(neg(balance(Account, Value1)), Time),
+   
+    [ holds_at(balance(Account, Value2), Time),
+      not(equals(Value1, Value2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+
+ /*  not(holds_at(balance(Account, Value2), Time)) :-
+       holds_at(balance(Account, Value1), Time),
+       not(equals(Value1, Value2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+
+ /*  [holds_at(balance(Account, Value1), Time), not(equals(Value1, Value2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(balance(Account, Value2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',107).
+axiom(holds_at(neg(balance(Account, Value2)), Time),
    
     [ holds_at(balance(Account, Value1), Time),
-      holds_at(balance(Account, Value2), Time)
+      not(equals(Value2, Value1))
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:111
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:111
 %; Gamma
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:113
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:113
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
 % !HoldsAt(ServiceFeeCharged(Account1),0).
- %  not(initially(serviceFeeCharged(account1))).
-axiom(not(initially(serviceFeeCharged(account1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(serviceFeeCharged(account1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
+axiom(initially(neg(serviceFeeCharged(account1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:114
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:114
 % !HoldsAt(ServiceFeeCharged(Account2),0).
- %  not(initially(serviceFeeCharged(account2))).
-axiom(not(initially(serviceFeeCharged(account2))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(serviceFeeCharged(account2)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
+axiom(initially(neg(serviceFeeCharged(account2))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:115
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:115
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
 % HoldsAt(Balance(Account1,3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(balance(account1, 3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
 axiom(initially(balance(account1, 3)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:116
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:116
 % HoldsAt(Balance(Account2,1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(balance(account2, 1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
 axiom(initially(balance(account2, 1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:117
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:117
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',118).
 % MinimumBalance(Account1)=3.
-minimumBalance(account1,3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',118).
+equals(minimumBalance(account1),3).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:118
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:118
 % MinimumBalance(Account2)=1.
-minimumBalance(account2,1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',118).
+equals(minimumBalance(account2),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:119
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:119
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',120).
 % ServiceFee(Account1)=1.
-serviceFee(account1,1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',120).
+equals(serviceFee(account1),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:120
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:120
 % ServiceFee(Account2)=1.
-serviceFee(account2,1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',120).
+equals(serviceFee(account2),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:121
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:121
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',122).
 % [time]
  % !EndOfMonth(time).
  %  not(endOfMonth(Time)).
-axiom(not(endOfMonth(EndOfMonth_Ret)),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',122).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], not(endOfMonth(Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',122).
+axiom(not(endOfMonth(Time)),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:123
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:123
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',124).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:124
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',124).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:125
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',126).
 % range time 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:126
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',126).
 ==> range(time,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:126
 % range value 1 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:127
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',126).
 ==> range(value,1,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:127
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',128).
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e:128
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',128).
 ==> range(offset,1,1).
 %; End of file.

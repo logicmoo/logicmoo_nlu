@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/TakingAWalk.e').
+% Mon, 23 Mar 2020 02:27:12 GMT
+% From ../ecnet/TakingAWalk.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',212).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -22,339 +28,685 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
 % option modeldiff on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
 :- set_ec_option(modeldiff, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:22
 % option renaming off
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
 :- set_ec_option(renaming, off).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',22).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 % ignore Love, ThreatenedBy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(love).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(threatenedBy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:25
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(lookOutOnto).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(floor).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(buildingOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(skyOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',25).
 ignore(groundOf).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 % ignore Inside, PutInside, On, PlaceOn
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(inside).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(putInside).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(placeOn).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:27
 % ignore Like, Happy, BecomeAngryAt
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(like).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(happy).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',27).
 ignore(becomeAngryAt).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(near).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(walkFrom).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(walkFromTo).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(runFromTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:29
 % ignore ActOnIntentionToWalkIn, IntentionToWalkIn, InvitedIn, InviteIn
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(actOnIntentionToWalkIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(intentionToWalkIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(invitedIn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',29).
 ignore(inviteIn).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 % ignore TakeOffOf, TakeOutOf, LetGoOf
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(takeOffOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(takeOutOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(letGoOf).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:31
 % ignore Greet, SayGoodbye, Order, KnowOrder
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(greet).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(sayGoodbye).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(order).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',31).
 ignore(knowOrder).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 % ignore LieOn, SitOn, RiseFrom, LyingOn, SittingOn
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 ignore(lieOn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 ignore(sitOn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 ignore(riseFrom).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 ignore(lyingOn).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',33).
 ignore(sittingOn).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:35
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',35).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
 % load answers/Mueller2003/Ontology.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- load_e('answers/Mueller2003/Ontology.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:37
 % load answers/Mueller2004c/OTSpaceM.e
-load('answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',37).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:38
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
 % load answers/Mueller2004c/RTSpaceM.e
-load('answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:39
 % load answers/Mueller2003/Sleep.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- load_e('answers/Mueller2003/Sleep.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',39).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
 % load answers/Mueller2004c/Dress.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- load_e('answers/Mueller2004c/Dress.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:41
 % load answers/Mueller2004c/Rain.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- load_e('answers/Mueller2004c/Rain.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',41).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:43
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',44).
 % room Origin1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',44).
 ==> t(room,origin1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',46).
 % door OriginDoor1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',46).
 ==> t(door,originDoor1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',48).
 % outside OriginOutside1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',48).
 ==> t(outside,originOutside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',50).
 % street StreetFromOriginToMiddle1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',50).
 ==> t(street,streetFromOriginToMiddle1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',52).
 % outside Middle1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',52).
 ==> t(outside,middle1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',54).
 % street StreetFromMiddleToDestination1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',54).
 ==> t(street,streetFromMiddleToDestination1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',56).
 % outside DestinationOutside1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',56).
 ==> t(outside,destinationOutside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',58).
 % door DestinationDoor1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',58).
 ==> t(door,destinationDoor1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',60).
 % room Destination1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',60).
 ==> t(room,destination1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',62).
 % Side1(OriginDoor1)=OriginOutside1.
-side1(originDoor1,originOutside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',62).
+equals(side1(originDoor1),originOutside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:62
 % Side2(OriginDoor1)=Origin1.
-side2(originDoor1,origin1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',62).
+equals(side2(originDoor1),origin1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:64
 % Side1(StreetFromOriginToMiddle1)=OriginOutside1.
-side1(streetFromOriginToMiddle1,originOutside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',64).
+equals(side1(streetFromOriginToMiddle1),originOutside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:65
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',66).
 % Side2(StreetFromOriginToMiddle1)=Middle1.
-side2(streetFromOriginToMiddle1,middle1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',66).
+equals(side2(streetFromOriginToMiddle1),middle1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',68).
 % Side1(StreetFromMiddleToDestination1)=Middle1.
-side1(streetFromMiddleToDestination1,middle1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',68).
+equals(side1(streetFromMiddleToDestination1),middle1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:68
 % Side2(StreetFromMiddleToDestination1)=DestinationOutside1.
-side2(streetFromMiddleToDestination1,destinationOutside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',68).
+equals(side2(streetFromMiddleToDestination1),destinationOutside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:70
 % Side1(DestinationDoor1)=DestinationOutside1.
-side1(destinationDoor1,destinationOutside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',70).
+equals(side1(destinationDoor1),destinationOutside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',72).
 % Side2(DestinationDoor1)=Destination1.
-side2(destinationDoor1,destination1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',72).
+equals(side2(destinationDoor1),destination1).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:73
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',74).
 % agent Walker1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',74).
 ==> t(agent,walker1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',76).
 % clothing Clothes1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:76
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',76).
 ==> t(clothing,clothes1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:77
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',78).
 % umbrella Umbrella1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',78).
 ==> t(umbrella,umbrella1).
 %; initial state
 % [agent,object]
- % !HoldsAt(Holding(agent,object),0).
- %  not(initially(holding(Agent,Object))).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:80
-axiom(not(initially(holding(Holding_Param, Holding_Ret))),
+ 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:80
+% !HoldsAt(Holding(agent,object),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',80).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(Agent, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',80).
+axiom(initially(neg(holding(Agent, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:81
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
 % [agent]
  % HoldsAt(Dressed(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
 axiom(initially(dressed(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:82
 % [agent]
  % HoldsAt(Awake(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
 axiom(initially(awake(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:83
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
 % [agent]
  % HoldsAt(Sleep3(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
 axiom(initially(sleep3(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:84
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:84
 % [agent]
  % HoldsAt(Standing(agent),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(Agent))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
 axiom(initially(standing(Agent)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
 % HoldsAt(DoorUnlocked(OriginDoor1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(originDoor1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
 axiom(initially(doorUnlocked(originDoor1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:86
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:86
 % !HoldsAt(DoorIsOpen(OriginDoor1),0).
- %  not(initially(doorIsOpen(originDoor1))).
-axiom(not(initially(doorIsOpen(originDoor1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(doorIsOpen(originDoor1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
+axiom(initially(neg(doorIsOpen(originDoor1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:87
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
 % HoldsAt(DoorUnlocked(DestinationDoor1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(doorUnlocked(destinationDoor1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
 axiom(initially(doorUnlocked(destinationDoor1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:88
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:88
 % !HoldsAt(DoorIsOpen(DestinationDoor1),0).
- %  not(initially(doorIsOpen(destinationDoor1))).
-axiom(not(initially(doorIsOpen(destinationDoor1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(doorIsOpen(destinationDoor1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
+axiom(initially(neg(doorIsOpen(destinationDoor1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:89
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:89
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
 % HoldsAt(At(Walker1,Origin1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(walker1, origin1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
 axiom(initially(at(walker1, origin1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:90
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:90
 % HoldsAt(At(Clothes1,Origin1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(clothes1, origin1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
 axiom(initially(at(clothes1, origin1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:91
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',92).
 % HoldsAt(At(Umbrella1,Origin1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',92).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(umbrella1, origin1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',92).
 axiom(initially(at(umbrella1, origin1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:92
 % [outside,time]
  % HoldsAt(Raining(outside),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',92).
 holds_at(raining(Outside),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:93
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',94).
 % [object]
  % !HoldsAt(Wet(object),0).
- %  not(initially(wet(Object))).
-axiom(not(initially(wet(Wet_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',94).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(wet(Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',94).
+axiom(initially(neg(wet(Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:95
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:95
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',96).
 %; narrative
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:96
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:96
 % Happens(PutOn(Walker1,Clothes1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',96).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(putOn(walker1, clothes1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',96).
 axiom(happens(putOn(walker1, clothes1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:97
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:97
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
 % Happens(PickUp(Walker1,Umbrella1),1).
-axiom(happens(pickUp(walker1, umbrella1), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(pickUp(walker1, umbrella1), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
+axiom(happens(pickUp(walker1, umbrella1), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:98
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:98
 % Happens(DoorOpen(Walker1,OriginDoor1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(doorOpen(walker1, originDoor1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
 axiom(happens(doorOpen(walker1, originDoor1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:99
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:99
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
 % Happens(WalkThroughDoor21(Walker1,OriginDoor1),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3,
+          tvs1=[3],
+          tvs2=[t, t3],
+          happens(walkThroughDoor21(walker1, originDoor1), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
 axiom(happens(walkThroughDoor21(walker1, originDoor1), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:100
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:100
 % Happens(DoorClose(Walker1,OriginDoor1),4).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
+
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(doorClose(walker1, originDoor1), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
 axiom(happens(doorClose(walker1, originDoor1), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+    [is_time(t4), b(t, t4)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:101
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:101
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
 % Happens(WalkStreet12(Walker1,StreetFromOriginToMiddle1),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5,
+          tvs1=[5],
+          tvs2=[t, t5],
+          happens(walkStreet12(walker1, streetFromOriginToMiddle1), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
 axiom(happens(walkStreet12(walker1, streetFromOriginToMiddle1), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+    [is_time(t5), b(t, t5)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:102
 % Happens(WalkStreet12(Walker1,StreetFromMiddleToDestination1),6).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
+
+ /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
+       ta(6,
+          tvs1=[6],
+          tvs2=[t, t6],
+          happens(walkStreet12(walker1, streetFromMiddleToDestination1), t6)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
 axiom(happens(walkStreet12(walker1, streetFromMiddleToDestination1), t6),
-    [is_time(6), b(t, t6), ignore(t+6=t6)]).
+    [is_time(t6), b(t, t6)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:103
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:103
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
 % Happens(DoorOpen(Walker1,DestinationDoor1),7).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
+
+ /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
+       ta(7, tvs1=[7], tvs2=[t, t7], happens(doorOpen(walker1, destinationDoor1), t7)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
 axiom(happens(doorOpen(walker1, destinationDoor1), t7),
-    [is_time(7), b(t, t7), ignore(t+7=t7)]).
+    [is_time(t7), b(t, t7)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:104
 % Happens(WalkThroughDoor12(Walker1,DestinationDoor1),8).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
+
+ /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
+       ta(8,
+          tvs1=[8],
+          tvs2=[t, t8],
+          happens(walkThroughDoor12(walker1, destinationDoor1), t8)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
 axiom(happens(walkThroughDoor12(walker1, destinationDoor1), t8),
-    [is_time(8), b(t, t8), ignore(t+8=t8)]).
+    [is_time(t8), b(t, t8)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:105
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:105
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
 % Happens(DoorClose(Walker1,DestinationDoor1),9).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
+
+ /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
+       ta(9, tvs1=[9], tvs2=[t, t9], happens(doorClose(walker1, destinationDoor1), t9)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
 axiom(happens(doorClose(walker1, destinationDoor1), t9),
-    [is_time(9), b(t, t9), ignore(t+9=t9)]).
+    [is_time(t9), b(t, t9)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:106
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:106
 % Happens(TakeOff(Walker1,Clothes1),10).
-axiom(happens(takeOff(walker1, clothes1), t10),
-    [is_time(10), b(t, t10), ignore(t+10=t10)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:108
+ /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
+       ta(10, tvs1=[10], tvs2=[t, t10], happens(takeOff(walker1, clothes1), t10)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
+axiom(happens(takeOff(walker1, clothes1), t10),
+    [is_time(t10), b(t, t10)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:108
 % range time 0 11
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:109
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',108).
 ==> range(time,0,11).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:109
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',110).
 % range offset 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:110
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',110).
 ==> range(offset,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:110
 % range diameter 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:111
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',110).
 ==> range(diameter,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e:112
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',113).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TakingAWalk.e:113
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',113).
 ==> completion(happens).
 %; End of file.

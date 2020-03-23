@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/Arson.e').
+% Mon, 23 Mar 2020 02:26:22 GMT
+% From ../ecnet/Arson.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/sorts.e',13).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -25,249 +31,1179 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 % ignore SkyOf, GroundOf, Near, Inside, WalkFromTo, RunFromTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(skyOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(groundOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(near).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(inside).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(walkFromTo).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(runFromTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:25
 % ignore RollAlong, Diameter, Move, HoldSome, PutInside
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(rollAlong).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(diameter).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(move).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(holdSome).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',25).
 ignore(putInside).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 % ignore TakeOutOf, On, DoorUnlock, DoorLock, WalkThroughDoor12
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(takeOutOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(doorUnlock).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(doorLock).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(walkThroughDoor12).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:27
 % ignore WalkThroughDoor21, WalkDownStaircase, WalkUpStaircase
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(walkThroughDoor21).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(walkDownStaircase).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',27).
 ignore(walkUpStaircase).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',30).
 % ignore ThreatenedBy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',30).
 ignore(threatenedBy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:32
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
 % load answers/Mueller2003/Ontology.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- load_e('answers/Mueller2003/Ontology.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:34
 % load answers/Mueller2004c/OTSpaceM.e
-load('answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
 % load answers/Mueller2004c/RTSpaceM.e
-load('answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
+:- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:36
 % load answers/Mueller2004c/Fire.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
+:- load_e('answers/Mueller2004c/Fire.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',36).
 
+ /*  loading(changed,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e').
+ */
+%;
+%; Copyright (c) 2005 IBM Corporation and others.
+%; All rights reserved. This program and the accompanying materials
+%; are made available under the terms of the Common Public License v1.0
+%; which accompanies this distribution, and is available at
+%; http://www.eclipse.org/legal/cpl-v10.html
+%;
+%; Contributors:
+%; IBM - Initial implementation
+%;
+%; fire
+%;
+%; agent sets fire to physobj with burn time offset.
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:14
+% event SetFireTo(agent,physobj,fire,offset)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
+event(setFireTo(agent,physobj,fire,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
+==> mpred_prop(setFireTo(agent,physobj,fire,offset),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',14).
+==> meta_argtypes(setFireTo(agent,physobj,fire,offset)).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:16
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',17).
+%; An effect axioms states that
+%; if an agent sets a fire to a physical object with a burn time,
+%; the physical object will be burning with the fire and burn time:
+% [agent,physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:20
+% Initiates(SetFireTo(agent,physobj,fire,offset),
+%           Burning(physobj,fire,offset),
+%           time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',20).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(setFireTo(Agent, Physobj, Fire, Offset),
+                    burning(Physobj, Fire, Offset),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',20).
+axiom(initiates(setFireTo(Agent, Physobj, Fire, Offset), burning(Physobj, Fire, Offset), Time),
+    []).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:24
+%; agent puts out fire on physobj.
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
+% event PutOutFire(agent,physobj,fire)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
+event(putOutFire(agent,physobj,fire)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
+==> mpred_prop(putOutFire(agent,physobj,fire),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',26).
+==> meta_argtypes(putOutFire(agent,physobj,fire)).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',28).
+%; An effect axiom states that
+%; if an agent puts out a fire on a physical object,
+%; the physical object will no longer be burning:
+% [agent,physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:31
+% Terminates(PutOutFire(agent,physobj,fire),
+%            Burning(physobj,fire,offset),
+%            time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',31).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(putOutFire(Agent, Physobj, Fire),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',31).
+axiom(terminates(putOutFire(Agent, Physobj, Fire), burning(Physobj, Fire, Offset), Time),
+    []).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:35
+%; A precondition axiom states that
+%; for an agent to set fire to a physical object,
+%; there must be a location such that
+%; the agent is at the location and
+%; the physical object is at the location:
+% [agent,fire,physobj,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:41
+% Happens(SetFireTo(agent,physobj,fire,offset),time) ->
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',41).
+% {location}%  HoldsAt(At(agent,location),time) &
+%            HoldsAt(At(physobj,location),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  exists([Location],
+    happens(setFireTo(Agent, Physobj, Fire, Offset), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Physobj, Location), Time))
+       ),
+       some(Location,
+            '$kolem_Fn_242'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_242'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(setFireTo(Agent,
+                                Physobj,
+                                Fire,
+                                Offset),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)),
+   
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_242'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(setFireTo(Agent, Physobj, Fire, Offset),
+               Time),
+       some(Location,
+            '$kolem_Fn_242'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_242'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(holds_at(at(Agent, Location), Time),
+   
+    [ happens(setFireTo(Agent, Physobj, Fire, Offset),
+              Time),
+      some(Location,
+           '$kolem_Fn_242'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  holds_at(at(Physobj, Location), Time) :-
+       happens(setFireTo(Agent, Physobj, Fire, Offset),
+               Time),
+       some(Location,
+            '$kolem_Fn_242'(Agent,
+                            Physobj,
+                            Fire,
+                            Offset,
+                            Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_242'(Agent, Physobj, Fire, Offset, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
+axiom(holds_at(at(Physobj, Location), Time),
+   
+    [ happens(setFireTo(Agent, Physobj, Fire, Offset),
+              Time),
+      some(Location,
+           '$kolem_Fn_242'(Agent,
+                           Physobj,
+                           Fire,
+                           Offset,
+                           Time))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:45
+%; A precondition axiom states that
+%; for an agent to put out a fire on a physical object,
+%; there must be a location such that
+%; the agent is at the location and
+%; the physical object is at the location:
+% [agent,fire,physobj,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:51
+% Happens(PutOutFire(agent,physobj,fire),time) ->
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',51).
+% {location}%  HoldsAt(At(agent,location),time) &
+%            HoldsAt(At(physobj,location),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  exists([Location],
+    happens(putOutFire(Agent, Physobj, Fire), Time) ->
+       holds_at(at(Agent, Location), Time),
+       holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  not(happens(putOutFire(Agent, Physobj, Fire), Time)) :-
+       (   not(holds_at(at(Agent, Location), Time))
+       ;   not(holds_at(at(Physobj, Location), Time))
+       ),
+       some(Location,
+            '$kolem_Fn_243'(Agent, Physobj, Fire, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_243'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(putOutFire(Agent, Physobj, Fire),
+                      Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(not(happens(putOutFire(Agent, Physobj, Fire), Time)),
+   
+    [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
+      some(Location,
+           '$kolem_Fn_243'(Agent, Physobj, Fire, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  holds_at(at(Agent, Location), Time) :-
+       happens(putOutFire(Agent, Physobj, Fire), Time),
+       some(Location,
+            '$kolem_Fn_243'(Agent, Physobj, Fire, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_243'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Agent, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(holds_at(at(Agent, Location), Time),
+   
+    [ happens(putOutFire(Agent, Physobj, Fire), Time),
+      some(Location,
+           '$kolem_Fn_243'(Agent, Physobj, Fire, Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  holds_at(at(Physobj, Location), Time) :-
+       happens(putOutFire(Agent, Physobj, Fire), Time),
+       some(Location,
+            '$kolem_Fn_243'(Agent, Physobj, Fire, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_243'(Agent, Physobj, Fire, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(at(Physobj, Location), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
+axiom(holds_at(at(Physobj, Location), Time),
+   
+    [ happens(putOutFire(Agent, Physobj, Fire), Time),
+      some(Location,
+           '$kolem_Fn_243'(Agent, Physobj, Fire, Time))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:55
+%; physobj is burning with fire and burn time offset.
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
+% fluent Burning(physobj,fire,offset)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
+fluent(burning(physobj,fire,offset)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
+==> mpred_prop(burning(physobj,fire,offset),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',57).
+==> meta_argtypes(burning(physobj,fire,offset)).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',59).
+%; A state constraint says that a physical object burning with
+%; a fire has at most one burn time at a time:
+% [physobj,fire,offset1,offset2,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:61
+% HoldsAt(Burning(physobj,fire,offset1),time) &
+% HoldsAt(Burning(physobj,fire,offset2),time) ->
+% offset1=offset2.
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  holds_at(burning(Physobj, Fire, Offset1), Time), holds_at(burning(Physobj, Fire, Offset2), Time) ->
+       equals(Offset1, Offset2).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset1), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset2), Time),
+       not(equals(Offset1, Offset2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset2), Time), not(equals(Offset1, Offset2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset1)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset1)), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset2), Time),
+      not(equals(Offset1, Offset2))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset2), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset1), Time),
+       not(equals(Offset1, Offset2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset1), Time), not(equals(Offset1, Offset2))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',61).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset2)), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset1), Time),
+      not(equals(Offset2, Offset1))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:65
+%; The burn time of physobj is decremented.
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
+% event DecrementBurning(physobj)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
+event(decrementBurning(physobj)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
+==> mpred_prop(decrementBurning(physobj),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',67).
+==> meta_argtypes(decrementBurning(physobj)).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',69).
+%; A trigger axiom states that
+%; if a physical object is burning with a fire and a burn time and
+%; the burn time is greater than zero,
+%; the burn time of the physical object is decremented:
+% [physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:73
+% HoldsAt(Burning(physobj,fire,offset),time) &
+% (offset > 0) ->
+% Happens(DecrementBurning(physobj),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  holds_at(burning(Physobj, Fire, Offset), Time), Offset>0 ->
+       happens(decrementBurning(Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  happens(decrementBurning(Physobj), Time) :-
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       comparison(Offset, 0, >).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time), comparison(Offset, 0, >)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(decrementBurning(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+axiom(happens(decrementBurning(Physobj), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset), Time),
+      comparison(Offset, 0, >)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset), Time)) :-
+       comparison(Offset, 0, >),
+       not(happens(decrementBurning(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+
+ /*  [comparison(Offset, 0, >), not(happens(decrementBurning(Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',73).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset)), Time),
+   
+    [ comparison(Offset, 0, >),
+      not(happens(decrementBurning(Physobj), Time))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:77
+%; An effect axiom states that if a physical object is
+%; burning with a fire and a burn time, and the burn time of a physical
+%; object is decremented, the burn time of the physical
+%; object will be the burn time minus one:
+% [physobj,fire,offset1,offset2,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:82
+% HoldsAt(Burning(physobj,fire,offset1),time) &
+% offset2 = offset1-1 ->
+% Initiates(DecrementBurning(physobj),
+%           Burning(physobj,fire,offset2),
+%           time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:86
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',82).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset1), Time), equals(Offset2, Offset1-1)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(decrementBurning(Physobj),
+                    burning(Physobj, Fire, Offset2),
+                    Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',82).
+axiom(initiates(decrementBurning(Physobj), burning(Physobj, Fire, Offset2), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset1), Time),
+      equals(Offset2, Offset1-1)
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:88
+%; An effect axiom states that if a physical object is
+%; burning with a fire and a burn time, and the burn time of a physical
+%; object is decremented, the burn time of the physical
+%; object will no longer be the burn time:
+% [physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:93
+% HoldsAt(Burning(physobj,fire,offset),time) ->
+% Terminates(DecrementBurning(physobj),
+%            Burning(physobj,fire,offset),
+%            time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:96
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',93).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(decrementBurning(Physobj),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',93).
+axiom(terminates(decrementBurning(Physobj), burning(Physobj, Fire, Offset), Time),
+    [holds_at(burning(Physobj, Fire, Offset), Time)]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:98
+%; A trigger axiom states that
+%; if a physical object is burning with a fire and a burn time
+%; that is not equal to zero, the fire will damage the
+%; physical object:
+% [physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:103
+% offset!=% 0 &
+% HoldsAt(Burning(physobj,fire,offset),time) &
+% HoldsAt(Intact(physobj),time) ->
+% Happens(Damage(fire,physobj),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:106
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  diff(Offset, 0), holds_at(burning(Physobj, Fire, Offset), Time), holds_at(intact(Physobj), Time) ->
+       happens(damage(Fire, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  happens(damage(Fire, Physobj), Time) :-
+       diff(Offset, 0),
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       holds_at(intact(Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [diff(Offset, 0), holds_at(burning(Physobj, Fire, Offset), Time), holds_at(intact(Physobj), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+axiom(happens(damage(Fire, Physobj), Time),
+   
+    [ diff(Offset, 0),
+      holds_at(burning(Physobj, Fire, Offset), Time),
+      holds_at(intact(Physobj), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  not(holds_at(burning(Physobj, Fire, Offset), Time)) :-
+       holds_at(intact(Physobj), Time),
+       diff(Offset, 0),
+       not(happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [holds_at(intact(Physobj), Time), diff(Offset, 0), not(happens(damage(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, Offset)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+axiom(holds_at(neg(burning(Physobj, Fire, Offset)), Time),
+   
+    [ holds_at(intact(Physobj), Time),
+      diff(Offset, 0),
+      not(happens(damage(Fire, Physobj), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  not(holds_at(intact(Physobj), Time)) :-
+       holds_at(burning(Physobj, Fire, Offset), Time),
+       diff(Offset, 0),
+       not(happens(damage(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+
+ /*  [holds_at(burning(Physobj, Fire, Offset), Time), diff(Offset, 0), not(happens(damage(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(intact(Physobj)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',103).
+axiom(holds_at(neg(intact(Physobj)), Time),
+   
+    [ holds_at(burning(Physobj, Fire, Offset), Time),
+      diff(Offset, 0),
+      not(happens(damage(Fire, Physobj), Time))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:108
+%; A trigger axiom states that
+%; if a physical object is burning with a fire and a burn time
+%; that is equal to zero, the fire will destroy the
+%; physical object:
+% [physobj,fire,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:113
+% HoldsAt(Burning(physobj,fire,0),time) &
+% !HoldsAt(Destroyed(physobj),time) ->
+% Happens(Destroy(fire,physobj),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:115
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  holds_at(burning(Physobj, Fire, 0), Time), holds_at(neg(destroyed(Physobj)), Time) ->
+       happens(destroy(Fire, Physobj), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  happens(destroy(Fire, Physobj), Time) :-
+       holds_at(burning(Physobj, Fire, 0), Time),
+       holds_at(neg(destroyed(Physobj)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(burning(Physobj, Fire, 0), Time), holds_at(neg(destroyed(Physobj)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+axiom(happens(destroy(Fire, Physobj), Time),
+   
+    [ holds_at(burning(Physobj, Fire, 0), Time),
+      holds_at(neg(destroyed(Physobj)), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  not(holds_at(burning(Physobj, Fire, 0), Time)) :-
+       holds_at(neg(destroyed(Physobj)), Time),
+       not(happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(neg(destroyed(Physobj)), Time), not(happens(destroy(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(burning(Physobj, Fire, 0)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+axiom(holds_at(neg(burning(Physobj, Fire, 0)), Time),
+   
+    [ holds_at(neg(destroyed(Physobj)), Time),
+      not(happens(destroy(Fire, Physobj), Time))
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  not(holds_at(neg(destroyed(Physobj)), Time)) :-
+       holds_at(burning(Physobj, Fire, 0), Time),
+       not(happens(destroy(Fire, Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+
+ /*  [holds_at(burning(Physobj, Fire, 0), Time), not(happens(destroy(Fire, Physobj), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(destroyed(Physobj), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',113).
+axiom(holds_at(destroyed(Physobj), Time),
+   
+    [ holds_at(burning(Physobj, Fire, 0), Time),
+      not(happens(destroy(Fire, Physobj), Time))
+    ]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:117
+%; An effect axiom states that if a fire destroys a physical
+%; object, the physical object will no longer be burning:
+% [physobj,fire,offset,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:120
+% Terminates(Destroy(fire,physobj),
+%            Burning(physobj,fire,offset),
+%            time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:122
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',120).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(destroy(Fire, Physobj),
+                     burning(Physobj, Fire, Offset),
+                     Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',120).
+axiom(terminates(destroy(Fire, Physobj), burning(Physobj, Fire, Offset), Time),
+    []).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e:124
+%; End of file.
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',124).
+:- endif.
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:37
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
 % load answers/Mueller2004c/Condition.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- load_e('answers/Mueller2004c/Condition.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:38
 % load answers/Mueller2003/Sleep.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- load_e('answers/Mueller2003/Sleep.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',41).
 % fire Fire1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',41).
 ==> t(fire,fire1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:41
 % HoldsAt(At(Fire1,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',41).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(fire1, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',41).
 axiom(initially(at(fire1, outside1)),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:43
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:43
 % agent Perp1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',43).
 ==> t(agent,perp1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',46).
 % physobj PhysTarget1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',46).
 ==> t(physobj,physTarget1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:46
 % HoldsAt(Intact(PhysTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',46).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(intact(physTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',46).
 axiom(initially(intact(physTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',48).
 % HoldsAt(At(PhysTarget1,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',48).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(physTarget1, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',48).
 axiom(initially(at(physTarget1, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',50).
 %; room-scale topological space
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:50
 % outside Outside1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',50).
 ==> t(outside,outside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',52).
 % outside Outside2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',52).
 ==> t(outside,outside2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:52
 % room Inside1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',52).
 ==> t(room,inside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',54).
 % door Door1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',54).
 ==> t(door,door1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:54
 % building Building1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',54).
 ==> t(building,building1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',56).
 % street Street1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',56).
 ==> t(street,street1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:56
 % Side1(Door1)=Outside1.
-side1(door1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',56).
+equals(side1(door1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',58).
 % Side2(Door1)=Inside1.
-side2(door1,inside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',58).
+equals(side2(door1),inside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:58
 % LookOutOnto(Inside1)=Outside1.
-lookOutOnto(inside1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',58).
+equals(lookOutOnto(inside1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:59
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',60).
 % Floor(Inside1)=1.
-floor(inside1,1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',60).
+equals(floor(inside1),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:60
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:60
 % BuildingOf(Inside1)=Building1.
-buildingOf(inside1,building1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',60).
+equals(buildingOf(inside1),building1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:61
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',62).
 % Side1(Street1)=Outside1.
-side1(street1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',62).
+equals(side1(street1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:62
 % Side2(Street1)=Outside2.
-side2(street1,outside2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',62).
+equals(side2(street1),outside2).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:64
 % HoldsAt(Alive(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',64).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',64).
 axiom(initially(alive(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:65
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',66).
 % HoldsAt(Awake(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',66).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',66).
 axiom(initially(awake(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:66
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:66
 % HoldsAt(Standing(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',66).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',66).
 axiom(initially(standing(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',68).
 % HoldsAt(Sleep2(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',68).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',68).
 axiom(initially(sleep2(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:68
 % !HoldsAt(Injured(Perp1),0).
- %  not(initially(injured(perp1))).
-axiom(not(initially(injured(perp1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',68).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(perp1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',68).
+axiom(initially(neg(injured(perp1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:69
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:69
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',70).
 % [object]
  % !HoldsAt(Holding(Perp1,object),0).
- %  not(initially(holding(perp1,Object))).
-axiom(not(initially(holding(perp1, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',70).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(perp1, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',70).
+axiom(initially(neg(holding(perp1, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:70
 % HoldsAt(At(Perp1,Outside2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',70).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(perp1, outside2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',70).
 axiom(initially(at(perp1, outside2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',72).
 % !HoldsAt(DoorIsOpen(Door1),0).
- %  not(initially(doorIsOpen(door1))).
-axiom(not(initially(doorIsOpen(door1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',72).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(doorIsOpen(door1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',72).
+axiom(initially(neg(doorIsOpen(door1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:72
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:72
 % HoldsAt(DoorUnlocked(Door1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',72).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(door1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',72).
 axiom(initially(doorUnlocked(door1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:73
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',74).
 % [physobj,fire,offset]
  % !HoldsAt(Burning(physobj,fire,offset),0).
- %  not(initially(burning(Physobj,Fire,Offset))).
-axiom(not(initially(burning(Burning_Param, _, Burning_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',74).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(burning(Physobj, Fire, Offset)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',74).
+axiom(initially(neg(burning(Physobj, Fire, Offset))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:75
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',76).
 %; narrative
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:76
 % Happens(WalkStreet21(Perp1,Street1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',76).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(walkStreet21(perp1, street1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',76).
 axiom(happens(walkStreet21(perp1, street1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:77
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',78).
 % Happens(SetFireTo(Perp1,PhysTarget1,Fire1,3),1).
-axiom(happens(setFireTo(perp1, physTarget1, fire1, 3), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',78).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1,
+          tvs1=[1],
+          tvs2=[now, t],
+          happens(setFireTo(perp1, physTarget1, fire1, 3), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',78).
+axiom(happens(setFireTo(perp1, physTarget1, fire1, 3), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:78
 % Happens(WalkStreet12(Perp1,Street1),2).
-axiom(happens(walkStreet12(perp1, street1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',78).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:80
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(walkStreet12(perp1, street1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',78).
+axiom(happens(walkStreet12(perp1, street1), t2),
+    [is_time(t2), b(t, t2)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:80
 % range time 0 6
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',80).
 ==> range(time,0,6).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',82).
 % range offset 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',82).
 ==> range(offset,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:82
 % range diameter 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:83
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',82).
 ==> range(diameter,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e:84
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',85).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/Arson.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Arson.e',85).
 ==> completion(happens).
 %; End of file.

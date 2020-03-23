@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/MillerShanahan2002/Bowl.e').
+% Mon, 23 Mar 2020 02:26:15 GMT
+% From ../examples/MillerShanahan2002/Bowl.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Manual/Example4.e',27).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -27,93 +33,183 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:27
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',27).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',30).
 % event LiftLeft()
- %  event(liftLeft()).
-==> mpred_prop(liftLeft(),event).
-==> meta_argtypes(liftLeft()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',30).
+event(liftLeft).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',30).
+==> mpred_prop(liftLeft,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:30
 % event LiftRight()
- %  event(liftRight()).
-==> mpred_prop(liftRight(),event).
-==> meta_argtypes(liftRight()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',30).
+event(liftRight).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',30).
+==> mpred_prop(liftRight,event).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',32).
 % fluent Spilt()
- %  fluent(spilt()).
-==> mpred_prop(spilt(),fluent).
-==> meta_argtypes(spilt()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',32).
+fluent(spilt).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',32).
+==> mpred_prop(spilt,fluent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:32
 % fluent Raised()
- %  fluent(raised()).
-==> mpred_prop(raised(),fluent).
-==> meta_argtypes(raised()).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',32).
+fluent(raised).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',32).
+==> mpred_prop(raised,fluent).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:34
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:34
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',35).
 % [time]
 % !Happens(LiftRight(), time) ->
 % Initiates(LiftLeft(), Spilt(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:36
-axiom(initiates(liftLeft(), spilt(), Time),
-    [not(happens(liftRight(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:36
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',35).
+
+ /*  [not(happens(liftRight, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(liftLeft, spilt, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',35).
+axiom(initiates(liftLeft, spilt, Time),
+    [not(happens(liftRight, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:38
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:38
 % [time]
 % !Happens(LiftLeft(), time) ->
 % Initiates(LiftRight(), Spilt(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:40
-axiom(initiates(liftRight(), spilt(), Time),
-    [not(happens(liftLeft(), Time))]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:40
+
+ /*  [not(happens(liftLeft, Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(liftRight, spilt, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',40).
+axiom(initiates(liftRight, spilt, Time),
+    [not(happens(liftLeft, Time))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:42
 % [time]
 % Happens(LiftLeft(), time) ->
 % Initiates(LiftRight(), Raised(), time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:44
-axiom(requires(liftLeft(), Time),
-    [initiates(liftRight(), raised(), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:44
+
+ /*  [holds_at(metreqs(liftLeft), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          requires(liftLeft, Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',44).
+axiom(requires(liftLeft, Time),
+    [holds_at(metreqs(liftLeft), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',44).
+
+ /*  [initiates(liftRight, raised, Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(requirements(liftLeft), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',44).
+axiom(holds_at(requirements(liftLeft), Time),
+    [initiates(liftRight, raised, Time)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:46
 % !HoldsAt(Spilt(), 0).
- %  not(initially(spilt())).
-axiom(not(initially(spilt())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',46).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(spilt))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',46).
+axiom(initially(neg(spilt)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',48).
 % !HoldsAt(Raised(), 0).
- %  not(initially(raised())).
-axiom(not(initially(raised())),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',48).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(raised))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',48).
+axiom(initially(neg(raised)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:48
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:48
 % Happens(LiftLeft(), 2).
-axiom(happens(liftLeft(), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',48).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(liftLeft, t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',48).
+axiom(happens(liftLeft, t2),
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',50).
 % Happens(LiftRight(), 2).
-axiom(happens(liftRight(), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',50).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:51
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(liftRight, t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',50).
+axiom(happens(liftRight, t2),
+    [is_time(t2), b(t, t2)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',52).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',52).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:53
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',54).
 % range time 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',54).
 ==> range(time,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:54
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e:55
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',54).
 ==> range(offset,1,1).
 %; End of file.

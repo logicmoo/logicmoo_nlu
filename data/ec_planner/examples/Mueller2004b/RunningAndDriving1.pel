@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2004b/RunningAndDriving1.e').
+% Mon, 23 Mar 2020 02:26:17 GMT
+% From ../examples/Mueller2004b/RunningAndDriving1.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',69).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -23,115 +29,213 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:22
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:23
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',23).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:25
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',26).
 % sort agent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',26).
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:27
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',28).
 % fluent Tired(agent)
- %  fluent(tired(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',28).
+fluent(tired(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',28).
 ==> mpred_prop(tired(agent),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',28).
 ==> meta_argtypes(tired(agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
 % event Move(agent)
- %  event(move(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
+event(move(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
 ==> mpred_prop(move(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
 ==> meta_argtypes(move(agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:30
 % event Run(agent)
- %  event(run(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
+event(run(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
 ==> mpred_prop(run(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',30).
 ==> meta_argtypes(run(agent)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',32).
 % event Drive(agent)
- %  event(drive(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',32).
+event(drive(agent)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',32).
 ==> mpred_prop(drive(agent),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',32).
 ==> meta_argtypes(drive(agent)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:33
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
 % [agent,time]
 % Happens(Move(agent),time) ->
 % Happens(Run(agent),time) | Happens(Drive(agent),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
 
- /*   if(happens(move(Agent), Time),
-          (happens(run(Agent), Time);happens(drive(Agent), Time))).
+ /*  happens(move(Agent), Time) ->
+       (   happens(run(Agent), Time)
+       ;   happens(drive(Agent), Time)
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
 
- /*  happens(run(Run_Ret), Maptime) :-
-       not(happens(drive(Run_Ret), Maptime)),
-       happens(move(Run_Ret), Maptime).
+ /*  happens(run(Agent), Time) :-
+       not(happens(drive(Agent), Time)),
+       happens(move(Agent), Time).
  */
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:35
-axiom(happens(run(Run_Ret), Maptime),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+
+ /*  [not(happens(drive(Agent), Time)), happens(move(Agent), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(run(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+axiom(happens(run(Agent), Time),
    
-    [ not(happens(drive(Run_Ret), Maptime)),
-      happens(move(Run_Ret), Maptime)
+    [ not(happens(drive(Agent), Time)),
+      happens(move(Agent), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+
+ /*  happens(drive(Agent), Time) :-
+       not(happens(run(Agent), Time)),
+       happens(move(Agent), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+
+ /*  [not(happens(run(Agent), Time)), happens(move(Agent), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          happens(drive(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+axiom(happens(drive(Agent), Time),
+   
+    [ not(happens(run(Agent), Time)),
+      happens(move(Agent), Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+
+ /*  not(happens(move(Agent), Time)) :-
+       not(happens(run(Agent), Time)),
+       not(happens(drive(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+
+ /*  [not(happens(run(Agent), Time)), not(happens(drive(Agent), Time))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(happens(move(Agent), Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',34).
+axiom(not(happens(move(Agent), Time)),
+   
+    [ not(happens(run(Agent), Time)),
+      not(happens(drive(Agent), Time))
     ]).
 
- /*  happens(drive(Drive_Ret), Maptime4) :-
-       not(happens(run(Drive_Ret), Maptime4)),
-       happens(move(Drive_Ret), Maptime4).
- */
-axiom(happens(drive(Drive_Ret), Maptime4),
-   
-    [ not(happens(run(Drive_Ret), Maptime4)),
-      happens(move(Drive_Ret), Maptime4)
-    ]).
-
- /*  not(happens(move(Move_Ret), Maptime6)) :-
-       not(happens(run(Move_Ret), Maptime6)),
-       not(happens(drive(Move_Ret), Maptime6)).
- */
-axiom(not(happens(move(Move_Ret), Maptime6)),
-   
-    [ not(happens(run(Move_Ret), Maptime6)),
-      not(happens(drive(Move_Ret), Maptime6))
-    ]).
-
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:37
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:37
 % xor Run, Drive
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:38
-xor([run,drive]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',37).
+==> xor([run,drive]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:39
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',40).
 % [agent,time]
  % Initiates(Run(agent),Tired(agent),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',40).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(run(Agent), tired(Agent), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',40).
 axiom(initiates(run(Agent), tired(Agent), Time),
     []).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',42).
 % agent James
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',42).
 ==> t(agent,james).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:43
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:43
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
 % !HoldsAt(Tired(James),0).
- %  not(initially(tired(james))).
-axiom(not(initially(tired(james))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(tired(james)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
+axiom(initially(neg(tired(james))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:44
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:44
 % Happens(Move(James),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(move(james), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
 axiom(happens(move(james), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:45
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',46).
 % HoldsAt(Tired(James),1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',46).
 holds_at(tired(james),1).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:47
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',48).
 % range time 0 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:48
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',48).
 ==> range(time,0,1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:48
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',48).
 ==> range(offset,1,1).
 %; End of file.

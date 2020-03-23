@@ -1,7 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.pel:3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',43).
+% Mon, 23 Mar 2020 02:26:39 GMT
+% From ../ecnet/GSpace.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',124).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e').
@@ -38,7 +39,7 @@
 
 % fluent GridAt(grid,object,coord,coord)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',25).
-fluent(gridAt(GridAt_Param,_,_,GridAt_Ret)).
+fluent(gridAt(grid,object,coord,coord)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',25).
 ==> mpred_prop(gridAt(grid,object,coord,coord),fluent).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',25).
@@ -54,12 +55,7 @@ fluent(gridAt(GridAt_Param,_,_,GridAt_Ret)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',30).
 % event GridWalk(grid,agent,coord,coord,coord,coord)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',30).
-event(gridWalk(GridWalk_Param,
-	       _,
-	       _,
-	       _,
-	       _,
-	       GridWalk_Ret)).
+event(gridWalk(grid,agent,coord,coord,coord,coord)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',30).
 ==> mpred_prop(gridWalk(grid,agent,coord,coord,coord,coord),event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/GSpace.e',30).

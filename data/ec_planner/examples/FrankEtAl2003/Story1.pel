@@ -1,7 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.pel:3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',87).
+% Mon, 23 Mar 2020 02:26:13 GMT
+% From ../examples/FrankEtAl2003/Story1.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/FrankEtAl.e',92).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e').

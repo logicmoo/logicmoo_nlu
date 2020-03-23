@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'ecnet/TimeDelayBombing.e').
+% Mon, 23 Mar 2020 02:27:12 GMT
+% From ../ecnet/TimeDelayBombing.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',115).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -25,580 +31,1021 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:24
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 % ignore SkyOf, GroundOf, Near, Inside, WalkFromTo, RunFromTo
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(skyOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(groundOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(near).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(inside).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(walkFromTo).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(runFromTo).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:25
 % ignore RollAlong, Diameter, Move, HoldSome, PutInside
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(rollAlong).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(diameter).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(move).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(holdSome).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',25).
 ignore(putInside).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:26
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 % ignore TakeOutOf, On, DoorUnlock, DoorLock, WalkThroughDoor12
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(takeOutOf).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(doorUnlock).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(doorLock).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(walkThroughDoor12).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:27
 % ignore WalkThroughDoor21, WalkDownStaircase, WalkUpStaircase
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(walkThroughDoor21).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(walkDownStaircase).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',27).
 ignore(walkUpStaircase).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:29
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',30).
 % ignore ThreatenedBy
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',30).
 ignore(threatenedBy).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:31
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:32
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',32).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:33
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
 % load answers/Mueller2003/Ontology.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- load_e('answers/Mueller2003/Ontology.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:34
 % load answers/Mueller2004c/OTSpaceM.e
-load('answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',34).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:35
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
 % load answers/Mueller2004c/RTSpaceM.e
-load('answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- if(false).
+ %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:36
 % load answers/Mueller2004c/Condition.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- load_e('answers/Mueller2004c/Condition.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',36).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:37
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
 % load answers/Mueller2003/Sleep.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- load_e('answers/Mueller2003/Sleep.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:38
 % load answers/Mueller2004c/Bomb.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- load_e('answers/Mueller2004c/Bomb.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',38).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',41).
 % bomb Bomb1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',41).
 ==> t(bomb,bomb1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:41
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:41
 % BombTimeDelay(Bomb1)=3.
-bombTimeDelay(bomb1,3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',41).
+equals(bombTimeDelay(bomb1),3).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:42
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:42
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',43).
 % [time]
  % !HoldsAt(DestroyedDeterminingFluent(Bomb1),time).
- %  not(holds_at(destroyedDeterminingFluent(bomb1),Time)).
-axiom(not(holds_at(destroyedDeterminingFluent(bomb1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',43).
+holds_at(neg(destroyedDeterminingFluent(bomb1)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:43
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:43
 % [time]
  % !HoldsAt(DamagedDeterminingFluent(Bomb1),time).
- %  not(holds_at(damagedDeterminingFluent(bomb1),Time)).
-axiom(not(holds_at(damagedDeterminingFluent(bomb1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',43).
+holds_at(neg(damagedDeterminingFluent(bomb1)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:45
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:45
 % agent Perp1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',45).
 ==> t(agent,perp1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:46
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',45).
 % [time]
  % !HoldsAt(InjuredDeterminingFluent(Perp1),time).
- %  not(holds_at(injuredDeterminingFluent(perp1),Time)).
-axiom(not(holds_at(injuredDeterminingFluent(perp1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',47).
+holds_at(neg(injuredDeterminingFluent(perp1)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:47
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:47
 % [time]
  % !HoldsAt(KilledDeterminingFluent(Perp1),time).
- %  not(holds_at(killedDeterminingFluent(perp1),Time)).
-axiom(not(holds_at(killedDeterminingFluent(perp1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',47).
+holds_at(neg(killedDeterminingFluent(perp1)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:49
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:49
 % agent HumanTarget1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',49).
 ==> t(agent,humanTarget1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:50
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:50
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
 % HoldsAt(Alive(HumanTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(humanTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
 axiom(initially(alive(humanTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:51
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:51
 % HoldsAt(Awake(HumanTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(humanTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
 axiom(initially(awake(humanTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:52
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:52
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
 % HoldsAt(Standing(HumanTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(humanTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
 axiom(initially(standing(humanTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:53
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:53
 % HoldsAt(Sleep2(HumanTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(humanTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
 axiom(initially(sleep2(humanTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:54
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
 % !HoldsAt(Injured(HumanTarget1),0).
- %  not(initially(injured(humanTarget1))).
-axiom(not(initially(injured(humanTarget1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(humanTarget1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
+axiom(initially(neg(injured(humanTarget1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:55
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:55
 % [object]
  % !HoldsAt(Holding(HumanTarget1,object),0).
- %  not(initially(holding(humanTarget1,Object))).
-axiom(not(initially(holding(humanTarget1, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(humanTarget1, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
+axiom(initially(neg(holding(humanTarget1, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:56
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:56
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',57).
 % HoldsAt(At(HumanTarget1,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',57).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(humanTarget1, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',57).
 axiom(initially(at(humanTarget1, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:58
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:58
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',59).
 % [time]
  % HoldsAt(KilledDeterminingFluent(HumanTarget1),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',59).
 holds_at(killedDeterminingFluent(humanTarget1),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:59
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:59
 % [time]
  % !HoldsAt(InjuredDeterminingFluent(HumanTarget1),time).
- %  not(holds_at(injuredDeterminingFluent(humanTarget1),Time)).
-axiom(not(holds_at(injuredDeterminingFluent(humanTarget1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',59).
+holds_at(neg(injuredDeterminingFluent(humanTarget1)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:61
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:61
 % agent HumanTarget2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',61).
 ==> t(agent,humanTarget2).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:62
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
 % HoldsAt(Alive(HumanTarget2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(humanTarget2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
 axiom(initially(alive(humanTarget2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:63
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:63
 % HoldsAt(Awake(HumanTarget2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(humanTarget2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
 axiom(initially(awake(humanTarget2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:64
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:64
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
 % HoldsAt(Standing(HumanTarget2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(humanTarget2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
 axiom(initially(standing(humanTarget2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:65
 % HoldsAt(Sleep2(HumanTarget2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(humanTarget2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
 axiom(initially(sleep2(humanTarget2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:66
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
 % !HoldsAt(Injured(HumanTarget2),0).
- %  not(initially(injured(humanTarget2))).
-axiom(not(initially(injured(humanTarget2))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(humanTarget2)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
+axiom(initially(neg(injured(humanTarget2))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:67
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:67
 % [object]
  % !HoldsAt(Holding(HumanTarget2,object),0).
- %  not(initially(holding(humanTarget2,Object))).
-axiom(not(initially(holding(humanTarget2, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(humanTarget2, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
+axiom(initially(neg(holding(humanTarget2, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:68
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',69).
 % HoldsAt(At(HumanTarget2,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',69).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(humanTarget2, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',69).
 axiom(initially(at(humanTarget2, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:70
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:70
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',71).
 % [time]
  % HoldsAt(KilledDeterminingFluent(HumanTarget2),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',71).
 holds_at(killedDeterminingFluent(humanTarget2),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:71
 % [time]
  % !HoldsAt(InjuredDeterminingFluent(HumanTarget2),time).
- %  not(holds_at(injuredDeterminingFluent(humanTarget2),Time)).
-axiom(not(holds_at(injuredDeterminingFluent(humanTarget2), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',71).
+holds_at(neg(injuredDeterminingFluent(humanTarget2)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:73
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:73
 % agent HumanTarget3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',73).
 ==> t(agent,humanTarget3).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:74
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
 % HoldsAt(Alive(HumanTarget3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(humanTarget3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
 axiom(initially(alive(humanTarget3)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:75
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:75
 % HoldsAt(Awake(HumanTarget3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(humanTarget3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
 axiom(initially(awake(humanTarget3)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:76
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:76
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
 % HoldsAt(Standing(HumanTarget3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(humanTarget3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
 axiom(initially(standing(humanTarget3)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:77
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:77
 % HoldsAt(Sleep2(HumanTarget3),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(humanTarget3))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
 axiom(initially(sleep2(humanTarget3)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:78
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
 % !HoldsAt(Injured(HumanTarget3),0).
- %  not(initially(injured(humanTarget3))).
-axiom(not(initially(injured(humanTarget3))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(humanTarget3)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
+axiom(initially(neg(injured(humanTarget3))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:79
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:79
 % [object]
  % !HoldsAt(Holding(HumanTarget3,object),0).
- %  not(initially(holding(humanTarget3,Object))).
-axiom(not(initially(holding(humanTarget3, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(humanTarget3, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
+axiom(initially(neg(holding(humanTarget3, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:80
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',81).
 % HoldsAt(At(HumanTarget3,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',81).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(humanTarget3, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',81).
 axiom(initially(at(humanTarget3, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:82
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:82
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',83).
 % [time]
  % HoldsAt(KilledDeterminingFluent(HumanTarget3),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',83).
 holds_at(killedDeterminingFluent(humanTarget3),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:83
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:83
 % [time]
  % !HoldsAt(InjuredDeterminingFluent(HumanTarget3),time).
- %  not(holds_at(injuredDeterminingFluent(humanTarget3),Time)).
-axiom(not(holds_at(injuredDeterminingFluent(humanTarget3), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',83).
+holds_at(neg(injuredDeterminingFluent(humanTarget3)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:85
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:85
 % agent HumanTarget4
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:86
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',85).
 ==> t(agent,humanTarget4).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:86
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:86
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
 % HoldsAt(Alive(HumanTarget4),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(humanTarget4))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
 axiom(initially(alive(humanTarget4)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:87
 % HoldsAt(Awake(HumanTarget4),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(humanTarget4))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
 axiom(initially(awake(humanTarget4)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:88
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:88
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
 % HoldsAt(Standing(HumanTarget4),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(humanTarget4))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
 axiom(initially(standing(humanTarget4)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:89
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:89
 % HoldsAt(Sleep2(HumanTarget4),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(humanTarget4))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
 axiom(initially(sleep2(humanTarget4)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:90
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:90
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
 % !HoldsAt(Injured(HumanTarget4),0).
- %  not(initially(injured(humanTarget4))).
-axiom(not(initially(injured(humanTarget4))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(humanTarget4)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
+axiom(initially(neg(injured(humanTarget4))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:91
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:91
 % [object]
  % !HoldsAt(Holding(HumanTarget4,object),0).
- %  not(initially(holding(humanTarget4,Object))).
-axiom(not(initially(holding(humanTarget4, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(humanTarget4, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
+axiom(initially(neg(holding(humanTarget4, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:92
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:92
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',93).
 % HoldsAt(At(HumanTarget4,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',93).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(humanTarget4, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',93).
 axiom(initially(at(humanTarget4, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:94
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:94
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',95).
 % [time]
  % HoldsAt(KilledDeterminingFluent(HumanTarget4),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',95).
 holds_at(killedDeterminingFluent(humanTarget4),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:95
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:95
 % [time]
  % !HoldsAt(InjuredDeterminingFluent(HumanTarget4),time).
- %  not(holds_at(injuredDeterminingFluent(humanTarget4),Time)).
-axiom(not(holds_at(injuredDeterminingFluent(humanTarget4), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',95).
+holds_at(neg(injuredDeterminingFluent(humanTarget4)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:97
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:97
 % physobj PhysTarget1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:98
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',97).
 ==> t(physobj,physTarget1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:98
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:98
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
 % HoldsAt(Intact(PhysTarget1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(intact(physTarget1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
 axiom(initially(intact(physTarget1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:99
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:99
 % HoldsAt(At(PhysTarget1,Outside1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(physTarget1, outside1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
 axiom(initially(at(physTarget1, outside1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:101
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:101
 % [time]
  % HoldsAt(DestroyedDeterminingFluent(PhysTarget1),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',101).
 holds_at(destroyedDeterminingFluent(physTarget1),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:102
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:102
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',103).
 % [time]
  % !HoldsAt(DamagedDeterminingFluent(PhysTarget1),time).
- %  not(holds_at(damagedDeterminingFluent(physTarget1),Time)).
-axiom(not(holds_at(damagedDeterminingFluent(physTarget1), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',103).
+holds_at(neg(damagedDeterminingFluent(physTarget1)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:104
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:104
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',105).
 %; room-scale topological space
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:105
 % outside Outside1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:106
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',105).
 ==> t(outside,outside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:106
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',107).
 % outside Outside2
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:107
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',107).
 ==> t(outside,outside2).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:107
 % room Inside1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:108
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',107).
 ==> t(room,inside1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:108
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',109).
 % door Door1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:109
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',109).
 ==> t(door,door1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:109
 % building Building1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:110
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',109).
 ==> t(building,building1).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:110
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',111).
 % street Street1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:111
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',111).
 ==> t(street,street1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:111
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:111
 % Side1(Door1)=Outside1.
-side1(door1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',111).
+equals(side1(door1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:112
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:112
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',113).
 % Side2(Door1)=Inside1.
-side2(door1,inside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',113).
+equals(side2(door1),inside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:113
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:113
 % LookOutOnto(Inside1)=Outside1.
-lookOutOnto(inside1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',113).
+equals(lookOutOnto(inside1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:114
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:114
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',115).
 % Floor(Inside1)=1.
-floor(inside1,1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',115).
+equals(floor(inside1),1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:115
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:115
 % BuildingOf(Inside1)=Building1.
-buildingOf(inside1,building1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',115).
+equals(buildingOf(inside1),building1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:116
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:116
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',117).
 % Side1(Street1)=Outside1.
-side1(street1,outside1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',117).
+equals(side1(street1),outside1).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:117
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:117
 % Side2(Street1)=Outside2.
-side2(street1,outside2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',117).
+equals(side2(street1),outside2).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:119
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:119
 % HoldsAt(Alive(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',119).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',119).
 axiom(initially(alive(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:120
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:120
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 % HoldsAt(Awake(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 axiom(initially(awake(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:121
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:121
 % HoldsAt(Standing(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 axiom(initially(standing(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:122
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:122
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
 % HoldsAt(Sleep2(Perp1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep2(perp1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
 axiom(initially(sleep2(perp1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:123
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:123
 % !HoldsAt(Injured(Perp1),0).
- %  not(initially(injured(perp1))).
-axiom(not(initially(injured(perp1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(injured(perp1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
+axiom(initially(neg(injured(perp1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:124
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:124
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
 % [object]
  % !HoldsAt(Holding(Perp1,object),0).
- %  not(initially(holding(perp1,Object))).
-axiom(not(initially(holding(perp1, Holding_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(holding(perp1, Object)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
+axiom(initially(neg(holding(perp1, Object))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:125
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:125
 % HoldsAt(At(Bomb1,Outside2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(bomb1, outside2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
 axiom(initially(at(bomb1, outside2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:126
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:126
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
 % HoldsAt(At(Perp1,Outside2),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(perp1, outside2))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
 axiom(initially(at(perp1, outside2)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:127
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:127
 % HoldsAt(Intact(Bomb1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(intact(bomb1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
 axiom(initially(intact(bomb1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:128
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:128
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
 % !HoldsAt(BombActivated(Bomb1),0).
- %  not(initially(bombActivated(bomb1))).
-axiom(not(initially(bombActivated(bomb1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(bombActivated(bomb1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
+axiom(initially(neg(bombActivated(bomb1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:129
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:129
 % !HoldsAt(DoorIsOpen(Door1),0).
- %  not(initially(doorIsOpen(door1))).
-axiom(not(initially(doorIsOpen(door1))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(doorIsOpen(door1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
+axiom(initially(neg(doorIsOpen(door1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:130
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:130
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
 % HoldsAt(DoorUnlocked(Door1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(door1))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
 axiom(initially(doorUnlocked(door1)),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:131
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:131
 % HoldsAt(BombTimerValue(Bomb1, BombTimeDelay(Bomb1)),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(bombTimerValue(bomb1, bombTimeDelay(bomb1)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
 axiom(initially(bombTimerValue(bomb1, bombTimeDelay(bomb1))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:133
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:133
 %; narrative
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:134
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:134
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
 % Happens(PickUp(Perp1,Bomb1),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(pickUp(perp1, bomb1), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
 axiom(happens(pickUp(perp1, bomb1), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:135
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:135
 % Happens(WalkStreet21(Perp1,Street1),1).
-axiom(happens(walkStreet21(perp1, street1), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
+
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(walkStreet21(perp1, street1), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
+axiom(happens(walkStreet21(perp1, street1), now),
+    [is_time(now), b(t, now)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:136
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:136
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
 % Happens(BombActivate(Perp1,Bomb1),2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
+
+ /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
+       ta(2, tvs1=[2], tvs2=[t, t2], happens(bombActivate(perp1, bomb1), t2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
 axiom(happens(bombActivate(perp1, bomb1), t2),
-    [is_time(2), b(t, t2), ignore(t+2=t2)]).
+    [is_time(t2), b(t, t2)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:137
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:137
 % Happens(LetGoOf(Perp1,Bomb1),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(letGoOf(perp1, bomb1), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
 axiom(happens(letGoOf(perp1, bomb1), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:138
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:138
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',139).
 % Happens(WalkStreet12(Perp1,Street1),4).
-axiom(happens(walkStreet12(perp1, street1), t4),
-    [is_time(4), b(t, t4), ignore(t+4=t4)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',139).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:140
+ /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
+       ta(4, tvs1=[4], tvs2=[t, t4], happens(walkStreet12(perp1, street1), t4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',139).
+axiom(happens(walkStreet12(perp1, street1), t4),
+    [is_time(t4), b(t, t4)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:140
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',141).
 % range time 0 7
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:141
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',141).
 ==> range(time,0,7).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:141
 % range offset 0 3
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:142
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',141).
 ==> range(offset,0,3).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:142
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',143).
 % range diameter 0 0
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:143
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',143).
 ==> range(diameter,0,0).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e:144
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',145).
 % completion Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/ecnet/TimeDelayBombing.e:145
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',145).
 ==> completion(happens).
 %; End of file.

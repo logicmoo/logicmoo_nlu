@@ -1,6 +1,12 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
- %  loading(always,'examples/Mueller2006/Chapter14/Workflow.e').
+% Mon, 23 Mar 2020 02:25:47 GMT
+% From ../examples/Mueller2006/Chapter14/Workflow.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',107).
+
+ /*  loading(load_e_pl,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e').
+ */
 %;
 %; Copyright (c) 2005 IBM Corporation and others.
 %; All rights reserved. This program and the accompanying materials
@@ -40,207 +46,682 @@
 %; }
 %;
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:39
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',40).
 % option modeldiff on
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',40).
 :- set_ec_option(modeldiff, on).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',40).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',40).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:41
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
 % load foundations/Root.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- load_e('foundations/Root.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:42
 % load foundations/EC.e
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- load_e('foundations/EC.e', changed).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- if(false).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',42).
+:- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:44
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',45).
 % sort activity
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',45).
 ==> sort(activity).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:45
 % sort condition
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',45).
 ==> sort(condition).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:46
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 % activity A, B, C1, C2, C3, D, E1, E2, E3, F, G
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,a).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,b).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,c1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,c2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,c3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,d).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,e1).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,e2).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,e3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,f).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(activity,g).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:47
 % condition E1C, E2C, E3C, FC
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(condition,e1c).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(condition,e2c).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(condition,e3c).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',47).
 ==> t(condition,fc).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:49
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
 % fluent Active(activity)
- %  fluent(active(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
+fluent(active(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
 ==> mpred_prop(active(activity),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
 ==> meta_argtypes(active(activity)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:50
 % fluent Completed(activity)
- %  fluent(completed(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
+fluent(completed(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
 ==> mpred_prop(completed(activity),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',50).
 ==> meta_argtypes(completed(activity)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:51
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',52).
 % fluent Condition(condition)
- %  fluent(condition(condition)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',52).
+fluent(condition(condition)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',52).
 ==> mpred_prop(condition(condition),fluent).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',52).
 ==> meta_argtypes(condition(condition)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:52
 % noninertial Condition
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',52).
 ==> noninertial(condition).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:54
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
 % event Start(activity)
- %  event(start(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
+event(start(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
 ==> mpred_prop(start(activity),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
 ==> meta_argtypes(start(activity)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:55
 % event End(activity)
- %  event(end(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
+event(end(activity)).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
 ==> mpred_prop(end(activity),event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',55).
 ==> meta_argtypes(end(activity)).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:57
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:57
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',58).
 %; Sigma
 % [activity,time]
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:60
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:60
 % Initiates(Start(activity),Active(activity),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',60).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(start(Activity), active(Activity), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',60).
 axiom(initiates(start(Activity), active(Activity), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:62
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:62
 % [activity,time]
 % Terminates(Start(activity),Completed(activity),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:63
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',64).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(start(Activity), completed(Activity), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',64).
 axiom(terminates(start(Activity), completed(Activity), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:65
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:65
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',66).
 % [activity,time]
 % Initiates(End(activity),Completed(activity),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:66
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',66).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          initiates(end(Activity), completed(Activity), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',66).
 axiom(initiates(end(Activity), completed(Activity), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:68
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:68
 % [activity,time]
 % Terminates(End(activity),Active(activity),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:69
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',70).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          terminates(end(Activity), active(Activity), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',70).
 axiom(terminates(end(Activity), active(Activity), Time),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:71
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:71
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',72).
 %; Delta
 %; A; B
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:74
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',74).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:74
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:74
 % [time]
 % !HoldsAt(Active(B),time) &
 % !HoldsAt(Completed(A),time-1) &
 % HoldsAt(Completed(A),time) ->
 % Happens(Start(B),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:78
-axiom(happens(start(b), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:78
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  holds_at(neg(active(b)), Time), holds_at(neg(completed(a)), Time-1), holds_at(completed(a), Time) ->
+       happens(start(b), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  happens(start(b), Time) :-
+       holds_at(neg(active(b)), Time),
+       holds_at(neg(completed(a)), Time-1),
+       holds_at(completed(a), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  [holds_at(neg(active(b)), Time), holds_at(neg(completed(a)), Time1), holds_at(completed(a), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(b), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+axiom(happens(start(b), Time),
    
-    [ not(holds_at(active(b), start)),
-      not(holds_at(completed(a), t)),
-      holds_at(completed(a), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(b)), Time),
+      holds_at(neg(completed(a)), Time1),
+      holds_at(completed(a), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  not(holds_at(neg(active(b)), Time)) :-
+       ( holds_at(neg(completed(a)), Time-1),
+         holds_at(completed(a), Time)
+       ),
+       not(happens(start(b), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  [holds_at(neg(completed(a)), Time2), holds_at(completed(a), Time), not(happens(start(b), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(b), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+axiom(holds_at(active(b), Time),
+   
+    [ holds_at(neg(completed(a)), Time2),
+      holds_at(completed(a), Time),
+      not(happens(start(b), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  not(holds_at(neg(completed(a)), Time-1)) :-
+       holds_at(completed(a), Time),
+       holds_at(neg(active(b)), Time),
+       not(happens(start(b), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  [holds_at(completed(a), Time), holds_at(neg(active(b)), Time), not(happens(start(b), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(a), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+axiom(holds_at(completed(a), Time3),
+   
+    [ holds_at(completed(a), Time),
+      holds_at(neg(active(b)), Time),
+      not(happens(start(b), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  not(holds_at(completed(a), Time)) :-
+       holds_at(neg(completed(a)), Time-1),
+       holds_at(neg(active(b)), Time),
+       not(happens(start(b), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+
+ /*  [holds_at(neg(completed(a)), Time4), holds_at(neg(active(b)), Time), not(happens(start(b), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(a)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',76).
+axiom(holds_at(neg(completed(a)), Time),
+   
+    [ holds_at(neg(completed(a)), Time4),
+      holds_at(neg(active(b)), Time),
+      not(happens(start(b), Time)),
+      b(Time4, Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:80
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:80
 %; B; AND-split C1, C2, C3
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:81
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:81
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:81
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
 % [time]
 % !HoldsAt(Active(C1),time) &
 % !HoldsAt(Completed(B),time-1) &
 % HoldsAt(Completed(B),time) ->
 % Happens(Start(C1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:85
-axiom(happens(start(c1), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:85
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  holds_at(neg(active(c1)), Time), holds_at(neg(completed(b)), Time-1), holds_at(completed(b), Time) ->
+       happens(start(c1), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  happens(start(c1), Time) :-
+       holds_at(neg(active(c1)), Time),
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(completed(b), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  [holds_at(neg(active(c1)), Time), holds_at(neg(completed(b)), Time1), holds_at(completed(b), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(c1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+axiom(happens(start(c1), Time),
    
-    [ not(holds_at(active(c1), start)),
-      not(holds_at(completed(b), t)),
-      holds_at(completed(b), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(c1)), Time),
+      holds_at(neg(completed(b)), Time1),
+      holds_at(completed(b), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  not(holds_at(neg(active(c1)), Time)) :-
+       ( holds_at(neg(completed(b)), Time-1),
+         holds_at(completed(b), Time)
+       ),
+       not(happens(start(c1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  [holds_at(neg(completed(b)), Time2), holds_at(completed(b), Time), not(happens(start(c1), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(c1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+axiom(holds_at(active(c1), Time),
+   
+    [ holds_at(neg(completed(b)), Time2),
+      holds_at(completed(b), Time),
+      not(happens(start(c1), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  not(holds_at(neg(completed(b)), Time-1)) :-
+       holds_at(completed(b), Time),
+       holds_at(neg(active(c1)), Time),
+       not(happens(start(c1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  [holds_at(completed(b), Time), holds_at(neg(active(c1)), Time), not(happens(start(c1), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(b), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+axiom(holds_at(completed(b), Time3),
+   
+    [ holds_at(completed(b), Time),
+      holds_at(neg(active(c1)), Time),
+      not(happens(start(c1), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  not(holds_at(completed(b), Time)) :-
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(neg(active(c1)), Time),
+       not(happens(start(c1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+
+ /*  [holds_at(neg(completed(b)), Time4), holds_at(neg(active(c1)), Time), not(happens(start(c1), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(b)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',82).
+axiom(holds_at(neg(completed(b)), Time),
+   
+    [ holds_at(neg(completed(b)), Time4),
+      holds_at(neg(active(c1)), Time),
+      not(happens(start(c1), Time)),
+      b(Time4, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:87
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',87).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:87
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:87
 % [time]
 % !HoldsAt(Active(C2),time) &
 % !HoldsAt(Completed(B),time-1) &
 % HoldsAt(Completed(B),time) ->
 % Happens(Start(C2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:91
-axiom(happens(start(c2), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:91
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  holds_at(neg(active(c2)), Time), holds_at(neg(completed(b)), Time-1), holds_at(completed(b), Time) ->
+       happens(start(c2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  happens(start(c2), Time) :-
+       holds_at(neg(active(c2)), Time),
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(completed(b), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  [holds_at(neg(active(c2)), Time), holds_at(neg(completed(b)), Time1), holds_at(completed(b), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(c2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+axiom(happens(start(c2), Time),
    
-    [ not(holds_at(active(c2), start)),
-      not(holds_at(completed(b), t)),
-      holds_at(completed(b), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(c2)), Time),
+      holds_at(neg(completed(b)), Time1),
+      holds_at(completed(b), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  not(holds_at(neg(active(c2)), Time)) :-
+       ( holds_at(neg(completed(b)), Time-1),
+         holds_at(completed(b), Time)
+       ),
+       not(happens(start(c2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  [holds_at(neg(completed(b)), Time2), holds_at(completed(b), Time), not(happens(start(c2), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(c2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+axiom(holds_at(active(c2), Time),
+   
+    [ holds_at(neg(completed(b)), Time2),
+      holds_at(completed(b), Time),
+      not(happens(start(c2), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  not(holds_at(neg(completed(b)), Time-1)) :-
+       holds_at(completed(b), Time),
+       holds_at(neg(active(c2)), Time),
+       not(happens(start(c2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  [holds_at(completed(b), Time), holds_at(neg(active(c2)), Time), not(happens(start(c2), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(b), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+axiom(holds_at(completed(b), Time3),
+   
+    [ holds_at(completed(b), Time),
+      holds_at(neg(active(c2)), Time),
+      not(happens(start(c2), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  not(holds_at(completed(b), Time)) :-
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(neg(active(c2)), Time),
+       not(happens(start(c2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+
+ /*  [holds_at(neg(completed(b)), Time4), holds_at(neg(active(c2)), Time), not(happens(start(c2), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(b)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',89).
+axiom(holds_at(neg(completed(b)), Time),
+   
+    [ holds_at(neg(completed(b)), Time4),
+      holds_at(neg(active(c2)), Time),
+      not(happens(start(c2), Time)),
+      b(Time4, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:93
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',93).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:93
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:93
 % [time]
 % !HoldsAt(Active(C3),time) &
 % !HoldsAt(Completed(B),time-1) &
 % HoldsAt(Completed(B),time) ->
 % Happens(Start(C3),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:97
-axiom(happens(start(c3), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:97
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  holds_at(neg(active(c3)), Time), holds_at(neg(completed(b)), Time-1), holds_at(completed(b), Time) ->
+       happens(start(c3), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  happens(start(c3), Time) :-
+       holds_at(neg(active(c3)), Time),
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(completed(b), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  [holds_at(neg(active(c3)), Time), holds_at(neg(completed(b)), Time1), holds_at(completed(b), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(c3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+axiom(happens(start(c3), Time),
    
-    [ not(holds_at(active(c3), start)),
-      not(holds_at(completed(b), t)),
-      holds_at(completed(b), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(c3)), Time),
+      holds_at(neg(completed(b)), Time1),
+      holds_at(completed(b), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  not(holds_at(neg(active(c3)), Time)) :-
+       ( holds_at(neg(completed(b)), Time-1),
+         holds_at(completed(b), Time)
+       ),
+       not(happens(start(c3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  [holds_at(neg(completed(b)), Time2), holds_at(completed(b), Time), not(happens(start(c3), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(c3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+axiom(holds_at(active(c3), Time),
+   
+    [ holds_at(neg(completed(b)), Time2),
+      holds_at(completed(b), Time),
+      not(happens(start(c3), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  not(holds_at(neg(completed(b)), Time-1)) :-
+       holds_at(completed(b), Time),
+       holds_at(neg(active(c3)), Time),
+       not(happens(start(c3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  [holds_at(completed(b), Time), holds_at(neg(active(c3)), Time), not(happens(start(c3), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(b), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+axiom(holds_at(completed(b), Time3),
+   
+    [ holds_at(completed(b), Time),
+      holds_at(neg(active(c3)), Time),
+      not(happens(start(c3), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  not(holds_at(completed(b), Time)) :-
+       holds_at(neg(completed(b)), Time-1),
+       holds_at(neg(active(c3)), Time),
+       not(happens(start(c3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+
+ /*  [holds_at(neg(completed(b)), Time4), holds_at(neg(active(c3)), Time), not(happens(start(c3), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(b)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',95).
+axiom(holds_at(neg(completed(b)), Time),
+   
+    [ holds_at(neg(completed(b)), Time4),
+      holds_at(neg(active(c3)), Time),
+      not(happens(start(c3), Time)),
+      b(Time4, Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:99
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:99
 %; AND-join C1, C2, C3; D
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:100
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:100
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:100
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:100
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
 % [time]
 % !HoldsAt(Active(D),time) &
 % ((!HoldsAt(Completed(C1),time-1) & HoldsAt(Completed(C1),time))|
@@ -250,393 +731,1700 @@ next_axiom_uses(delta).
 % HoldsAt(Completed(C2),time) &
 % HoldsAt(Completed(C3),time) ->
 % Happens(Start(D),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:108
-axiom(happens(start(d), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:108
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  holds_at(neg(active(d)), Time), (holds_at(neg(completed(c1)), Time-1), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time-1), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time-1), holds_at(completed(c3), Time)), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time) ->
+       happens(start(d), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  happens(start(d), Time) :-
+       holds_at(neg(active(d)), Time),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       (   holds_at(neg(completed(c1)), Time-1),
+           holds_at(completed(c1), Time)
+       ;   holds_at(neg(completed(c2)), Time-1),
+           holds_at(completed(c2), Time)
+       ;   holds_at(neg(completed(c3)), Time-1),
+           holds_at(completed(c3), Time)
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(neg(active(d)), Time), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time),  (holds_at(neg(completed(c1)), Time1), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time1), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time1), holds_at(completed(c3), Time)), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(happens(start(d), Time),
    
-    [ not(holds_at(completed(c1), t)),
-      holds_at(completed(c1), start),
-      not(holds_at(active(d), start)),
-      holds_at(completed(c1), start),
-      holds_at(completed(c2), start),
-      holds_at(completed(c3), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(d)), Time),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+       (holds_at(neg(completed(c1)), Time1), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time1), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time1), holds_at(completed(c3), Time)),
+      b(Time1, Time)
     ]).
-axiom(happens(start(d), start),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(neg(active(d)), Time)) :-
+       ( ( holds_at(completed(c1), Time),
+           holds_at(completed(c2), Time),
+           holds_at(completed(c3), Time)
+         ),
+         (   holds_at(neg(completed(c1)), Time-1),
+             holds_at(completed(c1), Time)
+         ;   holds_at(neg(completed(c2)), Time-1),
+             holds_at(completed(c2), Time)
+         ;   holds_at(neg(completed(c3)), Time-1),
+             holds_at(completed(c3), Time)
+         )
+       ),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time),  (holds_at(neg(completed(c1)), Time2), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time2), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time2), holds_at(completed(c3), Time)), not(happens(start(d), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(active(d), Time),
    
-    [ not(holds_at(completed(c2), t)),
-      holds_at(completed(c2), start),
-      not(holds_at(active(d), start)),
-      holds_at(completed(c1), start),
-      holds_at(completed(c2), start),
-      holds_at(completed(c3), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+       (holds_at(neg(completed(c1)), Time2), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time2), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time2), holds_at(completed(c3), Time)),
+      not(happens(start(d), Time)),
+      b(Time2, Time)
     ]).
-axiom(happens(start(d), start),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c1), Time)) :-
+       ( holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       (   holds_at(neg(completed(c1)), Time-1),
+           holds_at(completed(c1), Time)
+       ;   holds_at(neg(completed(c2)), Time-1),
+           holds_at(completed(c2), Time)
+       ;   holds_at(neg(completed(c3)), Time-1),
+           holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c2), Time), holds_at(completed(c3), Time),  (holds_at(neg(completed(c1)), Time3), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time3), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time3), holds_at(completed(c3), Time)), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(neg(completed(c1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c1)), Time),
    
-    [ not(holds_at(completed(c3), t)),
-      holds_at(completed(c3), start),
-      not(holds_at(active(d), start)),
-      holds_at(completed(c1), start),
-      holds_at(completed(c2), start),
-      holds_at(completed(c3), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+       (holds_at(neg(completed(c1)), Time3), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time3), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time3), holds_at(completed(c3), Time)),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c2), Time)) :-
+       holds_at(completed(c3), Time),
+       holds_at(completed(c1), Time),
+       (   holds_at(neg(completed(c1)), Time-1),
+           holds_at(completed(c1), Time)
+       ;   holds_at(neg(completed(c2)), Time-1),
+           holds_at(completed(c2), Time)
+       ;   holds_at(neg(completed(c3)), Time-1),
+           holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c3), Time), holds_at(completed(c1), Time),  (holds_at(neg(completed(c1)), Time4), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time4), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time4), holds_at(completed(c3), Time)), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(c2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c2)), Time),
+   
+    [ holds_at(completed(c3), Time),
+      holds_at(completed(c1), Time),
+       (holds_at(neg(completed(c1)), Time4), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time4), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time4), holds_at(completed(c3), Time)),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c3), Time)) :-
+       holds_at(completed(c2), Time),
+       holds_at(completed(c1), Time),
+       (   holds_at(neg(completed(c1)), Time-1),
+           holds_at(completed(c1), Time)
+       ;   holds_at(neg(completed(c2)), Time-1),
+           holds_at(completed(c2), Time)
+       ;   holds_at(neg(completed(c3)), Time-1),
+           holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c2), Time), holds_at(completed(c1), Time),  (holds_at(neg(completed(c1)), Time5), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time5), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time5), holds_at(completed(c3), Time)), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(neg(completed(c3)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c3)), Time),
+   
+    [ holds_at(completed(c2), Time),
+      holds_at(completed(c1), Time),
+       (holds_at(neg(completed(c1)), Time5), holds_at(completed(c1), Time);holds_at(neg(completed(c2)), Time5), holds_at(completed(c2), Time);holds_at(neg(completed(c3)), Time5), holds_at(completed(c3), Time)),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time5, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(neg(completed(c1)), Time-1)) :-
+       holds_at(completed(c1), Time),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c1), Time), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time6, Time), ignore(Time-1==Time6)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time6],
+          holds_at(completed(c1), Time6)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(completed(c1), Time6),
+   
+    [ holds_at(completed(c1), Time),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time6, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c1), Time)) :-
+       holds_at(neg(completed(c1)), Time-1),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(neg(completed(c1)), Time7), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time7, Time), ignore(Time-1==Time7)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time7],
+          holds_at(neg(completed(c1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c1)), Time),
+   
+    [ holds_at(neg(completed(c1)), Time7),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time7, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(neg(completed(c2)), Time-1)) :-
+       holds_at(completed(c2), Time),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c2), Time), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time8, Time), ignore(Time-1==Time8)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time8],
+          holds_at(completed(c2), Time8)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(completed(c2), Time8),
+   
+    [ holds_at(completed(c2), Time),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time8, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c2), Time)) :-
+       holds_at(neg(completed(c2)), Time-1),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(neg(completed(c2)), Time9), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time9, Time), ignore(Time-1==Time9)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time9],
+          holds_at(neg(completed(c2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c2)), Time),
+   
+    [ holds_at(neg(completed(c2)), Time9),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time9, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(neg(completed(c3)), Time-1)) :-
+       holds_at(completed(c3), Time),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(completed(c3), Time), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time10, Time), ignore(Time-1==Time10)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time10],
+          holds_at(completed(c3), Time10)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(completed(c3), Time10),
+   
+    [ holds_at(completed(c3), Time),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time10, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  not(holds_at(completed(c3), Time)) :-
+       holds_at(neg(completed(c3)), Time-1),
+       ( holds_at(completed(c1), Time),
+         holds_at(completed(c2), Time),
+         holds_at(completed(c3), Time)
+       ),
+       holds_at(neg(active(d)), Time),
+       not(happens(start(d), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+
+ /*  [holds_at(neg(completed(c3)), Time11), holds_at(completed(c1), Time), holds_at(completed(c2), Time), holds_at(completed(c3), Time), holds_at(neg(active(d)), Time), not(happens(start(d), Time)), b(Time11, Time), ignore(Time-1==Time11)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time11],
+          holds_at(neg(completed(c3)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',101).
+axiom(holds_at(neg(completed(c3)), Time),
+   
+    [ holds_at(neg(completed(c3)), Time11),
+      holds_at(completed(c1), Time),
+      holds_at(completed(c2), Time),
+      holds_at(completed(c3), Time),
+      holds_at(neg(active(d)), Time),
+      not(happens(start(d), Time)),
+      b(Time11, Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:110
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:110
 %; D; XOR-split E1, E2, E3
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:111
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:111
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:111
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:111
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
 % [time]
 % !HoldsAt(Active(E1),time) &
 % !HoldsAt(Completed(D),time-1) &
 % HoldsAt(Completed(D),time) &
 % HoldsAt(Condition(E1C),time) ->
 % Happens(Start(E1),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:116
-axiom(happens(start(e1), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:116
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  holds_at(neg(active(e1)), Time), holds_at(neg(completed(d)), Time-1), holds_at(completed(d), Time), holds_at(condition(e1c), Time) ->
+       happens(start(e1), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  happens(start(e1), Time) :-
+       holds_at(neg(active(e1)), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(completed(d), Time),
+       holds_at(condition(e1c), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  [holds_at(neg(active(e1)), Time), holds_at(neg(completed(d)), Time1), holds_at(completed(d), Time), holds_at(condition(e1c), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+axiom(happens(start(e1), Time),
    
-    [ not(holds_at(active(e1), start)),
-      not(holds_at(completed(d), t)),
-      holds_at(completed(d), start),
-      holds_at(condition(e1c), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(e1)), Time),
+      holds_at(neg(completed(d)), Time1),
+      holds_at(completed(d), Time),
+      holds_at(condition(e1c), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  not(holds_at(neg(active(e1)), Time)) :-
+       ( holds_at(neg(completed(d)), Time-1),
+         holds_at(completed(d), Time),
+         holds_at(condition(e1c), Time)
+       ),
+       not(happens(start(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  [holds_at(neg(completed(d)), Time2), holds_at(completed(d), Time), holds_at(condition(e1c), Time), not(happens(start(e1), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+axiom(holds_at(active(e1), Time),
+   
+    [ holds_at(neg(completed(d)), Time2),
+      holds_at(completed(d), Time),
+      holds_at(condition(e1c), Time),
+      not(happens(start(e1), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  not(holds_at(neg(completed(d)), Time-1)) :-
+       ( holds_at(completed(d), Time),
+         holds_at(condition(e1c), Time)
+       ),
+       holds_at(neg(active(e1)), Time),
+       not(happens(start(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  [holds_at(completed(d), Time), holds_at(condition(e1c), Time), holds_at(neg(active(e1)), Time), not(happens(start(e1), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(d), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+axiom(holds_at(completed(d), Time3),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(condition(e1c), Time),
+      holds_at(neg(active(e1)), Time),
+      not(happens(start(e1), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  not(holds_at(completed(d), Time)) :-
+       holds_at(condition(e1c), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e1)), Time),
+       not(happens(start(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  [holds_at(condition(e1c), Time), holds_at(neg(completed(d)), Time4), holds_at(neg(active(e1)), Time), not(happens(start(e1), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(d)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+axiom(holds_at(neg(completed(d)), Time),
+   
+    [ holds_at(condition(e1c), Time),
+      holds_at(neg(completed(d)), Time4),
+      holds_at(neg(active(e1)), Time),
+      not(happens(start(e1), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  not(holds_at(condition(e1c), Time)) :-
+       holds_at(completed(d), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e1)), Time),
+       not(happens(start(e1), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+
+ /*  [holds_at(completed(d), Time), holds_at(neg(completed(d)), Time5), holds_at(neg(active(e1)), Time), not(happens(start(e1), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(neg(condition(e1c)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',112).
+axiom(holds_at(neg(condition(e1c)), Time),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(neg(completed(d)), Time5),
+      holds_at(neg(active(e1)), Time),
+      not(happens(start(e1), Time)),
+      b(Time5, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:118
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:118
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',118).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:118
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:118
 % [time]
 % !HoldsAt(Active(E2),time) &
 % !HoldsAt(Completed(D),time-1) &
 % HoldsAt(Completed(D),time) &
 % HoldsAt(Condition(E2C),time) ->
 % Happens(Start(E2),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:123
-axiom(happens(start(e2), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:123
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  holds_at(neg(active(e2)), Time), holds_at(neg(completed(d)), Time-1), holds_at(completed(d), Time), holds_at(condition(e2c), Time) ->
+       happens(start(e2), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  happens(start(e2), Time) :-
+       holds_at(neg(active(e2)), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(completed(d), Time),
+       holds_at(condition(e2c), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  [holds_at(neg(active(e2)), Time), holds_at(neg(completed(d)), Time1), holds_at(completed(d), Time), holds_at(condition(e2c), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+axiom(happens(start(e2), Time),
    
-    [ not(holds_at(active(e2), start)),
-      not(holds_at(completed(d), t)),
-      holds_at(completed(d), start),
-      holds_at(condition(e2c), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(e2)), Time),
+      holds_at(neg(completed(d)), Time1),
+      holds_at(completed(d), Time),
+      holds_at(condition(e2c), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  not(holds_at(neg(active(e2)), Time)) :-
+       ( holds_at(neg(completed(d)), Time-1),
+         holds_at(completed(d), Time),
+         holds_at(condition(e2c), Time)
+       ),
+       not(happens(start(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  [holds_at(neg(completed(d)), Time2), holds_at(completed(d), Time), holds_at(condition(e2c), Time), not(happens(start(e2), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+axiom(holds_at(active(e2), Time),
+   
+    [ holds_at(neg(completed(d)), Time2),
+      holds_at(completed(d), Time),
+      holds_at(condition(e2c), Time),
+      not(happens(start(e2), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  not(holds_at(neg(completed(d)), Time-1)) :-
+       ( holds_at(completed(d), Time),
+         holds_at(condition(e2c), Time)
+       ),
+       holds_at(neg(active(e2)), Time),
+       not(happens(start(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  [holds_at(completed(d), Time), holds_at(condition(e2c), Time), holds_at(neg(active(e2)), Time), not(happens(start(e2), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(d), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+axiom(holds_at(completed(d), Time3),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(condition(e2c), Time),
+      holds_at(neg(active(e2)), Time),
+      not(happens(start(e2), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  not(holds_at(completed(d), Time)) :-
+       holds_at(condition(e2c), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e2)), Time),
+       not(happens(start(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  [holds_at(condition(e2c), Time), holds_at(neg(completed(d)), Time4), holds_at(neg(active(e2)), Time), not(happens(start(e2), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(d)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+axiom(holds_at(neg(completed(d)), Time),
+   
+    [ holds_at(condition(e2c), Time),
+      holds_at(neg(completed(d)), Time4),
+      holds_at(neg(active(e2)), Time),
+      not(happens(start(e2), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  not(holds_at(condition(e2c), Time)) :-
+       holds_at(completed(d), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e2)), Time),
+       not(happens(start(e2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+
+ /*  [holds_at(completed(d), Time), holds_at(neg(completed(d)), Time5), holds_at(neg(active(e2)), Time), not(happens(start(e2), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(neg(condition(e2c)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',120).
+axiom(holds_at(neg(condition(e2c)), Time),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(neg(completed(d)), Time5),
+      holds_at(neg(active(e2)), Time),
+      not(happens(start(e2), Time)),
+      b(Time5, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:125
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:125
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',125).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:125
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:125
 % [time]
 % !HoldsAt(Active(E3),time) &
 % !HoldsAt(Completed(D),time-1) &
 % HoldsAt(Completed(D),time) &
 % HoldsAt(Condition(E3C),time) ->
 % Happens(Start(E3),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:130
-axiom(happens(start(e3), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:130
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  holds_at(neg(active(e3)), Time), holds_at(neg(completed(d)), Time-1), holds_at(completed(d), Time), holds_at(condition(e3c), Time) ->
+       happens(start(e3), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  happens(start(e3), Time) :-
+       holds_at(neg(active(e3)), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(completed(d), Time),
+       holds_at(condition(e3c), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  [holds_at(neg(active(e3)), Time), holds_at(neg(completed(d)), Time1), holds_at(completed(d), Time), holds_at(condition(e3c), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+axiom(happens(start(e3), Time),
    
-    [ not(holds_at(active(e3), start)),
-      not(holds_at(completed(d), t)),
-      holds_at(completed(d), start),
-      holds_at(condition(e3c), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(e3)), Time),
+      holds_at(neg(completed(d)), Time1),
+      holds_at(completed(d), Time),
+      holds_at(condition(e3c), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  not(holds_at(neg(active(e3)), Time)) :-
+       ( holds_at(neg(completed(d)), Time-1),
+         holds_at(completed(d), Time),
+         holds_at(condition(e3c), Time)
+       ),
+       not(happens(start(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  [holds_at(neg(completed(d)), Time2), holds_at(completed(d), Time), holds_at(condition(e3c), Time), not(happens(start(e3), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+axiom(holds_at(active(e3), Time),
+   
+    [ holds_at(neg(completed(d)), Time2),
+      holds_at(completed(d), Time),
+      holds_at(condition(e3c), Time),
+      not(happens(start(e3), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  not(holds_at(neg(completed(d)), Time-1)) :-
+       ( holds_at(completed(d), Time),
+         holds_at(condition(e3c), Time)
+       ),
+       holds_at(neg(active(e3)), Time),
+       not(happens(start(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  [holds_at(completed(d), Time), holds_at(condition(e3c), Time), holds_at(neg(active(e3)), Time), not(happens(start(e3), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(d), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+axiom(holds_at(completed(d), Time3),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(condition(e3c), Time),
+      holds_at(neg(active(e3)), Time),
+      not(happens(start(e3), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  not(holds_at(completed(d), Time)) :-
+       holds_at(condition(e3c), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e3)), Time),
+       not(happens(start(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  [holds_at(condition(e3c), Time), holds_at(neg(completed(d)), Time4), holds_at(neg(active(e3)), Time), not(happens(start(e3), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(d)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+axiom(holds_at(neg(completed(d)), Time),
+   
+    [ holds_at(condition(e3c), Time),
+      holds_at(neg(completed(d)), Time4),
+      holds_at(neg(active(e3)), Time),
+      not(happens(start(e3), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  not(holds_at(condition(e3c), Time)) :-
+       holds_at(completed(d), Time),
+       holds_at(neg(completed(d)), Time-1),
+       holds_at(neg(active(e3)), Time),
+       not(happens(start(e3), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+
+ /*  [holds_at(completed(d), Time), holds_at(neg(completed(d)), Time5), holds_at(neg(active(e3)), Time), not(happens(start(e3), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(neg(condition(e3c)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',127).
+axiom(holds_at(neg(condition(e3c)), Time),
+   
+    [ holds_at(completed(d), Time),
+      holds_at(neg(completed(d)), Time5),
+      holds_at(neg(active(e3)), Time),
+      not(happens(start(e3), Time)),
+      b(Time5, Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:132
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:132
 %; XOR-join E1, E2, E3; F
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:133
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:133
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:133
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:133
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
 % [time]
 % !HoldsAt(Active(F),time) &
 % ((!HoldsAt(Completed(E1),time-1) & HoldsAt(Completed(E1),time))|
 %  (!HoldsAt(Completed(E2),time-1) & HoldsAt(Completed(E2),time))|
 %  (!HoldsAt(Completed(E3),time-1) & HoldsAt(Completed(E3),time))) ->
 % Happens(Start(F),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:138
-axiom(happens(start(f), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:138
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  holds_at(neg(active(f)), Time), (holds_at(neg(completed(e1)), Time-1), holds_at(completed(e1), Time);holds_at(neg(completed(e2)), Time-1), holds_at(completed(e2), Time);holds_at(neg(completed(e3)), Time-1), holds_at(completed(e3), Time)) ->
+       happens(start(f), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  happens(start(f), Time) :-
+       holds_at(neg(active(f)), Time),
+       (   holds_at(neg(completed(e1)), Time-1),
+           holds_at(completed(e1), Time)
+       ;   holds_at(neg(completed(e2)), Time-1),
+           holds_at(completed(e2), Time)
+       ;   holds_at(neg(completed(e3)), Time-1),
+           holds_at(completed(e3), Time)
+       ).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(neg(active(f)), Time),  (holds_at(neg(completed(e1)), Time1), holds_at(completed(e1), Time);holds_at(neg(completed(e2)), Time1), holds_at(completed(e2), Time);holds_at(neg(completed(e3)), Time1), holds_at(completed(e3), Time)), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(happens(start(f), Time),
    
-    [ not(holds_at(completed(e1), t)),
-      holds_at(completed(e1), start),
-      not(holds_at(active(f), start)),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(f)), Time),
+       (holds_at(neg(completed(e1)), Time1), holds_at(completed(e1), Time);holds_at(neg(completed(e2)), Time1), holds_at(completed(e2), Time);holds_at(neg(completed(e3)), Time1), holds_at(completed(e3), Time)),
+      b(Time1, Time)
     ]).
-axiom(happens(start(f), start),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(neg(active(f)), Time)) :-
+       (   holds_at(neg(completed(e1)), Time-1),
+           holds_at(completed(e1), Time)
+       ;   holds_at(neg(completed(e2)), Time-1),
+           holds_at(completed(e2), Time)
+       ;   holds_at(neg(completed(e3)), Time-1),
+           holds_at(completed(e3), Time)
+       ),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [(holds_at(neg(completed(e1)), Time2), holds_at(completed(e1), Time);holds_at(neg(completed(e2)), Time2), holds_at(completed(e2), Time);holds_at(neg(completed(e3)), Time2), holds_at(completed(e3), Time)), not(happens(start(f), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(active(f), Time),
    
-    [ not(holds_at(completed(e2), t)),
-      holds_at(completed(e2), start),
-      not(holds_at(active(f), start)),
-      b(t, start),
-      ignore(start-1=t)
+    [  (holds_at(neg(completed(e1)), Time2), holds_at(completed(e1), Time);holds_at(neg(completed(e2)), Time2), holds_at(completed(e2), Time);holds_at(neg(completed(e3)), Time2), holds_at(completed(e3), Time)),
+      not(happens(start(f), Time)),
+      b(Time2, Time)
     ]).
-axiom(happens(start(f), start),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(neg(completed(e1)), Time-1)) :-
+       holds_at(completed(e1), Time),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(completed(e1), Time), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(e1), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(completed(e1), Time3),
    
-    [ not(holds_at(completed(e3), t)),
-      holds_at(completed(e3), start),
-      not(holds_at(active(f), start)),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(completed(e1), Time),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(completed(e1), Time)) :-
+       holds_at(neg(completed(e1)), Time-1),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(neg(completed(e1)), Time4), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(e1)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(neg(completed(e1)), Time),
+   
+    [ holds_at(neg(completed(e1)), Time4),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(neg(completed(e2)), Time-1)) :-
+       holds_at(completed(e2), Time),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(completed(e2), Time), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(completed(e2), Time5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(completed(e2), Time5),
+   
+    [ holds_at(completed(e2), Time),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time5, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(completed(e2), Time)) :-
+       holds_at(neg(completed(e2)), Time-1),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(neg(completed(e2)), Time6), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time6, Time), ignore(Time-1==Time6)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time6],
+          holds_at(neg(completed(e2)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(neg(completed(e2)), Time),
+   
+    [ holds_at(neg(completed(e2)), Time6),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time6, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(neg(completed(e3)), Time-1)) :-
+       holds_at(completed(e3), Time),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(completed(e3), Time), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time7, Time), ignore(Time-1==Time7)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time7],
+          holds_at(completed(e3), Time7)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(completed(e3), Time7),
+   
+    [ holds_at(completed(e3), Time),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time7, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  not(holds_at(completed(e3), Time)) :-
+       holds_at(neg(completed(e3)), Time-1),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+
+ /*  [holds_at(neg(completed(e3)), Time8), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time8, Time), ignore(Time-1==Time8)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time8],
+          holds_at(neg(completed(e3)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',134).
+axiom(holds_at(neg(completed(e3)), Time),
+   
+    [ holds_at(neg(completed(e3)), Time8),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time8, Time)
     ]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:140
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:140
 %; while (FC) F; G
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:141
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:141
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:141
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:141
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
 % [time]
 % !HoldsAt(Active(F),time) &
 % !HoldsAt(Completed(F),time-1) &
 % HoldsAt(Completed(F),time) &
 % HoldsAt(Condition(FC),time) ->
 % Happens(Start(F),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:146
-axiom(happens(start(f), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:146
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  holds_at(neg(active(f)), Time), holds_at(neg(completed(f)), Time-1), holds_at(completed(f), Time), holds_at(condition(fc), Time) ->
+       happens(start(f), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  happens(start(f), Time) :-
+       holds_at(neg(active(f)), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(completed(f), Time),
+       holds_at(condition(fc), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  [holds_at(neg(active(f)), Time), holds_at(neg(completed(f)), Time1), holds_at(completed(f), Time), holds_at(condition(fc), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+axiom(happens(start(f), Time),
    
-    [ not(holds_at(active(f), start)),
-      not(holds_at(completed(f), t)),
-      holds_at(completed(f), start),
-      holds_at(condition(fc), start),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(f)), Time),
+      holds_at(neg(completed(f)), Time1),
+      holds_at(completed(f), Time),
+      holds_at(condition(fc), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  not(holds_at(neg(active(f)), Time)) :-
+       ( holds_at(neg(completed(f)), Time-1),
+         holds_at(completed(f), Time),
+         holds_at(condition(fc), Time)
+       ),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  [holds_at(neg(completed(f)), Time2), holds_at(completed(f), Time), holds_at(condition(fc), Time), not(happens(start(f), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+axiom(holds_at(active(f), Time),
+   
+    [ holds_at(neg(completed(f)), Time2),
+      holds_at(completed(f), Time),
+      holds_at(condition(fc), Time),
+      not(happens(start(f), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  not(holds_at(neg(completed(f)), Time-1)) :-
+       ( holds_at(completed(f), Time),
+         holds_at(condition(fc), Time)
+       ),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  [holds_at(completed(f), Time), holds_at(condition(fc), Time), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(f), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+axiom(holds_at(completed(f), Time3),
+   
+    [ holds_at(completed(f), Time),
+      holds_at(condition(fc), Time),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  not(holds_at(completed(f), Time)) :-
+       holds_at(condition(fc), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  [holds_at(condition(fc), Time), holds_at(neg(completed(f)), Time4), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(f)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+axiom(holds_at(neg(completed(f)), Time),
+   
+    [ holds_at(condition(fc), Time),
+      holds_at(neg(completed(f)), Time4),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  not(holds_at(condition(fc), Time)) :-
+       holds_at(completed(f), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(neg(active(f)), Time),
+       not(happens(start(f), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+
+ /*  [holds_at(completed(f), Time), holds_at(neg(completed(f)), Time5), holds_at(neg(active(f)), Time), not(happens(start(f), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(neg(condition(fc)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',142).
+axiom(holds_at(neg(condition(fc)), Time),
+   
+    [ holds_at(completed(f), Time),
+      holds_at(neg(completed(f)), Time5),
+      holds_at(neg(active(f)), Time),
+      not(happens(start(f), Time)),
+      b(Time5, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:148
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:148
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',148).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:148
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:148
 % [time]
 % !HoldsAt(Active(G),time) &
 % !HoldsAt(Completed(F),time-1) &
 % HoldsAt(Completed(F),time) &
 % !HoldsAt(Condition(FC),time) ->
 % Happens(Start(G),time).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:153
-axiom(happens(start(g), start),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:153
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  holds_at(neg(active(g)), Time), holds_at(neg(completed(f)), Time-1), holds_at(completed(f), Time), holds_at(neg(condition(fc)), Time) ->
+       happens(start(g), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  happens(start(g), Time) :-
+       holds_at(neg(active(g)), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(completed(f), Time),
+       holds_at(neg(condition(fc)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  [holds_at(neg(active(g)), Time), holds_at(neg(completed(f)), Time1), holds_at(completed(f), Time), holds_at(neg(condition(fc)), Time), b(Time1, Time), ignore(Time-1==Time1)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time1],
+          happens(start(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+axiom(happens(start(g), Time),
    
-    [ not(holds_at(active(g), start)),
-      not(holds_at(completed(f), t)),
-      holds_at(completed(f), start),
-      not(holds_at(condition(fc), start)),
-      b(t, start),
-      ignore(start-1=t)
+    [ holds_at(neg(active(g)), Time),
+      holds_at(neg(completed(f)), Time1),
+      holds_at(completed(f), Time),
+      holds_at(neg(condition(fc)), Time),
+      b(Time1, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  not(holds_at(neg(active(g)), Time)) :-
+       ( holds_at(neg(completed(f)), Time-1),
+         holds_at(completed(f), Time),
+         holds_at(neg(condition(fc)), Time)
+       ),
+       not(happens(start(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  [holds_at(neg(completed(f)), Time2), holds_at(completed(f), Time), holds_at(neg(condition(fc)), Time), not(happens(start(g), Time)), b(Time2, Time), ignore(Time-1==Time2)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time2],
+          holds_at(active(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+axiom(holds_at(active(g), Time),
+   
+    [ holds_at(neg(completed(f)), Time2),
+      holds_at(completed(f), Time),
+      holds_at(neg(condition(fc)), Time),
+      not(happens(start(g), Time)),
+      b(Time2, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  not(holds_at(neg(completed(f)), Time-1)) :-
+       ( holds_at(completed(f), Time),
+         holds_at(neg(condition(fc)), Time)
+       ),
+       holds_at(neg(active(g)), Time),
+       not(happens(start(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  [holds_at(completed(f), Time), holds_at(neg(condition(fc)), Time), holds_at(neg(active(g)), Time), not(happens(start(g), Time)), b(Time3, Time), ignore(Time-1==Time3)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time3],
+          holds_at(completed(f), Time3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+axiom(holds_at(completed(f), Time3),
+   
+    [ holds_at(completed(f), Time),
+      holds_at(neg(condition(fc)), Time),
+      holds_at(neg(active(g)), Time),
+      not(happens(start(g), Time)),
+      b(Time3, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  not(holds_at(completed(f), Time)) :-
+       holds_at(neg(condition(fc)), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(neg(active(g)), Time),
+       not(happens(start(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  [holds_at(neg(condition(fc)), Time), holds_at(neg(completed(f)), Time4), holds_at(neg(active(g)), Time), not(happens(start(g), Time)), b(Time4, Time), ignore(Time-1==Time4)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time4],
+          holds_at(neg(completed(f)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+axiom(holds_at(neg(completed(f)), Time),
+   
+    [ holds_at(neg(condition(fc)), Time),
+      holds_at(neg(completed(f)), Time4),
+      holds_at(neg(active(g)), Time),
+      not(happens(start(g), Time)),
+      b(Time4, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  not(holds_at(neg(condition(fc)), Time)) :-
+       holds_at(completed(f), Time),
+       holds_at(neg(completed(f)), Time-1),
+       holds_at(neg(active(g)), Time),
+       not(happens(start(g), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+
+ /*  [holds_at(completed(f), Time), holds_at(neg(completed(f)), Time5), holds_at(neg(active(g)), Time), not(happens(start(g), Time)), b(Time5, Time), ignore(Time-1==Time5)] ->
+       ta(Time,
+          tvs1=[Time, Time-1],
+          tvs2=[Time, Time5],
+          holds_at(condition(fc), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',150).
+axiom(holds_at(condition(fc), Time),
+   
+    [ holds_at(completed(f), Time),
+      holds_at(neg(completed(f)), Time5),
+      holds_at(neg(active(g)), Time),
+      not(happens(start(g), Time)),
+      b(Time5, Time)
     ]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:155
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:155
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',155).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:155
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:155
 % Happens(Start(A),0).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',155).
+
+ /*  [is_time(t)] ->
+       ta(0, tvs1=[0], tvs2=[t], happens(start(a), t)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',155).
 axiom(happens(start(a), t),
-    [is_time(0)]).
+    [is_time(t)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:156
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:156
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:156
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:156
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 % Happens(End(A),1).
-axiom(happens(end(a), start),
-    [is_time(1), b(t, start), ignore(t+1=start)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:157
+ /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
+       ta(1, tvs1=[1], tvs2=[now, t], happens(end(a), now)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
+axiom(happens(end(a), now),
+    [is_time(now), b(t, now)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:157
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:157
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:157
 % Happens(End(B),3).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
+
+ /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
+       ta(3, tvs1=[3], tvs2=[t, t3], happens(end(b), t3)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',157).
 axiom(happens(end(b), t3),
-    [is_time(3), b(t, t3), ignore(t+3=t3)]).
+    [is_time(t3), b(t, t3)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:158
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:158
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:158
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:158
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 % Happens(End(C1),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
+
+ /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
+       ta(5, tvs1=[5], tvs2=[t, t5], happens(end(c1), t5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 axiom(happens(end(c1), t5),
-    [is_time(5), b(t, t5), ignore(t+5=t5)]).
+    [is_time(t5), b(t, t5)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:159
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:159
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:159
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:159
 % Happens(End(C2),6).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
+
+ /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
+       ta(6, tvs1=[6], tvs2=[t, t6], happens(end(c2), t6)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',159).
 axiom(happens(end(c2), t6),
-    [is_time(6), b(t, t6), ignore(t+6=t6)]).
+    [is_time(t6), b(t, t6)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:160
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:160
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:160
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:160
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 % Happens(End(C3),7).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
+
+ /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
+       ta(7, tvs1=[7], tvs2=[t, t7], happens(end(c3), t7)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 axiom(happens(end(c3), t7),
-    [is_time(7), b(t, t7), ignore(t+7=t7)]).
+    [is_time(t7), b(t, t7)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:161
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:161
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:161
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:161
 % Happens(End(D),9).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
+
+ /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
+       ta(9, tvs1=[9], tvs2=[t, t9], happens(end(d), t9)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',161).
 axiom(happens(end(d), t9),
-    [is_time(9), b(t, t9), ignore(t+9=t9)]).
+    [is_time(t9), b(t, t9)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:162
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:162
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:162
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:162
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 % Happens(End(E2),11).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
+
+ /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
+       ta(11, tvs1=[11], tvs2=[t, t11], happens(end(e2), t11)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 axiom(happens(end(e2), t11),
-    [is_time(11), b(t, t11), ignore(t+11=t11)]).
+    [is_time(t11), b(t, t11)]).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:163
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:163
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:163
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:163
 % Happens(End(F),13).
-axiom(happens(end(f), t13),
-    [is_time(13), b(t, t13), ignore(t+13=t13)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:164
+ /*  [is_time(t13), b(t, t13), ignore(t+13==t13)] ->
+       ta(13, tvs1=[13], tvs2=[t, t13], happens(end(f), t13)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',163).
+axiom(happens(end(f), t13),
+    [is_time(t13), b(t, t13)]).
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:164
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',165).
 % Delta: 
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',165).
 next_axiom_uses(delta).
  
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:164
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:164
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',165).
 % Happens(End(F),15).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',165).
+
+ /*  [is_time(t15), b(t, t15), ignore(t+15==t15)] ->
+       ta(15, tvs1=[15], tvs2=[t, t15], happens(end(f), t15)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',165).
 axiom(happens(end(f), t15),
-    [is_time(15), b(t, t15), ignore(t+15=t15)]).
+    [is_time(t15), b(t, t15)]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:166
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:166
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',167).
 %; Gamma
 % [activity]
  % !HoldsAt(Active(activity),0).
- %  not(initially(active(Activity))).
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:168
-axiom(not(initially(active(Active_Ret))),
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:168
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',169).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(active(Activity)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',169).
+axiom(initially(neg(active(Activity))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:169
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:169
 % [activity]
  % !HoldsAt(Completed(activity),0).
- %  not(initially(completed(Activity))).
-axiom(not(initially(completed(Completed_Ret))),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',169).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          initially(neg(completed(Activity)))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',169).
+axiom(initially(neg(completed(Activity))),
     []).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:170
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:170
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
 % [time]
  % time=% 14 <-> HoldsAt(Condition(FC),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
 
- /*  Time=14 <->
+ /*  equals(Time, 14) <->
        holds_at(condition(fc), Time).
  */
-axiom(Time=14,
-    [holds_at(condition(fc), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  [equals] <->
+       [holds_at, condition, fc].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  equals(Time, 14) ->
+       holds_at(condition(fc), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  holds_at(condition(fc), Time) :-
+       equals(Time, 14).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  [equals(Time, 14)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(condition(fc), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
 axiom(holds_at(condition(fc), Time),
     [equals(Time, 14)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  holds_at(condition(fc), Time) ->
+       equals(Time, 14).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  not(holds_at(condition(fc), Time)) :-
+       not(equals(Time, 14)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+
+ /*  [not(equals(Time, 14))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(condition(fc)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+axiom(holds_at(neg(condition(fc)), Time),
+    [not(equals(Time, 14))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:171
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:171
 % [time]
  % !HoldsAt(Condition(E1C),time).
- %  not(holds_at(condition(e1c),Time)).
-axiom(not(holds_at(condition(e1c), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',171).
+holds_at(neg(condition(e1c)),Time).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:172
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:172
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
 % [time]
  % time=% 10 <-> HoldsAt(Condition(E2C),time).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
 
- /*  Time=10 <->
+ /*  equals(Time, 10) <->
        holds_at(condition(e2c), Time).
  */
-axiom(Time=10,
-    [holds_at(condition(e2c), Time)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  [equals] <->
+       [holds_at, condition, e2c].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  equals(Time, 10) ->
+       holds_at(condition(e2c), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  holds_at(condition(e2c), Time) :-
+       equals(Time, 10).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  [equals(Time, 10)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(condition(e2c), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
 axiom(holds_at(condition(e2c), Time),
     [equals(Time, 10)]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  holds_at(condition(e2c), Time) ->
+       equals(Time, 10).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  not(holds_at(condition(e2c), Time)) :-
+       not(equals(Time, 10)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+
+ /*  [not(equals(Time, 10))] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(condition(e2c)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+axiom(holds_at(neg(condition(e2c)), Time),
+    [not(equals(Time, 10))]).
 
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:173
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:173
 % [time]
  % !HoldsAt(Condition(E3C),time).
- %  not(holds_at(condition(e3c),Time)).
-axiom(not(holds_at(condition(e3c), Time1)),
-    []).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',173).
+holds_at(neg(condition(e3c)),Time).
 
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:175
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:175
 % completion Delta Happens
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:176
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',175).
 ==> completion(delta).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',175).
 ==> completion(happens).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:177
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',178).
 % range time 0 18
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:178
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',178).
 ==> range(time,0,18).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:178
 % range offset 1 1
-% From /opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e:179
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',178).
 ==> range(offset,1,1).
 %; End of file.
