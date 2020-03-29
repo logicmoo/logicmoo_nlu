@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:26 GMT
+% Sun, 29 Mar 2020 18:48:11 GMT
 % From ../ecnet/Cognition.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',87).
 
@@ -21,49 +21,36 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:10
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 % event Read(agent,text,content)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 event(read(agent,text,content)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 ==> mpred_prop(read(agent,text,content),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 ==> meta_argtypes(read(agent,text,content)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:11
 % event ThinkAbout(agent,content)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 event(thinkAbout(agent,content)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 ==> mpred_prop(thinkAbout(agent,content),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',11).
 ==> meta_argtypes(thinkAbout(agent,content)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:12
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 % event Think(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 event(think(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 ==> mpred_prop(think(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 ==> meta_argtypes(think(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:13
 % event Understand(agent,content)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 event(understand(agent,content)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 ==> mpred_prop(understand(agent,content),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',13).
 ==> meta_argtypes(understand(agent,content)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:14
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',15).
 % event Dream(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',15).
 event(dream(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',15).
 ==> mpred_prop(dream(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',15).
 ==> meta_argtypes(dream(agent)).
 
 
@@ -73,7 +60,6 @@ event(dream(agent)).
 % Happens(Read(agent,text,content),time) ->
 % HoldsAt(See(agent,text),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e:18
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
 
  /*  happens(read(Agent, Text, Content), Time) ->
        holds_at(see(Agent, Text), Time).
@@ -83,7 +69,6 @@ event(dream(agent)).
  /*  holds_at(see(Agent, Text), Time) :-
        happens(read(Agent, Text, Content), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
 
  /*  [holds_at(metreqs(read(Agent, Text, Content)), Time)] ->
        ta(Time,
@@ -94,19 +79,17 @@ event(dream(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
 axiom(requires(read(Agent, Text, Content), Time),
     [holds_at(metreqs(read(Agent, Text, Content)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
 
  /*  [holds_at(see(Agent, Text), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(read(Agent, Text, Content)),
+          holds_at(metreqs(read(Agent, Text, Content)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
-axiom(holds_at(requirements(read(Agent, Text, Content)), Time),
+axiom(holds_at(metreqs(read(Agent, Text, Content)), Time),
     [holds_at(see(Agent, Text), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',17).
 
  /*  not(happens(read(Agent, Text, Content), Time)) :-
        not(holds_at(see(Agent, Text), Time)).

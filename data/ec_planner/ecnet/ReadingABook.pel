@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:49 GMT
+% Sun, 29 Mar 2020 18:48:39 GMT
 % From ../ecnet/ReadingABook.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',41).
 
@@ -31,147 +31,178 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',22).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',22).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
 % ignore Love, ThreatenedBy
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(love)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(love).
+axiom(ignore(love),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(threatenedBy)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(threatenedBy).
+axiom(ignore(threatenedBy),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:24
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(lookOutOnto).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(lookOutOnto)).
+ */
+axiom(ignore(lookOutOnto),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(floor).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(floor)).
+ */
+axiom(ignore(floor),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(buildingOf).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(buildingOf)).
+ */
+axiom(ignore(buildingOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(skyOf).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(skyOf)).
+ */
+axiom(ignore(skyOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',24).
-ignore(groundOf).
+
+ /*  [] ->
+       ta(Ta_Param4, tvs1=[], tvs2=[], ignore(groundOf)).
+ */
+axiom(ignore(groundOf),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
 % ignore Inside
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(inside)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
-ignore(inside).
+axiom(ignore(inside),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:26
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
-ignore(near).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(near)).
+ */
+axiom(ignore(near),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
-ignore(walkFrom).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(walkFrom)).
+ */
+axiom(ignore(walkFrom),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
-ignore(walkFromTo).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(walkFromTo)).
+ */
+axiom(ignore(walkFromTo),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',26).
-ignore(runFromTo).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(runFromTo)).
+ */
+axiom(ignore(runFromTo),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',29).
 % option renaming off
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',29).
 :- set_ec_option(renaming, off).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:31
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
 % load answers/Mueller2003/Ontology.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
 :- load_e('answers/Mueller2003/Ontology.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:33
 % load answers/Mueller2004c/RTSpaceM.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
 :- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',33).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
 % load answers/Mueller2004c/OTSpaceM.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
 :- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:35
 % load answers/Mueller2004c/Book.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
 :- load_e('answers/Mueller2004c/Book.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',35).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
 % load answers/Mueller2004c/Cognition.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
 :- load_e('answers/Mueller2004c/Cognition.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:37
 % load answers/Mueller2003/Sleep.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
 :- load_e('answers/Mueller2003/Sleep.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',37).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',39).
 % load answers/Mueller2003/Vision.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',39).
 :- load_e('answers/Mueller2003/Vision.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',39).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',39).
+:- if(is_e_toplevel).
 
  /*  loading(changed,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e').
@@ -195,9 +226,7 @@ ignore(runFromTo).
 % event LookAt(agent,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 event(lookAt(agent,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 ==> mpred_prop(lookAt(agent,object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 ==> meta_argtypes(lookAt(agent,object)).
 
 
@@ -207,11 +236,9 @@ event(lookAt(agent,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e:18
 % fluent See(agent,object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 fluent(see(agent,object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 ==> mpred_prop(see(agent,object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 ==> meta_argtypes(see(agent,object)).
 
 
@@ -383,33 +410,40 @@ axiom(terminates(walkDownStaircase(Agent, Door), see(Agent, Object), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',41).
 % door Door1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',41).
 ==> t(door,door1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',43).
 % room Room0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',43).
 ==> t(room,room0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',45).
 % room Room1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',45).
 ==> t(room,room1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',47).
 % Side1(Door1)=Room0.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(door1), room0)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',47).
-equals(side1(door1),room0).
+axiom(equals(side1(door1), room0),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:47
 % Side2(Door1)=Room1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',47).
-equals(side2(door1),room1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(door1), room1)).
+ */
+axiom(equals(side2(door1), room1),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:49
 % agent Reader1
@@ -419,25 +453,21 @@ equals(side2(door1),room1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',52).
 % book Book1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',52).
 ==> t(book,book1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',54).
 % chair Chair1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',54).
 ==> t(chair,chair1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',56).
 % physobj BookSupport1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',56).
 ==> t(physobj,bookSupport1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:57
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',58).
 % content Content1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',58).
 ==> t(content,content1).
 %; initial state
 % [agent,object]
@@ -447,13 +477,13 @@ equals(side2(door1),room1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',60).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',60).
-axiom(initially(neg(holding(Agent, Object))),
+axiom(holds_at(neg(holding(Agent, Object)), start),
     []).
 
 
@@ -461,16 +491,15 @@ axiom(initially(neg(holding(Agent, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',62).
 % [agent,physobj]
  % !HoldsAt(SittingOn(agent,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',62).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(sittingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',62).
-axiom(initially(neg(sittingOn(Agent, Physobj))),
+axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
     []).
 
 
@@ -480,40 +509,33 @@ axiom(initially(neg(sittingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',62).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(lyingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',62).
-axiom(initially(neg(lyingOn(Agent, Physobj))),
+axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:63
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',64).
 % !{page}% HoldsAt(BookIsOpenTo(Book1,page),0).
- %  not(exists([Page],initially(bookIsOpenTo(book1,Page)))).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',64).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(bookIsOpenTo(book1, Page))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',64).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(bookIsOpenTo(book1, Page))).
+ /*  not(exists([Page],
+   	   holds_at(bookIsOpenTo(book1,Page),start+0))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',64).
 
  /*  [] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(bookIsOpenTo(book1, Page)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(bookIsOpenTo(book1, Page)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',64).
-axiom(initially(neg(bookIsOpenTo(book1, Page))),
+axiom(holds_at(neg(bookIsOpenTo(book1, Page)), start),
     []).
 
 
@@ -524,11 +546,11 @@ axiom(initially(neg(bookIsOpenTo(book1, Page))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:66
 
  /*  not((equals(Physobj1, book1), equals(Physobj2, bookSupport1))) ->
-       initially(neg(on(Physobj1, Physobj2))).
+       holds_at(neg(on(Physobj1, Physobj2)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',66).
 
- /*  initially(neg(on(Physobj1, Physobj2))) :-
+ /*  holds_at(neg(on(Physobj1, Physobj2)), start+0) :-
        (   not(equals(Physobj1, book1))
        ;   not(equals(Physobj2, bookSupport1))
        ).
@@ -536,13 +558,13 @@ axiom(initially(neg(bookIsOpenTo(book1, Page))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',66).
 
  /*  [(not(equals(Physobj1, book1));not(equals(Physobj2, bookSupport1)))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(on(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',66).
-axiom(initially(neg(on(Physobj1, Physobj2))),
+axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
    
     [  (not(equals(Physobj1, book1));not(equals(Physobj2, bookSupport1)))
     ]).
@@ -551,13 +573,12 @@ axiom(initially(neg(on(Physobj1, Physobj2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:67
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',68).
 % HoldsAt(Dressed(Reader1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',68).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(reader1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(reader1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',68).
-axiom(initially(dressed(reader1)),
+axiom(holds_at(dressed(reader1), start),
     []).
 
 
@@ -566,23 +587,21 @@ axiom(initially(dressed(reader1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',68).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(reader1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(reader1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',68).
-axiom(initially(awake(reader1)),
+axiom(holds_at(awake(reader1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:69
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',70).
 % HoldsAt(Sleep3(Reader1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',70).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(reader1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(reader1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',70).
-axiom(initially(sleep3(reader1)),
+axiom(holds_at(sleep3(reader1), start),
     []).
 
 
@@ -591,23 +610,24 @@ axiom(initially(sleep3(reader1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',70).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(reader1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(reader1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',70).
-axiom(initially(standing(reader1)),
+axiom(holds_at(standing(reader1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:71
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',72).
 % HoldsAt(DoorUnlocked(Door1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',72).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(door1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(doorUnlocked(door1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',72).
-axiom(initially(doorUnlocked(door1)),
+axiom(holds_at(doorUnlocked(door1), start),
     []).
 
 
@@ -616,23 +636,21 @@ axiom(initially(doorUnlocked(door1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',72).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorIsOpen(door1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',72).
-axiom(initially(doorIsOpen(door1)),
+axiom(holds_at(doorIsOpen(door1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:73
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',74).
 % HoldsAt(At(Reader1,Room0),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',74).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(reader1, room0))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(reader1, room0), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',74).
-axiom(initially(at(reader1, room0)),
+axiom(holds_at(at(reader1, room0), start),
     []).
 
 
@@ -641,23 +659,21 @@ axiom(initially(at(reader1, room0)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',74).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(chair1, room1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(chair1, room1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',74).
-axiom(initially(at(chair1, room1)),
+axiom(holds_at(at(chair1, room1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:75
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',76).
 % HoldsAt(At(Book1,Room1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',76).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(book1, room1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(book1, room1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',76).
-axiom(initially(at(book1, room1)),
+axiom(holds_at(at(book1, room1), start),
     []).
 
 
@@ -666,10 +682,13 @@ axiom(initially(at(book1, room1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',76).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(on(book1, bookSupport1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(on(book1, bookSupport1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',76).
-axiom(initially(on(book1, bookSupport1)),
+axiom(holds_at(on(book1, bookSupport1), start),
     []).
 
 
@@ -677,16 +696,15 @@ axiom(initially(on(book1, bookSupport1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',78).
 % [object]
  % !HoldsAt(See(Reader1,object),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',78).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(see(reader1, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(see(reader1, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',78).
-axiom(initially(neg(see(reader1, Object))),
+axiom(holds_at(neg(see(reader1, Object)), start),
     []).
 
 
@@ -699,189 +717,214 @@ axiom(initially(neg(see(reader1, Object))),
 % Happens(WalkThroughDoor12(Reader1,Door1),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',80).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(walkThroughDoor12(reader1, door1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(walkThroughDoor12(reader1, door1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',80).
-axiom(happens(walkThroughDoor12(reader1, door1), t),
-    [is_time(t)]).
+axiom(happens(walkThroughDoor12(reader1, door1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:81
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',82).
 % Happens(TakeOffOf(Reader1,Book1,BookSupport1),1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',82).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1,
-          tvs1=[1],
-          tvs2=[now, t],
-          happens(takeOffOf(reader1, book1, bookSupport1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(takeOffOf(reader1, book1, bookSupport1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',82).
-axiom(happens(takeOffOf(reader1, book1, bookSupport1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(takeOffOf(reader1, book1, bookSupport1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:82
 % Happens(SitOn(Reader1,Chair1),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',82).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(sitOn(reader1, chair1), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(sitOn(reader1, chair1), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',82).
-axiom(happens(sitOn(reader1, chair1), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(sitOn(reader1, chair1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:83
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',84).
 % Happens(BookOpenTo(Reader1,Book1,1),3).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',84).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(bookOpenTo(reader1, book1, 1), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(bookOpenTo(reader1, book1, 1), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',84).
-axiom(happens(bookOpenTo(reader1, book1, 1), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(bookOpenTo(reader1, book1, 1), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:84
 % Happens(LookAt(Reader1,Book1),4).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',84).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4, tvs1=[4], tvs2=[t, t4], happens(lookAt(reader1, book1), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(lookAt(reader1, book1), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',84).
-axiom(happens(lookAt(reader1, book1), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(lookAt(reader1, book1), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:85
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',86).
 % Happens(Read(Reader1,Book1,Content1),5).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',86).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(read(reader1, book1, content1), t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(read(reader1, book1, content1), Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',86).
-axiom(happens(read(reader1, book1, content1), t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(read(reader1, book1, content1), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:86
 % Happens(ThinkAbout(Reader1,Content1),6).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',86).
 
- /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
-       ta(6, tvs1=[6], tvs2=[t, t6], happens(thinkAbout(reader1, content1), t6)).
+ /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
+       ta(start+6,
+          tvs1=[start+6],
+          tvs2=[Start6, start],
+          happens(thinkAbout(reader1, content1), Start6)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',86).
-axiom(happens(thinkAbout(reader1, content1), t6),
-    [is_time(t6), b(t, t6)]).
+axiom(happens(thinkAbout(reader1, content1), Start6),
+    [b(start, Start6), toffset(start, 6, Start6)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:87
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',88).
 % Happens(Understand(Reader1,Content1),7).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',88).
 
- /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
-       ta(7, tvs1=[7], tvs2=[t, t7], happens(understand(reader1, content1), t7)).
+ /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
+       ta(start+7,
+          tvs1=[start+7],
+          tvs2=[Start7, start],
+          happens(understand(reader1, content1), Start7)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',88).
-axiom(happens(understand(reader1, content1), t7),
-    [is_time(t7), b(t, t7)]).
+axiom(happens(understand(reader1, content1), Start7),
+    [b(start, Start7), toffset(start, 7, Start7)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:88
 % Happens(BookTurnPageTo(Reader1,Book1,2),8).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',88).
 
- /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
-       ta(8, tvs1=[8], tvs2=[t, t8], happens(bookTurnPageTo(reader1, book1, 2), t8)).
+ /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
+       ta(start+8,
+          tvs1=[start+8],
+          tvs2=[Start8, start],
+          happens(bookTurnPageTo(reader1, book1, 2), Start8)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',88).
-axiom(happens(bookTurnPageTo(reader1, book1, 2), t8),
-    [is_time(t8), b(t, t8)]).
+axiom(happens(bookTurnPageTo(reader1, book1, 2), Start8),
+    [b(start, Start8), toffset(start, 8, Start8)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:89
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',90).
 % Happens(BookTurnPageTo(Reader1,Book1,3),9).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',90).
 
- /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
-       ta(9, tvs1=[9], tvs2=[t, t9], happens(bookTurnPageTo(reader1, book1, 3), t9)).
+ /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
+       ta(start+9,
+          tvs1=[start+9],
+          tvs2=[Start9, start],
+          happens(bookTurnPageTo(reader1, book1, 3), Start9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',90).
-axiom(happens(bookTurnPageTo(reader1, book1, 3), t9),
-    [is_time(t9), b(t, t9)]).
+axiom(happens(bookTurnPageTo(reader1, book1, 3), Start9),
+    [b(start, Start9), toffset(start, 9, Start9)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:90
 % Happens(BookClose(Reader1,Book1),10).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',90).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(bookClose(reader1, book1), t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(bookClose(reader1, book1), Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',90).
-axiom(happens(bookClose(reader1, book1), t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(bookClose(reader1, book1), Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:91
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',92).
 % Happens(RiseFrom(Reader1,Chair1),11).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',92).
 
- /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
-       ta(11, tvs1=[11], tvs2=[t, t11], happens(riseFrom(reader1, chair1), t11)).
+ /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
+       ta(start+11,
+          tvs1=[start+11],
+          tvs2=[Startd11, start],
+          happens(riseFrom(reader1, chair1), Startd11)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',92).
-axiom(happens(riseFrom(reader1, chair1), t11),
-    [is_time(t11), b(t, t11)]).
+axiom(happens(riseFrom(reader1, chair1), Startd11),
+    [b(start, Startd11), toffset(start, 11, Startd11)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:92
 % Happens(PlaceOn(Reader1,Book1,BookSupport1),12).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',92).
 
- /*  [is_time(t12), b(t, t12), ignore(t+12==t12)] ->
-       ta(12,
-          tvs1=[12],
-          tvs2=[t, t12],
-          happens(placeOn(reader1, book1, bookSupport1), t12)).
+ /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
+       ta(start+12,
+          tvs1=[start+12],
+          tvs2=[Startd12, start],
+          happens(placeOn(reader1, book1, bookSupport1), Startd12)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',92).
-axiom(happens(placeOn(reader1, book1, bookSupport1), t12),
-    [is_time(t12), b(t, t12)]).
+axiom(happens(placeOn(reader1, book1, bookSupport1), Startd12),
+    [b(start, Startd12), toffset(start, 12, Startd12)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:93
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',94).
 % Happens(WalkThroughDoor21(Reader1,Door1),13).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',94).
 
- /*  [is_time(t13), b(t, t13), ignore(t+13==t13)] ->
-       ta(13,
-          tvs1=[13],
-          tvs2=[t, t13],
-          happens(walkThroughDoor21(reader1, door1), t13)).
+ /*  [b(start, Startd13), toffset(start, 13, Startd13), ignore(start+13==Startd13)] ->
+       ta(start+13,
+          tvs1=[start+13],
+          tvs2=[Startd13, start],
+          happens(walkThroughDoor21(reader1, door1), Startd13)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',94).
-axiom(happens(walkThroughDoor21(reader1, door1), t13),
-    [is_time(t13), b(t, t13)]).
+axiom(happens(walkThroughDoor21(reader1, door1), Startd13),
+    [b(start, Startd13), toffset(start, 13, Startd13)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:95
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',96).
 % range time 0 14
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',96).
 ==> range(time,0,14).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:96
@@ -892,7 +935,6 @@ axiom(happens(walkThroughDoor21(reader1, door1), t13),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:97
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',98).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',98).
 ==> range(offset,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:98
@@ -903,6 +945,5 @@ axiom(happens(walkThroughDoor21(reader1, door1), t13),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e:100
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',101).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',101).
 ==> completion(happens).
 %; End of file.

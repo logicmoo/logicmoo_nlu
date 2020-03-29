@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:28 GMT
+% Sun, 29 Mar 2020 18:48:13 GMT
 % From ../ecnet/Diving.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',43).
 
@@ -20,63 +20,74 @@
 %; scuba diving
 %;
 
-% sort object
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:13
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',14).
+% sort object
 ==> sort(object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:14
 % sort agent: object
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',14).
 ==> subsort(agent,object).
 
-% sort diver: agent
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:15
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',16).
+% sort diver: agent
 ==> subsort(diver,agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:16
 % sort depth: integer
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',16).
 ==> subsort(depth,integer).
 
-% sort boat: object
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:17
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',18).
+% sort boat: object
 ==> subsort(boat,object).
 %; reference line, anchor line, shotline, SMB line, ...
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:20
 % sort line: object
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',20).
 ==> subsort(line,object).
 
-% sort equipment: object
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',23).
+% sort equipment: object
 ==> subsort(equipment,object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:23
 % sort weight: equipment
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',23).
 ==> subsort(weight,equipment).
 
-% sort fin: equipment
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',25).
+% sort fin: equipment
 ==> subsort(fin,equipment).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:25
 % sort airtank: equipment
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',25).
 ==> subsort(airtank,equipment).
 %; buoyancy compensator (BC)
 %; buoyancy control device (BCD)
 
-% sort computer: equipment
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',30).
+% sort computer: equipment
 ==> subsort(computer,equipment).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:30
 % sort bc: equipment
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',30).
 ==> subsort(bc,equipment).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:32
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',33).
 % fluent AtDepth(object,depth)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',33).
 fluent(atDepth(object,depth)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',33).
 ==> mpred_prop(atDepth(object,depth),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',33).
 ==> meta_argtypes(atDepth(object,depth)).
 
 
@@ -92,7 +103,6 @@ fluent(atDepth(object,depth)).
  /*  holds_at(atDepth(Object, Depth1), Time), holds_at(atDepth(Object, Depth2), Time) ->
        equals(Depth1, Depth2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',35).
 
  /*  not(holds_at(atDepth(Object, Depth1), Time)) :-
        holds_at(atDepth(Object, Depth2), Time),
@@ -137,19 +147,14 @@ axiom(holds_at(neg(atDepth(Object, Depth2)), Time),
 % event Ascend(diver,depth)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',39).
 event(ascend(diver,depth)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',39).
 ==> mpred_prop(ascend(diver,depth),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',39).
 ==> meta_argtypes(ascend(diver,depth)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',42).
 % event Descend(diver,depth)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',42).
 event(descend(diver,depth)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',42).
 ==> mpred_prop(descend(diver,depth),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',42).
 ==> meta_argtypes(descend(diver,depth)).
 
 
@@ -165,7 +170,6 @@ event(descend(diver,depth)).
  /*  holds_at(atDepth(Diver, Depth1), Time), happens(descend(Diver, Depth2), Time) ->
        Depth2>Depth1.
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',44).
 
  /*  comparison(Depth2, Depth1, >) :-
        holds_at(atDepth(Diver, Depth1), Time),
@@ -238,7 +242,6 @@ axiom(not(happens(descend(Diver, Depth2), Time)),
  /*  holds_at(atDepth(Diver, Depth1), Time), happens(ascend(Diver, Depth2), Time) ->
        Depth2<Depth1.
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',50).
 
  /*  comparison(Depth2, Depth1, <) :-
        holds_at(atDepth(Diver, Depth1), Time),
@@ -324,7 +327,6 @@ axiom(initiates(descend(Diver, Depth), atDepth(Diver, Depth), Time),
 % HoldsAt(AtDepth(diver,depth1),time) ->
 % Terminates(Descend(diver,depth2),AtDepth(diver,depth1),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:58
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',57).
 
  /*  [holds_at(atDepth(Diver, Depth1), Time)] ->
        ta(Time,
@@ -363,7 +365,6 @@ axiom(initiates(ascend(Diver, Depth), atDepth(Diver, Depth), Time),
 % HoldsAt(AtDepth(diver,depth1),time) ->
 % Terminates(Ascend(diver,depth2),AtDepth(diver,depth1),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:65
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',64).
 
  /*  [holds_at(atDepth(Diver, Depth1), Time)] ->
        ta(Time,
@@ -381,39 +382,28 @@ axiom(terminates(ascend(Diver, Depth2), atDepth(Diver, Depth1), Time),
 % fluent Wearing(diver,equipment)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',67).
 fluent(wearing(diver,equipment)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',67).
 ==> mpred_prop(wearing(diver,equipment),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',67).
 ==> meta_argtypes(wearing(diver,equipment)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:69
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',70).
 % event PutOn(diver,equipment)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',70).
 event(putOn(diver,equipment)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',70).
 ==> mpred_prop(putOn(diver,equipment),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',70).
 ==> meta_argtypes(putOn(diver,equipment)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:71
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',72).
 % event TakeOff(diver,equipment)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',72).
 event(takeOff(diver,equipment)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',72).
 ==> mpred_prop(takeOff(diver,equipment),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',72).
 ==> meta_argtypes(takeOff(diver,equipment)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:73
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',74).
 % event Lose(diver,equipment)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',74).
 event(lose(diver,equipment)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',74).
 ==> mpred_prop(lose(diver,equipment),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',74).
 ==> meta_argtypes(lose(diver,equipment)).
 
 
@@ -421,7 +411,6 @@ event(lose(diver,equipment)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',76).
 % [diver,equipment,depth,time]
 % Releases(PutOn(diver,equipment),AtDepth(equipment,depth),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',76).
 
  /*  [] ->
        ta(Time,
@@ -460,7 +449,6 @@ axiom(releases(putOn(Diver, Equipment), underWater(Equipment), Time),
 % Happens(PutOn(diver,equipment),time) ->
 % !{diver1} HoldsAt(Wearing(diver1,equipment),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:83
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
 
  /*  happens(putOn(Diver, Equipment), Time) ->
        not(exists([Diver1],
@@ -471,7 +459,6 @@ axiom(releases(putOn(Diver, Equipment), underWater(Equipment), Time),
  /*  not(holds_at(wearing(Diver1, Equipment), Time)) :-
        happens(putOn(Diver, Equipment), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
 
  /*  [holds_at(metreqs(putOn(Diver, Equipment)), Time)] ->
        ta(Time,
@@ -482,18 +469,16 @@ axiom(releases(putOn(Diver, Equipment), underWater(Equipment), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
 axiom(requires(putOn(Diver, Equipment), Time),
     [holds_at(metreqs(putOn(Diver, Equipment)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
 
  /*  [holds_at(neg(wearing(Diver1, Equipment)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(putOn(Diver, Equipment)), Time)).
+          holds_at(metreqs(putOn(Diver, Equipment)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
-axiom(holds_at(requirements(putOn(Diver, Equipment)), Time),
+axiom(holds_at(metreqs(putOn(Diver, Equipment)), Time),
     [holds_at(neg(wearing(Diver1, Equipment)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',82).
 
  /*  not(happens(putOn(Diver, Equipment), Time)) :-
        holds_at(wearing(Diver1, Equipment), Time).
@@ -545,7 +530,6 @@ axiom(holds_at(neg(wearing(Diver, Equipment)), Time),
    
     [  (holds_at(neg(atDepth(Equipment, Depth)), Time), holds_at(atDepth(Diver, Depth), Time);holds_at(neg(atDepth(Diver, Depth)), Time), holds_at(atDepth(Equipment, Depth), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',87).
 
  /*  holds_at(atDepth(Equipment, Depth), Time) :-
        holds_at(atDepth(Diver, Depth), Time),
@@ -661,7 +645,6 @@ axiom(holds_at(neg(holding(Diver, Object)), Time),
    
     [  (holds_at(neg(atDepth(Object, Depth)), Time), holds_at(atDepth(Diver, Depth), Time);holds_at(neg(atDepth(Diver, Depth)), Time), holds_at(atDepth(Object, Depth), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',92).
 
  /*  holds_at(atDepth(Object, Depth), Time) :-
        holds_at(atDepth(Diver, Depth), Time),
@@ -777,7 +760,6 @@ axiom(holds_at(neg(wearing(Diver, Equipment)), Time),
    
     [  (holds_at(neg(underWater(Equipment)), Time), holds_at(underWater(Diver), Time);holds_at(neg(underWater(Diver)), Time), holds_at(underWater(Equipment), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',97).
 
  /*  holds_at(underWater(Equipment), Time) :-
        holds_at(underWater(Diver), Time),
@@ -893,7 +875,6 @@ axiom(holds_at(neg(holding(Diver, Object)), Time),
    
     [  (holds_at(neg(underWater(Object)), Time), holds_at(underWater(Diver), Time);holds_at(neg(underWater(Diver)), Time), holds_at(underWater(Object), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',102).
 
  /*  holds_at(underWater(Object), Time) :-
        holds_at(underWater(Diver), Time),
@@ -1150,9 +1131,7 @@ axiom(terminates(lose(Diver, Equipment), underWater(Equipment), Time),
 % fluent Holding(diver,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',141).
 fluent(holding(diver,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',141).
 ==> mpred_prop(holding(diver,object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',141).
 ==> meta_argtypes(holding(diver,object)).
 
 
@@ -1162,7 +1141,6 @@ fluent(holding(diver,object)).
 % HoldsAt(Holding(diver1,diver2),time) ->
 % !HoldsAt(Holding(diver2,diver1),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:145
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',144).
 
  /*  holds_at(holding(Diver1, Diver2), Time) ->
        holds_at(neg(holding(Diver2, Diver1)), Time).
@@ -1172,7 +1150,6 @@ fluent(holding(diver,object)).
  /*  holds_at(neg(holding(Diver2, Diver1)), Time) :-
        holds_at(holding(Diver1, Diver2), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',144).
 
  /*  [holds_at(holding(Diver1, Diver2), Time)] ->
        ta(Time,
@@ -1183,7 +1160,6 @@ fluent(holding(diver,object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',144).
 axiom(holds_at(neg(holding(Diver2, Diver1)), Time),
     [holds_at(holding(Diver1, Diver2), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',144).
 
  /*  not(holds_at(holding(Diver1, Diver2), Time)) :-
        not(holds_at(neg(holding(Diver2, Diver1)), Time)).
@@ -1204,19 +1180,14 @@ axiom(holds_at(neg(holding(Diver1, Diver2)), Time),
 % event Grab(diver,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',147).
 event(grab(diver,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',147).
 ==> mpred_prop(grab(diver,object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',147).
 ==> meta_argtypes(grab(diver,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:149
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',150).
 % event LetGoOf(diver,object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',150).
 event(letGoOf(diver,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',150).
 ==> mpred_prop(letGoOf(diver,object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',150).
 ==> meta_argtypes(letGoOf(diver,object)).
 
 
@@ -1224,7 +1195,6 @@ event(letGoOf(diver,object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',152).
 % [diver,object,time]
 % Initiates(Grab(diver,object),Holding(diver,object),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',152).
 
  /*  [] ->
        ta(Time,
@@ -1261,7 +1231,6 @@ axiom(terminates(letGoOf(Diver, Object), holding(Diver, Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',158).
 % [diver,object,depth,time]
 % Releases(Grab(diver,object),AtDepth(object,depth),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',158).
 
  /*  [] ->
        ta(Time,
@@ -1405,7 +1374,6 @@ axiom(initiates(putOn(Diver, Equipment), wearing(Diver, Equipment), Time),
 % Happens(PutOn(diver,equipment),time) ->
 % !HoldsAt(UnderWater(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:186
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
 
  /*  happens(putOn(Diver, Equipment), Time) ->
        holds_at(neg(underWater(Diver)), Time).
@@ -1415,7 +1383,6 @@ axiom(initiates(putOn(Diver, Equipment), wearing(Diver, Equipment), Time),
  /*  holds_at(neg(underWater(Diver)), Time) :-
        happens(putOn(Diver, Equipment), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
 
  /*  [holds_at(metreqs(putOn(Diver, Equipment)), Time)] ->
        ta(Time,
@@ -1426,18 +1393,16 @@ axiom(initiates(putOn(Diver, Equipment), wearing(Diver, Equipment), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
 axiom(requires(putOn(Diver, Equipment), Time),
     [holds_at(metreqs(putOn(Diver, Equipment)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
 
  /*  [holds_at(neg(underWater(Diver)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(putOn(Diver, Equipment)), Time)).
+          holds_at(metreqs(putOn(Diver, Equipment)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
-axiom(holds_at(requirements(putOn(Diver, Equipment)), Time),
+axiom(holds_at(metreqs(putOn(Diver, Equipment)), Time),
     [holds_at(neg(underWater(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',185).
 
  /*  not(happens(putOn(Diver, Equipment), Time)) :-
        not(holds_at(neg(underWater(Diver)), Time)).
@@ -1477,7 +1442,6 @@ axiom(terminates(takeOff(Diver, Equipment), wearing(Diver, Equipment), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',192).
 % [diver,equipment,time]
 % Terminates(Lose(diver,equipment),Wearing(diver,equipment),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',192).
 
  /*  [] ->
        ta(Time,
@@ -1495,55 +1459,40 @@ axiom(terminates(lose(Diver, Equipment), wearing(Diver, Equipment), Time),
 % fluent Vertical(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',194).
 fluent(vertical(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',194).
 ==> mpred_prop(vertical(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',194).
 ==> meta_argtypes(vertical(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:196
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',197).
 % fluent HorizontalDown(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',197).
 fluent(horizontalDown(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',197).
 ==> mpred_prop(horizontalDown(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',197).
 ==> meta_argtypes(horizontalDown(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:198
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',199).
 % fluent Inverted(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',199).
 fluent(inverted(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',199).
 ==> mpred_prop(inverted(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',199).
 ==> meta_argtypes(inverted(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:200
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',201).
 % fluent HorizontalUp(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',201).
 fluent(horizontalUp(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',201).
 ==> mpred_prop(horizontalUp(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',201).
 ==> meta_argtypes(horizontalUp(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:202
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',203).
 % xor Vertical, HorizontalDown, Inverted, HorizontalUp
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',203).
 ==> xor([vertical,horizontalDown,inverted,horizontalUp]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:204
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',205).
 % event RotatePitch(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',205).
 event(rotatePitch(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',205).
 ==> mpred_prop(rotatePitch(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',205).
 ==> meta_argtypes(rotatePitch(diver)).
 
 
@@ -1553,7 +1502,6 @@ event(rotatePitch(diver)).
 % HoldsAt(Vertical(diver),time) ->
 % Initiates(RotatePitch(diver),HorizontalDown(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:208
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',207).
 
  /*  [holds_at(vertical(Diver), Time)] ->
        ta(Time,
@@ -1679,9 +1627,7 @@ axiom(terminates(rotatePitch(Diver), horizontalUp(Diver), Time),
 % event RotateYaw(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',234).
 event(rotateYaw(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',234).
 ==> mpred_prop(rotateYaw(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',234).
 ==> meta_argtypes(rotateYaw(diver)).
 
 
@@ -1699,7 +1645,6 @@ event(rotateYaw(diver)).
  /*  happens(ascend1(Diver), Time), not(happens(rapidAscendToSurface(Diver), Time)), not(exists([Diver1], holds_at(holding(Diver, Diver1), Time))) ->
        happens(rotateYaw(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',239).
 
  /*  happens(rotateYaw(Diver), Time) :-
        happens(ascend1(Diver), Time),
@@ -1793,9 +1738,7 @@ axiom(holds_at(holding(Diver, Diver1), Time),
 % fluent UnderWater(object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',243).
 fluent(underWater(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',243).
 ==> mpred_prop(underWater(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',243).
 ==> meta_argtypes(underWater(object)).
 
 
@@ -1811,7 +1754,6 @@ fluent(underWater(object)).
  /*  Depth>0, holds_at(atDepth(Object, Depth), Time) ->
        holds_at(underWater(Object), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',246).
 
  /*  holds_at(underWater(Object), Time) :-
        comparison(Depth, 0, >),
@@ -1856,19 +1798,14 @@ axiom(holds_at(neg(atDepth(Object, Depth)), Time),
 % event EnterWater(object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',250).
 event(enterWater(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',250).
 ==> mpred_prop(enterWater(object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',250).
 ==> meta_argtypes(enterWater(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:252
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',253).
 % event Surface(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',253).
 event(surface(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',253).
 ==> mpred_prop(surface(object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',253).
 ==> meta_argtypes(surface(object)).
 
 
@@ -1876,7 +1813,6 @@ event(surface(object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',255).
 % [object,time]
 % Initiates(EnterWater(object),UnderWater(object),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',255).
 
  /*  [] ->
        ta(Time,
@@ -1904,7 +1840,6 @@ axiom(initiates(enterWater(Object), underWater(Object), Time),
  /*  not(holds_at(holding(Diver1, Diver), Time)) :-
        happens(enterWater(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',259).
 
  /*  [holds_at(metreqs(enterWater(Diver)), Time)] ->
        ta(Time,
@@ -1915,18 +1850,16 @@ axiom(initiates(enterWater(Object), underWater(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',259).
 axiom(requires(enterWater(Diver), Time),
     [holds_at(metreqs(enterWater(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',259).
 
  /*  [holds_at(neg(holding(Diver1, Diver)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(enterWater(Diver)), Time)).
+          holds_at(metreqs(enterWater(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',259).
-axiom(holds_at(requirements(enterWater(Diver)), Time),
+axiom(holds_at(metreqs(enterWater(Diver)), Time),
     [holds_at(neg(holding(Diver1, Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',259).
 
  /*  not(happens(enterWater(Diver), Time)) :-
        holds_at(holding(Diver1, Diver), Time).
@@ -1983,7 +1916,6 @@ axiom(terminates(surface(Object), underWater(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',269).
 % [diver,time]
 % Terminates(Surface(diver),PositivelyBuoyant(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',269).
 
  /*  [] ->
        ta(Time,
@@ -2020,7 +1952,6 @@ axiom(terminates(surface(Diver), negativelyBuoyant(Diver), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',275).
 % [diver,time]
 % Terminates(Surface(diver),NeutrallyBuoyant(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',275).
 
  /*  [] ->
        ta(Time,
@@ -2058,7 +1989,6 @@ axiom(terminates(surface(Object), atDepth(Object, Depth), Time),
 % [diver,time]
  % Happens(EnterWater(diver),time) ->
 % HoldsAt(Vertical(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
 
  /*  happens(enterWater(Diver), Time) ->
        holds_at(vertical(Diver), Time).
@@ -2068,7 +1998,6 @@ axiom(terminates(surface(Object), atDepth(Object, Depth), Time),
  /*  holds_at(vertical(Diver), Time) :-
        happens(enterWater(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
 
  /*  [holds_at(metreqs(enterWater(Diver)), Time)] ->
        ta(Time,
@@ -2079,18 +2008,16 @@ axiom(terminates(surface(Object), atDepth(Object, Depth), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
 axiom(requires(enterWater(Diver), Time),
     [holds_at(metreqs(enterWater(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
 
  /*  [holds_at(vertical(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(enterWater(Diver)), Time)).
+          holds_at(metreqs(enterWater(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
-axiom(holds_at(requirements(enterWater(Diver)), Time),
+axiom(holds_at(metreqs(enterWater(Diver)), Time),
     [holds_at(vertical(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',281).
 
  /*  not(happens(enterWater(Diver), Time)) :-
        not(holds_at(vertical(Diver), Time)).
@@ -2111,19 +2038,14 @@ axiom(not(happens(enterWater(Diver), Time)),
 % fluent StandingOn(diver,boat)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',283).
 fluent(standingOn(diver,boat)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',283).
 ==> mpred_prop(standingOn(diver,boat),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',283).
 ==> meta_argtypes(standingOn(diver,boat)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:285
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',286).
 % event StandOn(diver,boat)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',286).
 event(standOn(diver,boat)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',286).
 ==> mpred_prop(standOn(diver,boat),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',286).
 ==> meta_argtypes(standOn(diver,boat)).
 
 
@@ -2131,7 +2053,6 @@ event(standOn(diver,boat)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',288).
 % [diver,boat,time]
 % Terminates(EnterWater(diver),StandingOn(diver,boat),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',288).
 
  /*  [] ->
        ta(Time,
@@ -2166,42 +2087,80 @@ axiom(initiates(standOn(Diver, Boat), standingOn(Diver, Boat), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:293
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',294).
 % fluent PositivelyBuoyant(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',294).
 fluent(positivelyBuoyant(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',294).
 ==> mpred_prop(positivelyBuoyant(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',294).
 ==> meta_argtypes(positivelyBuoyant(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:295
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',296).
 % fluent NeutrallyBuoyant(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',296).
 fluent(neutrallyBuoyant(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',296).
 ==> mpred_prop(neutrallyBuoyant(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',296).
 ==> meta_argtypes(neutrallyBuoyant(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:297
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',298).
 % fluent NegativelyBuoyant(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',298).
 fluent(negativelyBuoyant(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',298).
 ==> mpred_prop(negativelyBuoyant(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',298).
 ==> meta_argtypes(negativelyBuoyant(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:299
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
 % mutex PositivelyBuoyant, NeutrallyBuoyant, NegativelyBuoyant
+
+ /*  fix_axiom_head(Time) ->
+       
+       [ mutex(positivelyBuoyant),
+          (->),
+         holds_at(mutex(positivelyBuoyant), Time)
+       ].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
-mutex(positivelyBuoyant).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(mutex(positivelyBuoyant), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
-mutex(neutrallyBuoyant).
+axiom(holds_at(mutex(positivelyBuoyant), Time),
+    []).
+
+ /*  fix_axiom_head(Time1) ->
+       [mutex(neutrallyBuoyant), ->, holds_at(mutex(neutrallyBuoyant), Time1)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
-mutex(negativelyBuoyant).
+
+ /*  [] ->
+       ta(Time1,
+          tvs1=[Time1],
+          tvs2=[Time1],
+          holds_at(mutex(neutrallyBuoyant), Time1)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
+axiom(holds_at(mutex(neutrallyBuoyant), Time1),
+    []).
+
+ /*  fix_axiom_head(Time2) ->
+       
+       [ mutex(negativelyBuoyant),
+          (->),
+         holds_at(mutex(negativelyBuoyant), Time2)
+       ].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
+
+ /*  [] ->
+       ta(Time2,
+          tvs1=[Time2],
+          tvs2=[Time2],
+          holds_at(mutex(negativelyBuoyant), Time2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',300).
+axiom(holds_at(mutex(negativelyBuoyant), Time2),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:301
@@ -2210,7 +2169,6 @@ mutex(negativelyBuoyant).
 % HoldsAt(PositivelyBuoyant(diver),time) ->
 % HoldsAt(UnderWater(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:303
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',302).
 
  /*  holds_at(positivelyBuoyant(Diver), Time) ->
        holds_at(underWater(Diver), Time).
@@ -2220,7 +2178,6 @@ mutex(negativelyBuoyant).
  /*  holds_at(underWater(Diver), Time) :-
        holds_at(positivelyBuoyant(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',302).
 
  /*  [holds_at(positivelyBuoyant(Diver), Time)] ->
        ta(Time,
@@ -2231,7 +2188,6 @@ mutex(negativelyBuoyant).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',302).
 axiom(holds_at(underWater(Diver), Time),
     [holds_at(positivelyBuoyant(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',302).
 
  /*  not(holds_at(positivelyBuoyant(Diver), Time)) :-
        not(holds_at(underWater(Diver), Time)).
@@ -2263,7 +2219,6 @@ axiom(holds_at(neg(positivelyBuoyant(Diver)), Time),
  /*  holds_at(underWater(Diver), Time) :-
        holds_at(neutrallyBuoyant(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',307).
 
  /*  [holds_at(neutrallyBuoyant(Diver), Time)] ->
        ta(Time,
@@ -2274,7 +2229,6 @@ axiom(holds_at(neg(positivelyBuoyant(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',307).
 axiom(holds_at(underWater(Diver), Time),
     [holds_at(neutrallyBuoyant(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',307).
 
  /*  not(holds_at(neutrallyBuoyant(Diver), Time)) :-
        not(holds_at(underWater(Diver), Time)).
@@ -2306,7 +2260,6 @@ axiom(holds_at(neg(neutrallyBuoyant(Diver)), Time),
  /*  holds_at(underWater(Diver), Time) :-
        holds_at(negativelyBuoyant(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',311).
 
  /*  [holds_at(negativelyBuoyant(Diver), Time)] ->
        ta(Time,
@@ -2317,7 +2270,6 @@ axiom(holds_at(neg(neutrallyBuoyant(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',311).
 axiom(holds_at(underWater(Diver), Time),
     [holds_at(negativelyBuoyant(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',311).
 
  /*  not(holds_at(negativelyBuoyant(Diver), Time)) :-
        not(holds_at(underWater(Diver), Time)).
@@ -2338,29 +2290,21 @@ axiom(holds_at(neg(negativelyBuoyant(Diver)), Time),
 % event PressDeflateButton(diver,bc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',313).
 event(pressDeflateButton(diver,bc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',313).
 ==> mpred_prop(pressDeflateButton(diver,bc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',313).
 ==> meta_argtypes(pressDeflateButton(diver,bc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:315
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',316).
 % event PressDumpButton(diver,bc)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',316).
 event(pressDumpButton(diver,bc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',316).
 ==> mpred_prop(pressDumpButton(diver,bc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',316).
 ==> meta_argtypes(pressDumpButton(diver,bc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:317
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',318).
 % event PressInflateButton(diver,bc)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',318).
 event(pressInflateButton(diver,bc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',318).
 ==> mpred_prop(pressInflateButton(diver,bc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',318).
 ==> meta_argtypes(pressInflateButton(diver,bc)).
 
 
@@ -2397,7 +2341,6 @@ axiom(not(happens(pressDeflateButton(Diver, Bc), Time)),
    
     [  (holds_at(neg(vertical(Diver)), Time);holds_at(neg(underWater(Bc)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 
  /*  holds_at(vertical(Diver), Time) :-
        happens(pressDeflateButton(Diver, Bc), Time).
@@ -2413,19 +2356,16 @@ axiom(not(happens(pressDeflateButton(Diver, Bc), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 axiom(requires(pressDeflateButton(Diver, Bc), Time),
     [holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 
  /*  [holds_at(vertical(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pressDeflateButton(Diver, Bc)),
-                   Time)).
+          holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
-axiom(holds_at(requirements(pressDeflateButton(Diver, Bc)), Time),
+axiom(holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time),
     [holds_at(vertical(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 
  /*  holds_at(underWater(Bc), Time) :-
        happens(pressDeflateButton(Diver, Bc), Time).
@@ -2441,17 +2381,15 @@ axiom(holds_at(requirements(pressDeflateButton(Diver, Bc)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 axiom(requires(pressDeflateButton(Diver, Bc), Time),
     [holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
 
  /*  [holds_at(underWater(Bc), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pressDeflateButton(Diver, Bc)),
-                   Time)).
+          holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',320).
-axiom(holds_at(requirements(pressDeflateButton(Diver, Bc)), Time),
+axiom(holds_at(metreqs(pressDeflateButton(Diver, Bc)), Time),
     [holds_at(underWater(Bc), Time)]).
 
 
@@ -2487,7 +2425,6 @@ axiom(not(happens(pressDumpButton(Diver, Bc), Time)),
    
     [  (holds_at(neg(vertical(Diver)), Time);holds_at(neg(underWater(Bc)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 
  /*  holds_at(vertical(Diver), Time) :-
        happens(pressDumpButton(Diver, Bc), Time).
@@ -2503,19 +2440,16 @@ axiom(not(happens(pressDumpButton(Diver, Bc), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 axiom(requires(pressDumpButton(Diver, Bc), Time),
     [holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 
  /*  [holds_at(vertical(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pressDumpButton(Diver, Bc)),
-                   Time)).
+          holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
-axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
+axiom(holds_at(metreqs(pressDumpButton(Diver, Bc)), Time),
     [holds_at(vertical(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 
  /*  holds_at(underWater(Bc), Time) :-
        happens(pressDumpButton(Diver, Bc), Time).
@@ -2531,17 +2465,15 @@ axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 axiom(requires(pressDumpButton(Diver, Bc), Time),
     [holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
 
  /*  [holds_at(underWater(Bc), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pressDumpButton(Diver, Bc)),
-                   Time)).
+          holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',326).
-axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
+axiom(holds_at(metreqs(pressDumpButton(Diver, Bc)), Time),
     [holds_at(underWater(Bc), Time)]).
 
 
@@ -2554,7 +2486,6 @@ axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
  /*  happens(pressDumpButton(Diver, Bc), Time) ->
        holds_at(uncontrolledBuoyancy(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',329).
 
  /*  holds_at(uncontrolledBuoyancy(Diver), Time) :-
        happens(pressDumpButton(Diver, Bc), Time).
@@ -2570,19 +2501,16 @@ axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',329).
 axiom(requires(pressDumpButton(Diver, Bc), Time),
     [holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',329).
 
  /*  [holds_at(uncontrolledBuoyancy(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pressDumpButton(Diver, Bc)),
-                   Time)).
+          holds_at(metreqs(pressDumpButton(Diver, Bc)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',329).
-axiom(holds_at(requirements(pressDumpButton(Diver, Bc)), Time),
+axiom(holds_at(metreqs(pressDumpButton(Diver, Bc)), Time),
     [holds_at(uncontrolledBuoyancy(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',329).
 
  /*  not(happens(pressDumpButton(Diver, Bc), Time)) :-
        not(holds_at(uncontrolledBuoyancy(Diver), Time)).
@@ -2831,29 +2759,21 @@ axiom(terminates(takeOff(Diver, Weight), neutrallyBuoyant(Diver), Time),
 % fluent UncontrolledBuoyancy(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',380).
 fluent(uncontrolledBuoyancy(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',380).
 ==> mpred_prop(uncontrolledBuoyancy(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',380).
 ==> meta_argtypes(uncontrolledBuoyancy(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:382
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',383).
 % event LoseBuoyancyControl(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',383).
 event(loseBuoyancyControl(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',383).
 ==> mpred_prop(loseBuoyancyControl(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',383).
 ==> meta_argtypes(loseBuoyancyControl(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:384
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',385).
 % predicate IsInexperiencedDiver(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',385).
 predicate(isInexperiencedDiver(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',385).
 ==> mpred_prop(isInexperiencedDiver(diver),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',385).
 ==> meta_argtypes(isInexperiencedDiver(diver)).
 
 
@@ -2863,7 +2783,6 @@ predicate(isInexperiencedDiver(diver)).
 % Happens(LoseBuoyancyControl(diver),time) ->
 % IsInexperiencedDiver(diver).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:388
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
 
  /*  happens(loseBuoyancyControl(Diver), Time) ->
        isInexperiencedDiver(Diver).
@@ -2873,7 +2792,6 @@ predicate(isInexperiencedDiver(diver)).
  /*  isInexperiencedDiver(Diver) :-
        happens(loseBuoyancyControl(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
 
  /*  [holds_at(metreqs(loseBuoyancyControl(Diver)), Time)] ->
        ta(Time,
@@ -2884,18 +2802,16 @@ predicate(isInexperiencedDiver(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
 axiom(requires(loseBuoyancyControl(Diver), Time),
     [holds_at(metreqs(loseBuoyancyControl(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
 
  /*  [isInexperiencedDiver(Diver)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(loseBuoyancyControl(Diver)), Time)).
+          holds_at(metreqs(loseBuoyancyControl(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
-axiom(holds_at(requirements(loseBuoyancyControl(Diver)), Time),
+axiom(holds_at(metreqs(loseBuoyancyControl(Diver)), Time),
     [isInexperiencedDiver(Diver)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',387).
 
  /*  not(happens(loseBuoyancyControl(Diver), Time)) :-
        not(isInexperiencedDiver(Diver)).
@@ -2935,7 +2851,6 @@ axiom(initiates(loseBuoyancyControl(Diver), uncontrolledBuoyancy(Diver), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',394).
 % [diver,time]
 % Initiates(LoseBuoyancyControl(diver),PositivelyBuoyant(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',394).
 
  /*  [] ->
        ta(Time,
@@ -2972,7 +2887,6 @@ axiom(terminates(loseBuoyancyControl(Diver), negativelyBuoyant(Diver), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',400).
 % [diver,time]
 % Terminates(LoseBuoyancyControl(diver),NeutrallyBuoyant(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',400).
 
  /*  [] ->
        ta(Time,
@@ -2993,11 +2907,8 @@ axiom(terminates(loseBuoyancyControl(Diver), neutrallyBuoyant(Diver), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:403
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',404).
 % fluent AscendDescendAmount(diver,depth)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',404).
 fluent(ascendDescendAmount(diver,depth)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',404).
 ==> mpred_prop(ascendDescendAmount(diver,depth),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',404).
 ==> meta_argtypes(ascendDescendAmount(diver,depth)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:404
@@ -3018,7 +2929,6 @@ fluent(ascendDescendAmount(diver,depth)).
  /*  holds_at(ascendDescendAmount(Diver, Depth1), Time), holds_at(ascendDescendAmount(Diver, Depth2), Time) ->
        equals(Depth1, Depth2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',407).
 
  /*  not(holds_at(ascendDescendAmount(Diver, Depth1), Time)) :-
        holds_at(ascendDescendAmount(Diver, Depth2), Time),
@@ -3097,7 +3007,6 @@ axiom(not(happens(descend(Diver, Depth), Time)),
    
     [  (holds_at(neg(negativelyBuoyant(Diver)), Time);holds_at(neg(ascendDescendAmount(Diver, Depth1)), Time);holds_at(neg(atDepth(Diver, Depth-Depth1)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  holds_at(negativelyBuoyant(Diver), Time) :-
        happens(descend(Diver, Depth), Time).
@@ -3113,18 +3022,16 @@ axiom(not(happens(descend(Diver, Depth), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 axiom(requires(descend(Diver, Depth), Time),
     [holds_at(metreqs(descend(Diver, Depth)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  [holds_at(negativelyBuoyant(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(descend(Diver, Depth)), Time)).
+          holds_at(metreqs(descend(Diver, Depth)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
-axiom(holds_at(requirements(descend(Diver, Depth)), Time),
+axiom(holds_at(metreqs(descend(Diver, Depth)), Time),
     [holds_at(negativelyBuoyant(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  holds_at(ascendDescendAmount(Diver, Depth1), Time) :-
        happens(descend(Diver, Depth), Time).
@@ -3140,18 +3047,16 @@ axiom(holds_at(requirements(descend(Diver, Depth)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 axiom(requires(descend(Diver, Depth), Time),
     [holds_at(metreqs(descend(Diver, Depth)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  [holds_at(ascendDescendAmount(Diver, Depth1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(descend(Diver, Depth)), Time)).
+          holds_at(metreqs(descend(Diver, Depth)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
-axiom(holds_at(requirements(descend(Diver, Depth)), Time),
+axiom(holds_at(metreqs(descend(Diver, Depth)), Time),
     [holds_at(ascendDescendAmount(Diver, Depth1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  holds_at(atDepth(Diver, Depth-Depth1), Time) :-
        happens(descend(Diver, Depth), Time).
@@ -3167,25 +3072,22 @@ axiom(holds_at(requirements(descend(Diver, Depth)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 axiom(requires(descend(Diver, Depth), Time),
     [holds_at(metreqs(descend(Diver, Depth)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
 
  /*  [holds_at(atDepth(Diver, Depth-Depth1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(descend(Diver, Depth)), Time)).
+          holds_at(metreqs(descend(Diver, Depth)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',413).
-axiom(holds_at(requirements(descend(Diver, Depth)), Time),
+axiom(holds_at(metreqs(descend(Diver, Depth)), Time),
     [holds_at(atDepth(Diver, Depth-Depth1), Time)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:418
 % event KickUp(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',418).
 event(kickUp(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',418).
 ==> mpred_prop(kickUp(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',418).
 ==> meta_argtypes(kickUp(diver)).
 
 
@@ -3234,7 +3136,6 @@ axiom(not(happens(ascend(Diver, Depth), Time)),
    
     [  (holds_at(neg(positivelyBuoyant(Diver)), Time), (holds_at(neg(neutrallyBuoyant(Diver)), Time);not(happens(kickUp(Diver), Time)));holds_at(neg(ascendDescendAmount(Diver, Depth1)), Time);holds_at(neg(atDepth(Diver, Depth+Depth1)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 
  /*  holds_at(positivelyBuoyant(Diver), Time) :-
        (   not(holds_at(neutrallyBuoyant(Diver), Time))
@@ -3301,7 +3202,6 @@ axiom(happens(kickUp(Diver), Time),
  /*  holds_at(ascendDescendAmount(Diver, Depth1), Time) :-
        happens(ascend(Diver, Depth), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 
  /*  [holds_at(metreqs(ascend(Diver, Depth)), Time)] ->
        ta(Time,
@@ -3312,18 +3212,16 @@ axiom(happens(kickUp(Diver), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 axiom(requires(ascend(Diver, Depth), Time),
     [holds_at(metreqs(ascend(Diver, Depth)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 
  /*  [holds_at(ascendDescendAmount(Diver, Depth1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(ascend(Diver, Depth)), Time)).
+          holds_at(metreqs(ascend(Diver, Depth)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
-axiom(holds_at(requirements(ascend(Diver, Depth)), Time),
+axiom(holds_at(metreqs(ascend(Diver, Depth)), Time),
     [holds_at(ascendDescendAmount(Diver, Depth1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 
  /*  holds_at(atDepth(Diver, Depth+Depth1), Time) :-
        happens(ascend(Diver, Depth), Time).
@@ -3339,16 +3237,15 @@ axiom(holds_at(requirements(ascend(Diver, Depth)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 axiom(requires(ascend(Diver, Depth), Time),
     [holds_at(metreqs(ascend(Diver, Depth)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
 
  /*  [holds_at(atDepth(Diver, Depth+Depth1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(ascend(Diver, Depth)), Time)).
+          holds_at(metreqs(ascend(Diver, Depth)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',421).
-axiom(holds_at(requirements(ascend(Diver, Depth)), Time),
+axiom(holds_at(metreqs(ascend(Diver, Depth)), Time),
     [holds_at(atDepth(Diver, Depth+Depth1), Time)]).
 
 
@@ -3366,7 +3263,6 @@ axiom(holds_at(requirements(ascend(Diver, Depth)), Time),
  /*  holds_at(vertical(Diver), Time) :-
        happens(kickUp(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',430).
 
  /*  [holds_at(metreqs(kickUp(Diver)), Time)] ->
        ta(Time,
@@ -3377,18 +3273,16 @@ axiom(holds_at(requirements(ascend(Diver, Depth)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',430).
 axiom(requires(kickUp(Diver), Time),
     [holds_at(metreqs(kickUp(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',430).
 
  /*  [holds_at(vertical(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(kickUp(Diver)), Time)).
+          holds_at(metreqs(kickUp(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',430).
-axiom(holds_at(requirements(kickUp(Diver)), Time),
+axiom(holds_at(metreqs(kickUp(Diver)), Time),
     [holds_at(vertical(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',430).
 
  /*  not(happens(kickUp(Diver), Time)) :-
        not(holds_at(vertical(Diver), Time)).
@@ -3409,9 +3303,7 @@ axiom(not(happens(kickUp(Diver), Time)),
 % event SwimAround(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',432).
 event(swimAround(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',432).
 ==> mpred_prop(swimAround(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',432).
 ==> meta_argtypes(swimAround(diver)).
 
 
@@ -3421,7 +3313,6 @@ event(swimAround(diver)).
 % Happens(SwimAround(diver),time) ->
 % HoldsAt(HorizontalDown(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:436
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
 
  /*  happens(swimAround(Diver), Time) ->
        holds_at(horizontalDown(Diver), Time).
@@ -3431,7 +3322,6 @@ event(swimAround(diver)).
  /*  holds_at(horizontalDown(Diver), Time) :-
        happens(swimAround(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
 
  /*  [holds_at(metreqs(swimAround(Diver)), Time)] ->
        ta(Time,
@@ -3442,18 +3332,16 @@ event(swimAround(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
 axiom(requires(swimAround(Diver), Time),
     [holds_at(metreqs(swimAround(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
 
  /*  [holds_at(horizontalDown(Diver), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(swimAround(Diver)), Time)).
+          holds_at(metreqs(swimAround(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
-axiom(holds_at(requirements(swimAround(Diver)), Time),
+axiom(holds_at(metreqs(swimAround(Diver)), Time),
     [holds_at(horizontalDown(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',435).
 
  /*  not(happens(swimAround(Diver), Time)) :-
        not(holds_at(horizontalDown(Diver), Time)).
@@ -3477,31 +3365,22 @@ axiom(not(happens(swimAround(Diver), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:440
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',441).
 % event SignalDescend(diver,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',441).
 event(signalDescend(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',441).
 ==> mpred_prop(signalDescend(diver,diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',441).
 ==> meta_argtypes(signalDescend(diver,diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:442
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',443).
 % event SignalOutOfTime(diver,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',443).
 event(signalOutOfTime(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',443).
 ==> mpred_prop(signalOutOfTime(diver,diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',443).
 ==> meta_argtypes(signalOutOfTime(diver,diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:444
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',445).
 % event SignalAscend(diver,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',445).
 event(signalAscend(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',445).
 ==> mpred_prop(signalAscend(diver,diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',445).
 ==> meta_argtypes(signalAscend(diver,diver)).
 
 
@@ -3535,21 +3414,15 @@ event(signalAscend(diver,diver)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:478
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',479).
 % event Descend1(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',479).
 event(descend1(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',479).
 ==> mpred_prop(descend1(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',479).
 ==> meta_argtypes(descend1(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:480
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',481).
 % event Ascend1(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',481).
 event(ascend1(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',481).
 ==> mpred_prop(ascend1(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',481).
 ==> meta_argtypes(ascend1(diver)).
 
 
@@ -3565,11 +3438,8 @@ event(ascend1(diver)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:491
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',492).
 % event RapidAscendToSurface(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',492).
 event(rapidAscendToSurface(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',492).
 ==> mpred_prop(rapidAscendToSurface(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',492).
 ==> meta_argtypes(rapidAscendToSurface(diver)).
 
 
@@ -3579,7 +3449,6 @@ event(rapidAscendToSurface(diver)).
 % Happens(Descend1(diver),time) <->
 % ({depth} Happens(Descend(diver,depth),time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:495
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  happens(descend1(Diver), Time) <->
        exists([Depth], happens(descend(Diver, Depth), Time)).
@@ -3589,7 +3458,6 @@ event(rapidAscendToSurface(diver)).
  /*  [happens, descend1] <->
        [exists, happens, descend].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  happens(descend1(Diver), Time) ->
        exists([Depth], happens(descend(Diver, Depth), Time)).
@@ -3599,7 +3467,6 @@ event(rapidAscendToSurface(diver)).
  /*  happens(descend(Diver, Depth), Time) :-
        happens(descend1(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  [happens(descend1(Diver), Time)] ->
        ta(Time,
@@ -3610,7 +3477,6 @@ event(rapidAscendToSurface(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 axiom(happens(descend(Diver, Depth), Time),
     [happens(descend1(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  not(happens(descend1(Diver), Time)) :-
        not(happens(descend(Diver, Depth), Time)).
@@ -3626,7 +3492,6 @@ axiom(happens(descend(Diver, Depth), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 axiom(not(happens(descend1(Diver), Time)),
     [not(happens(descend(Diver, Depth), Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  exists([Depth], happens(descend(Diver, Depth), Time)) ->
        happens(descend1(Diver), Time).
@@ -3636,7 +3501,6 @@ axiom(not(happens(descend1(Diver), Time)),
  /*  happens(descend1(Diver), Time) :-
        happens(descend(Diver, Depth), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  [happens(descend(Diver, Depth), Time)] ->
        ta(Time,
@@ -3647,7 +3511,6 @@ axiom(not(happens(descend1(Diver), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 axiom(happens(descend1(Diver), Time),
     [happens(descend(Diver, Depth), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',494).
 
  /*  not(happens(descend(Diver, Depth), Time)) :-
        not(happens(descend1(Diver), Time)).
@@ -3679,7 +3542,6 @@ axiom(not(happens(descend(Diver, Depth), Time)),
  /*  [happens, ascend1] <->
        [exists, happens, ascend].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  happens(ascend1(Diver), Time) ->
        exists([Depth], happens(ascend(Diver, Depth), Time)).
@@ -3689,7 +3551,6 @@ axiom(not(happens(descend(Diver, Depth), Time)),
  /*  happens(ascend(Diver, Depth), Time) :-
        happens(ascend1(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  [happens(ascend1(Diver), Time)] ->
        ta(Time,
@@ -3700,7 +3561,6 @@ axiom(not(happens(descend(Diver, Depth), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 axiom(happens(ascend(Diver, Depth), Time),
     [happens(ascend1(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  not(happens(ascend1(Diver), Time)) :-
        not(happens(ascend(Diver, Depth), Time)).
@@ -3716,7 +3576,6 @@ axiom(happens(ascend(Diver, Depth), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 axiom(not(happens(ascend1(Diver), Time)),
     [not(happens(ascend(Diver, Depth), Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  exists([Depth], happens(ascend(Diver, Depth), Time)) ->
        happens(ascend1(Diver), Time).
@@ -3726,7 +3585,6 @@ axiom(not(happens(ascend1(Diver), Time)),
  /*  happens(ascend1(Diver), Time) :-
        happens(ascend(Diver, Depth), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  [happens(ascend(Diver, Depth), Time)] ->
        ta(Time,
@@ -3737,7 +3595,6 @@ axiom(not(happens(ascend1(Diver), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 axiom(happens(ascend1(Diver), Time),
     [happens(ascend(Diver, Depth), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',499).
 
  /*  not(happens(ascend(Diver, Depth), Time)) :-
        not(happens(ascend1(Diver), Time)).
@@ -3769,7 +3626,6 @@ axiom(not(happens(ascend(Diver, Depth), Time)),
  /*  happens(ascend(Diver, 0), Time) :-
        happens(rapidAscendToSurface(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',503).
 
  /*  [happens(rapidAscendToSurface(Diver), Time)] ->
        ta(Time,
@@ -3780,7 +3636,6 @@ axiom(not(happens(ascend(Diver, Depth), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',503).
 axiom(happens(ascend(Diver, 0), Time),
     [happens(rapidAscendToSurface(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',503).
 
  /*  not(happens(rapidAscendToSurface(Diver), Time)) :-
        not(happens(ascend(Diver, 0), Time)).
@@ -3801,9 +3656,7 @@ axiom(not(happens(rapidAscendToSurface(Diver), Time)),
 % event AscendLine(diver,line)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',505).
 event(ascendLine(diver,line)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',505).
 ==> mpred_prop(ascendLine(diver,line),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',505).
 ==> meta_argtypes(ascendLine(diver,line)).
 
 
@@ -3813,7 +3666,6 @@ event(ascendLine(diver,line)).
 % Happens(AscendLine(diver,line),time) ->
 % Happens(Ascend1(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:509
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',508).
 
  /*  happens(ascendLine(Diver, Line), Time) ->
        happens(ascend1(Diver), Time).
@@ -3823,7 +3675,6 @@ event(ascendLine(diver,line)).
  /*  happens(ascend1(Diver), Time) :-
        happens(ascendLine(Diver, Line), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',508).
 
  /*  [happens(ascendLine(Diver, Line), Time)] ->
        ta(Time,
@@ -3834,7 +3685,6 @@ event(ascendLine(diver,line)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',508).
 axiom(happens(ascend1(Diver), Time),
     [happens(ascendLine(Diver, Line), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',508).
 
  /*  not(happens(ascendLine(Diver, Line), Time)) :-
        not(happens(ascend1(Diver), Time)).
@@ -3855,29 +3705,21 @@ axiom(not(happens(ascendLine(Diver, Line), Time)),
 % fluent Disoriented(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',511).
 fluent(disoriented(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',511).
 ==> mpred_prop(disoriented(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',511).
 ==> meta_argtypes(disoriented(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:513
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',514).
 % event BecomeDisoriented(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',514).
 event(becomeDisoriented(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',514).
 ==> mpred_prop(becomeDisoriented(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',514).
 ==> meta_argtypes(becomeDisoriented(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:515
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',516).
 % event BecomeReoriented(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',516).
 event(becomeReoriented(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',516).
 ==> mpred_prop(becomeReoriented(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',516).
 ==> meta_argtypes(becomeReoriented(diver)).
 
 
@@ -3885,7 +3727,6 @@ event(becomeReoriented(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',518).
 % [diver,time]
 % Initiates(BecomeDisoriented(diver),Disoriented(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',518).
 
  /*  [] ->
        ta(Time,
@@ -3920,19 +3761,14 @@ axiom(terminates(becomeReoriented(Diver), disoriented(Diver), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:523
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',524).
 % fluent DisturbedSilt()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',524).
 fluent(disturbedSilt).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',524).
 ==> mpred_prop(disturbedSilt,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:525
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',526).
 % event DisturbSilt(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',526).
 event(disturbSilt(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',526).
 ==> mpred_prop(disturbSilt(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',526).
 ==> meta_argtypes(disturbSilt(diver)).
 
 
@@ -3940,7 +3776,6 @@ event(disturbSilt(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',528).
 % [diver,time]
 % Initiates(DisturbSilt(diver),DisturbedSilt(),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',528).
 
  /*  [] ->
        ta(Time,
@@ -3991,7 +3826,6 @@ axiom(not(happens(becomeDisoriented(Diver), Time)),
  /*  holds_at(neg(disturbedSilt), Time-1) :-
        happens(becomeDisoriented(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 
  /*  [holds_at(metreqs(becomeDisoriented(Diver)), Time)] ->
        ta(Time,
@@ -4002,18 +3836,16 @@ axiom(not(happens(becomeDisoriented(Diver), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 axiom(requires(becomeDisoriented(Diver), Time),
     [holds_at(metreqs(becomeDisoriented(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 
  /*  [holds_at(neg(disturbedSilt), Time4), b(Time4, Time), ignore(Time-1==Time4)] ->
        ta(Time,
           tvs1=[Time, Time-1],
           tvs2=[Time, Time4],
-          holds_at(requirements(becomeDisoriented(Diver)), Time)).
+          holds_at(metreqs(becomeDisoriented(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
-axiom(holds_at(requirements(becomeDisoriented(Diver)), Time),
+axiom(holds_at(metreqs(becomeDisoriented(Diver)), Time),
     [holds_at(neg(disturbedSilt), Time4), b(Time4, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 
  /*  holds_at(disturbedSilt, Time) :-
        happens(becomeDisoriented(Diver), Time).
@@ -4029,25 +3861,22 @@ axiom(holds_at(requirements(becomeDisoriented(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 axiom(requires(becomeDisoriented(Diver), Time),
     [holds_at(metreqs(becomeDisoriented(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
 
  /*  [holds_at(disturbedSilt, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(becomeDisoriented(Diver)), Time)).
+          holds_at(metreqs(becomeDisoriented(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',532).
-axiom(holds_at(requirements(becomeDisoriented(Diver)), Time),
+axiom(holds_at(metreqs(becomeDisoriented(Diver)), Time),
     [holds_at(disturbedSilt, Time)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:535
 % event Panic(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',535).
 event(panic(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',535).
 ==> mpred_prop(panic(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',535).
 ==> meta_argtypes(panic(diver)).
 
 
@@ -4202,9 +4031,7 @@ axiom(not(happens(panic(Diver), Time)),
 % event Vomit(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',543).
 event(vomit(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',543).
 ==> mpred_prop(vomit(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',543).
 ==> meta_argtypes(vomit(diver)).
 
 
@@ -4215,31 +4042,22 @@ event(vomit(diver)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:547
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',548).
 % fluent Unconscious(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',548).
 fluent(unconscious(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',548).
 ==> mpred_prop(unconscious(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',548).
 ==> meta_argtypes(unconscious(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:549
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',550).
 % event GoUnconscious(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',550).
 event(goUnconscious(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',550).
 ==> mpred_prop(goUnconscious(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',550).
 ==> meta_argtypes(goUnconscious(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:551
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',552).
 % event RegainConsciousness(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',552).
 event(regainConsciousness(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',552).
 ==> mpred_prop(regainConsciousness(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',552).
 ==> meta_argtypes(regainConsciousness(diver)).
 
 
@@ -4247,7 +4065,6 @@ event(regainConsciousness(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',554).
 % [diver,time]
 % Initiates(GoUnconscious(diver),Unconscious(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',554).
 
  /*  [] ->
        ta(Time,
@@ -4286,7 +4103,6 @@ axiom(terminates(regainConsciousness(Diver), unconscious(Diver), Time),
 % Happens(GoUnconscious(diver),time) ->
 % Happens(RapidAscendToSurface(diver),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:561
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',560).
 
  /*  happens(goUnconscious(Diver), Time) ->
        happens(rapidAscendToSurface(Diver), Time).
@@ -4296,7 +4112,6 @@ axiom(terminates(regainConsciousness(Diver), unconscious(Diver), Time),
  /*  happens(rapidAscendToSurface(Diver), Time) :-
        happens(goUnconscious(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',560).
 
  /*  [happens(goUnconscious(Diver), Time)] ->
        ta(Time,
@@ -4307,7 +4122,6 @@ axiom(terminates(regainConsciousness(Diver), unconscious(Diver), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',560).
 axiom(happens(rapidAscendToSurface(Diver), Time),
     [happens(goUnconscious(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',560).
 
  /*  not(happens(goUnconscious(Diver), Time)) :-
        not(happens(rapidAscendToSurface(Diver), Time)).
@@ -4328,19 +4142,14 @@ axiom(not(happens(goUnconscious(Diver), Time)),
 % fluent HasEarPain(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',563).
 fluent(hasEarPain(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',563).
 ==> mpred_prop(hasEarPain(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',563).
 ==> meta_argtypes(hasEarPain(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:565
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',566).
 % event StartEarPain(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',566).
 event(startEarPain(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',566).
 ==> mpred_prop(startEarPain(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',566).
 ==> meta_argtypes(startEarPain(diver)).
 
 
@@ -4348,7 +4157,6 @@ event(startEarPain(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',568).
 % [diver,time]
  % Initiates(StartEarPain(diver),HasEarPain(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',568).
 
  /*  [] ->
        ta(Time,
@@ -4363,21 +4171,15 @@ axiom(initiates(startEarPain(Diver), hasEarPain(Diver), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:569
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',570).
 % fluent HasRupturedEardrum(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',570).
 fluent(hasRupturedEardrum(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',570).
 ==> mpred_prop(hasRupturedEardrum(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',570).
 ==> meta_argtypes(hasRupturedEardrum(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:571
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',572).
 % event RuptureEardrum(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',572).
 event(ruptureEardrum(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',572).
 ==> mpred_prop(ruptureEardrum(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',572).
 ==> meta_argtypes(ruptureEardrum(diver)).
 
 
@@ -4385,7 +4187,6 @@ event(ruptureEardrum(diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',574).
 % [diver,time]
 % Initiates(RuptureEardrum(diver),HasRupturedEardrum(diver),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',574).
 
  /*  [] ->
        ta(Time,
@@ -4402,31 +4203,22 @@ axiom(initiates(ruptureEardrum(Diver), hasRupturedEardrum(Diver), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:575
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',576).
 % fluent ConditionOK(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',576).
 fluent(conditionOK(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',576).
 ==> mpred_prop(conditionOK(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',576).
 ==> meta_argtypes(conditionOK(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:577
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',578).
 % fluent HasDecompressionIllness(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',578).
 fluent(hasDecompressionIllness(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',578).
 ==> mpred_prop(hasDecompressionIllness(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',578).
 ==> meta_argtypes(hasDecompressionIllness(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:579
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',580).
 % event StartDecompressionIllness(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',580).
 event(startDecompressionIllness(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',580).
 ==> mpred_prop(startDecompressionIllness(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',580).
 ==> meta_argtypes(startDecompressionIllness(diver)).
 
 
@@ -4455,19 +4247,14 @@ axiom(initiates(startDecompressionIllness(Diver), hasDecompressionIllness(Diver)
 % fluent SignalingDecompress(computer,diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',586).
 fluent(signalingDecompress(computer,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',586).
 ==> mpred_prop(signalingDecompress(computer,diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',586).
 ==> meta_argtypes(signalingDecompress(computer,diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:588
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',589).
 % fluent SignalingLowOnAir(computer,airtank,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',589).
 fluent(signalingLowOnAir(computer,airtank,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',589).
 ==> mpred_prop(signalingLowOnAir(computer,airtank,diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',589).
 ==> meta_argtypes(signalingLowOnAir(computer,airtank,diver)).
 
 
@@ -4477,7 +4264,6 @@ fluent(signalingLowOnAir(computer,airtank,diver)).
 % HoldsAt(SignalingLowOnAir(computer,airtank,diver),time) ->
 % HoldsAt(LowOnAir(airtank),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:592
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',591).
 
  /*  holds_at(signalingLowOnAir(Computer, Airtank, Diver), Time) ->
        holds_at(lowOnAir(Airtank), Time).
@@ -4507,7 +4293,6 @@ axiom(holds_at(lowOnAir(Airtank), Time),
  /*  not(holds_at(signalingLowOnAir(Computer, Airtank, Diver), Time)) :-
        not(holds_at(lowOnAir(Airtank), Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',591).
 
  /*  [holds_at(neg(lowOnAir(Airtank)), Time)] ->
        ta(Time,
@@ -4579,19 +4364,14 @@ axiom(holds_at(neg(signalingDecompress(Computer, Diver)), Time),
 % event Decompress(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',598).
 event(decompress(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',598).
 ==> mpred_prop(decompress(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',598).
 ==> meta_argtypes(decompress(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:600
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',601).
 % event EqualizeEars(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',601).
 event(equalizeEars(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',601).
 ==> mpred_prop(equalizeEars(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',601).
 ==> meta_argtypes(equalizeEars(diver)).
 
 
@@ -4734,7 +4514,6 @@ axiom(not(happens(ascend1(Diver), Time)),
  /*  happens(ascend1(Diver), Time), not(happens(decompress(Diver), Time)) ->
        happens(startDecompressionIllness(Diver), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',610).
 
  /*  happens(startDecompressionIllness(Diver), Time) :-
        happens(ascend1(Diver), Time),
@@ -4808,7 +4587,6 @@ axiom(happens(decompress(Diver), Time),
  /*  holds_at(holding(Diver1, Diver2), Time), happens(ascend1(Diver1), Time), not(happens(decompress(Diver2), Time)) ->
        happens(startDecompressionIllness(Diver2), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',615).
 
  /*  happens(startDecompressionIllness(Diver2), Time) :-
        holds_at(holding(Diver1, Diver2), Time),
@@ -4933,7 +4711,6 @@ axiom(not(happens(decompress(Diver), Time)),
    
     [  (holds_at(uncontrolledBuoyancy(Diver), Time);not(comparison(Depth, 0, >));holds_at(neg(atDepth(Diver, Depth)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  holds_at(neg(uncontrolledBuoyancy(Diver)), Time) :-
        happens(decompress(Diver), Time).
@@ -4949,18 +4726,16 @@ axiom(not(happens(decompress(Diver), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 axiom(requires(decompress(Diver), Time),
     [holds_at(metreqs(decompress(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  [holds_at(neg(uncontrolledBuoyancy(Diver)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(decompress(Diver)), Time)).
+          holds_at(metreqs(decompress(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
-axiom(holds_at(requirements(decompress(Diver)), Time),
+axiom(holds_at(metreqs(decompress(Diver)), Time),
     [holds_at(neg(uncontrolledBuoyancy(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  comparison(Depth, 0, >) :-
        happens(decompress(Diver), Time).
@@ -4976,18 +4751,16 @@ axiom(holds_at(requirements(decompress(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 axiom(requires(decompress(Diver), Time),
     [holds_at(metreqs(decompress(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  [comparison(Depth, 0, >)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(decompress(Diver)), Time)).
+          holds_at(metreqs(decompress(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
-axiom(holds_at(requirements(decompress(Diver)), Time),
+axiom(holds_at(metreqs(decompress(Diver)), Time),
     [comparison(Depth, 0, >)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  holds_at(atDepth(Diver, Depth), Time) :-
        happens(decompress(Diver), Time).
@@ -5003,25 +4776,22 @@ axiom(holds_at(requirements(decompress(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 axiom(requires(decompress(Diver), Time),
     [holds_at(metreqs(decompress(Diver)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
 
  /*  [holds_at(atDepth(Diver, Depth), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(decompress(Diver)), Time)).
+          holds_at(metreqs(decompress(Diver)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',621).
-axiom(holds_at(requirements(decompress(Diver)), Time),
+axiom(holds_at(metreqs(decompress(Diver)), Time),
     [holds_at(atDepth(Diver, Depth), Time)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:624
 % fluent HasHeadache(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',624).
 fluent(hasHeadache(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',624).
 ==> mpred_prop(hasHeadache(diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',624).
 ==> meta_argtypes(hasHeadache(diver)).
 
 
@@ -5067,7 +4837,6 @@ axiom(holds_at(neg(conditionOK(Diver)), Time),
    
     [  (holds_at(unconscious(Diver), Time);holds_at(hasEarPain(Diver), Time);holds_at(hasRupturedEardrum(Diver), Time);holds_at(hasDecompressionIllness(Diver), Time);holds_at(hasHeadache(Diver), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 
  /*  holds_at(neg(unconscious(Diver)), Time) :-
        holds_at(conditionOK(Diver), Time).
@@ -5083,7 +4852,6 @@ axiom(holds_at(neg(conditionOK(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 axiom(holds_at(neg(unconscious(Diver)), Time),
     [holds_at(conditionOK(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 
  /*  holds_at(neg(hasEarPain(Diver)), Time) :-
        holds_at(conditionOK(Diver), Time).
@@ -5099,7 +4867,6 @@ axiom(holds_at(neg(unconscious(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 axiom(holds_at(neg(hasEarPain(Diver)), Time),
     [holds_at(conditionOK(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 
  /*  holds_at(neg(hasRupturedEardrum(Diver)), Time) :-
        holds_at(conditionOK(Diver), Time).
@@ -5115,7 +4882,6 @@ axiom(holds_at(neg(hasEarPain(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 axiom(holds_at(neg(hasRupturedEardrum(Diver)), Time),
     [holds_at(conditionOK(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 
  /*  holds_at(neg(hasDecompressionIllness(Diver)), Time) :-
        holds_at(conditionOK(Diver), Time).
@@ -5131,7 +4897,6 @@ axiom(holds_at(neg(hasRupturedEardrum(Diver)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 axiom(holds_at(neg(hasDecompressionIllness(Diver)), Time),
     [holds_at(conditionOK(Diver), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',627).
 
  /*  holds_at(neg(hasHeadache(Diver)), Time) :-
        holds_at(conditionOK(Diver), Time).
@@ -5152,39 +4917,28 @@ axiom(holds_at(neg(hasHeadache(Diver)), Time),
 % event BeAirlifted(diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',634).
 event(beAirlifted(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',634).
 ==> mpred_prop(beAirlifted(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',634).
 ==> meta_argtypes(beAirlifted(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:636
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',637).
 % event TakeInWater(diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',637).
 event(takeInWater(diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',637).
 ==> mpred_prop(takeInWater(diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',637).
 ==> meta_argtypes(takeInWater(diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:638
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',639).
 % fluent LowOnAir(airtank)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',639).
 fluent(lowOnAir(airtank)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',639).
 ==> mpred_prop(lowOnAir(airtank),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',639).
 ==> meta_argtypes(lowOnAir(airtank)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:640
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',641).
 % event BecomeLowOnAir(airtank)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',641).
 event(becomeLowOnAir(airtank)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',641).
 ==> mpred_prop(becomeLowOnAir(airtank),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',641).
 ==> meta_argtypes(becomeLowOnAir(airtank)).
 
 
@@ -5192,7 +4946,6 @@ event(becomeLowOnAir(airtank)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',643).
 % [airtank,time]
 % Initiates(BecomeLowOnAir(airtank),LowOnAir(airtank),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',643).
 
  /*  [] ->
        ta(Time,
@@ -5214,10 +4967,13 @@ axiom(initiates(becomeLowOnAir(Airtank), lowOnAir(Airtank), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(conditionOK(Diver))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(conditionOK(Diver), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
-axiom(initially(conditionOK(Diver)),
+axiom(holds_at(conditionOK(Diver), start),
     []).
 
 
@@ -5227,23 +4983,25 @@ axiom(initially(conditionOK(Diver)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(vertical(Diver))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(vertical(Diver), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
-axiom(initially(vertical(Diver)),
+axiom(holds_at(vertical(Diver), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:648
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
 % !HoldsAt(DisturbedSilt(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(disturbedSilt))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(disturbedSilt), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
-axiom(initially(neg(disturbedSilt)),
+axiom(holds_at(neg(disturbedSilt), start),
     []).
 
 
@@ -5253,13 +5011,13 @@ axiom(initially(neg(disturbedSilt)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(uncontrolledBuoyancy(Diver)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(uncontrolledBuoyancy(Diver)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
-axiom(initially(neg(uncontrolledBuoyancy(Diver))),
+axiom(holds_at(neg(uncontrolledBuoyancy(Diver)), start),
     []).
 
 
@@ -5267,16 +5025,15 @@ axiom(initially(neg(uncontrolledBuoyancy(Diver))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 % [diver]
  % !HoldsAt(Disoriented(diver),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(disoriented(Diver)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(disoriented(Diver)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
-axiom(initially(neg(disoriented(Diver))),
+axiom(holds_at(neg(disoriented(Diver)), start),
     []).
 
 
@@ -5288,42 +5045,40 @@ axiom(initially(neg(disoriented(Diver))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:653
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
- /*   initially(neg(positivelyBuoyant(Diver))),
-      initially(neg(neutrallyBuoyant(Diver))),
-      initially(neg(negativelyBuoyant(Diver))).
+ /*   holds_at(neg(positivelyBuoyant(Diver)), start+0),
+      holds_at(neg(neutrallyBuoyant(Diver)), start+0),
+      holds_at(neg(negativelyBuoyant(Diver)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(positivelyBuoyant(Diver)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(positivelyBuoyant(Diver)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
-axiom(initially(neg(positivelyBuoyant(Diver))),
+axiom(holds_at(neg(positivelyBuoyant(Diver)), start),
     []).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
  /*  [] ->
-       ta(Ta_Param2,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(neutrallyBuoyant(Diver)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(neutrallyBuoyant(Diver)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
-axiom(initially(neg(neutrallyBuoyant(Diver))),
+axiom(holds_at(neg(neutrallyBuoyant(Diver)), start),
     []).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
  /*  [] ->
-       ta(Ta_Param3,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(negativelyBuoyant(Diver)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(negativelyBuoyant(Diver)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
-axiom(initially(neg(negativelyBuoyant(Diver))),
+axiom(holds_at(neg(negativelyBuoyant(Diver)), start),
     []).
 
 
@@ -5331,16 +5086,15 @@ axiom(initially(neg(negativelyBuoyant(Diver))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
 % [diver,object]
  % !HoldsAt(Wearing(diver,object),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(wearing(Diver, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(wearing(Diver, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
-axiom(initially(neg(wearing(Diver, Object))),
+axiom(holds_at(neg(wearing(Diver, Object)), start),
     []).
 
 
@@ -5350,13 +5104,13 @@ axiom(initially(neg(wearing(Diver, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Diver, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Diver, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
-axiom(initially(neg(holding(Diver, Object))),
+axiom(holds_at(neg(holding(Diver, Object)), start),
     []).
 
 
@@ -5364,16 +5118,15 @@ axiom(initially(neg(holding(Diver, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',657).
 % [diver1,diver2]
  % !HoldsAt(Separated(diver1,diver2),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',657).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(separated(Diver1, Diver2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(separated(Diver1, Diver2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',657).
-axiom(initially(neg(separated(Diver1, Diver2))),
+axiom(holds_at(neg(separated(Diver1, Diver2)), start),
     []).
 
 
@@ -5383,11 +5136,8 @@ axiom(initially(neg(separated(Diver1, Diver2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:659
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',660).
 % fluent Separated(diver,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',660).
 fluent(separated(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',660).
 ==> mpred_prop(separated(diver,diver),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',660).
 ==> meta_argtypes(separated(diver,diver)).
 
 
@@ -5397,7 +5147,6 @@ fluent(separated(diver,diver)).
 % HoldsAt(Separated(diver1,diver2),time) ->
 % HoldsAt(Separated(diver2,diver1),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:663
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',662).
 
  /*  holds_at(separated(Diver1, Diver2), Time) ->
        holds_at(separated(Diver2, Diver1), Time).
@@ -5407,19 +5156,14 @@ fluent(separated(diver,diver)).
 % event BecomeSeparated(diver,diver)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',665).
 event(becomeSeparated(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',665).
 ==> mpred_prop(becomeSeparated(diver,diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',665).
 ==> meta_argtypes(becomeSeparated(diver,diver)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:667
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',668).
 % event BeReunitedWith(diver,diver)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',668).
 event(beReunitedWith(diver,diver)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',668).
 ==> mpred_prop(beReunitedWith(diver,diver),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',668).
 ==> meta_argtypes(beReunitedWith(diver,diver)).
 
 
@@ -5427,7 +5171,6 @@ event(beReunitedWith(diver,diver)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',670).
 % [diver1,diver2,time]
 % Initiates(BecomeSeparated(diver1,diver2),Separated(diver1,diver2),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',670).
 
  /*  [] ->
        ta(Time,
@@ -5464,7 +5207,6 @@ axiom(initiates(becomeSeparated(Diver1, Diver2), separated(Diver2, Diver1), Time
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',676).
 % [diver1,diver2,time]
 % Terminates(BeReunitedWith(diver1,diver2),Separated(diver1,diver2),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',676).
 
  /*  [] ->
        ta(Time,

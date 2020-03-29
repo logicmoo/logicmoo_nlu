@@ -1,4 +1,6 @@
 
+:- module(ec_common,[]).
+
 is_sicstus:- \+ current_prolog_flag(version_data,swi(_,_,_,_)).
 
 ?- is_sicstus -> prolog_flag(single_var_warnings,_,off) ; true.
@@ -158,4 +160,5 @@ writenl(_).
 
 writeYesln(_).
 
+:- fixup_exports.
 

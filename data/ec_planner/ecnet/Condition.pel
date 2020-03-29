@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:26 GMT
+% Sun, 29 Mar 2020 18:48:11 GMT
 % From ../ecnet/Condition.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Cognition.e',20).
 
@@ -26,21 +26,15 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:12
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',13).
 % fluent Alive(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',13).
 fluent(alive(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',13).
 ==> mpred_prop(alive(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',13).
 ==> meta_argtypes(alive(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:14
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',15).
 % fluent Dead(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',15).
 fluent(dead(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',15).
 ==> mpred_prop(dead(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',15).
 ==> meta_argtypes(dead(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:15
@@ -51,40 +45,29 @@ fluent(dead(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:17
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',18).
 % fluent Injured(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',18).
 fluent(injured(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',18).
 ==> mpred_prop(injured(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',18).
 ==> meta_argtypes(injured(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 % event Kill(object,agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 event(kill(object,agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 ==> mpred_prop(kill(object,agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 ==> meta_argtypes(kill(object,agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:20
 % event Injure(object,agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 event(injure(object,agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 ==> mpred_prop(injure(object,agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',20).
 ==> meta_argtypes(injure(object,agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',22).
 % event HealInjured(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',22).
 event(healInjured(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',22).
 ==> mpred_prop(healInjured(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',22).
 ==> meta_argtypes(healInjured(agent)).
 
 
@@ -92,7 +75,6 @@ event(healInjured(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 % [agent,time]
  % HoldsAt(Alive(agent),time) <-> !HoldsAt(Dead(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  holds_at(alive(Agent), Time) <->
        holds_at(neg(dead(Agent)), Time).
@@ -102,7 +84,6 @@ event(healInjured(agent)).
  /*  [holds_at, alive] <->
        [holds_at, neg, dead].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  holds_at(alive(Agent), Time) ->
        holds_at(neg(dead(Agent)), Time).
@@ -112,7 +93,6 @@ event(healInjured(agent)).
  /*  holds_at(neg(dead(Agent)), Time) :-
        holds_at(alive(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  [holds_at(alive(Agent), Time)] ->
        ta(Time,
@@ -123,7 +103,6 @@ event(healInjured(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 axiom(holds_at(neg(dead(Agent)), Time),
     [holds_at(alive(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  not(holds_at(alive(Agent), Time)) :-
        not(holds_at(neg(dead(Agent)), Time)).
@@ -139,7 +118,6 @@ axiom(holds_at(neg(dead(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 axiom(holds_at(neg(alive(Agent)), Time),
     [holds_at(dead(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  holds_at(neg(dead(Agent)), Time) ->
        holds_at(alive(Agent), Time).
@@ -149,7 +127,6 @@ axiom(holds_at(neg(alive(Agent)), Time),
  /*  holds_at(alive(Agent), Time) :-
        holds_at(neg(dead(Agent)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  [holds_at(neg(dead(Agent)), Time)] ->
        ta(Time,
@@ -160,7 +137,6 @@ axiom(holds_at(neg(alive(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 axiom(holds_at(alive(Agent), Time),
     [holds_at(neg(dead(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  not(holds_at(neg(dead(Agent)), Time)) :-
        not(holds_at(alive(Agent), Time)).
@@ -186,7 +162,6 @@ axiom(holds_at(dead(Agent), Time),
  /*  holds_at(injured(Agent), Time) ->
        holds_at(alive(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  holds_at(alive(Agent), Time) :-
        holds_at(injured(Agent), Time).
@@ -202,7 +177,6 @@ axiom(holds_at(dead(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 axiom(holds_at(alive(Agent), Time),
     [holds_at(injured(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',24).
 
  /*  not(holds_at(injured(Agent), Time)) :-
        not(holds_at(alive(Agent), Time)).
@@ -242,7 +216,6 @@ axiom(terminates(kill(Object, Agent), alive(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',30).
 % [object,agent,time]
 % Initiates(Injure(object,agent),Injured(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',30).
 
  /*  [] ->
        ta(Time,
@@ -275,31 +248,22 @@ axiom(terminates(healInjured(Agent), injured(Agent), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',36).
 % fluent Intact(physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',36).
 fluent(intact(physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',36).
 ==> mpred_prop(intact(physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',36).
 ==> meta_argtypes(intact(physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',38).
 % fluent Damaged(physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',38).
 fluent(damaged(physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',38).
 ==> mpred_prop(damaged(physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',38).
 ==> meta_argtypes(damaged(physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',40).
 % fluent Destroyed(physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',40).
 fluent(destroyed(physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',40).
 ==> mpred_prop(destroyed(physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',40).
 ==> meta_argtypes(destroyed(physobj)).
 
 
@@ -309,37 +273,27 @@ fluent(destroyed(physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:42
 % xor Intact, Damaged, Destroyed
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',42).
 ==> xor([intact,damaged,destroyed]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',45).
 % event Damage(object,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',45).
 event(damage(object,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',45).
 ==> mpred_prop(damage(object,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',45).
 ==> meta_argtypes(damage(object,physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',47).
 % event Destroy(object,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',47).
 event(destroy(object,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',47).
 ==> mpred_prop(destroy(object,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',47).
 ==> meta_argtypes(destroy(object,physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',49).
 % event Repair(object,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',49).
 event(repair(object,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',49).
 ==> mpred_prop(repair(object,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',49).
 ==> meta_argtypes(repair(object,physobj)).
 
 
@@ -349,7 +303,6 @@ event(repair(object,physobj)).
 % Happens(Damage(object,physobj),time) ->
 % HoldsAt(Intact(physobj),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e:52
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
 
  /*  happens(damage(Object, Physobj), Time) ->
        holds_at(intact(Physobj), Time).
@@ -359,7 +312,6 @@ event(repair(object,physobj)).
  /*  holds_at(intact(Physobj), Time) :-
        happens(damage(Object, Physobj), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
 
  /*  [holds_at(metreqs(damage(Object, Physobj)), Time)] ->
        ta(Time,
@@ -370,18 +322,16 @@ event(repair(object,physobj)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
 axiom(requires(damage(Object, Physobj), Time),
     [holds_at(metreqs(damage(Object, Physobj)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
 
  /*  [holds_at(intact(Physobj), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(damage(Object, Physobj)), Time)).
+          holds_at(metreqs(damage(Object, Physobj)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
-axiom(holds_at(requirements(damage(Object, Physobj)), Time),
+axiom(holds_at(metreqs(damage(Object, Physobj)), Time),
     [holds_at(intact(Physobj), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',51).
 
  /*  not(happens(damage(Object, Physobj), Time)) :-
        not(holds_at(intact(Physobj), Time)).
@@ -421,7 +371,6 @@ axiom(initiates(damage(Object, Physobj), damaged(Physobj), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',58).
 % [object,physobj,time]
 % Terminates(Damage(object,physobj),Intact(physobj),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',58).
 
  /*  [] ->
        ta(Time,
@@ -533,7 +482,6 @@ axiom(initiates(destroy(Object, Physobj), destroyed(Physobj), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',69).
 % [object,physobj,time]
 % Terminates(Destroy(object,physobj),Intact(physobj),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',69).
 
  /*  [] ->
        ta(Time,
@@ -570,7 +518,6 @@ axiom(terminates(destroy(Object, Physobj), damaged(Physobj), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',75).
 % [object,physobj,time]
 % Initiates(Repair(object,physobj),Intact(physobj),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Condition.e',75).
 
  /*  [] ->
        ta(Time,

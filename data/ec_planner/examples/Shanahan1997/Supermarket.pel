@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:20 GMT
+% Sun, 29 Mar 2020 18:47:21 GMT
 % From ../examples/Shanahan1997/Supermarket.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',71).
 
@@ -54,58 +54,45 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:45
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',45).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:47
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 % event Push()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 event(push).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 ==> mpred_prop(push,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:48
 % event Pull()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 event(pull).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',48).
 ==> mpred_prop(pull,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:49
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 % fluent Forwards()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 fluent(forwards).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 ==> mpred_prop(forwards,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:50
 % fluent Backwards()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 fluent(backwards).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',50).
 ==> mpred_prop(backwards,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
 % fluent Spinning()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
 fluent(spinning).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',52).
 ==> mpred_prop(spinning,fluent).
 
 
@@ -115,7 +102,6 @@ fluent(spinning).
 % !Happens(Pull(), time) ->
 % Initiates(Push(), Forwards(), time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:55
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',54).
 
  /*  [not(happens(pull, Time))] ->
        ta(Time,
@@ -194,16 +180,15 @@ axiom(terminates(pull, forwards, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
 axiom(requires(push, Time),
     [holds_at(metreqs(push), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
 
  /*  [initiates(pull, spinning, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(push), Time)).
+          holds_at(metreqs(push), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',71).
-axiom(holds_at(requirements(push), Time),
+axiom(holds_at(metreqs(push), Time),
     [initiates(pull, spinning, Time)]).
 
 
@@ -222,16 +207,15 @@ axiom(holds_at(requirements(push), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
 axiom(requires(push, Time),
     [holds_at(metreqs(push), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
 
  /*  [terminates(pull, forwards, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(push), Time)).
+          holds_at(metreqs(push), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',75).
-axiom(holds_at(requirements(push), Time),
+axiom(holds_at(metreqs(push), Time),
     [terminates(pull, forwards, Time)]).
 
 
@@ -250,16 +234,15 @@ axiom(holds_at(requirements(push), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
 axiom(requires(push, Time),
     [holds_at(metreqs(push), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
 
  /*  [terminates(pull, backwards, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(push), Time)).
+          holds_at(metreqs(push), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',79).
-axiom(holds_at(requirements(push), Time),
+axiom(holds_at(metreqs(push), Time),
     [terminates(pull, backwards, Time)]).
 
 
@@ -302,23 +285,21 @@ axiom(terminates(pull, spinning, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',89).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(forwards))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(forwards), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',89).
-axiom(initially(neg(forwards)),
+axiom(holds_at(neg(forwards), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:90
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 % !HoldsAt(Backwards(), 0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(backwards))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(backwards), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
-axiom(initially(neg(backwards)),
+axiom(holds_at(neg(backwards), start),
     []).
 
 
@@ -327,10 +308,9 @@ axiom(initially(neg(backwards)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(spinning))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(spinning), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
-axiom(initially(neg(spinning)),
+axiom(holds_at(neg(spinning), start),
     []).
 
 
@@ -338,61 +318,69 @@ axiom(initially(neg(spinning)),
 % Happens(Push(), 5).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',93).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(push, t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(push, Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',93).
-axiom(happens(push, t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(push, Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:94
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
 % Happens(Pull(), 5).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(pull, t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(pull, Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
-axiom(happens(pull, t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(pull, Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:95
 % Happens(Pull(), 10).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(pull, t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(pull, Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
-axiom(happens(pull, t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(pull, Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:96
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
 % Happens(Push(), 10).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(push, t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(push, Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',97).
-axiom(happens(push, t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(push, Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:98
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',99).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',99).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:100
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',101).
 % range time 0 12
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',101).
 ==> range(time,0,12).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e:101

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:20 GMT
+% Sun, 29 Mar 2020 18:47:21 GMT
 % From ../examples/Shanahan1997/StolenCar.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',56).
 
@@ -47,43 +47,33 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:38
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',38).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',41).
 % event Park()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',41).
 event(park).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',41).
 ==> mpred_prop(park,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:41
 % event Steal()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',41).
 event(steal).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',41).
 ==> mpred_prop(steal,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',43).
 % fluent CarParked()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',43).
 fluent(carParked).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',43).
 ==> mpred_prop(carParked,fluent).
 
 
@@ -91,7 +81,6 @@ fluent(carParked).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',45).
 % [time]
  % Initiates(Park(),CarParked(),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',45).
 
  /*  [] ->
        ta(Time,
@@ -125,24 +114,22 @@ axiom(terminates(steal, carParked, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',47).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(carParked))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(carParked), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',47).
-axiom(initially(neg(carParked)),
+axiom(holds_at(neg(carParked), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',49).
 % Happens(Park(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',49).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(park, t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(park, start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',49).
-axiom(happens(park, t),
-    [is_time(t)]).
+axiom(happens(park, start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:49
@@ -152,13 +139,20 @@ axiom(happens(park, t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',51).
 % !HoldsAt(CarParked(),2).
+
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          holds_at(neg(carParked), Start2)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',51).
-holds_at(neg(carParked),2).
+axiom(holds_at(neg(carParked), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:52
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',53).
 % range time 0 2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',53).
 ==> range(time,0,2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e:53

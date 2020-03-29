@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:57 GMT
+% Sun, 29 Mar 2020 18:46:49 GMT
 % From ../examples/Mueller2006/Chapter8/CameraWithFlash.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',94).
 
@@ -29,70 +29,53 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',23).
 % sort camera
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',23).
 ==> sort(camera).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',25).
 % camera Camera1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',25).
 ==> t(camera,camera1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 % fluent ProperlyExposedPicture(camera)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 fluent(properlyExposedPicture(camera)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 ==> mpred_prop(properlyExposedPicture(camera),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 ==> meta_argtypes(properlyExposedPicture(camera)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:27
 % fluent ImproperlyExposedPicture(camera)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 fluent(improperlyExposedPicture(camera)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 ==> mpred_prop(improperlyExposedPicture(camera),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',27).
 ==> meta_argtypes(improperlyExposedPicture(camera)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 % event ReleaseShutter(camera)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 event(releaseShutter(camera)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 ==> mpred_prop(releaseShutter(camera),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 ==> meta_argtypes(releaseShutter(camera)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:30
 % event TriggerFlash(camera)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 event(triggerFlash(camera)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 ==> mpred_prop(triggerFlash(camera),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',30).
 ==> meta_argtypes(triggerFlash(camera)).
 
 
@@ -114,16 +97,15 @@ event(triggerFlash(camera)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',35).
 axiom(requires(triggerFlash(Camera), Time),
     [holds_at(metreqs(triggerFlash(Camera)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',35).
 
  /*  [initiates(releaseShutter(Camera), properlyExposedPicture(Camera), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(triggerFlash(Camera)), Time)).
+          holds_at(metreqs(triggerFlash(Camera)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',35).
-axiom(holds_at(requirements(triggerFlash(Camera)), Time),
+axiom(holds_at(metreqs(triggerFlash(Camera)), Time),
    
     [ initiates(releaseShutter(Camera),
                 properlyExposedPicture(Camera),
@@ -156,27 +138,55 @@ axiom(initiates(releaseShutter(Camera), improperlyExposedPicture(Camera), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
 % Delta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
-next_axiom_uses(delta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(delta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
+axiom(holds_at(next_axiom_uses(delta), Time),
+    []).
  
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
 % Happens(ReleaseShutter(Camera1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(releaseShutter(camera1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(releaseShutter(camera1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
-axiom(happens(releaseShutter(camera1), t),
-    [is_time(t)]).
+axiom(happens(releaseShutter(camera1), start),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:45
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
-next_axiom_uses(delta).
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
+ */
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(delta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
+axiom(holds_at(next_axiom_uses(delta), Time),
+    []).
  
 
 
@@ -184,32 +194,50 @@ next_axiom_uses(delta).
 % Happens(TriggerFlash(Camera1),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(triggerFlash(camera1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(triggerFlash(camera1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',45).
-axiom(happens(triggerFlash(camera1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(triggerFlash(camera1), Maptime),
+    [b(start, Maptime)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
 % Delta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
-next_axiom_uses(delta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(delta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
+axiom(holds_at(next_axiom_uses(delta), Time),
+    []).
  
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
 % Happens(ReleaseShutter(Camera1),1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(releaseShutter(camera1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(releaseShutter(camera1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',47).
-axiom(happens(releaseShutter(camera1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(releaseShutter(camera1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:48
@@ -217,16 +245,15 @@ axiom(happens(releaseShutter(camera1), now),
 %; added:
 % [camera]
  % !HoldsAt(ImproperlyExposedPicture(camera),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',49).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(improperlyExposedPicture(Camera)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(improperlyExposedPicture(Camera)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',49).
-axiom(initially(neg(improperlyExposedPicture(Camera))),
+axiom(holds_at(neg(improperlyExposedPicture(Camera)), start),
     []).
 
 
@@ -234,30 +261,26 @@ axiom(initially(neg(improperlyExposedPicture(Camera))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',51).
 % [camera]
  % !HoldsAt(ProperlyExposedPicture(camera),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',51).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(properlyExposedPicture(Camera)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(properlyExposedPicture(Camera)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',51).
-axiom(initially(neg(properlyExposedPicture(Camera))),
+axiom(holds_at(neg(properlyExposedPicture(Camera)), start),
     []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:52
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',53).
 % completion Delta Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',53).
 ==> completion(delta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',53).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',55).
 % range time 0 2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',55).
 ==> range(time,0,2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e:55

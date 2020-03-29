@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:29:07 GMT
+% Sun, 29 Mar 2020 18:51:37 GMT
 % From ../ectest/ec_reader_test_foundations.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_examples.e',9038).
 
@@ -24,7 +24,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:17
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',18).
 % sort boolean
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',18).
 ==> sort(boolean).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:18
@@ -35,16 +34,13 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',20).
 % reified sort predicate
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',20).
 reified_sort(predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',20).
 ==> mpred_prop(predicate,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:20
 % reified sort function
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',20).
 reified_sort(function).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',20).
 ==> mpred_prop(function,reified_sort).
 %; End of file.
 %; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -79,7 +75,6 @@ reified_sort(function).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:56
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',57).
 % sort time: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',57).
 ==> subsort(time,integer).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:57
@@ -90,83 +85,62 @@ reified_sort(function).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:59
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',60).
 % reified sort fluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',60).
 reified_sort(fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',60).
 ==> mpred_prop(fluent,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:60
 % reified sort event
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',60).
 reified_sort(event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',60).
 ==> mpred_prop(event,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 % predicate Happens(event,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 predicate(happens(event,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 ==> mpred_prop(happens(event,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 ==> meta_argtypes(happens(event,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:63
 % predicate HoldsAt(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 predicate(holds_at(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 ==> mpred_prop(holds_at(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',63).
 ==> meta_argtypes(holds_at(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:64
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 % predicate ReleasedAt(fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 predicate(releasedAt(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:65
 % predicate Initiates(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 predicate(initiates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',65).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:66
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 % predicate Terminates(event,fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 predicate(terminates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:67
 % predicate Releases(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 predicate(releases(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 ==> mpred_prop(releases(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',67).
 ==> meta_argtypes(releases(event,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:68
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',69).
 % predicate Trajectory(fluent,time,fluent,offset)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',69).
 predicate(trajectory(fluent,time,fluent,offset)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',69).
 ==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',69).
 ==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
 
 
@@ -202,7 +176,6 @@ predicate(trajectory(fluent,time,fluent,offset)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:101
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',102).
 % sort time: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',102).
 ==> subsort(time,integer).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:102
@@ -213,74 +186,55 @@ predicate(trajectory(fluent,time,fluent,offset)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:104
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',105).
 % reified sort fluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',105).
 reified_sort(fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',105).
 ==> mpred_prop(fluent,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:105
 % reified sort event
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',105).
 reified_sort(event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',105).
 ==> mpred_prop(event,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:107
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 % predicate Happens(event,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 predicate(happens(event,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 ==> mpred_prop(happens(event,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 ==> meta_argtypes(happens(event,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:108
 % predicate HoldsAt(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 predicate(holds_at(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 ==> mpred_prop(holds_at(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',108).
 ==> meta_argtypes(holds_at(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:109
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',110).
 % predicate ReleasedAt(fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',110).
 predicate(releasedAt(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',110).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',110).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:111
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 % predicate Initiates(event,fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 predicate(initiates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:112
 % predicate Terminates(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 predicate(terminates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',112).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:113
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',114).
 % predicate Releases(event,fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',114).
 predicate(releases(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',114).
 ==> mpred_prop(releases(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',114).
 ==> meta_argtypes(releases(event,fluent,time)).
 
 
@@ -297,7 +251,6 @@ predicate(releases(event,fluent,time)).
  /*  holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time)))) ->
        holds_at(Fluent, Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',116).
 
  /*  holds_at(Fluent, Time+1) :-
        holds_at(Fluent, Time),
@@ -433,7 +386,6 @@ axiom(terminates(Event, Fluent, Time),
  /*  holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time)))) ->
        holds_at(neg(Fluent), Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',123).
 
  /*  holds_at(neg(Fluent), Time+1) :-
        holds_at(neg(Fluent), Time),
@@ -568,7 +520,6 @@ axiom(initiates(Event, Fluent, Time),
  /*  not(releasedAt(Fluent, Time)), not(exists([Event],  (happens(Event, Time), releases(Event, Fluent, Time)))) ->
        not(releasedAt(Fluent, Time+1)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',129).
 
  /*  not(releasedAt(Fluent, Time+1)) :-
        not(releasedAt(Fluent, Time)),
@@ -671,7 +622,6 @@ axiom(releases(Event, Fluent, Time),
  /*  releasedAt(Fluent, Time), not(exists([Event],  (happens(Event, Time), (initiates(Event, Fluent, Time);terminates(Event, Fluent, Time))))) ->
        releasedAt(Fluent, Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',134).
 
  /*  releasedAt(Fluent, Time+1) :-
        releasedAt(Fluent, Time),
@@ -1093,20 +1043,15 @@ axiom(not(releases(Event, Fluent, Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:182
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 % predicate Started(fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 predicate(started(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 ==> mpred_prop(started(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 ==> meta_argtypes(started(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:183
 % predicate Stopped(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 predicate(stopped(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 ==> mpred_prop(stopped(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',183).
 ==> meta_argtypes(stopped(fluent,time)).
 
 
@@ -1130,7 +1075,6 @@ predicate(stopped(fluent,time)).
  /*  [started] <->
        [;, holds_at, exists, happens, initiates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 
  /*  started(Fluent, Time) ->
        (   holds_at(Fluent, Time)
@@ -1199,7 +1143,6 @@ axiom(holds_at(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 axiom(happens(Event, Time),
     [holds_at(neg(Fluent), Time), started(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 
  /*  initiates(Event, Fluent, Time) :-
        not(holds_at(Fluent, Time)),
@@ -1216,7 +1159,6 @@ axiom(happens(Event, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 axiom(initiates(Event, Fluent, Time),
     [holds_at(neg(Fluent), Time), started(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 
  /*  holds_at(Fluent, Time);exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time))) ->
        started(Fluent, Time).
@@ -1242,7 +1184,6 @@ axiom(started(Fluent, Time),
    
     [  (holds_at(Fluent, Time);happens(Event, Time), initiates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 
  /*  not(holds_at(Fluent, Time)) :-
        not(started(Fluent, Time)).
@@ -1258,7 +1199,6 @@ axiom(started(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 axiom(holds_at(neg(Fluent), Time),
     [not(started(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',186).
 
  /*  not(happens(Event, Time)) :-
        initiates(Event, Fluent, Time),
@@ -1316,7 +1256,6 @@ axiom(not(initiates(Event, Fluent, Time)),
  /*  [stopped] <->
        [;, holds_at, neg, exists, happens, terminates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 
  /*  stopped(Fluent, Time) ->
        (   holds_at(neg(Fluent), Time)
@@ -1385,7 +1324,6 @@ axiom(holds_at(neg(Fluent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 axiom(happens(Event, Time),
     [holds_at(Fluent, Time), stopped(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 
  /*  terminates(Event, Fluent, Time) :-
        not(holds_at(neg(Fluent), Time)),
@@ -1402,7 +1340,6 @@ axiom(happens(Event, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 axiom(terminates(Event, Fluent, Time),
     [holds_at(Fluent, Time), stopped(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 
  /*  holds_at(neg(Fluent), Time);exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time))) ->
        stopped(Fluent, Time).
@@ -1428,7 +1365,6 @@ axiom(stopped(Fluent, Time),
    
     [  (holds_at(neg(Fluent), Time);happens(Event, Time), terminates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 
  /*  not(holds_at(neg(Fluent), Time)) :-
        not(stopped(Fluent, Time)).
@@ -1444,7 +1380,6 @@ axiom(stopped(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 axiom(holds_at(Fluent, Time),
     [not(stopped(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',192).
 
  /*  not(happens(Event, Time)) :-
        terminates(Event, Fluent, Time),
@@ -1486,19 +1421,14 @@ axiom(not(terminates(Event, Fluent, Time)),
 % predicate Initiated(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',195).
 predicate(initiated(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',195).
 ==> mpred_prop(initiated(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',195).
 ==> meta_argtypes(initiated(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:196
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',197).
 % predicate Terminated(fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',197).
 predicate(terminated(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',197).
 ==> mpred_prop(terminated(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',197).
 ==> meta_argtypes(terminated(fluent,time)).
 
 
@@ -1521,7 +1451,6 @@ predicate(terminated(fluent,time)).
  /*  [initiated] <->
        [started, not, exists, happens, terminates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 
  /*  initiated(Fluent, Time) ->
        started(Fluent, Time),
@@ -1549,7 +1478,6 @@ axiom(not(initiated(Fluent, Time)),
    
     [  (not(started(Fluent, Time));happens(Event, Time), terminates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 
  /*  started(Fluent, Time) :-
        initiated(Fluent, Time).
@@ -1559,7 +1487,6 @@ axiom(not(initiated(Fluent, Time)),
  /*  [initiated(Fluent, Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], started(Fluent, Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 axiom(started(Fluent, Time),
     [initiated(Fluent, Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
@@ -1599,7 +1526,6 @@ axiom(not(happens(Event, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 axiom(not(terminates(Event, Fluent, Time)),
     [happens(Event, Time), initiated(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 
  /*  started(Fluent, Time), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time)))) ->
        initiated(Fluent, Time).
@@ -1665,7 +1591,6 @@ axiom(not(started(Fluent, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 axiom(happens(Event, Time),
     [started(Fluent, Time), not(initiated(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',199).
 
  /*  terminates(Event, Fluent, Time) :-
        started(Fluent, Time),
@@ -1702,7 +1627,6 @@ axiom(terminates(Event, Fluent, Time),
  /*  [terminated] <->
        [stopped, not, exists, happens, initiates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
 
  /*  terminated(Fluent, Time) ->
        stopped(Fluent, Time),
@@ -1730,7 +1654,6 @@ axiom(not(terminated(Fluent, Time)),
    
     [  (not(stopped(Fluent, Time));happens(Event, Time), initiates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
 
  /*  stopped(Fluent, Time) :-
        terminated(Fluent, Time).
@@ -1740,7 +1663,6 @@ axiom(not(terminated(Fluent, Time)),
  /*  [terminated(Fluent, Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], stopped(Fluent, Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
 axiom(stopped(Fluent, Time),
     [terminated(Fluent, Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
@@ -1780,7 +1702,6 @@ axiom(not(happens(Event, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
 axiom(not(initiates(Event, Fluent, Time)),
     [happens(Event, Time), terminated(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',205).
 
  /*  stopped(Fluent, Time), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time)))) ->
        terminated(Fluent, Time).
@@ -1903,39 +1824,29 @@ axiom(initiates(Event, Fluent, Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:240
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 % predicate Clipped(time,fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 predicate(clipped(time,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 ==> mpred_prop(clipped(time,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 ==> meta_argtypes(clipped(time,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:241
 % predicate Declipped(time,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 predicate(declipped(time,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 ==> mpred_prop(declipped(time,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',241).
 ==> meta_argtypes(declipped(time,fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:243
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 % predicate Trajectory(fluent,time,fluent,offset)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 predicate(trajectory(fluent,time,fluent,offset)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 ==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 ==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e:244
 % predicate AntiTrajectory(fluent,time,fluent,offset)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 predicate(antiTrajectory(fluent,time,fluent,offset)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 ==> mpred_prop(antiTrajectory(fluent,time,fluent,offset),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',244).
 ==> meta_argtypes(antiTrajectory(fluent,time,fluent,offset)).
 
 
@@ -1954,7 +1865,6 @@ predicate(antiTrajectory(fluent,time,fluent,offset)).
  /*  happens(Event, Time), initiates(Event, Fluent, Time), 0<Offset, trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, Time+Offset)) ->
        holds_at(Fluent2, Time+Offset).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
  /*  holds_at(Fluent2, Time+Offset) :-
        happens(Event, Time),
@@ -1965,21 +1875,22 @@ predicate(antiTrajectory(fluent,time,fluent,offset)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
- /*  [happens(Event, Time), initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more31)), b(Time, t_more31), ignore(Time+Offset==t_more31)] ->
+ /*  [happens(Event, Time), initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, Time5)), b(Time, Time5), toffset(Time, Offset, Time5), ignore(Time+Offset==Time5)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more31],
-          holds_at(Fluent2, t_more31)).
+          tvs2=[Time, Time5],
+          holds_at(Fluent2, Time5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
-axiom(holds_at(Fluent2, t_more31),
+axiom(holds_at(Fluent2, Time5),
    
     [ happens(Event, Time),
       initiates(Event, Fluent, Time),
       comparison(0, Offset, <),
       trajectory(Fluent, Time, Fluent2, Offset),
-      not(clipped(Time, Fluent, t_more31)),
-      b(Time, t_more31)
+      not(clipped(Time, Fluent, Time5)),
+      b(Time, Time5),
+      toffset(Time, Offset, Time5)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
@@ -1993,10 +1904,10 @@ axiom(holds_at(Fluent2, t_more31),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
- /*  [initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more32)), holds_at(neg(Fluent2), t_more32), b(Time, t_more32), ignore(Time+Offset==t_more32)] ->
+ /*  [initiates(Event, Fluent, Time), comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, Time6)), holds_at(neg(Fluent2), Time6), b(Time, Time6), toffset(Time, Offset, Time6), ignore(Time+Offset==Time6)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more32],
+          tvs2=[Time, Time6],
           not(happens(Event, Time))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
@@ -2005,9 +1916,10 @@ axiom(not(happens(Event, Time)),
     [ initiates(Event, Fluent, Time),
       comparison(0, Offset, <),
       trajectory(Fluent, Time, Fluent2, Offset),
-      not(clipped(Time, Fluent, t_more32)),
-      holds_at(neg(Fluent2), t_more32),
-      b(Time, t_more32)
+      not(clipped(Time, Fluent, Time6)),
+      holds_at(neg(Fluent2), Time6),
+      b(Time, Time6),
+      toffset(Time, Offset, Time6)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
@@ -2021,10 +1933,10 @@ axiom(not(happens(Event, Time)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
- /*  [comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, t_more33)), happens(Event, Time), holds_at(neg(Fluent2), t_more33), b(Time, t_more33), ignore(Time+Offset==t_more33)] ->
+ /*  [comparison(0, Offset, <), trajectory(Fluent, Time, Fluent2, Offset), not(clipped(Time, Fluent, Time7)), happens(Event, Time), holds_at(neg(Fluent2), Time7), b(Time, Time7), toffset(Time, Offset, Time7), ignore(Time+Offset==Time7)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more33],
+          tvs2=[Time, Time7],
           not(initiates(Event, Fluent, Time))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
@@ -2032,10 +1944,11 @@ axiom(not(initiates(Event, Fluent, Time)),
    
     [ comparison(0, Offset, <),
       trajectory(Fluent, Time, Fluent2, Offset),
-      not(clipped(Time, Fluent, t_more33)),
+      not(clipped(Time, Fluent, Time7)),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more33),
-      b(Time, t_more33)
+      holds_at(neg(Fluent2), Time7),
+      b(Time, Time7),
+      toffset(Time, Offset, Time7)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
@@ -2048,21 +1961,22 @@ axiom(not(initiates(Event, Fluent, Time)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
- /*  [not(clipped(Time, Fluent, t_more34)), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more34), b(Time, t_more34), ignore(Time+Offset==t_more34)] ->
+ /*  [not(clipped(Time, Fluent, Time8)), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), Time8), b(Time, Time8), toffset(Time, Offset, Time8), ignore(Time+Offset==Time8)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more34],
+          tvs2=[Time, Time8],
           not(trajectory(Fluent, Time, Fluent2, Offset))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 axiom(not(trajectory(Fluent, Time, Fluent2, Offset)),
    
-    [ not(clipped(Time, Fluent, t_more34)),
+    [ not(clipped(Time, Fluent, Time8)),
       comparison(0, Offset, <),
       initiates(Event, Fluent, Time),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more34),
-      b(Time, t_more34)
+      holds_at(neg(Fluent2), Time8),
+      b(Time, Time8),
+      toffset(Time, Offset, Time8)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
@@ -2075,21 +1989,22 @@ axiom(not(trajectory(Fluent, Time, Fluent2, Offset)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
 
- /*  [trajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more35), b(Time, t_more35), ignore(Time+Offset==t_more35)] ->
+ /*  [trajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), initiates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), Time9), b(Time, Time9), toffset(Time, Offset, Time9), ignore(Time+Offset==Time9)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more35],
-          clipped(Time, Fluent, t_more35)).
+          tvs2=[Time, Time9],
+          clipped(Time, Fluent, Time9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',247).
-axiom(clipped(Time, Fluent, t_more35),
+axiom(clipped(Time, Fluent, Time9),
    
     [ trajectory(Fluent, Time, Fluent2, Offset),
       comparison(0, Offset, <),
       initiates(Event, Fluent, Time),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more35),
-      b(Time, t_more35)
+      holds_at(neg(Fluent2), Time9),
+      b(Time, Time9),
+      toffset(Time, Offset, Time9)
     ]).
 
 
@@ -2107,7 +2022,6 @@ axiom(clipped(Time, Fluent, t_more35),
  /*  happens(Event, Time), terminates(Event, Fluent, Time), 0<Offset, antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, Time+Offset)) ->
        holds_at(Fluent2, Time+Offset).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
  /*  holds_at(Fluent2, Time+Offset) :-
        happens(Event, Time),
@@ -2118,21 +2032,22 @@ axiom(clipped(Time, Fluent, t_more35),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
- /*  [happens(Event, Time), terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more36)), b(Time, t_more36), ignore(Time+Offset==t_more36)] ->
+ /*  [happens(Event, Time), terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, Time5)), b(Time, Time5), toffset(Time, Offset, Time5), ignore(Time+Offset==Time5)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more36],
-          holds_at(Fluent2, t_more36)).
+          tvs2=[Time, Time5],
+          holds_at(Fluent2, Time5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
-axiom(holds_at(Fluent2, t_more36),
+axiom(holds_at(Fluent2, Time5),
    
     [ happens(Event, Time),
       terminates(Event, Fluent, Time),
       comparison(0, Offset, <),
       antiTrajectory(Fluent, Time, Fluent2, Offset),
-      not(declipped(Time, Fluent, t_more36)),
-      b(Time, t_more36)
+      not(declipped(Time, Fluent, Time5)),
+      b(Time, Time5),
+      toffset(Time, Offset, Time5)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
@@ -2146,10 +2061,10 @@ axiom(holds_at(Fluent2, t_more36),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
- /*  [terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more37)), holds_at(neg(Fluent2), t_more37), b(Time, t_more37), ignore(Time+Offset==t_more37)] ->
+ /*  [terminates(Event, Fluent, Time), comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, Time6)), holds_at(neg(Fluent2), Time6), b(Time, Time6), toffset(Time, Offset, Time6), ignore(Time+Offset==Time6)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more37],
+          tvs2=[Time, Time6],
           not(happens(Event, Time))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
@@ -2158,9 +2073,10 @@ axiom(not(happens(Event, Time)),
     [ terminates(Event, Fluent, Time),
       comparison(0, Offset, <),
       antiTrajectory(Fluent, Time, Fluent2, Offset),
-      not(declipped(Time, Fluent, t_more37)),
-      holds_at(neg(Fluent2), t_more37),
-      b(Time, t_more37)
+      not(declipped(Time, Fluent, Time6)),
+      holds_at(neg(Fluent2), Time6),
+      b(Time, Time6),
+      toffset(Time, Offset, Time6)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
@@ -2174,10 +2090,10 @@ axiom(not(happens(Event, Time)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
- /*  [comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, t_more38)), happens(Event, Time), holds_at(neg(Fluent2), t_more38), b(Time, t_more38), ignore(Time+Offset==t_more38)] ->
+ /*  [comparison(0, Offset, <), antiTrajectory(Fluent, Time, Fluent2, Offset), not(declipped(Time, Fluent, Time7)), happens(Event, Time), holds_at(neg(Fluent2), Time7), b(Time, Time7), toffset(Time, Offset, Time7), ignore(Time+Offset==Time7)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more38],
+          tvs2=[Time, Time7],
           not(terminates(Event, Fluent, Time))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
@@ -2185,10 +2101,11 @@ axiom(not(terminates(Event, Fluent, Time)),
    
     [ comparison(0, Offset, <),
       antiTrajectory(Fluent, Time, Fluent2, Offset),
-      not(declipped(Time, Fluent, t_more38)),
+      not(declipped(Time, Fluent, Time7)),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more38),
-      b(Time, t_more38)
+      holds_at(neg(Fluent2), Time7),
+      b(Time, Time7),
+      toffset(Time, Offset, Time7)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
@@ -2201,21 +2118,22 @@ axiom(not(terminates(Event, Fluent, Time)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
- /*  [not(declipped(Time, Fluent, t_more39)), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more39), b(Time, t_more39), ignore(Time+Offset==t_more39)] ->
+ /*  [not(declipped(Time, Fluent, Time8)), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), Time8), b(Time, Time8), toffset(Time, Offset, Time8), ignore(Time+Offset==Time8)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more39],
+          tvs2=[Time, Time8],
           not(antiTrajectory(Fluent, Time, Fluent2, Offset))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 axiom(not(antiTrajectory(Fluent, Time, Fluent2, Offset)),
    
-    [ not(declipped(Time, Fluent, t_more39)),
+    [ not(declipped(Time, Fluent, Time8)),
       comparison(0, Offset, <),
       terminates(Event, Fluent, Time),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more39),
-      b(Time, t_more39)
+      holds_at(neg(Fluent2), Time8),
+      b(Time, Time8),
+      toffset(Time, Offset, Time8)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
@@ -2228,21 +2146,22 @@ axiom(not(antiTrajectory(Fluent, Time, Fluent2, Offset)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
 
- /*  [antiTrajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), t_more40), b(Time, t_more40), ignore(Time+Offset==t_more40)] ->
+ /*  [antiTrajectory(Fluent, Time, Fluent2, Offset), comparison(0, Offset, <), terminates(Event, Fluent, Time), happens(Event, Time), holds_at(neg(Fluent2), Time9), b(Time, Time9), toffset(Time, Offset, Time9), ignore(Time+Offset==Time9)] ->
        ta(Time,
           tvs1=[Time, Time+Offset],
-          tvs2=[Time, t_more40],
-          declipped(Time, Fluent, t_more40)).
+          tvs2=[Time, Time9],
+          declipped(Time, Fluent, Time9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',256).
-axiom(declipped(Time, Fluent, t_more40),
+axiom(declipped(Time, Fluent, Time9),
    
     [ antiTrajectory(Fluent, Time, Fluent2, Offset),
       comparison(0, Offset, <),
       terminates(Event, Fluent, Time),
       happens(Event, Time),
-      holds_at(neg(Fluent2), t_more40),
-      b(Time, t_more40)
+      holds_at(neg(Fluent2), Time9),
+      b(Time, Time9),
+      toffset(Time, Offset, Time9)
     ]).
 
 

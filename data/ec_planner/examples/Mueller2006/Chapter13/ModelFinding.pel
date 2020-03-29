@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:43 GMT
+% Sun, 29 Mar 2020 18:46:36 GMT
 % From ../examples/Mueller2006/Chapter13/ModelFinding.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/Deduction2.e',38).
 
@@ -29,45 +29,34 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',23).
 % sort agent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',23).
 ==> sort(agent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 % fluent Awake(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 fluent(awake(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 ==> mpred_prop(awake(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 ==> meta_argtypes(awake(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:25
 % event WakeUp(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 event(wakeUp(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 ==> mpred_prop(wakeUp(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',25).
 ==> meta_argtypes(wakeUp(agent)).
 
 
@@ -75,7 +64,6 @@ event(wakeUp(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 % [agent,time]
  % Initiates(WakeUp(agent),Awake(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 
  /*  [] ->
        ta(Time,
@@ -96,7 +84,6 @@ axiom(initiates(wakeUp(Agent), awake(Agent), Time),
  /*  happens(wakeUp(Agent), Time) ->
        holds_at(neg(awake(Agent)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 
  /*  holds_at(neg(awake(Agent)), Time) :-
        happens(wakeUp(Agent), Time).
@@ -112,18 +99,16 @@ axiom(initiates(wakeUp(Agent), awake(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 axiom(requires(wakeUp(Agent), Time),
     [holds_at(metreqs(wakeUp(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 
  /*  [holds_at(neg(awake(Agent)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(wakeUp(Agent)), Time)).
+          holds_at(metreqs(wakeUp(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
-axiom(holds_at(requirements(wakeUp(Agent)), Time),
+axiom(holds_at(metreqs(wakeUp(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',28).
 
  /*  not(happens(wakeUp(Agent), Time)) :-
        not(holds_at(neg(awake(Agent)), Time)).
@@ -148,7 +133,6 @@ axiom(not(happens(wakeUp(Agent), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',33).
 % range time 0 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e',33).
 ==> range(time,0,1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/ModelFinding.e:33

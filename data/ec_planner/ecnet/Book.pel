@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:25 GMT
+% Sun, 29 Mar 2020 18:48:10 GMT
 % From ../ecnet/Book.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',183).
 
@@ -23,7 +23,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e:13
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',14).
 % sort page: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',14).
 ==> subsort(page,integer).
 %; agent opens book to page.
 
@@ -31,9 +30,7 @@
 % event BookOpenTo(agent,book,page)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',16).
 event(bookOpenTo(agent,book,page)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',16).
 ==> mpred_prop(bookOpenTo(agent,book,page),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',16).
 ==> meta_argtypes(bookOpenTo(agent,book,page)).
 
 
@@ -43,11 +40,9 @@ event(bookOpenTo(agent,book,page)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e:19
 % event BookClose(agent,book)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',19).
 event(bookClose(agent,book)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',19).
 ==> mpred_prop(bookClose(agent,book),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',19).
 ==> meta_argtypes(bookClose(agent,book)).
 
 
@@ -57,21 +52,16 @@ event(bookClose(agent,book)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e:22
 % fluent BookIsOpenTo(book,page)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',22).
 fluent(bookIsOpenTo(book,page)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',22).
 ==> mpred_prop(bookIsOpenTo(book,page),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',22).
 ==> meta_argtypes(bookIsOpenTo(book,page)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',25).
 % fluent BookClosed(book)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',25).
 fluent(bookClosed(book)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',25).
 ==> mpred_prop(bookClosed(book),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',25).
 ==> meta_argtypes(bookClosed(book)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e:25
@@ -84,9 +74,7 @@ fluent(bookClosed(book)).
 % event BookTurnPageTo(agent,book,page)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',28).
 event(bookTurnPageTo(agent,book,page)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',28).
 ==> mpred_prop(bookTurnPageTo(agent,book,page),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',28).
 ==> meta_argtypes(bookTurnPageTo(agent,book,page)).
 
 
@@ -102,7 +90,6 @@ event(bookTurnPageTo(agent,book,page)).
  /*  holds_at(bookIsOpenTo(Book, Page1), Time), holds_at(bookIsOpenTo(Book, Page2), Time) ->
        equals(Page1, Page2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',31).
 
  /*  not(holds_at(bookIsOpenTo(Book, Page1), Time)) :-
        holds_at(bookIsOpenTo(Book, Page2), Time),
@@ -159,7 +146,6 @@ axiom(holds_at(neg(bookIsOpenTo(Book, Page2)), Time),
  /*  [holds_at, bookClosed] <->
        [not, exists, holds_at, bookIsOpenTo].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  holds_at(bookClosed(Book), Time) ->
        not(exists([Page],
@@ -170,7 +156,6 @@ axiom(holds_at(neg(bookIsOpenTo(Book, Page2)), Time),
  /*  not(holds_at(bookIsOpenTo(Book, Page), Time)) :-
        holds_at(bookClosed(Book), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  [holds_at(bookClosed(Book), Time)] ->
        ta(Time,
@@ -181,7 +166,6 @@ axiom(holds_at(neg(bookIsOpenTo(Book, Page2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 axiom(holds_at(neg(bookIsOpenTo(Book, Page)), Time),
     [holds_at(bookClosed(Book), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  not(holds_at(bookClosed(Book), Time)) :-
        holds_at(bookIsOpenTo(Book, Page), Time).
@@ -197,7 +181,6 @@ axiom(holds_at(neg(bookIsOpenTo(Book, Page)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 axiom(holds_at(neg(bookClosed(Book)), Time),
     [holds_at(bookIsOpenTo(Book, Page), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  not(exists([Page], holds_at(bookIsOpenTo(Book, Page), Time))) ->
        holds_at(bookClosed(Book), Time).
@@ -207,7 +190,6 @@ axiom(holds_at(neg(bookClosed(Book)), Time),
  /*  holds_at(bookClosed(Book), Time) :-
        not(holds_at(bookIsOpenTo(Book, Page), Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  [holds_at(neg(bookIsOpenTo(Book, Page)), Time)] ->
        ta(Time,
@@ -218,7 +200,6 @@ axiom(holds_at(neg(bookClosed(Book)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 axiom(holds_at(bookClosed(Book), Time),
     [holds_at(neg(bookIsOpenTo(Book, Page)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',37).
 
  /*  holds_at(bookIsOpenTo(Book, Page), Time) :-
        not(holds_at(bookClosed(Book), Time)).
@@ -277,7 +258,6 @@ axiom(not(happens(bookOpenTo(Agent, Book, Page), Time)),
    
     [  (holds_at(neg(awake(Agent)), Time);holds_at(neg(bookClosed(Book)), Time);holds_at(neg(holding(Agent, Book)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
 
  /*  holds_at(awake(Agent), Time) :-
        happens(bookOpenTo(Agent, Book, Page), Time).
@@ -302,13 +282,12 @@ axiom(requires(bookOpenTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookOpenTo(Agent, Book, Page)),
+          holds_at(metreqs(bookOpenTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
-axiom(holds_at(requirements(bookOpenTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookOpenTo(Agent, Book, Page)), Time),
     [holds_at(awake(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
 
  /*  holds_at(bookClosed(Book), Time) :-
        happens(bookOpenTo(Agent, Book, Page), Time).
@@ -333,13 +312,12 @@ axiom(requires(bookOpenTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookOpenTo(Agent, Book, Page)),
+          holds_at(metreqs(bookOpenTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
-axiom(holds_at(requirements(bookOpenTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookOpenTo(Agent, Book, Page)), Time),
     [holds_at(bookClosed(Book), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
 
  /*  holds_at(holding(Agent, Book), Time) :-
        happens(bookOpenTo(Agent, Book, Page), Time).
@@ -364,11 +342,11 @@ axiom(requires(bookOpenTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookOpenTo(Agent, Book, Page)),
+          holds_at(metreqs(bookOpenTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',45).
-axiom(holds_at(requirements(bookOpenTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookOpenTo(Agent, Book, Page)), Time),
     [holds_at(holding(Agent, Book), Time)]).
 
 
@@ -435,7 +413,6 @@ axiom(not(happens(bookClose(Agent, Book), Time)),
    
     [  (holds_at(neg(awake(Agent)), Time);holds_at(bookClosed(Book), Time);holds_at(neg(holding(Agent, Book)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  holds_at(awake(Agent), Time) :-
        happens(bookClose(Agent, Book), Time).
@@ -451,18 +428,16 @@ axiom(not(happens(bookClose(Agent, Book), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 axiom(requires(bookClose(Agent, Book), Time),
     [holds_at(metreqs(bookClose(Agent, Book)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  [holds_at(awake(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookClose(Agent, Book)), Time)).
+          holds_at(metreqs(bookClose(Agent, Book)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
-axiom(holds_at(requirements(bookClose(Agent, Book)), Time),
+axiom(holds_at(metreqs(bookClose(Agent, Book)), Time),
     [holds_at(awake(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  holds_at(neg(bookClosed(Book)), Time) :-
        happens(bookClose(Agent, Book), Time).
@@ -478,18 +453,16 @@ axiom(holds_at(requirements(bookClose(Agent, Book)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 axiom(requires(bookClose(Agent, Book), Time),
     [holds_at(metreqs(bookClose(Agent, Book)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  [holds_at(neg(bookClosed(Book)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookClose(Agent, Book)), Time)).
+          holds_at(metreqs(bookClose(Agent, Book)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
-axiom(holds_at(requirements(bookClose(Agent, Book)), Time),
+axiom(holds_at(metreqs(bookClose(Agent, Book)), Time),
     [holds_at(neg(bookClosed(Book)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  holds_at(holding(Agent, Book), Time) :-
        happens(bookClose(Agent, Book), Time).
@@ -505,16 +478,15 @@ axiom(holds_at(requirements(bookClose(Agent, Book)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 axiom(requires(bookClose(Agent, Book), Time),
     [holds_at(metreqs(bookClose(Agent, Book)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
 
  /*  [holds_at(holding(Agent, Book), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookClose(Agent, Book)), Time)).
+          holds_at(metreqs(bookClose(Agent, Book)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',62).
-axiom(holds_at(requirements(bookClose(Agent, Book)), Time),
+axiom(holds_at(metreqs(bookClose(Agent, Book)), Time),
     [holds_at(holding(Agent, Book), Time)]).
 
 
@@ -566,7 +538,7 @@ axiom(terminates(bookClose(Agent, Book), bookIsOpenTo(Book, Page), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
 
- /*  [(holds_at(neg(awake(Agent)), Time);holds_at(neg(holding(Agent, Book)), Time);not(diff(Page1, Page));holds_at(neg(bookIsOpenTo(Book, Page1)), Time))] ->
+ /*  [(holds_at(neg(awake(Agent)), Time);holds_at(neg(holding(Agent, Book)), Time);equals(Page1, Page);holds_at(neg(bookIsOpenTo(Book, Page1)), Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -576,9 +548,8 @@ axiom(terminates(bookClose(Agent, Book), bookIsOpenTo(Book, Page), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
 axiom(not(happens(bookTurnPageTo(Agent, Book, Page), Time)),
    
-    [  (holds_at(neg(awake(Agent)), Time);holds_at(neg(holding(Agent, Book)), Time);not(diff(Page, Page1));holds_at(neg(bookIsOpenTo(Book, Page1)), Time))
+    [  (holds_at(neg(awake(Agent)), Time);holds_at(neg(holding(Agent, Book)), Time);equals(Page, Page1);holds_at(neg(bookIsOpenTo(Book, Page1)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
 
  /*  holds_at(awake(Agent), Time) :-
        happens(bookTurnPageTo(Agent, Book, Page), Time).
@@ -603,13 +574,12 @@ axiom(requires(bookTurnPageTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookTurnPageTo(Agent, Book, Page)),
+          holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
-axiom(holds_at(requirements(bookTurnPageTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)), Time),
     [holds_at(awake(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
 
  /*  holds_at(holding(Agent, Book), Time) :-
        happens(bookTurnPageTo(Agent, Book, Page), Time).
@@ -634,13 +604,12 @@ axiom(requires(bookTurnPageTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookTurnPageTo(Agent, Book, Page)),
+          holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
-axiom(holds_at(requirements(bookTurnPageTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)), Time),
     [holds_at(holding(Agent, Book), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
 
  /*  holds_at(bookIsOpenTo(Book, Page1), Time) :-
        happens(bookTurnPageTo(Agent, Book, Page), Time).
@@ -665,11 +634,11 @@ axiom(requires(bookTurnPageTo(Agent, Book, Page), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bookTurnPageTo(Agent, Book, Page)),
+          holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Book.e',75).
-axiom(holds_at(requirements(bookTurnPageTo(Agent, Book, Page)), Time),
+axiom(holds_at(metreqs(bookTurnPageTo(Agent, Book, Page)), Time),
     [holds_at(bookIsOpenTo(Book, Page1), Time)]).
 
 

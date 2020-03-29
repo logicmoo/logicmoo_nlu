@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:49 GMT
+% Sun, 29 Mar 2020 18:48:40 GMT
 % From ../ecnet/ReadingALetter.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',103).
 
@@ -31,202 +31,230 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',22).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',22).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
 % ignore Love, ThreatenedBy
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(love)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(love).
+axiom(ignore(love),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(threatenedBy)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(threatenedBy).
+axiom(ignore(threatenedBy),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:24
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(lookOutOnto).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(lookOutOnto)).
+ */
+axiom(ignore(lookOutOnto),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(floor).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(floor)).
+ */
+axiom(ignore(floor),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(buildingOf).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(buildingOf)).
+ */
+axiom(ignore(buildingOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(skyOf).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(skyOf)).
+ */
+axiom(ignore(skyOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',24).
-ignore(groundOf).
+
+ /*  [] ->
+       ta(Ta_Param4, tvs1=[], tvs2=[], ignore(groundOf)).
+ */
+axiom(ignore(groundOf),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(near)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(near).
+axiom(ignore(near),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(walkFrom)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(walkFrom).
+axiom(ignore(walkFrom),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(walkFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(walkFromTo).
+axiom(ignore(walkFromTo),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(runFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(runFromTo).
+axiom(ignore(runFromTo),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:26
 % ignore Side1, Side2
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(side1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(side1)).
+ */
+axiom(ignore(side1),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',26).
-ignore(side2).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(side2)).
+ */
+axiom(ignore(side2),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:29
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
 % load answers/Mueller2003/Ontology.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
 :- load_e('answers/Mueller2003/Ontology.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:31
 % load answers/Mueller2004c/RTSpaceM.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
 :- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',31).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
 % load answers/Mueller2004c/OTSpaceM.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
 :- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:33
 % load answers/Mueller2004c/Container.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
 :- load_e('answers/Mueller2004c/Container.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',33).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
 % load answers/Mueller2004c/Cognition.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
 :- load_e('answers/Mueller2004c/Cognition.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:35
 % load answers/Mueller2003/Sleep.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
 :- load_e('answers/Mueller2003/Sleep.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',35).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
 % load answers/Mueller2003/Vision.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
 :- load_e('answers/Mueller2003/Vision.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:37
 % load answers/Mueller2004c/HandTo.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
 :- load_e('answers/Mueller2004c/HandTo.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',37).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',40).
 % location Location1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',40).
 ==> t(location,location1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',42).
 % portal DummyPortal1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',42).
 ==> t(portal,dummyPortal1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:43
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',44).
 % agent Recipient1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',44).
 ==> t(agent,recipient1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:45
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',46).
 % letter Letter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',46).
 ==> t(letter,letter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:47
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',48).
 % container Envelope1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',48).
 ==> t(container,envelope1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:49
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',50).
 % physobj Surface1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',50).
 ==> t(physobj,surface1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',52).
 % chair Chair1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',52).
 ==> t(chair,chair1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',54).
 % content Content1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',54).
 ==> t(content,content1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',56).
 % agent Carrier1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',56).
 ==> t(agent,carrier1).
 %; prune
 
@@ -234,91 +262,70 @@ ignore(side2).
 % sort ona, onb
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',58).
 ==> sort(ona).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',58).
 ==> sort(onb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:59
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 % fluent! On(ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 fluent(on(ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 ==> mpred_prop(on(ona,onb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 ==> meta_argtypes(on(ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:60
 % event! PlaceOn(agent,ona,onb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 event(placeOn(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 ==> mpred_prop(placeOn(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',60).
 ==> meta_argtypes(placeOn(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:61
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 % event! TakeOffOf(agent,ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 event(takeOffOf(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 ==> mpred_prop(takeOffOf(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 ==> meta_argtypes(takeOffOf(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:62
 % ona! Envelope1, Letter1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 ==> t(ona,envelope1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',62).
 ==> t(ona,letter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:63
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',64).
 % onb! Surface1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',64).
 ==> t(onb,surface1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:65
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 % sort insidea, insideb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 ==> sort(insidea).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 ==> sort(insideb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:66
 % fluent! Inside(insidea,insideb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 fluent(inside(insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 ==> mpred_prop(inside(insidea,insideb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',66).
 ==> meta_argtypes(inside(insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:67
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 % event! PutInside(agent,insidea,insideb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 event(putInside(agent,insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 ==> mpred_prop(putInside(agent,insidea,insideb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 ==> meta_argtypes(putInside(agent,insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:68
 % event! TakeOutOf(agent,insidea,insideb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 event(takeOutOf(agent,insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 ==> mpred_prop(takeOutOf(agent,insidea,insideb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',68).
 ==> meta_argtypes(takeOutOf(agent,insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:69
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',70).
 % insidea! Letter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',70).
 ==> t(insidea,letter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:70
@@ -333,13 +340,13 @@ event(takeOutOf(agent,insidea,insideb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',73).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(sittingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',73).
-axiom(initially(neg(sittingOn(Agent, Physobj))),
+axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
     []).
 
 
@@ -347,16 +354,15 @@ axiom(initially(neg(sittingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
 % [agent,physobj]
  % !HoldsAt(LyingOn(agent,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(lyingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
-axiom(initially(neg(lyingOn(Agent, Physobj))),
+axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
     []).
 
 
@@ -365,23 +371,25 @@ axiom(initially(neg(lyingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(recipient1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(dressed(recipient1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
-axiom(initially(dressed(recipient1)),
+axiom(holds_at(dressed(recipient1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:76
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 % HoldsAt(Dressed(Carrier1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(carrier1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
-axiom(initially(dressed(carrier1)),
+axiom(holds_at(dressed(carrier1), start),
     []).
 
 
@@ -390,23 +398,21 @@ axiom(initially(dressed(carrier1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(recipient1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(recipient1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
-axiom(initially(awake(recipient1)),
+axiom(holds_at(awake(recipient1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:78
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 % HoldsAt(Awake(Carrier1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(carrier1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
-axiom(initially(awake(carrier1)),
+axiom(holds_at(awake(carrier1), start),
     []).
 
 
@@ -415,23 +421,21 @@ axiom(initially(awake(carrier1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(recipient1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(recipient1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
-axiom(initially(sleep3(recipient1)),
+axiom(holds_at(sleep3(recipient1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:80
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
 % HoldsAt(Sleep3(Carrier1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(carrier1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
-axiom(initially(sleep3(carrier1)),
+axiom(holds_at(sleep3(carrier1), start),
     []).
 
 
@@ -440,23 +444,25 @@ axiom(initially(sleep3(carrier1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(recipient1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(standing(recipient1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
-axiom(initially(standing(recipient1)),
+axiom(holds_at(standing(recipient1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:82
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
 % HoldsAt(Standing(Carrier1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(carrier1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
-axiom(initially(standing(carrier1)),
+axiom(holds_at(standing(carrier1), start),
     []).
 
 
@@ -465,23 +471,28 @@ axiom(initially(standing(carrier1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(containerClosed(envelope1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(containerClosed(envelope1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
-axiom(initially(containerClosed(envelope1)),
+axiom(holds_at(containerClosed(envelope1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:84
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',85).
 % HoldsAt(Inside(Letter1,Envelope1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',85).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(inside(letter1, envelope1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(inside(letter1, envelope1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',85).
-axiom(initially(inside(letter1, envelope1)),
+axiom(holds_at(inside(letter1, envelope1), start),
     []).
 
 
@@ -492,11 +503,11 @@ axiom(initially(inside(letter1, envelope1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:87
 
  /*  not((equals(Physobj1, letter1), equals(Physobj2, envelope1))) ->
-       initially(neg(inside(Physobj1, Physobj2))).
+       holds_at(neg(inside(Physobj1, Physobj2)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',87).
 
- /*  initially(neg(inside(Physobj1, Physobj2))) :-
+ /*  holds_at(neg(inside(Physobj1, Physobj2)), start+0) :-
        (   not(equals(Physobj1, letter1))
        ;   not(equals(Physobj2, envelope1))
        ).
@@ -504,13 +515,13 @@ axiom(initially(inside(letter1, envelope1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',87).
 
  /*  [(not(equals(Physobj1, letter1));not(equals(Physobj2, envelope1)))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(inside(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',87).
-axiom(initially(neg(inside(Physobj1, Physobj2))),
+axiom(holds_at(neg(inside(Physobj1, Physobj2)), start),
    
     [  (not(equals(Physobj1, letter1));not(equals(Physobj2, envelope1)))
     ]).
@@ -520,16 +531,15 @@ axiom(initially(neg(inside(Physobj1, Physobj2))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',89).
 % [agent,object]
  % !HoldsAt(See(agent,object),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',89).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(see(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(see(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',89).
-axiom(initially(neg(see(Agent, Object))),
+axiom(holds_at(neg(see(Agent, Object)), start),
     []).
 
 
@@ -540,11 +550,11 @@ axiom(initially(neg(see(Agent, Object))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:91
 
  /*  not((equals(Agent, carrier1), equals(Object, envelope1))) ->
-       initially(neg(holding(Agent, Object))).
+       holds_at(neg(holding(Agent, Object)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',91).
 
- /*  initially(neg(holding(Agent, Object))) :-
+ /*  holds_at(neg(holding(Agent, Object)), start+0) :-
        (   not(equals(Agent, carrier1))
        ;   not(equals(Object, envelope1))
        ).
@@ -552,26 +562,28 @@ axiom(initially(neg(see(Agent, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',91).
 
  /*  [(not(equals(Agent, carrier1));not(equals(Object, envelope1)))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',91).
-axiom(initially(neg(holding(Agent, Object))),
+axiom(holds_at(neg(holding(Agent, Object)), start),
     [(not(equals(Agent, carrier1));not(equals(Object, envelope1)))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:92
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
 % HoldsAt(Holding(Carrier1,Envelope1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(holding(carrier1, envelope1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(holding(carrier1, envelope1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
-axiom(initially(holding(carrier1, envelope1)),
+axiom(holds_at(holding(carrier1, envelope1), start),
     []).
 
 
@@ -581,13 +593,13 @@ axiom(initially(holding(carrier1, envelope1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(on(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
-axiom(initially(neg(on(Physobj1, Physobj2))),
+axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
     []).
 
 
@@ -598,29 +610,31 @@ axiom(initially(neg(on(Physobj1, Physobj2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:96
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
 % Happens(PlaceOn(Carrier1,Envelope1,Surface1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(placeOn(carrier1, envelope1, surface1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(placeOn(carrier1, envelope1, surface1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
-axiom(happens(placeOn(carrier1, envelope1, surface1), t),
-    [is_time(t)]).
+axiom(happens(placeOn(carrier1, envelope1, surface1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:97
 % Happens(TakeOffOf(Recipient1,Envelope1,Surface1),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1,
-          tvs1=[1],
-          tvs2=[now, t],
-          happens(takeOffOf(recipient1, envelope1, surface1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(takeOffOf(recipient1, envelope1, surface1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
-axiom(happens(takeOffOf(recipient1, envelope1, surface1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(takeOffOf(recipient1, envelope1, surface1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:98
@@ -632,139 +646,154 @@ axiom(happens(takeOffOf(recipient1, envelope1, surface1), now),
 % Happens(SitOn(Recipient1,Chair1),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',99).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(sitOn(recipient1, chair1), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(sitOn(recipient1, chair1), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',99).
-axiom(happens(sitOn(recipient1, chair1), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(sitOn(recipient1, chair1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:100
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
 % Happens(ContainerOpen(Recipient1,Envelope1),3).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(containerOpen(recipient1, envelope1), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(containerOpen(recipient1, envelope1), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
-axiom(happens(containerOpen(recipient1, envelope1), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(containerOpen(recipient1, envelope1), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:101
 % Happens(TakeOutOf(Recipient1,Letter1,Envelope1),4).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4,
-          tvs1=[4],
-          tvs2=[t, t4],
-          happens(takeOutOf(recipient1, letter1, envelope1), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(takeOutOf(recipient1, letter1, envelope1), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
-axiom(happens(takeOutOf(recipient1, letter1, envelope1), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(takeOutOf(recipient1, letter1, envelope1), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:102
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
 % Happens(LookAt(Recipient1,Letter1),5).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(lookAt(recipient1, letter1), t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(lookAt(recipient1, letter1), Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
-axiom(happens(lookAt(recipient1, letter1), t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(lookAt(recipient1, letter1), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:103
 % Happens(Read(Recipient1,Letter1,Content1),6).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
 
- /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
-       ta(6, tvs1=[6], tvs2=[t, t6], happens(read(recipient1, letter1, content1), t6)).
+ /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
+       ta(start+6,
+          tvs1=[start+6],
+          tvs2=[Start6, start],
+          happens(read(recipient1, letter1, content1), Start6)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
-axiom(happens(read(recipient1, letter1, content1), t6),
-    [is_time(t6), b(t, t6)]).
+axiom(happens(read(recipient1, letter1, content1), Start6),
+    [b(start, Start6), toffset(start, 6, Start6)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:104
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
 % Happens(ThinkAbout(Recipient1,Content1),7).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
 
- /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
-       ta(7, tvs1=[7], tvs2=[t, t7], happens(thinkAbout(recipient1, content1), t7)).
+ /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
+       ta(start+7,
+          tvs1=[start+7],
+          tvs2=[Start7, start],
+          happens(thinkAbout(recipient1, content1), Start7)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
-axiom(happens(thinkAbout(recipient1, content1), t7),
-    [is_time(t7), b(t, t7)]).
+axiom(happens(thinkAbout(recipient1, content1), Start7),
+    [b(start, Start7), toffset(start, 7, Start7)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:105
 % Happens(Understand(Recipient1,Content1),8).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
 
- /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
-       ta(8, tvs1=[8], tvs2=[t, t8], happens(understand(recipient1, content1), t8)).
+ /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
+       ta(start+8,
+          tvs1=[start+8],
+          tvs2=[Start8, start],
+          happens(understand(recipient1, content1), Start8)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
-axiom(happens(understand(recipient1, content1), t8),
-    [is_time(t8), b(t, t8)]).
+axiom(happens(understand(recipient1, content1), Start8),
+    [b(start, Start8), toffset(start, 8, Start8)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:106
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
 % Happens(PutInside(Recipient1,Letter1,Envelope1),9).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
 
- /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
-       ta(9,
-          tvs1=[9],
-          tvs2=[t, t9],
-          happens(putInside(recipient1, letter1, envelope1), t9)).
+ /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
+       ta(start+9,
+          tvs1=[start+9],
+          tvs2=[Start9, start],
+          happens(putInside(recipient1, letter1, envelope1), Start9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
-axiom(happens(putInside(recipient1, letter1, envelope1), t9),
-    [is_time(t9), b(t, t9)]).
+axiom(happens(putInside(recipient1, letter1, envelope1), Start9),
+    [b(start, Start9), toffset(start, 9, Start9)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:107
 % Happens(RiseFrom(Recipient1,Chair1),10).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(riseFrom(recipient1, chair1), t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(riseFrom(recipient1, chair1), Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
-axiom(happens(riseFrom(recipient1, chair1), t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(riseFrom(recipient1, chair1), Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:108
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',109).
 % Happens(PlaceOn(Recipient1,Envelope1,Surface1),11).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',109).
 
- /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
-       ta(11,
-          tvs1=[11],
-          tvs2=[t, t11],
-          happens(placeOn(recipient1, envelope1, surface1), t11)).
+ /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
+       ta(start+11,
+          tvs1=[start+11],
+          tvs2=[Startd11, start],
+          happens(placeOn(recipient1, envelope1, surface1), Startd11)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',109).
-axiom(happens(placeOn(recipient1, envelope1, surface1), t11),
-    [is_time(t11), b(t, t11)]).
+axiom(happens(placeOn(recipient1, envelope1, surface1), Startd11),
+    [b(start, Startd11), toffset(start, 11, Startd11)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:110
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',111).
 % range time 0 12
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',111).
 ==> range(time,0,12).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:111
@@ -775,12 +804,10 @@ axiom(happens(placeOn(recipient1, envelope1, surface1), t11),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:112
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',113).
 % range diameter 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',113).
 ==> range(diameter,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:114
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',115).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',115).
 ==> completion(happens).
 %; End of file.

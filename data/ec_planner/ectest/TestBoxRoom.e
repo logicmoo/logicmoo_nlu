@@ -157,9 +157,9 @@ HoldsAt(directlyIn(Box,LivingRoom),0).
 ; DMILES REMOVED [room,object,time] !HoldsAt(directlyIn(room,object),time).
 
 ; entailed:
-; HoldsAt(directlyIn(Lisa,LivingRoom),5).
-; HoldsAt(directlyIn(Box,Kitchen),5).
-; HoldsAt(inRoom(Newspaper,Kitchen),5).
+HoldsAt(directlyIn(Lisa,LivingRoom),5).
+HoldsAt(directlyIn(Box,Kitchen),5).
+HoldsAt(inRoom(Newspaper,Kitchen),5).
 
 completion Happens
 

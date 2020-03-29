@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:20 GMT
+% Sun, 29 Mar 2020 18:47:20 GMT
 % From ../examples/Shanahan1997/DeadOrAlive.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',69).
 
@@ -38,71 +38,56 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:29
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:31
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',32).
 % event Load()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',32).
 event(load).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',32).
 ==> mpred_prop(load,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:32
 % event Shoot()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',32).
 event(shoot).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',32).
 ==> mpred_prop(shoot,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',34).
 % event Sneeze()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',34).
 event(sneeze).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',34).
 ==> mpred_prop(sneeze,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:34
 % fluent Loaded()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',34).
 fluent(loaded).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',34).
 ==> mpred_prop(loaded,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',36).
 % fluent Alive()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',36).
 fluent(alive).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',36).
 ==> mpred_prop(alive,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:36
 % fluent Dead()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',36).
 fluent(dead).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',36).
 ==> mpred_prop(dead,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',38).
 % noninertial Dead
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',38).
 ==> noninertial(dead).
 
 
@@ -110,7 +95,6 @@ fluent(dead).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',40).
 % [time]
  % Initiates(Load(),Loaded(),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',40).
 
  /*  [] ->
        ta(Time,
@@ -143,7 +127,6 @@ axiom(terminates(shoot, alive, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 % [time]
  % Terminates(Shoot(),Loaded(),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  [] ->
        ta(Time,
@@ -164,7 +147,6 @@ axiom(terminates(shoot, loaded, Time),
  /*  holds_at(dead, Time) <->
        holds_at(neg(alive), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  [holds_at, dead] <->
        [holds_at, neg, alive].
@@ -174,7 +156,6 @@ axiom(terminates(shoot, loaded, Time),
  /*  holds_at(dead, Time) ->
        holds_at(neg(alive), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  holds_at(neg(alive), Time) :-
        holds_at(dead, Time).
@@ -190,7 +171,6 @@ axiom(terminates(shoot, loaded, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 axiom(holds_at(neg(alive), Time),
     [holds_at(dead, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  not(holds_at(dead, Time)) :-
        not(holds_at(neg(alive), Time)).
@@ -206,7 +186,6 @@ axiom(holds_at(neg(alive), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 axiom(holds_at(neg(dead), Time),
     [holds_at(alive, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  holds_at(neg(alive), Time) ->
        holds_at(dead, Time).
@@ -216,7 +195,6 @@ axiom(holds_at(neg(dead), Time),
  /*  holds_at(dead, Time) :-
        holds_at(neg(alive), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  [holds_at(neg(alive), Time)] ->
        ta(Time,
@@ -227,7 +205,6 @@ axiom(holds_at(neg(dead), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 axiom(holds_at(dead, Time),
     [holds_at(neg(alive), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',42).
 
  /*  not(holds_at(neg(alive), Time)) :-
        not(holds_at(dead, Time)).
@@ -250,23 +227,21 @@ axiom(holds_at(alive, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',44).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(alive)).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive, start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',44).
-axiom(initially(alive),
+axiom(holds_at(alive, start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:45
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
 % !HoldsAt(Loaded(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(loaded))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(loaded), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
-axiom(initially(neg(loaded)),
+axiom(holds_at(neg(loaded), start),
     []).
 
 
@@ -274,37 +249,41 @@ axiom(initially(neg(loaded)),
 % Happens(Load(),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(load, t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(load, start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
-axiom(happens(load, t),
-    [is_time(t)]).
+axiom(happens(load, start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:47
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
 % Happens(Sneeze(),1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(sneeze, now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(sneeze, Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
-axiom(happens(sneeze, now),
-    [is_time(now), b(t, now)]).
+axiom(happens(sneeze, Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:48
 % Happens(Shoot(),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(shoot, t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(shoot, Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
-axiom(happens(shoot, t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(shoot, Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:50
 % completion Happens
@@ -314,7 +293,6 @@ axiom(happens(shoot, t2),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:52
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',53).
 % range time 0 3
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',53).
 ==> range(time,0,3).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e:53

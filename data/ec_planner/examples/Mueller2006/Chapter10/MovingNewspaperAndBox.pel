@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:36 GMT
+% Sun, 29 Mar 2020 18:46:28 GMT
 % From ../examples/Mueller2006/Chapter10/MovingNewspaperAndBox.pel:4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',127).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',47).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e').
@@ -29,26 +29,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',23).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',23).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:23
@@ -59,7 +53,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',25).
 % sort physobj: object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',25).
 ==> subsort(physobj,object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:25
@@ -70,57 +63,44 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:27
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 % fluent IN(object,object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 fluent(in(object,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 ==> mpred_prop(in(object,object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 ==> meta_argtypes(in(object,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:28
 % fluent INROOM(object,room)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 fluent(inroom(object,room)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 ==> mpred_prop(inroom(object,room),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',28).
 ==> meta_argtypes(inroom(object,room)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',30).
 % noninertial INROOM
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',30).
 ==> noninertial(inroom).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:31
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',32).
 % event MOVE(agent,object,object,object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',32).
 event(move(agent,object,object,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',32).
 ==> mpred_prop(move(agent,object,object,object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',32).
 ==> meta_argtypes(move(agent,object,object,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',34).
 % agent Lisa
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',34).
 ==> t(agent,lisa).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:34
 % physobj Box, Newspaper
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',34).
 ==> t(physobj,box).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',34).
 ==> t(physobj,newspaper).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',36).
 % room Kitchen, LivingRoom
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',36).
 ==> t(room,kitchen).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',36).
 ==> t(room,livingRoom).
 %; Sigma
 %; RS10
@@ -369,64 +349,76 @@ axiom(terminates(move(Agent, Physobj, Agent, Room), in(Physobj, Agent), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:99
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
 % Happens(MOVE(Lisa,Newspaper,LivingRoom,Box),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(move(lisa, newspaper, livingRoom, box), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(move(lisa, newspaper, livingRoom, box), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
-axiom(happens(move(lisa, newspaper, livingRoom, box), t),
-    [is_time(t)]).
+axiom(happens(move(lisa, newspaper, livingRoom, box), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:100
 % Happens(MOVE(Lisa,Box,LivingRoom,Lisa),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(move(lisa, box, livingRoom, lisa), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(move(lisa, box, livingRoom, lisa), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
-axiom(happens(move(lisa, box, livingRoom, lisa), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(move(lisa, box, livingRoom, lisa), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:101
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
 % Happens(MOVE(Lisa,Lisa,LivingRoom,Kitchen),2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(move(lisa, lisa, livingRoom, kitchen), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(move(lisa, lisa, livingRoom, kitchen), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
-axiom(happens(move(lisa, lisa, livingRoom, kitchen), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(move(lisa, lisa, livingRoom, kitchen), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:102
 % Happens(MOVE(Lisa,Box,Lisa,Kitchen),3).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(move(lisa, box, lisa, kitchen), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(move(lisa, box, lisa, kitchen), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
-axiom(happens(move(lisa, box, lisa, kitchen), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(move(lisa, box, lisa, kitchen), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:103
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',104).
 % Happens(MOVE(Lisa,Lisa,Kitchen,LivingRoom),4).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',104).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4, tvs1=[4], tvs2=[t, t4], happens(move(lisa, lisa, kitchen, livingRoom), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(move(lisa, lisa, kitchen, livingRoom), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',104).
-axiom(happens(move(lisa, lisa, kitchen, livingRoom), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(move(lisa, lisa, kitchen, livingRoom), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:105
@@ -438,7 +430,16 @@ axiom(happens(move(lisa, lisa, kitchen, livingRoom), t4),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:108
 % !HoldsAt(IN(object,object),time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',108).
-holds_at(neg(in(Object,Object)),Time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(in(Object, Object)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',108).
+axiom(holds_at(neg(in(Object, Object)), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:110
@@ -452,7 +453,6 @@ holds_at(neg(in(Object,Object)),Time).
  /*  holds_at(in(Object1, Object2), Time) ->
        holds_at(neg(in(Object2, Object1)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',112).
 
  /*  holds_at(neg(in(Object2, Object1)), Time) :-
        holds_at(in(Object1, Object2), Time).
@@ -468,7 +468,6 @@ holds_at(neg(in(Object,Object)),Time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',112).
 axiom(holds_at(neg(in(Object2, Object1)), Time),
     [holds_at(in(Object1, Object2), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',112).
 
  /*  not(holds_at(in(Object1, Object2), Time)) :-
        not(holds_at(neg(in(Object2, Object1)), Time)).
@@ -498,7 +497,6 @@ axiom(holds_at(neg(in(Object1, Object2)), Time),
  /*  holds_at(in(Object1, Object2), Time), holds_at(in(Object2, Object3), Time) ->
        holds_at(neg(in(Object1, Object3)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',117).
 
  /*  holds_at(neg(in(Object1, Object3)), Time) :-
        holds_at(in(Object1, Object2), Time),
@@ -572,7 +570,6 @@ axiom(holds_at(neg(in(Object2, Object3)), Time),
  /*  holds_at(in(Object, Object1), Time), holds_at(in(Object, Object2), Time) ->
        equals(Object1, Object2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',123).
 
  /*  not(holds_at(in(Object, Object1), Time)) :-
        holds_at(in(Object, Object2), Time),
@@ -625,7 +622,6 @@ axiom(holds_at(neg(in(Object, Object2)), Time),
  /*  holds_at(in(Object, Room), Time) ->
        holds_at(inroom(Object, Room), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',129).
 
  /*  holds_at(inroom(Object, Room), Time) :-
        holds_at(in(Object, Room), Time).
@@ -641,7 +637,6 @@ axiom(holds_at(neg(in(Object, Object2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',129).
 axiom(holds_at(inroom(Object, Room), Time),
     [holds_at(in(Object, Room), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',129).
 
  /*  not(holds_at(in(Object, Room), Time)) :-
        not(holds_at(inroom(Object, Room), Time)).
@@ -671,7 +666,6 @@ axiom(holds_at(neg(in(Object, Room)), Time),
  /*  holds_at(in(Object1, Object2), Time), holds_at(inroom(Object2, Room), Time) ->
        holds_at(inroom(Object1, Room), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',134).
 
  /*  holds_at(inroom(Object1, Room), Time) :-
        holds_at(in(Object1, Object2), Time),
@@ -745,7 +739,6 @@ axiom(holds_at(neg(inroom(Object2, Room)), Time),
  /*  holds_at(inroom(Object, Room1), Time), holds_at(inroom(Object, Room2), Time) ->
        equals(Room1, Room2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',140).
 
  /*  not(holds_at(inroom(Object, Room1), Time)) :-
        holds_at(inroom(Object, Room2), Time),
@@ -794,13 +787,15 @@ axiom(holds_at(neg(inroom(Object, Room2)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
 % HoldsAt(IN(Lisa,LivingRoom),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(in(lisa, livingRoom))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(in(lisa, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
-axiom(initially(in(lisa, livingRoom)),
+axiom(holds_at(in(lisa, livingRoom), start),
     []).
 
 
@@ -809,23 +804,25 @@ axiom(initially(in(lisa, livingRoom)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(in(newspaper, livingRoom))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(in(newspaper, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
-axiom(initially(in(newspaper, livingRoom)),
+axiom(holds_at(in(newspaper, livingRoom), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:148
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',149).
 % HoldsAt(IN(Box,LivingRoom),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',149).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(in(box, livingRoom))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(in(box, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',149).
-axiom(initially(in(box, livingRoom)),
+axiom(holds_at(in(box, livingRoom), start),
     []).
 
 
@@ -834,16 +831,32 @@ axiom(initially(in(box, livingRoom)),
 %; added:
 % [room1,room2,time]
  % !HoldsAt(INROOM(room1,room2),time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(inroom(Room1, Room2)), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',151).
-holds_at(neg(inroom(Room1,Room2)),Time).
+axiom(holds_at(neg(inroom(Room1, Room2)), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:152
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',153).
 % [room,object,time]
  % !HoldsAt(IN(room,object),time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(in(Room, Object)), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',153).
-holds_at(neg(in(Room,Object)),Time).
+axiom(holds_at(neg(in(Room, Object)), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:154
@@ -856,13 +869,11 @@ holds_at(neg(in(Room,Object)),Time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:159
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',160).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',160).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:161
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',162).
 % range time 0 5
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',162).
 ==> range(time,0,5).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e:162

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:49 GMT
+% Sun, 29 Mar 2020 18:46:42 GMT
 % From ../examples/Mueller2006/Chapter2/Inconsistency4.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency3.e',38).
 
@@ -29,26 +29,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',23).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',23).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:23
@@ -59,30 +53,22 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',26).
 % event E(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',26).
 event(e(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',26).
 ==> mpred_prop(e(object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',26).
 ==> meta_argtypes(e(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:27
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 % fluent F1(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 fluent(f1(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 ==> mpred_prop(f1(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 ==> meta_argtypes(f1(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:28
 % fluent F2(object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 fluent(f2(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 ==> mpred_prop(f2(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',28).
 ==> meta_argtypes(f2(object)).
 
 
@@ -90,7 +76,6 @@ fluent(f2(object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',31).
 % [object,time]
 % Initiates(E(object),F1(object),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',31).
 
  /*  [] ->
        ta(Time,
@@ -111,7 +96,6 @@ axiom(initiates(e(Object), f1(Object), Time),
  /*  holds_at(f1(Object), Time) <->
        holds_at(f2(Object), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  [holds_at, f1] <->
        [holds_at, f2].
@@ -121,7 +105,6 @@ axiom(initiates(e(Object), f1(Object), Time),
  /*  holds_at(f1(Object), Time) ->
        holds_at(f2(Object), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  holds_at(f2(Object), Time) :-
        holds_at(f1(Object), Time).
@@ -137,7 +120,6 @@ axiom(initiates(e(Object), f1(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 axiom(holds_at(f2(Object), Time),
     [holds_at(f1(Object), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  not(holds_at(f1(Object), Time)) :-
        not(holds_at(f2(Object), Time)).
@@ -153,7 +135,6 @@ axiom(holds_at(f2(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 axiom(holds_at(neg(f1(Object)), Time),
     [holds_at(neg(f2(Object)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  holds_at(f2(Object), Time) ->
        holds_at(f1(Object), Time).
@@ -163,7 +144,6 @@ axiom(holds_at(neg(f1(Object)), Time),
  /*  holds_at(f1(Object), Time) :-
        holds_at(f2(Object), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  [holds_at(f2(Object), Time)] ->
        ta(Time,
@@ -174,7 +154,6 @@ axiom(holds_at(neg(f1(Object)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 axiom(holds_at(f1(Object), Time),
     [holds_at(f2(Object), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',35).
 
  /*  not(holds_at(f2(Object), Time)) :-
        not(holds_at(f1(Object), Time)).
@@ -195,13 +174,12 @@ axiom(holds_at(neg(f2(Object)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
 % !HoldsAt(F2(O1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(f2(o1)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(f2(o1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
-axiom(initially(neg(f2(o1))),
+axiom(holds_at(neg(f2(o1)), start),
     []).
 
 
@@ -209,12 +187,11 @@ axiom(initially(neg(f2(o1))),
 % Happens(E(O1),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(e(o1), t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(e(o1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
-axiom(happens(e(o1), t),
-    [is_time(t)]).
+axiom(happens(e(o1), start),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:39
 % range time 0 1
@@ -224,6 +201,5 @@ axiom(happens(e(o1), t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',41).
 % range offset 1 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',41).
 ==> range(offset,1,1).
 %; End of file.

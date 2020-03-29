@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:21 GMT
+% Sun, 29 Mar 2020 18:47:22 GMT
 % From ../examples/Shanahan1999/Happy.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/CoinToss.e',67).
 
@@ -41,79 +41,60 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:31
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:32
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',32).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 % sort person
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> sort(person).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:35
 % event Feed(person)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 event(feed(person)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> mpred_prop(feed(person),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',35).
 ==> meta_argtypes(feed(person)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 % event Clothe(person)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 event(clothe(person)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> mpred_prop(clothe(person),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> meta_argtypes(clothe(person)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:37
 % fluent Happy(person)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 fluent(happy(person)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> mpred_prop(happy(person),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',37).
 ==> meta_argtypes(happy(person)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 % fluent Hungry(person)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 fluent(hungry(person)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> mpred_prop(hungry(person),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> meta_argtypes(hungry(person)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:39
 % fluent Cold(person)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 fluent(cold(person)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> mpred_prop(cold(person),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',39).
 ==> meta_argtypes(cold(person)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',41).
 % noninertial Happy
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',41).
 ==> noninertial(happy).
 
 
@@ -135,7 +116,6 @@ fluent(cold(person)).
  /*  [holds_at, happy] <->
        [holds_at, neg, hungry, holds_at, neg, cold].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
  /*  holds_at(happy(Person), Time) ->
        holds_at(neg(hungry(Person)), Time),
@@ -161,7 +141,6 @@ axiom(holds_at(neg(happy(Person)), Time),
    
     [  (holds_at(hungry(Person), Time);holds_at(cold(Person), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
  /*  holds_at(neg(hungry(Person)), Time) :-
        holds_at(happy(Person), Time).
@@ -177,7 +156,6 @@ axiom(holds_at(neg(happy(Person)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 axiom(holds_at(neg(hungry(Person)), Time),
     [holds_at(happy(Person), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
  /*  holds_at(neg(cold(Person)), Time) :-
        holds_at(happy(Person), Time).
@@ -193,7 +171,6 @@ axiom(holds_at(neg(hungry(Person)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 axiom(holds_at(neg(cold(Person)), Time),
     [holds_at(happy(Person), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',43).
 
  /*  holds_at(neg(hungry(Person)), Time), holds_at(neg(cold(Person)), Time) ->
        holds_at(happy(Person), Time).
@@ -280,7 +257,6 @@ axiom(terminates(feed(Person), hungry(Person), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',51).
 % [person,time]
 % Terminates(Clothe(person),Cold(person),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',51).
 
  /*  [] ->
        ta(Time,
@@ -301,13 +277,12 @@ axiom(terminates(clothe(Person), cold(Person), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 % HoldsAt(Hungry(Fred),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(hungry(fred))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(hungry(fred), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
-axiom(initially(hungry(fred)),
+axiom(holds_at(hungry(fred), start),
     []).
 
 
@@ -316,35 +291,34 @@ axiom(initially(hungry(fred)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(cold(fred)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(cold(fred)), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
-axiom(initially(neg(cold(fred))),
+axiom(holds_at(neg(cold(fred)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:57
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
 % Happens(Feed(Fred),1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(feed(fred), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(feed(fred), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',58).
-axiom(happens(feed(fred), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(feed(fred), Maptime),
+    [b(start, Maptime)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:59
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',60).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',60).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:61
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',62).
 % range time 0 2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',62).
 ==> range(time,0,2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e:62

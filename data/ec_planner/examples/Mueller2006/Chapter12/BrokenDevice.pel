@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:40 GMT
+% Sun, 29 Mar 2020 18:46:32 GMT
 % From ../examples/Mueller2006/Chapter12/BrokenDevice.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/Lottery.e',118).
 
@@ -29,26 +29,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',23).
 % sort agent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',23).
 ==> sort(agent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:23
@@ -59,7 +53,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',26).
 % agent Nathan
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',26).
 ==> t(agent,nathan).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:26
@@ -70,50 +63,36 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',29).
 % predicate Ab1(device,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',29).
 predicate(ab1(device,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',29).
 ==> mpred_prop(ab1(device,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',29).
 ==> meta_argtypes(ab1(device,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 % fluent On(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 fluent(on(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 ==> mpred_prop(on(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 ==> meta_argtypes(on(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:31
 % fluent PluggedIn(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 fluent(pluggedIn(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 ==> mpred_prop(pluggedIn(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',31).
 ==> meta_argtypes(pluggedIn(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',33).
 % fluent BrokenSwitch(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',33).
 fluent(brokenSwitch(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',33).
 ==> mpred_prop(brokenSwitch(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',33).
 ==> meta_argtypes(brokenSwitch(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',35).
 % event TurnOn(agent,device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',35).
 event(turnOn(agent,device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',35).
 ==> mpred_prop(turnOn(agent,device),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',35).
 ==> meta_argtypes(turnOn(agent,device)).
 
 
@@ -144,14 +123,16 @@ axiom(initiates(turnOn(Agent, Device), on(Device), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',45).
 % Happens(TurnOn(Nathan,Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',45).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(turnOn(nathan, device1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(turnOn(nathan, device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',45).
-axiom(happens(turnOn(nathan, device1), t),
-    [is_time(t)]).
+axiom(happens(turnOn(nathan, device1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:46
@@ -161,8 +142,21 @@ axiom(happens(turnOn(nathan, device1), t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 % Theta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
-next_axiom_uses(theta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -170,7 +164,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 % [device,time]
  % HoldsAt(BrokenSwitch(device),time) -> Ab1(device,time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 
  /*  holds_at(brokenSwitch(Device), Time) ->
        ab1(Device, Time).
@@ -180,7 +173,6 @@ next_axiom_uses(theta).
  /*  ab1(Device, Time) :-
        holds_at(brokenSwitch(Device), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 
  /*  [holds_at(brokenSwitch(Device), Time)] ->
        ta(Time,
@@ -191,7 +183,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 axiom(ab1(Device, Time),
     [holds_at(brokenSwitch(Device), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 
  /*  not(holds_at(brokenSwitch(Device), Time)) :-
        not(ab1(Device, Time)).
@@ -211,7 +202,20 @@ axiom(holds_at(neg(brokenSwitch(Device)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:49
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
-next_axiom_uses(theta).
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -223,7 +227,6 @@ next_axiom_uses(theta).
  /*  holds_at(neg(pluggedIn(Device)), Time) ->
        ab1(Device, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 
  /*  ab1(Device, Time) :-
        holds_at(neg(pluggedIn(Device)), Time).
@@ -239,7 +242,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 axiom(ab1(Device, Time),
     [holds_at(neg(pluggedIn(Device)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',49).
 
  /*  not(holds_at(neg(pluggedIn(Device)), Time)) :-
        not(ab1(Device, Time)).
@@ -264,13 +266,12 @@ axiom(holds_at(pluggedIn(Device), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',54).
 % !HoldsAt(On(Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',54).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(on(device1)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(on(device1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',54).
-axiom(initially(neg(on(device1))),
+axiom(holds_at(neg(on(device1)), start),
     []).
 
 
@@ -279,10 +280,13 @@ axiom(initially(neg(on(device1))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',54).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(brokenSwitch(device1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(brokenSwitch(device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',54).
-axiom(initially(brokenSwitch(device1)),
+axiom(holds_at(brokenSwitch(device1), start),
     []).
 
 
@@ -293,13 +297,12 @@ axiom(initially(brokenSwitch(device1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:57
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',58).
 % HoldsAt(PluggedIn(Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',58).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(pluggedIn(device1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(pluggedIn(device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',58).
-axiom(initially(pluggedIn(device1)),
+axiom(holds_at(pluggedIn(device1), start),
     []).
 
 
@@ -311,9 +314,7 @@ axiom(initially(pluggedIn(device1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',63).
 % completion Theta Ab1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',63).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',63).
 ==> completion(ab1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:63
@@ -324,7 +325,6 @@ axiom(initially(pluggedIn(device1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:65
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',66).
 % range time 0 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',66).
 ==> range(time,0,1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e:66

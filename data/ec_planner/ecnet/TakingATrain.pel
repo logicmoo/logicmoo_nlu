@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:27:10 GMT
+% Sun, 29 Mar 2020 18:49:06 GMT
 % From ../ecnet/TakingATrain.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/SpeechAct.e',228).
 
@@ -31,235 +31,357 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:22
 % option renaming off
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
 :- set_ec_option(renaming, off).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
 % ignore Love, ThreatenedBy
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(love)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(love).
+axiom(ignore(love),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(threatenedBy)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(threatenedBy).
+axiom(ignore(threatenedBy),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:25
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(lookOutOnto).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(lookOutOnto)).
+ */
+axiom(ignore(lookOutOnto),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(floor).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(floor)).
+ */
+axiom(ignore(floor),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(buildingOf).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(buildingOf)).
+ */
+axiom(ignore(buildingOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(skyOf).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(skyOf)).
+ */
+axiom(ignore(skyOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',25).
-ignore(groundOf).
+
+ /*  [] ->
+       ta(Ta_Param4, tvs1=[], tvs2=[], ignore(groundOf)).
+ */
+axiom(ignore(groundOf),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
 % ignore Inside, PutInside, On, PlaceOn
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(inside)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(inside).
+axiom(ignore(inside),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(putInside)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(putInside).
+axiom(ignore(putInside),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(on)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(on).
+axiom(ignore(on),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(placeOn)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(placeOn).
+axiom(ignore(placeOn),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:27
 % ignore Like, Happy, BecomeAngryAt
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(like).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(like)).
+ */
+axiom(ignore(like),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(happy).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(happy)).
+ */
+axiom(ignore(happy),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',27).
-ignore(becomeAngryAt).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(becomeAngryAt)).
+ */
+axiom(ignore(becomeAngryAt),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(near)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(near).
+axiom(ignore(near),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(walkFrom)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(walkFrom).
+axiom(ignore(walkFrom),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(walkFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(walkFromTo).
+axiom(ignore(walkFromTo),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(runFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(runFromTo).
+axiom(ignore(runFromTo),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:29
 % ignore ActOnIntentionToWalkIn, IntentionToWalkIn, InvitedIn, InviteIn
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(actOnIntentionToWalkIn).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(actOnIntentionToWalkIn)).
+ */
+axiom(ignore(actOnIntentionToWalkIn),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(intentionToWalkIn).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(intentionToWalkIn)).
+ */
+axiom(ignore(intentionToWalkIn),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(invitedIn).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(invitedIn)).
+ */
+axiom(ignore(invitedIn),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',29).
-ignore(inviteIn).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(inviteIn)).
+ */
+axiom(ignore(inviteIn),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
 % ignore TakeOffOf, TakeOutOf, LetGoOf
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(takeOffOf)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(takeOffOf).
+axiom(ignore(takeOffOf),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(takeOutOf)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(takeOutOf).
+axiom(ignore(takeOutOf),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(letGoOf)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(letGoOf).
+axiom(ignore(letGoOf),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:31
 % ignore Greet, SayGoodbye, Order, KnowOrder
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(greet).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(greet)).
+ */
+axiom(ignore(greet),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(sayGoodbye).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(sayGoodbye)).
+ */
+axiom(ignore(sayGoodbye),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(order).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(order)).
+ */
+axiom(ignore(order),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',31).
-ignore(knowOrder).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(knowOrder)).
+ */
+axiom(ignore(knowOrder),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:34
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',34).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
 % load answers/Mueller2003/Ontology.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
 :- load_e('answers/Mueller2003/Ontology.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:36
 % load answers/Mueller2004c/OTSpaceM.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
 :- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',36).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
 % load answers/Mueller2004c/RTSpaceM.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
 :- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:38
 % load answers/Mueller2004c/HandTo.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
 :- load_e('answers/Mueller2004c/HandTo.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',38).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
 % load answers/Mueller2004c/Money.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
 :- load_e('answers/Mueller2004c/Money.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:40
 % load answers/Mueller2003/Sleep.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
 :- load_e('answers/Mueller2003/Sleep.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',40).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
 % load answers/Mueller2003/SpeechAct.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
 :- load_e('answers/Mueller2003/SpeechAct.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:42
 % load answers/Mueller2004c/Vehicle.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
 :- load_e('answers/Mueller2004c/Vehicle.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',42).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',45).
 % outside NearStation1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',45).
 ==> t(outside,nearStation1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',47).
 % street Street1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',47).
 ==> t(street,street1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',49).
 % outside Station1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',49).
 ==> t(outside,station1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',51).
 % Side1(Street1)=NearStation1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(street1), nearStation1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',51).
-equals(side1(street1),nearStation1).
+axiom(equals(side1(street1), nearStation1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:51
 % Side2(Street1)=Station1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',51).
-equals(side2(street1),station1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(street1), station1)).
+ */
+axiom(equals(side2(street1), station1),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:53
 % room WaitingRoom1
@@ -269,21 +391,30 @@ equals(side2(street1),station1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',56).
 % door Door1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',56).
 ==> t(door,door1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:57
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',58).
 % Side1(Door1)=Station1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(door1), station1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',58).
-equals(side1(door1),station1).
+axiom(equals(side1(door1), station1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:58
 % Side2(Door1)=WaitingRoom1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',58).
-equals(side2(door1),waitingRoom1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(door1), waitingRoom1)).
+ */
+axiom(equals(side2(door1), waitingRoom1),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:60
 % outside BeforeStation1
@@ -293,21 +424,33 @@ equals(side2(door1),waitingRoom1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',63).
 % track TrackToStation1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',63).
 ==> t(track,trackToStation1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:64
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',65).
 % Side1(TrackToStation1)=BeforeStation1.
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(side1(trackToStation1), beforeStation1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',65).
-equals(side1(trackToStation1),beforeStation1).
+axiom(equals(side1(trackToStation1), beforeStation1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:65
 % Side2(TrackToStation1)=Station1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',65).
-equals(side2(trackToStation1),station1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(trackToStation1), station1)).
+ */
+axiom(equals(side2(trackToStation1), station1),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:67
 % outside BetweenStation1And2
@@ -317,21 +460,37 @@ equals(side2(trackToStation1),station1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:69
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',70).
 % track TrackToBetweenStation1And2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',70).
 ==> t(track,trackToBetweenStation1And2).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:71
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',72).
 % Side1(TrackToBetweenStation1And2)=Station1.
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(side1(trackToBetweenStation1And2), station1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',72).
-equals(side1(trackToBetweenStation1And2),station1).
+axiom(equals(side1(trackToBetweenStation1And2), station1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:72
 % Side2(TrackToBetweenStation1And2)=BetweenStation1And2.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',72).
-equals(side2(trackToBetweenStation1And2),betweenStation1And2).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(side2(trackToBetweenStation1And2), betweenStation1And2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',72).
+axiom(equals(side2(trackToBetweenStation1And2), betweenStation1And2),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:74
 % outside Station2
@@ -341,21 +500,33 @@ equals(side2(trackToBetweenStation1And2),betweenStation1And2).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:75
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',76).
 % track TrackToStation2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',76).
 ==> t(track,trackToStation2).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:77
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',78).
 % Side1(TrackToStation2)=BetweenStation1And2.
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(side1(trackToStation2), betweenStation1And2)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',78).
-equals(side1(trackToStation2),betweenStation1And2).
+axiom(equals(side1(trackToStation2), betweenStation1And2),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:78
 % Side2(TrackToStation2)=Station2.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',78).
-equals(side2(trackToStation2),station2).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(trackToStation2), station2)).
+ */
+axiom(equals(side2(trackToStation2), station2),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:80
 % outside NearStation2
@@ -365,21 +536,30 @@ equals(side2(trackToStation2),station2).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:82
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',83).
 % street Street2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',83).
 ==> t(street,street2).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:84
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',85).
 % Side1(Street2)=Station2.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(street2), station2)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',85).
-equals(side1(street2),station2).
+axiom(equals(side1(street2), station2),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:85
 % Side2(Street2)=NearStation2.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',85).
-equals(side2(street2),nearStation2).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(street2), nearStation2)).
+ */
+axiom(equals(side2(street2), nearStation2),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:87
 % agent Passenger1
@@ -389,37 +569,31 @@ equals(side2(street2),nearStation2).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:89
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',90).
 % agent Conductor1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',90).
 ==> t(agent,conductor1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:91
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',92).
 % chair TrainSeat1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',92).
 ==> t(chair,trainSeat1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:93
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',94).
 % train Train1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',94).
 ==> t(train,train1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:95
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',96).
 % chair WaitingRoomSeat1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',96).
 ==> t(chair,waitingRoomSeat1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:97
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',98).
 % ticketagent TicketAgent1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',98).
 ==> t(ticketagent,ticketAgent1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:99
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',100).
 % ticket Ticket1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',100).
 ==> t(ticket,ticket1).
 %; prune
 
@@ -427,34 +601,26 @@ equals(side2(street2),nearStation2).
 % sort requesta, requestb, requestc
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',102).
 ==> sort(requesta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',102).
 ==> sort(requestb).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',102).
 ==> sort(requestc).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:103
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 % event! Request(requesta,requestb,requestc)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 event(request(requesta,requestb,requestc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 ==> mpred_prop(request(requesta,requestb,requestc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 ==> meta_argtypes(request(requesta,requestb,requestc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:104
 % fluent! KnowRequest(requestb,requesta,requestc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 fluent(knowRequest(requestb,requesta,requestc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 ==> mpred_prop(knowRequest(requestb,requesta,requestc),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',104).
 ==> meta_argtypes(knowRequest(requestb,requesta,requestc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:105
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',106).
 % requesta! Passenger1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',106).
 ==> t(requesta,passenger1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:106
@@ -465,155 +631,118 @@ fluent(knowRequest(requestb,requesta,requestc)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:107
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',108).
 % requestc! Ticket1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',108).
 ==> t(requestc,ticket1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:109
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 % sort holda, holdb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 ==> sort(holda).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 ==> sort(holdb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:110
 % event! TakeOffOf(holda,holdb,holdc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 event(takeOffOf(holda,holdb,holdc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 ==> mpred_prop(takeOffOf(holda,holdb,holdc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',110).
 ==> meta_argtypes(takeOffOf(holda,holdb,holdc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:111
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 % event! PickUp(holda,holdb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 event(pickUp(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 ==> mpred_prop(pickUp(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 ==> meta_argtypes(pickUp(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:112
 % event! LetGoOf(holda,holdb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 event(letGoOf(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 ==> mpred_prop(letGoOf(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',112).
 ==> meta_argtypes(letGoOf(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:113
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 % event! Hold(holda,holdb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 event(hold(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 ==> mpred_prop(hold(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 ==> meta_argtypes(hold(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:114
 % fluent! Holding(holda,holdb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 fluent(holding(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 ==> mpred_prop(holding(holda,holdb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',114).
 ==> meta_argtypes(holding(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:115
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 % event! HandTo(holda,holda,holdb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 event(handTo(holda,holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 ==> mpred_prop(handTo(holda,holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 ==> meta_argtypes(handTo(holda,holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:116
 % holda! TicketAgent1, Passenger1, Conductor1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 ==> t(holda,ticketAgent1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 ==> t(holda,passenger1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',116).
 ==> t(holda,conductor1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:117
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',118).
 % holdb! Ticket1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',118).
 ==> t(holdb,ticket1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:119
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 % sort sita, sitb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 ==> sort(sita).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 ==> sort(sitb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:120
 % event! LieOn(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 event(lieOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 ==> mpred_prop(lieOn(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',120).
 ==> meta_argtypes(lieOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:121
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 % event! SitOn(sita,sitb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 event(sitOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 ==> mpred_prop(sitOn(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 ==> meta_argtypes(sitOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:122
 % event! RiseFrom(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 event(riseFrom(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 ==> mpred_prop(riseFrom(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',122).
 ==> meta_argtypes(riseFrom(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 % fluent! LyingOn(sita,sitb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 fluent(lyingOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 ==> mpred_prop(lyingOn(sita,sitb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 ==> meta_argtypes(lyingOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:124
 % fluent! SittingOn(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 fluent(sittingOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 ==> mpred_prop(sittingOn(sita,sitb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',124).
 ==> meta_argtypes(sittingOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:125
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',126).
 % sita! Passenger1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',126).
 ==> t(sita,passenger1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:126
 % sitb! WaitingRoomSeat1, TrainSeat1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',126).
 ==> t(sitb,waitingRoomSeat1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',126).
 ==> t(sitb,trainSeat1).
 %; release
 
@@ -621,9 +750,7 @@ fluent(sittingOn(sita,sitb)).
 % option manualrelease on
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',129).
 :- set_ec_option(manualrelease, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',129).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',129).
+:- if(is_e_toplevel).
 :- endif.
 
 
@@ -667,7 +794,6 @@ axiom(not(releasedAt(holding(Agent, Object), 0)),
 % [door]
  % !ReleasedAt(DoorUnlocked(door), 0).
  %  not(releasedAt(doorUnlocked(Door),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',133).
 
  /*  [] ->
        ta(Ta_Param,
@@ -702,7 +828,6 @@ axiom(not(releasedAt(doorIsOpen(Door), 0)),
 % [agent]
  % !ReleasedAt(Sleep0(agent), 0).
  %  not(releasedAt(sleep0(Agent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',135).
 
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep0(Agent), 0))).
@@ -721,7 +846,6 @@ axiom(not(releasedAt(sleep0(Agent), 0)),
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep1(Agent), 0))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',135).
 axiom(not(releasedAt(sleep1(Agent), 0)),
     []).
 
@@ -731,7 +855,6 @@ axiom(not(releasedAt(sleep1(Agent), 0)),
 % [agent]
  % !ReleasedAt(Sleep2(agent), 0).
  %  not(releasedAt(sleep2(Agent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',137).
 
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep2(Agent), 0))).
@@ -750,7 +873,6 @@ axiom(not(releasedAt(sleep2(Agent), 0)),
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep3(Agent), 0))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',137).
 axiom(not(releasedAt(sleep3(Agent), 0)),
     []).
 
@@ -760,7 +882,6 @@ axiom(not(releasedAt(sleep3(Agent), 0)),
 % [agent]
  % !ReleasedAt(Sleep4(agent), 0).
  %  not(releasedAt(sleep4(Agent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',139).
 
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep4(Agent), 0))).
@@ -779,7 +900,6 @@ axiom(not(releasedAt(sleep4(Agent), 0)),
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep5(Agent), 0))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',139).
 axiom(not(releasedAt(sleep5(Agent), 0)),
     []).
 
@@ -789,7 +909,6 @@ axiom(not(releasedAt(sleep5(Agent), 0)),
 % [agent]
  % !ReleasedAt(Sleep6(agent), 0).
  %  not(releasedAt(sleep6(Agent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',141).
 
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(sleep6(Agent), 0))).
@@ -821,7 +940,6 @@ axiom(not(releasedAt(lyingOn(Agent, Physobj), 0)),
 % [agent, physobj]
  % !ReleasedAt(SittingOn(agent, physobj), 0).
  %  not(releasedAt(sittingOn(Agent,Physobj),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',143).
 
  /*  [] ->
        ta(Ta_Param,
@@ -856,7 +974,6 @@ axiom(not(releasedAt(standing(Agent), 0)),
 % [agent]
  % !ReleasedAt(Dressed(agent), 0).
  %  not(releasedAt(dressed(Agent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',145).
 
  /*  [] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(dressed(Agent), 0))).
@@ -888,7 +1005,6 @@ axiom(not(releasedAt(knowOrder(Agent1, Agent2, Physobj), 0)),
 % [agent1, agent2, physobj]
  % !ReleasedAt(KnowRequest(agent1, agent2, physobj), 0).
  %  not(releasedAt(knowRequest(Agent1,Agent2,Physobj),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',147).
 
  /*  [] ->
        ta(Ta_Param,
@@ -923,7 +1039,6 @@ axiom(not(releasedAt(onVehicle(Object, Vehicleon), 0)),
 % [ticketagent]
  % !ReleasedAt(BeTicketAgent0(ticketagent), 0).
  %  not(releasedAt(beTicketAgent0(Ticketagent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',149).
 
  /*  [] ->
        ta(Ta_Param,
@@ -958,7 +1073,6 @@ axiom(not(releasedAt(beTicketAgent1(Ticketagent), 0)),
 % [ticketagent]
  % !ReleasedAt(BeTicketAgent2(ticketagent), 0).
  %  not(releasedAt(beTicketAgent2(Ticketagent),0)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',151).
 
  /*  [] ->
        ta(Ta_Param,
@@ -976,14 +1090,32 @@ axiom(not(releasedAt(beTicketAgent2(Ticketagent), 0)),
 % [location]
  % ReleasedAt(At(TrainSeat1,location),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',153).
-releasedAt(at(trainSeat1,Location),0).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          releasedAt(at(trainSeat1, Location), 0)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',153).
+axiom(releasedAt(at(trainSeat1, Location), 0),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:153
 % [location]
  % ReleasedAt(At(Conductor1,location),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',153).
-releasedAt(at(conductor1,Location),0).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          releasedAt(at(conductor1, Location), 0)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',153).
+axiom(releasedAt(at(conductor1, Location), 0),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:154
@@ -992,7 +1124,6 @@ releasedAt(at(conductor1,Location),0).
 % object!=% TrainSeat1 & object!=Conductor1 ->
 % !ReleasedAt(At(object, location), 0).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:156
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',155).
 
  /*  diff(Object, trainSeat1), diff(Object, conductor1) ->
        not(releasedAt(at(Object, Location), 0)).
@@ -1023,13 +1154,13 @@ axiom(not(releasedAt(at(Object, Location), 0)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',160).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',160).
-axiom(initially(neg(holding(Agent, Object))),
+axiom(holds_at(neg(holding(Agent, Object)), start),
     []).
 
 
@@ -1039,13 +1170,13 @@ axiom(initially(neg(holding(Agent, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',160).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(sittingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',160).
-axiom(initially(neg(sittingOn(Agent, Physobj))),
+axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
     []).
 
 
@@ -1053,16 +1184,15 @@ axiom(initially(neg(sittingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',162).
 % [agent,physobj]
  % !HoldsAt(LyingOn(agent,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',162).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(lyingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',162).
-axiom(initially(neg(lyingOn(Agent, Physobj))),
+axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
     []).
 
 
@@ -1072,13 +1202,13 @@ axiom(initially(neg(lyingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',164).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(on(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',164).
-axiom(initially(neg(on(Physobj1, Physobj2))),
+axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
     []).
 
 
@@ -1088,10 +1218,13 @@ axiom(initially(neg(on(Physobj1, Physobj2))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',164).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(Agent))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(dressed(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',164).
-axiom(initially(dressed(Agent)),
+axiom(holds_at(dressed(Agent), start),
     []).
 
 
@@ -1099,13 +1232,12 @@ axiom(initially(dressed(Agent)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',166).
 % [agent]
  % HoldsAt(Awake(agent),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',166).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(Agent))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',166).
-axiom(initially(awake(Agent)),
+axiom(holds_at(awake(Agent), start),
     []).
 
 
@@ -1115,10 +1247,13 @@ axiom(initially(awake(Agent)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',166).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(Agent))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(sleep3(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',166).
-axiom(initially(sleep3(Agent)),
+axiom(holds_at(sleep3(Agent), start),
     []).
 
 
@@ -1126,13 +1261,15 @@ axiom(initially(sleep3(Agent)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',168).
 % [agent]
  % HoldsAt(Standing(agent),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',168).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(Agent))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(standing(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',168).
-axiom(initially(standing(Agent)),
+axiom(holds_at(standing(Agent), start),
     []).
 
 
@@ -1141,23 +1278,25 @@ axiom(initially(standing(Agent)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',168).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorUnlocked(door1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(doorUnlocked(door1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',168).
-axiom(initially(doorUnlocked(door1)),
+axiom(holds_at(doorUnlocked(door1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:169
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',170).
 % HoldsAt(DoorIsOpen(Door1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',170).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(doorIsOpen(door1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',170).
-axiom(initially(doorIsOpen(door1)),
+axiom(holds_at(doorIsOpen(door1), start),
     []).
 
 
@@ -1166,26 +1305,28 @@ axiom(initially(doorIsOpen(door1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',170).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(at(waitingRoomSeat1, waitingRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(waitingRoomSeat1, waitingRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',170).
-axiom(initially(at(waitingRoomSeat1, waitingRoom1)),
+axiom(holds_at(at(waitingRoomSeat1, waitingRoom1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:171
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',172).
 % HoldsAt(At(Passenger1,NearStation1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',172).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(passenger1, nearStation1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(passenger1, nearStation1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',172).
-axiom(initially(at(passenger1, nearStation1)),
+axiom(holds_at(at(passenger1, nearStation1), start),
     []).
 
 
@@ -1194,23 +1335,28 @@ axiom(initially(at(passenger1, nearStation1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',172).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(train1, beforeStation1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(train1, beforeStation1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',172).
-axiom(initially(at(train1, beforeStation1)),
+axiom(holds_at(at(train1, beforeStation1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:173
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',174).
 % HoldsAt(OnVehicle(TrainSeat1,Train1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',174).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(onVehicle(trainSeat1, train1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(onVehicle(trainSeat1, train1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',174).
-axiom(initially(onVehicle(trainSeat1, train1)),
+axiom(holds_at(onVehicle(trainSeat1, train1), start),
     []).
 
 
@@ -1219,10 +1365,13 @@ axiom(initially(onVehicle(trainSeat1, train1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',174).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(onVehicle(conductor1, train1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(onVehicle(conductor1, train1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',174).
-axiom(initially(onVehicle(conductor1, train1)),
+axiom(holds_at(onVehicle(conductor1, train1), start),
     []).
 
 
@@ -1232,40 +1381,41 @@ axiom(initially(onVehicle(conductor1, train1)),
 % object!=% TrainSeat1 & object!=Conductor1 ->
 % !HoldsAt(OnVehicle(object,Train1),0).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:177
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',176).
 
  /*  diff(Object, trainSeat1), diff(Object, conductor1) ->
-       initially(neg(onVehicle(Object, train1))).
+       holds_at(neg(onVehicle(Object, train1)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',176).
 
- /*  initially(neg(onVehicle(Object, train1))) :-
+ /*  holds_at(neg(onVehicle(Object, train1)), start+0) :-
        diff(Object, trainSeat1),
        diff(Object, conductor1).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',176).
 
  /*  [diff(Object, trainSeat1), diff(Object, conductor1)] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(onVehicle(Object, train1)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(onVehicle(Object, train1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',176).
-axiom(initially(neg(onVehicle(Object, train1))),
+axiom(holds_at(neg(onVehicle(Object, train1)), start),
     [diff(Object, trainSeat1), diff(Object, conductor1)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:178
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',179).
 % HoldsAt(At(Ticket1,WaitingRoom1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',179).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(ticket1, waitingRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(ticket1, waitingRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',179).
-axiom(initially(at(ticket1, waitingRoom1)),
+axiom(holds_at(at(ticket1, waitingRoom1), start),
     []).
 
 
@@ -1274,26 +1424,28 @@ axiom(initially(at(ticket1, waitingRoom1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',179).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(at(ticketAgent1, waitingRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(ticketAgent1, waitingRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',179).
-axiom(initially(at(ticketAgent1, waitingRoom1)),
+axiom(holds_at(at(ticketAgent1, waitingRoom1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:180
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',181).
 % HoldsAt(BeTicketAgent0(TicketAgent1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',181).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(beTicketAgent0(ticketAgent1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(beTicketAgent0(ticketAgent1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',181).
-axiom(initially(beTicketAgent0(ticketAgent1)),
+axiom(holds_at(beTicketAgent0(ticketAgent1), start),
     []).
 
 
@@ -1303,13 +1455,13 @@ axiom(initially(beTicketAgent0(ticketAgent1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',181).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(knowOrder(Agent1, Agent2, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',181).
-axiom(initially(neg(knowOrder(Agent1, Agent2, Physobj))),
+axiom(holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start),
     []).
 
 
@@ -1317,16 +1469,16 @@ axiom(initially(neg(knowOrder(Agent1, Agent2, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',183).
 % [agent1,agent2,physobj]
  % !HoldsAt(KnowRequest(agent1,agent2,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',183).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(knowRequest(Agent1, Agent2, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(knowRequest(Agent1, Agent2, Physobj)),
+                   start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',183).
-axiom(initially(neg(knowRequest(Agent1, Agent2, Physobj))),
+axiom(holds_at(neg(knowRequest(Agent1, Agent2, Physobj)), start),
     []).
 
 
@@ -1339,56 +1491,60 @@ axiom(initially(neg(knowRequest(Agent1, Agent2, Physobj))),
 % Happens(WalkStreet12(Passenger1,Street1),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',185).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(walkStreet12(passenger1, street1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(walkStreet12(passenger1, street1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',185).
-axiom(happens(walkStreet12(passenger1, street1), t),
-    [is_time(t)]).
+axiom(happens(walkStreet12(passenger1, street1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:186
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',187).
 % Happens(WalkThroughDoor12(Passenger1,Door1),1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',187).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1,
-          tvs1=[1],
-          tvs2=[now, t],
-          happens(walkThroughDoor12(passenger1, door1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(walkThroughDoor12(passenger1, door1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',187).
-axiom(happens(walkThroughDoor12(passenger1, door1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(walkThroughDoor12(passenger1, door1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:187
 % Happens(Request(Passenger1,TicketAgent1,Ticket1),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',187).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2,
-          tvs1=[2],
-          tvs2=[t, t2],
-          happens(request(passenger1, ticketAgent1, ticket1), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(request(passenger1, ticketAgent1, ticket1), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',187).
-axiom(happens(request(passenger1, ticketAgent1, ticket1), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(request(passenger1, ticketAgent1, ticket1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:188
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',189).
 % Happens(Pay(Passenger1,TicketAgent1),3).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',189).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(pay(passenger1, ticketAgent1), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(pay(passenger1, ticketAgent1), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',189).
-axiom(happens(pay(passenger1, ticketAgent1), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(pay(passenger1, ticketAgent1), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:189
@@ -1399,110 +1555,121 @@ axiom(happens(pay(passenger1, ticketAgent1), t3),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:191
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',192).
 % Happens(SitOn(Passenger1,WaitingRoomSeat1),5).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',192).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(sitOn(passenger1, waitingRoomSeat1), t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(sitOn(passenger1, waitingRoomSeat1), Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',192).
-axiom(happens(sitOn(passenger1, waitingRoomSeat1), t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(sitOn(passenger1, waitingRoomSeat1), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:192
 % Happens(RideTrack12(Train1,TrackToStation1),6).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',192).
 
- /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
-       ta(6, tvs1=[6], tvs2=[t, t6], happens(rideTrack12(train1, trackToStation1), t6)).
+ /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
+       ta(start+6,
+          tvs1=[start+6],
+          tvs2=[Start6, start],
+          happens(rideTrack12(train1, trackToStation1), Start6)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',192).
-axiom(happens(rideTrack12(train1, trackToStation1), t6),
-    [is_time(t6), b(t, t6)]).
+axiom(happens(rideTrack12(train1, trackToStation1), Start6),
+    [b(start, Start6), toffset(start, 6, Start6)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:193
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',194).
 % Happens(RiseFrom(Passenger1,WaitingRoomSeat1),7).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',194).
 
- /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
-       ta(7,
-          tvs1=[7],
-          tvs2=[t, t7],
-          happens(riseFrom(passenger1, waitingRoomSeat1), t7)).
+ /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
+       ta(start+7,
+          tvs1=[start+7],
+          tvs2=[Start7, start],
+          happens(riseFrom(passenger1, waitingRoomSeat1), Start7)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',194).
-axiom(happens(riseFrom(passenger1, waitingRoomSeat1), t7),
-    [is_time(t7), b(t, t7)]).
+axiom(happens(riseFrom(passenger1, waitingRoomSeat1), Start7),
+    [b(start, Start7), toffset(start, 7, Start7)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:194
 % Happens(WalkThroughDoor21(Passenger1,Door1),8).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',194).
 
- /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
-       ta(8, tvs1=[8], tvs2=[t, t8], happens(walkThroughDoor21(passenger1, door1), t8)).
+ /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
+       ta(start+8,
+          tvs1=[start+8],
+          tvs2=[Start8, start],
+          happens(walkThroughDoor21(passenger1, door1), Start8)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',194).
-axiom(happens(walkThroughDoor21(passenger1, door1), t8),
-    [is_time(t8), b(t, t8)]).
+axiom(happens(walkThroughDoor21(passenger1, door1), Start8),
+    [b(start, Start8), toffset(start, 8, Start8)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:195
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',196).
 % Happens(GetOnVehicle(Passenger1,Train1),9).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',196).
 
- /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
-       ta(9, tvs1=[9], tvs2=[t, t9], happens(getOnVehicle(passenger1, train1), t9)).
+ /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
+       ta(start+9,
+          tvs1=[start+9],
+          tvs2=[Start9, start],
+          happens(getOnVehicle(passenger1, train1), Start9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',196).
-axiom(happens(getOnVehicle(passenger1, train1), t9),
-    [is_time(t9), b(t, t9)]).
+axiom(happens(getOnVehicle(passenger1, train1), Start9),
+    [b(start, Start9), toffset(start, 9, Start9)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:196
 % Happens(SitOn(Passenger1,TrainSeat1),10).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',196).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(sitOn(passenger1, trainSeat1), t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(sitOn(passenger1, trainSeat1), Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',196).
-axiom(happens(sitOn(passenger1, trainSeat1), t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(sitOn(passenger1, trainSeat1), Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:197
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',198).
 % Happens(RideTrack12(Train1,TrackToBetweenStation1And2),11).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',198).
 
- /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
-       ta(11,
-          tvs1=[11],
-          tvs2=[t, t11],
-          happens(rideTrack12(train1, trackToBetweenStation1And2), t11)).
+ /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
+       ta(start+11,
+          tvs1=[start+11],
+          tvs2=[Startd11, start],
+          happens(rideTrack12(train1, trackToBetweenStation1And2), Startd11)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',198).
-axiom(happens(rideTrack12(train1, trackToBetweenStation1And2), t11),
-    [is_time(t11), b(t, t11)]).
+axiom(happens(rideTrack12(train1, trackToBetweenStation1And2), Startd11),
+    [b(start, Startd11), toffset(start, 11, Startd11)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:198
 % Happens(HandTo(Passenger1,Conductor1,Ticket1),12).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',198).
 
- /*  [is_time(t12), b(t, t12), ignore(t+12==t12)] ->
-       ta(12,
-          tvs1=[12],
-          tvs2=[t, t12],
-          happens(handTo(passenger1, conductor1, ticket1), t12)).
+ /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
+       ta(start+12,
+          tvs1=[start+12],
+          tvs2=[Startd12, start],
+          happens(handTo(passenger1, conductor1, ticket1), Startd12)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',198).
-axiom(happens(handTo(passenger1, conductor1, ticket1), t12),
-    [is_time(t12), b(t, t12)]).
+axiom(happens(handTo(passenger1, conductor1, ticket1), Startd12),
+    [b(start, Startd12), toffset(start, 12, Startd12)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:199
@@ -1514,64 +1681,64 @@ axiom(happens(handTo(passenger1, conductor1, ticket1), t12),
 % Happens(RideTrack12(Train1,TrackToStation2),13).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',200).
 
- /*  [is_time(t13), b(t, t13), ignore(t+13==t13)] ->
-       ta(13,
-          tvs1=[13],
-          tvs2=[t, t13],
-          happens(rideTrack12(train1, trackToStation2), t13)).
+ /*  [b(start, Startd13), toffset(start, 13, Startd13), ignore(start+13==Startd13)] ->
+       ta(start+13,
+          tvs1=[start+13],
+          tvs2=[Startd13, start],
+          happens(rideTrack12(train1, trackToStation2), Startd13)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',200).
-axiom(happens(rideTrack12(train1, trackToStation2), t13),
-    [is_time(t13), b(t, t13)]).
+axiom(happens(rideTrack12(train1, trackToStation2), Startd13),
+    [b(start, Startd13), toffset(start, 13, Startd13)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:201
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',202).
 % Happens(RiseFrom(Passenger1,TrainSeat1),14).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',202).
 
- /*  [is_time(t14), b(t, t14), ignore(t+14==t14)] ->
-       ta(14, tvs1=[14], tvs2=[t, t14], happens(riseFrom(passenger1, trainSeat1), t14)).
+ /*  [b(start, Startd14), toffset(start, 14, Startd14), ignore(start+14==Startd14)] ->
+       ta(start+14,
+          tvs1=[start+14],
+          tvs2=[Startd14, start],
+          happens(riseFrom(passenger1, trainSeat1), Startd14)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',202).
-axiom(happens(riseFrom(passenger1, trainSeat1), t14),
-    [is_time(t14), b(t, t14)]).
+axiom(happens(riseFrom(passenger1, trainSeat1), Startd14),
+    [b(start, Startd14), toffset(start, 14, Startd14)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:202
 % Happens(GetOffVehicle(Passenger1,Train1),15).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',202).
 
- /*  [is_time(t15), b(t, t15), ignore(t+15==t15)] ->
-       ta(15,
-          tvs1=[15],
-          tvs2=[t, t15],
-          happens(getOffVehicle(passenger1, train1), t15)).
+ /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
+       ta(start+15,
+          tvs1=[start+15],
+          tvs2=[Startd15, start],
+          happens(getOffVehicle(passenger1, train1), Startd15)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',202).
-axiom(happens(getOffVehicle(passenger1, train1), t15),
-    [is_time(t15), b(t, t15)]).
+axiom(happens(getOffVehicle(passenger1, train1), Startd15),
+    [b(start, Startd15), toffset(start, 15, Startd15)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:203
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',204).
 % Happens(WalkStreet12(Passenger1,Street2),16).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',204).
 
- /*  [is_time(t16), b(t, t16), ignore(t+16==t16)] ->
-       ta(16,
-          tvs1=[16],
-          tvs2=[t, t16],
-          happens(walkStreet12(passenger1, street2), t16)).
+ /*  [b(start, Startd16), toffset(start, 16, Startd16), ignore(start+16==Startd16)] ->
+       ta(start+16,
+          tvs1=[start+16],
+          tvs2=[Startd16, start],
+          happens(walkStreet12(passenger1, street2), Startd16)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',204).
-axiom(happens(walkStreet12(passenger1, street2), t16),
-    [is_time(t16), b(t, t16)]).
+axiom(happens(walkStreet12(passenger1, street2), Startd16),
+    [b(start, Startd16), toffset(start, 16, Startd16)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:205
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',206).
 % range time 0 17
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',206).
 ==> range(time,0,17).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:206
@@ -1582,12 +1749,10 @@ axiom(happens(walkStreet12(passenger1, street2), t16),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:207
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',208).
 % range diameter 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',208).
 ==> range(diameter,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e:209
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',210).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',210).
 ==> completion(happens).
 %; End of file.

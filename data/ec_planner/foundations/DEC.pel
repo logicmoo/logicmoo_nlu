@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:29:15 GMT
+% Sun, 29 Mar 2020 18:51:50 GMT
 % From ../foundations/DEC.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',171).
 
@@ -30,88 +30,57 @@
 %; }
 %;
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:23
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 % sort time: integer
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 ==> subsort(time,integer).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:24
 % sort offset: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',24).
 ==> subsort(offset,integer).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:26
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 % reified sort fluent
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 reified_sort(fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 ==> mpred_prop(fluent,reified_sort).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:27
 % reified sort event
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 reified_sort(event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',27).
 ==> mpred_prop(event,reified_sort).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:29
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 % predicate Happens(event,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 predicate(happens(event,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> mpred_prop(happens(event,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> meta_argtypes(happens(event,time)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:30
 % predicate HoldsAt(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 predicate(holds_at(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> mpred_prop(holds_at(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',30).
 ==> meta_argtypes(holds_at(fluent,time)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:31
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 % predicate ReleasedAt(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 predicate(releasedAt(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',32).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:33
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 % predicate Initiates(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 predicate(initiates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:34
 % predicate Terminates(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 predicate(terminates(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',34).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e:35
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 % predicate Releases(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 predicate(releases(event,fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 ==> mpred_prop(releases(event,fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',36).
 ==> meta_argtypes(releases(event,fluent,time)).
 
 
@@ -128,7 +97,6 @@ predicate(releases(event,fluent,time)).
  /*  holds_at(Fluent, Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time)))) ->
        holds_at(Fluent, Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',38).
 
  /*  holds_at(Fluent, Time+1) :-
        holds_at(Fluent, Time),
@@ -264,7 +232,6 @@ axiom(terminates(Event, Fluent, Time),
  /*  holds_at(neg(Fluent), Time), not(releasedAt(Fluent, Time+1)), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time)))) ->
        holds_at(neg(Fluent), Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',45).
 
  /*  holds_at(neg(Fluent), Time+1) :-
        holds_at(neg(Fluent), Time),
@@ -399,7 +366,6 @@ axiom(initiates(Event, Fluent, Time),
  /*  not(releasedAt(Fluent, Time)), not(exists([Event],  (happens(Event, Time), releases(Event, Fluent, Time)))) ->
        not(releasedAt(Fluent, Time+1)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',51).
 
  /*  not(releasedAt(Fluent, Time+1)) :-
        not(releasedAt(Fluent, Time)),
@@ -502,7 +468,6 @@ axiom(releases(Event, Fluent, Time),
  /*  releasedAt(Fluent, Time), not(exists([Event],  (happens(Event, Time), (initiates(Event, Fluent, Time);terminates(Event, Fluent, Time))))) ->
        releasedAt(Fluent, Time+1).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',56).
 
  /*  releasedAt(Fluent, Time+1) :-
        releasedAt(Fluent, Time),

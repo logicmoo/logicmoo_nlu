@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:11 GMT
+% Sun, 29 Mar 2020 18:47:09 GMT
 % From ../examples/Cassimatis2002/OneScreen.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/BrewkaDixKonolige1997/Wine.e',47).
 
@@ -29,30 +29,22 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',22).
 % load examples/Cassimatis2002/PolySpace.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',22).
 :- load_e('examples/Cassimatis2002/PolySpace.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',22).
+:- if(is_e_toplevel).
 
  /*  loading(changed,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e').
@@ -85,7 +77,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',22).
 % sort xcoord: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',22).
 ==> subsort(xcoord,integer).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:22
@@ -96,7 +87,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',24).
 % sort grid
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',24).
 ==> sort(grid).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:24
@@ -107,7 +97,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',26).
 % sort color
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',26).
 ==> sort(color).
 %; constants
 
@@ -115,15 +104,12 @@
 % shape Round,Square
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',28).
 ==> t(shape,round).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',28).
 ==> t(shape,square).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',30).
 % color Red,Green
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',30).
 ==> t(color,red).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',30).
 ==> t(color,green).
 %; predicates, fluents, and events
 
@@ -131,47 +117,35 @@
 % predicate Equal(object,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',32).
 predicate(equal(object,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',32).
 ==> mpred_prop(equal(object,object),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',32).
 ==> meta_argtypes(equal(object,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 % predicate Shape(object,shape)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 predicate(shape(object,shape)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 ==> mpred_prop(shape(object,shape),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 ==> meta_argtypes(shape(object,shape)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:34
 % predicate Color(object,color)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 predicate(color(object,color)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 ==> mpred_prop(color(object,color),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',34).
 ==> meta_argtypes(color(object,color)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 % fluent Location(grid,object,xcoord,ycoord)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 fluent(location(grid,object,xcoord,ycoord)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 ==> mpred_prop(location(grid,object,xcoord,ycoord),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 ==> meta_argtypes(location(grid,object,xcoord,ycoord)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e:36
 % event Move(grid,object,xcoord,ycoord,xcoord,ycoord)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 event(move(grid,object,xcoord,ycoord,xcoord,ycoord)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 ==> mpred_prop(move(grid,object,xcoord,ycoord,xcoord,ycoord),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',36).
 ==> meta_argtypes(move(grid,object,xcoord,ycoord,xcoord,ycoord)).
 
 
@@ -210,7 +184,6 @@ event(move(grid,object,xcoord,ycoord,xcoord,ycoord)).
  /*  [shape(Object, Shape2), not(equals(Shape1, Shape2))] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(shape(Object, Shape1))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',45).
 axiom(not(shape(Object, Shape1)),
     [shape(Object, Shape2), not(equals(Shape1, Shape2))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',45).
@@ -224,7 +197,6 @@ axiom(not(shape(Object, Shape1)),
  /*  [shape(Object, Shape1), not(equals(Shape1, Shape2))] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], not(shape(Object, Shape2))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',45).
 axiom(not(shape(Object, Shape2)),
     [shape(Object, Shape1), not(equals(Shape2, Shape1))]).
 
@@ -240,7 +212,6 @@ axiom(not(shape(Object, Shape2)),
  /*  color(Object, Color1), color(Object, Color2) ->
        equals(Color1, Color2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',49).
 
  /*  not(color(Object, Color1)) :-
        color(Object, Color2),
@@ -251,7 +222,6 @@ axiom(not(shape(Object, Shape2)),
  /*  [color(Object, Color2), not(equals(Color1, Color2))] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(color(Object, Color1))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',49).
 axiom(not(color(Object, Color1)),
     [color(Object, Color2), not(equals(Color1, Color2))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',49).
@@ -265,7 +235,6 @@ axiom(not(color(Object, Color1)),
  /*  [color(Object, Color1), not(equals(Color1, Color2))] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], not(color(Object, Color2))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',49).
 axiom(not(color(Object, Color2)),
     [color(Object, Color1), not(equals(Color2, Color1))]).
 
@@ -294,7 +263,6 @@ axiom(not(color(Object, Color2)),
  /*  [(not(shape(Object1, Shape));not(shape(Object2, Shape)))] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(equal(Object1, Object2))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',54).
 axiom(not(equal(Object1, Object2)),
    
     [  (not(shape(Object1, Shape));not(shape(Object2, Shape)))
@@ -304,7 +272,6 @@ axiom(not(equal(Object1, Object2)),
  /*  shape(Object1, Shape) :-
        equal(Object1, Object2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',54).
 
  /*  [equal(Object1, Object2)] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], shape(Object1, Shape)).
@@ -312,7 +279,6 @@ axiom(not(equal(Object1, Object2)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',54).
 axiom(shape(Object1, Shape),
     [equal(Object1, Object2)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',54).
 
  /*  shape(Object2, Shape) :-
        equal(Object1, Object2).
@@ -322,7 +288,6 @@ axiom(shape(Object1, Shape),
  /*  [equal(Object1, Object2)] ->
        ta(Ta_Param5, tvs1=[], tvs2=[], shape(Object2, Shape)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',54).
 axiom(shape(Object2, Shape),
     [equal(Object1, Object2)]).
 
@@ -351,7 +316,6 @@ axiom(shape(Object2, Shape),
  /*  [(not(color(Object1, Color));not(color(Object2, Color)))] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(equal(Object1, Object2))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',59).
 axiom(not(equal(Object1, Object2)),
    
     [  (not(color(Object1, Color));not(color(Object2, Color)))
@@ -361,7 +325,6 @@ axiom(not(equal(Object1, Object2)),
  /*  color(Object1, Color) :-
        equal(Object1, Object2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',59).
 
  /*  [equal(Object1, Object2)] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], color(Object1, Color)).
@@ -369,7 +332,6 @@ axiom(not(equal(Object1, Object2)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',59).
 axiom(color(Object1, Color),
     [equal(Object1, Object2)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',59).
 
  /*  color(Object2, Color) :-
        equal(Object1, Object2).
@@ -379,7 +341,6 @@ axiom(color(Object1, Color),
  /*  [equal(Object1, Object2)] ->
        ta(Ta_Param5, tvs1=[], tvs2=[], color(Object2, Color)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',59).
 axiom(color(Object2, Color),
     [equal(Object1, Object2)]).
 
@@ -598,7 +559,6 @@ axiom(holds_at(location(Grid, Object, Xcoord, Ycoord), Time),
  /*  holds_at(location(Grid, Object1, Xcoord1, Ycoord1), Time), holds_at(location(Grid, Object2, Xcoord1, Ycoord1), Time) ->
        equal(Object1, Object2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',81).
 
  /*  equal(Object1, Object2) :-
        holds_at(location(Grid, Object1, Xcoord1, Ycoord1),
@@ -807,7 +767,6 @@ axiom(not(happens(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord2), Time))
    
     [  (holds_at(neg(location(Grid, Object, Xcoord1, Ycoord1)), Time);(not(equals(Xcoord1, Xcoord2));not(equals(Ycoord1, Ycoord2+1)), not(equals(Ycoord1, Ycoord2-1))), (not(equals(Ycoord1, Ycoord2));not(equals(Xcoord1, Xcoord2+1)), not(equals(Xcoord1, Xcoord2-1))))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',112).
 
  /*  holds_at(location(Grid, Object, Xcoord1, Ycoord1), Time) :-
        happens(move(Grid,
@@ -849,16 +808,16 @@ axiom(requires(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord2), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(move(Grid,
-                                     Object,
-                                     Xcoord1,
-                                     Ycoord1,
-                                     Xcoord2,
-                                     Ycoord2)),
+          holds_at(metreqs(move(Grid,
+                                Object,
+                                Xcoord1,
+                                Ycoord1,
+                                Xcoord2,
+                                Ycoord2)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',112).
-axiom(holds_at(requirements(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord2)), Time),
+axiom(holds_at(metreqs(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord2)), Time),
    
     [ holds_at(location(Grid, Object, Xcoord1, Ycoord1),
                Time)
@@ -873,16 +832,13 @@ axiom(holds_at(requirements(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',24).
 % grid G1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',24).
 ==> t(grid,g1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:24
 % object X,Y,Screen
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',24).
 ==> t(object,x).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',24).
 ==> t(object,y).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',24).
 ==> t(object,screen).
 %; perceptions:
 
@@ -890,66 +846,113 @@ axiom(holds_at(requirements(move(Grid, Object, Xcoord1, Ycoord1, Xcoord2, Ycoord
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:27
 % Shape(X,Round).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',27).
-shape(x,round).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(x, round)).
+ */
+axiom(shape(x, round),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',29).
 % Color(X,Red).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(x, red)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',29).
-color(x,red).
+axiom(color(x, red),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:29
 % Shape(Y,Round).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',29).
-shape(y,round).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(y, round)).
+ */
+axiom(shape(y, round),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',31).
 % Color(Y,Red).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(y, red)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',31).
-color(y,red).
+axiom(color(y, red),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:31
 % Shape(Screen,Square).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',31).
-shape(screen,square).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(screen, square)).
+ */
+axiom(shape(screen, square),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',33).
 % Color(Screen,Green).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(screen, green)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',33).
-color(screen,green).
+axiom(color(screen, green),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:33
 % [time]
  % HoldsAt(Location(G1,Screen,2,0),time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',33).
-holds_at(location(g1,screen,2,0),Time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(location(g1, screen, 2, 0), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',33).
+axiom(holds_at(location(g1, screen, 2, 0), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
 % HoldsAt(Location(G1,X,1,1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(location(g1, x, 1, 1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(location(g1, x, 1, 1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
-axiom(initially(location(g1, x, 1, 1)),
+axiom(holds_at(location(g1, x, 1, 1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:35
 % HoldsAt(Location(G1,Y,3,1),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
-holds_at(location(g1,y,3,1),2).
+
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          holds_at(location(g1, y, 3, 1), Start2)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
+axiom(holds_at(location(g1, y, 3, 1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:37
@@ -1012,7 +1015,6 @@ axiom(holds_at(neg(location(g1, x, Xcoord, Ycoord)), Time),
  /*  [holds_at(location(g1, x, Xcoord, Ycoord), Time), diff(Xcoord, 2),  (not(equals(Xcoord, 1));not(equals(Ycoord, 1));not(equals(Time, 0)))] ->
        ta(Time, tvs1=[Time], tvs2=[Time], equal(x, y)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',39).
 axiom(equal(x, y),
    
     [ holds_at(location(g1, x, Xcoord, Ycoord), Time),
@@ -1081,7 +1083,6 @@ axiom(holds_at(neg(location(g1, y, Xcoord, Ycoord)), Time),
  /*  [holds_at(location(g1, y, Xcoord, Ycoord), Time), diff(Xcoord, 2),  (not(equals(Xcoord, 3));not(equals(Ycoord, 1));not(equals(Time, 2)))] ->
        ta(Time, tvs1=[Time], tvs2=[Time], equal(x, y)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',44).
 axiom(equal(x, y),
    
     [ holds_at(location(g1, y, Xcoord, Ycoord), Time),
@@ -1097,7 +1098,6 @@ axiom(equal(x, y),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',49).
 % range xcoord 0 4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',49).
 ==> range(xcoord,0,4).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:49
@@ -1108,6 +1108,5 @@ axiom(equal(x, y),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',51).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',51).
 ==> range(offset,0,0).
 %; End of file.

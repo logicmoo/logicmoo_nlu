@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:29:16 GMT
+% Sun, 29 Mar 2020 18:51:52 GMT
 % From ../foundations/ECCausal.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/DEC.e',73).
 
@@ -33,17 +33,13 @@
 % predicate Started(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 predicate(started(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 ==> mpred_prop(started(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 ==> meta_argtypes(started(fluent,time)).
 
 % predicate Stopped(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 predicate(stopped(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 ==> mpred_prop(stopped(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',24).
 ==> meta_argtypes(stopped(fluent,time)).
 
 
@@ -67,7 +63,6 @@ predicate(stopped(fluent,time)).
  /*  [started] <->
        [;, holds_at, exists, happens, initiates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 
  /*  started(Fluent, Time) ->
        (   holds_at(Fluent, Time)
@@ -136,7 +131,6 @@ axiom(holds_at(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 axiom(happens(Event, Time),
     [holds_at(neg(Fluent), Time), started(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 
  /*  initiates(Event, Fluent, Time) :-
        not(holds_at(Fluent, Time)),
@@ -153,7 +147,6 @@ axiom(happens(Event, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 axiom(initiates(Event, Fluent, Time),
     [holds_at(neg(Fluent), Time), started(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 
  /*  holds_at(Fluent, Time);exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time))) ->
        started(Fluent, Time).
@@ -179,7 +172,6 @@ axiom(started(Fluent, Time),
    
     [  (holds_at(Fluent, Time);happens(Event, Time), initiates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 
  /*  not(holds_at(Fluent, Time)) :-
        not(started(Fluent, Time)).
@@ -195,7 +187,6 @@ axiom(started(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 axiom(holds_at(neg(Fluent), Time),
     [not(started(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',27).
 
  /*  not(happens(Event, Time)) :-
        initiates(Event, Fluent, Time),
@@ -253,7 +244,6 @@ axiom(not(initiates(Event, Fluent, Time)),
  /*  [stopped] <->
        [;, holds_at, neg, exists, happens, terminates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 
  /*  stopped(Fluent, Time) ->
        (   holds_at(neg(Fluent), Time)
@@ -322,7 +312,6 @@ axiom(holds_at(neg(Fluent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 axiom(happens(Event, Time),
     [holds_at(Fluent, Time), stopped(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 
  /*  terminates(Event, Fluent, Time) :-
        not(holds_at(neg(Fluent), Time)),
@@ -339,7 +328,6 @@ axiom(happens(Event, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 axiom(terminates(Event, Fluent, Time),
     [holds_at(Fluent, Time), stopped(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 
  /*  holds_at(neg(Fluent), Time);exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time))) ->
        stopped(Fluent, Time).
@@ -365,7 +353,6 @@ axiom(stopped(Fluent, Time),
    
     [  (holds_at(neg(Fluent), Time);happens(Event, Time), terminates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 
  /*  not(holds_at(neg(Fluent), Time)) :-
        not(stopped(Fluent, Time)).
@@ -381,7 +368,6 @@ axiom(stopped(Fluent, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 axiom(holds_at(Fluent, Time),
     [not(stopped(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',33).
 
  /*  not(happens(Event, Time)) :-
        terminates(Event, Fluent, Time),
@@ -423,19 +409,14 @@ axiom(not(terminates(Event, Fluent, Time)),
 % predicate Initiated(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',36).
 predicate(initiated(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',36).
 ==> mpred_prop(initiated(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',36).
 ==> meta_argtypes(initiated(fluent,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',38).
 % predicate Terminated(fluent,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',38).
 predicate(terminated(fluent,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',38).
 ==> mpred_prop(terminated(fluent,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',38).
 ==> meta_argtypes(terminated(fluent,time)).
 
 
@@ -458,7 +439,6 @@ predicate(terminated(fluent,time)).
  /*  [initiated] <->
        [started, not, exists, happens, terminates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 
  /*  initiated(Fluent, Time) ->
        started(Fluent, Time),
@@ -486,7 +466,6 @@ axiom(not(initiated(Fluent, Time)),
    
     [  (not(started(Fluent, Time));happens(Event, Time), terminates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 
  /*  started(Fluent, Time) :-
        initiated(Fluent, Time).
@@ -496,7 +475,6 @@ axiom(not(initiated(Fluent, Time)),
  /*  [initiated(Fluent, Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], started(Fluent, Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 axiom(started(Fluent, Time),
     [initiated(Fluent, Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
@@ -536,7 +514,6 @@ axiom(not(happens(Event, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 axiom(not(terminates(Event, Fluent, Time)),
     [happens(Event, Time), initiated(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 
  /*  started(Fluent, Time), not(exists([Event],  (happens(Event, Time), terminates(Event, Fluent, Time)))) ->
        initiated(Fluent, Time).
@@ -602,7 +579,6 @@ axiom(not(started(Fluent, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 axiom(happens(Event, Time),
     [started(Fluent, Time), not(initiated(Fluent, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',40).
 
  /*  terminates(Event, Fluent, Time) :-
        started(Fluent, Time),
@@ -639,7 +615,6 @@ axiom(terminates(Event, Fluent, Time),
  /*  [terminated] <->
        [stopped, not, exists, happens, initiates].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
 
  /*  terminated(Fluent, Time) ->
        stopped(Fluent, Time),
@@ -667,7 +642,6 @@ axiom(not(terminated(Fluent, Time)),
    
     [  (not(stopped(Fluent, Time));happens(Event, Time), initiates(Event, Fluent, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
 
  /*  stopped(Fluent, Time) :-
        terminated(Fluent, Time).
@@ -677,7 +651,6 @@ axiom(not(terminated(Fluent, Time)),
  /*  [terminated(Fluent, Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], stopped(Fluent, Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
 axiom(stopped(Fluent, Time),
     [terminated(Fluent, Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
@@ -717,7 +690,6 @@ axiom(not(happens(Event, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
 axiom(not(initiates(Event, Fluent, Time)),
     [happens(Event, Time), terminated(Fluent, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/ECCausal.e',46).
 
  /*  stopped(Fluent, Time), not(exists([Event],  (happens(Event, Time), initiates(Event, Fluent, Time)))) ->
        terminated(Fluent, Time).

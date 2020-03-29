@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:02 GMT
+% Sun, 29 Mar 2020 18:46:55 GMT
 % From ../includes/SaaSPatterns/RulesPatterns/ConditionsVerification.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/PolicySetPatterns/policySetModel.e',33).
 
@@ -11,11 +11,8 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e:0
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 % fluent F_ConditionSatisfied(rule)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 fluent(f_conditionSatisfied(rule)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 ==> mpred_prop(f_conditionSatisfied(rule),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',1).
 ==> meta_argtypes(f_conditionSatisfied(rule)).
 
 
@@ -31,11 +28,11 @@ fluent(f_conditionSatisfied(rule)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',11).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(f_conditionSatisfied(Rule))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(f_conditionSatisfied(Rule), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ConditionsVerification.e',11).
-axiom(initially(f_conditionSatisfied(Rule)),
+axiom(holds_at(f_conditionSatisfied(Rule), start),
     []).

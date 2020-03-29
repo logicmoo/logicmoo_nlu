@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:12 GMT
+% Sun, 29 Mar 2020 18:47:11 GMT
 % From ../examples/Cassimatis2002/TwoScreens.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/PolySpace.e',116).
 
@@ -29,47 +29,35 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',22).
 % load examples/Cassimatis2002/PolySpace.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',22).
 :- load_e('examples/Cassimatis2002/PolySpace.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 % grid G1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 ==> t(grid,g1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:24
 % object X,Y,Screen1,Screen2
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 ==> t(object,x).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 ==> t(object,y).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 ==> t(object,screen1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',24).
 ==> t(object,screen2).
 %; perceptions:
 
@@ -77,68 +65,125 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:27
 % Shape(X,Round).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',27).
-shape(x,round).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(x, round)).
+ */
+axiom(shape(x, round),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',29).
 % Color(X,Red).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(x, red)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',29).
-color(x,red).
+axiom(color(x, red),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:29
 % Shape(Y,Round).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',29).
-shape(y,round).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(y, round)).
+ */
+axiom(shape(y, round),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',31).
 % Color(Y,Red).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(y, red)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',31).
-color(y,red).
+axiom(color(y, red),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:31
 % Shape(Screen1,Square).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',31).
-shape(screen1,square).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(screen1, square)).
+ */
+axiom(shape(screen1, square),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',33).
 % Color(Screen1,Green).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(screen1, green)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',33).
-color(screen1,green).
+axiom(color(screen1, green),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:33
 % Shape(Screen2,Square).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',33).
-shape(screen2,square).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], shape(screen2, square)).
+ */
+axiom(shape(screen2, square),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',35).
 % Color(Screen2,Green).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], color(screen2, green)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',35).
-color(screen2,green).
+axiom(color(screen2, green),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:35
 % [time]
  % HoldsAt(Location(G1,Screen1,2,0),time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',35).
-holds_at(location(g1,screen1,2,0),Time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(location(g1, screen1, 2, 0), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',35).
+axiom(holds_at(location(g1, screen1, 2, 0), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',37).
 % [time]
  % HoldsAt(Location(G1,Screen2,4,0),time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(location(g1, screen2, 4, 0), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',37).
-holds_at(location(g1,screen2,4,0),Time).
+axiom(holds_at(location(g1, screen2, 4, 0), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:37
@@ -146,18 +191,25 @@ holds_at(location(g1,screen2,4,0),Time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',37).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(location(g1, x, 1, 1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(location(g1, x, 1, 1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',37).
-axiom(initially(location(g1, x, 1, 1)),
+axiom(holds_at(location(g1, x, 1, 1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',39).
 % HoldsAt(Location(G1,Y,5,1),4).
+
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          holds_at(location(g1, y, 5, 1), Start4)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',39).
-holds_at(location(g1,y,5,1),4).
+axiom(holds_at(location(g1, y, 5, 1), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:40
@@ -224,7 +276,6 @@ axiom(holds_at(neg(location(g1, x, Xcoord, Ycoord)), Time),
  /*  [holds_at(location(g1, x, Xcoord, Ycoord), Time), diff(Xcoord, 2), diff(Xcoord, 4),  (not(equals(Xcoord, 1));not(equals(Ycoord, 1));not(equals(Time, 0)))] ->
        ta(Time, tvs1=[Time], tvs2=[Time], equal(x, y)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',41).
 axiom(equal(x, y),
    
     [ holds_at(location(g1, x, Xcoord, Ycoord), Time),
@@ -297,7 +348,6 @@ axiom(holds_at(neg(location(g1, y, Xcoord, Ycoord)), Time),
  /*  [holds_at(location(g1, y, Xcoord, Ycoord), Time), diff(Xcoord, 2), diff(Xcoord, 4),  (not(equals(Xcoord, 5));not(equals(Ycoord, 1));not(equals(Time, 4)))] ->
        ta(Time, tvs1=[Time], tvs2=[Time], equal(x, y)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',47).
 axiom(equal(x, y),
    
     [ holds_at(location(g1, y, Xcoord, Ycoord), Time),
@@ -314,7 +364,6 @@ axiom(equal(x, y),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',52).
 % range xcoord 0 5
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',52).
 ==> range(xcoord,0,5).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:52
@@ -325,6 +374,5 @@ axiom(equal(x, y),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',54).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/TwoScreens.e',54).
 ==> range(offset,0,0).
 %; End of file.

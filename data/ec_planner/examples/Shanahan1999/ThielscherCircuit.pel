@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:21 GMT
+% Sun, 29 Mar 2020 18:47:22 GMT
 % From ../examples/Shanahan1999/ThielscherCircuit.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/RussianTurkey.e',67).
 
@@ -48,98 +48,76 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:39
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',39).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',41).
 % load foundations/ECCausal.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',41).
 :- load_e('foundations/ECCausal.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',41).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',41).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',43).
 % event LightOn()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',43).
 event(lightOn).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',43).
 ==> mpred_prop(lightOn,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:43
 % event Close1()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',43).
 event(close1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',43).
 ==> mpred_prop(close1,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',45).
 % event Open2()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',45).
 event(open2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',45).
 ==> mpred_prop(open2,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:45
 % event CloseRelay()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',45).
 event(closeRelay).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',45).
 ==> mpred_prop(closeRelay,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:47
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',48).
 % fluent Light()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',48).
 fluent(light).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',48).
 ==> mpred_prop(light,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:48
 % fluent Switch1()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',48).
 fluent(switch1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',48).
 ==> mpred_prop(switch1,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:49
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',50).
 % fluent Switch2()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',50).
 fluent(switch2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',50).
 ==> mpred_prop(switch2,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:50
 % fluent Switch3()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',50).
 fluent(switch3).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',50).
 ==> mpred_prop(switch3,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',52).
 % fluent Relay()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',52).
 fluent(relay).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',52).
 ==> mpred_prop(relay,fluent).
 
 
@@ -156,7 +134,6 @@ fluent(relay).
  /*  stopped(light, Time), initiated(switch1, Time), initiated(switch2, Time) ->
        happens(lightOn, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',54).
 
  /*  happens(lightOn, Time) :-
        stopped(light, Time),
@@ -258,7 +235,6 @@ axiom(not(initiated(switch2, Time)),
  /*  started(switch2, Time), initiated(relay, Time) ->
        happens(open2, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',61).
 
  /*  happens(open2, Time) :-
        started(switch2, Time),
@@ -275,7 +251,6 @@ axiom(not(initiated(switch2, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',61).
 axiom(happens(open2, Time),
     [started(switch2, Time), initiated(relay, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',61).
 
  /*  not(started(switch2, Time)) :-
        initiated(relay, Time),
@@ -292,7 +267,6 @@ axiom(happens(open2, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',61).
 axiom(not(started(switch2, Time)),
     [initiated(relay, Time), not(happens(open2, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',61).
 
  /*  not(initiated(relay, Time)) :-
        started(switch2, Time),
@@ -323,7 +297,6 @@ axiom(not(initiated(relay, Time)),
  /*  stopped(relay, Time), initiated(switch1, Time), initiated(switch3, Time) ->
        happens(closeRelay, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',66).
 
  /*  happens(closeRelay, Time) :-
        stopped(relay, Time),
@@ -483,23 +456,21 @@ axiom(initiates(close1, switch1, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',78).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(switch1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(switch1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',78).
-axiom(initially(neg(switch1)),
+axiom(holds_at(neg(switch1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:79
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',80).
 % HoldsAt(Switch2(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',80).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(switch2)).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(switch2, start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',80).
-axiom(initially(switch2),
+axiom(holds_at(switch2, start),
     []).
 
 
@@ -508,23 +479,21 @@ axiom(initially(switch2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',80).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(switch3)).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(switch3, start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',80).
-axiom(initially(switch3),
+axiom(holds_at(switch3, start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:81
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',82).
 % !HoldsAt(Relay(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',82).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(relay))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(relay), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',82).
-axiom(initially(neg(relay)),
+axiom(holds_at(neg(relay), start),
     []).
 
 
@@ -533,10 +502,9 @@ axiom(initially(neg(relay)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',82).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(light))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(light), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',82).
-axiom(initially(neg(light)),
+axiom(holds_at(neg(light), start),
     []).
 
 
@@ -544,12 +512,11 @@ axiom(initially(neg(light)),
 % Happens(Close1(),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',84).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(close1, t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(close1, start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',84).
-axiom(happens(close1, t),
-    [is_time(t)]).
+axiom(happens(close1, start),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:86
 % completion Happens
@@ -559,7 +526,6 @@ axiom(happens(close1, t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:88
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',89).
 % range time 0 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e',89).
 ==> range(time,0,1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/ThielscherCircuit.e:89

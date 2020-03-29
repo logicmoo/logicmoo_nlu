@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:33 GMT
+% Sun, 29 Mar 2020 18:48:20 GMT
 % From ../ecnet/Dress.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',682).
 
@@ -24,31 +24,22 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e:14
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',15).
 % event PutOn(agent,clothing)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',15).
 event(putOn(agent,clothing)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',15).
 ==> mpred_prop(putOn(agent,clothing),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',15).
 ==> meta_argtypes(putOn(agent,clothing)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e:16
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',17).
 % event TakeOff(agent,clothing)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',17).
 event(takeOff(agent,clothing)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',17).
 ==> mpred_prop(takeOff(agent,clothing),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',17).
 ==> meta_argtypes(takeOff(agent,clothing)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e:18
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',19).
 % fluent Wearing(agent,clothing)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',19).
 fluent(wearing(agent,clothing)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',19).
 ==> mpred_prop(wearing(agent,clothing),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',19).
 ==> meta_argtypes(wearing(agent,clothing)).
 
 
@@ -97,11 +88,11 @@ axiom(initiates(putOn(Agent, Clothing), wearing(Agent, Clothing), Time),
        ;   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Clothing, Location), Time))
        ),
-       some(Location, '$kolem_Fn_259'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [(holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)), some(Location, '$kolem_Fn_259'(Agent, Clothing, Time))] ->
+ /*  [(holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -112,17 +103,17 @@ axiom(not(happens(putOn(Agent, Clothing), Time)),
    
     [  (holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)),
       some(Location,
-           '$kolem_Fn_259'(Agent, Clothing, Time))
+           '$kolem_Fn_166'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(neg(wearing(Agent, Clothing)), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_259'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_259'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -133,17 +124,17 @@ axiom(holds_at(neg(wearing(Agent, Clothing)), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_259'(Agent, Clothing, Time))
+           '$kolem_Fn_166'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_259'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_259'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -154,17 +145,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_259'(Agent, Clothing, Time))
+           '$kolem_Fn_166'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(at(Clothing, Location), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_259'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_259'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -175,7 +166,7 @@ axiom(holds_at(at(Clothing, Location), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_259'(Agent, Clothing, Time))
+           '$kolem_Fn_166'(Agent, Clothing, Time))
     ]).
 
 
@@ -214,7 +205,6 @@ axiom(terminates(takeOff(Agent, Clothing), wearing(Agent, Clothing), Time),
  /*  holds_at(wearing(Agent, Clothing), Time) :-
        happens(takeOff(Agent, Clothing), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',38).
 
  /*  [holds_at(metreqs(takeOff(Agent, Clothing)), Time)] ->
        ta(Time,
@@ -225,18 +215,16 @@ axiom(terminates(takeOff(Agent, Clothing), wearing(Agent, Clothing), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',38).
 axiom(requires(takeOff(Agent, Clothing), Time),
     [holds_at(metreqs(takeOff(Agent, Clothing)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',38).
 
  /*  [holds_at(wearing(Agent, Clothing), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(takeOff(Agent, Clothing)), Time)).
+          holds_at(metreqs(takeOff(Agent, Clothing)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',38).
-axiom(holds_at(requirements(takeOff(Agent, Clothing)), Time),
+axiom(holds_at(metreqs(takeOff(Agent, Clothing)), Time),
     [holds_at(wearing(Agent, Clothing), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',38).
 
  /*  not(happens(takeOff(Agent, Clothing), Time)) :-
        not(holds_at(wearing(Agent, Clothing), Time)).
@@ -284,7 +272,6 @@ axiom(releases(putOn(Agent, Clothing), at(Clothing, Location), Time),
  /*  holds_at(wearing(Agent, Clothing), Time), holds_at(at(Agent, Location), Time) ->
        holds_at(at(Clothing, Location), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',44).
 
  /*  holds_at(at(Clothing, Location), Time) :-
        holds_at(wearing(Agent, Clothing), Time),

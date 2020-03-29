@@ -1,4 +1,7 @@
 
+
+:- module(ec_common_swi,[]).
+
 :- use_module(library(debug)).
 :- use_module(library(listing)).
 :- use_module(library(prolog_clause)).
@@ -18,7 +21,7 @@ prolog_flag(F,Old,New):- ignore(current_prolog_flag(F,Old)),set_prolog_flag(F,Ne
 :- style_check(-singleton).
 /* Emulates the writenl(1) function */
 
-
+:- fixup_exports.
   
 system:clause_w_names(Head,Body,ClauseRef,file=line_of(Line,File),Vs):-   
   clause(Head,Body,ClauseRef),
@@ -37,4 +40,5 @@ system:clause_w_names(Head,Body,ClauseRef,file=line_of(Line,File),Vs):-
   ignore(clause_property(ClauseRef, line_count(Line))),
   ignore(clause_property(ClauseRef, file(File))),
   dmsg(clause_w_names(Head,Body,ClauseRef,file=line_of(Line,File),Vs)).
+
 

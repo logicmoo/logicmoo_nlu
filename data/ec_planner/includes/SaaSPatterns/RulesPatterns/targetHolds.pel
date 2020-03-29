@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:03 GMT
+% Sun, 29 Mar 2020 18:46:55 GMT
 % From ../includes/SaaSPatterns/RulesPatterns/targetHolds.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ruleOutput.e',25).
 
@@ -11,39 +11,29 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e:0
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 % fluent F_TargetHolds(rule)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 fluent(f_targetHolds(rule)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 ==> mpred_prop(f_targetHolds(rule),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 ==> meta_argtypes(f_targetHolds(rule)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e:1
 % fluent F_TargetDoesntHolds(rule)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 fluent(f_targetDoesntHolds(rule)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 ==> mpred_prop(f_targetDoesntHolds(rule),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',1).
 ==> meta_argtypes(f_targetDoesntHolds(rule)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e:3
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 % event E_MatchRuleParametters(rule)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 event(e_matchRuleParametters(rule)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 ==> mpred_prop(e_matchRuleParametters(rule),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 ==> meta_argtypes(e_matchRuleParametters(rule)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e:4
 % event E_DontMatchRuleParametters(rule)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 event(e_dontMatchRuleParametters(rule)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 ==> mpred_prop(e_dontMatchRuleParametters(rule),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',4).
 ==> meta_argtypes(e_dontMatchRuleParametters(rule)).
 
 
@@ -51,7 +41,6 @@ event(e_dontMatchRuleParametters(rule)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',7).
 % [rule,time]
  % Initiates(E_MatchRuleParametters(rule),F_TargetHolds(rule),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',7).
 
  /*  [] ->
        ta(Time,
@@ -92,7 +81,6 @@ axiom(initiates(e_dontMatchRuleParametters(Rule), f_targetDoesntHolds(Rule), Tim
  /*  happens(e_matchRuleParametters(Rule), Time) ->
        holds_at(neg(f_targetHolds(Rule)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',9).
 
  /*  holds_at(neg(f_targetHolds(Rule)), Time) :-
        happens(e_matchRuleParametters(Rule), Time).
@@ -108,18 +96,16 @@ axiom(initiates(e_dontMatchRuleParametters(Rule), f_targetDoesntHolds(Rule), Tim
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',9).
 axiom(requires(e_matchRuleParametters(Rule), Time),
     [holds_at(metreqs(e_matchRuleParametters(Rule)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',9).
 
  /*  [holds_at(neg(f_targetHolds(Rule)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(e_matchRuleParametters(Rule)), Time)).
+          holds_at(metreqs(e_matchRuleParametters(Rule)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',9).
-axiom(holds_at(requirements(e_matchRuleParametters(Rule)), Time),
+axiom(holds_at(metreqs(e_matchRuleParametters(Rule)), Time),
     [holds_at(neg(f_targetHolds(Rule)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',9).
 
  /*  not(happens(e_matchRuleParametters(Rule), Time)) :-
        not(holds_at(neg(f_targetHolds(Rule)), Time)).
@@ -141,7 +127,6 @@ axiom(not(happens(e_matchRuleParametters(Rule), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 % [rule,time]
  % Happens(E_DontMatchRuleParametters(rule), time) -> !HoldsAt(F_TargetDoesntHolds(rule),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 
  /*  happens(e_dontMatchRuleParametters(Rule), Time) ->
        holds_at(neg(f_targetDoesntHolds(Rule)), Time).
@@ -151,7 +136,6 @@ axiom(not(happens(e_matchRuleParametters(Rule), Time)),
  /*  holds_at(neg(f_targetDoesntHolds(Rule)), Time) :-
        happens(e_dontMatchRuleParametters(Rule), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 
  /*  [holds_at(metreqs(e_dontMatchRuleParametters(Rule)), Time)] ->
        ta(Time,
@@ -162,19 +146,16 @@ axiom(not(happens(e_matchRuleParametters(Rule), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 axiom(requires(e_dontMatchRuleParametters(Rule), Time),
     [holds_at(metreqs(e_dontMatchRuleParametters(Rule)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 
  /*  [holds_at(neg(f_targetDoesntHolds(Rule)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(e_dontMatchRuleParametters(Rule)),
-                   Time)).
+          holds_at(metreqs(e_dontMatchRuleParametters(Rule)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
-axiom(holds_at(requirements(e_dontMatchRuleParametters(Rule)), Time),
+axiom(holds_at(metreqs(e_dontMatchRuleParametters(Rule)), Time),
     [holds_at(neg(f_targetDoesntHolds(Rule)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',11).
 
  /*  not(happens(e_dontMatchRuleParametters(Rule), Time)) :-
        not(holds_at(neg(f_targetDoesntHolds(Rule)), Time)).
@@ -198,13 +179,13 @@ axiom(not(happens(e_dontMatchRuleParametters(Rule), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',13).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(f_targetHolds(Rule)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(f_targetHolds(Rule)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',13).
-axiom(initially(neg(f_targetHolds(Rule))),
+axiom(holds_at(neg(f_targetHolds(Rule)), start),
     []).
 
 
@@ -212,14 +193,13 @@ axiom(initially(neg(f_targetHolds(Rule))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',15).
 % [rule]
  % !HoldsAt(F_TargetDoesntHolds(rule),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',15).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(f_targetDoesntHolds(Rule)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(f_targetDoesntHolds(Rule)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/targetHolds.e',15).
-axiom(initially(neg(f_targetDoesntHolds(Rule))),
+axiom(holds_at(neg(f_targetDoesntHolds(Rule)), start),
     []).

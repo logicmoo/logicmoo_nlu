@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:48 GMT
+% Sun, 29 Mar 2020 18:48:38 GMT
 % From ../ecnet/Rain.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PolySpace.e',116).
 
@@ -25,9 +25,7 @@
 % event StartRaining(outside)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
 event(startRaining(outside)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
 ==> mpred_prop(startRaining(outside),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',14).
 ==> meta_argtypes(startRaining(outside)).
 
 
@@ -37,11 +35,9 @@ event(startRaining(outside)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:17
 % event StopRaining(outside)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 event(stopRaining(outside)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 ==> mpred_prop(stopRaining(outside),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',17).
 ==> meta_argtypes(stopRaining(outside)).
 
 
@@ -51,41 +47,30 @@ event(stopRaining(outside)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:20
 % fluent Raining(outside)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 fluent(raining(outside)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 ==> mpred_prop(raining(outside),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',20).
 ==> meta_argtypes(raining(outside)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 % event GetWet(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 event(getWet(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 ==> mpred_prop(getWet(object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',23).
 ==> meta_argtypes(getWet(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 % event Dry(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 event(dry(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 ==> mpred_prop(dry(object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',25).
 ==> meta_argtypes(dry(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 % fluent Wet(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 fluent(wet(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 ==> mpred_prop(wet(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',27).
 ==> meta_argtypes(wet(object)).
 
 
@@ -103,7 +88,6 @@ fluent(wet(object)).
  /*  holds_at(at(Agent, Outside), Time), holds_at(raining(Outside), Time), holds_at(neg(wet(Agent)), Time), not(exists([Umbrella], holds_at(holding(Agent, Umbrella), Time))) ->
        happens(getWet(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',29).
 
  /*  happens(getWet(Agent), Time) :-
        holds_at(at(Agent, Outside), Time),
@@ -247,7 +231,6 @@ axiom(initiates(getWet(Object), wet(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',39).
 % [object,time]
 % Terminates(Dry(object),Wet(object),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rain.e',39).
 
  /*  [] ->
        ta(Time,

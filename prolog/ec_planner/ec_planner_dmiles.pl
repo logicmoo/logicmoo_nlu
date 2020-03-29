@@ -23,7 +23,7 @@ testing_msg(X):- wdmsg(X).
 
 %%executable(P):- mpred_props(
 % :- use_module(ec_loader).
-:- include(ec_common).
+:- use_module(ec_common).
 
 %:- if((prolog_load_context(file,F),prolog_load_context(source,F))).
 %:- style_check(-singleton).
@@ -123,6 +123,8 @@ next_d(D1, D2):- D2 is D1+300.
 
 % abdemo_special(long,Gs,R):-abdemo_timed(Gs,R).
 abdemo_special(W,Gs,R):- \+ is_list(Gs), !, functor(Gs,F,_),!, abdemo_special(W+F,[Gs],R).
+
+:- style_check(-singleton).
 
 abdemo_special(depth(Low,High),Gs,R):- 
    b_setval(last_d,High),!,
@@ -1094,4 +1096,6 @@ axiom_db(H,B):- into_db(axiom(H,B)).
 into_db(G):- call(G).
 
 
+
+:- fixup_exports.
 

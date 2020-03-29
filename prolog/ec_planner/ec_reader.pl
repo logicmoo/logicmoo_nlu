@@ -23,7 +23,8 @@
     
 
 */
-:- module(ec_reader,[convert_e/1, set_ec_option/2, verbatum_functor/1, builtin_pred/1, e_to_pl/3]).
+:- module(ec_reader,[convert_e/1, set_ec_option/2, verbatum_functor/1, builtin_pred/1, e_to_pl/3, s_l/2,
+   echo_format/1, echo_format/2]).
 
 
 
@@ -37,11 +38,13 @@ set_ec_option(N,V):- retractall(etmp:ec_option(N,_)),asserta(etmp:ec_option(N,V)
 verbatum_functor(function).  verbatum_functor(event). 
 verbatum_functor(predicate).  verbatum_functor(fluent).
 
+is_reified_sort(S):- S==belief.
 
 non_list_functor(ignore).
 non_list_functor(manualrelease).
 non_list_functor(sort).
 non_list_functor(reified_sort).
+non_list_functor(belief).
 non_list_functor(reified).
 non_list_functor(noninertial).
 non_list_functor(mutex).
@@ -253,10 +256,11 @@ e_to_pl(Why, OutputName, Ins):-  \+ is_stream(OutputName), !,
      open(OutputName, write, Outs),
      with_output_to(Outs, 
        (raise_translation_event(Why,begining,OutputName),
+         nb_setval('$ec_output_stream',Outs),
          format(Outs,'~N~q.~n',[:- expects_dialect(ecalc)]),
          e_to_pl(Why, current_output, Ins),
           raise_translation_event(Why,ending,OutputName))),
-     close(Outs)),
+     (nb_setval('$ec_output_stream',[]),close(Outs))),
    raise_translation_event(Why,ready,OutputName).
 
 e_to_pl(Why, Out, Ins):- 
@@ -389,6 +393,7 @@ set_e_ops(M):-
    op(1050, xfy, M:'|'),
    op(950, xfy, M:'&'),
    op(900, fx, M:'!'),
+   op(400, yfx, M:'%'),
    op(1,fx,(M:($))).
 
 e_read3(String, Term):- 
@@ -564,6 +569,7 @@ if_string_replace(T, B, A, NewT):-
 
 e_read2(Txt, Term):- \+ string(Txt), text_to_string(Txt, T),!, e_read2(T, Term).
 e_read2(T, Term):- if_string_replace(T, '!=', (\=), NewT), !, e_read2(NewT, Term).
+e_read2(T, Term):- if_string_replace(T, '%', (/), NewT), !, e_read2(NewT, Term).
 e_read2(T, Term):- use_some,
   if_string_replace(T,  '{', ' some( ', T1), 
   if_string_replace(T1, '}', ' ) & ', NewT), 
@@ -634,15 +640,29 @@ maybe_o_s_l:- \+ o_s_l_diff, !.
 maybe_o_s_l:- e_source_location(F,L),retractall(ec_reader:o_s_l(_,_)),asserta(ec_reader:o_s_l(F,L)),!.
 maybe_o_s_l.
 
-mention_o_s_l:- ec_reader:o_s_l(F,L),!,real_ansi_format([fg(green)], '~N~q.~n', [:- was_s_l(F,L)]).
+output_line_count(L):- nb_current('$ec_output_stream',Outs),is_stream(Outs),line_count(Outs,L).
+output_line_count(L):- line_count(current_output,L).
+
+:- dynamic(ec_reader:last_output_lc/3).
+ec_reader:last_output_lc(0,foo,bar).
+
+mention_o_s_l:- ec_reader:o_s_l(F,L),!,out_o_s_l_1(F,L).
 mention_o_s_l:- s_l(F,L), was_s_l(F,L),! .
 
-
+out_o_s_l_1(F,L):- ec_reader:last_output_lc(Was,F,L),
+  output_line_count(OLC),
+  Diff is abs(Was-OLC), Diff<6,!.
+out_o_s_l_1(F,L):- out_o_s_l_2(F,L).
+out_o_s_l_2(F,L):- 
+      retractall(ec_reader:last_output_lc(_,_,_)),
+      output_line_count(OLC),
+      asserta(ec_reader:last_output_lc(OLC,F,L)),
+      real_ansi_format([fg(green)], '~N~q.~n', [:- was_s_l(F,L)]),!.
 
 :- dynamic(ec_reader:o_s_l/2).
 :- export(was_s_l/2).
-was_s_l(B,L):- retractall(ec_reader:o_s_l(_,_)),asserta(ec_reader:o_s_l(B,L)),
-  real_ansi_format([fg(green)], '~N~q.~n', [:- was_s_l(B,L)]),!.
+was_s_l(B,L):- retractall(ec_reader:o_s_l(_,_)),asserta(ec_reader:o_s_l(B,L)), out_o_s_l_2(B,L).
+  
 
 e_source_location(F,L):- nb_current('$ec_input_stream',Ins), any_line_count(Ins,L), any_stream(F,Ins),!.
 e_source_location(F,L):- nb_current('$ec_input_file',FS), absolute_file_name(FS,F), any_stream(F,Ins), any_line_count(Ins,L),!.
@@ -919,13 +939,17 @@ process_e_stream_token(Why, function, S):- !, read_stream_until(S, [], `:`, Text
   token_stringsss(String, Type), 
    ec_on_read(Why, (function(Value, Type))).
 
-process_e_stream_token(Why, Type, S):- downcase_atom(Type, Event), memberchk(Event, [fluent, predicate, event]), !, 
+process_e_stream_token(Why, Type, S):- downcase_atom(Type, Event), (memberchk(Event, [fluent, predicate, event]);is_reified_sort(Event)), !, 
    read_one_e_compound(S, Value), ec_on_read(Why, t(Event, Value)).
+
 process_e_stream_token(Why, reified, S):- !, read_stream_until(S, [], ` `, Text), 
    text_to_string(Text, St), atom_concat('reified_', St, Type), !, process_e_stream_token(Why, Type, S).
+
 process_e_stream_token(Why, Type, S):- read_line_to_string_echo(S, String), process_e_token_with_string(Why, Type, String).
 
-process_e_token_with_string(Why, Type, String):- \+ is_non_sort(Type), atomics_to_string(VList, ',', String), VList \= [_], !, 
+process_e_token_with_string(Why, Type, String):- \+ is_non_sort(Type), 
+ % \+ atom_contains(String,"("),
+  atomics_to_string(VList, ',', String), VList \= [_], !, 
   maplist(process_e_token_with_string(Why, Type), VList).
 process_e_token_with_string(_, _, ""):-!.
 process_e_token_with_string(Why, Type, String):- token_stringsss(String, Out), ec_on_read(Why, t(Type, Out)).
@@ -1056,6 +1080,8 @@ till_eof(In) :-
                 fail)
             ).
 
+
+:- fixup_exports.
 
 end_of_file.            
 

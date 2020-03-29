@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:27 GMT
+% Sun, 29 Mar 2020 18:48:13 GMT
 % From ../ecnet/CTime.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Container.e',73).
 
@@ -26,9 +26,7 @@
 % predicate Daytime(time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',17).
 predicate(daytime(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',17).
 ==> mpred_prop(daytime(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',17).
 ==> meta_argtypes(daytime(time)).
 
 
@@ -39,11 +37,8 @@ predicate(daytime(time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',20).
 % predicate Nighttime(time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',20).
 predicate(nighttime(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',20).
 ==> mpred_prop(nighttime(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',20).
 ==> meta_argtypes(nighttime(time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:20
@@ -56,9 +51,7 @@ predicate(nighttime(time)).
 % predicate Morning(time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',23).
 predicate(morning(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',23).
 ==> mpred_prop(morning(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',23).
 ==> meta_argtypes(morning(time)).
 
 
@@ -69,11 +62,8 @@ predicate(morning(time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',26).
 % predicate Afternoon(time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',26).
 predicate(afternoon(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',26).
 ==> mpred_prop(afternoon(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',26).
 ==> meta_argtypes(afternoon(time)).
 
 
@@ -83,11 +73,8 @@ predicate(afternoon(time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:27
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',28).
 % predicate Evening(time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',28).
 predicate(evening(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',28).
 ==> mpred_prop(evening(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',28).
 ==> meta_argtypes(evening(time)).
 
 
@@ -97,11 +84,8 @@ predicate(evening(time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',30).
 % predicate Night(time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',30).
 predicate(night(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',30).
 ==> mpred_prop(night(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',30).
 ==> meta_argtypes(night(time)).
 
 
@@ -111,11 +95,8 @@ predicate(night(time)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:31
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',32).
 % predicate LateNight(time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',32).
 predicate(lateNight(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',32).
 ==> mpred_prop(lateNight(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',32).
 ==> meta_argtypes(lateNight(time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e:32
@@ -128,7 +109,6 @@ predicate(lateNight(time)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 % [time]
  % Daytime(time) <-> Morning(time)|Afternoon(time)|Evening(time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  daytime(Time) <->
        (   morning(Time)
@@ -141,7 +121,6 @@ predicate(lateNight(time)).
  /*  [daytime] <->
        [;, morning, ;, afternoon, evening].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  daytime(Time) ->
        (   morning(Time)
@@ -162,7 +141,6 @@ predicate(lateNight(time)).
  /*  [not(afternoon(Time)), not(evening(Time)), daytime(Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], morning(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(morning(Time),
     [not(afternoon(Time)), not(evening(Time)), daytime(Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -177,7 +155,6 @@ axiom(morning(Time),
  /*  [not(evening(Time)), not(morning(Time)), daytime(Time)] ->
        ta(Ta_Param2, tvs1=[], tvs2=[], afternoon(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(afternoon(Time),
     [not(evening(Time)), not(morning(Time)), daytime(Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -192,7 +169,6 @@ axiom(afternoon(Time),
  /*  [not(afternoon(Time)), not(morning(Time)), daytime(Time)] ->
        ta(Ta_Param3, tvs1=[], tvs2=[], evening(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(evening(Time),
     [not(afternoon(Time)), not(morning(Time)), daytime(Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -207,7 +183,6 @@ axiom(evening(Time),
  /*  [not(morning(Time)), not(afternoon(Time)), not(evening(Time))] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], not(daytime(Time))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(daytime(Time)),
    
     [ not(morning(Time)),
@@ -219,7 +194,6 @@ axiom(not(daytime(Time)),
  /*  morning(Time);afternoon(Time);evening(Time) ->
        daytime(Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  daytime(Time) :-
        (   morning(Time)
@@ -232,7 +206,6 @@ axiom(not(daytime(Time)),
  /*  [(morning(Time);afternoon(Time);evening(Time))] ->
        ta(Ta_Param5, tvs1=[], tvs2=[], daytime(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(daytime(Time),
     [(morning(Time);afternoon(Time);evening(Time))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -240,7 +213,6 @@ axiom(daytime(Time),
  /*  not(morning(Time)) :-
        not(daytime(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  [not(daytime(Time))] ->
        ta(Ta_Param6, tvs1=[], tvs2=[], not(morning(Time))).
@@ -248,7 +220,6 @@ axiom(daytime(Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(morning(Time)),
     [not(daytime(Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  not(afternoon(Time)) :-
        not(daytime(Time)).
@@ -258,7 +229,6 @@ axiom(not(morning(Time)),
  /*  [not(daytime(Time))] ->
        ta(Ta_Param7, tvs1=[], tvs2=[], not(afternoon(Time))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(afternoon(Time)),
     [not(daytime(Time))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -266,7 +236,6 @@ axiom(not(afternoon(Time)),
  /*  not(evening(Time)) :-
        not(daytime(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  [not(daytime(Time))] ->
        ta(Ta_Param8, tvs1=[], tvs2=[], not(evening(Time))).
@@ -291,7 +260,6 @@ axiom(not(evening(Time)),
  /*  [nighttime] <->
        [;, night, lateNight].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  nighttime(Time) ->
        (   night(Time)
@@ -309,7 +277,6 @@ axiom(not(evening(Time)),
  /*  [not(lateNight(Time)), nighttime(Time)] ->
        ta(Ta_Param, tvs1=[], tvs2=[], night(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(night(Time),
     [not(lateNight(Time)), nighttime(Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -323,7 +290,6 @@ axiom(night(Time),
  /*  [not(night(Time)), nighttime(Time)] ->
        ta(Ta_Param2, tvs1=[], tvs2=[], lateNight(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(lateNight(Time),
     [not(night(Time)), nighttime(Time)]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -337,7 +303,6 @@ axiom(lateNight(Time),
  /*  [not(night(Time)), not(lateNight(Time))] ->
        ta(Ta_Param3, tvs1=[], tvs2=[], not(nighttime(Time))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(nighttime(Time)),
     [not(night(Time)), not(lateNight(Time))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -345,7 +310,6 @@ axiom(not(nighttime(Time)),
  /*  night(Time);lateNight(Time) ->
        nighttime(Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  nighttime(Time) :-
        (   night(Time)
@@ -357,7 +321,6 @@ axiom(not(nighttime(Time)),
  /*  [(night(Time);lateNight(Time))] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], nighttime(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(nighttime(Time),
     [(night(Time);lateNight(Time))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
@@ -365,7 +328,6 @@ axiom(nighttime(Time),
  /*  not(night(Time)) :-
        not(nighttime(Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  [not(nighttime(Time))] ->
        ta(Ta_Param5, tvs1=[], tvs2=[], not(night(Time))).
@@ -373,7 +335,6 @@ axiom(nighttime(Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(night(Time)),
     [not(nighttime(Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 
  /*  not(lateNight(Time)) :-
        not(nighttime(Time)).
@@ -383,7 +344,6 @@ axiom(not(night(Time)),
  /*  [not(nighttime(Time))] ->
        ta(Ta_Param6, tvs1=[], tvs2=[], not(lateNight(Time))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',35).
 axiom(not(lateNight(Time)),
     [not(nighttime(Time))]).
 
@@ -396,9 +356,7 @@ axiom(not(lateNight(Time)),
 % predicate DreamSequence(time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',40).
 predicate(dreamSequence(time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',40).
 ==> mpred_prop(dreamSequence(time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',40).
 ==> meta_argtypes(dreamSequence(time)).
 
 

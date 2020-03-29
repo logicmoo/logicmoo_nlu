@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:42 GMT
+% Sun, 29 Mar 2020 18:46:34 GMT
 % From ../examples/Mueller2006/Chapter12/ErraticDevice.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',72).
 
@@ -29,26 +29,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',23).
 % sort agent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',23).
 ==> sort(agent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:23
@@ -59,7 +53,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',26).
 % agent Nathan
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',26).
 ==> t(agent,nathan).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:26
@@ -70,59 +63,43 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',29).
 % predicate Ab1(device,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',29).
 predicate(ab1(device,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',29).
 ==> mpred_prop(ab1(device,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',29).
 ==> meta_argtypes(ab1(device,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 % fluent On(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 fluent(on(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 ==> mpred_prop(on(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 ==> meta_argtypes(on(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:31
 % fluent PluggedIn(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 fluent(pluggedIn(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 ==> mpred_prop(pluggedIn(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',31).
 ==> meta_argtypes(pluggedIn(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 % fluent BrokenSwitch(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 fluent(brokenSwitch(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 ==> mpred_prop(brokenSwitch(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 ==> meta_argtypes(brokenSwitch(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:33
 % fluent Erratic(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 fluent(erratic(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 ==> mpred_prop(erratic(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',33).
 ==> meta_argtypes(erratic(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',36).
 % fluent DeterminingFluent(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',36).
 fluent(determiningFluent(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',36).
 ==> mpred_prop(determiningFluent(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',36).
 ==> meta_argtypes(determiningFluent(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:36
@@ -133,11 +110,8 @@ fluent(determiningFluent(device)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',39).
 % event TurnOn(agent,device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',39).
 event(turnOn(agent,device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',39).
 ==> mpred_prop(turnOn(agent,device),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',39).
 ==> meta_argtypes(turnOn(agent,device)).
 
 
@@ -168,14 +142,16 @@ axiom(initiates(turnOn(Agent, Device), on(Device), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',49).
 % Happens(TurnOn(Nathan,Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',49).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(turnOn(nathan, device1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(turnOn(nathan, device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',49).
-axiom(happens(turnOn(nathan, device1), t),
-    [is_time(t)]).
+axiom(happens(turnOn(nathan, device1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:50
@@ -185,7 +161,20 @@ axiom(happens(turnOn(nathan, device1), t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:53
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
-next_axiom_uses(theta).
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -197,7 +186,6 @@ next_axiom_uses(theta).
  /*  holds_at(brokenSwitch(Device), Time) ->
        ab1(Device, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
  /*  ab1(Device, Time) :-
        holds_at(brokenSwitch(Device), Time).
@@ -213,7 +201,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 axiom(ab1(Device, Time),
     [holds_at(brokenSwitch(Device), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
  /*  not(holds_at(brokenSwitch(Device), Time)) :-
        not(ab1(Device, Time)).
@@ -233,8 +220,21 @@ axiom(holds_at(neg(brokenSwitch(Device)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 % Theta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
-next_axiom_uses(theta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -244,7 +244,6 @@ next_axiom_uses(theta).
 % HoldsAt(Erratic(device),time) & HoldsAt(DeterminingFluent(device),time) ->
 % Ab1(device,time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:56
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
  /*  holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time) ->
        ab1(Device, Time).
@@ -313,7 +312,20 @@ axiom(holds_at(neg(determiningFluent(Device)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:58
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
-next_axiom_uses(theta).
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -325,7 +337,6 @@ next_axiom_uses(theta).
  /*  holds_at(neg(pluggedIn(Device)), Time) ->
        ab1(Device, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
  /*  ab1(Device, Time) :-
        holds_at(neg(pluggedIn(Device)), Time).
@@ -341,7 +352,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 axiom(ab1(Device, Time),
     [holds_at(neg(pluggedIn(Device)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
  /*  not(holds_at(neg(pluggedIn(Device)), Time)) :-
        not(ab1(Device, Time)).
@@ -366,13 +376,12 @@ axiom(holds_at(pluggedIn(Device), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
 % !HoldsAt(On(Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(on(device1)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(on(device1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
-axiom(initially(neg(on(device1))),
+axiom(holds_at(neg(on(device1)), start),
     []).
 
 
@@ -381,23 +390,25 @@ axiom(initially(neg(on(device1))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(brokenSwitch(device1)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(brokenSwitch(device1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
-axiom(initially(neg(brokenSwitch(device1))),
+axiom(holds_at(neg(brokenSwitch(device1)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:64
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 % HoldsAt(Erratic(Device1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(erratic(device1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(erratic(device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
-axiom(initially(erratic(device1)),
+axiom(holds_at(erratic(device1), start),
     []).
 
 
@@ -406,10 +417,9 @@ axiom(initially(erratic(device1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(pluggedIn(device1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(pluggedIn(device1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
-axiom(initially(pluggedIn(device1)),
+axiom(holds_at(pluggedIn(device1), start),
     []).
 
 
@@ -420,15 +430,21 @@ axiom(initially(pluggedIn(device1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:68
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',69).
 % HoldsAt(DeterminingFluent(Device1),1).
+
+ /*  [b(start, Time), ignore(start+1==Time)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time, start],
+          holds_at(determiningFluent(device1), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',69).
-holds_at(determiningFluent(device1),1).
+axiom(holds_at(determiningFluent(device1), Time),
+    [b(start, Time)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:70
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',71).
 % completion Theta Ab1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',71).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',71).
 ==> completion(ab1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:71
@@ -439,7 +455,6 @@ holds_at(determiningFluent(device1),1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:73
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',74).
 % range time 0 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',74).
 ==> range(time,0,1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:74

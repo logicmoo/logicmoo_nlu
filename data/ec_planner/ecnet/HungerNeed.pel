@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:40 GMT
+% Sun, 29 Mar 2020 18:48:30 GMT
 % From ../ecnet/HungerNeed.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HandTo.e',30).
 
@@ -27,21 +27,15 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e:13
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',14).
 % fluent Hungry(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',14).
 fluent(hungry(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',14).
 ==> mpred_prop(hungry(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',14).
 ==> meta_argtypes(hungry(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e:15
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',16).
 % fluent Satiated(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',16).
 fluent(satiated(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',16).
 ==> mpred_prop(satiated(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',16).
 ==> meta_argtypes(satiated(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e:16
@@ -54,7 +48,6 @@ fluent(satiated(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 % [agent,time]
  % HoldsAt(Hungry(agent),time) <-> !HoldsAt(Satiated(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  holds_at(hungry(Agent), Time) <->
        holds_at(neg(satiated(Agent)), Time).
@@ -64,7 +57,6 @@ fluent(satiated(agent)).
  /*  [holds_at, hungry] <->
        [holds_at, neg, satiated].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  holds_at(hungry(Agent), Time) ->
        holds_at(neg(satiated(Agent)), Time).
@@ -74,7 +66,6 @@ fluent(satiated(agent)).
  /*  holds_at(neg(satiated(Agent)), Time) :-
        holds_at(hungry(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  [holds_at(hungry(Agent), Time)] ->
        ta(Time,
@@ -85,7 +76,6 @@ fluent(satiated(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 axiom(holds_at(neg(satiated(Agent)), Time),
     [holds_at(hungry(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  not(holds_at(hungry(Agent), Time)) :-
        not(holds_at(neg(satiated(Agent)), Time)).
@@ -101,7 +91,6 @@ axiom(holds_at(neg(satiated(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 axiom(holds_at(neg(hungry(Agent)), Time),
     [holds_at(satiated(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  holds_at(neg(satiated(Agent)), Time) ->
        holds_at(hungry(Agent), Time).
@@ -111,7 +100,6 @@ axiom(holds_at(neg(hungry(Agent)), Time),
  /*  holds_at(hungry(Agent), Time) :-
        holds_at(neg(satiated(Agent)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  [holds_at(neg(satiated(Agent)), Time)] ->
        ta(Time,
@@ -122,7 +110,6 @@ axiom(holds_at(neg(hungry(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 axiom(holds_at(hungry(Agent), Time),
     [holds_at(neg(satiated(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',19).
 
  /*  not(holds_at(neg(satiated(Agent)), Time)) :-
        not(holds_at(hungry(Agent), Time)).
@@ -142,11 +129,8 @@ axiom(holds_at(satiated(Agent), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e:20
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',21).
 % event Eat(agent,food)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',21).
 event(eat(agent,food)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',21).
 ==> mpred_prop(eat(agent,food),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',21).
 ==> meta_argtypes(eat(agent,food)).
 
 
@@ -155,7 +139,6 @@ event(eat(agent,food)).
 % [agent,food,time]
 % Happens(Eat(agent,food),time) ->
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e:24
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',23).
 % {location}% 
 % HoldsAt(At(agent,location),time) &
 % HoldsAt(At(food,location),time).
@@ -173,11 +156,11 @@ event(eat(agent,food)).
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Food, Location), Time))
        ),
-       some(Location, '$kolem_Fn_271'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_185'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',25).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_271'(Agent, Food, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_185'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -187,17 +170,17 @@ event(eat(agent,food)).
 axiom(not(happens(eat(Agent, Food), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)),
-      some(Location, '$kolem_Fn_271'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_185'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',25).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(eat(Agent, Food), Time),
-       some(Location, '$kolem_Fn_271'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_185'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',25).
 
- /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_271'(Agent, Food, Time))] ->
+ /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_185'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -207,17 +190,17 @@ axiom(not(happens(eat(Agent, Food), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(eat(Agent, Food), Time),
-      some(Location, '$kolem_Fn_271'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_185'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',25).
 
  /*  holds_at(at(Food, Location), Time) :-
        happens(eat(Agent, Food), Time),
-       some(Location, '$kolem_Fn_271'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_185'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/HungerNeed.e',25).
 
- /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_271'(Agent, Food, Time))] ->
+ /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_185'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -227,7 +210,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Food, Location), Time),
    
     [ happens(eat(Agent, Food), Time),
-      some(Location, '$kolem_Fn_271'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_185'(Agent, Food, Time))
     ]).
 
 

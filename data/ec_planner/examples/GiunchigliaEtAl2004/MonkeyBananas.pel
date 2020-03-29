@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:14 GMT
+% Sun, 29 Mar 2020 18:47:13 GMT
 % From ../examples/GiunchigliaEtAl2004/MonkeyBananas.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',45).
 
@@ -30,7 +30,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:20
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',21).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',21).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:21
@@ -41,87 +40,66 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 % object Monkey, Bananas, Box
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(object,monkey).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(object,bananas).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(object,box).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:24
 % location L1, L2, L3
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(location,l1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(location,l2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',24).
 ==> t(location,l3).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 % fluent At(object,location)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 fluent(at(object,location)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 ==> mpred_prop(at(object,location),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 ==> meta_argtypes(at(object,location)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:27
 % fluent OnBox()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 fluent(onBox).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',27).
 ==> mpred_prop(onBox,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',29).
 % fluent HasBananas()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',29).
 fluent(hasBananas).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',29).
 ==> mpred_prop(hasBananas,fluent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 % event Walk(location)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 event(walk(location)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 ==> mpred_prop(walk(location),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 ==> meta_argtypes(walk(location)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:31
 % event PushBox(location)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 event(pushBox(location)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 ==> mpred_prop(pushBox(location),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',31).
 ==> meta_argtypes(pushBox(location)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',33).
 % event ClimbOn()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',33).
 event(climbOn).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',33).
 ==> mpred_prop(climbOn,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:33
 % event ClimbOff()
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',33).
 event(climbOff).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',33).
 ==> mpred_prop(climbOff,event).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',35).
 % event GraspBananas()
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',35).
 event(graspBananas).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',35).
 ==> mpred_prop(graspBananas,event).
 
 
@@ -137,7 +115,6 @@ event(graspBananas).
  /*  holds_at(at(Object, Location1), Time), holds_at(at(Object, Location2), Time) ->
        equals(Location1, Location2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',37).
 
  /*  not(holds_at(at(Object, Location1), Time)) :-
        holds_at(at(Object, Location2), Time),
@@ -254,7 +231,6 @@ axiom(not(happens(walk(Location), Time)),
    
     [  (holds_at(at(monkey, Location), Time);holds_at(onBox, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 
  /*  holds_at(neg(at(monkey, Location)), Time) :-
        happens(walk(Location), Time).
@@ -270,18 +246,16 @@ axiom(not(happens(walk(Location), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 axiom(requires(walk(Location), Time),
     [holds_at(metreqs(walk(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 
  /*  [holds_at(neg(at(monkey, Location)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(walk(Location)), Time)).
+          holds_at(metreqs(walk(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
-axiom(holds_at(requirements(walk(Location)), Time),
+axiom(holds_at(metreqs(walk(Location)), Time),
     [holds_at(neg(at(monkey, Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 
  /*  holds_at(neg(onBox), Time) :-
        happens(walk(Location), Time).
@@ -297,16 +271,15 @@ axiom(holds_at(requirements(walk(Location)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 axiom(requires(walk(Location), Time),
     [holds_at(metreqs(walk(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
 
  /*  [holds_at(neg(onBox), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(walk(Location)), Time)).
+          holds_at(metreqs(walk(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',52).
-axiom(holds_at(requirements(walk(Location)), Time),
+axiom(holds_at(metreqs(walk(Location)), Time),
     [holds_at(neg(onBox), Time)]).
 
 
@@ -321,7 +294,6 @@ axiom(holds_at(requirements(walk(Location)), Time),
  /*  holds_at(hasBananas, Time), holds_at(at(monkey, Location), Time) ->
        holds_at(at(bananas, Location), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',57).
 
  /*  holds_at(at(bananas, Location), Time) :-
        holds_at(hasBananas, Time),
@@ -466,7 +438,6 @@ axiom(not(happens(pushBox(Location), Time)),
    
     [  ((holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time));holds_at(at(monkey, Location), Time);holds_at(onBox, Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  holds_at(at(box, Location1), Time) :-
        happens(pushBox(Location), Time).
@@ -482,18 +453,16 @@ axiom(not(happens(pushBox(Location), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 axiom(requires(pushBox(Location), Time),
     [holds_at(metreqs(pushBox(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  [holds_at(at(box, Location1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pushBox(Location)), Time)).
+          holds_at(metreqs(pushBox(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
-axiom(holds_at(requirements(pushBox(Location)), Time),
+axiom(holds_at(metreqs(pushBox(Location)), Time),
     [holds_at(at(box, Location1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  holds_at(at(monkey, Location1), Time) :-
        happens(pushBox(Location), Time).
@@ -509,18 +478,16 @@ axiom(holds_at(requirements(pushBox(Location)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 axiom(requires(pushBox(Location), Time),
     [holds_at(metreqs(pushBox(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  [holds_at(at(monkey, Location1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pushBox(Location)), Time)).
+          holds_at(metreqs(pushBox(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
-axiom(holds_at(requirements(pushBox(Location)), Time),
+axiom(holds_at(metreqs(pushBox(Location)), Time),
     [holds_at(at(monkey, Location1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  holds_at(neg(at(monkey, Location)), Time) :-
        happens(pushBox(Location), Time).
@@ -536,18 +503,16 @@ axiom(holds_at(requirements(pushBox(Location)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 axiom(requires(pushBox(Location), Time),
     [holds_at(metreqs(pushBox(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  [holds_at(neg(at(monkey, Location)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pushBox(Location)), Time)).
+          holds_at(metreqs(pushBox(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
-axiom(holds_at(requirements(pushBox(Location)), Time),
+axiom(holds_at(metreqs(pushBox(Location)), Time),
     [holds_at(neg(at(monkey, Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  holds_at(neg(onBox), Time) :-
        happens(pushBox(Location), Time).
@@ -563,16 +528,15 @@ axiom(holds_at(requirements(pushBox(Location)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 axiom(requires(pushBox(Location), Time),
     [holds_at(metreqs(pushBox(Location)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
 
  /*  [holds_at(neg(onBox), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pushBox(Location)), Time)).
+          holds_at(metreqs(pushBox(Location)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',71).
-axiom(holds_at(requirements(pushBox(Location)), Time),
+axiom(holds_at(metreqs(pushBox(Location)), Time),
     [holds_at(neg(onBox), Time)]).
 
 
@@ -606,7 +570,6 @@ axiom(initiates(climbOn, onBox, Time),
  /*  holds_at(neg(onBox), Time) :-
        happens(climbOn, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',81).
 
  /*  [holds_at(metreqs(climbOn), Time)] ->
        ta(Time,
@@ -617,18 +580,16 @@ axiom(initiates(climbOn, onBox, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',81).
 axiom(requires(climbOn, Time),
     [holds_at(metreqs(climbOn), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',81).
 
  /*  [holds_at(neg(onBox), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(climbOn), Time)).
+          holds_at(metreqs(climbOn), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',81).
-axiom(holds_at(requirements(climbOn), Time),
+axiom(holds_at(metreqs(climbOn), Time),
     [holds_at(neg(onBox), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',81).
 
  /*  not(happens(climbOn, Time)) :-
        not(holds_at(neg(onBox), Time)).
@@ -676,7 +637,6 @@ axiom(terminates(climbOff, onBox, Time),
  /*  holds_at(onBox, Time) :-
        happens(climbOff, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',87).
 
  /*  [holds_at(metreqs(climbOff), Time)] ->
        ta(Time,
@@ -687,18 +647,16 @@ axiom(terminates(climbOff, onBox, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',87).
 axiom(requires(climbOff, Time),
     [holds_at(metreqs(climbOff), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',87).
 
  /*  [holds_at(onBox, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(climbOff), Time)).
+          holds_at(metreqs(climbOff), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',87).
-axiom(holds_at(requirements(climbOff), Time),
+axiom(holds_at(metreqs(climbOff), Time),
     [holds_at(onBox, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',87).
 
  /*  not(happens(climbOff, Time)) :-
        not(holds_at(onBox, Time)).
@@ -785,7 +743,6 @@ axiom(not(happens(graspBananas, Time)),
    
     [  (holds_at(neg(onBox), Time);holds_at(neg(at(bananas, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  holds_at(onBox, Time) :-
        happens(graspBananas, Time).
@@ -801,18 +758,16 @@ axiom(not(happens(graspBananas, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 axiom(requires(graspBananas, Time),
     [holds_at(metreqs(graspBananas), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  [holds_at(onBox, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(graspBananas), Time)).
+          holds_at(metreqs(graspBananas), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
-axiom(holds_at(requirements(graspBananas), Time),
+axiom(holds_at(metreqs(graspBananas), Time),
     [holds_at(onBox, Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  holds_at(at(bananas, Location1), Time) :-
        happens(graspBananas, Time).
@@ -828,18 +783,16 @@ axiom(holds_at(requirements(graspBananas), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 axiom(requires(graspBananas, Time),
     [holds_at(metreqs(graspBananas), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  [holds_at(at(bananas, Location1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(graspBananas), Time)).
+          holds_at(metreqs(graspBananas), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
-axiom(holds_at(requirements(graspBananas), Time),
+axiom(holds_at(metreqs(graspBananas), Time),
     [holds_at(at(bananas, Location1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  holds_at(at(monkey, Location1), Time) :-
        happens(graspBananas, Time).
@@ -855,16 +808,15 @@ axiom(holds_at(requirements(graspBananas), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 axiom(requires(graspBananas, Time),
     [holds_at(metreqs(graspBananas), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
 
  /*  [holds_at(at(monkey, Location1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(graspBananas), Time)).
+          holds_at(metreqs(graspBananas), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',97).
-axiom(holds_at(requirements(graspBananas), Time),
+axiom(holds_at(metreqs(graspBananas), Time),
     [holds_at(at(monkey, Location1), Time)]).
 
 
@@ -887,11 +839,11 @@ axiom(holds_at(requirements(graspBananas), Time),
        (   not(holds_at(at(box, Location1), Time))
        ;   not(holds_at(at(monkey, Location1), Time))
        ),
-       some(Location1, '$kolem_Fn_239'(Time)).
+       some(Location1, '$kolem_Fn_139'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [(holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)), some(Location1, '$kolem_Fn_239'(Time))] ->
+ /*  [(holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)), some(Location1, '$kolem_Fn_139'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -901,17 +853,17 @@ axiom(holds_at(requirements(graspBananas), Time),
 axiom(holds_at(neg(onBox), Time),
    
     [  (holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)),
-      some(Location1, '$kolem_Fn_239'(Time))
+      some(Location1, '$kolem_Fn_139'(Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
  /*  holds_at(at(box, Location1), Time) :-
        holds_at(onBox, Time),
-       some(Location1, '$kolem_Fn_239'(Time)).
+       some(Location1, '$kolem_Fn_139'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_239'(Time))] ->
+ /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_139'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -921,17 +873,17 @@ axiom(holds_at(neg(onBox), Time),
 axiom(holds_at(at(box, Location1), Time),
    
     [ holds_at(onBox, Time),
-      some(Location1, '$kolem_Fn_239'(Time))
+      some(Location1, '$kolem_Fn_139'(Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
  /*  holds_at(at(monkey, Location1), Time) :-
        holds_at(onBox, Time),
-       some(Location1, '$kolem_Fn_239'(Time)).
+       some(Location1, '$kolem_Fn_139'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_239'(Time))] ->
+ /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_139'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -941,7 +893,7 @@ axiom(holds_at(at(box, Location1), Time),
 axiom(holds_at(at(monkey, Location1), Time),
    
     [ holds_at(onBox, Time),
-      some(Location1, '$kolem_Fn_239'(Time))
+      some(Location1, '$kolem_Fn_139'(Time))
     ]).
 
 

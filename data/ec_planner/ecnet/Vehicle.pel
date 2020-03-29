@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:27:13 GMT
+% Sun, 29 Mar 2020 18:49:11 GMT
 % From ../ecnet/Vehicle.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',147).
 
@@ -25,7 +25,6 @@
 ==> subsort(vehicle,physobj).
 
 % sort vehiclein: vehicle
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',14).
 ==> subsort(vehiclein,vehicle).
 
 % sort vehicleon: vehicle
@@ -33,7 +32,6 @@
 ==> subsort(vehicleon,vehicle).
 
 % sort train: vehicleon
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',16).
 ==> subsort(train,vehicleon).
 
 % sort carriage: vehiclein
@@ -48,17 +46,13 @@
 % event RideTrack12(train,track)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',24).
 event(rideTrack12(train,track)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',24).
 ==> mpred_prop(rideTrack12(train,track),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',24).
 ==> meta_argtypes(rideTrack12(train,track)).
 
 % event RideTrack21(train,track)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',26).
 event(rideTrack21(train,track)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',26).
 ==> mpred_prop(rideTrack21(train,track),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',26).
 ==> meta_argtypes(rideTrack21(train,track)).
 
 
@@ -68,7 +62,6 @@ event(rideTrack21(train,track)).
 % Happens(RideTrack12(train,track),time) ->
 % HoldsAt(At(train,Side1(track)),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:29
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
 
  /*  happens(rideTrack12(Train, Track), Time) ->
        holds_at(at(Train, side1(Track)), Time).
@@ -78,7 +71,6 @@ event(rideTrack21(train,track)).
  /*  holds_at(at(Train, side1(Track)), Time) :-
        happens(rideTrack12(Train, Track), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
 
  /*  [holds_at(metreqs(rideTrack12(Train, Track)), Time)] ->
        ta(Time,
@@ -89,18 +81,16 @@ event(rideTrack21(train,track)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
 axiom(requires(rideTrack12(Train, Track), Time),
     [holds_at(metreqs(rideTrack12(Train, Track)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
 
  /*  [holds_at(at(Train, side1(Track)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(rideTrack12(Train, Track)), Time)).
+          holds_at(metreqs(rideTrack12(Train, Track)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
-axiom(holds_at(requirements(rideTrack12(Train, Track)), Time),
+axiom(holds_at(metreqs(rideTrack12(Train, Track)), Time),
     [holds_at(at(Train, side1(Track)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',28).
 
  /*  not(happens(rideTrack12(Train, Track), Time)) :-
        not(holds_at(at(Train, side1(Track)), Time)).
@@ -132,7 +122,6 @@ axiom(not(happens(rideTrack12(Train, Track), Time)),
  /*  holds_at(at(Train, side2(Track)), Time) :-
        happens(rideTrack21(Train, Track), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',33).
 
  /*  [holds_at(metreqs(rideTrack21(Train, Track)), Time)] ->
        ta(Time,
@@ -143,18 +132,16 @@ axiom(not(happens(rideTrack12(Train, Track), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',33).
 axiom(requires(rideTrack21(Train, Track), Time),
     [holds_at(metreqs(rideTrack21(Train, Track)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',33).
 
  /*  [holds_at(at(Train, side2(Track)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(rideTrack21(Train, Track)), Time)).
+          holds_at(metreqs(rideTrack21(Train, Track)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',33).
-axiom(holds_at(requirements(rideTrack21(Train, Track)), Time),
+axiom(holds_at(metreqs(rideTrack21(Train, Track)), Time),
     [holds_at(at(Train, side2(Track)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',33).
 
  /*  not(happens(rideTrack21(Train, Track), Time)) :-
        not(holds_at(at(Train, side2(Track)), Time)).
@@ -254,21 +241,15 @@ axiom(terminates(rideTrack21(Train, Track), at(Train, Location), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',54).
 % event DriveStreet12(vehicle,street)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',54).
 event(driveStreet12(vehicle,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',54).
 ==> mpred_prop(driveStreet12(vehicle,street),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',54).
 ==> meta_argtypes(driveStreet12(vehicle,street)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',56).
 % event DriveStreet21(vehicle,street)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',56).
 event(driveStreet21(vehicle,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',56).
 ==> mpred_prop(driveStreet21(vehicle,street),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',56).
 ==> meta_argtypes(driveStreet21(vehicle,street)).
 
 
@@ -278,7 +259,6 @@ event(driveStreet21(vehicle,street)).
 % Happens(DriveStreet12(vehicle,street),time) ->
 % HoldsAt(At(vehicle,Side1(street)),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:59
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
 
  /*  happens(driveStreet12(Vehicle, Street), Time) ->
        holds_at(at(Vehicle, side1(Street)), Time).
@@ -288,7 +268,6 @@ event(driveStreet21(vehicle,street)).
  /*  holds_at(at(Vehicle, side1(Street)), Time) :-
        happens(driveStreet12(Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
 
  /*  [holds_at(metreqs(driveStreet12(Vehicle, Street)), Time)] ->
        ta(Time,
@@ -299,19 +278,16 @@ event(driveStreet21(vehicle,street)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
 axiom(requires(driveStreet12(Vehicle, Street), Time),
     [holds_at(metreqs(driveStreet12(Vehicle, Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
 
  /*  [holds_at(at(Vehicle, side1(Street)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(driveStreet12(Vehicle, Street)),
-                   Time)).
+          holds_at(metreqs(driveStreet12(Vehicle, Street)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
-axiom(holds_at(requirements(driveStreet12(Vehicle, Street)), Time),
+axiom(holds_at(metreqs(driveStreet12(Vehicle, Street)), Time),
     [holds_at(at(Vehicle, side1(Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',58).
 
  /*  not(happens(driveStreet12(Vehicle, Street), Time)) :-
        not(holds_at(at(Vehicle, side1(Street)), Time)).
@@ -343,7 +319,6 @@ axiom(not(happens(driveStreet12(Vehicle, Street), Time)),
  /*  holds_at(at(Vehicle, side2(Street)), Time) :-
        happens(driveStreet21(Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',63).
 
  /*  [holds_at(metreqs(driveStreet21(Vehicle, Street)), Time)] ->
        ta(Time,
@@ -354,19 +329,16 @@ axiom(not(happens(driveStreet12(Vehicle, Street), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',63).
 axiom(requires(driveStreet21(Vehicle, Street), Time),
     [holds_at(metreqs(driveStreet21(Vehicle, Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',63).
 
  /*  [holds_at(at(Vehicle, side2(Street)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(driveStreet21(Vehicle, Street)),
-                   Time)).
+          holds_at(metreqs(driveStreet21(Vehicle, Street)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',63).
-axiom(holds_at(requirements(driveStreet21(Vehicle, Street)), Time),
+axiom(holds_at(metreqs(driveStreet21(Vehicle, Street)), Time),
     [holds_at(at(Vehicle, side2(Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',63).
 
  /*  not(happens(driveStreet21(Vehicle, Street), Time)) :-
        not(holds_at(at(Vehicle, side2(Street)), Time)).
@@ -466,21 +438,15 @@ axiom(terminates(driveStreet21(Vehicle, Street), at(Vehicle, Location), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:83
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',84).
 % event PointToward(agent,horse,street)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',84).
 event(pointToward(agent,horse,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',84).
 ==> mpred_prop(pointToward(agent,horse,street),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',84).
 ==> meta_argtypes(pointToward(agent,horse,street)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:85
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',86).
 % fluent PointedToward(horse,street)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',86).
 fluent(pointedToward(horse,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',86).
 ==> mpred_prop(pointedToward(horse,street),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',86).
 ==> meta_argtypes(pointedToward(horse,street)).
 
 
@@ -496,7 +462,6 @@ fluent(pointedToward(horse,street)).
  /*  holds_at(pointedToward(Horse, Street1), Time), holds_at(pointedToward(Horse, Street2), Time) ->
        equals(Street1, Street2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',88).
 
  /*  not(holds_at(pointedToward(Horse, Street1), Time)) :-
        holds_at(pointedToward(Horse, Street2), Time),
@@ -637,7 +602,6 @@ axiom(terminates(pullStreet21(Horse, Vehicle, Street), pointedToward(Horse, Stre
  /*  holds_at(nearPortal(Horse, Street), Time) :-
        holds_at(pointedToward(Horse, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',115).
 
  /*  [holds_at(pointedToward(Horse, Street), Time)] ->
        ta(Time,
@@ -648,7 +612,6 @@ axiom(terminates(pullStreet21(Horse, Vehicle, Street), pointedToward(Horse, Stre
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',115).
 axiom(holds_at(nearPortal(Horse, Street), Time),
     [holds_at(pointedToward(Horse, Street), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',115).
 
  /*  not(holds_at(pointedToward(Horse, Street), Time)) :-
        not(holds_at(nearPortal(Horse, Street), Time)).
@@ -669,19 +632,14 @@ axiom(holds_at(neg(pointedToward(Horse, Street)), Time),
 % event Lash(agent,horse)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',117).
 event(lash(agent,horse)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',117).
 ==> mpred_prop(lash(agent,horse),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',117).
 ==> meta_argtypes(lash(agent,horse)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:119
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',120).
 % fluent HitchedTo(horse,vehicle)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',120).
 fluent(hitchedTo(horse,vehicle)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',120).
 ==> mpred_prop(hitchedTo(horse,vehicle),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',120).
 ==> meta_argtypes(hitchedTo(horse,vehicle)).
 
 
@@ -697,7 +655,6 @@ fluent(hitchedTo(horse,vehicle)).
  /*  holds_at(hitchedTo(Horse, Vehicle), Time), holds_at(at(Vehicle, Location), Time) ->
        holds_at(at(Horse, Location), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',122).
 
  /*  holds_at(at(Horse, Location), Time) :-
        holds_at(hitchedTo(Horse, Vehicle), Time),
@@ -772,7 +729,6 @@ axiom(holds_at(neg(at(Vehicle, Location)), Time),
  /*  happens(lash(Agent, Horse), Time), holds_at(pointedToward(Horse, Street), Time), holds_at(hitchedTo(Horse, Vehicle), Time), holds_at(at(Horse, side1(Street)), Time) ->
        happens(pullStreet12(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',128).
 
  /*  happens(pullStreet12(Horse, Vehicle, Street), Time) :-
        happens(lash(Agent, Horse), Time),
@@ -918,7 +874,6 @@ axiom(holds_at(neg(at(Horse, side1(Street))), Time),
  /*  happens(lash(Agent, Horse), Time), holds_at(pointedToward(Horse, Street), Time), holds_at(hitchedTo(Horse, Vehicle), Time), holds_at(at(Horse, side2(Street)), Time) ->
        happens(pullStreet21(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',135).
 
  /*  happens(pullStreet21(Horse, Vehicle, Street), Time) :-
        happens(lash(Agent, Horse), Time),
@@ -1054,19 +1009,14 @@ axiom(holds_at(neg(at(Horse, side2(Street))), Time),
 % event PullStreet12(horse,vehicle,street)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',140).
 event(pullStreet12(horse,vehicle,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',140).
 ==> mpred_prop(pullStreet12(horse,vehicle,street),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',140).
 ==> meta_argtypes(pullStreet12(horse,vehicle,street)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:142
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',143).
 % event PullStreet21(horse,vehicle,street)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',143).
 event(pullStreet21(horse,vehicle,street)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',143).
 ==> mpred_prop(pullStreet21(horse,vehicle,street),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',143).
 ==> meta_argtypes(pullStreet21(horse,vehicle,street)).
 
 
@@ -1076,7 +1026,6 @@ event(pullStreet21(horse,vehicle,street)).
 % Happens(PullStreet12(horse,vehicle,street),time) ->
 % Happens(DriveStreet12(vehicle,street),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:146
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',145).
 
  /*  happens(pullStreet12(Horse, Vehicle, Street), Time) ->
        happens(driveStreet12(Vehicle, Street), Time).
@@ -1086,7 +1035,6 @@ event(pullStreet21(horse,vehicle,street)).
  /*  happens(driveStreet12(Vehicle, Street), Time) :-
        happens(pullStreet12(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',145).
 
  /*  [happens(pullStreet12(Horse, Vehicle, Street), Time)] ->
        ta(Time,
@@ -1097,7 +1045,6 @@ event(pullStreet21(horse,vehicle,street)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',145).
 axiom(happens(driveStreet12(Vehicle, Street), Time),
     [happens(pullStreet12(Horse, Vehicle, Street), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',145).
 
  /*  not(happens(pullStreet12(Horse, Vehicle, Street), Time)) :-
        not(happens(driveStreet12(Vehicle, Street), Time)).
@@ -1130,7 +1077,6 @@ axiom(not(happens(pullStreet12(Horse, Vehicle, Street), Time)),
  /*  happens(driveStreet21(Vehicle, Street), Time) :-
        happens(pullStreet21(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',150).
 
  /*  [happens(pullStreet21(Horse, Vehicle, Street), Time)] ->
        ta(Time,
@@ -1141,7 +1087,6 @@ axiom(not(happens(pullStreet12(Horse, Vehicle, Street), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',150).
 axiom(happens(driveStreet21(Vehicle, Street), Time),
     [happens(pullStreet21(Horse, Vehicle, Street), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',150).
 
  /*  not(happens(pullStreet21(Horse, Vehicle, Street), Time)) :-
        not(happens(driveStreet21(Vehicle, Street), Time)).
@@ -1174,7 +1119,6 @@ axiom(not(happens(pullStreet21(Horse, Vehicle, Street), Time)),
  /*  holds_at(at(Horse, side1(Street)), Time) :-
        happens(pullStreet12(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',154).
 
  /*  [holds_at(metreqs(pullStreet12(Horse, Vehicle, Street)), Time)] ->
        ta(Time,
@@ -1195,15 +1139,12 @@ axiom(requires(pullStreet12(Horse, Vehicle, Street), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pullStreet12(Horse,
-                                             Vehicle,
-                                             Street)),
+          holds_at(metreqs(pullStreet12(Horse, Vehicle, Street)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',154).
-axiom(holds_at(requirements(pullStreet12(Horse, Vehicle, Street)), Time),
+axiom(holds_at(metreqs(pullStreet12(Horse, Vehicle, Street)), Time),
     [holds_at(at(Horse, side1(Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',154).
 
  /*  not(happens(pullStreet12(Horse, Vehicle, Street), Time)) :-
        not(holds_at(at(Horse, side1(Street)), Time)).
@@ -1236,7 +1177,6 @@ axiom(not(happens(pullStreet12(Horse, Vehicle, Street), Time)),
  /*  holds_at(at(Horse, side2(Street)), Time) :-
        happens(pullStreet21(Horse, Vehicle, Street), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',158).
 
  /*  [holds_at(metreqs(pullStreet21(Horse, Vehicle, Street)), Time)] ->
        ta(Time,
@@ -1257,15 +1197,12 @@ axiom(requires(pullStreet21(Horse, Vehicle, Street), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(pullStreet21(Horse,
-                                             Vehicle,
-                                             Street)),
+          holds_at(metreqs(pullStreet21(Horse, Vehicle, Street)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',158).
-axiom(holds_at(requirements(pullStreet21(Horse, Vehicle, Street)), Time),
+axiom(holds_at(metreqs(pullStreet21(Horse, Vehicle, Street)), Time),
     [holds_at(at(Horse, side2(Street)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',158).
 
  /*  not(happens(pullStreet21(Horse, Vehicle, Street), Time)) :-
        not(holds_at(at(Horse, side2(Street)), Time)).
@@ -1366,31 +1303,22 @@ axiom(terminates(pullStreet21(Horse, Vehicle, Street), at(Horse, Location), Time
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:178
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',179).
 % fluent OnVehicle(object,vehicleon)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',179).
 fluent(onVehicle(object,vehicleon)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',179).
 ==> mpred_prop(onVehicle(object,vehicleon),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',179).
 ==> meta_argtypes(onVehicle(object,vehicleon)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:180
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',181).
 % event GetOnVehicle(agent,vehicleon)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',181).
 event(getOnVehicle(agent,vehicleon)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',181).
 ==> mpred_prop(getOnVehicle(agent,vehicleon),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',181).
 ==> meta_argtypes(getOnVehicle(agent,vehicleon)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:182
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',183).
 % event GetOffVehicle(agent,vehicleon)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',183).
 event(getOffVehicle(agent,vehicleon)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',183).
 ==> mpred_prop(getOffVehicle(agent,vehicleon),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',183).
 ==> meta_argtypes(getOffVehicle(agent,vehicleon)).
 
 
@@ -1400,7 +1328,6 @@ event(getOffVehicle(agent,vehicleon)).
 % HoldsAt(OnVehicle(vehicleon1,vehicleon2),time) ->
 % vehicleon1!=vehicleon2.
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:186
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',185).
 
  /*  holds_at(onVehicle(Vehicleon1, Vehicleon2), Time) ->
        diff(Vehicleon1, Vehicleon2).
@@ -1410,9 +1337,8 @@ event(getOffVehicle(agent,vehicleon)).
  /*  not(holds_at(onVehicle(Vehicleon1, Vehicleon2), Time)) :-
        not(diff(Vehicleon1, Vehicleon2)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',185).
 
- /*  [not(diff(Vehicleon1, Vehicleon2))] ->
+ /*  [equals(Vehicleon1, Vehicleon2)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1420,7 +1346,7 @@ event(getOffVehicle(agent,vehicleon)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',185).
 axiom(holds_at(neg(onVehicle(Vehicleon1, Vehicleon2)), Time),
-    [not(diff(Vehicleon1, Vehicleon2))]).
+    [equals(Vehicleon1, Vehicleon2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:188
@@ -1437,7 +1363,6 @@ axiom(holds_at(neg(onVehicle(Vehicleon1, Vehicleon2)), Time),
  /*  holds_at(neg(onVehicle(Vehicleon2, Vehicleon1)), Time) :-
        holds_at(onVehicle(Vehicleon1, Vehicleon2), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',190).
 
  /*  [holds_at(onVehicle(Vehicleon1, Vehicleon2), Time)] ->
        ta(Time,
@@ -1448,7 +1373,6 @@ axiom(holds_at(neg(onVehicle(Vehicleon1, Vehicleon2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',190).
 axiom(holds_at(neg(onVehicle(Vehicleon2, Vehicleon1)), Time),
     [holds_at(onVehicle(Vehicleon1, Vehicleon2), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',190).
 
  /*  not(holds_at(onVehicle(Vehicleon1, Vehicleon2), Time)) :-
        not(holds_at(neg(onVehicle(Vehicleon2, Vehicleon1)), Time)).
@@ -1489,7 +1413,6 @@ axiom(initiates(getOnVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), Tim
 % [agent,vehicleon,time]
 % Happens(GetOnVehicle(agent,vehicleon),time) ->
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:197
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',196).
 % {location}% 
 %  HoldsAt(At(agent,location),time) &
 %  HoldsAt(At(vehicleon,location),time).
@@ -1507,11 +1430,11 @@ axiom(initiates(getOnVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehicleon, Location), Time))
        ),
-       some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1522,17 +1445,17 @@ axiom(not(happens(getOnVehicle(Agent, Vehicleon), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)),
       some(Location,
-           '$kolem_Fn_322'(Agent, Vehicleon, Time))
+           '$kolem_Fn_236'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1543,17 +1466,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_322'(Agent, Vehicleon, Time))
+           '$kolem_Fn_236'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Vehicleon, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_322'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1564,7 +1487,7 @@ axiom(holds_at(at(Vehicleon, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_322'(Agent, Vehicleon, Time))
+           '$kolem_Fn_236'(Agent, Vehicleon, Time))
     ]).
 
 
@@ -1592,7 +1515,6 @@ axiom(terminates(getOffVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), T
 % Happens(GetOffVehicle(agent,vehicleon),time) ->
 % HoldsAt(OnVehicle(agent,vehicleon),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:206
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
 
  /*  happens(getOffVehicle(Agent, Vehicleon), Time) ->
        holds_at(onVehicle(Agent, Vehicleon), Time).
@@ -1602,7 +1524,6 @@ axiom(terminates(getOffVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), T
  /*  holds_at(onVehicle(Agent, Vehicleon), Time) :-
        happens(getOffVehicle(Agent, Vehicleon), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
 
  /*  [holds_at(metreqs(getOffVehicle(Agent, Vehicleon)), Time)] ->
        ta(Time,
@@ -1613,19 +1534,17 @@ axiom(terminates(getOffVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), T
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
 axiom(requires(getOffVehicle(Agent, Vehicleon), Time),
     [holds_at(metreqs(getOffVehicle(Agent, Vehicleon)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
 
  /*  [holds_at(onVehicle(Agent, Vehicleon), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(getOffVehicle(Agent, Vehicleon)),
+          holds_at(metreqs(getOffVehicle(Agent, Vehicleon)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
-axiom(holds_at(requirements(getOffVehicle(Agent, Vehicleon)), Time),
+axiom(holds_at(metreqs(getOffVehicle(Agent, Vehicleon)), Time),
     [holds_at(onVehicle(Agent, Vehicleon), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',205).
 
  /*  not(happens(getOffVehicle(Agent, Vehicleon), Time)) :-
        not(holds_at(onVehicle(Agent, Vehicleon), Time)).
@@ -1704,7 +1623,6 @@ axiom(initiates(getOffVehicle(Agent, Vehicleon), at(Agent, Location), Time),
  /*  holds_at(onVehicle(Object, Vehicleon), Time), holds_at(at(Vehicleon, Location), Time) ->
        holds_at(at(Object, Location), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',228).
 
  /*  holds_at(at(Object, Location), Time) :-
        holds_at(onVehicle(Object, Vehicleon), Time),
@@ -1772,31 +1690,22 @@ axiom(holds_at(neg(at(Vehicleon, Location)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:233
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',234).
 % fluent InVehicle(object,vehiclein)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',234).
 fluent(inVehicle(object,vehiclein)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',234).
 ==> mpred_prop(inVehicle(object,vehiclein),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',234).
 ==> meta_argtypes(inVehicle(object,vehiclein)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:235
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',236).
 % event GetInVehicle(agent,vehiclein)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',236).
 event(getInVehicle(agent,vehiclein)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',236).
 ==> mpred_prop(getInVehicle(agent,vehiclein),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',236).
 ==> meta_argtypes(getInVehicle(agent,vehiclein)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:237
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',238).
 % event GetOutOfVehicle(agent,vehiclein)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',238).
 event(getOutOfVehicle(agent,vehiclein)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',238).
 ==> mpred_prop(getOutOfVehicle(agent,vehiclein),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',238).
 ==> meta_argtypes(getOutOfVehicle(agent,vehiclein)).
 
 
@@ -1806,7 +1715,6 @@ event(getOutOfVehicle(agent,vehiclein)).
 % HoldsAt(InVehicle(vehiclein1,vehiclein2),time) ->
 % vehiclein1!=vehiclein2.
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:241
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',240).
 
  /*  holds_at(inVehicle(Vehiclein1, Vehiclein2), Time) ->
        diff(Vehiclein1, Vehiclein2).
@@ -1816,9 +1724,8 @@ event(getOutOfVehicle(agent,vehiclein)).
  /*  not(holds_at(inVehicle(Vehiclein1, Vehiclein2), Time)) :-
        not(diff(Vehiclein1, Vehiclein2)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',240).
 
- /*  [not(diff(Vehiclein1, Vehiclein2))] ->
+ /*  [equals(Vehiclein1, Vehiclein2)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1826,7 +1733,7 @@ event(getOutOfVehicle(agent,vehiclein)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',240).
 axiom(holds_at(neg(inVehicle(Vehiclein1, Vehiclein2)), Time),
-    [not(diff(Vehiclein1, Vehiclein2))]).
+    [equals(Vehiclein1, Vehiclein2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:243
@@ -1843,7 +1750,6 @@ axiom(holds_at(neg(inVehicle(Vehiclein1, Vehiclein2)), Time),
  /*  holds_at(neg(inVehicle(Vehiclein2, Vehiclein1)), Time) :-
        holds_at(inVehicle(Vehiclein1, Vehiclein2), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',245).
 
  /*  [holds_at(inVehicle(Vehiclein1, Vehiclein2), Time)] ->
        ta(Time,
@@ -1854,7 +1760,6 @@ axiom(holds_at(neg(inVehicle(Vehiclein1, Vehiclein2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',245).
 axiom(holds_at(neg(inVehicle(Vehiclein2, Vehiclein1)), Time),
     [holds_at(inVehicle(Vehiclein1, Vehiclein2), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',245).
 
  /*  not(holds_at(inVehicle(Vehiclein1, Vehiclein2), Time)) :-
        not(holds_at(neg(inVehicle(Vehiclein2, Vehiclein1)), Time)).
@@ -1895,7 +1800,6 @@ axiom(initiates(getInVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein), Tim
 % [agent,vehiclein,time]
 % Happens(GetInVehicle(agent,vehiclein),time) ->
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:252
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',251).
 % {location}% 
 %  HoldsAt(At(agent,location),time) &
 %  HoldsAt(At(vehiclein,location),time).
@@ -1913,11 +1817,11 @@ axiom(initiates(getInVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehiclein, Location), Time))
        ),
-       some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1928,17 +1832,17 @@ axiom(not(happens(getInVehicle(Agent, Vehiclein), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)),
       some(Location,
-           '$kolem_Fn_323'(Agent, Vehiclein, Time))
+           '$kolem_Fn_237'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1949,17 +1853,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_323'(Agent, Vehiclein, Time))
+           '$kolem_Fn_237'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Vehiclein, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_323'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1970,7 +1874,7 @@ axiom(holds_at(at(Vehiclein, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_323'(Agent, Vehiclein, Time))
+           '$kolem_Fn_237'(Agent, Vehiclein, Time))
     ]).
 
 
@@ -1998,7 +1902,6 @@ axiom(terminates(getOutOfVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein),
 % Happens(GetOutOfVehicle(agent,vehiclein),time) ->
 % HoldsAt(InVehicle(agent,vehiclein),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:261
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',260).
 
  /*  happens(getOutOfVehicle(Agent, Vehiclein), Time) ->
        holds_at(inVehicle(Agent, Vehiclein), Time).
@@ -2008,7 +1911,6 @@ axiom(terminates(getOutOfVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein),
  /*  holds_at(inVehicle(Agent, Vehiclein), Time) :-
        happens(getOutOfVehicle(Agent, Vehiclein), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',260).
 
  /*  [holds_at(metreqs(getOutOfVehicle(Agent, Vehiclein)), Time)] ->
        ta(Time,
@@ -2028,13 +1930,12 @@ axiom(requires(getOutOfVehicle(Agent, Vehiclein), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(getOutOfVehicle(Agent, Vehiclein)),
+          holds_at(metreqs(getOutOfVehicle(Agent, Vehiclein)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',260).
-axiom(holds_at(requirements(getOutOfVehicle(Agent, Vehiclein)), Time),
+axiom(holds_at(metreqs(getOutOfVehicle(Agent, Vehiclein)), Time),
     [holds_at(inVehicle(Agent, Vehiclein), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',260).
 
  /*  not(happens(getOutOfVehicle(Agent, Vehiclein), Time)) :-
        not(holds_at(inVehicle(Agent, Vehiclein), Time)).
@@ -2113,7 +2014,6 @@ axiom(initiates(getOutOfVehicle(Agent, Vehiclein), at(Agent, Location), Time),
  /*  holds_at(inVehicle(Object, Vehiclein), Time), holds_at(at(Vehiclein, Location), Time) ->
        holds_at(at(Object, Location), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',283).
 
  /*  holds_at(at(Object, Location), Time) :-
        holds_at(inVehicle(Object, Vehiclein), Time),
@@ -2182,31 +2082,22 @@ axiom(holds_at(neg(at(Vehiclein, Location)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:289
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',290).
 % event VehicleDoorOpen(agent,vehicledoor)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',290).
 event(vehicleDoorOpen(agent,vehicledoor)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',290).
 ==> mpred_prop(vehicleDoorOpen(agent,vehicledoor),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',290).
 ==> meta_argtypes(vehicleDoorOpen(agent,vehicledoor)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:291
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',292).
 % event VehicleDoorClose(agent,vehicledoor)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',292).
 event(vehicleDoorClose(agent,vehicledoor)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',292).
 ==> mpred_prop(vehicleDoorClose(agent,vehicledoor),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',292).
 ==> meta_argtypes(vehicleDoorClose(agent,vehicledoor)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:293
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',294).
 % fluent VehicleDoorIsOpen(vehicledoor)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',294).
 fluent(vehicleDoorIsOpen(vehicledoor)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',294).
 ==> mpred_prop(vehicleDoorIsOpen(vehicledoor),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',294).
 ==> meta_argtypes(vehicleDoorIsOpen(vehicledoor)).
 
 
@@ -2243,7 +2134,6 @@ axiom(not(happens(vehicleDoorOpen(Agent, Vehicledoor), Time)),
    
     [  (holds_at(neg(awake(Agent)), Time);holds_at(vehicleDoorIsOpen(Vehicledoor), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',296).
 
  /*  holds_at(awake(Agent), Time) :-
        happens(vehicleDoorOpen(Agent, Vehicledoor), Time).
@@ -2268,13 +2158,12 @@ axiom(requires(vehicleDoorOpen(Agent, Vehicledoor), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(vehicleDoorOpen(Agent, Vehicledoor)),
+          holds_at(metreqs(vehicleDoorOpen(Agent, Vehicledoor)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',296).
-axiom(holds_at(requirements(vehicleDoorOpen(Agent, Vehicledoor)), Time),
+axiom(holds_at(metreqs(vehicleDoorOpen(Agent, Vehicledoor)), Time),
     [holds_at(awake(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',296).
 
  /*  holds_at(neg(vehicleDoorIsOpen(Vehicledoor)), Time) :-
        happens(vehicleDoorOpen(Agent, Vehicledoor), Time).
@@ -2299,11 +2188,11 @@ axiom(requires(vehicleDoorOpen(Agent, Vehicledoor), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(vehicleDoorOpen(Agent, Vehicledoor)),
+          holds_at(metreqs(vehicleDoorOpen(Agent, Vehicledoor)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',296).
-axiom(holds_at(requirements(vehicleDoorOpen(Agent, Vehicledoor)), Time),
+axiom(holds_at(metreqs(vehicleDoorOpen(Agent, Vehicledoor)), Time),
     [holds_at(neg(vehicleDoorIsOpen(Vehicledoor)), Time)]).
 
 
@@ -2360,7 +2249,6 @@ axiom(not(happens(vehicleDoorClose(Agent, Vehicledoor), Time)),
    
     [  (holds_at(neg(awake(Agent)), Time);holds_at(neg(vehicleDoorIsOpen(Vehicledoor)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',307).
 
  /*  holds_at(awake(Agent), Time) :-
        happens(vehicleDoorClose(Agent, Vehicledoor), Time).
@@ -2385,13 +2273,12 @@ axiom(requires(vehicleDoorClose(Agent, Vehicledoor), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(vehicleDoorClose(Agent, Vehicledoor)),
+          holds_at(metreqs(vehicleDoorClose(Agent, Vehicledoor)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',307).
-axiom(holds_at(requirements(vehicleDoorClose(Agent, Vehicledoor)), Time),
+axiom(holds_at(metreqs(vehicleDoorClose(Agent, Vehicledoor)), Time),
     [holds_at(awake(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',307).
 
  /*  holds_at(vehicleDoorIsOpen(Vehicledoor), Time) :-
        happens(vehicleDoorClose(Agent, Vehicledoor), Time).
@@ -2416,11 +2303,11 @@ axiom(requires(vehicleDoorClose(Agent, Vehicledoor), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(vehicleDoorClose(Agent, Vehicledoor)),
+          holds_at(metreqs(vehicleDoorClose(Agent, Vehicledoor)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',307).
-axiom(holds_at(requirements(vehicleDoorClose(Agent, Vehicledoor)), Time),
+axiom(holds_at(metreqs(vehicleDoorClose(Agent, Vehicledoor)), Time),
     [holds_at(vehicleDoorIsOpen(Vehicledoor), Time)]).
 
 
@@ -2451,42 +2338,32 @@ axiom(terminates(vehicleDoorClose(Agent, Vehicledoor), vehicleDoorIsOpen(Vehicle
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:317
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',318).
 % sort ticketagent: agent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',318).
 ==> subsort(ticketagent,agent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:319
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 % fluent BeTicketAgent0(ticketagent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 fluent(beTicketAgent0(ticketagent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 ==> mpred_prop(beTicketAgent0(ticketagent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 ==> meta_argtypes(beTicketAgent0(ticketagent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:320
 % fluent BeTicketAgent1(ticketagent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 fluent(beTicketAgent1(ticketagent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 ==> mpred_prop(beTicketAgent1(ticketagent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',320).
 ==> meta_argtypes(beTicketAgent1(ticketagent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:321
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',322).
 % fluent BeTicketAgent2(ticketagent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',322).
 fluent(beTicketAgent2(ticketagent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',322).
 ==> mpred_prop(beTicketAgent2(ticketagent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',322).
 ==> meta_argtypes(beTicketAgent2(ticketagent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e:323
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',324).
 % xor BeTicketAgent0, BeTicketAgent1, BeTicketAgent2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',324).
 ==> xor([beTicketAgent0,beTicketAgent1,beTicketAgent2]).
 
 
@@ -2546,7 +2423,6 @@ axiom(initiates(request(Agent, Ticketagent, Ticket), beTicketAgent1(Ticketagent)
  /*  holds_at(beTicketAgent1(Ticketagent), Time), holds_at(knowRequest(Ticketagent, Agent, Ticket), Time) ->
        happens(pickUp(Ticketagent, Ticket), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',339).
 
  /*  happens(pickUp(Ticketagent, Ticket), Time) :-
        holds_at(beTicketAgent1(Ticketagent), Time),
@@ -2668,7 +2544,6 @@ axiom(initiates(pickUp(Ticketagent, Ticket), beTicketAgent2(Ticketagent), Time),
  /*  holds_at(beTicketAgent2(Ticketagent), Time), holds_at(knowRequest(Ticketagent, Agent, Ticket), Time) ->
        happens(handTo(Ticketagent, Agent, Ticket), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',356).
 
  /*  happens(handTo(Ticketagent, Agent, Ticket), Time) :-
        holds_at(beTicketAgent2(Ticketagent), Time),

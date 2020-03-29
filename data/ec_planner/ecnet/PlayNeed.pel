@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:47 GMT
+% Sun, 29 Mar 2020 18:48:37 GMT
 % From ../ecnet/PlayNeed.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OTSpace.e',481).
 
@@ -42,9 +42,7 @@
 % fluent HungryToPlay(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',32).
 fluent(hungryToPlay(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',32).
 ==> mpred_prop(hungryToPlay(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',32).
 ==> meta_argtypes(hungryToPlay(agent)).
 
 
@@ -55,11 +53,8 @@ fluent(hungryToPlay(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',35).
 % fluent IntentionToPlay(agent,outside)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',35).
 fluent(intentionToPlay(agent,outside)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',35).
 ==> mpred_prop(intentionToPlay(agent,outside),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',35).
 ==> meta_argtypes(intentionToPlay(agent,outside)).
 
 
@@ -69,11 +64,8 @@ fluent(intentionToPlay(agent,outside)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',37).
 % fluent SatiatedFromPlay(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',37).
 fluent(satiatedFromPlay(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',37).
 ==> mpred_prop(satiatedFromPlay(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',37).
 ==> meta_argtypes(satiatedFromPlay(agent)).
 
 
@@ -85,7 +77,6 @@ fluent(satiatedFromPlay(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',41).
 % xor HungryToPlay, IntentionToPlay, SatiatedFromPlay
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',41).
 ==> xor([hungryToPlay,intentionToPlay,satiatedFromPlay]).
 %; agent intends to play at location outside.
 
@@ -93,9 +84,7 @@ fluent(satiatedFromPlay(agent)).
 % event IntendToPlay(agent,outside)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',43).
 event(intendToPlay(agent,outside)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',43).
 ==> mpred_prop(intendToPlay(agent,outside),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',43).
 ==> meta_argtypes(intendToPlay(agent,outside)).
 
 
@@ -106,11 +95,8 @@ event(intendToPlay(agent,outside)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:45
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',46).
 % event Play(agent,outside)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',46).
 event(play(agent,outside)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',46).
 ==> mpred_prop(play(agent,outside),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',46).
 ==> meta_argtypes(play(agent,outside)).
 
 
@@ -120,17 +106,14 @@ event(play(agent,outside)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:48
 % fluent ActOnIntentionToPlay(agent,outside)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',48).
 fluent(actOnIntentionToPlay(agent,outside)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',48).
 ==> mpred_prop(actOnIntentionToPlay(agent,outside),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',48).
 ==> meta_argtypes(actOnIntentionToPlay(agent,outside)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e:49
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',50).
 % noninertial ActOnIntentionToPlay
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',50).
 ==> noninertial(actOnIntentionToPlay).
 %; A trigger axiom activates an intention for an agent to play when
 %; the agent has an unsatisfied need for play, the agent likes snow,
@@ -152,7 +135,6 @@ fluent(actOnIntentionToPlay(agent,outside)).
  /*  holds_at(hungryToPlay(Agent), Time), holds_at(likeSnow(Agent), Time), holds_at(at(Agent, Room), Time), equals(lookOutOnto(Room), Outside), holds_at(awake(Agent), Time), holds_at(snowing(Outside), Time) ->
        happens(intendToPlay(Agent, Outside), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',57).
 
  /*  happens(intendToPlay(Agent, Outside), Time) :-
        holds_at(hungryToPlay(Agent), Time),
@@ -418,7 +400,6 @@ axiom(terminates(intendToPlay(Agent, Outside), hungryToPlay(Agent), Time),
  /*  holds_at(intentionToPlay(Agent, Outside), Time), holds_at(actOnIntentionToPlay(Agent, Outside), Time), holds_at(at(Agent, Outside), Time) ->
        happens(play(Agent, Outside), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/PlayNeed.e',115).
 
  /*  happens(play(Agent, Outside), Time) :-
        holds_at(intentionToPlay(Agent, Outside), Time),

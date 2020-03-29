@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:56 GMT
+% Sun, 29 Mar 2020 18:48:48 GMT
 % From ../ecnet/Rest.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',279).
 
@@ -28,64 +28,48 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:18
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
 % option renaming off
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
 :- set_ec_option(renaming, off).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:19
 % option encoding 3
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
 :- set_ec_option(encoding, 3).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',19).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:22
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
 % load answers/Mueller2003/Ontology.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
 :- load_e('answers/Mueller2003/Ontology.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:24
 % load answers/MuellerInPress/RepRest.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
 :- load_e('answers/MuellerInPress/RepRest.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',24).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',27).
 % door MainEntrance1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',27).
 ==> t(door,mainEntrance1).
 %; room-scale topological space
 
@@ -97,7 +81,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',31).
 % room DiningRoom1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',31).
 ==> t(room,diningRoom1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:31
@@ -108,39 +91,60 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',33).
 % room Kitchen1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',33).
 ==> t(room,kitchen1).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:33
 % Side1(MainEntrance1)=Street1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',33).
-equals(side1(mainEntrance1),street1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(mainEntrance1), street1)).
+ */
+axiom(equals(side1(mainEntrance1), street1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',35).
 % Side2(MainEntrance1)=DiningRoom1.
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(side2(mainEntrance1), diningRoom1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',35).
-equals(side2(mainEntrance1),diningRoom1).
+axiom(equals(side2(mainEntrance1), diningRoom1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:35
 % Side1(KitchenDoor1)=DiningRoom1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',35).
-equals(side1(kitchenDoor1),diningRoom1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side1(kitchenDoor1), diningRoom1)).
+ */
+axiom(equals(side1(kitchenDoor1), diningRoom1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',37).
 % Side2(KitchenDoor1)=Kitchen1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(side2(kitchenDoor1), kitchen1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',37).
-equals(side2(kitchenDoor1),kitchen1).
+axiom(equals(side2(kitchenDoor1), kitchen1),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',39).
 % agent Customer1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',39).
 ==> t(agent,customer1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:39
@@ -151,7 +155,6 @@ equals(side2(kitchenDoor1),kitchen1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',41).
 % chair Chair1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',41).
 ==> t(chair,chair1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:41
@@ -163,13 +166,15 @@ equals(side2(kitchenDoor1),kitchen1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
 % HoldsAt(At(Customer1,Street1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(customer1, street1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(customer1, street1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
-axiom(initially(at(customer1, street1)),
+axiom(holds_at(at(customer1, street1), start),
     []).
 
 
@@ -178,23 +183,24 @@ axiom(initially(at(customer1, street1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(hungry(customer1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(hungry(customer1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
-axiom(initially(hungry(customer1)),
+axiom(holds_at(hungry(customer1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
 % HoldsAt(At(Chair1,DiningRoom1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(chair1, diningRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(chair1, diningRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
-axiom(initially(at(chair1, diningRoom1)),
+axiom(holds_at(at(chair1, diningRoom1), start),
     []).
 
 
@@ -203,23 +209,25 @@ axiom(initially(at(chair1, diningRoom1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(menu1, diningRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(menu1, diningRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
-axiom(initially(at(menu1, diningRoom1)),
+axiom(holds_at(at(menu1, diningRoom1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 % HoldsAt(On(Menu1,Table1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(on(menu1, table1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(on(menu1, table1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
-axiom(initially(on(menu1, table1)),
+axiom(holds_at(on(menu1, table1), start),
     []).
 
 
@@ -228,10 +236,9 @@ axiom(initially(on(menu1, table1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(food1, kitchen1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(food1, kitchen1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
-axiom(initially(at(food1, kitchen1)),
+axiom(holds_at(at(food1, kitchen1), start),
     []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:49
@@ -242,7 +249,6 @@ axiom(initially(at(food1, kitchen1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',51).
 % cook Cook1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',51).
 ==> t(cook,cook1).
 %; props
 
@@ -254,7 +260,6 @@ axiom(initially(at(food1, kitchen1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',55).
 % bill Bill1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',55).
 ==> t(bill,bill1).
 %; restaurant
 
@@ -267,34 +272,63 @@ axiom(initially(at(food1, kitchen1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:58
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',59).
 % CookOf(Restaurant1)=Cook1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(cookOf(restaurant1), cook1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',59).
-equals(cookOf(restaurant1),cook1).
+axiom(equals(cookOf(restaurant1), cook1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:59
 % TableOf(Restaurant1)=Table1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',59).
-equals(tableOf(restaurant1),table1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(tableOf(restaurant1), table1)).
+ */
+axiom(equals(tableOf(restaurant1), table1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',61).
 % WaiterOf(Restaurant1)=Waiter1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(waiterOf(restaurant1), waiter1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',61).
-equals(waiterOf(restaurant1),waiter1).
+axiom(equals(waiterOf(restaurant1), waiter1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:61
 % KitchenDoorOf(Restaurant1)=KitchenDoor1.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',61).
-equals(kitchenDoorOf(restaurant1),kitchenDoor1).
+
+ /*  [] ->
+       ta(Ta_Param,
+          tvs1=[],
+          tvs2=[],
+          equals(kitchenDoorOf(restaurant1), kitchenDoor1)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',61).
+axiom(equals(kitchenDoorOf(restaurant1), kitchenDoor1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',63).
 % BillOf(Restaurant1)=Bill1.
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], equals(billOf(restaurant1), bill1)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',63).
-equals(billOf(restaurant1),bill1).
+axiom(equals(billOf(restaurant1), bill1),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:64
@@ -303,7 +337,6 @@ equals(billOf(restaurant1),bill1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:65
 % sort ona, onb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',65).
 ==> sort(ona).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',65).
 ==> sort(onb).
@@ -311,227 +344,167 @@ equals(billOf(restaurant1),bill1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:66
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 % fluent! On(ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 fluent(on(ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 ==> mpred_prop(on(ona,onb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 ==> meta_argtypes(on(ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:67
 % event! PlaceOn(agent,ona,onb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 event(placeOn(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 ==> mpred_prop(placeOn(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',67).
 ==> meta_argtypes(placeOn(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:68
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',69).
 % event! TakeOffOf(agent,ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',69).
 event(takeOffOf(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',69).
 ==> mpred_prop(takeOffOf(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',69).
 ==> meta_argtypes(takeOffOf(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:70
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 % sort ordera, orderb, orderc
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 ==> sort(ordera).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 ==> sort(orderb).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 ==> sort(orderc).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:71
 % event! Order(ordera,orderb,orderc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 event(order(ordera,orderb,orderc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 ==> mpred_prop(order(ordera,orderb,orderc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',71).
 ==> meta_argtypes(order(ordera,orderb,orderc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:72
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',73).
 % fluent! KnowOrder(orderb,ordera,orderc)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',73).
 fluent(knowOrder(orderb,ordera,orderc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',73).
 ==> mpred_prop(knowOrder(orderb,ordera,orderc),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',73).
 ==> meta_argtypes(knowOrder(orderb,ordera,orderc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:74
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 % sort requesta, requestb, requestc
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 ==> sort(requesta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 ==> sort(requestb).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 ==> sort(requestc).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:75
 % event! Request(requesta,requestb,requestc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 event(request(requesta,requestb,requestc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 ==> mpred_prop(request(requesta,requestb,requestc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',75).
 ==> meta_argtypes(request(requesta,requestb,requestc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:76
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',77).
 % fluent! KnowRequest(requestb,requesta,requestc)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',77).
 fluent(knowRequest(requestb,requesta,requestc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',77).
 ==> mpred_prop(knowRequest(requestb,requesta,requestc),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',77).
 ==> meta_argtypes(knowRequest(requestb,requesta,requestc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:78
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 % sort holda, holdb, holdc
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 ==> sort(holda).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 ==> sort(holdb).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 ==> sort(holdc).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:79
 % event! TakeOffOf(holda,holdb,holdc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 event(takeOffOf(holda,holdb,holdc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 ==> mpred_prop(takeOffOf(holda,holdb,holdc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',79).
 ==> meta_argtypes(takeOffOf(holda,holdb,holdc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:80
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 % event! PickUp(holda,holdb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 event(pickUp(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 ==> mpred_prop(pickUp(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 ==> meta_argtypes(pickUp(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:81
 % event! LetGoOf(holda,holdb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 event(letGoOf(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 ==> mpred_prop(letGoOf(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',81).
 ==> meta_argtypes(letGoOf(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:82
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 % event! Hold(holda,holdb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 event(hold(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 ==> mpred_prop(hold(holda,holdb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 ==> meta_argtypes(hold(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:83
 % fluent! Holding(holda,holdb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 fluent(holding(holda,holdb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 ==> mpred_prop(holding(holda,holdb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',83).
 ==> meta_argtypes(holding(holda,holdb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:85
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 % sort sita, sitb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 ==> sort(sita).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 ==> sort(sitb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:86
 % event! LieOn(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 event(lieOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 ==> mpred_prop(lieOn(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',86).
 ==> meta_argtypes(lieOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:87
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 % event! SitOn(sita,sitb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 event(sitOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 ==> mpred_prop(sitOn(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 ==> meta_argtypes(sitOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:88
 % event! RiseFrom(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 event(riseFrom(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 ==> mpred_prop(riseFrom(sita,sitb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',88).
 ==> meta_argtypes(riseFrom(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:89
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 % fluent! LyingOn(sita,sitb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 fluent(lyingOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 ==> mpred_prop(lyingOn(sita,sitb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 ==> meta_argtypes(lyingOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:90
 % fluent! SittingOn(sita,sitb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 fluent(sittingOn(sita,sitb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 ==> mpred_prop(sittingOn(sita,sitb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',90).
 ==> meta_argtypes(sittingOn(sita,sitb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:92
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 % sort greeta, greetb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 ==> sort(greeta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 ==> sort(greetb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:93
 % event! Greet(greeta,greetb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 event(greet(greeta,greetb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 ==> mpred_prop(greet(greeta,greetb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',93).
 ==> meta_argtypes(greet(greeta,greetb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:95
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',96).
 % ona! Menu1, Food1, Bill1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',96).
 ==> t(ona,menu1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',96).
 ==> t(ona,food1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',96).
 ==> t(ona,bill1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:96
@@ -542,22 +515,18 @@ event(greet(greeta,greetb)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:97
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',98).
 % ordera! Customer1, Waiter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',98).
 ==> t(ordera,customer1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',98).
 ==> t(ordera,waiter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:98
 % orderb! Waiter1, Cook1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',98).
 ==> t(orderb,waiter1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',98).
 ==> t(orderb,cook1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:99
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',100).
 % orderc! Food1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',100).
 ==> t(orderc,food1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:100
@@ -568,7 +537,6 @@ event(greet(greeta,greetb)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:101
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',102).
 % requestb! Waiter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',102).
 ==> t(requestb,waiter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:102
@@ -579,24 +547,19 @@ event(greet(greeta,greetb)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:103
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 % holda! Customer1, Waiter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 ==> t(holda,customer1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 ==> t(holda,waiter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:104
 % holdb! Menu1, Food1, Bill1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 ==> t(holdb,menu1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 ==> t(holdb,food1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',104).
 ==> t(holdb,bill1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:105
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',106).
 % holdc! Table1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',106).
 ==> t(holdc,table1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:106
@@ -607,22 +570,18 @@ event(greet(greeta,greetb)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:107
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',108).
 % sitb! Chair1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',108).
 ==> t(sitb,chair1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:108
 % greeta! Customer1, Waiter1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',108).
 ==> t(greeta,customer1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',108).
 ==> t(greeta,waiter1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:109
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',110).
 % greetb! Customer1, Waiter1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',110).
 ==> t(greetb,customer1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',110).
 ==> t(greetb,waiter1).
 %; initial situation
 
@@ -632,23 +591,25 @@ event(greet(greeta,greetb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',112).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(waiter1, diningRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(waiter1, diningRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',112).
-axiom(initially(at(waiter1, diningRoom1)),
+axiom(holds_at(at(waiter1, diningRoom1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:113
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
 % HoldsAt(At(Cook1,Kitchen1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(cook1, kitchen1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(cook1, kitchen1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
-axiom(initially(at(cook1, kitchen1)),
+axiom(holds_at(at(cook1, kitchen1), start),
     []).
 
 
@@ -657,23 +618,28 @@ axiom(initially(at(cook1, kitchen1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(table1, diningRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(table1, diningRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
-axiom(initially(at(table1, diningRoom1)),
+axiom(holds_at(at(table1, diningRoom1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:115
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
 % !HoldsAt(On(Bill1,Table1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(on(bill1, table1)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(bill1, table1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
-axiom(initially(neg(on(bill1, table1))),
+axiom(holds_at(neg(on(bill1, table1)), start),
     []).
 
 
@@ -682,10 +648,13 @@ axiom(initially(neg(on(bill1, table1))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(bill1, diningRoom1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(at(bill1, diningRoom1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
-axiom(initially(at(bill1, diningRoom1)),
+axiom(holds_at(at(bill1, diningRoom1), start),
     []).
 
 
@@ -693,13 +662,15 @@ axiom(initially(at(bill1, diningRoom1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
 % [agent]
  % HoldsAt(Standing(agent),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(Agent))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(standing(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
-axiom(initially(standing(Agent)),
+axiom(holds_at(standing(Agent), start),
     []).
 
 
@@ -709,13 +680,13 @@ axiom(initially(standing(Agent)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
-axiom(initially(neg(holding(Agent, Object))),
+axiom(holds_at(neg(holding(Agent, Object)), start),
     []).
 
 
@@ -723,16 +694,15 @@ axiom(initially(neg(holding(Agent, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
 % [agent1,agent2,physobj]
  % !HoldsAt(KnowOrder(agent1,agent2,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(knowOrder(Agent1, Agent2, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
-axiom(initially(neg(knowOrder(Agent1, Agent2, Physobj))),
+axiom(holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start),
     []).
 
 
@@ -742,26 +712,26 @@ axiom(initially(neg(knowOrder(Agent1, Agent2, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(knowRequest(Agent1, Agent2, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(knowRequest(Agent1, Agent2, Physobj)),
+                   start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
-axiom(initially(neg(knowRequest(Agent1, Agent2, Physobj))),
+axiom(holds_at(neg(knowRequest(Agent1, Agent2, Physobj)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:121
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 % HoldsAt(BeWaiter0(Waiter1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(beWaiter0(waiter1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(beWaiter0(waiter1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
-axiom(initially(beWaiter0(waiter1)),
+axiom(holds_at(beWaiter0(waiter1), start),
     []).
 
 
@@ -770,10 +740,9 @@ axiom(initially(beWaiter0(waiter1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(beCook0(cook1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(beCook0(cook1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
-axiom(initially(beCook0(cook1)),
+axiom(holds_at(beCook0(cook1), start),
     []).
 
 
@@ -781,16 +750,15 @@ axiom(initially(beCook0(cook1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
 % [food]
  % !HoldsAt(FoodPrepared(food),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(foodPrepared(Food)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(foodPrepared(Food)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
-axiom(initially(neg(foodPrepared(Food))),
+axiom(holds_at(neg(foodPrepared(Food)), start),
     []).
 
 
@@ -799,201 +767,224 @@ axiom(initially(neg(foodPrepared(Food))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(hungry(cook1)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(hungry(cook1)), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
-axiom(initially(neg(hungry(cook1))),
+axiom(holds_at(neg(hungry(cook1)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:125
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',126).
 % !HoldsAt(Hungry(Waiter1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',126).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(hungry(waiter1)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(hungry(waiter1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',126).
-axiom(initially(neg(hungry(waiter1))),
+axiom(holds_at(neg(hungry(waiter1)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:127
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
 % Happens(WalkThroughDoor12(Customer1,MainEntrance1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
 
- /*  [is_time(t)] ->
-       ta(0,
-          tvs1=[0],
-          tvs2=[t],
-          happens(walkThroughDoor12(customer1, mainEntrance1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(walkThroughDoor12(customer1, mainEntrance1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
-axiom(happens(walkThroughDoor12(customer1, mainEntrance1), t),
-    [is_time(t)]).
+axiom(happens(walkThroughDoor12(customer1, mainEntrance1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:128
 % Happens(Greet(Waiter1,Customer1),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(greet(waiter1, customer1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(greet(waiter1, customer1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
-axiom(happens(greet(waiter1, customer1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(greet(waiter1, customer1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
 % Happens(SitOn(Customer1,Chair1),2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(sitOn(customer1, chair1), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(sitOn(customer1, chair1), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
-axiom(happens(sitOn(customer1, chair1), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(sitOn(customer1, chair1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:130
 % Happens(TakeOffOf(Customer1,Menu1,Table1),3).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(takeOffOf(customer1, menu1, table1), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(takeOffOf(customer1, menu1, table1), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
-axiom(happens(takeOffOf(customer1, menu1, table1), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(takeOffOf(customer1, menu1, table1), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:131
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
 % Happens(Order(Customer1,Waiter1,Food1),4).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4, tvs1=[4], tvs2=[t, t4], happens(order(customer1, waiter1, food1), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(order(customer1, waiter1, food1), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
-axiom(happens(order(customer1, waiter1, food1), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(order(customer1, waiter1, food1), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:132
 % Happens(PlaceOn(Customer1,Menu1,Table1),5).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5, tvs1=[5], tvs2=[t, t5], happens(placeOn(customer1, menu1, table1), t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(placeOn(customer1, menu1, table1), Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
-axiom(happens(placeOn(customer1, menu1, table1), t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(placeOn(customer1, menu1, table1), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:133
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
 % Happens(Eat(Customer1,Food1),11).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
 
- /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
-       ta(11, tvs1=[11], tvs2=[t, t11], happens(eat(customer1, food1), t11)).
+ /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
+       ta(start+11,
+          tvs1=[start+11],
+          tvs2=[Startd11, start],
+          happens(eat(customer1, food1), Startd11)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
-axiom(happens(eat(customer1, food1), t11),
-    [is_time(t11), b(t, t11)]).
+axiom(happens(eat(customer1, food1), Startd11),
+    [b(start, Startd11), toffset(start, 11, Startd11)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:134
 % Happens(Request(Customer1,Waiter1,Bill1),12).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
 
- /*  [is_time(t12), b(t, t12), ignore(t+12==t12)] ->
-       ta(12,
-          tvs1=[12],
-          tvs2=[t, t12],
-          happens(request(customer1, waiter1, bill1), t12)).
+ /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
+       ta(start+12,
+          tvs1=[start+12],
+          tvs2=[Startd12, start],
+          happens(request(customer1, waiter1, bill1), Startd12)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
-axiom(happens(request(customer1, waiter1, bill1), t12),
-    [is_time(t12), b(t, t12)]).
+axiom(happens(request(customer1, waiter1, bill1), Startd12),
+    [b(start, Startd12), toffset(start, 12, Startd12)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:135
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
 % Happens(Pay(Customer1,Waiter1),15).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
 
- /*  [is_time(t15), b(t, t15), ignore(t+15==t15)] ->
-       ta(15, tvs1=[15], tvs2=[t, t15], happens(pay(customer1, waiter1), t15)).
+ /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
+       ta(start+15,
+          tvs1=[start+15],
+          tvs2=[Startd15, start],
+          happens(pay(customer1, waiter1), Startd15)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
-axiom(happens(pay(customer1, waiter1), t15),
-    [is_time(t15), b(t, t15)]).
+axiom(happens(pay(customer1, waiter1), Startd15),
+    [b(start, Startd15), toffset(start, 15, Startd15)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:136
 % Happens(Tip(Customer1,Waiter1),15).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
 
- /*  [is_time(t15), b(t, t15), ignore(t+15==t15)] ->
-       ta(15, tvs1=[15], tvs2=[t, t15], happens(tip(customer1, waiter1), t15)).
+ /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
+       ta(start+15,
+          tvs1=[start+15],
+          tvs2=[Startd15, start],
+          happens(tip(customer1, waiter1), Startd15)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
-axiom(happens(tip(customer1, waiter1), t15),
-    [is_time(t15), b(t, t15)]).
+axiom(happens(tip(customer1, waiter1), Startd15),
+    [b(start, Startd15), toffset(start, 15, Startd15)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:137
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
 % Happens(RiseFrom(Customer1,Chair1),16).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
 
- /*  [is_time(t16), b(t, t16), ignore(t+16==t16)] ->
-       ta(16, tvs1=[16], tvs2=[t, t16], happens(riseFrom(customer1, chair1), t16)).
+ /*  [b(start, Startd16), toffset(start, 16, Startd16), ignore(start+16==Startd16)] ->
+       ta(start+16,
+          tvs1=[start+16],
+          tvs2=[Startd16, start],
+          happens(riseFrom(customer1, chair1), Startd16)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
-axiom(happens(riseFrom(customer1, chair1), t16),
-    [is_time(t16), b(t, t16)]).
+axiom(happens(riseFrom(customer1, chair1), Startd16),
+    [b(start, Startd16), toffset(start, 16, Startd16)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:138
 % Happens(SayGoodbye(Customer1,Waiter1),17).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
 
- /*  [is_time(t17), b(t, t17), ignore(t+17==t17)] ->
-       ta(17, tvs1=[17], tvs2=[t, t17], happens(sayGoodbye(customer1, waiter1), t17)).
+ /*  [b(start, Startd17), toffset(start, 17, Startd17), ignore(start+17==Startd17)] ->
+       ta(start+17,
+          tvs1=[start+17],
+          tvs2=[Startd17, start],
+          happens(sayGoodbye(customer1, waiter1), Startd17)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
-axiom(happens(sayGoodbye(customer1, waiter1), t17),
-    [is_time(t17), b(t, t17)]).
+axiom(happens(sayGoodbye(customer1, waiter1), Startd17),
+    [b(start, Startd17), toffset(start, 17, Startd17)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:139
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',140).
 % Happens(WalkThroughDoor21(Customer1,MainEntrance1),18).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',140).
 
- /*  [is_time(t18), b(t, t18), ignore(t+18==t18)] ->
-       ta(18,
-          tvs1=[18],
-          tvs2=[t, t18],
-          happens(walkThroughDoor21(customer1, mainEntrance1), t18)).
+ /*  [b(start, Startd18), toffset(start, 18, Startd18), ignore(start+18==Startd18)] ->
+       ta(start+18,
+          tvs1=[start+18],
+          tvs2=[Startd18, start],
+          happens(walkThroughDoor21(customer1, mainEntrance1), Startd18)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',140).
-axiom(happens(walkThroughDoor21(customer1, mainEntrance1), t18),
-    [is_time(t18), b(t, t18)]).
+axiom(happens(walkThroughDoor21(customer1, mainEntrance1), Startd18),
+    [b(start, Startd18), toffset(start, 18, Startd18)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:141
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',142).
 % range time 0 19
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',142).
 ==> range(time,0,19).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:142
@@ -1004,12 +995,10 @@ axiom(happens(walkThroughDoor21(customer1, mainEntrance1), t18),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:143
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',144).
 % range diameter 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',144).
 ==> range(diameter,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e:145
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',146).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',146).
 ==> completion(happens).
 %; End of file.

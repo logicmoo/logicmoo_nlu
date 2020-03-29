@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:13 GMT
+% Sun, 29 Mar 2020 18:47:12 GMT
 % From ../examples/FrankEtAl2003/Story1.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/FrankEtAl.e',92).
 
@@ -28,59 +28,55 @@
 %;
 %; see examples/FrankEtAl2003/Story1.txt
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:21
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',22).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',22).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:23
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
+:- if(is_e_toplevel).
 :- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:24
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',24).
+:- if(is_e_toplevel).
 :- endif.
 
-% sort agent
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',27).
+% sort agent
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:28
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',29).
 % load examples/FrankEtAl2003/FrankEtAl.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',29).
 :- load_e('examples/FrankEtAl2003/FrankEtAl.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:30
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',31).
 % agent Bob, Jilly
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',31).
 ==> t(agent,bob).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',31).
 ==> t(agent,jilly).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',33).
 % !HoldsAt(Raining(),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',33).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(raining))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(raining), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',33).
-axiom(initially(neg(raining)),
+axiom(holds_at(neg(raining), start),
     []).
 
 
@@ -89,10 +85,9 @@ axiom(initially(neg(raining)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',33).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(sunShining))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(sunShining), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',33).
-axiom(initially(neg(sunShining)),
+axiom(holds_at(neg(sunShining), start),
     []).
 
 
@@ -103,145 +98,163 @@ axiom(initially(neg(sunShining)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*   (   holds_at(playSoccer(bob), 1),
-          holds_at(playSoccer(jilly), 1)
-      ;   holds_at(playHideAndSeek(bob), 1),
-          holds_at(playHideAndSeek(jilly), 1)
-      ;   holds_at(playComputerGame(bob), 1),
-          holds_at(playComputerGame(jilly), 1)
+ /*   (   holds_at(playSoccer(bob), start+1),
+          holds_at(playSoccer(jilly), start+1)
+      ;   holds_at(playHideAndSeek(bob), start+1),
+          holds_at(playHideAndSeek(jilly), start+1)
+      ;   holds_at(playComputerGame(bob), start+1),
+          holds_at(playComputerGame(jilly), start+1)
       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playSoccer(bob), 1) :-
-       (   not(holds_at(playHideAndSeek(bob), 1))
-       ;   not(holds_at(playHideAndSeek(jilly), 1))
+ /*  holds_at(playSoccer(bob), start+1) :-
+       (   not(holds_at(playHideAndSeek(bob), start+1))
+       ;   not(holds_at(playHideAndSeek(jilly), start+1))
        ),
-       (   not(holds_at(playComputerGame(bob), 1))
-       ;   not(holds_at(playComputerGame(jilly), 1))
+       (   not(holds_at(playComputerGame(bob), start+1))
+       ;   not(holds_at(playComputerGame(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),  (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playSoccer(bob), now)).
+ /*  [(holds_at(neg(playHideAndSeek(bob)), Time);holds_at(neg(playHideAndSeek(jilly)), Time)),  (holds_at(neg(playComputerGame(bob)), Time);holds_at(neg(playComputerGame(jilly)), Time)), b(start, Time), ignore(start+1==Time)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time, start],
+          holds_at(playSoccer(bob), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playSoccer(bob), now),
+axiom(holds_at(playSoccer(bob), Time),
    
-    [  (holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),
-       (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playHideAndSeek(bob)), Time);holds_at(neg(playHideAndSeek(jilly)), Time)),
+       (holds_at(neg(playComputerGame(bob)), Time);holds_at(neg(playComputerGame(jilly)), Time)),
+      b(start, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playSoccer(jilly), 1) :-
-       (   not(holds_at(playHideAndSeek(bob), 1))
-       ;   not(holds_at(playHideAndSeek(jilly), 1))
+ /*  holds_at(playSoccer(jilly), start+1) :-
+       (   not(holds_at(playHideAndSeek(bob), start+1))
+       ;   not(holds_at(playHideAndSeek(jilly), start+1))
        ),
-       (   not(holds_at(playComputerGame(bob), 1))
-       ;   not(holds_at(playComputerGame(jilly), 1))
+       (   not(holds_at(playComputerGame(bob), start+1))
+       ;   not(holds_at(playComputerGame(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),  (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playSoccer(jilly), now)).
+ /*  [(holds_at(neg(playHideAndSeek(bob)), Time1);holds_at(neg(playHideAndSeek(jilly)), Time1)),  (holds_at(neg(playComputerGame(bob)), Time1);holds_at(neg(playComputerGame(jilly)), Time1)), b(start, Time1), ignore(start+1==Time1)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time1, start],
+          holds_at(playSoccer(jilly), Time1)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playSoccer(jilly), now),
+axiom(holds_at(playSoccer(jilly), Time1),
    
-    [  (holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),
-       (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playHideAndSeek(bob)), Time1);holds_at(neg(playHideAndSeek(jilly)), Time1)),
+       (holds_at(neg(playComputerGame(bob)), Time1);holds_at(neg(playComputerGame(jilly)), Time1)),
+      b(start, Time1)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playHideAndSeek(bob), 1) :-
-       (   not(holds_at(playComputerGame(bob), 1))
-       ;   not(holds_at(playComputerGame(jilly), 1))
+ /*  holds_at(playHideAndSeek(bob), start+1) :-
+       (   not(holds_at(playComputerGame(bob), start+1))
+       ;   not(holds_at(playComputerGame(jilly), start+1))
        ),
-       (   not(holds_at(playSoccer(bob), 1))
-       ;   not(holds_at(playSoccer(jilly), 1))
+       (   not(holds_at(playSoccer(bob), start+1))
+       ;   not(holds_at(playSoccer(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),  (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playHideAndSeek(bob), now)).
+ /*  [(holds_at(neg(playComputerGame(bob)), Time2);holds_at(neg(playComputerGame(jilly)), Time2)),  (holds_at(neg(playSoccer(bob)), Time2);holds_at(neg(playSoccer(jilly)), Time2)), b(start, Time2), ignore(start+1==Time2)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time2, start],
+          holds_at(playHideAndSeek(bob), Time2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playHideAndSeek(bob), now),
+axiom(holds_at(playHideAndSeek(bob), Time2),
    
-    [  (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),
-       (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playComputerGame(bob)), Time2);holds_at(neg(playComputerGame(jilly)), Time2)),
+       (holds_at(neg(playSoccer(bob)), Time2);holds_at(neg(playSoccer(jilly)), Time2)),
+      b(start, Time2)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playHideAndSeek(jilly), 1) :-
-       (   not(holds_at(playComputerGame(bob), 1))
-       ;   not(holds_at(playComputerGame(jilly), 1))
+ /*  holds_at(playHideAndSeek(jilly), start+1) :-
+       (   not(holds_at(playComputerGame(bob), start+1))
+       ;   not(holds_at(playComputerGame(jilly), start+1))
        ),
-       (   not(holds_at(playSoccer(bob), 1))
-       ;   not(holds_at(playSoccer(jilly), 1))
+       (   not(holds_at(playSoccer(bob), start+1))
+       ;   not(holds_at(playSoccer(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),  (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playHideAndSeek(jilly), now)).
+ /*  [(holds_at(neg(playComputerGame(bob)), Time3);holds_at(neg(playComputerGame(jilly)), Time3)),  (holds_at(neg(playSoccer(bob)), Time3);holds_at(neg(playSoccer(jilly)), Time3)), b(start, Time3), ignore(start+1==Time3)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time3, start],
+          holds_at(playHideAndSeek(jilly), Time3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playHideAndSeek(jilly), now),
+axiom(holds_at(playHideAndSeek(jilly), Time3),
    
-    [  (holds_at(neg(playComputerGame(bob)), now);holds_at(neg(playComputerGame(jilly)), now)),
-       (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playComputerGame(bob)), Time3);holds_at(neg(playComputerGame(jilly)), Time3)),
+       (holds_at(neg(playSoccer(bob)), Time3);holds_at(neg(playSoccer(jilly)), Time3)),
+      b(start, Time3)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playComputerGame(bob), 1) :-
-       (   not(holds_at(playHideAndSeek(bob), 1))
-       ;   not(holds_at(playHideAndSeek(jilly), 1))
+ /*  holds_at(playComputerGame(bob), start+1) :-
+       (   not(holds_at(playHideAndSeek(bob), start+1))
+       ;   not(holds_at(playHideAndSeek(jilly), start+1))
        ),
-       (   not(holds_at(playSoccer(bob), 1))
-       ;   not(holds_at(playSoccer(jilly), 1))
+       (   not(holds_at(playSoccer(bob), start+1))
+       ;   not(holds_at(playSoccer(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),  (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playComputerGame(bob), now)).
+ /*  [(holds_at(neg(playHideAndSeek(bob)), Time4);holds_at(neg(playHideAndSeek(jilly)), Time4)),  (holds_at(neg(playSoccer(bob)), Time4);holds_at(neg(playSoccer(jilly)), Time4)), b(start, Time4), ignore(start+1==Time4)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time4, start],
+          holds_at(playComputerGame(bob), Time4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playComputerGame(bob), now),
+axiom(holds_at(playComputerGame(bob), Time4),
    
-    [  (holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),
-       (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playHideAndSeek(bob)), Time4);holds_at(neg(playHideAndSeek(jilly)), Time4)),
+       (holds_at(neg(playSoccer(bob)), Time4);holds_at(neg(playSoccer(jilly)), Time4)),
+      b(start, Time4)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  holds_at(playComputerGame(jilly), 1) :-
-       (   not(holds_at(playHideAndSeek(bob), 1))
-       ;   not(holds_at(playHideAndSeek(jilly), 1))
+ /*  holds_at(playComputerGame(jilly), start+1) :-
+       (   not(holds_at(playHideAndSeek(bob), start+1))
+       ;   not(holds_at(playHideAndSeek(jilly), start+1))
        ),
-       (   not(holds_at(playSoccer(bob), 1))
-       ;   not(holds_at(playSoccer(jilly), 1))
+       (   not(holds_at(playSoccer(bob), start+1))
+       ;   not(holds_at(playSoccer(jilly), start+1))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
 
- /*  [(holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),  (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(playComputerGame(jilly), now)).
+ /*  [(holds_at(neg(playHideAndSeek(bob)), Time5);holds_at(neg(playHideAndSeek(jilly)), Time5)),  (holds_at(neg(playSoccer(bob)), Time5);holds_at(neg(playSoccer(jilly)), Time5)), b(start, Time5), ignore(start+1==Time5)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time5, start],
+          holds_at(playComputerGame(jilly), Time5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',35).
-axiom(holds_at(playComputerGame(jilly), now),
+axiom(holds_at(playComputerGame(jilly), Time5),
    
-    [  (holds_at(neg(playHideAndSeek(bob)), now);holds_at(neg(playHideAndSeek(jilly)), now)),
-       (holds_at(neg(playSoccer(bob)), now);holds_at(neg(playSoccer(jilly)), now)),
-      b(t, now)
+    [  (holds_at(neg(playHideAndSeek(bob)), Time5);holds_at(neg(playHideAndSeek(jilly)), Time5)),
+       (holds_at(neg(playSoccer(bob)), Time5);holds_at(neg(playSoccer(jilly)), Time5)),
+      b(start, Time5)
     ]).
 
 
@@ -249,36 +262,40 @@ axiom(holds_at(playComputerGame(jilly), now),
 % HoldsAt(Win(Bob),1) | HoldsAt(Win(Jilly),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
 
- /*   (   holds_at(win(bob), 1)
-      ;   holds_at(win(jilly), 1)
+ /*   (   holds_at(win(bob), start+1)
+      ;   holds_at(win(jilly), start+1)
       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
 
- /*  holds_at(win(bob), 1) :-
-       not(holds_at(win(jilly), 1)).
+ /*  holds_at(win(bob), start+1) :-
+       not(holds_at(win(jilly), start+1)).
+ */
+
+ /*  [holds_at(neg(win(jilly)), Time), b(start, Time), ignore(start+1==Time)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time, start],
+          holds_at(win(bob), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
+axiom(holds_at(win(bob), Time),
+    [holds_at(neg(win(jilly)), Time), b(start, Time)]).
+
+ /*  holds_at(win(jilly), start+1) :-
+       not(holds_at(win(bob), start+1)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
 
- /*  [holds_at(neg(win(jilly)), now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(win(bob), now)).
+ /*  [holds_at(neg(win(bob)), Time1), b(start, Time1), ignore(start+1==Time1)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time1, start],
+          holds_at(win(jilly), Time1)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
-axiom(holds_at(win(bob), now),
-    [holds_at(neg(win(jilly)), now), b(t, now)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
-
- /*  holds_at(win(jilly), 1) :-
-       not(holds_at(win(bob), 1)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
-
- /*  [holds_at(neg(win(bob)), now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], holds_at(win(jilly), now)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',39).
-axiom(holds_at(win(jilly), now),
-    [holds_at(neg(win(bob)), now), b(t, now)]).
+axiom(holds_at(win(jilly), Time1),
+    [holds_at(neg(win(bob)), Time1), b(start, Time1)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:41
 % range time 0 1
@@ -288,6 +305,5 @@ axiom(holds_at(win(jilly), now),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',43).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',43).
 ==> range(offset,0,0).
 %; End of file.

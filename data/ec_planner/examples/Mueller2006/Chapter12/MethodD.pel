@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:42 GMT
+% Sun, 29 Mar 2020 18:46:35 GMT
 % From ../examples/Mueller2006/Chapter12/MethodD.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',47).
 
@@ -31,82 +31,61 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:22
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',25).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',25).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',27).
 % object A,B
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',27).
 ==> t(object,a).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',27).
 ==> t(object,b).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 % fluent P(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 fluent(p(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 ==> mpred_prop(p(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 ==> meta_argtypes(p(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:29
 % fluent Q(object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 fluent(q(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 ==> mpred_prop(q(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',29).
 ==> meta_argtypes(q(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',31).
 % fluent R(object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',31).
 fluent(r(object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',31).
 ==> mpred_prop(r(object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',31).
 ==> meta_argtypes(r(object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 % predicate Ab1(object,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 predicate(ab1(object,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 ==> mpred_prop(ab1(object,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 ==> meta_argtypes(ab1(object,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:33
 % predicate Ab2(object,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 predicate(ab2(object,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 ==> mpred_prop(ab2(object,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',33).
 ==> meta_argtypes(ab2(object,time)).
 
 
@@ -116,7 +95,6 @@ predicate(ab2(object,time)).
 % HoldsAt(P(object),time) & !Ab1(object,time) ->
 % HoldsAt(Q(object),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:37
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',36).
 
  /*  holds_at(p(Object), Time), not(ab1(Object, Time)) ->
        holds_at(q(Object), Time).
@@ -138,7 +116,6 @@ predicate(ab2(object,time)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',36).
 axiom(holds_at(q(Object), Time),
     [holds_at(p(Object), Time), not(ab1(Object, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',36).
 
  /*  not(holds_at(p(Object), Time)) :-
        not(ab1(Object, Time)),
@@ -206,7 +183,6 @@ axiom(ab1(Object, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',41).
 axiom(holds_at(neg(q(Object)), Time),
     [holds_at(r(Object), Time), not(ab2(Object, Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',41).
 
  /*  not(holds_at(r(Object), Time)) :-
        not(ab2(Object, Time)),
@@ -223,7 +199,6 @@ axiom(holds_at(neg(q(Object)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',41).
 axiom(holds_at(neg(r(Object)), Time),
     [not(ab2(Object, Time)), holds_at(q(Object), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',41).
 
  /*  ab2(Object, Time) :-
        holds_at(r(Object), Time),
@@ -253,7 +228,6 @@ axiom(ab2(Object, Time),
  /*  holds_at(r(Object), Time) ->
        holds_at(p(Object), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',45).
 
  /*  holds_at(p(Object), Time) :-
        holds_at(r(Object), Time).
@@ -269,7 +243,6 @@ axiom(ab2(Object, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',45).
 axiom(holds_at(p(Object), Time),
     [holds_at(r(Object), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',45).
 
  /*  not(holds_at(r(Object), Time)) :-
        not(holds_at(p(Object), Time)).
@@ -290,13 +263,12 @@ axiom(holds_at(neg(r(Object)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
 % HoldsAt(R(A),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(r(a))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(r(a), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
-axiom(initially(r(a)),
+axiom(holds_at(r(a), start),
     []).
 
 
@@ -305,30 +277,41 @@ axiom(initially(r(a)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(p(b))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(p(b), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
-axiom(initially(p(b)),
+axiom(holds_at(p(b), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',49).
 % !HoldsAt(R(B),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',49).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(r(b)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(r(b)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',49).
-axiom(initially(neg(r(b))),
+axiom(holds_at(neg(r(b)), start),
     []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
 % Theta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
-next_axiom_uses(theta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -340,7 +323,6 @@ next_axiom_uses(theta).
  /*  holds_at(r(Object), Time) ->
        ab1(Object, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 
  /*  ab1(Object, Time) :-
        holds_at(r(Object), Time).
@@ -356,7 +338,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 axiom(ab1(Object, Time),
     [holds_at(r(Object), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 
  /*  not(holds_at(r(Object), Time)) :-
        not(ab1(Object, Time)).
@@ -376,7 +357,6 @@ axiom(holds_at(neg(r(Object)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',55).
 % range time 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',55).
 ==> range(time,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:55
@@ -387,15 +367,12 @@ axiom(holds_at(neg(r(Object)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:57
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',58).
 % completion Theta Ab1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',58).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',58).
 ==> completion(ab1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:58
 % completion Theta Ab2
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',58).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',58).
 ==> completion(ab2).
 %; End of file.

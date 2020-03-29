@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:25 GMT
+% Sun, 29 Mar 2020 18:48:09 GMT
 % From ../ecnet/Bomb.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Baseball.e',157).
 
@@ -24,15 +24,12 @@
 % fluent KilledDeterminingFluent(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',13).
 fluent(killedDeterminingFluent(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',13).
 ==> mpred_prop(killedDeterminingFluent(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',13).
 ==> meta_argtypes(killedDeterminingFluent(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:14
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',15).
 % noninertial KilledDeterminingFluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',15).
 ==> noninertial(killedDeterminingFluent).
 %; agent is nondeterministically injured.
 
@@ -40,15 +37,12 @@ fluent(killedDeterminingFluent(agent)).
 % fluent InjuredDeterminingFluent(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',17).
 fluent(injuredDeterminingFluent(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',17).
 ==> mpred_prop(injuredDeterminingFluent(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',17).
 ==> meta_argtypes(injuredDeterminingFluent(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:18
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',19).
 % noninertial InjuredDeterminingFluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',19).
 ==> noninertial(injuredDeterminingFluent).
 %; physobj is nondeterministically destroyed.
 
@@ -56,15 +50,12 @@ fluent(injuredDeterminingFluent(agent)).
 % fluent DestroyedDeterminingFluent(physobj)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',21).
 fluent(destroyedDeterminingFluent(physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',21).
 ==> mpred_prop(destroyedDeterminingFluent(physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',21).
 ==> meta_argtypes(destroyedDeterminingFluent(physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',23).
 % noninertial DestroyedDeterminingFluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',23).
 ==> noninertial(destroyedDeterminingFluent).
 %; physobj is nondeterministically damaged.
 
@@ -72,15 +63,12 @@ fluent(destroyedDeterminingFluent(physobj)).
 % fluent DamagedDeterminingFluent(physobj)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',25).
 fluent(damagedDeterminingFluent(physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',25).
 ==> mpred_prop(damagedDeterminingFluent(physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',25).
 ==> meta_argtypes(damagedDeterminingFluent(physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',27).
 % noninertial DamagedDeterminingFluent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',27).
 ==> noninertial(damagedDeterminingFluent).
 %; agent activates bomb.
 
@@ -88,9 +76,7 @@ fluent(damagedDeterminingFluent(physobj)).
 % event BombActivate(agent,bomb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',29).
 event(bombActivate(agent,bomb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',29).
 ==> mpred_prop(bombActivate(agent,bomb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',29).
 ==> meta_argtypes(bombActivate(agent,bomb)).
 
 
@@ -100,11 +86,9 @@ event(bombActivate(agent,bomb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:32
 % event BombDeactivate(agent,bomb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',32).
 event(bombDeactivate(agent,bomb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',32).
 ==> mpred_prop(bombDeactivate(agent,bomb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',32).
 ==> meta_argtypes(bombDeactivate(agent,bomb)).
 
 
@@ -114,11 +98,9 @@ event(bombDeactivate(agent,bomb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:35
 % event BombExplode(bomb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',35).
 event(bombExplode(bomb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',35).
 ==> mpred_prop(bombExplode(bomb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',35).
 ==> meta_argtypes(bombExplode(bomb)).
 
 
@@ -128,11 +110,9 @@ event(bombExplode(bomb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:38
 % fluent BombActivated(bomb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',38).
 fluent(bombActivated(bomb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',38).
 ==> mpred_prop(bombActivated(bomb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',38).
 ==> meta_argtypes(bombActivated(bomb)).
 
 
@@ -142,11 +122,9 @@ fluent(bombActivated(bomb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:41
 % fluent BombTimerValue(bomb,offset)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',41).
 fluent(bombTimerValue(bomb,offset)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',41).
 ==> mpred_prop(bombTimerValue(bomb,offset),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',41).
 ==> meta_argtypes(bombTimerValue(bomb,offset)).
 
 
@@ -156,11 +134,9 @@ fluent(bombTimerValue(bomb,offset)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:44
 % event BombDecrementTimer(bomb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',44).
 event(bombDecrementTimer(bomb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',44).
 ==> mpred_prop(bombDecrementTimer(bomb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',44).
 ==> meta_argtypes(bombDecrementTimer(bomb)).
 
 
@@ -170,21 +146,35 @@ event(bombDecrementTimer(bomb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e:47
 % function BombTimeDelay(bomb): offset
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 function(bombTimeDelay(bomb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 ==> mpred_prop(bombTimeDelay(bomb),function).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 ==> meta_argtypes(bombTimeDelay(bomb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 predicate(bombTimeDelayPred(bomb,offset)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 ==> mpred_prop(bombTimeDelayPred(bomb,offset),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
 ==> meta_argtypes(bombTimeDelayPred(bomb,offset)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
-functional_predicate(bombTimeDelay,bombTimeDelayPred).
+
+ /*  fix_axiom_head(Time) ->
+       
+       [ functional_predicate(bombTimeDelay, bombTimeDelayPred),
+          (->),
+         holds_at(functional_predicate(bombTimeDelay, bombTimeDelayPred),
+                  Time)
+       ].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(functional_predicate(bombTimeDelay, bombTimeDelayPred),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',47).
+axiom(holds_at(functional_predicate(bombTimeDelay, bombTimeDelayPred), Time),
+    []).
 ==> resultIsa(bombTimeDelay,offset).
 %; A state constraint says that a bomb has one timer
 %; value at a time:
@@ -199,7 +189,6 @@ functional_predicate(bombTimeDelay,bombTimeDelayPred).
  /*  holds_at(bombTimerValue(Bomb, Offset1), Time), holds_at(bombTimerValue(Bomb, Offset2), Time) ->
        equals(Offset1, Offset2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',52).
 
  /*  not(holds_at(bombTimerValue(Bomb, Offset1), Time)) :-
        holds_at(bombTimerValue(Bomb, Offset2), Time),
@@ -280,7 +269,6 @@ axiom(initiates(bombActivate(Agent, Bomb), bombActivated(Bomb), Time),
  /*  happens(bombActivate(Agent, Bomb), Time) ->
        holds_at(holding(Agent, Bomb), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',69).
 
  /*  holds_at(holding(Agent, Bomb), Time) :-
        happens(bombActivate(Agent, Bomb), Time).
@@ -296,18 +284,16 @@ axiom(initiates(bombActivate(Agent, Bomb), bombActivated(Bomb), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',69).
 axiom(requires(bombActivate(Agent, Bomb), Time),
     [holds_at(metreqs(bombActivate(Agent, Bomb)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',69).
 
  /*  [holds_at(holding(Agent, Bomb), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(bombActivate(Agent, Bomb)), Time)).
+          holds_at(metreqs(bombActivate(Agent, Bomb)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',69).
-axiom(holds_at(requirements(bombActivate(Agent, Bomb)), Time),
+axiom(holds_at(metreqs(bombActivate(Agent, Bomb)), Time),
     [holds_at(holding(Agent, Bomb), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',69).
 
  /*  not(happens(bombActivate(Agent, Bomb), Time)) :-
        not(holds_at(holding(Agent, Bomb), Time)).
@@ -363,7 +349,6 @@ axiom(terminates(bombDeactivate(Agent, Bomb), bombActivated(Bomb), Time),
  /*  happens(bombExplode(Bomb), Time) ->
        happens(destroy(Bomb, Bomb), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',84).
 
  /*  happens(destroy(Bomb, Bomb), Time) :-
        happens(bombExplode(Bomb), Time).
@@ -379,7 +364,6 @@ axiom(terminates(bombDeactivate(Agent, Bomb), bombActivated(Bomb), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',84).
 axiom(happens(destroy(Bomb, Bomb), Time),
     [happens(bombExplode(Bomb), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',84).
 
  /*  not(happens(bombExplode(Bomb), Time)) :-
        not(happens(destroy(Bomb, Bomb), Time)).
@@ -436,7 +420,6 @@ axiom(terminates(bombExplode(Bomb), bombActivated(Bomb), Time),
  /*  holds_at(bombActivated(Bomb), Time), holds_at(bombTimerValue(Bomb, Offset), Time), Offset>0 ->
        happens(bombDecrementTimer(Bomb), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',98).
 
  /*  happens(bombDecrementTimer(Bomb), Time) :-
        holds_at(bombActivated(Bomb), Time),
@@ -596,7 +579,6 @@ axiom(terminates(bombExplode(Bomb), bombActivated(Bomb), Time),
  /*  holds_at(bombTimerValue(Bomb, 0), Time) ->
        happens(bombExplode(Bomb), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',132).
 
  /*  happens(bombExplode(Bomb), Time) :-
        holds_at(bombTimerValue(Bomb, 0), Time).
@@ -612,7 +594,6 @@ axiom(terminates(bombExplode(Bomb), bombActivated(Bomb), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',132).
 axiom(happens(bombExplode(Bomb), Time),
     [holds_at(bombTimerValue(Bomb, 0), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',132).
 
  /*  not(holds_at(bombTimerValue(Bomb, 0), Time)) :-
        not(happens(bombExplode(Bomb), Time)).
@@ -649,7 +630,6 @@ axiom(holds_at(neg(bombTimerValue(Bomb, 0)), Time),
  /*  holds_at(at(Agent, Location), Time), holds_at(at(Bomb, Location), Time), holds_at(injuredDeterminingFluent(Agent), Time), happens(bombExplode(Bomb), Time) ->
        happens(injure(Bomb, Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',141).
 
  /*  happens(injure(Bomb, Agent), Time) :-
        holds_at(at(Agent, Location), Time),
@@ -792,7 +772,6 @@ axiom(not(happens(bombExplode(Bomb), Time)),
  /*  holds_at(at(Agent, Location), Time), holds_at(at(Bomb, Location), Time), holds_at(killedDeterminingFluent(Agent), Time), happens(bombExplode(Bomb), Time) ->
        happens(kill(Bomb, Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',153).
 
  /*  happens(kill(Bomb, Agent), Time) :-
        holds_at(at(Agent, Location), Time),
@@ -935,7 +914,6 @@ axiom(not(happens(bombExplode(Bomb), Time)),
  /*  holds_at(at(Physobj, Location), Time), holds_at(at(Bomb, Location), Time), holds_at(damagedDeterminingFluent(Physobj), Time), happens(bombExplode(Bomb), Time) ->
        happens(damage(Bomb, Physobj), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',165).
 
  /*  happens(damage(Bomb, Physobj), Time) :-
        holds_at(at(Physobj, Location), Time),
@@ -1078,7 +1056,6 @@ axiom(not(happens(bombExplode(Bomb), Time)),
  /*  holds_at(at(Physobj, Location), Time), holds_at(at(Bomb, Location), Time), holds_at(destroyedDeterminingFluent(Physobj), Time), happens(bombExplode(Bomb), Time) ->
        happens(destroy(Bomb, Physobj), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Bomb.e',177).
 
  /*  happens(destroy(Bomb, Physobj), Time) :-
        holds_at(at(Physobj, Location), Time),

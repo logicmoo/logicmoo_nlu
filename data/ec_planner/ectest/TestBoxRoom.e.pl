@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:29:15 GMT
+% Sun, 29 Mar 2020 18:51:47 GMT
 % From ../ectest/TestBoxRoom.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',47).
 
@@ -29,103 +29,194 @@
 %; }
 %;
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:23
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
 % include foundations/Root.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
 :- load_e('foundations/Root.e', include).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
+:- if(is_e_toplevel).
+
+ /*  loading(include,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e').
+ */
+%;
+%; Copyright (c) 2005 IBM Corporation and others.
+%; All rights reserved. This program and the accompanying materials
+%; are made available under the terms of the Common Public License v1.0
+%; which accompanies this distribution, and is available at
+%; http://www.eclipse.org/legal/cpl-v10.html
+%;
+%; Contributors:
+%; IBM - Initial implementation
+%;
+
+% sort boolean
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
+==> sort(boolean).
+
+% sort integer
+==> sort(integer).
+
+% reified sort predicate
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+reified_sort(predicate).
+==> mpred_prop(predicate,reified_sort).
+
+% reified sort function
+reified_sort(function).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+==> mpred_prop(function,reified_sort).
+%; End of file.
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',16).
 :- endif.
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:24
 % include foundations/EC.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',25).
 :- load_e('foundations/EC.e', include).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
+:- if(is_e_toplevel).
+
+ /*  loading(include,
+   	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e').
+ */
+%;
+%; Copyright (c) 2005 IBM Corporation and others.
+%; All rights reserved. This program and the accompanying materials
+%; are made available under the terms of the Common Public License v1.0
+%; which accompanies this distribution, and is available at
+%; http://www.eclipse.org/legal/cpl-v10.html
+%;
+%; Contributors:
+%; IBM - Initial implementation
+%;
+%; Event Calculus (EC)
+%;
+%; @incollection{MillerShanahan:2002,
+%;   author = "Rob Miller and Murray Shanahan",
+%;   year = "2002",
+%;   title = "Some alternative formulations of the event calculus",
+%;   editor = "Antonis C. Kakas and Fariba Sadri",
+%;   booktitle = "Computational Logic: Logic Programming and Beyond: Essays in Honour of \uppercase{R}obert \uppercase{A}. \uppercase{K}owalski, Part \uppercase{II}",
+%;   series = "Lecture Notes in Computer Science",
+%;   volume = "2408",
+%;   pages = "452--490",
+%;   address = "Berlin",
+%;   publisher = "Springer",
+%; }
+%;
+
+% sort time: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
+==> subsort(time,integer).
+
+% sort offset: integer
+==> subsort(offset,integer).
+
+% reified sort fluent
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+reified_sort(fluent).
+==> mpred_prop(fluent,reified_sort).
+
+% reified sort event
+reified_sort(event).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+==> mpred_prop(event,reified_sort).
+
+% predicate Happens(event,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
+predicate(happens(event,time)).
+==> mpred_prop(happens(event,time),predicate).
+==> meta_argtypes(happens(event,time)).
+
+% predicate HoldsAt(fluent,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
+predicate(holds_at(fluent,time)).
+==> mpred_prop(holds_at(fluent,time),predicate).
+==> meta_argtypes(holds_at(fluent,time)).
+
+% predicate ReleasedAt(fluent,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
+predicate(releasedAt(fluent,time)).
+==> mpred_prop(releasedAt(fluent,time),predicate).
+==> meta_argtypes(releasedAt(fluent,time)).
+
+% predicate Initiates(event,fluent,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
+predicate(initiates(event,fluent,time)).
+==> mpred_prop(initiates(event,fluent,time),predicate).
+==> meta_argtypes(initiates(event,fluent,time)).
+
+% predicate Terminates(event,fluent,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
+predicate(terminates(event,fluent,time)).
+==> mpred_prop(terminates(event,fluent,time),predicate).
+==> meta_argtypes(terminates(event,fluent,time)).
+
+% predicate Releases(event,fluent,time)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
+predicate(releases(event,fluent,time)).
+==> mpred_prop(releases(event,fluent,time),predicate).
+==> meta_argtypes(releases(event,fluent,time)).
+
+% predicate Trajectory(fluent,time,fluent,offset)
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
+predicate(trajectory(fluent,time,fluent,offset)).
+==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
+==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:40
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',41).
+%; End of file.
 :- endif.
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:26
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',27).
 % sort object
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',27).
 ==> sort(object).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:27
 % sort agent: object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',27).
 ==> subsort(agent,object).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:28
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',29).
 % sort physobj: object
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',29).
 ==> subsort(physobj,object).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:29
 % sort room: object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',29).
 ==> subsort(room,object).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:31
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 % fluent directlyIn(object,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 fluent(directlyIn(object,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 ==> mpred_prop(directlyIn(object,object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 ==> meta_argtypes(directlyIn(object,object)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:32
 % fluent inRoom(object,room)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 fluent(inRoom(object,room)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 ==> mpred_prop(inRoom(object,room),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 ==> meta_argtypes(inRoom(object,room)).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:33
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',34).
 % noninertial inRoom
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',34).
 ==> noninertial(inRoom).
 %;; executable(move(agent,object,object,object))
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:37
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
 % agent Lisa
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
 ==> t(agent,lisa).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:38
 % physobj Box, Newspaper
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
 ==> t(physobj,box).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
 ==> t(physobj,newspaper).
 
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:39
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',40).
 % room Kitchen, LivingRoom
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',40).
 ==> t(room,kitchen).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',40).
 ==> t(room,livingRoom).
 %; Sigma
 %; RS10
 % [agent,physobj1,physobj2,room,time]
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:45
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',46).
 % HoldsAt(directlyIn(agent,room),time) &
 % HoldsAt(directlyIn(physobj1,room),time) &
 % HoldsAt(inRoom(physobj2,room),time) ->
 % Initiates(move(agent,physobj1,room,physobj2),directlyIn(physobj1,physobj2),time).
-% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',46).
 
  /*  [holds_at(directlyIn(Agent, Room), Time), holds_at(directlyIn(Physobj1, Room), Time), holds_at(inRoom(Physobj2, Room), Time)] ->
@@ -363,64 +454,76 @@ axiom(terminates(move(Agent, Physobj, Agent, Room), directlyIn(Physobj, Agent), 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:103
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
 % Happens(move(Lisa,Newspaper,LivingRoom,Box),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(move(lisa, newspaper, livingRoom, box), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(move(lisa, newspaper, livingRoom, box), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
-axiom(happens(move(lisa, newspaper, livingRoom, box), t),
-    [is_time(t)]).
+axiom(happens(move(lisa, newspaper, livingRoom, box), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:104
 % Happens(move(Lisa,Box,LivingRoom,Lisa),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(move(lisa, box, livingRoom, lisa), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(move(lisa, box, livingRoom, lisa), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
-axiom(happens(move(lisa, box, livingRoom, lisa), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(move(lisa, box, livingRoom, lisa), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:105
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
 % Happens(move(Lisa,Lisa,LivingRoom,Kitchen),2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(move(lisa, lisa, livingRoom, kitchen), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(move(lisa, lisa, livingRoom, kitchen), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
-axiom(happens(move(lisa, lisa, livingRoom, kitchen), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(move(lisa, lisa, livingRoom, kitchen), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:106
 % Happens(move(Lisa,Box,Lisa,Kitchen),3).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(move(lisa, box, lisa, kitchen), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(move(lisa, box, lisa, kitchen), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
-axiom(happens(move(lisa, box, lisa, kitchen), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(move(lisa, box, lisa, kitchen), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:107
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',108).
 % Happens(move(Lisa,Lisa,Kitchen,LivingRoom),4).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',108).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4, tvs1=[4], tvs2=[t, t4], happens(move(lisa, lisa, kitchen, livingRoom), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(move(lisa, lisa, kitchen, livingRoom), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',108).
-axiom(happens(move(lisa, lisa, kitchen, livingRoom), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(move(lisa, lisa, kitchen, livingRoom), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:109
@@ -432,7 +535,16 @@ axiom(happens(move(lisa, lisa, kitchen, livingRoom), t4),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:112
 % !HoldsAt(directlyIn(object,object),time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',112).
-holds_at(neg(directlyIn(Object,Object)),Time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(directlyIn(Object, Object)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',112).
+axiom(holds_at(neg(directlyIn(Object, Object)), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:114
@@ -446,7 +558,6 @@ holds_at(neg(directlyIn(Object,Object)),Time).
  /*  holds_at(directlyIn(Object1, Object2), Time) ->
        holds_at(neg(directlyIn(Object2, Object1)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 
  /*  holds_at(neg(directlyIn(Object2, Object1)), Time) :-
        holds_at(directlyIn(Object1, Object2), Time).
@@ -462,7 +573,6 @@ holds_at(neg(directlyIn(Object,Object)),Time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 axiom(holds_at(neg(directlyIn(Object2, Object1)), Time),
     [holds_at(directlyIn(Object1, Object2), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 
  /*  not(holds_at(directlyIn(Object1, Object2), Time)) :-
        not(holds_at(neg(directlyIn(Object2, Object1)), Time)).
@@ -492,7 +602,6 @@ axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
  /*  holds_at(directlyIn(Object1, Object2), Time), holds_at(directlyIn(Object2, Object3), Time) ->
        holds_at(neg(directlyIn(Object1, Object3)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  holds_at(neg(directlyIn(Object1, Object3)), Time) :-
        holds_at(directlyIn(Object1, Object2), Time),
@@ -566,7 +675,6 @@ axiom(holds_at(neg(directlyIn(Object2, Object3)), Time),
  /*  holds_at(directlyIn(Object, Object1), Time), holds_at(directlyIn(Object, Object2), Time) ->
        equals(Object1, Object2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
 
  /*  not(holds_at(directlyIn(Object, Object1), Time)) :-
        holds_at(directlyIn(Object, Object2), Time),
@@ -619,7 +727,6 @@ axiom(holds_at(neg(directlyIn(Object, Object2)), Time),
  /*  holds_at(directlyIn(Object, Room), Time) ->
        holds_at(inRoom(Object, Room), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 
  /*  holds_at(inRoom(Object, Room), Time) :-
        holds_at(directlyIn(Object, Room), Time).
@@ -635,7 +742,6 @@ axiom(holds_at(neg(directlyIn(Object, Object2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 axiom(holds_at(inRoom(Object, Room), Time),
     [holds_at(directlyIn(Object, Room), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 
  /*  not(holds_at(directlyIn(Object, Room), Time)) :-
        not(holds_at(inRoom(Object, Room), Time)).
@@ -665,7 +771,6 @@ axiom(holds_at(neg(directlyIn(Object, Room)), Time),
  /*  holds_at(directlyIn(Object1, Object2), Time), holds_at(inRoom(Object2, Room), Time) ->
        holds_at(inRoom(Object1, Room), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  holds_at(inRoom(Object1, Room), Time) :-
        holds_at(directlyIn(Object1, Object2), Time),
@@ -739,7 +844,6 @@ axiom(holds_at(neg(inRoom(Object2, Room)), Time),
  /*  holds_at(inRoom(Object, Room1), Time), holds_at(inRoom(Object, Room2), Time) ->
        equals(Room1, Room2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
 
  /*  not(holds_at(inRoom(Object, Room1), Time)) :-
        holds_at(inRoom(Object, Room2), Time),
@@ -788,13 +892,15 @@ axiom(holds_at(neg(inRoom(Object, Room2)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:150
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
 % HoldsAt(directlyIn(Lisa,LivingRoom),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(directlyIn(lisa, livingRoom))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(directlyIn(lisa, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
-axiom(initially(directlyIn(lisa, livingRoom)),
+axiom(holds_at(directlyIn(lisa, livingRoom), start),
     []).
 
 
@@ -803,26 +909,28 @@ axiom(initially(directlyIn(lisa, livingRoom)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(directlyIn(newspaper, livingRoom))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(directlyIn(newspaper, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
-axiom(initially(directlyIn(newspaper, livingRoom)),
+axiom(holds_at(directlyIn(newspaper, livingRoom), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:152
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',153).
 % HoldsAt(directlyIn(Box,LivingRoom),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',153).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(directlyIn(box, livingRoom))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(directlyIn(box, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',153).
-axiom(initially(directlyIn(box, livingRoom)),
+axiom(holds_at(directlyIn(box, livingRoom), start),
     []).
 
 
@@ -832,20 +940,60 @@ axiom(initially(directlyIn(box, livingRoom)),
 %; DMILES REMOVED [room1,room2,time] !HoldsAt(inRoom(room1,room2),time).
 %; DMILES REMOVED [room,object,time] !HoldsAt(directlyIn(room,object),time).
 %; entailed:
-%; HoldsAt(directlyIn(Lisa,LivingRoom),5).
-%; HoldsAt(directlyIn(Box,Kitchen),5).
-%; HoldsAt(inRoom(Newspaper,Kitchen),5).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:159
+% HoldsAt(directlyIn(Lisa,LivingRoom),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',159).
+
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          holds_at(directlyIn(lisa, livingRoom), Start5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',159).
+axiom(holds_at(directlyIn(lisa, livingRoom), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:160
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',161).
+% HoldsAt(directlyIn(Box,Kitchen),5).
+
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          holds_at(directlyIn(box, kitchen), Start5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',161).
+axiom(holds_at(directlyIn(box, kitchen), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:161
+% HoldsAt(inRoom(Newspaper,Kitchen),5).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',161).
+
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          holds_at(inRoom(newspaper, kitchen), Start5)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',161).
+axiom(holds_at(inRoom(newspaper, kitchen), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:163
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',164).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',164).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',163).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:165
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',166).
 % range time 0 5
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',166).
 ==> range(time,0,5).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:166

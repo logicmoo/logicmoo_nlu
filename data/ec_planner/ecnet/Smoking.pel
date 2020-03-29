@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:27:08 GMT
+% Sun, 29 Mar 2020 18:49:03 GMT
 % From ../ecnet/Smoking.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoke.e',40).
 
@@ -31,199 +31,228 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:21
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',22).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',22).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',22).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',22).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
 % ignore Love, ThreatenedBy
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(love)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(love).
+axiom(ignore(love),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(threatenedBy)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(threatenedBy).
+axiom(ignore(threatenedBy),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:24
 % ignore LookOutOnto, Floor, BuildingOf, SkyOf, GroundOf
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(lookOutOnto).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(lookOutOnto)).
+ */
+axiom(ignore(lookOutOnto),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(floor).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(floor)).
+ */
+axiom(ignore(floor),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(buildingOf).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(buildingOf)).
+ */
+axiom(ignore(buildingOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(skyOf).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(skyOf)).
+ */
+axiom(ignore(skyOf),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',24).
-ignore(groundOf).
+
+ /*  [] ->
+       ta(Ta_Param4, tvs1=[], tvs2=[], ignore(groundOf)).
+ */
+axiom(ignore(groundOf),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
 % ignore Near, WalkFrom, WalkFromTo, RunFromTo
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(near)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(near).
+axiom(ignore(near),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(walkFrom)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(walkFrom).
+axiom(ignore(walkFrom),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param2, tvs1=[], tvs2=[], ignore(walkFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(walkFromTo).
+axiom(ignore(walkFromTo),
+    []).
+
+ /*  [] ->
+       ta(Ta_Param3, tvs1=[], tvs2=[], ignore(runFromTo)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(runFromTo).
+axiom(ignore(runFromTo),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:26
 % ignore Side1, Side2
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(side1).
+
+ /*  [] ->
+       ta(Ta_Param, tvs1=[], tvs2=[], ignore(side1)).
+ */
+axiom(ignore(side1),
+    []).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',26).
-ignore(side2).
+
+ /*  [] ->
+       ta(Ta_Param1, tvs1=[], tvs2=[], ignore(side2)).
+ */
+axiom(ignore(side2),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:29
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',29).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
 % load answers/Mueller2003/Ontology.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
 :- load_e('answers/Mueller2003/Ontology.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:31
 % load answers/Mueller2004c/RTSpaceM.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
 :- load_e('answers/Mueller2004c/RTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/RTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',31).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
 % load answers/Mueller2004c/OTSpaceM.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
 :- load_e('answers/Mueller2004c/OTSpaceM.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
-:- if(false).
+:- if(is_e_toplevel).
  %  load(changed,'answers/Mueller2004c/OTSpaceM.e').
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:33
 % load answers/Mueller2004c/Container.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
 :- load_e('answers/Mueller2004c/Container.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',33).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
 % load answers/Mueller2003/Sleep.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
 :- load_e('answers/Mueller2003/Sleep.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:35
 % load answers/Mueller2004c/SmallFire.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
 :- load_e('answers/Mueller2004c/SmallFire.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',35).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',37).
 % load answers/Mueller2004c/Smoke.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',37).
 :- load_e('answers/Mueller2004c/Smoke.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',37).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',37).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',39).
 % location Location1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',39).
 ==> t(location,location1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',41).
 % portal DummyPortal1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',41).
 ==> t(portal,dummyPortal1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',43).
 % agent Smoker1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',43).
 ==> t(agent,smoker1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',45).
 % cigarette Cigarette1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',45).
 ==> t(cigarette,cigarette1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',47).
 % container Package1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',47).
 ==> t(container,package1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',49).
 % physobj Surface1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',49).
 ==> t(physobj,surface1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',51).
 % physobj LightingDevice1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',51).
 ==> t(physobj,lightingDevice1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:52
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',53).
 % ashtray AshTray1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',53).
 ==> t(ashtray,ashTray1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',55).
 % physobj Trash1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',55).
 ==> t(physobj,trash1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:56
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',57).
 % smoke Smoke1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',57).
 ==> t(smoke,smoke1).
 %; prune
 
@@ -231,127 +260,97 @@ ignore(side2).
 % sort ona, onb
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',59).
 ==> sort(ona).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',59).
 ==> sort(onb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 % fluent! On(ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 fluent(on(ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 ==> mpred_prop(on(ona,onb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 ==> meta_argtypes(on(ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:61
 % event! PlaceOn(agent,ona,onb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 event(placeOn(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 ==> mpred_prop(placeOn(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',61).
 ==> meta_argtypes(placeOn(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:62
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 % event! TakeOffOf(agent,ona,onb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 event(takeOffOf(agent,ona,onb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 ==> mpred_prop(takeOffOf(agent,ona,onb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 ==> meta_argtypes(takeOffOf(agent,ona,onb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:63
 % ona! LightingDevice1, Package1, Cigarette1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 ==> t(ona,lightingDevice1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 ==> t(ona,package1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',63).
 ==> t(ona,cigarette1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:64
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',65).
 % onb! Surface1, AshTray1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',65).
 ==> t(onb,surface1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',65).
 ==> t(onb,ashTray1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:66
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 % sort insidea, insideb
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 ==> sort(insidea).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 ==> sort(insideb).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:67
 % fluent! Inside(insidea,insideb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 fluent(inside(insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 ==> mpred_prop(inside(insidea,insideb),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',67).
 ==> meta_argtypes(inside(insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:68
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 % event! PutInside(agent,insidea,insideb)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 event(putInside(agent,insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 ==> mpred_prop(putInside(agent,insidea,insideb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 ==> meta_argtypes(putInside(agent,insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:69
 % event! TakeOutOf(agent,insidea,insideb)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 event(takeOutOf(agent,insidea,insideb)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 ==> mpred_prop(takeOutOf(agent,insidea,insideb),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',69).
 ==> meta_argtypes(takeOutOf(agent,insidea,insideb)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:70
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',71).
 % insidea! Cigarette1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',71).
 ==> t(insidea,cigarette1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:71
 % insideb! Package1, Trash1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',71).
 ==> t(insideb,package1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',71).
 ==> t(insideb,trash1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:73
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 % sort lighta, lightb, lightc
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 ==> sort(lighta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 ==> sort(lightb).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 ==> sort(lightc).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:74
 % event! LightWith(lighta,lightb,lightc)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 event(lightWith(lighta,lightb,lightc)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 ==> mpred_prop(lightWith(lighta,lightb,lightc),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',74).
 ==> meta_argtypes(lightWith(lighta,lightb,lightc)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:75
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',76).
 % lighta! Smoker1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',76).
 ==> t(lighta,smoker1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:76
@@ -362,7 +361,6 @@ event(lightWith(lighta,lightb,lightc)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:77
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',78).
 % lightc! LightingDevice1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',78).
 ==> t(lightc,lightingDevice1).
 %; initial state
 % [agent,object]
@@ -372,13 +370,13 @@ event(lightWith(lighta,lightb,lightc)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',80).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(holding(Agent, Object)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(holding(Agent, Object)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',80).
-axiom(initially(neg(holding(Agent, Object))),
+axiom(holds_at(neg(holding(Agent, Object)), start),
     []).
 
 
@@ -386,16 +384,15 @@ axiom(initially(neg(holding(Agent, Object))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',82).
 % [agent,physobj]
  % !HoldsAt(SittingOn(agent,physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',82).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(sittingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',82).
-axiom(initially(neg(sittingOn(Agent, Physobj))),
+axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
     []).
 
 
@@ -405,26 +402,28 @@ axiom(initially(neg(sittingOn(Agent, Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',82).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(lyingOn(Agent, Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',82).
-axiom(initially(neg(lyingOn(Agent, Physobj))),
+axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:83
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',84).
 % HoldsAt(On(Package1,Surface1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',84).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(on(package1, surface1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(on(package1, surface1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',84).
-axiom(initially(on(package1, surface1)),
+axiom(holds_at(on(package1, surface1), start),
     []).
 
 
@@ -435,11 +434,11 @@ axiom(initially(on(package1, surface1)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:86
 
  /*  not((equals(Physobj1, package1), equals(Physobj2, surface1))) ->
-       initially(neg(on(Physobj1, Physobj2))).
+       holds_at(neg(on(Physobj1, Physobj2)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',86).
 
- /*  initially(neg(on(Physobj1, Physobj2))) :-
+ /*  holds_at(neg(on(Physobj1, Physobj2)), start+0) :-
        (   not(equals(Physobj1, package1))
        ;   not(equals(Physobj2, surface1))
        ).
@@ -447,13 +446,13 @@ axiom(initially(on(package1, surface1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',86).
 
  /*  [(not(equals(Physobj1, package1));not(equals(Physobj2, surface1)))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(on(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',86).
-axiom(initially(neg(on(Physobj1, Physobj2))),
+axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
    
     [  (not(equals(Physobj1, package1));not(equals(Physobj2, surface1)))
     ]).
@@ -462,13 +461,12 @@ axiom(initially(neg(on(Physobj1, Physobj2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:87
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',88).
 % HoldsAt(Dressed(Smoker1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',88).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(dressed(smoker1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(smoker1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',88).
-axiom(initially(dressed(smoker1)),
+axiom(holds_at(dressed(smoker1), start),
     []).
 
 
@@ -477,23 +475,21 @@ axiom(initially(dressed(smoker1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',88).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(awake(smoker1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(smoker1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',88).
-axiom(initially(awake(smoker1)),
+axiom(holds_at(awake(smoker1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:89
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',90).
 % HoldsAt(Sleep3(Smoker1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',90).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(sleep3(smoker1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(smoker1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',90).
-axiom(initially(sleep3(smoker1)),
+axiom(holds_at(sleep3(smoker1), start),
     []).
 
 
@@ -502,23 +498,24 @@ axiom(initially(sleep3(smoker1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',90).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(standing(smoker1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(smoker1), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',90).
-axiom(initially(standing(smoker1)),
+axiom(holds_at(standing(smoker1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:91
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',92).
 % HoldsAt(CraveNicotine(Smoker1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',92).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(craveNicotine(smoker1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(craveNicotine(smoker1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',92).
-axiom(initially(craveNicotine(smoker1)),
+axiom(holds_at(craveNicotine(smoker1), start),
     []).
 
 
@@ -527,10 +524,13 @@ axiom(initially(craveNicotine(smoker1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',92).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(containerClosed(package1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(containerClosed(package1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',92).
-axiom(initially(containerClosed(package1)),
+axiom(holds_at(containerClosed(package1), start),
     []).
 
 
@@ -538,16 +538,15 @@ axiom(initially(containerClosed(package1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',94).
 % [physobj]
  % !HoldsAt(IsBurning(physobj),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',94).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(isBurning(Physobj)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(isBurning(Physobj)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',94).
-axiom(initially(neg(isBurning(Physobj))),
+axiom(holds_at(neg(isBurning(Physobj)), start),
     []).
 
 
@@ -556,10 +555,13 @@ axiom(initially(neg(isBurning(Physobj))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',94).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(inside(cigarette1, package1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(inside(cigarette1, package1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',94).
-axiom(initially(inside(cigarette1, package1)),
+axiom(holds_at(inside(cigarette1, package1), start),
     []).
 
 
@@ -569,14 +571,13 @@ axiom(initially(inside(cigarette1, package1)),
 % !(physobj1=Cigarette1 & physobj2=Package1) ->
 % !HoldsAt(Inside(physobj1, physobj2),0).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:97
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',96).
 
  /*  not((equals(Physobj1, cigarette1), equals(Physobj2, package1))) ->
-       initially(neg(inside(Physobj1, Physobj2))).
+       holds_at(neg(inside(Physobj1, Physobj2)), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',96).
 
- /*  initially(neg(inside(Physobj1, Physobj2))) :-
+ /*  holds_at(neg(inside(Physobj1, Physobj2)), start+0) :-
        (   not(equals(Physobj1, cigarette1))
        ;   not(equals(Physobj2, package1))
        ).
@@ -584,13 +585,13 @@ axiom(initially(inside(cigarette1, package1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',96).
 
  /*  [(not(equals(Physobj1, cigarette1));not(equals(Physobj2, package1)))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(inside(Physobj1, Physobj2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',96).
-axiom(initially(neg(inside(Physobj1, Physobj2))),
+axiom(holds_at(neg(inside(Physobj1, Physobj2)), start),
    
     [  (not(equals(Physobj1, cigarette1));not(equals(Physobj2, package1)))
     ]).
@@ -603,219 +604,241 @@ axiom(initially(neg(inside(Physobj1, Physobj2))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:100
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',101).
 % Happens(TakeOffOf(Smoker1,Package1,Surface1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',101).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(takeOffOf(smoker1, package1, surface1), t)).
+ /*  [] ->
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          happens(takeOffOf(smoker1, package1, surface1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',101).
-axiom(happens(takeOffOf(smoker1, package1, surface1), t),
-    [is_time(t)]).
+axiom(happens(takeOffOf(smoker1, package1, surface1), start),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:101
 % Happens(ContainerOpen(Smoker1,Package1),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',101).
 
- /*  [is_time(now), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(containerOpen(smoker1, package1), now)).
+ /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(containerOpen(smoker1, package1), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',101).
-axiom(happens(containerOpen(smoker1, package1), now),
-    [is_time(now), b(t, now)]).
+axiom(happens(containerOpen(smoker1, package1), Maptime),
+    [b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:102
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',103).
 % Happens(TakeOutOf(Smoker1,Cigarette1,Package1),2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',103).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2,
-          tvs1=[2],
-          tvs2=[t, t2],
-          happens(takeOutOf(smoker1, cigarette1, package1), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(takeOutOf(smoker1, cigarette1, package1), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',103).
-axiom(happens(takeOutOf(smoker1, cigarette1, package1), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(takeOutOf(smoker1, cigarette1, package1), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:103
 % Happens(PickUp(Smoker1,LightingDevice1),3).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',103).
 
- /*  [is_time(t3), b(t, t3), ignore(t+3==t3)] ->
-       ta(3, tvs1=[3], tvs2=[t, t3], happens(pickUp(smoker1, lightingDevice1), t3)).
+ /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(start+3,
+          tvs1=[start+3],
+          tvs2=[Start3, start],
+          happens(pickUp(smoker1, lightingDevice1), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',103).
-axiom(happens(pickUp(smoker1, lightingDevice1), t3),
-    [is_time(t3), b(t, t3)]).
+axiom(happens(pickUp(smoker1, lightingDevice1), Start3),
+    [b(start, Start3), toffset(start, 3, Start3)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:104
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',105).
 % Happens(Light(Smoker1,LightingDevice1),4).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',105).
 
- /*  [is_time(t4), b(t, t4), ignore(t+4==t4)] ->
-       ta(4, tvs1=[4], tvs2=[t, t4], happens(light(smoker1, lightingDevice1), t4)).
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          happens(light(smoker1, lightingDevice1), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',105).
-axiom(happens(light(smoker1, lightingDevice1), t4),
-    [is_time(t4), b(t, t4)]).
+axiom(happens(light(smoker1, lightingDevice1), Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:105
 % Happens(LightWith(Smoker1,Cigarette1,LightingDevice1),5).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',105).
 
- /*  [is_time(t5), b(t, t5), ignore(t+5==t5)] ->
-       ta(5,
-          tvs1=[5],
-          tvs2=[t, t5],
-          happens(lightWith(smoker1, cigarette1, lightingDevice1), t5)).
+ /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
+       ta(start+5,
+          tvs1=[start+5],
+          tvs2=[Start5, start],
+          happens(lightWith(smoker1, cigarette1, lightingDevice1), Start5)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',105).
-axiom(happens(lightWith(smoker1, cigarette1, lightingDevice1), t5),
-    [is_time(t5), b(t, t5)]).
+axiom(happens(lightWith(smoker1, cigarette1, lightingDevice1), Start5),
+    [b(start, Start5), toffset(start, 5, Start5)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:106
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',107).
 % Happens(BlowOut(Smoker1,LightingDevice1),6).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',107).
 
- /*  [is_time(t6), b(t, t6), ignore(t+6==t6)] ->
-       ta(6, tvs1=[6], tvs2=[t, t6], happens(blowOut(smoker1, lightingDevice1), t6)).
+ /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
+       ta(start+6,
+          tvs1=[start+6],
+          tvs2=[Start6, start],
+          happens(blowOut(smoker1, lightingDevice1), Start6)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',107).
-axiom(happens(blowOut(smoker1, lightingDevice1), t6),
-    [is_time(t6), b(t, t6)]).
+axiom(happens(blowOut(smoker1, lightingDevice1), Start6),
+    [b(start, Start6), toffset(start, 6, Start6)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:107
 % Happens(PlaceOn(Smoker1,LightingDevice1,Surface1),7).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',107).
 
- /*  [is_time(t7), b(t, t7), ignore(t+7==t7)] ->
-       ta(7,
-          tvs1=[7],
-          tvs2=[t, t7],
-          happens(placeOn(smoker1, lightingDevice1, surface1), t7)).
+ /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
+       ta(start+7,
+          tvs1=[start+7],
+          tvs2=[Start7, start],
+          happens(placeOn(smoker1, lightingDevice1, surface1), Start7)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',107).
-axiom(happens(placeOn(smoker1, lightingDevice1, surface1), t7),
-    [is_time(t7), b(t, t7)]).
+axiom(happens(placeOn(smoker1, lightingDevice1, surface1), Start7),
+    [b(start, Start7), toffset(start, 7, Start7)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:108
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',109).
 % Happens(PlaceOn(Smoker1,Package1,Surface1),8).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',109).
 
- /*  [is_time(t8), b(t, t8), ignore(t+8==t8)] ->
-       ta(8, tvs1=[8], tvs2=[t, t8], happens(placeOn(smoker1, package1, surface1), t8)).
+ /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
+       ta(start+8,
+          tvs1=[start+8],
+          tvs2=[Start8, start],
+          happens(placeOn(smoker1, package1, surface1), Start8)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',109).
-axiom(happens(placeOn(smoker1, package1, surface1), t8),
-    [is_time(t8), b(t, t8)]).
+axiom(happens(placeOn(smoker1, package1, surface1), Start8),
+    [b(start, Start8), toffset(start, 8, Start8)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:109
 % Happens(Puff(Smoker1,Cigarette1),9).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',109).
 
- /*  [is_time(t9), b(t, t9), ignore(t+9==t9)] ->
-       ta(9, tvs1=[9], tvs2=[t, t9], happens(puff(smoker1, cigarette1), t9)).
+ /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
+       ta(start+9,
+          tvs1=[start+9],
+          tvs2=[Start9, start],
+          happens(puff(smoker1, cigarette1), Start9)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',109).
-axiom(happens(puff(smoker1, cigarette1), t9),
-    [is_time(t9), b(t, t9)]).
+axiom(happens(puff(smoker1, cigarette1), Start9),
+    [b(start, Start9), toffset(start, 9, Start9)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:110
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',111).
 % Happens(BlowOutSmoke(Smoker1,Smoke1),10).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',111).
 
- /*  [is_time(t10), b(t, t10), ignore(t+10==t10)] ->
-       ta(10, tvs1=[10], tvs2=[t, t10], happens(blowOutSmoke(smoker1, smoke1), t10)).
+ /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
+       ta(start+10,
+          tvs1=[start+10],
+          tvs2=[Startd10, start],
+          happens(blowOutSmoke(smoker1, smoke1), Startd10)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',111).
-axiom(happens(blowOutSmoke(smoker1, smoke1), t10),
-    [is_time(t10), b(t, t10)]).
+axiom(happens(blowOutSmoke(smoker1, smoke1), Startd10),
+    [b(start, Startd10), toffset(start, 10, Startd10)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:111
 % Happens(PlaceOn(Smoker1,Cigarette1,AshTray1),11).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',111).
 
- /*  [is_time(t11), b(t, t11), ignore(t+11==t11)] ->
-       ta(11,
-          tvs1=[11],
-          tvs2=[t, t11],
-          happens(placeOn(smoker1, cigarette1, ashTray1), t11)).
+ /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
+       ta(start+11,
+          tvs1=[start+11],
+          tvs2=[Startd11, start],
+          happens(placeOn(smoker1, cigarette1, ashTray1), Startd11)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',111).
-axiom(happens(placeOn(smoker1, cigarette1, ashTray1), t11),
-    [is_time(t11), b(t, t11)]).
+axiom(happens(placeOn(smoker1, cigarette1, ashTray1), Startd11),
+    [b(start, Startd11), toffset(start, 11, Startd11)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:112
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',113).
 % Happens(TakeOffOf(Smoker1,Cigarette1,AshTray1),12).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',113).
 
- /*  [is_time(t12), b(t, t12), ignore(t+12==t12)] ->
-       ta(12,
-          tvs1=[12],
-          tvs2=[t, t12],
-          happens(takeOffOf(smoker1, cigarette1, ashTray1), t12)).
+ /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
+       ta(start+12,
+          tvs1=[start+12],
+          tvs2=[Startd12, start],
+          happens(takeOffOf(smoker1, cigarette1, ashTray1), Startd12)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',113).
-axiom(happens(takeOffOf(smoker1, cigarette1, ashTray1), t12),
-    [is_time(t12), b(t, t12)]).
+axiom(happens(takeOffOf(smoker1, cigarette1, ashTray1), Startd12),
+    [b(start, Startd12), toffset(start, 12, Startd12)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:113
 % Happens(Puff(Smoker1,Cigarette1),13).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',113).
 
- /*  [is_time(t13), b(t, t13), ignore(t+13==t13)] ->
-       ta(13, tvs1=[13], tvs2=[t, t13], happens(puff(smoker1, cigarette1), t13)).
+ /*  [b(start, Startd13), toffset(start, 13, Startd13), ignore(start+13==Startd13)] ->
+       ta(start+13,
+          tvs1=[start+13],
+          tvs2=[Startd13, start],
+          happens(puff(smoker1, cigarette1), Startd13)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',113).
-axiom(happens(puff(smoker1, cigarette1), t13),
-    [is_time(t13), b(t, t13)]).
+axiom(happens(puff(smoker1, cigarette1), Startd13),
+    [b(start, Startd13), toffset(start, 13, Startd13)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:114
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',115).
 % Happens(PutOut(Smoker1,Cigarette1),14).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',115).
 
- /*  [is_time(t14), b(t, t14), ignore(t+14==t14)] ->
-       ta(14, tvs1=[14], tvs2=[t, t14], happens(putOut(smoker1, cigarette1), t14)).
+ /*  [b(start, Startd14), toffset(start, 14, Startd14), ignore(start+14==Startd14)] ->
+       ta(start+14,
+          tvs1=[start+14],
+          tvs2=[Startd14, start],
+          happens(putOut(smoker1, cigarette1), Startd14)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',115).
-axiom(happens(putOut(smoker1, cigarette1), t14),
-    [is_time(t14), b(t, t14)]).
+axiom(happens(putOut(smoker1, cigarette1), Startd14),
+    [b(start, Startd14), toffset(start, 14, Startd14)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:115
 % Happens(PutInside(Smoker1,Cigarette1,Trash1),15).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',115).
 
- /*  [is_time(t15), b(t, t15), ignore(t+15==t15)] ->
-       ta(15,
-          tvs1=[15],
-          tvs2=[t, t15],
-          happens(putInside(smoker1, cigarette1, trash1), t15)).
+ /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
+       ta(start+15,
+          tvs1=[start+15],
+          tvs2=[Startd15, start],
+          happens(putInside(smoker1, cigarette1, trash1), Startd15)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',115).
-axiom(happens(putInside(smoker1, cigarette1, trash1), t15),
-    [is_time(t15), b(t, t15)]).
+axiom(happens(putInside(smoker1, cigarette1, trash1), Startd15),
+    [b(start, Startd15), toffset(start, 15, Startd15)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:117
 % range time 0 16
@@ -825,7 +848,6 @@ axiom(happens(putInside(smoker1, cigarette1, trash1), t15),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:118
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',119).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',119).
 ==> range(offset,0,0).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:119
@@ -836,6 +858,5 @@ axiom(happens(putInside(smoker1, cigarette1, trash1), t15),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e:121
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',122).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Smoking.e',122).
 ==> completion(happens).
 %; End of file.

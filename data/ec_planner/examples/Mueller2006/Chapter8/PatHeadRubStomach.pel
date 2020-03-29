@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:58 GMT
+% Sun, 29 Mar 2020 18:46:50 GMT
 % From ../examples/Mueller2006/Chapter8/PatHeadRubStomach.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/MovingRobot.e',137).
 
@@ -29,51 +29,39 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',23).
 % sort agent
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',23).
 ==> sort(agent).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 % event PatHead(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 event(patHead(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> mpred_prop(patHead(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> meta_argtypes(patHead(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:25
 % event RubStomach(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 event(rubStomach(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> mpred_prop(rubStomach(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',25).
 ==> meta_argtypes(rubStomach(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:27
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',28).
 % agent Nathan
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',28).
 ==> t(agent,nathan).
 %; Delta
 % [agent,time]
@@ -85,7 +73,6 @@ event(rubStomach(agent)).
  /*  happens(patHead(Agent), Time) ->
        not(happens(rubStomach(Agent), Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
 
  /*  not(happens(rubStomach(Agent), Time)) :-
        happens(patHead(Agent), Time).
@@ -101,7 +88,6 @@ event(rubStomach(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
 axiom(not(happens(rubStomach(Agent), Time)),
     [happens(patHead(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',32).
 
  /*  not(happens(patHead(Agent), Time)) :-
        happens(rubStomach(Agent), Time).
@@ -123,25 +109,23 @@ axiom(not(happens(patHead(Agent), Time)),
 % Happens(PatHead(Nathan),0) & Happens(RubStomach(Nathan),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 
- /*   happens(patHead(nathan), 0),
-      happens(rubStomach(nathan), 0).
+ /*   happens(patHead(nathan), start+0),
+      happens(rubStomach(nathan), start+0).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(patHead(nathan), t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(patHead(nathan), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
-axiom(happens(patHead(nathan), t),
-    [is_time(t)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
+axiom(happens(patHead(nathan), start),
+    []).
 
- /*  [is_time(t)] ->
-       ta(0, tvs1=[0], tvs2=[t], happens(rubStomach(nathan), t)).
+ /*  [] ->
+       ta(start+0, tvs1=[start+0], tvs2=[start], happens(rubStomach(nathan), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
-axiom(happens(rubStomach(nathan), t),
-    [is_time(t)]).
+axiom(happens(rubStomach(nathan), start),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:37
 % range time 0 1
@@ -151,6 +135,5 @@ axiom(happens(rubStomach(nathan), t),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',39).
 % range offset 1 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',39).
 ==> range(offset,1,1).
 %; End of file.

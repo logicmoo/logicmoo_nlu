@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:27:04 GMT
+% Sun, 29 Mar 2020 18:48:58 GMT
 % From ../ecnet/Sleep.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',107).
 
@@ -36,9 +36,7 @@
 % event WakeUp(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',27).
 event(wakeUp(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',27).
 ==> mpred_prop(wakeUp(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',27).
 ==> meta_argtypes(wakeUp(agent)).
 
 
@@ -48,11 +46,9 @@ event(wakeUp(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:30
 % event GetTired(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',30).
 event(getTired(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',30).
 ==> mpred_prop(getTired(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',30).
 ==> meta_argtypes(getTired(agent)).
 
 
@@ -62,11 +58,9 @@ event(getTired(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:33
 % event FallAsleep(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',33).
 event(fallAsleep(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',33).
 ==> mpred_prop(fallAsleep(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',33).
 ==> meta_argtypes(fallAsleep(agent)).
 
 
@@ -76,11 +70,9 @@ event(fallAsleep(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:36
 % fluent Sleep0(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',36).
 fluent(sleep0(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',36).
 ==> mpred_prop(sleep0(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',36).
 ==> meta_argtypes(sleep0(agent)).
 
 
@@ -91,11 +83,8 @@ fluent(sleep0(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',39).
 % fluent Sleep1(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',39).
 fluent(sleep1(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',39).
 ==> mpred_prop(sleep1(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',39).
 ==> meta_argtypes(sleep1(agent)).
 
 
@@ -105,11 +94,8 @@ fluent(sleep1(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',41).
 % fluent Sleep2(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',41).
 fluent(sleep2(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',41).
 ==> mpred_prop(sleep2(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',41).
 ==> meta_argtypes(sleep2(agent)).
 
 
@@ -119,11 +105,8 @@ fluent(sleep2(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',43).
 % fluent Sleep3(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',43).
 fluent(sleep3(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',43).
 ==> mpred_prop(sleep3(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',43).
 ==> meta_argtypes(sleep3(agent)).
 
 
@@ -133,11 +116,8 @@ fluent(sleep3(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:44
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',45).
 % fluent Sleep4(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',45).
 fluent(sleep4(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',45).
 ==> mpred_prop(sleep4(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',45).
 ==> meta_argtypes(sleep4(agent)).
 
 
@@ -147,11 +127,8 @@ fluent(sleep4(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',47).
 % fluent Sleep5(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',47).
 fluent(sleep5(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',47).
 ==> mpred_prop(sleep5(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',47).
 ==> meta_argtypes(sleep5(agent)).
 
 
@@ -161,11 +138,8 @@ fluent(sleep5(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',49).
 % fluent Sleep6(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',49).
 fluent(sleep6(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',49).
 ==> mpred_prop(sleep6(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',49).
 ==> meta_argtypes(sleep6(agent)).
 
 
@@ -175,7 +149,6 @@ fluent(sleep6(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:51
 % xor Sleep0, Sleep1, Sleep2, Sleep3, Sleep4, Sleep5, Sleep6
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',51).
 ==> xor([sleep0,sleep1,sleep2,sleep3,sleep4,sleep5,sleep6]).
 %; constraints
 %; agent is asleep.
@@ -184,9 +157,7 @@ fluent(sleep6(agent)).
 % fluent Asleep(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',56).
 fluent(asleep(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',56).
 ==> mpred_prop(asleep(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',56).
 ==> meta_argtypes(asleep(agent)).
 
 
@@ -197,11 +168,8 @@ fluent(asleep(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:58
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',59).
 % fluent Awake(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',59).
 fluent(awake(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',59).
 ==> mpred_prop(awake(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',59).
 ==> meta_argtypes(awake(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:59
@@ -212,7 +180,6 @@ fluent(awake(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',61).
 % noninertial Awake
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',61).
 ==> noninertial(awake).
 %; Sleep0 indicates that the agent is asleep:
 % [agent,time]
@@ -224,7 +191,6 @@ fluent(awake(agent)).
  /*  holds_at(asleep(Agent), Time) <->
        holds_at(sleep0(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  [holds_at, asleep] <->
        [holds_at, sleep0].
@@ -234,7 +200,6 @@ fluent(awake(agent)).
  /*  holds_at(asleep(Agent), Time) ->
        holds_at(sleep0(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  holds_at(sleep0(Agent), Time) :-
        holds_at(asleep(Agent), Time).
@@ -250,7 +215,6 @@ fluent(awake(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 axiom(holds_at(sleep0(Agent), Time),
     [holds_at(asleep(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  not(holds_at(asleep(Agent), Time)) :-
        not(holds_at(sleep0(Agent), Time)).
@@ -266,7 +230,6 @@ axiom(holds_at(sleep0(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 axiom(holds_at(neg(asleep(Agent)), Time),
     [holds_at(neg(sleep0(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  holds_at(sleep0(Agent), Time) ->
        holds_at(asleep(Agent), Time).
@@ -276,7 +239,6 @@ axiom(holds_at(neg(asleep(Agent)), Time),
  /*  holds_at(asleep(Agent), Time) :-
        holds_at(sleep0(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  [holds_at(sleep0(Agent), Time)] ->
        ta(Time,
@@ -287,7 +249,6 @@ axiom(holds_at(neg(asleep(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 axiom(holds_at(asleep(Agent), Time),
     [holds_at(sleep0(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',63).
 
  /*  not(holds_at(sleep0(Agent), Time)) :-
        not(holds_at(asleep(Agent), Time)).
@@ -566,7 +527,6 @@ axiom(holds_at(neg(awake(Agent)), Time),
  /*  holds_at(sleep1(Agent), Time);holds_at(sleep2(Agent), Time);holds_at(sleep3(Agent), Time);holds_at(sleep4(Agent), Time);holds_at(sleep5(Agent), Time);holds_at(sleep6(Agent), Time) ->
        holds_at(awake(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  holds_at(awake(Agent), Time) :-
        (   holds_at(sleep1(Agent), Time)
@@ -590,7 +550,6 @@ axiom(holds_at(awake(Agent), Time),
    
     [  (holds_at(sleep1(Agent), Time);holds_at(sleep2(Agent), Time);holds_at(sleep3(Agent), Time);holds_at(sleep4(Agent), Time);holds_at(sleep5(Agent), Time);holds_at(sleep6(Agent), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep1(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -606,7 +565,6 @@ axiom(holds_at(awake(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 axiom(holds_at(neg(sleep1(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep2(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -622,7 +580,6 @@ axiom(holds_at(neg(sleep1(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 axiom(holds_at(neg(sleep2(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep3(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -638,7 +595,6 @@ axiom(holds_at(neg(sleep2(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 axiom(holds_at(neg(sleep3(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep4(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -654,7 +610,6 @@ axiom(holds_at(neg(sleep3(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 axiom(holds_at(neg(sleep4(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep5(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -670,7 +625,6 @@ axiom(holds_at(neg(sleep4(Agent)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 axiom(holds_at(neg(sleep5(Agent)), Time),
     [holds_at(neg(awake(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',67).
 
  /*  not(holds_at(sleep6(Agent), Time)) :-
        not(holds_at(awake(Agent), Time)).
@@ -699,7 +653,6 @@ axiom(holds_at(neg(sleep6(Agent)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:81
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',82).
 % Terminates(WakeUp(agent),Sleep0(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',82).
 
  /*  [] ->
        ta(Time,
@@ -716,7 +669,6 @@ axiom(terminates(wakeUp(Agent), sleep0(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',84).
 % [agent,time]
  % Initiates(WakeUp(agent),Sleep1(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',84).
 
  /*  [] ->
        ta(Time,
@@ -733,7 +685,6 @@ axiom(initiates(wakeUp(Agent), sleep1(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 % [agent,time]
  % Happens(WakeUp(agent),time) -> HoldsAt(Sleep0(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 
  /*  happens(wakeUp(Agent), Time) ->
        holds_at(sleep0(Agent), Time).
@@ -743,7 +694,6 @@ axiom(initiates(wakeUp(Agent), sleep1(Agent), Time),
  /*  holds_at(sleep0(Agent), Time) :-
        happens(wakeUp(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 
  /*  [holds_at(metreqs(wakeUp(Agent)), Time)] ->
        ta(Time,
@@ -754,18 +704,16 @@ axiom(initiates(wakeUp(Agent), sleep1(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 axiom(requires(wakeUp(Agent), Time),
     [holds_at(metreqs(wakeUp(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 
  /*  [holds_at(sleep0(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(wakeUp(Agent)), Time)).
+          holds_at(metreqs(wakeUp(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
-axiom(holds_at(requirements(wakeUp(Agent)), Time),
+axiom(holds_at(metreqs(wakeUp(Agent)), Time),
     [holds_at(sleep0(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',86).
 
  /*  not(happens(wakeUp(Agent), Time)) :-
        not(holds_at(sleep0(Agent), Time)).
@@ -793,7 +741,6 @@ axiom(not(happens(wakeUp(Agent), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:91
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',92).
 % Terminates(RiseFrom(agent,bed),Sleep1(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',92).
 
  /*  [] ->
        ta(Time,
@@ -812,7 +759,6 @@ axiom(terminates(riseFrom(Agent, Bed), sleep1(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',94).
 % [agent,bed,time]
  % Initiates(RiseFrom(agent,bed),Sleep2(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',94).
 
  /*  [] ->
        ta(Time,
@@ -831,7 +777,6 @@ axiom(initiates(riseFrom(Agent, Bed), sleep2(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 % [agent,bed,time]
 % Happens(RiseFrom(agent,bed),time) -> HoldsAt(Sleep1(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 
  /*  happens(riseFrom(Agent, Bed), Time) ->
        holds_at(sleep1(Agent), Time).
@@ -841,7 +786,6 @@ axiom(initiates(riseFrom(Agent, Bed), sleep2(Agent), Time),
  /*  holds_at(sleep1(Agent), Time) :-
        happens(riseFrom(Agent, Bed), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 
  /*  [holds_at(metreqs(riseFrom(Agent, Bed)), Time)] ->
        ta(Time,
@@ -852,18 +796,16 @@ axiom(initiates(riseFrom(Agent, Bed), sleep2(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 axiom(requires(riseFrom(Agent, Bed), Time),
     [holds_at(metreqs(riseFrom(Agent, Bed)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 
  /*  [holds_at(sleep1(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(riseFrom(Agent, Bed)), Time)).
+          holds_at(metreqs(riseFrom(Agent, Bed)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
-axiom(holds_at(requirements(riseFrom(Agent, Bed)), Time),
+axiom(holds_at(metreqs(riseFrom(Agent, Bed)), Time),
     [holds_at(sleep1(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',96).
 
  /*  not(happens(riseFrom(Agent, Bed), Time)) :-
        not(holds_at(sleep1(Agent), Time)).
@@ -890,7 +832,6 @@ axiom(not(happens(riseFrom(Agent, Bed), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:102
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',103).
 % Terminates(GetDressed(agent),Sleep2(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',103).
 
  /*  [] ->
        ta(Time,
@@ -907,7 +848,6 @@ axiom(terminates(getDressed(Agent), sleep2(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',105).
 % [agent,time]
  % Initiates(GetDressed(agent),Sleep3(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',105).
 
  /*  [] ->
        ta(Time,
@@ -924,7 +864,6 @@ axiom(initiates(getDressed(Agent), sleep3(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 % [agent,time]
  % Happens(GetDressed(agent),time) -> HoldsAt(Sleep2(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 
  /*  happens(getDressed(Agent), Time) ->
        holds_at(sleep2(Agent), Time).
@@ -934,7 +873,6 @@ axiom(initiates(getDressed(Agent), sleep3(Agent), Time),
  /*  holds_at(sleep2(Agent), Time) :-
        happens(getDressed(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 
  /*  [holds_at(metreqs(getDressed(Agent)), Time)] ->
        ta(Time,
@@ -945,18 +883,16 @@ axiom(initiates(getDressed(Agent), sleep3(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 axiom(requires(getDressed(Agent), Time),
     [holds_at(metreqs(getDressed(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 
  /*  [holds_at(sleep2(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(getDressed(Agent)), Time)).
+          holds_at(metreqs(getDressed(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
-axiom(holds_at(requirements(getDressed(Agent)), Time),
+axiom(holds_at(metreqs(getDressed(Agent)), Time),
     [holds_at(sleep2(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',107).
 
  /*  not(happens(getDressed(Agent), Time)) :-
        not(holds_at(sleep2(Agent), Time)).
@@ -984,7 +920,6 @@ axiom(not(happens(getDressed(Agent), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:112
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',113).
 % Terminates(GetTired(agent),Sleep3(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',113).
 
  /*  [] ->
        ta(Time,
@@ -1001,7 +936,6 @@ axiom(terminates(getTired(Agent), sleep3(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',115).
 % [agent,time]
  % Initiates(GetTired(agent),Sleep4(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',115).
 
  /*  [] ->
        ta(Time,
@@ -1018,7 +952,6 @@ axiom(initiates(getTired(Agent), sleep4(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 % [agent,time]
  % Happens(GetTired(agent),time) -> HoldsAt(Sleep3(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 
  /*  happens(getTired(Agent), Time) ->
        holds_at(sleep3(Agent), Time).
@@ -1028,7 +961,6 @@ axiom(initiates(getTired(Agent), sleep4(Agent), Time),
  /*  holds_at(sleep3(Agent), Time) :-
        happens(getTired(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 
  /*  [holds_at(metreqs(getTired(Agent)), Time)] ->
        ta(Time,
@@ -1039,18 +971,16 @@ axiom(initiates(getTired(Agent), sleep4(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 axiom(requires(getTired(Agent), Time),
     [holds_at(metreqs(getTired(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 
  /*  [holds_at(sleep3(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(getTired(Agent)), Time)).
+          holds_at(metreqs(getTired(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
-axiom(holds_at(requirements(getTired(Agent)), Time),
+axiom(holds_at(metreqs(getTired(Agent)), Time),
     [holds_at(sleep3(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',117).
 
  /*  not(happens(getTired(Agent), Time)) :-
        not(holds_at(sleep3(Agent), Time)).
@@ -1078,7 +1008,6 @@ axiom(not(happens(getTired(Agent), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:122
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',123).
 % Terminates(GetUndressed(agent),Sleep4(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',123).
 
  /*  [] ->
        ta(Time,
@@ -1095,7 +1024,6 @@ axiom(terminates(getUndressed(Agent), sleep4(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',125).
 % [agent,time]
  % Initiates(GetUndressed(agent),Sleep5(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',125).
 
  /*  [] ->
        ta(Time,
@@ -1112,7 +1040,6 @@ axiom(initiates(getUndressed(Agent), sleep5(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 % [agent,time]
  % Happens(GetUndressed(agent),time) -> HoldsAt(Sleep4(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 
  /*  happens(getUndressed(Agent), Time) ->
        holds_at(sleep4(Agent), Time).
@@ -1122,7 +1049,6 @@ axiom(initiates(getUndressed(Agent), sleep5(Agent), Time),
  /*  holds_at(sleep4(Agent), Time) :-
        happens(getUndressed(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 
  /*  [holds_at(metreqs(getUndressed(Agent)), Time)] ->
        ta(Time,
@@ -1133,18 +1059,16 @@ axiom(initiates(getUndressed(Agent), sleep5(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 axiom(requires(getUndressed(Agent), Time),
     [holds_at(metreqs(getUndressed(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 
  /*  [holds_at(sleep4(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(getUndressed(Agent)), Time)).
+          holds_at(metreqs(getUndressed(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
-axiom(holds_at(requirements(getUndressed(Agent)), Time),
+axiom(holds_at(metreqs(getUndressed(Agent)), Time),
     [holds_at(sleep4(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',127).
 
  /*  not(happens(getUndressed(Agent), Time)) :-
        not(holds_at(sleep4(Agent), Time)).
@@ -1172,7 +1096,6 @@ axiom(not(happens(getUndressed(Agent), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:132
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',133).
 % Terminates(LieOn(agent,bed),Sleep5(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',133).
 
  /*  [] ->
        ta(Time,
@@ -1189,7 +1112,6 @@ axiom(terminates(lieOn(Agent, Bed), sleep5(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',135).
 % [agent,bed,time]
  % Initiates(LieOn(agent,bed),Sleep6(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',135).
 
  /*  [] ->
        ta(Time,
@@ -1206,7 +1128,6 @@ axiom(initiates(lieOn(Agent, Bed), sleep6(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 % [agent,bed,time]
  % Happens(LieOn(agent,bed),time) -> HoldsAt(Sleep5(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 
  /*  happens(lieOn(Agent, Bed), Time) ->
        holds_at(sleep5(Agent), Time).
@@ -1216,7 +1137,6 @@ axiom(initiates(lieOn(Agent, Bed), sleep6(Agent), Time),
  /*  holds_at(sleep5(Agent), Time) :-
        happens(lieOn(Agent, Bed), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 
  /*  [holds_at(metreqs(lieOn(Agent, Bed)), Time)] ->
        ta(Time,
@@ -1227,18 +1147,16 @@ axiom(initiates(lieOn(Agent, Bed), sleep6(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 axiom(requires(lieOn(Agent, Bed), Time),
     [holds_at(metreqs(lieOn(Agent, Bed)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 
  /*  [holds_at(sleep5(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(lieOn(Agent, Bed)), Time)).
+          holds_at(metreqs(lieOn(Agent, Bed)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
-axiom(holds_at(requirements(lieOn(Agent, Bed)), Time),
+axiom(holds_at(metreqs(lieOn(Agent, Bed)), Time),
     [holds_at(sleep5(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',137).
 
  /*  not(happens(lieOn(Agent, Bed), Time)) :-
        not(holds_at(sleep5(Agent), Time)).
@@ -1266,7 +1184,6 @@ axiom(not(happens(lieOn(Agent, Bed), Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:142
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',143).
 % Terminates(FallAsleep(agent),Sleep6(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',143).
 
  /*  [] ->
        ta(Time,
@@ -1283,7 +1200,6 @@ axiom(terminates(fallAsleep(Agent), sleep6(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',145).
 % [agent,time]
  % Initiates(FallAsleep(agent),Sleep0(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',145).
 
  /*  [] ->
        ta(Time,
@@ -1300,7 +1216,6 @@ axiom(initiates(fallAsleep(Agent), sleep0(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 % [agent,time]
  % Happens(FallAsleep(agent),time) -> HoldsAt(Sleep6(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 
  /*  happens(fallAsleep(Agent), Time) ->
        holds_at(sleep6(Agent), Time).
@@ -1310,7 +1225,6 @@ axiom(initiates(fallAsleep(Agent), sleep0(Agent), Time),
  /*  holds_at(sleep6(Agent), Time) :-
        happens(fallAsleep(Agent), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 
  /*  [holds_at(metreqs(fallAsleep(Agent)), Time)] ->
        ta(Time,
@@ -1321,18 +1235,16 @@ axiom(initiates(fallAsleep(Agent), sleep0(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 axiom(requires(fallAsleep(Agent), Time),
     [holds_at(metreqs(fallAsleep(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 
  /*  [holds_at(sleep6(Agent), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(fallAsleep(Agent)), Time)).
+          holds_at(metreqs(fallAsleep(Agent)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
-axiom(holds_at(requirements(fallAsleep(Agent)), Time),
+axiom(holds_at(metreqs(fallAsleep(Agent)), Time),
     [holds_at(sleep6(Agent), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',147).
 
  /*  not(happens(fallAsleep(Agent), Time)) :-
        not(holds_at(sleep6(Agent), Time)).
@@ -1359,15 +1271,12 @@ axiom(not(happens(fallAsleep(Agent), Time)),
 % fluent ActOnSleep5(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',151).
 fluent(actOnSleep5(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',151).
 ==> mpred_prop(actOnSleep5(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',151).
 ==> meta_argtypes(actOnSleep5(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:152
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',153).
 % noninertial ActOnSleep5
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',153).
 ==> noninertial(actOnSleep5).
 %; We reduce the number of models by asserting that
 %; an agent only acts on being in state Sleep5 while in
@@ -1381,7 +1290,6 @@ fluent(actOnSleep5(agent)).
  /*  holds_at(neg(sleep5(Agent)), Time) ->
        holds_at(neg(actOnSleep5(Agent)), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',158).
 
  /*  holds_at(neg(actOnSleep5(Agent)), Time) :-
        holds_at(neg(sleep5(Agent)), Time).
@@ -1397,7 +1305,6 @@ fluent(actOnSleep5(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',158).
 axiom(holds_at(neg(actOnSleep5(Agent)), Time),
     [holds_at(neg(sleep5(Agent)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',158).
 
  /*  not(holds_at(neg(sleep5(Agent)), Time)) :-
        not(holds_at(neg(actOnSleep5(Agent)), Time)).
@@ -1434,7 +1341,6 @@ axiom(holds_at(sleep5(Agent), Time),
  /*  holds_at(sleep5(Agent), Time), holds_at(actOnSleep5(Agent), Time), holds_at(at(Agent, Room), Time), holds_at(at(Bed, Room), Time) ->
        happens(lieOn(Agent, Bed), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',168).
 
  /*  happens(lieOn(Agent, Bed), Time) :-
        holds_at(sleep5(Agent), Time),
@@ -1593,11 +1499,11 @@ axiom(holds_at(neg(at(Bed, Room)), Time),
        ;   not(holds_at(at(Agent, Room), Time))
        ;   not(holds_at(at(Bed, Room), Time))
        ),
-       some(Room, '$kolem_Fn_313'(Agent, Bed, Time)).
+       some(Room, '$kolem_Fn_227'(Agent, Bed, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
- /*  [(holds_at(neg(sleep5(Agent)), Time);holds_at(neg(actOnSleep5(Agent)), Time);holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Bed, Room)), Time)), some(Room, '$kolem_Fn_313'(Agent, Bed, Time))] ->
+ /*  [(holds_at(neg(sleep5(Agent)), Time);holds_at(neg(actOnSleep5(Agent)), Time);holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Bed, Room)), Time)), some(Room, '$kolem_Fn_227'(Agent, Bed, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1607,17 +1513,17 @@ axiom(holds_at(neg(at(Bed, Room)), Time),
 axiom(not(happens(lieOn(Agent, Bed), Time)),
    
     [  (holds_at(neg(sleep5(Agent)), Time);holds_at(neg(actOnSleep5(Agent)), Time);holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Bed, Room)), Time)),
-      some(Room, '$kolem_Fn_313'(Agent, Bed, Time))
+      some(Room, '$kolem_Fn_227'(Agent, Bed, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
  /*  holds_at(sleep5(Agent), Time) :-
        happens(lieOn(Agent, Bed), Time),
-       some(Room, '$kolem_Fn_313'(Agent, Bed, Time)).
+       some(Room, '$kolem_Fn_227'(Agent, Bed, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
- /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_313'(Agent, Bed, Time))] ->
+ /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_227'(Agent, Bed, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1627,17 +1533,17 @@ axiom(not(happens(lieOn(Agent, Bed), Time)),
 axiom(holds_at(sleep5(Agent), Time),
    
     [ happens(lieOn(Agent, Bed), Time),
-      some(Room, '$kolem_Fn_313'(Agent, Bed, Time))
+      some(Room, '$kolem_Fn_227'(Agent, Bed, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
  /*  holds_at(actOnSleep5(Agent), Time) :-
        happens(lieOn(Agent, Bed), Time),
-       some(Room, '$kolem_Fn_313'(Agent, Bed, Time)).
+       some(Room, '$kolem_Fn_227'(Agent, Bed, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
- /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_313'(Agent, Bed, Time))] ->
+ /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_227'(Agent, Bed, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1647,17 +1553,17 @@ axiom(holds_at(sleep5(Agent), Time),
 axiom(holds_at(actOnSleep5(Agent), Time),
    
     [ happens(lieOn(Agent, Bed), Time),
-      some(Room, '$kolem_Fn_313'(Agent, Bed, Time))
+      some(Room, '$kolem_Fn_227'(Agent, Bed, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
  /*  holds_at(at(Agent, Room), Time) :-
        happens(lieOn(Agent, Bed), Time),
-       some(Room, '$kolem_Fn_313'(Agent, Bed, Time)).
+       some(Room, '$kolem_Fn_227'(Agent, Bed, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
- /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_313'(Agent, Bed, Time))] ->
+ /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_227'(Agent, Bed, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1667,17 +1573,17 @@ axiom(holds_at(actOnSleep5(Agent), Time),
 axiom(holds_at(at(Agent, Room), Time),
    
     [ happens(lieOn(Agent, Bed), Time),
-      some(Room, '$kolem_Fn_313'(Agent, Bed, Time))
+      some(Room, '$kolem_Fn_227'(Agent, Bed, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
  /*  holds_at(at(Bed, Room), Time) :-
        happens(lieOn(Agent, Bed), Time),
-       some(Room, '$kolem_Fn_313'(Agent, Bed, Time)).
+       some(Room, '$kolem_Fn_227'(Agent, Bed, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',185).
 
- /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_313'(Agent, Bed, Time))] ->
+ /*  [happens(lieOn(Agent, Bed), Time), some(Room, '$kolem_Fn_227'(Agent, Bed, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1687,7 +1593,7 @@ axiom(holds_at(at(Agent, Room), Time),
 axiom(holds_at(at(Bed, Room), Time),
    
     [ happens(lieOn(Agent, Bed), Time),
-      some(Room, '$kolem_Fn_313'(Agent, Bed, Time))
+      some(Room, '$kolem_Fn_227'(Agent, Bed, Time))
     ]).
 
 
@@ -1699,9 +1605,7 @@ axiom(holds_at(at(Bed, Room), Time),
 % event LieOn(agent,physobj)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',191).
 event(lieOn(agent,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',191).
 ==> mpred_prop(lieOn(agent,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',191).
 ==> meta_argtypes(lieOn(agent,physobj)).
 
 
@@ -1711,11 +1615,9 @@ event(lieOn(agent,physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:194
 % event SitOn(agent,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',194).
 event(sitOn(agent,physobj)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',194).
 ==> mpred_prop(sitOn(agent,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',194).
 ==> meta_argtypes(sitOn(agent,physobj)).
 
 
@@ -1724,7 +1626,6 @@ event(sitOn(agent,physobj)).
 % [agent,physobj,time]
 % Happens(SitOn(agent,physobj),time) ->
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:198
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',197).
 % {location}% 
 %  HoldsAt(At(agent,location),time) &
 %  HoldsAt(At(physobj,location),time).
@@ -1742,11 +1643,11 @@ event(sitOn(agent,physobj)).
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Physobj, Location), Time))
        ),
-       some(Location, '$kolem_Fn_314'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_228'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',199).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1756,17 +1657,17 @@ event(sitOn(agent,physobj)).
 axiom(not(happens(sitOn(Agent, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
-      some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',199).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(sitOn(Agent, Physobj), Time),
-       some(Location, '$kolem_Fn_314'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_228'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',199).
 
- /*  [happens(sitOn(Agent, Physobj), Time), some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))] ->
+ /*  [happens(sitOn(Agent, Physobj), Time), some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1776,17 +1677,17 @@ axiom(not(happens(sitOn(Agent, Physobj), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(sitOn(Agent, Physobj), Time),
-      some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',199).
 
  /*  holds_at(at(Physobj, Location), Time) :-
        happens(sitOn(Agent, Physobj), Time),
-       some(Location, '$kolem_Fn_314'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_228'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',199).
 
- /*  [happens(sitOn(Agent, Physobj), Time), some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))] ->
+ /*  [happens(sitOn(Agent, Physobj), Time), some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1796,7 +1697,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Physobj, Location), Time),
    
     [ happens(sitOn(Agent, Physobj), Time),
-      some(Location, '$kolem_Fn_314'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_228'(Agent, Physobj, Time))
     ]).
 
 
@@ -1806,11 +1707,8 @@ axiom(holds_at(at(Physobj, Location), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:203
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',204).
 % event RiseFrom(agent,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',204).
 event(riseFrom(agent,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',204).
 ==> mpred_prop(riseFrom(agent,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',204).
 ==> meta_argtypes(riseFrom(agent,physobj)).
 
 
@@ -1820,11 +1718,9 @@ event(riseFrom(agent,physobj)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:206
 % fluent LyingOn(agent,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',206).
 fluent(lyingOn(agent,physobj)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',206).
 ==> mpred_prop(lyingOn(agent,physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',206).
 ==> meta_argtypes(lyingOn(agent,physobj)).
 
 
@@ -1835,11 +1731,8 @@ fluent(lyingOn(agent,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:208
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',209).
 % fluent SittingOn(agent,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',209).
 fluent(sittingOn(agent,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',209).
 ==> mpred_prop(sittingOn(agent,physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',209).
 ==> meta_argtypes(sittingOn(agent,physobj)).
 
 
@@ -1849,11 +1742,8 @@ fluent(sittingOn(agent,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:210
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',211).
 % fluent Standing(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',211).
 fluent(standing(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',211).
 ==> mpred_prop(standing(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',211).
 ==> meta_argtypes(standing(agent)).
 
 
@@ -1863,11 +1753,9 @@ fluent(standing(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:213
 % fluent Lying(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',213).
 fluent(lying(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',213).
 ==> mpred_prop(lying(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',213).
 ==> meta_argtypes(lying(agent)).
 
 
@@ -1878,11 +1766,8 @@ fluent(lying(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:215
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',216).
 % fluent Sitting(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',216).
 fluent(sitting(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',216).
 ==> mpred_prop(sitting(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',216).
 ==> meta_argtypes(sitting(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:216
@@ -1893,7 +1778,6 @@ fluent(sitting(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:217
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',218).
 % noninertial Sitting
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',218).
 ==> noninertial(sitting).
 %; At any time, an agent is either lying, sitting, or standing:
 
@@ -1909,7 +1793,6 @@ fluent(sitting(agent)).
 % HoldsAt(LyingOn(agent,physobj),time) ->
 % HoldsAt(Lying(agent),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:224
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',223).
 
  /*  holds_at(lyingOn(Agent, Physobj), Time) ->
        holds_at(lying(Agent), Time).
@@ -1919,7 +1802,6 @@ fluent(sitting(agent)).
  /*  holds_at(lying(Agent), Time) :-
        holds_at(lyingOn(Agent, Physobj), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',223).
 
  /*  [holds_at(lyingOn(Agent, Physobj), Time)] ->
        ta(Time,
@@ -1930,7 +1812,6 @@ fluent(sitting(agent)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',223).
 axiom(holds_at(lying(Agent), Time),
     [holds_at(lyingOn(Agent, Physobj), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',223).
 
  /*  not(holds_at(lyingOn(Agent, Physobj), Time)) :-
        not(holds_at(lying(Agent), Time)).
@@ -1962,7 +1843,6 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), Time),
  /*  holds_at(sitting(Agent), Time) :-
        holds_at(sittingOn(Agent, Physobj), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',228).
 
  /*  [holds_at(sittingOn(Agent, Physobj), Time)] ->
        ta(Time,
@@ -1973,7 +1853,6 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',228).
 axiom(holds_at(sitting(Agent), Time),
     [holds_at(sittingOn(Agent, Physobj), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',228).
 
  /*  not(holds_at(sittingOn(Agent, Physobj), Time)) :-
        not(holds_at(sitting(Agent), Time)).
@@ -2005,7 +1884,6 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), Time),
  /*  holds_at(lyingOn(Agent, Physobj1), Time), holds_at(lyingOn(Agent, Physobj2), Time) ->
        equals(Physobj1, Physobj2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',233).
 
  /*  not(holds_at(lyingOn(Agent, Physobj1), Time)) :-
        holds_at(lyingOn(Agent, Physobj2), Time),
@@ -2058,7 +1936,6 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj2)), Time),
  /*  holds_at(sittingOn(Agent, Physobj1), Time), holds_at(sittingOn(Agent, Physobj2), Time) ->
        equals(Physobj1, Physobj2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',239).
 
  /*  not(holds_at(sittingOn(Agent, Physobj1), Time)) :-
        holds_at(sittingOn(Agent, Physobj2), Time),
@@ -2294,9 +2171,7 @@ axiom(terminates(riseFrom(Agent, Physobj), lyingOn(Agent, Physobj), Time),
 % event GetDressed(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',310).
 event(getDressed(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',310).
 ==> mpred_prop(getDressed(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',310).
 ==> meta_argtypes(getDressed(agent)).
 
 
@@ -2307,11 +2182,8 @@ event(getDressed(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:312
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',313).
 % event GetUndressed(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',313).
 event(getUndressed(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',313).
 ==> mpred_prop(getUndressed(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',313).
 ==> meta_argtypes(getUndressed(agent)).
 
 
@@ -2321,11 +2193,8 @@ event(getUndressed(agent)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e:314
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',315).
 % fluent Dressed(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',315).
 fluent(dressed(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',315).
 ==> mpred_prop(dressed(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',315).
 ==> meta_argtypes(dressed(agent)).
 
 
@@ -2334,7 +2203,6 @@ fluent(dressed(agent)).
 %; Effect axioms deal with getting dressed and undressed:
 % [agent,time]
  % Initiates(GetDressed(agent),Dressed(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',317).
 
  /*  [] ->
        ta(Time,
@@ -2351,7 +2219,6 @@ axiom(initiates(getDressed(Agent), dressed(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',319).
 % [agent,time]
  % Terminates(GetUndressed(agent),Dressed(agent),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',319).
 
  /*  [] ->
        ta(Time,

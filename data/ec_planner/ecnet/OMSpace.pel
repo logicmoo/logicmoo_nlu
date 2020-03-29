@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:43 GMT
+% Sun, 29 Mar 2020 18:48:33 GMT
 % From ../ecnet/OMSpace.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Money.e',12).
 
@@ -48,7 +48,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',35).
 % sort height: integer
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',35).
 ==> subsort(height,integer).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:35
@@ -62,9 +61,7 @@
 % fluent Height(object,height)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
 fluent(height(object,height)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
 ==> mpred_prop(height(object,height),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',40).
 ==> meta_argtypes(height(object,height)).
 
 
@@ -83,7 +80,6 @@ fluent(height(object,height)).
  /*  holds_at(height(Object, Height1), Time), holds_at(height(Object, Height2), Time) ->
        equals(Height1, Height2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',45).
 
  /*  not(holds_at(height(Object, Height1), Time)) :-
        holds_at(height(Object, Height2), Time),
@@ -130,7 +126,6 @@ axiom(holds_at(neg(height(Object, Height2)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 % {height}% HoldsAt(Height(object,height),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
  /*  exists([Height],
     holds_at(height(Object,Height),Time)).
@@ -138,11 +133,10 @@ axiom(holds_at(neg(height(Object, Height2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
  /*  holds_at(height(Object, Height), Time) :-
-       some(Height, '$kolem_Fn_272'(Object, Time)).
+       some(Height, '$kolem_Fn_186'(Object, Time)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
- /*  [some(Height, '$kolem_Fn_272'(Object, Time))] ->
+ /*  [some(Height, '$kolem_Fn_186'(Object, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -150,7 +144,7 @@ axiom(holds_at(neg(height(Object, Height2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 axiom(holds_at(height(Object, Height), Time),
-    [some(Height, '$kolem_Fn_272'(Object, Time))]).
+    [some(Height, '$kolem_Fn_186'(Object, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:53
@@ -161,9 +155,7 @@ axiom(holds_at(height(Object, Height), Time),
 % fluent FallingFromTo(physobj,physobj,physobj)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 fluent(fallingFromTo(physobj,physobj,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 ==> mpred_prop(fallingFromTo(physobj,physobj,physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',56).
 ==> meta_argtypes(fallingFromTo(physobj,physobj,physobj)).
 
 
@@ -174,11 +166,8 @@ fluent(fallingFromTo(physobj,physobj,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:58
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 % event StartFallingFromTo(physobj,physobj,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 event(startFallingFromTo(physobj,physobj,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 ==> mpred_prop(startFallingFromTo(physobj,physobj,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',59).
 ==> meta_argtypes(startFallingFromTo(physobj,physobj,physobj)).
 
 
@@ -188,11 +177,8 @@ event(startFallingFromTo(physobj,physobj,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 % event CollideWith(physobj,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 event(collideWith(physobj,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 ==> mpred_prop(collideWith(physobj,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',61).
 ==> meta_argtypes(collideWith(physobj,physobj)).
 
 
@@ -244,7 +230,6 @@ axiom(initiates(startFallingFromTo(Physobj1, Physobj2, Physobj3), fallingFromTo(
  /*  happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time), holds_at(height(Physobj1, Height1), Time), holds_at(height(Physobj2, Height2), Time) ->
        equals(Height1, Height2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',78).
 
  /*  not(happens(startFallingFromTo(Physobj1, Physobj2, Physobj3), Time)) :-
        ( holds_at(height(Physobj1, Height1), Time),
@@ -348,7 +333,7 @@ axiom(holds_at(neg(height(Physobj2, Height2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
 
- /*  [(not(diff(Physobj1, Physobj2));not(diff(Physobj1, Physobj3));not(diff(Physobj2, Physobj3)))] ->
+ /*  [(equals(Physobj1, Physobj2);equals(Physobj1, Physobj3);equals(Physobj2, Physobj3))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -360,7 +345,7 @@ axiom(holds_at(neg(height(Physobj2, Height2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',87).
 axiom(holds_at(neg(fallingFromTo(Physobj1, Physobj2, Physobj3)), Time),
    
-    [  (not(diff(Physobj1, Physobj2));not(diff(Physobj1, Physobj3));not(diff(Physobj2, Physobj3)))
+    [  (equals(Physobj1, Physobj2);equals(Physobj1, Physobj3);equals(Physobj2, Physobj3))
     ]).
 
 
@@ -369,8 +354,17 @@ axiom(holds_at(neg(fallingFromTo(Physobj1, Physobj2, Physobj3)), Time),
 % [sky,physobj1,physobj2,time]
 % !HoldsAt(FallingFromTo(sky,physobj1,physobj2),time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:94
-holds_at(neg(fallingFromTo(Sky,Physobj1,Physobj2)),
-	 Time).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(fallingFromTo(Sky, Physobj1, Physobj2)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',94).
+axiom(holds_at(neg(fallingFromTo(Sky, Physobj1, Physobj2)), Time),
+    []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:96
@@ -501,7 +495,6 @@ axiom(holds_at(neg(height(Physobj1, Height1)), Time),
  /*  holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3), Time), holds_at(height(Physobj1, Height), Time), holds_at(height(Physobj3, Height), Time) ->
        happens(collideWith(Physobj1, Physobj3), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',130).
 
  /*  happens(collideWith(Physobj1, Physobj3), Time) :-
        holds_at(fallingFromTo(Physobj1, Physobj2, Physobj3),
@@ -711,9 +704,7 @@ axiom(terminates(collideWith(Physobj1, Physobj3), fallingFromTo(Physobj1, Physob
 % fluent FlyingFromTo(agent,physobj,physobj)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 fluent(flyingFromTo(agent,physobj,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 ==> mpred_prop(flyingFromTo(agent,physobj,physobj),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',184).
 ==> meta_argtypes(flyingFromTo(agent,physobj,physobj)).
 
 
@@ -724,11 +715,8 @@ fluent(flyingFromTo(agent,physobj,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:186
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 % event StartFlyingFromTo(agent,physobj,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 event(startFlyingFromTo(agent,physobj,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 ==> mpred_prop(startFlyingFromTo(agent,physobj,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',187).
 ==> meta_argtypes(startFlyingFromTo(agent,physobj,physobj)).
 
 
@@ -738,11 +726,8 @@ event(startFlyingFromTo(agent,physobj,physobj)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:188
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 % event Reach(agent,physobj)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 event(reach(agent,physobj)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 ==> mpred_prop(reach(agent,physobj),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',189).
 ==> meta_argtypes(reach(agent,physobj)).
 
 
@@ -791,7 +776,6 @@ axiom(initiates(startFlyingFromTo(Agent, Physobj1, Physobj2), flyingFromTo(Agent
  /*  happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time), holds_at(height(Agent, Height1), Time), holds_at(height(Physobj1, Height2), Time) ->
        equals(Height1, Height2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',205).
 
  /*  not(happens(startFlyingFromTo(Agent, Physobj1, Physobj2), Time)) :-
        ( holds_at(height(Agent, Height1), Time),
@@ -879,14 +863,13 @@ axiom(holds_at(neg(height(Physobj1, Height2)), Time),
  /*  holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time) ->
        diff(Physobj1, Physobj2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
 
  /*  not(holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time)) :-
        not(diff(Physobj1, Physobj2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
 
- /*  [not(diff(Physobj1, Physobj2))] ->
+ /*  [equals(Physobj1, Physobj2)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -895,7 +878,7 @@ axiom(holds_at(neg(height(Physobj1, Height2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',213).
 axiom(holds_at(neg(flyingFromTo(Agent, Physobj1, Physobj2)), Time),
-    [not(diff(Physobj1, Physobj2))]).
+    [equals(Physobj1, Physobj2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:216
@@ -1020,7 +1003,6 @@ axiom(holds_at(neg(height(Agent, Height1)), Time),
  /*  holds_at(flyingFromTo(Agent, Physobj1, Physobj2), Time), holds_at(height(Agent, Height), Time), holds_at(height(Physobj2, Height), Time) ->
        happens(reach(Agent, Physobj2), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',248).
 
  /*  happens(reach(Agent, Physobj2), Time) :-
        holds_at(flyingFromTo(Agent, Physobj1, Physobj2),
@@ -1216,7 +1198,7 @@ axiom(releases(hold(Agent, Physobj), height(Physobj, Height), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:295
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',293).
 
- /*  [not(partOf(Physobj, Object)), holds_at(height(Physobj, Height), Time)] ->
+ /*  [holds_at(neg(partOf(Physobj, Object)), Time), holds_at(height(Physobj, Height), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1227,7 +1209,7 @@ axiom(releases(hold(Agent, Physobj), height(Physobj, Height), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',293).
 axiom(initiates(letGoOf(Agent, Physobj), height(Physobj, Height), Time),
    
-    [ not(partOf(Physobj, Object)),
+    [ holds_at(neg(partOf(Physobj, Object)), Time),
       holds_at(height(Physobj, Height), Time)
     ]).
 
@@ -1248,7 +1230,6 @@ axiom(initiates(letGoOf(Agent, Physobj), height(Physobj, Height), Time),
  /*  holds_at(holding(Agent, Physobj), Time), holds_at(height(Agent, Height), Time) ->
        holds_at(height(Physobj, Height), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',302).
 
  /*  holds_at(height(Physobj, Height), Time) :-
        holds_at(holding(Agent, Physobj), Time),
@@ -1326,7 +1307,6 @@ axiom(holds_at(neg(height(Agent, Height)), Time),
  /*  partOf(Physobj, Object), holds_at(height(Object, Height), Time) ->
        holds_at(height(Physobj, Height), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 
  /*  holds_at(height(Physobj, Height), Time) :-
        partOf(Physobj, Object),
@@ -1334,7 +1314,7 @@ axiom(holds_at(neg(height(Agent, Height)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 
- /*  [partOf(Physobj, Object), holds_at(height(Object, Height), Time)] ->
+ /*  [holds_at(partOf(Physobj, Object), Time), holds_at(height(Object, Height), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1343,7 +1323,7 @@ axiom(holds_at(neg(height(Agent, Height)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 axiom(holds_at(height(Physobj, Height), Time),
    
-    [ partOf(Physobj, Object),
+    [ holds_at(partOf(Physobj, Object), Time),
       holds_at(height(Object, Height), Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
@@ -1354,14 +1334,23 @@ axiom(holds_at(height(Physobj, Height), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 
+ /*  fix_axiom_head(Time) ->
+       
+       [ not(partOf(Physobj, Object)),
+          (->),
+         holds_at(neg(partOf(Physobj, Object)), Time)
+       ].
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
+
  /*  [holds_at(height(Object, Height), Time), holds_at(neg(height(Physobj, Height)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          not(partOf(Physobj, Object))).
+          holds_at(neg(partOf(Physobj, Object)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
-axiom(not(partOf(Physobj, Object)),
+axiom(holds_at(neg(partOf(Physobj, Object)), Time),
    
     [ holds_at(height(Object, Height), Time),
       holds_at(neg(height(Physobj, Height)), Time)
@@ -1374,7 +1363,7 @@ axiom(not(partOf(Physobj, Object)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 
- /*  [partOf(Physobj, Object), holds_at(neg(height(Physobj, Height)), Time)] ->
+ /*  [holds_at(partOf(Physobj, Object), Time), holds_at(neg(height(Physobj, Height)), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1383,7 +1372,7 @@ axiom(not(partOf(Physobj, Object)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',311).
 axiom(holds_at(neg(height(Object, Height)), Time),
    
-    [ partOf(Physobj, Object),
+    [ holds_at(partOf(Physobj, Object), Time),
       holds_at(neg(height(Physobj, Height)), Time)
     ]).
 

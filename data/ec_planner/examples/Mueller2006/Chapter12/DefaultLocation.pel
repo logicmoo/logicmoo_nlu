@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:41 GMT
+% Sun, 29 Mar 2020 18:46:33 GMT
 % From ../examples/Mueller2006/Chapter12/DefaultLocation.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultEvent.e',96).
 
@@ -29,26 +29,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',20).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',23).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',23).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:23
@@ -59,7 +53,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',25).
 % sort device: object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',25).
 ==> subsort(device,object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:25
@@ -70,13 +63,11 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',27).
 % sort room
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',27).
 ==> sort(room).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',29).
 % agent Nathan
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',29).
 ==> t(agent,nathan).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:29
@@ -87,85 +78,63 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',31).
 % room LivingRoom, Kitchen
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',31).
 ==> t(room,livingRoom).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',31).
 ==> t(room,kitchen).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 % event TurnOn(agent,device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 event(turnOn(agent,device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 ==> mpred_prop(turnOn(agent,device),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 ==> meta_argtypes(turnOn(agent,device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:33
 % event Walk(agent,room,room)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 event(walk(agent,room,room)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 ==> mpred_prop(walk(agent,room,room),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',33).
 ==> meta_argtypes(walk(agent,room,room)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 % fluent InRoom(object,room)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 fluent(inRoom(object,room)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 ==> mpred_prop(inRoom(object,room),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 ==> meta_argtypes(inRoom(object,room)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:36
 % fluent On(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 fluent(on(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 ==> mpred_prop(on(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',36).
 ==> meta_argtypes(on(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 % fluent PluggedIn(device)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 fluent(pluggedIn(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 ==> mpred_prop(pluggedIn(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 ==> meta_argtypes(pluggedIn(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:38
 % fluent BrokenSwitch(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 fluent(brokenSwitch(device)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 ==> mpred_prop(brokenSwitch(device),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',38).
 ==> meta_argtypes(brokenSwitch(device)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:40
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 % predicate Ab1(device,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 predicate(ab1(device,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 ==> mpred_prop(ab1(device,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 ==> meta_argtypes(ab1(device,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:41
 % predicate Ab2(room,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 predicate(ab2(room,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 ==> mpred_prop(ab2(room,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',41).
 ==> meta_argtypes(ab2(room,time)).
 
 
@@ -249,7 +218,7 @@ axiom(initiates(turnOn(Agent, Device), on(Device), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
 
- /*  [(not(diff(Room1, Room2));holds_at(neg(inRoom(Agent, Room1)), Time))] ->
+ /*  [(equals(Room1, Room2);holds_at(neg(inRoom(Agent, Room1)), Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -258,9 +227,8 @@ axiom(initiates(turnOn(Agent, Device), on(Device), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
 axiom(not(happens(walk(Agent, Room1, Room2), Time)),
    
-    [  (not(diff(Room1, Room2));holds_at(neg(inRoom(Agent, Room1)), Time))
+    [  (equals(Room1, Room2);holds_at(neg(inRoom(Agent, Room1)), Time))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
 
  /*  holds_at(inRoom(Agent, Room1), Time) :-
        happens(walk(Agent, Room1, Room2), Time).
@@ -276,17 +244,15 @@ axiom(not(happens(walk(Agent, Room1, Room2), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
 axiom(requires(walk(Agent, Room1, Room2), Time),
     [holds_at(metreqs(walk(Agent, Room1, Room2)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
 
  /*  [holds_at(inRoom(Agent, Room1), Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(walk(Agent, Room1, Room2)),
-                   Time)).
+          holds_at(metreqs(walk(Agent, Room1, Room2)), Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',59).
-axiom(holds_at(requirements(walk(Agent, Room1, Room2)), Time),
+axiom(holds_at(metreqs(walk(Agent, Room1, Room2)), Time),
     [holds_at(inRoom(Agent, Room1), Time)]).
 
 
@@ -309,11 +275,11 @@ axiom(holds_at(requirements(walk(Agent, Room1, Room2)), Time),
        (   not(holds_at(inRoom(Agent, Room), Time))
        ;   not(holds_at(inRoom(Device, Room), Time))
        ),
-       some(Room, '$kolem_Fn_154'(Agent, Device, Time)).
+       some(Room, '$kolem_Fn_12'(Agent, Device, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',65).
 
- /*  [(holds_at(neg(inRoom(Agent, Room)), Time);holds_at(neg(inRoom(Device, Room)), Time)), some(Room, '$kolem_Fn_154'(Agent, Device, Time))] ->
+ /*  [(holds_at(neg(inRoom(Agent, Room)), Time);holds_at(neg(inRoom(Device, Room)), Time)), some(Room, '$kolem_Fn_12'(Agent, Device, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -323,17 +289,17 @@ axiom(holds_at(requirements(walk(Agent, Room1, Room2)), Time),
 axiom(not(happens(turnOn(Agent, Device), Time)),
    
     [  (holds_at(neg(inRoom(Agent, Room)), Time);holds_at(neg(inRoom(Device, Room)), Time)),
-      some(Room, '$kolem_Fn_154'(Agent, Device, Time))
+      some(Room, '$kolem_Fn_12'(Agent, Device, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',65).
 
  /*  holds_at(inRoom(Agent, Room), Time) :-
        happens(turnOn(Agent, Device), Time),
-       some(Room, '$kolem_Fn_154'(Agent, Device, Time)).
+       some(Room, '$kolem_Fn_12'(Agent, Device, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',65).
 
- /*  [happens(turnOn(Agent, Device), Time), some(Room, '$kolem_Fn_154'(Agent, Device, Time))] ->
+ /*  [happens(turnOn(Agent, Device), Time), some(Room, '$kolem_Fn_12'(Agent, Device, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -343,17 +309,17 @@ axiom(not(happens(turnOn(Agent, Device), Time)),
 axiom(holds_at(inRoom(Agent, Room), Time),
    
     [ happens(turnOn(Agent, Device), Time),
-      some(Room, '$kolem_Fn_154'(Agent, Device, Time))
+      some(Room, '$kolem_Fn_12'(Agent, Device, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',65).
 
  /*  holds_at(inRoom(Device, Room), Time) :-
        happens(turnOn(Agent, Device), Time),
-       some(Room, '$kolem_Fn_154'(Agent, Device, Time)).
+       some(Room, '$kolem_Fn_12'(Agent, Device, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',65).
 
- /*  [happens(turnOn(Agent, Device), Time), some(Room, '$kolem_Fn_154'(Agent, Device, Time))] ->
+ /*  [happens(turnOn(Agent, Device), Time), some(Room, '$kolem_Fn_12'(Agent, Device, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -363,7 +329,7 @@ axiom(holds_at(inRoom(Agent, Room), Time),
 axiom(holds_at(inRoom(Device, Room), Time),
    
     [ happens(turnOn(Agent, Device), Time),
-      some(Room, '$kolem_Fn_154'(Agent, Device, Time))
+      some(Room, '$kolem_Fn_12'(Agent, Device, Time))
     ]).
 
 
@@ -378,7 +344,6 @@ axiom(holds_at(inRoom(Device, Room), Time),
  /*  happens(Event1, Time), happens(Event2, Time) ->
        equals(Event1, Event2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',70).
 
  /*  not(happens(Event1, Time)) :-
        happens(Event2, Time),
@@ -395,7 +360,6 @@ axiom(holds_at(inRoom(Device, Room), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',70).
 axiom(not(happens(Event1, Time)),
     [happens(Event2, Time), not(equals(Event1, Event2))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',70).
 
  /*  not(happens(Event2, Time)) :-
        happens(Event1, Time),
@@ -420,8 +384,21 @@ axiom(not(happens(Event2, Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:75
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 % Theta: 
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
-next_axiom_uses(theta).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -429,7 +406,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 % [device,time]
  % HoldsAt(BrokenSwitch(device),time) -> Ab1(device,time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 
  /*  holds_at(brokenSwitch(Device), Time) ->
        ab1(Device, Time).
@@ -439,7 +415,6 @@ next_axiom_uses(theta).
  /*  ab1(Device, Time) :-
        holds_at(brokenSwitch(Device), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 
  /*  [holds_at(brokenSwitch(Device), Time)] ->
        ta(Time,
@@ -450,7 +425,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 axiom(ab1(Device, Time),
     [holds_at(brokenSwitch(Device), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 
  /*  not(holds_at(brokenSwitch(Device), Time)) :-
        not(ab1(Device, Time)).
@@ -470,7 +444,20 @@ axiom(holds_at(neg(brokenSwitch(Device)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:76
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
-next_axiom_uses(theta).
+
+ /*  fix_axiom_head(Time) ->
+       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
+ */
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(next_axiom_uses(theta), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
+axiom(holds_at(next_axiom_uses(theta), Time),
+    []).
  
 
 
@@ -482,7 +469,6 @@ next_axiom_uses(theta).
  /*  holds_at(neg(pluggedIn(Device)), Time) ->
        ab1(Device, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 
  /*  ab1(Device, Time) :-
        holds_at(neg(pluggedIn(Device)), Time).
@@ -498,7 +484,6 @@ next_axiom_uses(theta).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 axiom(ab1(Device, Time),
     [holds_at(neg(pluggedIn(Device)), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',76).
 
  /*  not(holds_at(neg(pluggedIn(Device)), Time)) :-
        not(ab1(Device, Time)).
@@ -529,7 +514,6 @@ axiom(holds_at(pluggedIn(Device), Time),
  /*  holds_at(inRoom(Object, Room1), Time), holds_at(inRoom(Object, Room2), Time) ->
        equals(Room1, Room2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',81).
 
  /*  not(holds_at(inRoom(Object, Room1), Time)) :-
        holds_at(inRoom(Object, Room2), Time),
@@ -579,10 +563,9 @@ axiom(holds_at(neg(inRoom(Object, Room2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',88).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(on(Tv)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(on(Tv)), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',88).
-axiom(initially(neg(on(Tv))),
+axiom(holds_at(neg(on(Tv)), start),
     []).
 
 
@@ -592,10 +575,13 @@ axiom(initially(neg(on(Tv))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',88).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(brokenSwitch(Tv)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(brokenSwitch(Tv)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',88).
-axiom(initially(neg(brokenSwitch(Tv))),
+axiom(holds_at(neg(brokenSwitch(Tv)), start),
     []).
 
 
@@ -603,26 +589,30 @@ axiom(initially(neg(brokenSwitch(Tv))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',90).
 % [tv]
  % HoldsAt(PluggedIn(tv),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',90).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(pluggedIn(Tv))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(pluggedIn(Tv), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',90).
-axiom(initially(pluggedIn(Tv)),
+axiom(holds_at(pluggedIn(Tv), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:91
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',92).
 % HoldsAt(InRoom(Nathan,Kitchen),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',92).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(inRoom(nathan, kitchen))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(inRoom(nathan, kitchen), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',92).
-axiom(initially(inRoom(nathan, kitchen)),
+axiom(holds_at(inRoom(nathan, kitchen), start),
     []).
 
 
@@ -631,7 +621,6 @@ axiom(initially(inRoom(nathan, kitchen)),
 % [time]
 % !Ab2(LivingRoom,time) ->
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:95
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',94).
 % {tv}%  HoldsAt(InRoom(tv,LivingRoom),time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',96).
 
@@ -643,11 +632,11 @@ axiom(initially(inRoom(nathan, kitchen)),
 
  /*  holds_at(inRoom(Tv, livingRoom), Time) :-
        not(ab2(livingRoom, Time)),
-       some(Tv, '$kolem_Fn_155'(Time)).
+       some(Tv, '$kolem_Fn_13'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',96).
 
- /*  [not(ab2(livingRoom, Time)), some(Tv, '$kolem_Fn_155'(Time))] ->
+ /*  [not(ab2(livingRoom, Time)), some(Tv, '$kolem_Fn_13'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -655,16 +644,15 @@ axiom(initially(inRoom(nathan, kitchen)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',96).
 axiom(holds_at(inRoom(Tv, livingRoom), Time),
-    [not(ab2(livingRoom, Time)), some(Tv, '$kolem_Fn_155'(Time))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',96).
+    [not(ab2(livingRoom, Time)), some(Tv, '$kolem_Fn_13'(Time))]).
 
  /*  ab2(livingRoom, Time) :-
        not(holds_at(inRoom(Tv, livingRoom), Time)),
-       some(Tv, '$kolem_Fn_155'(Time)).
+       some(Tv, '$kolem_Fn_13'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',96).
 
- /*  [holds_at(neg(inRoom(Tv, livingRoom)), Time), some(Tv, '$kolem_Fn_155'(Time))] ->
+ /*  [holds_at(neg(inRoom(Tv, livingRoom)), Time), some(Tv, '$kolem_Fn_13'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -674,7 +662,7 @@ axiom(holds_at(inRoom(Tv, livingRoom), Time),
 axiom(ab2(livingRoom, Time),
    
     [ holds_at(neg(inRoom(Tv, livingRoom)), Time),
-      some(Tv, '$kolem_Fn_155'(Time))
+      some(Tv, '$kolem_Fn_13'(Time))
     ]).
 
 
@@ -687,26 +675,27 @@ axiom(ab2(livingRoom, Time),
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:99
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',100).
 % Happens(TurnOn(Nathan,tv),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',100).
 
  /*  exists([Tv],
-    happens(turnOn(nathan,Tv),1)).
+    happens(turnOn(nathan,Tv),start+1)).
+ */
+
+ /*  happens(turnOn(nathan, Tv), start+1) :-
+       some(Tv, '$kolem_Fn_14').
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',100).
 
- /*  happens(turnOn(nathan, Tv), 1) :-
-       some(Tv, '$kolem_Fn_156').
+ /*  [some(Tv, '$kolem_Fn_14'), b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Maptime, start],
+          happens(turnOn(nathan, Tv), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',100).
-
- /*  [some(Tv, '$kolem_Fn_156'), b(t, now), ignore(t+1==now)] ->
-       ta(1, tvs1=[1], tvs2=[now, t], happens(turnOn(nathan, Tv), now)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',100).
-axiom(happens(turnOn(nathan, Tv), now),
-    [some(Tv, '$kolem_Fn_156'), b(t, now)]).
+axiom(happens(turnOn(nathan, Tv), Maptime),
+    [some(Tv, '$kolem_Fn_14'), b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:101
@@ -718,22 +707,18 @@ axiom(happens(turnOn(nathan, Tv), now),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:105
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',106).
 % completion Theta Ab1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',106).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',106).
 ==> completion(ab1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:106
 % completion Theta Ab2
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',106).
 ==> completion(theta).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',106).
 ==> completion(ab2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:108
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',109).
 % range time 0 2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',109).
 ==> range(time,0,2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e:109

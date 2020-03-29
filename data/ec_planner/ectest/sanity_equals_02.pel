@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:29:13 GMT
+% Sun, 29 Mar 2020 18:51:44 GMT
 % From ../ectest/sanity_equals_02.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_01.e',39).
 
@@ -11,11 +11,8 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_02.e:1
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_02.e',2).
 % predicate Neighbor(position,position)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_02.e',2).
 predicate(neighbor(position,position)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_02.e',2).
 ==> mpred_prop(neighbor(position,position),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/sanity_equals_02.e',2).
 ==> meta_argtypes(neighbor(position,position)).
 
 

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:27:16 GMT
+% Sun, 29 Mar 2020 18:49:14 GMT
 % From ../ecnet/Vision.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',371).
 
@@ -25,9 +25,7 @@
 % event LookAt(agent,object)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 event(lookAt(agent,object)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 ==> mpred_prop(lookAt(agent,object),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',15).
 ==> meta_argtypes(lookAt(agent,object)).
 
 
@@ -37,11 +35,9 @@ event(lookAt(agent,object)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e:18
 % fluent See(agent,object)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 fluent(see(agent,object)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 ==> mpred_prop(see(agent,object),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',18).
 ==> meta_argtypes(see(agent,object)).
 
 

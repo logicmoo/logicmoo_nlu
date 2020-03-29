@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:26:14 GMT
+% Sun, 29 Mar 2020 18:47:13 GMT
 % From ../examples/GiunchigliaEtAl2004/MonkeyPlanning.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',107).
 
@@ -31,43 +31,34 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:23
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',23).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',25).
 % load examples/GiunchigliaEtAl2004/MonkeyBananas.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',25).
 :- load_e('examples/GiunchigliaEtAl2004/MonkeyBananas.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',25).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',25).
+:- if(is_e_toplevel).
 :- endif.
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',27).
 % HoldsAt(At(Monkey,L1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',27).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(monkey, l1))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(monkey, l1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',27).
-axiom(initially(at(monkey, l1)),
+axiom(holds_at(at(monkey, l1), start),
     []).
 
 
@@ -76,30 +67,37 @@ axiom(initially(at(monkey, l1)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',27).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(bananas, l2))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(bananas, l2), start)).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',27).
-axiom(initially(at(bananas, l2)),
+axiom(holds_at(at(bananas, l2), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',29).
 % HoldsAt(At(Box,L3),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',29).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(at(box, l3))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(box, l3), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',29).
-axiom(initially(at(box, l3)),
+axiom(holds_at(at(box, l3), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:29
 % HoldsAt(HasBananas(),4).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',29).
-holds_at(hasBananas,4).
+
+ /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(start+4,
+          tvs1=[start+4],
+          tvs2=[Start4, start],
+          holds_at(hasBananas, Start4)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',29).
+axiom(holds_at(hasBananas, Start4),
+    [b(start, Start4), toffset(start, 4, Start4)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:31
@@ -118,7 +116,6 @@ holds_at(hasBananas,4).
  /*  happens(Event1, Time), happens(Event2, Time) ->
        equals(Event1, Event2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',37).
 
  /*  not(happens(Event1, Time)) :-
        happens(Event2, Time),
@@ -135,7 +132,6 @@ holds_at(hasBananas,4).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',37).
 axiom(not(happens(Event1, Time)),
     [happens(Event2, Time), not(equals(Event1, Event2))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',37).
 
  /*  not(happens(Event2, Time)) :-
        happens(Event1, Time),
@@ -161,6 +157,5 @@ axiom(not(happens(Event2, Time)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',42).
 % range offset 0 0
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',42).
 ==> range(offset,0,0).
 %; End of file.

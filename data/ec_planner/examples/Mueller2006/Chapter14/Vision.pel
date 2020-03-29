@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:47 GMT
+% Sun, 29 Mar 2020 18:46:39 GMT
 % From ../examples/Mueller2006/Chapter14/Vision.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/NetBill3.e',185).
 
@@ -40,36 +40,27 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',31).
 % option modeldiff on
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',31).
 :- set_ec_option(modeldiff, on).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:33
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',33).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',36).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',36).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:36
@@ -80,68 +71,52 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',38).
 % sort aspect
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',38).
 ==> sort(aspect).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',40).
 % object Object1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',40).
 ==> t(object,object1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:40
 % aspect Aspect1, Aspect2, Aspect3
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',40).
 ==> t(aspect,aspect1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',40).
 ==> t(aspect,aspect2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',40).
 ==> t(aspect,aspect3).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',42).
 % shape Shape1, Shape2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',42).
 ==> t(shape,shape1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',42).
 ==> t(shape,shape2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:43
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 % predicate Shape(object,shape)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 predicate(shape(object,shape)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 ==> mpred_prop(shape(object,shape),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 ==> meta_argtypes(shape(object,shape)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:44
 % predicate Arc(shape,aspect,aspect)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 predicate(arc(shape,aspect,aspect)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 ==> mpred_prop(arc(shape,aspect,aspect),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',44).
 ==> meta_argtypes(arc(shape,aspect,aspect)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:45
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 % fluent Aspect(object,aspect)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 fluent(aspect(object,aspect)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 ==> mpred_prop(aspect(object,aspect),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 ==> meta_argtypes(aspect(object,aspect)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:46
 % event Change(object,aspect,aspect)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 event(change(object,aspect,aspect)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 ==> mpred_prop(change(object,aspect,aspect),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',46).
 ==> meta_argtypes(change(object,aspect,aspect)).
 
 
@@ -213,7 +188,6 @@ axiom(terminates(change(Object, Aspect1, Aspect2), aspect(Object, Aspect1), Time
  /*  happens(change(Object, Aspect1, Aspect2), Time) ->
        holds_at(aspect(Object, Aspect1), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',67).
 
  /*  holds_at(aspect(Object, Aspect1), Time) :-
        happens(change(Object, Aspect1, Aspect2), Time).
@@ -238,13 +212,12 @@ axiom(requires(change(Object, Aspect1, Aspect2), Time),
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
-          holds_at(requirements(change(Object, Aspect1, Aspect2)),
+          holds_at(metreqs(change(Object, Aspect1, Aspect2)),
                    Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',67).
-axiom(holds_at(requirements(change(Object, Aspect1, Aspect2)), Time),
+axiom(holds_at(metreqs(change(Object, Aspect1, Aspect2)), Time),
     [holds_at(aspect(Object, Aspect1), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',67).
 
  /*  not(happens(change(Object, Aspect1, Aspect2), Time)) :-
        not(holds_at(aspect(Object, Aspect1), Time)).
@@ -274,7 +247,6 @@ axiom(not(happens(change(Object, Aspect1, Aspect2), Time)),
  /*  happens(change(Object, Aspect1, Aspect2), Time), happens(change(Object, Aspect1, Aspect3), Time) ->
        equals(Aspect2, Aspect3).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',72).
 
  /*  not(happens(change(Object, Aspect1, Aspect2), Time)) :-
        happens(change(Object, Aspect1, Aspect3), Time),
@@ -331,7 +303,6 @@ axiom(not(happens(change(Object, Aspect1, Aspect3), Time)),
  /*  shape(Object, Shape1), shape(Object, Shape2) ->
        equals(Shape1, Shape2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',78).
 
  /*  not(shape(Object, Shape1)) :-
        shape(Object, Shape2),
@@ -342,7 +313,6 @@ axiom(not(happens(change(Object, Aspect1, Aspect3), Time)),
  /*  [shape(Object, Shape2), not(equals(Shape1, Shape2))] ->
        ta(Ta_Param, tvs1=[], tvs2=[], not(shape(Object, Shape1))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',78).
 axiom(not(shape(Object, Shape1)),
     [shape(Object, Shape2), not(equals(Shape1, Shape2))]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',78).
@@ -356,7 +326,6 @@ axiom(not(shape(Object, Shape1)),
  /*  [shape(Object, Shape1), not(equals(Shape1, Shape2))] ->
        ta(Ta_Param4, tvs1=[], tvs2=[], not(shape(Object, Shape2))).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',78).
 axiom(not(shape(Object, Shape2)),
     [shape(Object, Shape1), not(equals(Shape2, Shape1))]).
 
@@ -372,7 +341,6 @@ axiom(not(shape(Object, Shape2)),
  /*  holds_at(aspect(Object, Aspect1), Time), holds_at(aspect(Object, Aspect2), Time) ->
        equals(Aspect1, Aspect2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',84).
 
  /*  not(holds_at(aspect(Object, Aspect1), Time)) :-
        holds_at(aspect(Object, Aspect2), Time),
@@ -429,7 +397,6 @@ axiom(holds_at(neg(aspect(Object, Aspect2)), Time),
  /*  [arc, shape1] <->
        [equals, aspect1, equals, aspect2].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',89).
 
  /*  arc(shape1, Aspect1, Aspect2) ->
        equals(Aspect1, aspect1),
@@ -453,7 +420,6 @@ axiom(holds_at(neg(aspect(Object, Aspect2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',89).
 axiom(not(arc(shape1, Aspect1, Aspect2)),
     [(not(equals(Aspect1, aspect1));not(equals(Aspect2, aspect2)))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',89).
 
  /*  equals(Aspect1, aspect1), equals(Aspect2, aspect2) ->
        arc(shape1, Aspect1, Aspect2).
@@ -497,7 +463,6 @@ axiom(arc(shape1, Aspect1, Aspect2),
  /*  [arc, shape2] <->
        [;, equals, aspect1, equals, aspect3, equals, aspect3, equals, aspect2].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',93).
 
  /*  arc(shape2, Aspect1, Aspect2) ->
        (   equals(Aspect1, aspect1),
@@ -535,7 +500,6 @@ axiom(not(arc(shape2, Aspect1, Aspect2)),
  /*  equals(Aspect1, aspect1), equals(Aspect2, aspect3);equals(Aspect1, aspect3), equals(Aspect2, aspect2) ->
        arc(shape2, Aspect1, Aspect2).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',93).
 
  /*  arc(shape2, Aspect1, Aspect2) :-
        (   equals(Aspect1, aspect1),
@@ -566,20 +530,31 @@ axiom(arc(shape2, Aspect1, Aspect2),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:98
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
 % HoldsAt(Aspect(Object1,Aspect1),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(aspect(object1, aspect1))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(aspect(object1, aspect1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
-axiom(initially(aspect(object1, aspect1)),
+axiom(holds_at(aspect(object1, aspect1), start),
     []).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:99
 % HoldsAt(Aspect(Object1,Aspect2),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
-holds_at(aspect(object1,aspect2),1).
+
+ /*  [b(start, Time), ignore(start+1==Time)] ->
+       ta(start+1,
+          tvs1=[start+1],
+          tvs2=[Time, start],
+          holds_at(aspect(object1, aspect2), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
+axiom(holds_at(aspect(object1, aspect2), Time),
+    [b(start, Time)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:101
@@ -588,7 +563,6 @@ holds_at(aspect(object1,aspect2),1).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:103
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',104).
 % range time 0 1
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',104).
 ==> range(time,0,1).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e:104

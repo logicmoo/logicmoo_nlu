@@ -32,6 +32,7 @@
 
 % :- module(nfsdl,[nnf/2, pnf/2, cf/2]).
 
+:- module(ec_nnf,[]).
 
 
 /*
@@ -118,6 +119,7 @@ correct_holds(neg, not(initially(NegP)),initially((P))):- compound(NegP),NegP=ne
 correct_holds(neg, not(initially(P)),initially(neg(P))):-!.
 correct_holds(neg, not(holds_at(NegP,T)),holds_at((P),T)):- compound(NegP),NegP=neg(P).
 correct_holds(neg, not(holds_at(P,T)),holds_at(neg(P),T)).
+correct_holds(neg, not(diff(P,T)),equals(P,T)).
 correct_holds(neg, holds_at(not(P),T),holds_at(neg(P),T)).
 correct_holds(inward,  not(holds_at(P,T)),holds_at(not(P),T)).
 correct_holds(outward2, holds_at(neg(P),T),not(holds_at(P,T))).

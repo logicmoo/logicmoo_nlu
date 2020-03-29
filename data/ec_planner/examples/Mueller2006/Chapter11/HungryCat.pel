@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Mon, 23 Mar 2020 02:25:37 GMT
+% Sun, 29 Mar 2020 18:46:30 GMT
 % From ../examples/Mueller2006/Chapter11/HungryCat.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',115).
 
@@ -40,26 +40,20 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
 % load foundations/Root.e
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
 :- load_e('foundations/Root.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:31
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
 :- load_e('foundations/EC.e', changed).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
-:- if(false).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',31).
+:- if(is_e_toplevel).
 :- endif.
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',34).
 % sort object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',34).
 ==> sort(object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:34
@@ -70,7 +64,6 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:35
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',36).
 % sort food: object
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',36).
 ==> subsort(food,object).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:36
@@ -81,215 +74,218 @@
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',38).
 % sort plan
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',38).
 ==> sort(plan).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',40).
 % reified sort belief
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',40).
 reified_sort(belief).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',40).
 ==> mpred_prop(belief,reified_sort).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 % agent Cat
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 ==> t(agent,cat).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:42
 % surface Floor, Chair, Shelf, Table
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 ==> t(surface,floor).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 ==> t(surface,chair).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 ==> t(surface,shelf).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',42).
 ==> t(surface,table).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:43
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 % food Food1, Food2
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(food,food1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(food,food2).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:44
 % plan P1, P1a, P1b, P2, P2a
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(plan,p1).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(plan,p1a).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(plan,p1b).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(plan,p2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',44).
 ==> t(plan,p2a).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:46
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 % predicate SelectedPlan(agent,belief,plan,time)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 predicate(selectedPlan(agent,belief,plan,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 ==> mpred_prop(selectedPlan(agent,belief,plan,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 ==> meta_argtypes(selectedPlan(agent,belief,plan,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:47
 % predicate SoundPlan(agent,belief,plan,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 predicate(soundPlan(agent,belief,plan,time)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 ==> mpred_prop(soundPlan(agent,belief,plan,time),predicate).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',47).
 ==> meta_argtypes(soundPlan(agent,belief,plan,time)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:49
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 % fluent On(object,surface)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 fluent(on(object,surface)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 ==> mpred_prop(on(object,surface),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 ==> meta_argtypes(on(object,surface)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:50
 % fluent Goal(agent,belief)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 fluent(goal(agent,belief)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 ==> mpred_prop(goal(agent,belief),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',50).
 ==> meta_argtypes(goal(agent,belief)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:51
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 % fluent CanJump(surface,surface)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 fluent(canJump(surface,surface)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 ==> mpred_prop(canJump(surface,surface),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 ==> meta_argtypes(canJump(surface,surface)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:52
 % fluent Plan(agent,belief,plan)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 fluent(plan(agent,belief,plan)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 ==> mpred_prop(plan(agent,belief,plan),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',52).
 ==> meta_argtypes(plan(agent,belief,plan)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:53
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 % fluent Satiated(agent)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 fluent(satiated(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 ==> mpred_prop(satiated(agent),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 ==> meta_argtypes(satiated(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:54
 % fluent Believe(agent,belief)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 fluent(believe(agent,belief)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 ==> mpred_prop(believe(agent,belief),fluent).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',54).
 ==> meta_argtypes(believe(agent,belief)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:56
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 % event AddPlan(agent,belief,plan)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 event(addPlan(agent,belief,plan)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 ==> mpred_prop(addPlan(agent,belief,plan),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 ==> meta_argtypes(addPlan(agent,belief,plan)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:57
 % event DropPlan(agent,belief,plan)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 event(dropPlan(agent,belief,plan)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 ==> mpred_prop(dropPlan(agent,belief,plan),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',57).
 ==> meta_argtypes(dropPlan(agent,belief,plan)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:58
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 % event Jump(agent,surface,surface)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 event(jump(agent,surface,surface)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 ==> mpred_prop(jump(agent,surface,surface),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 ==> meta_argtypes(jump(agent,surface,surface)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:59
 % event Move(surface,surface,surface)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 event(move(surface,surface,surface)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 ==> mpred_prop(move(surface,surface,surface),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',59).
 ==> meta_argtypes(move(surface,surface,surface)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 % event Eat(agent,food)
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 event(eat(agent,food)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 ==> mpred_prop(eat(agent,food),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 ==> meta_argtypes(eat(agent,food)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:61
 % event Wait(agent)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 event(wait(agent)).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 ==> mpred_prop(wait(agent),event).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',61).
 ==> meta_argtypes(wait(agent)).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:63
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
 % belief BSatiated(agent)
+
+ /*  fix_axiom_head(Time) ->
+       
+       [ belief(bSatiated(agent)),
+          (->),
+         holds_at(belief(bSatiated(agent)), Time)
+       ].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
-==> t(belief,'bSatiated(agent)').
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(belief(bSatiated(agent)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
+axiom(holds_at(belief(bSatiated(agent)), Time),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:64
 % belief BCanJump(surface,surface)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
-==> t(belief,'bCanJump(surface').
+
+ /*  fix_axiom_head(Time) ->
+       
+       [ belief(bCanJump(surface, surface)),
+          (->),
+         holds_at(belief(bCanJump(surface, surface)), Time)
+       ].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
-==> t(belief,'surface)').
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(belief(bCanJump(surface, surface)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',64).
+axiom(holds_at(belief(bCanJump(surface, surface)), Time),
+    []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:65
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',66).
 % belief BOn(object,surface)
+
+ /*  fix_axiom_head(Time) ->
+       
+       [ belief(bOn(object, surface)),
+          (->),
+         holds_at(belief(bOn(object, surface)), Time)
+       ].
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',66).
-==> t(belief,'bOn(object').
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(belief(bOn(object, surface)), Time)).
+ */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',66).
-==> t(belief,'surface)').
+axiom(holds_at(belief(bOn(object, surface)), Time),
+    []).
+
+
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:67
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',68).
 %; Sigma
 %; A5
 % [agent,belief,plan,time]
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:71
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',72).
 % Initiates(AddPlan(agent,belief,plan),Plan(agent,belief,plan),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',72).
 
  /*  [] ->
        ta(Time,
@@ -396,7 +392,6 @@ axiom(initiates(move(Surface1, Surface2, Surface3), canJump(Surface1, Surface3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',91).
 % [surface1,surface2,surface3,time]
 % Terminates(Move(surface1,surface2,surface3),CanJump(surface1,surface2),time).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',91).
 
  /*  [] ->
        ta(Time,
@@ -630,7 +625,6 @@ axiom(terminates(eat(Agent, Food), believe(Agent, Belief), Time),
  /*  holds_at(goal(Agent, Belief), Time), holds_at(neg(believe(Agent, Belief)), Time), selectedPlan(Agent, Belief, Plan, Time), not(exists([Plan1], holds_at(plan(Agent, Belief, Plan1), Time))) ->
        happens(addPlan(Agent, Belief, Plan), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',148).
 
  /*  happens(addPlan(Agent, Belief, Plan), Time) :-
        holds_at(goal(Agent, Belief), Time),
@@ -767,7 +761,6 @@ axiom(holds_at(plan(Agent, Belief, Plan1), Time),
  /*  holds_at(plan(Agent, Belief, p1), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p1, Time) ->
        happens(jump(cat, floor, chair), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',155).
 
  /*  happens(jump(cat, floor, chair), Time) :-
        holds_at(plan(Agent, Belief, p1), Time),
@@ -870,7 +863,6 @@ axiom(not(soundPlan(Agent, Belief, p1, Time)),
  /*  holds_at(plan(Agent, Belief, p1a), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p1a, Time) ->
        happens(wait(cat), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',162).
 
  /*  happens(wait(cat), Time) :-
        holds_at(plan(Agent, Belief, p1a), Time),
@@ -973,7 +965,6 @@ axiom(not(soundPlan(Agent, Belief, p1a, Time)),
  /*  holds_at(plan(Agent, Belief, p2), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p2, Time) ->
        happens(jump(cat, chair, shelf), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',168).
 
  /*  happens(jump(cat, chair, shelf), Time) :-
        holds_at(plan(Agent, Belief, p2), Time),
@@ -1075,7 +1066,6 @@ axiom(not(soundPlan(Agent, Belief, p2, Time)),
  /*  holds_at(plan(Agent, Belief, Plan), Time) ->
        happens(dropPlan(Agent, Belief, Plan), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',174).
 
  /*  happens(dropPlan(Agent, Belief, Plan), Time) :-
        holds_at(plan(Agent, Belief, Plan), Time).
@@ -1091,7 +1081,6 @@ axiom(not(soundPlan(Agent, Belief, p2, Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',174).
 axiom(happens(dropPlan(Agent, Belief, Plan), Time),
     [holds_at(plan(Agent, Belief, Plan), Time)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',174).
 
  /*  not(holds_at(plan(Agent, Belief, Plan), Time)) :-
        not(happens(dropPlan(Agent, Belief, Plan), Time)).
@@ -1122,7 +1111,6 @@ axiom(holds_at(neg(plan(Agent, Belief, Plan)), Time),
  /*  holds_at(plan(Agent, Belief, p1), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p1, Time) ->
        happens(addPlan(Agent, Belief, p1a), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',179).
 
  /*  happens(addPlan(Agent, Belief, p1a), Time) :-
        holds_at(plan(Agent, Belief, p1), Time),
@@ -1225,7 +1213,6 @@ axiom(not(soundPlan(Agent, Belief, p1, Time)),
  /*  holds_at(plan(Agent, Belief, p1a), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p1a, Time) ->
        happens(addPlan(Agent, Belief, p1b), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',186).
 
  /*  happens(addPlan(Agent, Belief, p1b), Time) :-
        holds_at(plan(Agent, Belief, p1a), Time),
@@ -1328,7 +1315,6 @@ axiom(not(soundPlan(Agent, Belief, p1a, Time)),
  /*  holds_at(plan(Agent, Belief, p2), Time), holds_at(neg(believe(Agent, Belief)), Time), soundPlan(Agent, Belief, p2, Time) ->
        happens(addPlan(Agent, Belief, p2a), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',192).
 
  /*  happens(addPlan(Agent, Belief, p2a), Time) :-
        holds_at(plan(Agent, Belief, p2), Time),
@@ -1432,7 +1418,6 @@ axiom(not(soundPlan(Agent, Belief, p2, Time)),
  /*  holds_at(neg(satiated(Agent)), Time), holds_at(on(Agent, Surface), Time), holds_at(on(Food, Surface), Time) ->
        happens(eat(Agent, Food), Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',198).
 
  /*  happens(eat(Agent, Food), Time) :-
        holds_at(neg(satiated(Agent)), Time),
@@ -1530,14 +1515,16 @@ axiom(holds_at(neg(on(Food, Surface)), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:205
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',206).
 % Happens(Move(Chair,Table,Shelf),2).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',206).
 
- /*  [is_time(t2), b(t, t2), ignore(t+2==t2)] ->
-       ta(2, tvs1=[2], tvs2=[t, t2], happens(move(chair, table, shelf), t2)).
+ /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(start+2,
+          tvs1=[start+2],
+          tvs2=[Start2, start],
+          happens(move(chair, table, shelf), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',206).
-axiom(happens(move(chair, table, shelf), t2),
-    [is_time(t2), b(t, t2)]).
+axiom(happens(move(chair, table, shelf), Start2),
+    [b(start, Start2), toffset(start, 2, Start2)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:207
@@ -1662,75 +1649,21 @@ axiom(happens(move(chair, table, shelf), t2),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
 
- /*  axiom_head(Time) ->
-       (   not(holds_at(believe(Agent, bOn(Agent, Surface1)),
-                        Time))
-       ;   not(holds_at(believe(Agent,
-                                bCanJump(Surface1, Surface2)),
-                        Time))
-       ;   not(holds_at(believe(Agent,
-                                bCanJump(Surface2, Surface3)),
-                        Time))
-       ;   not(holds_at(believe(Agent, bOn(Food, Surface3)),
-                        Time))
-       ;   not(equals(Belief, bSatiated(Agent)))
-       ;   not(equals(Plan, p1))
-       ;   not(equals(Time, 0))
-       ).
+ /*  fix_axiom_head(Time) ->
+       
+       [  (not(holds_at(believe(Agent, bOn(Agent, Surface1)), Time));not(holds_at(believe(Agent, bCanJump(Surface1, Surface2)), Time));not(holds_at(believe(Agent, bCanJump(Surface2, Surface3)), Time));not(holds_at(believe(Agent, bOn(Food, Surface3)), Time));not(equals(Belief, bSatiated(Agent)));not(equals(Plan, p1));not(equals(Time, 0))),
+          (->),
+          (holds_at(neg(believe(Agent, bOn(Agent, Surface1))), Time);holds_at(neg(believe(Agent, bCanJump(Surface1, Surface2))), Time);holds_at(neg(believe(Agent, bCanJump(Surface2, Surface3))), Time);holds_at(neg(believe(Agent, bOn(Food, Surface3))), Time);not(equals(Belief, bSatiated(Agent)));not(equals(Plan, p1));not(equals(Time, 0)))
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
 
  /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(believe(Agent, bOn(Agent, Surface1))),
-                    Time)
-       ;   holds_at(neg(believe(Agent,
-                                bCanJump(Surface1, Surface2))),
-                    Time)
-       ;   holds_at(neg(believe(Agent,
-                                bCanJump(Surface2, Surface3))),
-                    Time)
-       ;   holds_at(neg(believe(Agent, bOn(Food, Surface3))),
-                    Time)
-       ;   not(equals(Belief, bSatiated(Agent)))
-       ;   not(equals(Plan, p1))
-       ;   not(equals(Time, 0))
-       ).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
-
- /*  axiom_head(Time) ->
-       (   not(holds_at(believe(Agent, bOn(Agent, Surface18)),
-                        Time))
-       ;   not(holds_at(believe(Agent,
-                                bCanJump(Surface18, Surface29)),
-                        Time))
-       ;   not(holds_at(believe(Agent,
-                                bCanJump(Surface29, Surface310)),
-                        Time))
-       ;   not(holds_at(believe(Agent, bOn(Food11, Surface310)),
-                        Time))
-       ;   not(equals(Belief, bSatiated(Agent)))
-       ;   not(equals(Plan, p2))
-       ;   not(equals(Time, 4))
-       ).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
-
- /*  fix_axiom_head(Time) ->
-       (   holds_at(neg(believe(Agent, bOn(Agent, Surface18))),
-                    Time)
-       ;   holds_at(neg(believe(Agent,
-                                bCanJump(Surface18, Surface29))),
-                    Time)
-       ;   holds_at(neg(believe(Agent,
-                                bCanJump(Surface29, Surface310))),
-                    Time)
-       ;   holds_at(neg(believe(Agent, bOn(Food11, Surface310))),
-                    Time)
-       ;   not(equals(Belief, bSatiated(Agent)))
-       ;   not(equals(Plan, p2))
-       ;   not(equals(Time, 4))
-       ).
+       
+       [  (not(holds_at(believe(Agent, bOn(Agent, Surface18)), Time));not(holds_at(believe(Agent, bCanJump(Surface18, Surface29)), Time));not(holds_at(believe(Agent, bCanJump(Surface29, Surface310)), Time));not(holds_at(believe(Agent, bOn(Food11, Surface310)), Time));not(equals(Belief, bSatiated(Agent)));not(equals(Plan, p2));not(equals(Time, 4))),
+          (->),
+          (holds_at(neg(believe(Agent, bOn(Agent, Surface18))), Time);holds_at(neg(believe(Agent, bCanJump(Surface18, Surface29))), Time);holds_at(neg(believe(Agent, bCanJump(Surface29, Surface310))), Time);holds_at(neg(believe(Agent, bOn(Food11, Surface310))), Time);not(equals(Belief, bSatiated(Agent)));not(equals(Plan, p2));not(equals(Time, 4)))
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
 
@@ -2024,7 +1957,6 @@ axiom(holds_at(believe(Agent, bOn(Food11, Surface310)), Time),
  /*  exists([Surface1, Surface2, Surface3, Food],  (holds_at(believe(Agent, bOn(Agent, Surface1)), Time), holds_at(believe(Agent, bCanJump(Surface1, Surface2)), Time), holds_at(believe(Agent, bCanJump(Surface2, Surface3)), Time), holds_at(believe(Agent, bOn(Food, Surface3)), Time), equals(Belief, bSatiated(Agent)), equals(Plan, p1), equals(Time, 0)));exists([Surface18, Surface29, Surface310, Food11],  (holds_at(believe(Agent, bOn(Agent, Surface18)), Time), holds_at(believe(Agent, bCanJump(Surface18, Surface29)), Time), holds_at(believe(Agent, bCanJump(Surface29, Surface310)), Time), holds_at(believe(Agent, bOn(Food11, Surface310)), Time), equals(Belief, bSatiated(Agent)), equals(Plan, p2), equals(Time, 4))) ->
        selectedPlan(Agent, Belief, Plan, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
 
  /*  selectedPlan(Agent, Belief, Plan, Time) :-
        (   holds_at(believe(Agent, bOn(Agent, Surface1)),
@@ -2066,7 +1998,6 @@ axiom(selectedPlan(Agent, Belief, Plan, Time),
    
     [  (holds_at(believe(Agent, bOn(Agent, Surface1)), Time), holds_at(believe(Agent, bCanJump(Surface1, Surface2)), Time), holds_at(believe(Agent, bCanJump(Surface2, Surface3)), Time), holds_at(believe(Agent, bOn(Food, Surface3)), Time), equals(Belief, bSatiated(Agent)), equals(Plan, p1), equals(Time, 0);holds_at(believe(Agent, bOn(Agent, Surface18)), Time), holds_at(believe(Agent, bCanJump(Surface18, Surface29)), Time), holds_at(believe(Agent, bCanJump(Surface29, Surface310)), Time), holds_at(believe(Agent, bOn(Food11, Surface310)), Time), equals(Belief, bSatiated(Agent)), equals(Plan, p2), equals(Time, 4))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',215).
 
  /*  not(holds_at(believe(Agent, bOn(Agent, Surface1)), Time)) :-
        ( holds_at(believe(Agent, bCanJump(Surface1, Surface2)),
@@ -2439,33 +2370,12 @@ axiom(holds_at(neg(believe(Agent, bOn(Food11, Surface310))), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',237).
 
- /*  axiom_head(Time) ->
-       (   equals(Plan, p1),
-           (   not(holds_at(believe(Agent, bCanJump(floor, chair)),
-                            Time))
-           ;   not(holds_at(believe(Agent, bCanJump(chair, table)),
-                            Time))
-           )
-       ;   not(holds_at(believe(Agent, bCanJump(chair, table)), Time)),
-           (   equals(Plan, p1a)
-           ;   equals(Plan, p1b)
-           )
-       ).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',237).
-
  /*  fix_axiom_head(Time) ->
-       (   equals(Plan, p1),
-           (   holds_at(neg(believe(Agent, bCanJump(floor, chair))),
-                        Time)
-           ;   holds_at(neg(believe(Agent, bCanJump(chair, table))),
-                        Time)
-           )
-       ;   holds_at(neg(believe(Agent, bCanJump(chair, table))), Time),
-           (   equals(Plan, p1a)
-           ;   equals(Plan, p1b)
-           )
-       ).
+       
+       [  (equals(Plan, p1), (not(holds_at(believe(Agent, bCanJump(floor, chair)), Time));not(holds_at(believe(Agent, bCanJump(chair, table)), Time)));not(holds_at(believe(Agent, bCanJump(chair, table)), Time)), (equals(Plan, p1a);equals(Plan, p1b))),
+          (->),
+          (equals(Plan, p1), (holds_at(neg(believe(Agent, bCanJump(floor, chair))), Time);holds_at(neg(believe(Agent, bCanJump(chair, table))), Time));holds_at(neg(believe(Agent, bCanJump(chair, table))), Time), (equals(Plan, p1a);equals(Plan, p1b)))
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',237).
 
@@ -2480,7 +2390,6 @@ axiom(not(soundPlan(Agent, Belief, Plan, Time)),
    
     [  (equals(Plan, p1), (holds_at(neg(believe(Agent, bCanJump(floor, chair))), Time);holds_at(neg(believe(Agent, bCanJump(chair, table))), Time));holds_at(neg(believe(Agent, bCanJump(chair, table))), Time), (equals(Plan, p1a);equals(Plan, p1b)))
     ]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',237).
 
  /*  holds_at(believe(Agent, bCanJump(floor, chair)), Time) :-
        equals(Plan, p1),
@@ -2547,7 +2456,6 @@ axiom(holds_at(believe(Agent, bCanJump(chair, table)), Time),
  /*  (equals(Plan, p1)->holds_at(believe(Agent, bCanJump(floor, chair)), Time), holds_at(believe(Agent, bCanJump(chair, table)), Time)), (equals(Plan, p1a);equals(Plan, p1b)->holds_at(believe(Agent, bCanJump(chair, table)), Time)) ->
        soundPlan(Agent, Belief, Plan, Time).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',237).
 
  /*  soundPlan(Agent, Belief, Plan, Time) :-
        (   holds_at(believe(Agent, bCanJump(floor, chair)), Time),
@@ -2656,70 +2564,58 @@ axiom(holds_at(neg(believe(Agent, bCanJump(chair, table))), Time),
 % (agent=Cat & belief=BSatiated(Cat)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  initially(goal(Agent, Belief)) <->
+ /*  holds_at(goal(Agent, Belief), start+0) <->
        equals(Agent, cat),
        equals(Belief, bSatiated(cat)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  [initially, goal] <->
+ /*  [holds_at, goal, +, start] <->
        [equals, cat, equals, bSatiated, cat].
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  initially(goal(Agent, Belief)) ->
+ /*  holds_at(goal(Agent, Belief), start+0) ->
        equals(Agent, cat),
        equals(Belief, bSatiated(cat)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  not(initially(goal(Agent, Belief))) :-
+ /*  not(holds_at(goal(Agent, Belief), start+0)) :-
        (   not(equals(Agent, cat))
        ;   not(equals(Belief, bSatiated(cat)))
        ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(goal(Agent, Belief))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(goal(Agent, Belief))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
-
  /*  [(not(equals(Agent, cat));not(equals(Belief, bSatiated(cat))))] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(goal(Agent, Belief)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(goal(Agent, Belief)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
-axiom(initially(neg(goal(Agent, Belief))),
+axiom(holds_at(neg(goal(Agent, Belief)), start),
     [(not(equals(Agent, cat));not(equals(Belief, bSatiated(cat))))]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
  /*  equals(Agent, cat), equals(Belief, bSatiated(cat)) ->
-       initially(goal(Agent, Belief)).
+       holds_at(goal(Agent, Belief), start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
- /*  initially(goal(Agent, Belief)) :-
+ /*  holds_at(goal(Agent, Belief), start+0) :-
        equals(Agent, cat),
        equals(Belief, bSatiated(cat)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
 
  /*  [equals(Agent, cat), equals(Belief, bSatiated(cat))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(goal(Agent, Belief))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(goal(Agent, Belief), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',247).
-axiom(initially(goal(Agent, Belief)),
+axiom(holds_at(goal(Agent, Belief), start),
     [equals(Agent, cat), equals(Belief, bSatiated(cat))]).
 
 
@@ -2729,13 +2625,13 @@ axiom(initially(goal(Agent, Belief)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',250).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(plan(Agent, Belief, Plan)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(plan(Agent, Belief, Plan)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',250).
-axiom(initially(neg(plan(Agent, Belief, Plan))),
+axiom(holds_at(neg(plan(Agent, Belief, Plan)), start),
     []).
 
 
@@ -2748,7 +2644,7 @@ axiom(initially(neg(plan(Agent, Belief, Plan))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:255
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  initially(on(Object, Surface)) <->
+ /*  holds_at(on(Object, Surface), start+0) <->
        (   equals(Object, cat),
            equals(Surface, floor)
        ;   equals(Object, food1),
@@ -2759,7 +2655,7 @@ axiom(initially(neg(plan(Agent, Belief, Plan))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  [initially, on] <->
+ /*  [holds_at, on, +, start] <->
        
        [  (;),
          equals,
@@ -2779,7 +2675,7 @@ axiom(initially(neg(plan(Agent, Belief, Plan))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  initially(on(Object, Surface)) ->
+ /*  holds_at(on(Object, Surface), start+0) ->
        (   equals(Object, cat),
            equals(Surface, floor)
        ;   equals(Object, food1),
@@ -2790,7 +2686,7 @@ axiom(initially(neg(plan(Agent, Belief, Plan))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  not(initially(on(Object, Surface))) :-
+ /*  not(holds_at(on(Object, Surface), start+0)) :-
        (   not(equals(Object, cat))
        ;   not(equals(Surface, floor))
        ),
@@ -2803,24 +2699,14 @@ axiom(initially(neg(plan(Agent, Belief, Plan))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(on(Object, Surface))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(on(Object, Surface))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
-
  /*  [(not(equals(Object, cat));not(equals(Surface, floor))),  (not(equals(Object, food1));not(equals(Surface, table))),  (not(equals(Object, food2));not(equals(Surface, shelf)))] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(on(Object, Surface)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(on(Object, Surface)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
-axiom(initially(neg(on(Object, Surface))),
+axiom(holds_at(neg(on(Object, Surface)), start),
    
     [  (not(equals(Object, cat));not(equals(Surface, floor))),
        (not(equals(Object, food1));not(equals(Surface, table))),
@@ -2829,11 +2715,10 @@ axiom(initially(neg(on(Object, Surface))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
  /*  equals(Object, cat), equals(Surface, floor);equals(Object, food1), equals(Surface, table);equals(Object, food2), equals(Surface, shelf) ->
-       initially(on(Object, Surface)).
+       holds_at(on(Object, Surface), start+0).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
- /*  initially(on(Object, Surface)) :-
+ /*  holds_at(on(Object, Surface), start+0) :-
        (   equals(Object, cat),
            equals(Surface, floor)
        ;   equals(Object, food1),
@@ -2845,13 +2730,13 @@ axiom(initially(neg(on(Object, Surface))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
 
  /*  [(equals(Object, cat), equals(Surface, floor);equals(Object, food1), equals(Surface, table);equals(Object, food2), equals(Surface, shelf))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(on(Object, Surface))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(on(Object, Surface), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',252).
-axiom(initially(on(Object, Surface)),
+axiom(holds_at(on(Object, Surface), start),
    
     [  (equals(Object, cat), equals(Surface, floor);equals(Object, food1), equals(Surface, table);equals(Object, food2), equals(Surface, shelf))
     ]).
@@ -2866,7 +2751,7 @@ axiom(initially(on(Object, Surface)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:260
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  initially(canJump(Surface1, Surface2)) <->
+ /*  holds_at(canJump(Surface1, Surface2), start+0) <->
        (   equals(Surface1, floor),
            equals(Surface2, chair)
        ;   equals(Surface1, chair),
@@ -2877,7 +2762,7 @@ axiom(initially(on(Object, Surface)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  [initially, canJump] <->
+ /*  [holds_at, canJump, +, start] <->
        
        [  (;),
          equals,
@@ -2897,7 +2782,7 @@ axiom(initially(on(Object, Surface)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  initially(canJump(Surface1, Surface2)) ->
+ /*  holds_at(canJump(Surface1, Surface2), start+0) ->
        (   equals(Surface1, floor),
            equals(Surface2, chair)
        ;   equals(Surface1, chair),
@@ -2908,7 +2793,7 @@ axiom(initially(on(Object, Surface)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  not(initially(canJump(Surface1, Surface2))) :-
+ /*  not(holds_at(canJump(Surface1, Surface2), start+0)) :-
        (   not(equals(Surface1, floor))
        ;   not(equals(Surface2, chair))
        ),
@@ -2921,24 +2806,14 @@ axiom(initially(on(Object, Surface)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(canJump(Surface1, Surface2))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(canJump(Surface1, Surface2))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
-
  /*  [(not(equals(Surface1, floor));not(equals(Surface2, chair))),  (not(equals(Surface1, chair));not(equals(Surface2, table))),  (not(equals(Surface1, shelf));not(equals(Surface2, table)))] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(canJump(Surface1, Surface2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(canJump(Surface1, Surface2)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
-axiom(initially(neg(canJump(Surface1, Surface2))),
+axiom(holds_at(neg(canJump(Surface1, Surface2)), start),
    
     [  (not(equals(Surface1, floor));not(equals(Surface2, chair))),
        (not(equals(Surface1, chair));not(equals(Surface2, table))),
@@ -2947,11 +2822,10 @@ axiom(initially(neg(canJump(Surface1, Surface2))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
  /*  equals(Surface1, floor), equals(Surface2, chair);equals(Surface1, chair), equals(Surface2, table);equals(Surface1, shelf), equals(Surface2, table) ->
-       initially(canJump(Surface1, Surface2)).
+       holds_at(canJump(Surface1, Surface2), start+0).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
- /*  initially(canJump(Surface1, Surface2)) :-
+ /*  holds_at(canJump(Surface1, Surface2), start+0) :-
        (   equals(Surface1, floor),
            equals(Surface2, chair)
        ;   equals(Surface1, chair),
@@ -2963,13 +2837,13 @@ axiom(initially(neg(canJump(Surface1, Surface2))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
 
  /*  [(equals(Surface1, floor), equals(Surface2, chair);equals(Surface1, chair), equals(Surface2, table);equals(Surface1, shelf), equals(Surface2, table))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(canJump(Surface1, Surface2))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(canJump(Surface1, Surface2), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',257).
-axiom(initially(canJump(Surface1, Surface2)),
+axiom(holds_at(canJump(Surface1, Surface2), start),
    
     [  (equals(Surface1, floor), equals(Surface2, chair);equals(Surface1, chair), equals(Surface2, table);equals(Surface1, shelf), equals(Surface2, table))
     ]).
@@ -2983,7 +2857,7 @@ axiom(initially(canJump(Surface1, Surface2)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:265
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  initially(believe(Agent, bOn(Object, Surface))) <->
+ /*  holds_at(believe(Agent, bOn(Object, Surface)), start+0) <->
        (   equals(Agent, cat),
            equals(Object, cat),
            equals(Surface, floor)
@@ -2994,7 +2868,7 @@ axiom(initially(canJump(Surface1, Surface2)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  [initially, believe, bOn] <->
+ /*  [holds_at, believe, bOn, +, start] <->
        
        [  (;),
          equals,
@@ -3013,7 +2887,7 @@ axiom(initially(canJump(Surface1, Surface2)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  initially(believe(Agent, bOn(Object, Surface))) ->
+ /*  holds_at(believe(Agent, bOn(Object, Surface)), start+0) ->
        (   equals(Agent, cat),
            equals(Object, cat),
            equals(Surface, floor)
@@ -3024,7 +2898,7 @@ axiom(initially(canJump(Surface1, Surface2)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  not(initially(believe(Agent, bOn(Object, Surface)))) :-
+ /*  not(holds_at(believe(Agent, bOn(Object, Surface)), start+0)) :-
        (   not(equals(Agent, cat))
        ;   not(equals(Object, cat))
        ;   not(equals(Surface, floor))
@@ -3036,24 +2910,15 @@ axiom(initially(canJump(Surface1, Surface2)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(believe(Agent, bOn(Object, Surface)))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(believe(Agent, bOn(Object, Surface)))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
-
  /*  [(not(equals(Agent, cat));not(equals(Object, cat));not(equals(Surface, floor))),  (not(equals(Agent, cat));not(equals(Object, food1));not(equals(Surface, table)))] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(believe(Agent, bOn(Object, Surface))))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(believe(Agent, bOn(Object, Surface))),
+                   start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
-axiom(initially(neg(believe(Agent, bOn(Object, Surface)))),
+axiom(holds_at(neg(believe(Agent, bOn(Object, Surface))), start),
    
     [  (not(equals(Agent, cat));not(equals(Object, cat));not(equals(Surface, floor))),
        (not(equals(Agent, cat));not(equals(Object, food1));not(equals(Surface, table)))
@@ -3061,11 +2926,10 @@ axiom(initially(neg(believe(Agent, bOn(Object, Surface)))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
  /*  equals(Agent, cat), equals(Object, cat), equals(Surface, floor);equals(Agent, cat), equals(Object, food1), equals(Surface, table) ->
-       initially(believe(Agent, bOn(Object, Surface))).
+       holds_at(believe(Agent, bOn(Object, Surface)), start+0).
  */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
- /*  initially(believe(Agent, bOn(Object, Surface))) :-
+ /*  holds_at(believe(Agent, bOn(Object, Surface)), start+0) :-
        (   equals(Agent, cat),
            equals(Object, cat),
            equals(Surface, floor)
@@ -3077,13 +2941,13 @@ axiom(initially(neg(believe(Agent, bOn(Object, Surface)))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
 
  /*  [(equals(Agent, cat), equals(Object, cat), equals(Surface, floor);equals(Agent, cat), equals(Object, food1), equals(Surface, table))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(believe(Agent, bOn(Object, Surface)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(believe(Agent, bOn(Object, Surface)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',264).
-axiom(initially(believe(Agent, bOn(Object, Surface))),
+axiom(holds_at(believe(Agent, bOn(Object, Surface)), start),
    
     [  (equals(Agent, cat), equals(Object, cat), equals(Surface, floor);equals(Agent, cat), equals(Object, food1), equals(Surface, table))
     ]).
@@ -3098,7 +2962,7 @@ axiom(initially(believe(Agent, bOn(Object, Surface))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:271
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  initially(believe(Agent, bCanJump(Surface1, Surface2))) <->
+ /*  holds_at(believe(Agent, bCanJump(Surface1, Surface2)), start+0) <->
        (   equals(Agent, cat),
            equals(Surface1, floor),
            equals(Surface2, chair)
@@ -3112,7 +2976,7 @@ axiom(initially(believe(Agent, bOn(Object, Surface))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  [initially, believe, bCanJump] <->
+ /*  [holds_at, believe, bCanJump, +, start] <->
        
        [  (;),
          equals,
@@ -3138,7 +3002,7 @@ axiom(initially(believe(Agent, bOn(Object, Surface))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  initially(believe(Agent, bCanJump(Surface1, Surface2))) ->
+ /*  holds_at(believe(Agent, bCanJump(Surface1, Surface2)), start+0) ->
        (   equals(Agent, cat),
            equals(Surface1, floor),
            equals(Surface2, chair)
@@ -3152,7 +3016,7 @@ axiom(initially(believe(Agent, bOn(Object, Surface))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  not(initially(believe(Agent, bCanJump(Surface1, Surface2)))) :-
+ /*  not(holds_at(believe(Agent, bCanJump(Surface1, Surface2)), start+0)) :-
        (   not(equals(Agent, cat))
        ;   not(equals(Surface1, floor))
        ;   not(equals(Surface2, chair))
@@ -3168,25 +3032,16 @@ axiom(initially(believe(Agent, bOn(Object, Surface))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  axiom_head(Axiom_head_Ret) ->
-       not(initially(believe(Agent, bCanJump(Surface1, Surface2)))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
-
- /*  fix_axiom_head(Axiom_head_Ret) ->
-       initially(neg(believe(Agent, bCanJump(Surface1, Surface2)))).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
-
  /*  [(not(equals(Agent, cat));not(equals(Surface1, floor));not(equals(Surface2, chair))),  (not(equals(Agent, cat));not(equals(Surface1, chair));not(equals(Surface2, table))),  (not(equals(Agent, cat));not(equals(Surface1, shelf));not(equals(Surface2, table)))] ->
-       ta(Axiom_head_Ret,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(believe(Agent,
-                                bCanJump(Surface1, Surface2))))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(believe(Agent,
+                               bCanJump(Surface1, Surface2))),
+                   start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
-axiom(initially(neg(believe(Agent, bCanJump(Surface1, Surface2)))),
+axiom(holds_at(neg(believe(Agent, bCanJump(Surface1, Surface2))), start),
    
     [  (not(equals(Agent, cat));not(equals(Surface1, floor));not(equals(Surface2, chair))),
        (not(equals(Agent, cat));not(equals(Surface1, chair));not(equals(Surface2, table))),
@@ -3195,11 +3050,12 @@ axiom(initially(neg(believe(Agent, bCanJump(Surface1, Surface2)))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
  /*  equals(Agent, cat), equals(Surface1, floor), equals(Surface2, chair);equals(Agent, cat), equals(Surface1, chair), equals(Surface2, table);equals(Agent, cat), equals(Surface1, shelf), equals(Surface2, table) ->
-       initially(believe(Agent, bCanJump(Surface1, Surface2))).
+       holds_at(believe(Agent, bCanJump(Surface1, Surface2)),
+                start+0).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
- /*  initially(believe(Agent, bCanJump(Surface1, Surface2))) :-
+ /*  holds_at(believe(Agent, bCanJump(Surface1, Surface2)), start+0) :-
        (   equals(Agent, cat),
            equals(Surface1, floor),
            equals(Surface2, chair)
@@ -3214,13 +3070,14 @@ axiom(initially(neg(believe(Agent, bCanJump(Surface1, Surface2)))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
 
  /*  [(equals(Agent, cat), equals(Surface1, floor), equals(Surface2, chair);equals(Agent, cat), equals(Surface1, chair), equals(Surface2, table);equals(Agent, cat), equals(Surface1, shelf), equals(Surface2, table))] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(believe(Agent, bCanJump(Surface1, Surface2)))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(believe(Agent, bCanJump(Surface1, Surface2)),
+                   start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',269).
-axiom(initially(believe(Agent, bCanJump(Surface1, Surface2))),
+axiom(holds_at(believe(Agent, bCanJump(Surface1, Surface2)), start),
    
     [  (equals(Agent, cat), equals(Surface1, floor), equals(Surface2, chair);equals(Agent, cat), equals(Surface1, chair), equals(Surface2, table);equals(Agent, cat), equals(Surface1, shelf), equals(Surface2, table))
     ]).
@@ -3231,13 +3088,13 @@ axiom(initially(believe(Agent, bCanJump(Surface1, Surface2))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',273).
 
  /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          initially(neg(believe(cat, bSatiated(cat))))).
+       ta(start+0,
+          tvs1=[start+0],
+          tvs2=[start],
+          holds_at(neg(believe(cat, bSatiated(cat))), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',273).
-axiom(initially(neg(believe(cat, bSatiated(cat)))),
+axiom(holds_at(neg(believe(cat, bSatiated(cat))), start),
     []).
 
 
@@ -3248,25 +3105,22 @@ axiom(initially(neg(believe(cat, bSatiated(cat)))),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:276
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',277).
 % !HoldsAt(Satiated(Cat),0).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',277).
 
  /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], initially(neg(satiated(cat)))).
+       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(satiated(cat)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',277).
-axiom(initially(neg(satiated(cat))),
+axiom(holds_at(neg(satiated(cat)), start),
     []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:278
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',279).
 % completion Happens
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',279).
 ==> completion(happens).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:280
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',281).
 % range time 0 7
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e',281).
 ==> range(time,0,7).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter11/HungryCat.e:281
