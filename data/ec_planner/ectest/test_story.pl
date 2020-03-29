@@ -1,15 +1,11 @@
-% init_why(after('/opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/marty_white/planner/ec_reader.pl')).
-% init_why(after('/opt/logicmoo_workspace/packs_sys/small_adventure_games/prolog/marty_white/planner/ec_reader.pl')).
-% init_why(program).
-% ec_to_pl(do_ec_load, current_output, 'ectest/TestBoxRoom.e').
-% ectest/TestBoxRoom.e:1
-% ec_in_to_pl(do_ec_load, current_output, <stream>(0x55638dfa3da0)).
-% ec_io(do_ec_load, <stream>(0x55638dfa3da0)).
-% ectest/TestBoxRoom.e:1
-:- module(ec).
+% run with 
+% cls ; swipl -f test_story.pl
 
-:- include('../ec_test_incl').
+:- use_module(library(logicmoo_common)).
 :- cls.
+
+:- module(ec).
+:- include('../ec_test_incl').
 
 :- discontiguous do_test/1.
 
