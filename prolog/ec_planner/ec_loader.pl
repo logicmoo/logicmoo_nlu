@@ -369,6 +369,8 @@ into_current_domain_db(ec_current_domain_db(Value,T)):- !, assertz_if_new_domain
 into_current_domain_db(Value):- copy_term_nat(Value,ValueO), assertz_if_new_domain_db(ValueO,_).
 
 assertz_if_new_domain_db((H:-B),T):- !, assertz_if_new_msg((user:ec_current_domain_db(H,T):-B)).
+
+assertz_if_new_domain_db(ValueO,T):- ValueO =@= axiom(holds_at(neg(raining), _), []),!,barf.
 assertz_if_new_domain_db(ValueO,T):- assertz_if_new_msg(user:ec_current_domain_db(ValueO,T)).
 
 assertz_if_new_msg(Stuff):- clause_asserted(Stuff),wdmsg(already(Stuff)).
@@ -550,6 +552,9 @@ barf:- dumpST,wdmsg(i_BaRfzzzzzzzzzzzzzzzzzzzzzzzzzzz), break.
 
 cvt0_full(T,G,GG):- must(cvt0(T,G,Y)), !, (G==Y -> G=GG ; cvt0(T,Y,GG)),!.
 
+start_plus(Zero,start):- Zero == 0,!.
+start_plus(Zero,start+Zero):- number(Zero),!.
+
 cvt0(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
 cvt0(_, X\=Y, diff(X,Y)) :- !.
 cvt0(_, X=Y, Equals):- !,as_equals(X,Y,Equals).
@@ -558,8 +563,8 @@ cvt0(T0, holds_at(NotH,T),O):- compound(NotH),not(H)= NotH, !, cvt0(T0, holds_at
 %cvt0(_, not(exists(_Vars, holds_at(P, Time))),not(holds_at(neg(P), Time))).
 cvt0(T, initially(N), Out):- cvt0(T, holds_at(N,0), Out).
 
-cvt0(_, holds_at(N,Zero),holds_at(N,start+Zero)):- number(Zero),!.
-cvt0(_, happens(N,Zero),happens(N,start+Zero)):- number(Zero),!.
+cvt0(_, holds_at(N,Zero),holds_at(N,Expr)):- start_plus(Zero,Expr),!.
+cvt0(_, happens(N,Zero),happens(N,Expr)):- start_plus(Zero,Expr),!.
 %cvt0(T, holds_at(N,AT),'<-'(holds_at(N,TN),(start(T),toffset(T,AT,TN)))):- number(AT),!,atom_concat(t,AT,TN).
 
 cvt0(_, before(X,Y),b(X,Y)).
@@ -739,7 +744,7 @@ assert_axiom(H,B) :-
   get_time_values(axiom(HHH,BBB),TimeVs2),
   %ignore(TimeVs2=TimeVs1),
   pprint_ecp_cmt(green,BBB->ta(Time,tvs1=TimeVs1,tvs2=TimeVs2,HHH)),
-  must(assert_axiom_2(HHH,BBB)).
+  must(assert_axiom_2(HHH,BBB)),!.
 
 hide_compound(ignore(_)).
 msub_term(X, X).
@@ -1034,8 +1039,9 @@ visit_time_f_args(Stem,In,F, N, [HT|L], [HTO|LL], Out):- N2 is N+1,
 
 
 correct_time_arg(_Stem,In, TN, TN, In):- var(TN), !.
-correct_time_arg(_Stem,In, AM1,T, In):- compound(AM1),(AM1 = (AfterT- N)),compound(AfterT),after(T)=AfterT, N==1, var(T), !.
+correct_time_arg(_Stem,In, TN, TN, In):- TN==start, !.
 correct_time_arg(_Stem,In, TN, TN, In):- atom(TN), !.
+correct_time_arg(_Stem,In, AM1,T, In):- compound(AM1),(AM1 = (AfterT- N)),compound(AfterT),after(T)=AfterT, N==1, var(T), !.
 correct_time_arg(Stem, In, TN, TpN, Out):- number(TN), !, correct_time_arg(Stem,In, Stem+TN, TpN, Out).
 correct_time_arg(_Stem,In, v, _, In):- !.
 correct_time_arg(_Stem,In, TN, TpN, In):- lookup_time_val(TN,TpN,In),!.
@@ -1071,7 +1077,7 @@ t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- ((ground(T+N), at
 t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- ((ground(T+N), atom_concat(T,N,TN))),!.
 t_plus_or_minus_1(In, T-N, TN, [b(TN,T),ignore(T-N==TN)|In]):- gensym(t_less,TN).
 t_plus_or_minus_1(In, T+N, TN, [b(T,TN),ignore(T+N==TN)|In]):- gensym(t_more,TN).
-
+/*
 next_t(T,Var):- var(T),var(Var),!.
 next_t(start,t).
 next_t(T,Var):- var(T),!,Var=after(T).
@@ -1079,7 +1085,7 @@ next_t(t,now).
 next_t(now,aft).
 next_t(aft,Aft_1):- var(Aft_1),!,gensym(aft_,Aft_1).
 next_t(aft,completeFn(_)).
-
+*/
 
 fix_time_args1(T,G,Gs):- 
   visit_time_args(T,[],G,Gs,_Mid).
