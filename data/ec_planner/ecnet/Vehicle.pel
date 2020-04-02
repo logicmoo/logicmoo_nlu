@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:11 GMT
+% Wed, 01 Apr 2020 20:02:40 GMT
 % From ../ecnet/Vehicle.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',147).
 
@@ -1430,11 +1430,11 @@ axiom(initiates(getOnVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehicleon, Location), Time))
        ),
-       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1445,17 +1445,17 @@ axiom(not(happens(getOnVehicle(Agent, Vehicleon), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)),
       some(Location,
-           '$kolem_Fn_236'(Agent, Vehicleon, Time))
+           '$kolem_Fn_240'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1466,17 +1466,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_236'(Agent, Vehicleon, Time))
+           '$kolem_Fn_240'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Vehicleon, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_236'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_240'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1487,7 +1487,7 @@ axiom(holds_at(at(Vehicleon, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_236'(Agent, Vehicleon, Time))
+           '$kolem_Fn_240'(Agent, Vehicleon, Time))
     ]).
 
 
@@ -1817,11 +1817,11 @@ axiom(initiates(getInVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehiclein, Location), Time))
        ),
-       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1832,17 +1832,17 @@ axiom(not(happens(getInVehicle(Agent, Vehiclein), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)),
       some(Location,
-           '$kolem_Fn_237'(Agent, Vehiclein, Time))
+           '$kolem_Fn_241'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1853,17 +1853,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_237'(Agent, Vehiclein, Time))
+           '$kolem_Fn_241'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Vehiclein, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_237'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_241'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1874,7 +1874,7 @@ axiom(holds_at(at(Vehiclein, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_237'(Agent, Vehiclein, Time))
+           '$kolem_Fn_241'(Agent, Vehiclein, Time))
     ]).
 
 

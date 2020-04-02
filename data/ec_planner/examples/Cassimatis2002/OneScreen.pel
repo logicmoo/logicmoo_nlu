@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:09 GMT
+% Wed, 01 Apr 2020 20:00:26 GMT
 % From ../examples/Cassimatis2002/OneScreen.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/BrewkaDixKonolige1997/Wine.e',47).
 
@@ -933,7 +933,10 @@ axiom(holds_at(location(g1, screen, 2, 0), Time),
 % HoldsAt(Location(G1,X,1,1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(location(g1, x, 1, 1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(location(g1, x, 1, 1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
 axiom(holds_at(location(g1, x, 1, 1), start),
@@ -945,7 +948,7 @@ axiom(holds_at(location(g1, x, 1, 1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Cassimatis2002/OneScreen.e',35).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(location(g1, y, 3, 1), Start2)).

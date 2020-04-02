@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:43 GMT
+% Wed, 01 Apr 2020 19:59:48 GMT
 % From ../examples/Mueller2006/Chapter3/Telephone1.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Sleep4.e',49).
 
@@ -616,21 +616,7 @@ axiom(terminates(setDown(Agent, Phone), disconnected(Phone), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e:144
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -638,33 +624,20 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
 % Happens(PickUp(Agent1,Phone1),0).
 
- /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+ /*  [axiom_uses(delta, Axiom_uses_Ret)] ->
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(pickUp(agent1, phone1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
 axiom(happens(pickUp(agent1, phone1), start),
-    []).
+    [axiom_uses(delta, Axiom_uses_Ret)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e:145
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -672,34 +645,20 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(Dial(Agent1,Phone1,Phone2),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
 
- /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(dial(agent1, phone1, phone2), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',145).
 axiom(happens(dial(agent1, phone1, phone2), Maptime),
-    [b(start, Maptime)]).
+    [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',147).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',147).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',147).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -707,15 +666,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',147).
 % Happens(PickUp(Agent2,Phone2),2).
 
- /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(pickUp(agent2, phone2), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',147).
 axiom(happens(pickUp(agent2, phone2), Start2),
-    [b(start, Start2), toffset(start, 2, Start2)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start2),
+      toffset(start, 2, Start2)
+    ]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e:148
@@ -727,8 +690,12 @@ axiom(happens(pickUp(agent2, phone2), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',151).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(idle(Phone), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(idle(Phone), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',151).
 axiom(holds_at(idle(Phone), start),
     []).
 
@@ -739,8 +706,8 @@ axiom(holds_at(idle(Phone), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',151).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(dialTone(Phone)), start)).
  */
@@ -755,8 +722,8 @@ axiom(holds_at(neg(dialTone(Phone)), start),
  % !HoldsAt(BusySignal(phone),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(busySignal(Phone)), start)).
  */
@@ -771,8 +738,8 @@ axiom(holds_at(neg(busySignal(Phone)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',153).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(ringing(Phone1, Phone2)), start)).
  */
@@ -787,8 +754,8 @@ axiom(holds_at(neg(ringing(Phone1, Phone2)), start),
  % !HoldsAt(Connected(phone1,phone2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(connected(Phone1, Phone2)), start)).
  */
@@ -803,8 +770,8 @@ axiom(holds_at(neg(connected(Phone1, Phone2)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter3/Telephone1.e',155).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(disconnected(Phone)), start)).
  */

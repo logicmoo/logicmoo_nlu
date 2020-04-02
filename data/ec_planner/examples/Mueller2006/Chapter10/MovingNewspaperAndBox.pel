@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:28 GMT
+% Wed, 01 Apr 2020 19:59:29 GMT
 % From ../examples/Mueller2006/Chapter10/MovingNewspaperAndBox.pel:4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',47).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',69).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e').
@@ -351,8 +351,8 @@ axiom(terminates(move(Agent, Physobj, Agent, Room), in(Physobj, Agent), Time),
 % Happens(MOVE(Lisa,Newspaper,LivingRoom,Box),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(move(lisa, newspaper, livingRoom, box), start)).
  */
@@ -366,7 +366,7 @@ axiom(happens(move(lisa, newspaper, livingRoom, box), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',100).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(move(lisa, box, livingRoom, lisa), Maptime)).
@@ -381,7 +381,7 @@ axiom(happens(move(lisa, box, livingRoom, lisa), Maptime),
 % Happens(MOVE(Lisa,Lisa,LivingRoom,Kitchen),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(move(lisa, lisa, livingRoom, kitchen), Start2)).
@@ -396,7 +396,7 @@ axiom(happens(move(lisa, lisa, livingRoom, kitchen), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',102).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(move(lisa, box, lisa, kitchen), Start3)).
@@ -411,7 +411,7 @@ axiom(happens(move(lisa, box, lisa, kitchen), Start3),
 % Happens(MOVE(Lisa,Lisa,Kitchen,LivingRoom),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(move(lisa, lisa, kitchen, livingRoom), Start4)).
@@ -789,8 +789,8 @@ axiom(holds_at(neg(inroom(Object, Room2)), Time),
 % HoldsAt(IN(Lisa,LivingRoom),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(in(lisa, livingRoom), start)).
  */
@@ -804,8 +804,8 @@ axiom(holds_at(in(lisa, livingRoom), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',147).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(in(newspaper, livingRoom), start)).
  */
@@ -819,7 +819,10 @@ axiom(holds_at(in(newspaper, livingRoom), start),
 % HoldsAt(IN(Box,LivingRoom),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(in(box, livingRoom), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(in(box, livingRoom), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/MovingNewspaperAndBox.e',149).
 axiom(holds_at(in(box, livingRoom), start),

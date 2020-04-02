@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:39 GMT
+% Wed, 01 Apr 2020 19:59:44 GMT
 % From ../examples/Mueller2006/Chapter14/Vision.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/NetBill3.e',185).
 
@@ -532,8 +532,8 @@ axiom(arc(shape2, Aspect1, Aspect2),
 % HoldsAt(Aspect(Object1,Aspect1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(aspect(object1, aspect1), start)).
  */
@@ -547,7 +547,7 @@ axiom(holds_at(aspect(object1, aspect1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Vision.e',99).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(aspect(object1, aspect2), Time)).

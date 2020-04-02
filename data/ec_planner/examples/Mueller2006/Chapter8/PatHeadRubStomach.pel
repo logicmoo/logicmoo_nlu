@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:50 GMT
+% Wed, 01 Apr 2020 19:59:59 GMT
 % From ../examples/Mueller2006/Chapter8/PatHeadRubStomach.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/MovingRobot.e',137).
 
@@ -109,19 +109,25 @@ axiom(not(happens(patHead(Agent), Time)),
 % Happens(PatHead(Nathan),0) & Happens(RubStomach(Nathan),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 
- /*   happens(patHead(nathan), start+0),
-      happens(rubStomach(nathan), start+0).
+ /*   happens(patHead(nathan), start),
+      happens(rubStomach(nathan), start).
  */
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(patHead(nathan), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(patHead(nathan), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 axiom(happens(patHead(nathan), start),
     []).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(rubStomach(nathan), start)).
+       ta(Ta_Param1,
+          tvs1=[start],
+          tvs2=[start],
+          happens(rubStomach(nathan), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/PatHeadRubStomach.e',35).
 axiom(happens(rubStomach(nathan), start),

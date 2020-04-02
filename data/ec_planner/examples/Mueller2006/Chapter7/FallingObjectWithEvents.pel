@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:49 GMT
+% Wed, 01 Apr 2020 19:59:57 GMT
 % From ../examples/Mueller2006/Chapter7/FallingObjectWithEvents.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithAntiTrajectory.e',86).
 
@@ -174,21 +174,7 @@ axiom(initiates(hitGround(Object), height(Object, Height), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e:52
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -201,17 +187,21 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
- /*  holds_at(falling(Object), Time), holds_at(height(Object, 0), Time) ->
-       happens(hitGround(Object), Time).
- */
-
- /*  happens(hitGround(Object), Time) :-
-       holds_at(falling(Object), Time),
-       holds_at(height(Object, 0), Time).
+ /*  axiom_uses(delta) ->
+       ( holds_at(falling(Object), Time), holds_at(height(Object, 0), Time)->happens(hitGround(Object), Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
- /*  [holds_at(falling(Object), Time), holds_at(height(Object, 0), Time)] ->
+ /*  happens(hitGround(Object), Time) :-
+       ( holds_at(falling(Object), Time),
+         holds_at(height(Object, 0), Time)
+       ),
+       axiom_uses(delta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
+
+ /*  [holds_at(falling(Object), Time), holds_at(height(Object, 0), Time), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -221,17 +211,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 axiom(happens(hitGround(Object), Time),
    
     [ holds_at(falling(Object), Time),
-      holds_at(height(Object, 0), Time)
+      holds_at(height(Object, 0), Time),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
  /*  not(holds_at(falling(Object), Time)) :-
        holds_at(height(Object, 0), Time),
-       not(happens(hitGround(Object), Time)).
+       not(happens(hitGround(Object), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
- /*  [holds_at(height(Object, 0), Time), not(happens(hitGround(Object), Time))] ->
+ /*  [holds_at(height(Object, 0), Time), not(happens(hitGround(Object), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -241,17 +233,19 @@ axiom(happens(hitGround(Object), Time),
 axiom(holds_at(neg(falling(Object)), Time),
    
     [ holds_at(height(Object, 0), Time),
-      not(happens(hitGround(Object), Time))
+      not(happens(hitGround(Object), Time)),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
  /*  not(holds_at(height(Object, 0), Time)) :-
        holds_at(falling(Object), Time),
-       not(happens(hitGround(Object), Time)).
+       not(happens(hitGround(Object), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
 
- /*  [holds_at(falling(Object), Time), not(happens(hitGround(Object), Time))] ->
+ /*  [holds_at(falling(Object), Time), not(happens(hitGround(Object), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -261,26 +255,40 @@ axiom(holds_at(neg(falling(Object)), Time),
 axiom(holds_at(neg(height(Object, 0)), Time),
    
     [ holds_at(falling(Object), Time),
-      not(happens(hitGround(Object), Time))
+      not(happens(hitGround(Object), Time)),
+      axiom_uses(delta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
+
+ /*  not(axiom_uses(delta)) :-
+       not(happens(hitGround(Object), Time)),
+       holds_at(falling(Object), Time),
+       holds_at(height(Object, 0), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(delta)), ->, not(axiom_uses(delta, Time))].
+ */
+
+ /*  [not(happens(hitGround(Object), Time)), holds_at(falling(Object), Time), holds_at(height(Object, 0), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(delta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',53).
+axiom(not(axiom_uses(delta, Time)),
+   
+    [ not(happens(hitGround(Object), Time)),
+      holds_at(falling(Object), Time),
+      holds_at(height(Object, 0), Time)
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e:57
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',57).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',57).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -288,11 +296,15 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(Drop(Nathan,Apple),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',57).
 
- /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(drop(nathan, apple), start)).
+ /*  [axiom_uses(delta, Axiom_uses_Ret)] ->
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(drop(nathan, apple), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',57).
 axiom(happens(drop(nathan, apple), start),
-    []).
+    [axiom_uses(delta, Axiom_uses_Ret)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e:59
@@ -425,8 +437,8 @@ axiom(holds_at(neg(height(Object, Height1)), Time),
 % !HoldsAt(Falling(Apple),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(falling(apple)), start)).
  */
@@ -440,8 +452,12 @@ axiom(holds_at(neg(falling(apple)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',76).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(height(apple, 3), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(height(apple, 3), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',76).
 axiom(holds_at(height(apple, 3), start),
     []).
 

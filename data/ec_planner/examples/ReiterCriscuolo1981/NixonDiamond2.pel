@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:19 GMT
+% Wed, 01 Apr 2020 20:00:38 GMT
 % From ../examples/ReiterCriscuolo1981/NixonDiamond2.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond1.e',62).
 
@@ -233,20 +233,7 @@ axiom(ab2(X, Ab2_Ret),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e:62
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -255,32 +242,65 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  % Republican(x) -> Ab2(x).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
 
- /*  republican(X) ->
-       ab2(X, Ab2_Ret).
+ /*  axiom_uses(theta) ->
+       ( republican(X)->ab2(X, Ab2_Ret)
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
 
  /*  ab2(X, Ab2_Ret) :-
+       republican(X),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
+
+ /*  fix_axiom_head(Axiom_head_Ret) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Axiom_head_Ret)].
+ */
+
+ /*  [republican(X), axiom_uses(theta, Axiom_head_Ret)] ->
+       ta(Axiom_head_Ret, tvs1=[], tvs2=[], ab2(X, Ab2_Ret)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
+axiom(ab2(X, Ab2_Ret),
+    [republican(X), axiom_uses(theta, Axiom_head_Ret)]).
+
+ /*  not(republican(X)) :-
+       not(ab2(X, Ab2_Ret)),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
+
+ /*  fix_axiom_head(Axiom_head_Ret3) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Axiom_head_Ret3)].
+ */
+
+ /*  [not(ab2(X, Ab2_Ret)), axiom_uses(theta, Axiom_head_Ret3)] ->
+       ta(Axiom_head_Ret3, tvs1=[], tvs2=[], not(republican(X))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
+axiom(not(republican(X)),
+    [not(ab2(X, Ab2_Ret)), axiom_uses(theta, Axiom_head_Ret3)]).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab2(X, Ab2_Ret)),
        republican(X).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
 
- /*  [republican(X)] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], ab2(X, Ab2_Ret)).
- */
-axiom(ab2(X, Ab2_Ret),
-    [republican(X)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
-
- /*  not(republican(X)) :-
-       not(ab2(X, Ab2_Ret)).
+ /*  fix_axiom_head(Axiom_head_Ret4) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Axiom_head_Ret4))].
  */
 
- /*  [not(ab2(X, Ab2_Ret))] ->
-       ta(Ta_Param3, tvs1=[], tvs2=[], not(republican(X))).
+ /*  [not(ab2(X, Ab2_Ret)), republican(X)] ->
+       ta(Axiom_head_Ret4,
+          tvs1=[],
+          tvs2=[],
+          not(axiom_uses(theta, Axiom_head_Ret4))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e',62).
-axiom(not(republican(X)),
-    [not(ab2(X, Ab2_Ret))]).
+axiom(not(axiom_uses(theta, Axiom_head_Ret4)),
+    [not(ab2(X, Ab2_Ret)), republican(X)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/ReiterCriscuolo1981/NixonDiamond2.e:64
 % range time 0 0

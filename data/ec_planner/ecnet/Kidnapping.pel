@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:31 GMT
+% Wed, 01 Apr 2020 20:01:54 GMT
 % From ../ecnet/Kidnapping.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/IPRel.e',142).
 
@@ -322,7 +322,7 @@ axiom(ignore(likeSnow),
 % HoldsAt(Intact(Gun1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(intact(gun1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(intact(gun1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',48).
 axiom(holds_at(intact(gun1), start),
@@ -334,8 +334,12 @@ axiom(holds_at(intact(gun1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',48).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(intact(bullet1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(intact(bullet1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',48).
 axiom(holds_at(intact(bullet1), start),
     []).
 
@@ -355,8 +359,12 @@ axiom(holds_at(intact(bullet1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',53).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(calm(humanTarget1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(calm(humanTarget1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',53).
 axiom(holds_at(calm(humanTarget1), start),
     []).
 
@@ -366,8 +374,8 @@ axiom(holds_at(calm(humanTarget1), start),
 % HoldsAt(Alive(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(alive(humanTarget1), start)).
  */
@@ -381,8 +389,8 @@ axiom(holds_at(alive(humanTarget1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',55).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(awake(humanTarget1), start)).
  */
@@ -396,8 +404,8 @@ axiom(holds_at(awake(humanTarget1), start),
 % HoldsAt(Standing(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(humanTarget1), start)).
  */
@@ -411,8 +419,8 @@ axiom(holds_at(standing(humanTarget1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',57).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep2(humanTarget1), start)).
  */
@@ -426,8 +434,8 @@ axiom(holds_at(sleep2(humanTarget1), start),
 % !HoldsAt(Injured(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(humanTarget1)), start)).
  */
@@ -442,8 +450,8 @@ axiom(holds_at(neg(injured(humanTarget1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',59).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(humanTarget1, Object)), start)).
  */
@@ -457,8 +465,8 @@ axiom(holds_at(neg(holding(humanTarget1, Object)), start),
 % HoldsAt(At(HumanTarget1,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(humanTarget1, outside1), start)).
  */
@@ -473,8 +481,8 @@ axiom(holds_at(at(humanTarget1, outside1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',61).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
@@ -668,7 +676,7 @@ axiom(equals(side2(street1), outside2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',90).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(calm(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(calm(perp1), start)).
  */
 axiom(holds_at(calm(perp1), start),
     []).
@@ -679,7 +687,7 @@ axiom(holds_at(calm(perp1), start),
 % HoldsAt(Alive(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(alive(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',92).
 axiom(holds_at(alive(perp1), start),
@@ -691,7 +699,7 @@ axiom(holds_at(alive(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',92).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(awake(perp1), start)).
  */
 axiom(holds_at(awake(perp1), start),
     []).
@@ -702,7 +710,10 @@ axiom(holds_at(awake(perp1), start),
 % HoldsAt(Standing(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(perp1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',94).
 axiom(holds_at(standing(perp1), start),
@@ -714,7 +725,7 @@ axiom(holds_at(standing(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',94).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep2(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(sleep2(perp1), start)).
  */
 axiom(holds_at(sleep2(perp1), start),
     []).
@@ -725,8 +736,8 @@ axiom(holds_at(sleep2(perp1), start),
 % !HoldsAt(Injured(Perp1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(perp1)), start)).
  */
@@ -741,8 +752,8 @@ axiom(holds_at(neg(injured(perp1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',96).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(perp1, Object)), start)).
  */
@@ -756,7 +767,10 @@ axiom(holds_at(neg(holding(perp1, Object)), start),
 % HoldsAt(At(Gun1,Outside2),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(gun1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(gun1, outside2), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',98).
 axiom(holds_at(at(gun1, outside2), start),
@@ -768,8 +782,12 @@ axiom(holds_at(at(gun1, outside2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',98).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(perp1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(perp1, outside2), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',98).
 axiom(holds_at(at(perp1, outside2), start),
     []).
 
@@ -779,8 +797,8 @@ axiom(holds_at(at(perp1, outside2), start),
 % HoldsAt(At(Bullet1,Outside2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(bullet1, outside2), start)).
  */
@@ -794,8 +812,12 @@ axiom(holds_at(at(bullet1, outside2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',100).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(doorIsOpen(door1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',100).
 axiom(holds_at(doorIsOpen(door1), start),
     []).
 
@@ -805,8 +827,8 @@ axiom(holds_at(doorIsOpen(door1), start),
 % HoldsAt(DoorUnlocked(Door1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(door1), start)).
  */
@@ -821,8 +843,8 @@ axiom(holds_at(doorUnlocked(door1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',102).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(threatenedBy(Agent1, Agent2)), start)).
  */
@@ -837,8 +859,8 @@ axiom(holds_at(neg(threatenedBy(Agent1, Agent2)), start),
  % !HoldsAt(AngryAt(agent1,agent2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(angryAt(Agent1, Agent2)), start)).
  */
@@ -853,8 +875,8 @@ axiom(holds_at(neg(angryAt(Agent1, Agent2)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',104).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
@@ -869,8 +891,8 @@ axiom(holds_at(neg(inside(Physobj1, Physobj2)), start),
  % !HoldsAt(Love(agent,object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(love(Agent, Object)), start)).
  */
@@ -889,8 +911,12 @@ axiom(holds_at(neg(love(Agent, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',108).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(pickUp(perp1, gun1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(pickUp(perp1, gun1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',108).
 axiom(happens(pickUp(perp1, gun1), start),
     []).
 
@@ -900,7 +926,7 @@ axiom(happens(pickUp(perp1, gun1), start),
 % Happens(PickUp(Perp1,Bullet1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pickUp(perp1, bullet1), Maptime)).
@@ -915,7 +941,7 @@ axiom(happens(pickUp(perp1, bullet1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',110).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(putInside(perp1, bullet1, gun1), Start2)).
@@ -930,7 +956,7 @@ axiom(happens(putInside(perp1, bullet1, gun1), Start2),
 % Happens(WalkStreet21(Perp1,Street1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(walkStreet21(perp1, street1), Start3)).
@@ -945,7 +971,7 @@ axiom(happens(walkStreet21(perp1, street1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',112).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(threaten(perp1, humanTarget1, gun1), Start4)).
@@ -960,7 +986,7 @@ axiom(happens(threaten(perp1, humanTarget1, gun1), Start4),
 % Happens(Grab(Perp1,HumanTarget1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(grab(perp1, humanTarget1), Start5)).
@@ -975,7 +1001,7 @@ axiom(happens(grab(perp1, humanTarget1), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',114).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(walkStreet12(perp1, street1), Start6)).
@@ -990,7 +1016,7 @@ axiom(happens(walkStreet12(perp1, street1), Start6),
 % Happens(WalkThroughDoor12(Perp1,Door1),7).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(walkThroughDoor12(perp1, door1), Start7)).
@@ -1005,7 +1031,7 @@ axiom(happens(walkThroughDoor12(perp1, door1), Start7),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',116).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(letGoOf(perp1, humanTarget1), Start8)).
@@ -1020,7 +1046,7 @@ axiom(happens(letGoOf(perp1, humanTarget1), Start8),
 % Happens(Shoot(Perp1,Gun1,HumanTarget1),9).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(shoot(perp1, gun1, humanTarget1), Start9)).
@@ -1035,7 +1061,7 @@ axiom(happens(shoot(perp1, gun1, humanTarget1), Start9),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',118).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(shootKill(perp1, gun1, humanTarget1), Start9)).

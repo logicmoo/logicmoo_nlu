@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:35 GMT
+% Wed, 01 Apr 2020 19:59:38 GMT
 % From ../examples/Mueller2006/Chapter12/MethodB.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',77).
 
@@ -148,7 +148,7 @@ axiom(ab(Object, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',36).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(p(a), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(p(a), start)).
  */
 axiom(holds_at(p(a), start),
     []).
@@ -159,7 +159,7 @@ axiom(holds_at(p(a), start),
 % HoldsAt(P(B),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(p(b), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(p(b), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',38).
 axiom(holds_at(p(b), start),
@@ -168,21 +168,7 @@ axiom(holds_at(p(b), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',40).
 % Theta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',40).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',40).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -190,12 +176,16 @@ axiom(holds_at(next_axiom_uses(theta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',40).
 % Ab(A,0).
 
- /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], ab(a, 0)).
+ /*  fix_axiom_head(Axiom_head_Ret) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Axiom_head_Ret)].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',40).
+
+ /*  [axiom_uses(theta, Axiom_head_Ret)] ->
+       ta(Axiom_head_Ret, tvs1=[], tvs2=[], ab(a, 0)).
+ */
 axiom(ab(a, 0),
-    []).
+    [axiom_uses(theta, Axiom_head_Ret)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e:41
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',42).

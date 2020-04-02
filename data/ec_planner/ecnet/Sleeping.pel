@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:01 GMT
+% Wed, 01 Apr 2020 20:02:29 GMT
 % From ../ecnet/Sleeping.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleep.e',321).
 
@@ -248,8 +248,8 @@ axiom(equals(side2(door1), room1),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',56).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -264,8 +264,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
  % !HoldsAt(SittingOn(agent,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
@@ -280,8 +280,8 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',58).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
@@ -295,7 +295,10 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 % HoldsAt(Dressed(Sleeper1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(sleeper1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(dressed(sleeper1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',60).
 axiom(holds_at(dressed(sleeper1), start),
@@ -307,8 +310,12 @@ axiom(holds_at(dressed(sleeper1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',60).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(sleeper1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(sleeper1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',60).
 axiom(holds_at(awake(sleeper1), start),
     []).
 
@@ -318,7 +325,10 @@ axiom(holds_at(awake(sleeper1), start),
 % HoldsAt(Sleep3(Sleeper1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(sleeper1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(sleep3(sleeper1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',62).
 axiom(holds_at(sleep3(sleeper1), start),
@@ -330,8 +340,12 @@ axiom(holds_at(sleep3(sleeper1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',62).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(sleeper1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(sleeper1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',62).
 axiom(holds_at(standing(sleeper1), start),
     []).
 
@@ -341,8 +355,8 @@ axiom(holds_at(standing(sleeper1), start),
 % HoldsAt(DoorUnlocked(Door1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(door1), start)).
  */
@@ -356,8 +370,12 @@ axiom(holds_at(doorUnlocked(door1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',64).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(doorIsOpen(door1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',64).
 axiom(holds_at(doorIsOpen(door1), start),
     []).
 
@@ -367,7 +385,10 @@ axiom(holds_at(doorIsOpen(door1), start),
 % HoldsAt(At(Sleeper1,Room0),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(sleeper1, room0), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(sleeper1, room0), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',66).
 axiom(holds_at(at(sleeper1, room0), start),
@@ -379,8 +400,12 @@ axiom(holds_at(at(sleeper1, room0), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',66).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(bed1, room1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(bed1, room1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',66).
 axiom(holds_at(at(bed1, room1), start),
     []).
 
@@ -394,7 +419,10 @@ axiom(holds_at(at(bed1, room1), start),
 % Happens(GetTired(Sleeper1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(getTired(sleeper1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(getTired(sleeper1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',70).
 axiom(happens(getTired(sleeper1), start),
@@ -406,7 +434,7 @@ axiom(happens(getTired(sleeper1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',70).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(walkThroughDoor12(sleeper1, door1), Maptime)).
@@ -421,7 +449,7 @@ axiom(happens(walkThroughDoor12(sleeper1, door1), Maptime),
 % Happens(GetUndressed(Sleeper1),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(getUndressed(sleeper1), Start2)).
@@ -436,7 +464,7 @@ axiom(happens(getUndressed(sleeper1), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',72).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(lieOn(sleeper1, bed1), Start3)).
@@ -451,7 +479,7 @@ axiom(happens(lieOn(sleeper1, bed1), Start3),
 % Happens(FallAsleep(Sleeper1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(fallAsleep(sleeper1), Start4)).
@@ -466,7 +494,7 @@ axiom(happens(fallAsleep(sleeper1), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',74).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(dream(sleeper1), Start5)).
@@ -481,7 +509,7 @@ axiom(happens(dream(sleeper1), Start5),
 % Happens(WakeUp(Sleeper1),6).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(wakeUp(sleeper1), Start6)).
@@ -496,7 +524,7 @@ axiom(happens(wakeUp(sleeper1), Start6),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',76).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(riseFrom(sleeper1, bed1), Start7)).
@@ -511,7 +539,7 @@ axiom(happens(riseFrom(sleeper1, bed1), Start7),
 % Happens(GetDressed(Sleeper1),8).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(getDressed(sleeper1), Start8)).
@@ -526,7 +554,7 @@ axiom(happens(getDressed(sleeper1), Start8),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Sleeping.e',78).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(walkThroughDoor21(sleeper1, door1), Start9)).

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:48 GMT
+% Wed, 01 Apr 2020 19:59:55 GMT
 % From ../examples/Mueller2006/Chapter6/ThielscherCircuit2.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit1.e',85).
 
@@ -578,8 +578,12 @@ axiom(terminates(unlight(Light), lit(Light), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',77).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(closed(s1)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(closed(s1)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',77).
 axiom(holds_at(neg(closed(s1)), start),
     []).
 
@@ -589,7 +593,7 @@ axiom(holds_at(neg(closed(s1)), start),
 % HoldsAt(Closed(S2),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(closed(s2), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(closed(s2), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',79).
 axiom(holds_at(closed(s2), start),
@@ -601,7 +605,7 @@ axiom(holds_at(closed(s2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',79).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(closed(s3), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(closed(s3), start)).
  */
 axiom(holds_at(closed(s3), start),
     []).
@@ -612,7 +616,10 @@ axiom(holds_at(closed(s3), start),
 % !HoldsAt(Activated(R),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(activated(r)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(activated(r)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',81).
 axiom(holds_at(neg(activated(r)), start),
@@ -624,7 +631,7 @@ axiom(holds_at(neg(activated(r)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',81).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(lit(l)), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(lit(l)), start)).
  */
 axiom(holds_at(neg(lit(l)), start),
     []).
@@ -635,7 +642,7 @@ axiom(holds_at(neg(lit(l)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ThielscherCircuit2.e',83).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(close(s1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(close(s1), start)).
  */
 axiom(happens(close(s1), start),
     []).

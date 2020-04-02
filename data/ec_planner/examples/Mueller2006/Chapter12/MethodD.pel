@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:35 GMT
+% Wed, 01 Apr 2020 19:59:38 GMT
 % From ../examples/Mueller2006/Chapter12/MethodD.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodB.e',47).
 
@@ -265,7 +265,7 @@ axiom(holds_at(neg(r(Object)), Time),
 % HoldsAt(R(A),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(r(a), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(r(a), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
 axiom(holds_at(r(a), start),
@@ -277,7 +277,7 @@ axiom(holds_at(r(a), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',47).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(p(b), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(p(b), start)).
  */
 axiom(holds_at(p(b), start),
     []).
@@ -288,7 +288,7 @@ axiom(holds_at(p(b), start),
 % !HoldsAt(R(B),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(r(b)), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(r(b)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',49).
 axiom(holds_at(neg(r(b)), start),
@@ -297,21 +297,7 @@ axiom(holds_at(neg(r(b)), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
 % Theta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',51).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -320,16 +306,23 @@ axiom(holds_at(next_axiom_uses(theta), Time),
 % HoldsAt(R(object),time) -> Ab1(object,time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 
- /*  holds_at(r(Object), Time) ->
-       ab1(Object, Time).
- */
-
- /*  ab1(Object, Time) :-
-       holds_at(r(Object), Time).
+ /*  axiom_uses(theta) ->
+       ( holds_at(r(Object), Time)->ab1(Object, Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 
- /*  [holds_at(r(Object), Time)] ->
+ /*  ab1(Object, Time) :-
+       holds_at(r(Object), Time),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
+
+ /*  fix_axiom_head(Time) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Time)].
+ */
+
+ /*  [holds_at(r(Object), Time), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -337,14 +330,15 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 axiom(ab1(Object, Time),
-    [holds_at(r(Object), Time)]).
+    [holds_at(r(Object), Time), axiom_uses(theta, Time)]).
 
  /*  not(holds_at(r(Object), Time)) :-
-       not(ab1(Object, Time)).
+       not(ab1(Object, Time)),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 
- /*  [not(ab1(Object, Time))] ->
+ /*  [not(ab1(Object, Time)), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -352,7 +346,27 @@ axiom(ab1(Object, Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
 axiom(holds_at(neg(r(Object)), Time),
-    [not(ab1(Object, Time))]).
+    [not(ab1(Object, Time)), axiom_uses(theta, Time)]).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab1(Object, Time)),
+       holds_at(r(Object), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Time))].
+ */
+
+ /*  [not(ab1(Object, Time)), holds_at(r(Object), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(theta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',53).
+axiom(not(axiom_uses(theta, Time)),
+    [not(ab1(Object, Time)), holds_at(r(Object), Time)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/MethodD.e',55).

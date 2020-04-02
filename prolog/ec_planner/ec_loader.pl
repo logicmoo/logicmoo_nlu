@@ -292,10 +292,10 @@ fix_axiom_head(T, (G1;G2), (GG1;GG2)):- !, fix_axiom_head(T, G1, GG1),fix_axiom_
 fix_axiom_head(T, (G1:-B), (GG1:-B)):- !, fix_axiom_head(T, G1, GG1),!.
 fix_axiom_head(T, neg(II),O):- compound(II), II= neg(I), !, fix_axiom_head(T, I,O),!.
 fix_axiom_head(T, neg(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
-fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O). 
+fix_axiom_head(T, not(I),O):- !, fix_axiom_head(T, I,M), correct_holds(neg, not(M), O).
 fix_axiom_head(T, G, GG):- must_or_dumpst(cvt0_full(T,G,Y)), (G==Y -> fail; fix_axiom_head(T,Y,GG)),!.
 fix_axiom_head(_, G, G):- safe_functor(G,F,A), already_good(F,A),!.
-fix_axiom_head(T, exists(X,G), exists(X,GG)):-!,fix_axiom_head(T, G, GG).
+fix_axiom_head(T, exists(X,G), exists(X,GG)):-!, fix_axiom_head(T, G, GG).
 fix_axiom_head(T, G, holds_at(G,T)):- functor_skel(G,P), syntx_term_check(fluent(P)),!.
 fix_axiom_head(T, G, happens(G,T)):- functor_skel(G,P), \+ syntx_term_check(predicate(P)), (syntx_term_check(event(P);executable(P))),!.
 fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predicate(P)),!.
@@ -327,6 +327,7 @@ show_fix_axiom_head(T, HT, HTTermO):- dumpST,
 
 show_fix_axiom_head(T, HT, HTTermO):- trace, rtrace(fix_axiom_head(T, HT, HTTermO)),!.
 
+:- dynamic(ec_tmp:do_next_axiom_uses/1).
 
 call_ready_body(Type,Body):- 
    setup_call_cleanup(
@@ -335,23 +336,33 @@ call_ready_body(Type,Body):-
     pprint_ecp(Type,':-'(endif))).
 
 assert_ready(P):- assert_ready(pl,P).
+
 assert_ready(Type,(:-Body)):- 
    notrace((echo_format('~N'))),
    pprint_ecp(Type,':-'(Body)),
    notrace((echo_format('~N'))),
    call_ready_body(Type,Body),!.
+
+assert_ready(Type,'==>'(next_axiom_uses(Value))):- 
+     pprint_ecp(Type,'next_axiom_uses'(Value)),
+     assert(ec_tmp:do_next_axiom_uses(Value)),!.
+
 assert_ready(Type,'==>'(Value)):- 
    pprint_ecp(Type,'==>'(Value)),
    mpred_fwc('==>'(Value)),
    Value = ValueO, % fix_assert(_Time,Value,ValueO),
    into_current_domain_db(ValueO),!.
 
-assert_ready(Type,axiom(H,B)):- select(ignore(Was==Into),B,NB),   
+assert_ready(Type,axiom(H,B)):- select(I,B,NB),compound(I),I=ignore(Was==Into),
    subst(axiom(H,NB),Was,Into,axiom(HH,BB)),!,
    %append(BB,[ignore(ignore(Was==Into))],BBB),
    BB=BBB,
-   assert_ready(Type,axiom(HH,BBB)).
-   
+   assert_ready(Type,axiom(HH,BBB)), !.
+
+
+assert_ready(Type,axiom(H,B)):- B ==[],compound(H),functor(H,F,_),verbatum_functor(F),!,
+  assert_ready(Type,H).
+
 assert_ready(Type,Value):- 
   assert_ready_now(Type,Value).
 
@@ -370,7 +381,7 @@ into_current_domain_db(Value):- copy_term_nat(Value,ValueO), assertz_if_new_doma
 
 assertz_if_new_domain_db((H:-B),T):- !, assertz_if_new_msg((user:ec_current_domain_db(H,T):-B)).
 
-assertz_if_new_domain_db(ValueO,T):- ValueO =@= axiom(holds_at(neg(raining), _), []),!,barf.
+assertz_if_new_domain_db(ValueO,_):- ValueO =@= axiom(holds_at(neg(raining), _), []),!,barf.
 assertz_if_new_domain_db(ValueO,T):- assertz_if_new_msg(user:ec_current_domain_db(ValueO,T)).
 
 assertz_if_new_msg(Stuff):- clause_asserted(Stuff),wdmsg(already(Stuff)).
@@ -386,10 +397,10 @@ some_renames(O,O).
 :- export_transparent(assert_ele_cond_load_e/1).
 assert_ele_cond_load_e(EOF) :- must(brk_on_bind(EOF)), must(assert_ele(EOF)),!.
 
-predform_to_functionform(PF,equals(Fn,LastArg)):- PF=..[F|Args],append(FnArgs,[LastArg],Args),predname_to_fnname(F,FnF),Fn=..[FnF|FnArgs].
-functionform_to_predform(equals(Fn,LastArg),PF):- Fn=..[FnF|FnArgs],append(FnArgs,[LastArg],Args),fnname_to_predname(FnF,F),PF=..[F|Args].
+predform_to_functionform(PF,equals(Fn,LastArg)):- notrace((PF=..[F|Args],append(FnArgs,[LastArg],Args),predname_to_fnname(F,FnF),Fn=..[FnF|FnArgs])).
+functionform_to_predform(equals(Fn,LastArg),PF):- notrace((Fn=..[FnF|FnArgs],append(FnArgs,[LastArg],Args),fnname_to_predname(FnF,F),PF=..[F|Args])).
 
-predname_to_fnname(Pred,Fun):- clause_b(functional_predicate(Fun,Pred)).
+predname_to_fnname(Pred,Fun):- notrace(clause_b(functional_predicate(Fun,Pred))),!.
 predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Pred,'Of',Fun),call_u(resultIsa(Templ,_)),functor(Templ,F,_),Fun==F,!.
 predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Pred,'Fn',Fun),!.
 predname_to_fnname(Pred,Fun):- atom(Pred),atom_concat(Fun,'Pred',Pred),!.
@@ -410,6 +421,7 @@ assert_ele(_):- notrace((echo_format('~N'), fail)).
 assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
 %assert_ele(==>(S0)):- !, assert_ready( ==>(S0)).
 assert_ele(:- S0):- !, assert_ready( (:-(S0))).
+
 assert_ele(axiom(H,B)):- !, assert_axiom(H,B).
 assert_ele(include(S0)):- !, assert_ready( :-(load_e(S0,include))).
 assert_ele(load(S0)):- !, assert_ready( :-(load_e(S0,changed))).
@@ -574,6 +586,8 @@ cvt0(T, X\=Y, O):- must(cvt0(T, not(X=Y), O)).
 
 cvt0(_, =(X,Y),P):- !, as_equals(X,Y,P).
 cvt0(_, equals(X,Y),P):- !, as_equals(X,Y,P).
+cvt0(T, axiom_uses(V),axiom_uses(V,T)):- !.
+
 
 cvt0(T, neg(II),O):- compound(II), II= neg(I), !, cvt0(T, I,O),!.
 cvt0(T, neg(I),O):- !, cvt0(T, I,M), correct_holds(neg, not(M), O). 
@@ -653,6 +667,7 @@ skipped_negated_head(H):- \+ compound(H),!,fail.
 skipped_negated_head(allDifferent(_)).
 skipped_negated_head(equals(_,_)).
 skipped_negated_head(diff(_,_)).
+skipped_negated_head(axiom_uses(_,_)).
 skipped_negated_head(some(_,_)).
 skipped_negated_head(comparison(_,_,_)).
 
@@ -678,6 +693,9 @@ assert_ele_clauses(_X,_L,H):-
   assert_axiom(H , []). 
 
 assert_m_axiom(Ax):- 
+  retract(ec_tmp:do_next_axiom_uses(Value)),!,
+  assert_m_axiom(axiom_uses(Value)->Ax).
+assert_m_axiom(Ax):- 
   e_to_ec(Ax,X),
   pprint_ecp_cmt(green, X),
   with_output_to(string(_), clausify_pnf(X,Conds)), 
@@ -695,6 +713,11 @@ assert_axiom(AxHead, append3(L1,L2,LL)):-
 assert_axiom(AxHead, B) :- \+ is_list(B), !,
   conjuncts_to_list_body(B,Bs),
   assert_axiom(AxHead, Bs).
+
+assert_axiom(AxHead, B):- 
+  retract(ec_tmp:do_next_axiom_uses(Value)),!,
+  assert_axiom(AxHead, [axiom_uses(Value)|B]).
+
 
 /*
 assert_axiom(happens(A,T), []):- number(T), !,
@@ -725,7 +748,8 @@ assert_axiom(AxHead, Some):- is_list(Some), select(E,Some,Rest), compound(E), E 
    assert_axiom(AxHead, BReast).
 
 assert_axiom(AxHead, B):-
-  semi_legit_time(AxHead,T),
+  semi_legit_time(AxHead,TimeBase),
+  (var(TimeBase) -> TimeBase = T ; T = _),
   fix_goal(T,B,Bs), B\=@=Bs, !, 
   assert_axiom(AxHead, Bs).
 
@@ -736,7 +760,9 @@ assert_axiom(AxHead, B):-
   assert_effect(Effect,Event,Fluent, T, B), !.
 
 assert_axiom(H,B) :- 
-  ignore((semi_legit_time(H+B,Time),var(Time));semi_legit_time(H+B,Time)),
+  ignore((semi_legit_time(H+B,TimeBase),var(TimeBase));semi_legit_time(H+B,TimeBase)),
+  (var(TimeBase) -> TimeBase = Time ; Time = _ ),
+
   must_maplist(show_fix_axiom_head(Time),[H|B],[HH|BB]),
 
   correct_axiom_time_args_other(Time,HH,BB,HHH,BBB),
@@ -908,10 +934,11 @@ to_axiom_head(T,G,GG) :-  trace,fix_axiom_head(T,G,GG),!.
 fix_goal(_, Nil,[]):- Nil==[],!.
 fix_goal(T,[G|Gs],GGs):- !, fix_goal(T,G,G0),fix_goal(T,Gs,Gs0),append(G0,Gs0,GGs),!.
 fix_goal(T,(G,Gs),GGs):- !, fix_goal(T,G,G0),fix_goal(T,Gs,Gs0),append(G0,Gs0,GGs),!.
-fix_goal(T,{Gs},GGs):- !, fix_goal(T,Gs,GGs).
+fix_goal(T,{Gs},{GGs}):- !, fix_goal(T,Gs,GGs).
 fix_goal(T, G, GGs):- fix_axiom_head(T,G,GG),!, listify(GG,GGs).
 fix_goal(T, G, [Gs| TExtra]):- fix_goal_add_on_arg( T, G, Gs, TExtra),!.
-fix_goal(T, G, [GGs]):- to_axiom_head(T,G,GGs),!.
+fix_goal(T, G, GGs):- to_axiom_head(T,G,GG),!, listify(GG,GGs).
+fix_goal(_, holds_at(G, T3), [holds_at(G, T3)]):-!.
 fix_goal(T, G, [holds_at(G, T)]).
 
 
@@ -1103,10 +1130,14 @@ already_good(b, 2).
 already_good(toffset, 3).
 already_good(requires, 2).
 already_good(equals, 2).
+already_good(axiom_uses, 2).
 already_good(is, 2).
 already_good(diff, 2).
 already_good(dif, 2).
 already_good(allDifferent, 1).
+already_good(F, 1):- arg_info(domain,F,arginfo).
+already_good(F, N):- arg_info(axiom_head,F,Args),compound(Args),functor(Args,v,N).
+already_good(F, 1):- fixed_already(F).
 already_good(comparison, 3).
 already_good(terms_or_rels,3).
 already_good(F,A):- functor(P,F,A),syntx_term_check(abducible(PP)),compound(PP),PP=P.
@@ -1231,7 +1262,7 @@ arg_info(domain,reified_sort,arginfo).
 
 arg_info(abducible,noninertial,v(pred)).
 arg_info(abducible,completion,v(pred)).
-
+arg_info(abducible,next_axiom_uses,v(pred)).
 arg_info(abducible,sort,v(sort)).
 arg_info(abducible,subsort,v(sort,sort)).
 arg_info(abducible,range,v(atomic,int,int)).

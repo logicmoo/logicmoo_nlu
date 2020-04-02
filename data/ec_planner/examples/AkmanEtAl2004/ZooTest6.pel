@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:02 GMT
+% Wed, 01 Apr 2020 20:00:18 GMT
 % From ../examples/AkmanEtAl2004/ZooTest6.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest5.2.e',60).
 
@@ -117,8 +117,8 @@ axiom(adult(jumbo),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',34).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(mounted(homer, jumbo), start)).
  */
@@ -132,7 +132,7 @@ axiom(holds_at(mounted(homer, jumbo), start),
 % HoldsAt(Pos(Jumbo,1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(pos(jumbo, 1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(pos(jumbo, 1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',36).
 axiom(holds_at(pos(jumbo, 1), start),
@@ -144,8 +144,8 @@ axiom(holds_at(pos(jumbo, 1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',36).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(throwOff(jumbo, homer), start)).
  */
@@ -168,14 +168,25 @@ axiom(happens(throwOff(jumbo, homer), start),
  %  not(releasedAt(mounted(Human,Animal),0)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
 
- /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          not(releasedAt(mounted(Human, Animal), 0))).
+ /*  fix_axiom_head(Time) ->
+       
+       [ not(releasedAt(mounted(Human, Animal), 0)),
+          (->),
+         holds_at(neg(releasedAt(mounted(Human, Animal), 0)),
+                  Time)
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
-axiom(not(releasedAt(mounted(Human, Animal), 0)),
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(releasedAt(mounted(Human, Animal), 0)),
+                   Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
+axiom(holds_at(neg(releasedAt(mounted(Human, Animal), 0)), Time),
     []).
 
 
@@ -185,10 +196,23 @@ axiom(not(releasedAt(mounted(Human, Animal), 0)),
  %  not(releasedAt(opened(Gate),0)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
 
- /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], not(releasedAt(opened(Gate), 0))).
+ /*  fix_axiom_head(Time) ->
+       
+       [ not(releasedAt(opened(Gate), 0)),
+          (->),
+         holds_at(neg(releasedAt(opened(Gate), 0)), Time)
+       ].
  */
-axiom(not(releasedAt(opened(Gate), 0)),
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(releasedAt(opened(Gate), 0)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',40).
+axiom(holds_at(neg(releasedAt(opened(Gate), 0)), Time),
     []).
 
 
@@ -197,11 +221,23 @@ axiom(not(releasedAt(opened(Gate), 0)),
 % [position]
  % ReleasedAt(Pos(Homer,position),0).
 
- /*  [] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], releasedAt(pos(homer, Position), 0)).
+ /*  fix_axiom_head(Time) ->
+       
+       [ releasedAt(pos(homer, Position), 0),
+          (->),
+         holds_at(releasedAt(pos(homer, Position), 0), Time)
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',42).
-axiom(releasedAt(pos(homer, Position), 0),
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(releasedAt(pos(homer, Position), 0), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',42).
+axiom(holds_at(releasedAt(pos(homer, Position), 0), Time),
     []).
 
 
@@ -211,14 +247,23 @@ axiom(releasedAt(pos(homer, Position), 0),
  %  not(releasedAt(pos(jumbo,Position),0)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',42).
 
- /*  [] ->
-       ta(Ta_Param,
-          tvs1=[],
-          tvs2=[],
-          not(releasedAt(pos(jumbo, Position), 0))).
+ /*  fix_axiom_head(Time) ->
+       
+       [ not(releasedAt(pos(jumbo, Position), 0)),
+          (->),
+         holds_at(neg(releasedAt(pos(jumbo, Position), 0)), Time)
+       ].
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',42).
-axiom(not(releasedAt(pos(jumbo, Position), 0)),
+
+ /*  [] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          holds_at(neg(releasedAt(pos(jumbo, Position), 0)), Time)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',42).
+axiom(holds_at(neg(releasedAt(pos(jumbo, Position), 0)), Time),
     []).
 
 
@@ -228,7 +273,7 @@ axiom(not(releasedAt(pos(jumbo, Position), 0)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',44).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(posDeterminingFluent(Human, 1), Time)).
@@ -244,7 +289,7 @@ axiom(holds_at(posDeterminingFluent(Human, 1), Time),
  % !HoldsAt(DoneBy(event,animal),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(neg(doneBy(Event, Animal)), Time)).

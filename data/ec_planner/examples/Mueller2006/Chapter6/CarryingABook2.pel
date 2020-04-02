@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:46 GMT
+% Wed, 01 Apr 2020 19:59:52 GMT
 % From ../examples/Mueller2006/Chapter6/CarryingABook2.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/CarryingABook1.e',96).
 
@@ -239,7 +239,10 @@ axiom(initiates(letGoOf(Agent, Object), inRoom(Object, Room), Time),
 % Happens(PickUp(Nathan,Book),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(pickUp(nathan, book), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(pickUp(nathan, book), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/CarryingABook2.e',67).
 axiom(happens(pickUp(nathan, book), start),
@@ -251,7 +254,7 @@ axiom(happens(pickUp(nathan, book), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/CarryingABook2.e',67).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(walk(nathan, livingRoom, kitchen), Maptime)).
@@ -396,8 +399,8 @@ axiom(holds_at(neg(inRoom(Agent, Room)), Time),
 % HoldsAt(InRoom(Nathan,LivingRoom),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inRoom(nathan, livingRoom), start)).
  */
@@ -411,8 +414,8 @@ axiom(holds_at(inRoom(nathan, livingRoom), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/CarryingABook2.e',84).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inRoom(book, livingRoom), start)).
  */
@@ -430,8 +433,8 @@ axiom(holds_at(inRoom(book, livingRoom), start),
 % !HoldsAt(Holding(Nathan,Book),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(nathan, book)), start)).
  */

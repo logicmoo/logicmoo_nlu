@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:01 GMT
+% Wed, 01 Apr 2020 20:00:16 GMT
 % From ../examples/AkmanEtAl2004/ZooTest3.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest2.e',43).
 
@@ -117,8 +117,8 @@ axiom(adult(snoopy),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',34).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(opened(gateAO)), start)).
  */
@@ -135,24 +135,24 @@ axiom(holds_at(neg(opened(gateAO)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 
  /*  exists([Position],
-     holds_at(pos(homer, Position), start+0),
+     holds_at(pos(homer, Position), start),
       equals(outside, loc(Position))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 
- /*  holds_at(pos(homer, Position), start+0) :-
-       some(Position, '$kolem_Fn_71').
+ /*  holds_at(pos(homer, Position), start) :-
+       some(Position, '$kolem_Fn_75').
  */
 
- /*  [some(Position, '$kolem_Fn_71')] ->
-       ta(start+0,
-          tvs1=[start+0],
+ /*  [some(Position, '$kolem_Fn_75')] ->
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(pos(homer, Position), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 axiom(holds_at(pos(homer, Position), start),
-    [some(Position, '$kolem_Fn_71')]).
+    [some(Position, '$kolem_Fn_75')]).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e:36
 % {position} 
 
@@ -162,24 +162,24 @@ axiom(holds_at(pos(homer, Position), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 
  /*  exists([Position],
-     holds_at(pos(snoopy, Position), start+0),
+     holds_at(pos(snoopy, Position), start),
       equals(cageA, loc(Position))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 
- /*  holds_at(pos(snoopy, Position), start+0) :-
-       some(Position, '$kolem_Fn_72').
+ /*  holds_at(pos(snoopy, Position), start) :-
+       some(Position, '$kolem_Fn_76').
  */
 
- /*  [some(Position, '$kolem_Fn_72')] ->
-       ta(start+0,
-          tvs1=[start+0],
+ /*  [some(Position, '$kolem_Fn_76')] ->
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(pos(snoopy, Position), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',36).
 axiom(holds_at(pos(snoopy, Position), start),
-    [some(Position, '$kolem_Fn_72')]).
+    [some(Position, '$kolem_Fn_76')]).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e:38
 % {position} 
 
@@ -195,11 +195,11 @@ axiom(holds_at(pos(snoopy, Position), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',38).
 
  /*  holds_at(pos(homer, Position), start+2) :-
-       some(Position, '$kolem_Fn_73').
+       some(Position, '$kolem_Fn_77').
  */
 
- /*  [some(Position, '$kolem_Fn_73'), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+ /*  [some(Position, '$kolem_Fn_77'), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(pos(homer, Position), Start2)).
@@ -207,7 +207,7 @@ axiom(holds_at(pos(snoopy, Position), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',38).
 axiom(holds_at(pos(homer, Position), Start2),
    
-    [ some(Position, '$kolem_Fn_73'),
+    [ some(Position, '$kolem_Fn_77'),
       b(start, Start2),
       toffset(start, 2, Start2)
     ]).
@@ -227,11 +227,11 @@ axiom(holds_at(pos(homer, Position), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',40).
 
  /*  holds_at(pos(snoopy, Position), start+2) :-
-       some(Position, '$kolem_Fn_74').
+       some(Position, '$kolem_Fn_78').
  */
 
- /*  [some(Position, '$kolem_Fn_74'), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+ /*  [some(Position, '$kolem_Fn_78'), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(pos(snoopy, Position), Start2)).
@@ -239,7 +239,7 @@ axiom(holds_at(pos(homer, Position), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',40).
 axiom(holds_at(pos(snoopy, Position), Start2),
    
-    [ some(Position, '$kolem_Fn_74'),
+    [ some(Position, '$kolem_Fn_78'),
       b(start, Start2),
       toffset(start, 2, Start2)
     ]).
@@ -251,7 +251,7 @@ axiom(holds_at(pos(snoopy, Position), Start2),
  % HoldsAt(PosDeterminingFluent(human,1),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(posDeterminingFluent(Human, 1), Start2)).
@@ -267,7 +267,7 @@ axiom(holds_at(posDeterminingFluent(Human, 1), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest3.e',42).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(neg(doneBy(Event, Animal)), Start2)).

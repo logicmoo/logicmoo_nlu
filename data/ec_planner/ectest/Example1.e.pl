@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:51:43 GMT
+% Wed, 01 Apr 2020 20:05:37 GMT
 % From ../ectest/Example1.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1a.e',43).
 
@@ -79,29 +79,19 @@ axiom(initiates(wakeUp(Agent), awake(Agent), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',24).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(awake(james)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(awake(james)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',24).
 axiom(holds_at(neg(awake(james)), start),
     []).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',26).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',26).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',26).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -109,12 +99,12 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',26).
 % Happens(WakeUp(James),0).
 
- /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(wakeUp(james), start)).
+ /*  [axiom_uses(delta, Axiom_uses_Ret)] ->
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(wakeUp(james), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',26).
 axiom(happens(wakeUp(james), start),
-    []).
+    [axiom_uses(delta, Axiom_uses_Ret)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e:27
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example1.e',28).

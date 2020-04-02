@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:49 GMT
+% Wed, 01 Apr 2020 19:59:57 GMT
 % From ../examples/Mueller2006/Chapter7/HotAirBalloon.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/FallingObjectWithEvents.e',85).
 
@@ -168,21 +168,7 @@ axiom(terminates(turnOffHeater(Agent, Balloon), heaterOn(Balloon), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:58
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -190,33 +176,20 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 % Happens(TurnOnHeater(Nathan,Balloon),0).
 
- /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+ /*  [axiom_uses(delta, Axiom_uses_Ret)] ->
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(turnOnHeater(nathan, balloon), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 axiom(happens(turnOnHeater(nathan, balloon), start),
-    []).
+    [axiom_uses(delta, Axiom_uses_Ret)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:59
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -224,15 +197,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(TurnOffHeater(Nathan,Balloon),2).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 
- /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(turnOffHeater(nathan, balloon), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',59).
 axiom(happens(turnOffHeater(nathan, balloon), Start2),
-    [b(start, Start2), toffset(start, 2, Start2)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start2),
+      toffset(start, 2, Start2)
+    ]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e:61
@@ -448,7 +425,10 @@ axiom(holds_at(neg(height(Balloon, Height1)), Time),
 % HoldsAt(Height(Balloon,0),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(height(balloon, 0), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(height(balloon, 0), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',83).
 axiom(holds_at(height(balloon, 0), start),
@@ -465,8 +445,8 @@ axiom(holds_at(height(balloon, 0), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter7/HotAirBalloon.e',85).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(heaterOn(balloon)), start)).
  */

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:13 GMT
+% Wed, 01 Apr 2020 20:01:35 GMT
 % From ../ecnet/Diving.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/CTime.e',43).
 
@@ -4967,8 +4967,8 @@ axiom(initiates(becomeLowOnAir(Airtank), lowOnAir(Airtank), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(conditionOK(Diver), start)).
  */
@@ -4983,8 +4983,8 @@ axiom(holds_at(conditionOK(Diver), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',647).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(vertical(Diver), start)).
  */
@@ -4998,7 +4998,10 @@ axiom(holds_at(vertical(Diver), start),
 % !HoldsAt(DisturbedSilt(),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(disturbedSilt), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(disturbedSilt), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
 axiom(holds_at(neg(disturbedSilt), start),
@@ -5011,8 +5014,8 @@ axiom(holds_at(neg(disturbedSilt), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',649).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(uncontrolledBuoyancy(Diver)), start)).
  */
@@ -5027,8 +5030,8 @@ axiom(holds_at(neg(uncontrolledBuoyancy(Diver)), start),
  % !HoldsAt(Disoriented(diver),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(disoriented(Diver)), start)).
  */
@@ -5045,15 +5048,15 @@ axiom(holds_at(neg(disoriented(Diver)), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e:653
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
- /*   holds_at(neg(positivelyBuoyant(Diver)), start+0),
-      holds_at(neg(neutrallyBuoyant(Diver)), start+0),
-      holds_at(neg(negativelyBuoyant(Diver)), start+0).
+ /*   holds_at(neg(positivelyBuoyant(Diver)), start),
+      holds_at(neg(neutrallyBuoyant(Diver)), start),
+      holds_at(neg(negativelyBuoyant(Diver)), start).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',651).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(positivelyBuoyant(Diver)), start)).
  */
@@ -5062,8 +5065,8 @@ axiom(holds_at(neg(positivelyBuoyant(Diver)), start),
     []).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param2,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(neutrallyBuoyant(Diver)), start)).
  */
@@ -5072,8 +5075,8 @@ axiom(holds_at(neg(neutrallyBuoyant(Diver)), start),
     []).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param3,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(negativelyBuoyant(Diver)), start)).
  */
@@ -5088,8 +5091,8 @@ axiom(holds_at(neg(negativelyBuoyant(Diver)), start),
  % !HoldsAt(Wearing(diver,object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(wearing(Diver, Object)), start)).
  */
@@ -5104,8 +5107,8 @@ axiom(holds_at(neg(wearing(Diver, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',655).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Diver, Object)), start)).
  */
@@ -5120,8 +5123,8 @@ axiom(holds_at(neg(holding(Diver, Object)), start),
  % !HoldsAt(Separated(diver1,diver2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(separated(Diver1, Diver2)), start)).
  */

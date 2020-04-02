@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:22 GMT
+% Wed, 01 Apr 2020 20:00:40 GMT
 % From ../examples/Shanahan1999/RussianTurkey.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',65).
 
@@ -162,7 +162,7 @@ axiom(terminates(shoot, loaded, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/RussianTurkey.e',55).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive, start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(alive, start)).
  */
 axiom(holds_at(alive, start),
     []).
@@ -173,7 +173,7 @@ axiom(holds_at(alive, start),
 % !HoldsAt(Loaded(),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(loaded), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(loaded), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/RussianTurkey.e',57).
 axiom(holds_at(neg(loaded), start),
@@ -185,7 +185,7 @@ axiom(holds_at(neg(loaded), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/RussianTurkey.e',57).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(load, Maptime)).
@@ -200,7 +200,7 @@ axiom(happens(load, Maptime),
 % Happens(Spin(),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(spin, Start2)).
@@ -215,7 +215,7 @@ axiom(happens(spin, Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/RussianTurkey.e',59).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(shoot, Start3)).

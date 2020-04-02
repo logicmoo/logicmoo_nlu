@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:18 GMT
+% Wed, 01 Apr 2020 20:00:36 GMT
 % From ../examples/Mueller2004b/RunningAndDriving1.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',69).
 
@@ -182,7 +182,10 @@ axiom(initiates(run(Agent), tired(Agent), Time),
 % !HoldsAt(Tired(James),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(tired(james)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(tired(james)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
 axiom(holds_at(neg(tired(james)), start),
@@ -194,7 +197,7 @@ axiom(holds_at(neg(tired(james)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RunningAndDriving1.e',44).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(move(james), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(move(james), start)).
  */
 axiom(happens(move(james), start),
     []).
@@ -205,7 +208,7 @@ axiom(happens(move(james), start),
 % HoldsAt(Tired(James),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(tired(james), Time)).

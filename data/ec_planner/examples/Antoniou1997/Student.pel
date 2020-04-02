@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:08 GMT
+% Wed, 01 Apr 2020 20:00:25 GMT
 % From ../examples/Antoniou1997/Student.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Dropout.e',48).
 
@@ -233,20 +233,7 @@ axiom(not(student(X)),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e:40
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -255,32 +242,65 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  % Student(x) -> Ab1(x).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
 
- /*  student(X) ->
-       ab1(X, Ab1_Ret).
+ /*  axiom_uses(theta) ->
+       ( student(X)->ab1(X, Ab1_Ret)
+       ).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
 
  /*  ab1(X, Ab1_Ret) :-
+       student(X),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
+
+ /*  fix_axiom_head(Axiom_head_Ret) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Axiom_head_Ret)].
+ */
+
+ /*  [student(X), axiom_uses(theta, Axiom_head_Ret)] ->
+       ta(Axiom_head_Ret, tvs1=[], tvs2=[], ab1(X, Ab1_Ret)).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
+axiom(ab1(X, Ab1_Ret),
+    [student(X), axiom_uses(theta, Axiom_head_Ret)]).
+
+ /*  not(student(X)) :-
+       not(ab1(X, Ab1_Ret)),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
+
+ /*  fix_axiom_head(Axiom_head_Ret3) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Axiom_head_Ret3)].
+ */
+
+ /*  [not(ab1(X, Ab1_Ret)), axiom_uses(theta, Axiom_head_Ret3)] ->
+       ta(Axiom_head_Ret3, tvs1=[], tvs2=[], not(student(X))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
+axiom(not(student(X)),
+    [not(ab1(X, Ab1_Ret)), axiom_uses(theta, Axiom_head_Ret3)]).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab1(X, Ab1_Ret)),
        student(X).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
 
- /*  [student(X)] ->
-       ta(Ta_Param, tvs1=[], tvs2=[], ab1(X, Ab1_Ret)).
- */
-axiom(ab1(X, Ab1_Ret),
-    [student(X)]).
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
-
- /*  not(student(X)) :-
-       not(ab1(X, Ab1_Ret)).
+ /*  fix_axiom_head(Axiom_head_Ret4) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Axiom_head_Ret4))].
  */
 
- /*  [not(ab1(X, Ab1_Ret))] ->
-       ta(Ta_Param3, tvs1=[], tvs2=[], not(student(X))).
+ /*  [not(ab1(X, Ab1_Ret)), student(X)] ->
+       ta(Axiom_head_Ret4,
+          tvs1=[],
+          tvs2=[],
+          not(axiom_uses(theta, Axiom_head_Ret4))).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',40).
-axiom(not(student(X)),
-    [not(ab1(X, Ab1_Ret))]).
+axiom(not(axiom_uses(theta, Axiom_head_Ret4)),
+    [not(ab1(X, Ab1_Ret)), student(X)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e:42
 % range time 0 0

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:50 GMT
+% Wed, 01 Apr 2020 19:59:58 GMT
 % From ../examples/Mueller2006/Chapter8/MovingRobot.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/CameraWithFlash.e',58).
 
@@ -432,8 +432,8 @@ axiom(terminates(moveRightWheel(Robot), location(Robot, Coord1, Coord2), Time),
 % Happens(MoveRightWheel(Robot1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(moveRightWheel(robot1), start)).
  */
@@ -447,7 +447,7 @@ axiom(happens(moveRightWheel(robot1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/MovingRobot.e',107).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(moveLeftWheel(robot1), Maptime)).
@@ -462,7 +462,7 @@ axiom(happens(moveLeftWheel(robot1), Maptime),
 % Happens(MoveRightWheel(Robot1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(moveRightWheel(robot1), Maptime)).
@@ -598,8 +598,8 @@ axiom(holds_at(neg(direction(Robot, Direction2)), Time),
 % HoldsAt(Location(Robot1,0,0),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(location(robot1, 0, 0), start)).
  */
@@ -613,8 +613,8 @@ axiom(holds_at(location(robot1, 0, 0), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter8/MovingRobot.e',127).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(direction(robot1, 0), start)).
  */

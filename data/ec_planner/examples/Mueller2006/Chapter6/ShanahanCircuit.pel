@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:46 GMT
+% Wed, 01 Apr 2020 19:59:53 GMT
 % From ../examples/Mueller2006/Chapter6/ShanahanCircuit.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/CarryingABook2.e',96).
 
@@ -745,7 +745,10 @@ axiom(terminates(unlight(Light), lit(Light), Time),
 % !HoldsAt(Closed(S1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(closed(s1)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(closed(s1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',89).
 axiom(holds_at(neg(closed(s1)), start),
@@ -757,7 +760,7 @@ axiom(holds_at(neg(closed(s1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',89).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(closed(s2), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(closed(s2), start)).
  */
 axiom(holds_at(closed(s2), start),
     []).
@@ -768,7 +771,7 @@ axiom(holds_at(closed(s2), start),
 % HoldsAt(Closed(S3),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(closed(s3), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(closed(s3), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',91).
 axiom(holds_at(closed(s3), start),
@@ -780,8 +783,12 @@ axiom(holds_at(closed(s3), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',91).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(activated(r)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(activated(r)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',91).
 axiom(holds_at(neg(activated(r)), start),
     []).
 
@@ -791,7 +798,7 @@ axiom(holds_at(neg(activated(r)), start),
 % !HoldsAt(Lit(L),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(lit(l)), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(lit(l)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',93).
 axiom(holds_at(neg(lit(l)), start),
@@ -803,7 +810,7 @@ axiom(holds_at(neg(lit(l)), start),
 % Happens(Close(S1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(close(s1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(close(s1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter6/ShanahanCircuit.e',95).
 axiom(happens(close(s1), start),

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:51:43 GMT
+% Wed, 01 Apr 2020 20:05:37 GMT
 % From ../ectest/Example4.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example3.e',25).
 
@@ -129,7 +129,10 @@ axiom(not(happens(wakeUp(Agent), Time)),
 % !HoldsAt(Awake(James),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(awake(james)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(awake(james)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example4.e',23).
 axiom(holds_at(neg(awake(james)), start),
@@ -141,8 +144,12 @@ axiom(holds_at(neg(awake(james)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example4.e',23).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(awake(jessie)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(awake(jessie)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Example4.e',23).
 axiom(holds_at(neg(awake(jessie)), start),
     []).
 
@@ -152,7 +159,7 @@ axiom(holds_at(neg(awake(jessie)), start),
 % HoldsAt(Awake(James),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(awake(james), Time)).

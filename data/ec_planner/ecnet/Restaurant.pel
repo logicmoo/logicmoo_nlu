@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:46 GMT
+% Wed, 01 Apr 2020 20:02:12 GMT
 % From ../ecnet/Restaurant.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',664).
 
@@ -1449,11 +1449,11 @@ axiom(initiates(foodPrepare(Agent, Food), foodPrepared(Food), Time),
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Food, Location), Time))
        ),
-       some(Location, '$kolem_Fn_221'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_225'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',258).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_221'(Agent, Food, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_225'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1463,17 +1463,17 @@ axiom(initiates(foodPrepare(Agent, Food), foodPrepared(Food), Time),
 axiom(not(happens(foodPrepare(Agent, Food), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)),
-      some(Location, '$kolem_Fn_221'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_225'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',258).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(foodPrepare(Agent, Food), Time),
-       some(Location, '$kolem_Fn_221'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_225'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',258).
 
- /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_221'(Agent, Food, Time))] ->
+ /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_225'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1483,17 +1483,17 @@ axiom(not(happens(foodPrepare(Agent, Food), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(foodPrepare(Agent, Food), Time),
-      some(Location, '$kolem_Fn_221'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_225'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',258).
 
  /*  holds_at(at(Food, Location), Time) :-
        happens(foodPrepare(Agent, Food), Time),
-       some(Location, '$kolem_Fn_221'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_225'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',258).
 
- /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_221'(Agent, Food, Time))] ->
+ /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_225'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1503,7 +1503,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Food, Location), Time),
    
     [ happens(foodPrepare(Agent, Food), Time),
-      some(Location, '$kolem_Fn_221'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_225'(Agent, Food, Time))
     ]).
 
 

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:32 GMT
+% Wed, 01 Apr 2020 20:01:55 GMT
 % From ../ecnet/MakingAnAcquaintance.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Kidnapping.e',127).
 
@@ -495,8 +495,8 @@ axiom(ignore(knowRequest),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',59).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
@@ -511,8 +511,8 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
  % !HoldsAt(LyingOn(agent,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
@@ -527,8 +527,8 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',61).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(dressed(Agent), start)).
  */
@@ -543,7 +543,10 @@ axiom(holds_at(dressed(Agent), start),
  % HoldsAt(Awake(agent),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(Agent), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(Agent), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
 axiom(holds_at(awake(Agent), start),
@@ -556,8 +559,8 @@ axiom(holds_at(awake(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',63).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep3(Agent), start)).
  */
@@ -572,8 +575,8 @@ axiom(holds_at(sleep3(Agent), start),
  % HoldsAt(Standing(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(Agent), start)).
  */
@@ -587,8 +590,8 @@ axiom(holds_at(standing(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',65).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(acquaintanceOf(introducer1, introducee1), start)).
  */
@@ -602,8 +605,8 @@ axiom(holds_at(acquaintanceOf(introducer1, introducee1), start),
 % HoldsAt(AcquaintanceOf(Introducer1,Introduced1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(acquaintanceOf(introducer1, introduced1), start)).
  */
@@ -617,8 +620,8 @@ axiom(holds_at(acquaintanceOf(introducer1, introduced1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',67).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(acquaintanceOf(introducee1, introduced1)), start)).
  */
@@ -637,8 +640,8 @@ axiom(holds_at(neg(acquaintanceOf(introducee1, introduced1)), start),
 % Happens(Introduce(Introducee1,Introduced1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(introduce(introducee1, introduced1), start)).
  */
@@ -657,7 +660,7 @@ axiom(happens(introduce(introducee1, introduced1), start),
 % Happens(Smile(Introducee1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(smile(introducee1), Maptime)).
@@ -672,7 +675,7 @@ axiom(happens(smile(introducee1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',75).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(smile(introduced1), Start2)).
@@ -687,7 +690,7 @@ axiom(happens(smile(introduced1), Start2),
 % Happens(SayPleasedToMeet(Introducee1,Introduced1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(sayPleasedToMeet(introducee1, introduced1), Start3)).
@@ -702,7 +705,7 @@ axiom(happens(sayPleasedToMeet(introducee1, introduced1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/MakingAnAcquaintance.e',77).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(sayPleasedToMeet(introduced1, introducee1), Start4)).
@@ -717,7 +720,7 @@ axiom(happens(sayPleasedToMeet(introduced1, introducee1), Start4),
 % Happens(ShakeHands(Introducee1,Introduced1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(shakeHands(introducee1, introduced1), Start5)).

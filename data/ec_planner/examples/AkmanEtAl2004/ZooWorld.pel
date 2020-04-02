@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:02 GMT
+% Wed, 01 Apr 2020 20:00:18 GMT
 % From ../examples/AkmanEtAl2004/ZooWorld.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooTest6.e',52).
 
@@ -737,10 +737,10 @@ axiom(not(largeSpecies(species(Animal))),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',91).
 
  /*  neighbor(Position, Position1) :-
-       some(Position1, '$kolem_Fn_97'(Position)).
+       some(Position1, '$kolem_Fn_101'(Position)).
  */
 
- /*  [some(Position1, '$kolem_Fn_97'(Position))] ->
+ /*  [some(Position1, '$kolem_Fn_101'(Position))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -748,7 +748,7 @@ axiom(not(largeSpecies(species(Animal))),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',91).
 axiom(neighbor(Position, Position1),
-    [some(Position1, '$kolem_Fn_97'(Position))]).
+    [some(Position1, '$kolem_Fn_101'(Position))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:93
@@ -1001,11 +1001,11 @@ axiom(not(sides(Position1, Position2, Gate)),
        ( diff(loc(Position1), loc(Position2)),
          neighbor(Position1, Position2)
        ),
-       some(Gate, '$kolem_Fn_98'(Position1, Position2)).
+       some(Gate, '$kolem_Fn_102'(Position1, Position2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
- /*  [diff(loc(Position1), loc(Position2)), neighbor(Position1, Position2), some(Gate, '$kolem_Fn_98'(Position1, Position2))] ->
+ /*  [diff(loc(Position1), loc(Position2)), neighbor(Position1, Position2), some(Gate, '$kolem_Fn_102'(Position1, Position2))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -1016,18 +1016,18 @@ axiom(sides(Position1, Position2, Gate),
    
     [ diff(loc(Position1), loc(Position2)),
       neighbor(Position1, Position2),
-      some(Gate, '$kolem_Fn_98'(Position1, Position2))
+      some(Gate, '$kolem_Fn_102'(Position1, Position2))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
  /*  not(neighbor(Position1, Position2)) :-
        diff(loc(Position1), loc(Position2)),
        not(sides(Position1, Position2, Gate)),
-       some(Gate, '$kolem_Fn_98'(Position1, Position2)).
+       some(Gate, '$kolem_Fn_102'(Position1, Position2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',123).
 
- /*  [diff(loc(Position1), loc(Position2)), not(sides(Position1, Position2, Gate)), some(Gate, '$kolem_Fn_98'(Position1, Position2))] ->
+ /*  [diff(loc(Position1), loc(Position2)), not(sides(Position1, Position2, Gate)), some(Gate, '$kolem_Fn_102'(Position1, Position2))] ->
        ta(Ta_Param5,
           tvs1=[],
           tvs2=[],
@@ -1038,7 +1038,7 @@ axiom(not(neighbor(Position1, Position2)),
    
     [ diff(loc(Position1), loc(Position2)),
       not(sides(Position1, Position2, Gate)),
-      some(Gate, '$kolem_Fn_98'(Position1, Position2))
+      some(Gate, '$kolem_Fn_102'(Position1, Position2))
     ]).
 
 
@@ -1107,10 +1107,10 @@ axiom(holds_at(neg(pos(Animal, Position2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',131).
 
  /*  holds_at(pos(Animal, Position), Time) :-
-       some(Position, '$kolem_Fn_99'(Animal, Time)).
+       some(Position, '$kolem_Fn_103'(Animal, Time)).
  */
 
- /*  [some(Position, '$kolem_Fn_99'(Animal, Time))] ->
+ /*  [some(Position, '$kolem_Fn_103'(Animal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1118,7 +1118,7 @@ axiom(holds_at(neg(pos(Animal, Position2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',131).
 axiom(holds_at(pos(Animal, Position), Time),
-    [some(Position, '$kolem_Fn_99'(Animal, Time))]).
+    [some(Position, '$kolem_Fn_103'(Animal, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e:132
@@ -1749,11 +1749,11 @@ axiom(terminates(close(Human, Gate), opened(Gate), Time),
        ;   not(holds_at(pos(Human, Position), Time))
        ),
        some(Position,
-            '$kolem_Fn_105'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_109'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [(holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)), some(Position, '$kolem_Fn_105'(Human, Gate, Time, Animal))] ->
+ /*  [(holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)), some(Position, '$kolem_Fn_109'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1764,18 +1764,18 @@ axiom(not(happens(close(Human, Gate), Time)),
    
     [  (holds_at(neg(opened(Gate)), Time);holds_at(mounted(Human, Animal), Time);not(equals(side1(Gate), Position)), not(equals(side2(Gate), Position));holds_at(neg(pos(Human, Position)), Time)),
       some(Position,
-           '$kolem_Fn_105'(Human, Gate, Time, Animal))
+           '$kolem_Fn_109'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  holds_at(opened(Gate), Time) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_105'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_109'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_105'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_109'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1786,18 +1786,18 @@ axiom(holds_at(opened(Gate), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_105'(Human, Gate, Time, Animal))
+           '$kolem_Fn_109'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  not(holds_at(mounted(Human, Animal), Time)) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_105'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_109'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_105'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_109'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1808,18 +1808,18 @@ axiom(holds_at(neg(mounted(Human, Animal)), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_105'(Human, Gate, Time, Animal))
+           '$kolem_Fn_109'(Human, Gate, Time, Animal))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
  /*  holds_at(pos(Human, Position), Time) :-
        happens(close(Human, Gate), Time),
        some(Position,
-            '$kolem_Fn_105'(Human, Gate, Time, Animal)).
+            '$kolem_Fn_109'(Human, Gate, Time, Animal)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',180).
 
- /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_105'(Human, Gate, Time, Animal))] ->
+ /*  [happens(close(Human, Gate), Time), some(Position, '$kolem_Fn_109'(Human, Gate, Time, Animal))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1830,7 +1830,7 @@ axiom(holds_at(pos(Human, Position), Time),
    
     [ happens(close(Human, Gate), Time),
       some(Position,
-           '$kolem_Fn_105'(Human, Gate, Time, Animal))
+           '$kolem_Fn_109'(Human, Gate, Time, Animal))
     ]).
 
 
@@ -2626,11 +2626,11 @@ axiom(not(happens(mount(Human, Animal), Time)),
 
  /*  holds_at(mounted(Human2, Animal), Time) :-
        happens(mount(Human1, Human2), Time),
-       some(Animal, '$kolem_Fn_113'(Human1, Human2, Time)).
+       some(Animal, '$kolem_Fn_117'(Human1, Human2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
- /*  [happens(mount(Human1, Human2), Time), some(Animal, '$kolem_Fn_113'(Human1, Human2, Time))] ->
+ /*  [happens(mount(Human1, Human2), Time), some(Animal, '$kolem_Fn_117'(Human1, Human2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2640,17 +2640,17 @@ axiom(not(happens(mount(Human, Animal), Time)),
 axiom(holds_at(mounted(Human2, Animal), Time),
    
     [ happens(mount(Human1, Human2), Time),
-      some(Animal, '$kolem_Fn_113'(Human1, Human2, Time))
+      some(Animal, '$kolem_Fn_117'(Human1, Human2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
  /*  not(happens(mount(Human1, Human2), Time)) :-
        not(holds_at(mounted(Human2, Animal), Time)),
-       some(Animal, '$kolem_Fn_113'(Human1, Human2, Time)).
+       some(Animal, '$kolem_Fn_117'(Human1, Human2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/AkmanEtAl2004/ZooWorld.e',249).
 
- /*  [holds_at(neg(mounted(Human2, Animal)), Time), some(Animal, '$kolem_Fn_113'(Human1, Human2, Time))] ->
+ /*  [holds_at(neg(mounted(Human2, Animal)), Time), some(Animal, '$kolem_Fn_117'(Human1, Human2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2660,7 +2660,7 @@ axiom(holds_at(mounted(Human2, Animal), Time),
 axiom(not(happens(mount(Human1, Human2), Time)),
    
     [ holds_at(neg(mounted(Human2, Animal)), Time),
-      some(Animal, '$kolem_Fn_113'(Human1, Human2, Time))
+      some(Animal, '$kolem_Fn_117'(Human1, Human2, Time))
     ]).
 
 

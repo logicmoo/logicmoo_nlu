@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:08 GMT
+% Wed, 01 Apr 2020 20:02:37 GMT
 % From ../ecnet/TakingAWalk.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingATrain.e',212).
 
@@ -553,8 +553,8 @@ axiom(equals(side2(destinationDoor1), destination1),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',80).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -569,8 +569,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
  % HoldsAt(Dressed(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(dressed(Agent), start)).
  */
@@ -585,8 +585,12 @@ axiom(holds_at(dressed(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(Agent), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(Agent), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',82).
 axiom(holds_at(awake(Agent), start),
     []).
 
@@ -597,8 +601,8 @@ axiom(holds_at(awake(Agent), start),
  % HoldsAt(Sleep3(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep3(Agent), start)).
  */
@@ -613,8 +617,8 @@ axiom(holds_at(sleep3(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',84).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(Agent), start)).
  */
@@ -628,8 +632,8 @@ axiom(holds_at(standing(Agent), start),
 % HoldsAt(DoorUnlocked(OriginDoor1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(originDoor1), start)).
  */
@@ -643,8 +647,8 @@ axiom(holds_at(doorUnlocked(originDoor1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',86).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(doorIsOpen(originDoor1)), start)).
  */
@@ -658,8 +662,8 @@ axiom(holds_at(neg(doorIsOpen(originDoor1)), start),
 % HoldsAt(DoorUnlocked(DestinationDoor1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(destinationDoor1), start)).
  */
@@ -673,8 +677,8 @@ axiom(holds_at(doorUnlocked(destinationDoor1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',88).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(doorIsOpen(destinationDoor1)), start)).
  */
@@ -688,8 +692,8 @@ axiom(holds_at(neg(doorIsOpen(destinationDoor1)), start),
 % HoldsAt(At(Walker1,Origin1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(walker1, origin1), start)).
  */
@@ -703,8 +707,8 @@ axiom(holds_at(at(walker1, origin1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',90).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(clothes1, origin1), start)).
  */
@@ -718,8 +722,8 @@ axiom(holds_at(at(clothes1, origin1), start),
 % HoldsAt(At(Umbrella1,Origin1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(umbrella1, origin1), start)).
  */
@@ -750,8 +754,8 @@ axiom(holds_at(raining(Outside), Time),
  % !HoldsAt(Wet(object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(wet(Object)), start)).
  */
@@ -770,8 +774,8 @@ axiom(holds_at(neg(wet(Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',96).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(putOn(walker1, clothes1), start)).
  */
@@ -785,7 +789,7 @@ axiom(happens(putOn(walker1, clothes1), start),
 % Happens(PickUp(Walker1,Umbrella1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pickUp(walker1, umbrella1), Maptime)).
@@ -800,7 +804,7 @@ axiom(happens(pickUp(walker1, umbrella1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',98).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(doorOpen(walker1, originDoor1), Start2)).
@@ -815,7 +819,7 @@ axiom(happens(doorOpen(walker1, originDoor1), Start2),
 % Happens(WalkThroughDoor21(Walker1,OriginDoor1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(walkThroughDoor21(walker1, originDoor1), Start3)).
@@ -830,7 +834,7 @@ axiom(happens(walkThroughDoor21(walker1, originDoor1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',100).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(doorClose(walker1, originDoor1), Start4)).
@@ -845,7 +849,7 @@ axiom(happens(doorClose(walker1, originDoor1), Start4),
 % Happens(WalkStreet12(Walker1,StreetFromOriginToMiddle1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(walkStreet12(walker1, streetFromOriginToMiddle1), Start5)).
@@ -860,7 +864,7 @@ axiom(happens(walkStreet12(walker1, streetFromOriginToMiddle1), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',102).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(walkStreet12(walker1, streetFromMiddleToDestination1),
@@ -876,7 +880,7 @@ axiom(happens(walkStreet12(walker1, streetFromMiddleToDestination1), Start6),
 % Happens(DoorOpen(Walker1,DestinationDoor1),7).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(doorOpen(walker1, destinationDoor1), Start7)).
@@ -891,7 +895,7 @@ axiom(happens(doorOpen(walker1, destinationDoor1), Start7),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',104).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(walkThroughDoor12(walker1, destinationDoor1), Start8)).
@@ -906,7 +910,7 @@ axiom(happens(walkThroughDoor12(walker1, destinationDoor1), Start8),
 % Happens(DoorClose(Walker1,DestinationDoor1),9).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(doorClose(walker1, destinationDoor1), Start9)).
@@ -921,7 +925,7 @@ axiom(happens(doorClose(walker1, destinationDoor1), Start9),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',106).
 
  /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
-       ta(start+10,
+       ta(Ta_Param,
           tvs1=[start+10],
           tvs2=[Startd10, start],
           happens(takeOff(walker1, clothes1), Startd10)).

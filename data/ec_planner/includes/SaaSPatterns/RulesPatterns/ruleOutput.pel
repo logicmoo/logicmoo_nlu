@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:55 GMT
+% Wed, 01 Apr 2020 20:00:07 GMT
 % From ../includes/SaaSPatterns/RulesPatterns/ruleOutput.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ruleModel.e',56).
 
@@ -75,8 +75,8 @@ axiom(initiates(epermit(Rule), f_rulePermitted(Rule), Time),
  % !HoldsAt(F_RulePermitted(rule),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_rulePermitted(Rule)), start)).
  */
@@ -91,8 +91,8 @@ axiom(holds_at(neg(f_rulePermitted(Rule)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/RulesPatterns/ruleOutput.e',11).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_ruleDenied(Rule)), start)).
  */

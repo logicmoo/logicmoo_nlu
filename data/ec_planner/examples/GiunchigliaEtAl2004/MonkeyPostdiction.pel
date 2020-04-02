@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:14 GMT
+% Wed, 01 Apr 2020 20:00:31 GMT
 % From ../examples/GiunchigliaEtAl2004/MonkeyPostdiction.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPlanning.e',44).
 
@@ -55,7 +55,7 @@
 % HoldsAt(At(Monkey,L1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(monkey, l1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(at(monkey, l1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPostdiction.e',27).
 axiom(holds_at(at(monkey, l1), start),
@@ -67,8 +67,12 @@ axiom(holds_at(at(monkey, l1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPostdiction.e',27).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(bananas, l2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(bananas, l2), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPostdiction.e',27).
 axiom(holds_at(at(bananas, l2), start),
     []).
 
@@ -78,7 +82,7 @@ axiom(holds_at(at(bananas, l2), start),
 % Happens(Walk(L3),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(walk(l3), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(walk(l3), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPostdiction.e',29).
 axiom(happens(walk(l3), start),
@@ -90,7 +94,7 @@ axiom(happens(walk(l3), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyPostdiction.e',29).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pushBox(l2), Maptime)).

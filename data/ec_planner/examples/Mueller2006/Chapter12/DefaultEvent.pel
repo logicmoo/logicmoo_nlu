@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:33 GMT
+% Wed, 01 Apr 2020 19:59:35 GMT
 % From ../examples/Mueller2006/Chapter12/DefaultEvent.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/BrokenDevice.e',69).
 
@@ -350,8 +350,8 @@ axiom(ab1(Clock, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultEvent.e',73).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(setAlarmTime(nathan, clock, 2), start)).
  */
@@ -365,7 +365,7 @@ axiom(happens(setAlarmTime(nathan, clock, 2), start),
 % Happens(TurnOnAlarm(Nathan,Clock),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(turnOnAlarm(nathan, clock), Maptime)).
@@ -439,8 +439,8 @@ axiom(holds_at(neg(alarmTime(Clock, Time2)), Time),
 % !HoldsAt(AlarmOn(Clock),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(alarmOn(clock)), start)).
  */
@@ -454,8 +454,8 @@ axiom(holds_at(neg(alarmOn(clock)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultEvent.e',86).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(beeping(clock)), start)).
  */
@@ -469,7 +469,10 @@ axiom(holds_at(neg(beeping(clock)), start),
 % HoldsAt(AlarmTime(Clock,3),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alarmTime(clock, 3), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(alarmTime(clock, 3), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultEvent.e',88).
 axiom(holds_at(alarmTime(clock, 3), start),

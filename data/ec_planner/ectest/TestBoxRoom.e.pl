@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:51:47 GMT
+% Wed, 01 Apr 2020 20:05:42 GMT
 % From ../ectest/TestBoxRoom.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',47).
 
@@ -29,8 +29,9 @@
 %; }
 %;
 
-% include foundations/Root.e
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:23
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',24).
+% include foundations/Root.e
 :- load_e('foundations/Root.e', include).
 :- if(is_e_toplevel).
 
@@ -48,28 +49,34 @@
 %; IBM - Initial implementation
 %;
 
-% sort boolean
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:10
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
+% sort boolean
 ==> sort(boolean).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:11
 % sort integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',11).
 ==> sort(integer).
 
-% reified sort predicate
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:12
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+% reified sort predicate
 reified_sort(predicate).
 ==> mpred_prop(predicate,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e:13
 % reified sort function
-reified_sort(function).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',13).
+reified_sort(function).
 ==> mpred_prop(function,reified_sort).
 %; End of file.
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/Root.e',16).
 :- endif.
 
-% include foundations/EC.e
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:24
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',25).
+% include foundations/EC.e
 :- load_e('foundations/EC.e', include).
 :- if(is_e_toplevel).
 
@@ -102,61 +109,73 @@ reified_sort(function).
 %; }
 %;
 
-% sort time: integer
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
+% sort time: integer
 ==> subsort(time,integer).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:27
 % sort offset: integer
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',27).
 ==> subsort(offset,integer).
 
-% reified sort fluent
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:29
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+% reified sort fluent
 reified_sort(fluent).
 ==> mpred_prop(fluent,reified_sort).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:30
 % reified sort event
-reified_sort(event).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',30).
+reified_sort(event).
 ==> mpred_prop(event,reified_sort).
 
-% predicate Happens(event,time)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
+% predicate Happens(event,time)
 predicate(happens(event,time)).
 ==> mpred_prop(happens(event,time),predicate).
 ==> meta_argtypes(happens(event,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:33
 % predicate HoldsAt(fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',33).
 predicate(holds_at(fluent,time)).
 ==> mpred_prop(holds_at(fluent,time),predicate).
 ==> meta_argtypes(holds_at(fluent,time)).
 
-% predicate ReleasedAt(fluent,time)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
+% predicate ReleasedAt(fluent,time)
 predicate(releasedAt(fluent,time)).
 ==> mpred_prop(releasedAt(fluent,time),predicate).
 ==> meta_argtypes(releasedAt(fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:35
 % predicate Initiates(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',35).
 predicate(initiates(event,fluent,time)).
 ==> mpred_prop(initiates(event,fluent,time),predicate).
 ==> meta_argtypes(initiates(event,fluent,time)).
 
-% predicate Terminates(event,fluent,time)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:36
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
+% predicate Terminates(event,fluent,time)
 predicate(terminates(event,fluent,time)).
 ==> mpred_prop(terminates(event,fluent,time),predicate).
 ==> meta_argtypes(terminates(event,fluent,time)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:37
 % predicate Releases(event,fluent,time)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',37).
 predicate(releases(event,fluent,time)).
 ==> mpred_prop(releases(event,fluent,time),predicate).
 ==> meta_argtypes(releases(event,fluent,time)).
 
-% predicate Trajectory(fluent,time,fluent,offset)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e:38
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/foundations/EC.e',39).
+% predicate Trajectory(fluent,time,fluent,offset)
 predicate(trajectory(fluent,time,fluent,offset)).
 ==> mpred_prop(trajectory(fluent,time,fluent,offset),predicate).
 ==> meta_argtypes(trajectory(fluent,time,fluent,offset)).
@@ -167,56 +186,72 @@ predicate(trajectory(fluent,time,fluent,offset)).
 %; End of file.
 :- endif.
 
-% sort object
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:26
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',27).
+% sort object
 ==> sort(object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:27
 % sort agent: object
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',27).
 ==> subsort(agent,object).
 
-% sort physobj: object
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',29).
+% sort physobj: object
 ==> subsort(physobj,object).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:29
 % sort room: object
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',29).
 ==> subsort(room,object).
 
-% fluent directlyIn(object,object)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:31
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
+% fluent directlyIn(object,object)
 fluent(directlyIn(object,object)).
 ==> mpred_prop(directlyIn(object,object),fluent).
 ==> meta_argtypes(directlyIn(object,object)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:32
 % fluent inRoom(object,room)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',32).
 fluent(inRoom(object,room)).
 ==> mpred_prop(inRoom(object,room),fluent).
 ==> meta_argtypes(inRoom(object,room)).
 
-% noninertial inRoom
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:33
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',34).
+% noninertial inRoom
 ==> noninertial(inRoom).
 %;; executable(move(agent,object,object,object))
 
-% agent Lisa
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:37
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
+% agent Lisa
 ==> t(agent,lisa).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:38
 % physobj Box, Newspaper
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',38).
 ==> t(physobj,box).
 ==> t(physobj,newspaper).
 
-% room Kitchen, LivingRoom
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:39
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',40).
+% room Kitchen, LivingRoom
 ==> t(room,kitchen).
 ==> t(room,livingRoom).
 %; Sigma
 %; RS10
 % [agent,physobj1,physobj2,room,time]
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:45
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',46).
 % HoldsAt(directlyIn(agent,room),time) &
 % HoldsAt(directlyIn(physobj1,room),time) &
 % HoldsAt(inRoom(physobj2,room),time) ->
 % Initiates(move(agent,physobj1,room,physobj2),directlyIn(physobj1,physobj2),time).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',46).
 
  /*  [holds_at(directlyIn(Agent, Room), Time), holds_at(directlyIn(Physobj1, Room), Time), holds_at(inRoom(Physobj2, Room), Time)] ->
@@ -456,8 +491,8 @@ axiom(terminates(move(Agent, Physobj, Agent, Room), directlyIn(Physobj, Agent), 
 % Happens(move(Lisa,Newspaper,LivingRoom,Box),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(move(lisa, newspaper, livingRoom, box), start)).
  */
@@ -471,7 +506,7 @@ axiom(happens(move(lisa, newspaper, livingRoom, box), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',104).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(move(lisa, box, livingRoom, lisa), Maptime)).
@@ -486,7 +521,7 @@ axiom(happens(move(lisa, box, livingRoom, lisa), Maptime),
 % Happens(move(Lisa,Lisa,LivingRoom,Kitchen),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(move(lisa, lisa, livingRoom, kitchen), Start2)).
@@ -501,7 +536,7 @@ axiom(happens(move(lisa, lisa, livingRoom, kitchen), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',106).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(move(lisa, box, lisa, kitchen), Start3)).
@@ -516,7 +551,7 @@ axiom(happens(move(lisa, box, lisa, kitchen), Start3),
 % Happens(move(Lisa,Lisa,Kitchen,LivingRoom),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(move(lisa, lisa, kitchen, livingRoom), Start4)).
@@ -894,8 +929,8 @@ axiom(holds_at(neg(inRoom(Object, Room2)), Time),
 % HoldsAt(directlyIn(Lisa,LivingRoom),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(directlyIn(lisa, livingRoom), start)).
  */
@@ -909,8 +944,8 @@ axiom(holds_at(directlyIn(lisa, livingRoom), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',151).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(directlyIn(newspaper, livingRoom), start)).
  */
@@ -924,8 +959,8 @@ axiom(holds_at(directlyIn(newspaper, livingRoom), start),
 % HoldsAt(directlyIn(Box,LivingRoom),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(directlyIn(box, livingRoom), start)).
  */
@@ -947,7 +982,7 @@ axiom(holds_at(directlyIn(box, livingRoom), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',159).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           holds_at(directlyIn(lisa, livingRoom), Start5)).
@@ -962,7 +997,7 @@ axiom(holds_at(directlyIn(lisa, livingRoom), Start5),
 % HoldsAt(directlyIn(Box,Kitchen),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           holds_at(directlyIn(box, kitchen), Start5)).
@@ -977,7 +1012,7 @@ axiom(holds_at(directlyIn(box, kitchen), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',161).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           holds_at(inRoom(newspaper, kitchen), Start5)).

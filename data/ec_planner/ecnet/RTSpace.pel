@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:54 GMT
+% Wed, 01 Apr 2020 20:02:22 GMT
 % From ../ecnet/RTSpace.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',185).
 
@@ -73,11 +73,11 @@ axiom(holds_at(manualrelease(at), Time),
 
  /*  releasedAt(at(Object1, Location), Time) :-
        partOf(Object1, Object2),
-       some(Object2, '$kolem_Fn_224'(Object1, Location, Time)).
+       some(Object2, '$kolem_Fn_228'(Object1, Location, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
- /*  [partOf(Object1, Object2), some(Object2, '$kolem_Fn_224'(Object1, Location, Time))] ->
+ /*  [partOf(Object1, Object2), some(Object2, '$kolem_Fn_228'(Object1, Location, Time))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -88,17 +88,17 @@ axiom(releasedAt(at(Object1, Location), Time),
    
     [ partOf(Object1, Object2),
       some(Object2,
-           '$kolem_Fn_224'(Object1, Location, Time))
+           '$kolem_Fn_228'(Object1, Location, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
  /*  not(partOf(Object1, Object2)) :-
        not(releasedAt(at(Object1, Location), Time)),
-       some(Object2, '$kolem_Fn_224'(Object1, Location, Time)).
+       some(Object2, '$kolem_Fn_228'(Object1, Location, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',26).
 
- /*  [not(releasedAt(at(Object1, Location), Time)), some(Object2, '$kolem_Fn_224'(Object1, Location, Time))] ->
+ /*  [not(releasedAt(at(Object1, Location), Time)), some(Object2, '$kolem_Fn_228'(Object1, Location, Time))] ->
        ta(Ta_Param6,
           tvs1=[],
           tvs2=[],
@@ -109,7 +109,7 @@ axiom(not(partOf(Object1, Object2)),
    
     [ not(releasedAt(at(Object1, Location), Time)),
       some(Object2,
-           '$kolem_Fn_224'(Object1, Location, Time))
+           '$kolem_Fn_228'(Object1, Location, Time))
     ]).
 
 
@@ -309,11 +309,11 @@ fluent(nearPortal(object,portal)).
            not(equals(side2(Portal), Location))
        ;   not(holds_at(at(Object, Location), Time))
        ),
-       some(Location, '$kolem_Fn_225'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_229'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_225'(Object, Portal, Time))] ->
+ /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_229'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -323,17 +323,17 @@ fluent(nearPortal(object,portal)).
 axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
    
     [  (not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)),
-      some(Location, '$kolem_Fn_225'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_229'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
  /*  holds_at(at(Object, Location), Time) :-
        holds_at(nearPortal(Object, Portal), Time),
-       some(Location, '$kolem_Fn_225'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_229'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_225'(Object, Portal, Time))] ->
+ /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_229'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -343,7 +343,7 @@ axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
 axiom(holds_at(at(Object, Location), Time),
    
     [ holds_at(nearPortal(Object, Portal), Time),
-      some(Location, '$kolem_Fn_225'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_229'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
@@ -353,11 +353,11 @@ axiom(holds_at(at(Object, Location), Time),
          ;   equals(side2(Portal), Location)
          )
        ),
-       some(Location, '$kolem_Fn_225'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_229'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_225'(Object, Portal, Time))] ->
+ /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_229'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -368,7 +368,7 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
    
     [ holds_at(at(Object, Location), Time),
        (equals(side1(Portal), Location);equals(side2(Portal), Location)),
-      some(Location, '$kolem_Fn_225'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_229'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
@@ -377,11 +377,11 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
        ;   equals(side2(Portal), Location)
        ),
        not(holds_at(nearPortal(Object, Portal), Time)),
-       some(Location, '$kolem_Fn_225'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_229'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',57).
 
- /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_225'(Object, Portal, Time))] ->
+ /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_229'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -392,7 +392,7 @@ axiom(holds_at(neg(at(Object, Location)), Time),
    
     [  (equals(side1(Portal), Location);equals(side2(Portal), Location)),
       holds_at(neg(nearPortal(Object, Portal)), Time),
-      some(Location, '$kolem_Fn_225'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_229'(Object, Portal, Time))
     ]).
 
 
@@ -2375,11 +2375,11 @@ predicate(adjacent(location,location)).
        ;   equals(side2(Portal), Location1),
            equals(side1(Portal), Location2)
        ),
-       some(Portal, '$kolem_Fn_226'(Location1, Location2)).
+       some(Portal, '$kolem_Fn_230'(Location1, Location2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
- /*  [(equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)), some(Portal, '$kolem_Fn_226'(Location1, Location2))] ->
+ /*  [(equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)), some(Portal, '$kolem_Fn_230'(Location1, Location2))] ->
        ta(Ta_Param,
           tvs1=[],
           tvs2=[],
@@ -2389,7 +2389,7 @@ predicate(adjacent(location,location)).
 axiom(adjacent(Location1, Location2),
    
     [  (equals(side1(Portal), Location1), equals(side2(Portal), Location2);equals(side2(Portal), Location1), equals(side1(Portal), Location2)),
-      some(Portal, '$kolem_Fn_226'(Location1, Location2))
+      some(Portal, '$kolem_Fn_230'(Location1, Location2))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
@@ -2401,11 +2401,11 @@ axiom(adjacent(Location1, Location2),
          ;   not(equals(side1(Portal), Location2))
          )
        ),
-       some(Portal, '$kolem_Fn_226'(Location1, Location2)).
+       some(Portal, '$kolem_Fn_230'(Location1, Location2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',308).
 
- /*  [(not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),  (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))), some(Portal, '$kolem_Fn_226'(Location1, Location2))] ->
+ /*  [(not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),  (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))), some(Portal, '$kolem_Fn_230'(Location1, Location2))] ->
        ta(Ta_Param5,
           tvs1=[],
           tvs2=[],
@@ -2416,7 +2416,7 @@ axiom(not(adjacent(Location1, Location2)),
    
     [  (not(equals(side1(Portal), Location1));not(equals(side2(Portal), Location2))),
        (not(equals(side2(Portal), Location1));not(equals(side1(Portal), Location2))),
-      some(Portal, '$kolem_Fn_226'(Location1, Location2))
+      some(Portal, '$kolem_Fn_230'(Location1, Location2))
     ]).
 
 

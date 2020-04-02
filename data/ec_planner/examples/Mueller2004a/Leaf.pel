@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:15 GMT
+% Wed, 01 Apr 2020 20:00:33 GMT
 % From ../examples/Mueller2004a/Leaf.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Holding.e',49).
 
@@ -362,7 +362,10 @@ axiom(terminates(hitsGround(Object), falling(Object), Time),
 % !HoldsAt(Falling(Leaf),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(falling(leaf)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(falling(leaf)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Leaf.e',70).
 axiom(holds_at(neg(falling(leaf)), start),
@@ -374,8 +377,12 @@ axiom(holds_at(neg(falling(leaf)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Leaf.e',70).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(height(leaf, 9), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(height(leaf, 9), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Leaf.e',70).
 axiom(holds_at(height(leaf, 9), start),
     []).
 
@@ -385,7 +392,10 @@ axiom(holds_at(height(leaf, 9), start),
 % Happens(StartFalling(Leaf),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(startFalling(leaf), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(startFalling(leaf), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Leaf.e',72).
 axiom(happens(startFalling(leaf), start),

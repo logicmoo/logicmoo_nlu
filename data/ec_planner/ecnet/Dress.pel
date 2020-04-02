@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:20 GMT
+% Wed, 01 Apr 2020 20:01:42 GMT
 % From ../ecnet/Dress.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Diving.e',682).
 
@@ -88,11 +88,11 @@ axiom(initiates(putOn(Agent, Clothing), wearing(Agent, Clothing), Time),
        ;   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Clothing, Location), Time))
        ),
-       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_170'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [(holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
+ /*  [(holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)), some(Location, '$kolem_Fn_170'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -103,17 +103,17 @@ axiom(not(happens(putOn(Agent, Clothing), Time)),
    
     [  (holds_at(wearing(Agent, Clothing), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Clothing, Location)), Time)),
       some(Location,
-           '$kolem_Fn_166'(Agent, Clothing, Time))
+           '$kolem_Fn_170'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(neg(wearing(Agent, Clothing)), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_170'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_170'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -124,17 +124,17 @@ axiom(holds_at(neg(wearing(Agent, Clothing)), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_166'(Agent, Clothing, Time))
+           '$kolem_Fn_170'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_170'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_170'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -145,17 +145,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_166'(Agent, Clothing, Time))
+           '$kolem_Fn_170'(Agent, Clothing, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
  /*  holds_at(at(Clothing, Location), Time) :-
        happens(putOn(Agent, Clothing), Time),
-       some(Location, '$kolem_Fn_166'(Agent, Clothing, Time)).
+       some(Location, '$kolem_Fn_170'(Agent, Clothing, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Dress.e',29).
 
- /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_166'(Agent, Clothing, Time))] ->
+ /*  [happens(putOn(Agent, Clothing), Time), some(Location, '$kolem_Fn_170'(Agent, Clothing, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -166,7 +166,7 @@ axiom(holds_at(at(Clothing, Location), Time),
    
     [ happens(putOn(Agent, Clothing), Time),
       some(Location,
-           '$kolem_Fn_166'(Agent, Clothing, Time))
+           '$kolem_Fn_170'(Agent, Clothing, Time))
     ]).
 
 

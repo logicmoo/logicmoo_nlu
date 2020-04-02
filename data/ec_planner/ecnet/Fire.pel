@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:28 GMT
+% Wed, 01 Apr 2020 20:01:50 GMT
 % From ../ecnet/Fire.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Feeling.e',133).
 
@@ -118,7 +118,7 @@ axiom(terminates(putOutFire(Agent, Physobj, Fire), burning(Physobj, Fire, Offset
        ;   not(holds_at(at(Physobj, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_180'(Agent,
+            '$kolem_Fn_184'(Agent,
                             Physobj,
                             Fire,
                             Offset,
@@ -126,7 +126,7 @@ axiom(terminates(putOutFire(Agent, Physobj, Fire), burning(Physobj, Fire, Offset
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_180'(Agent, Physobj, Fire, Offset, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_184'(Agent, Physobj, Fire, Offset, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -141,7 +141,7 @@ axiom(not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
       some(Location,
-           '$kolem_Fn_180'(Agent,
+           '$kolem_Fn_184'(Agent,
                            Physobj,
                            Fire,
                            Offset,
@@ -153,7 +153,7 @@ axiom(not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)),
        happens(setFireTo(Agent, Physobj, Fire, Offset),
                Time),
        some(Location,
-            '$kolem_Fn_180'(Agent,
+            '$kolem_Fn_184'(Agent,
                             Physobj,
                             Fire,
                             Offset,
@@ -161,7 +161,7 @@ axiom(not(happens(setFireTo(Agent, Physobj, Fire, Offset), Time)),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_180'(Agent, Physobj, Fire, Offset, Time))] ->
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_184'(Agent, Physobj, Fire, Offset, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -173,7 +173,7 @@ axiom(holds_at(at(Agent, Location), Time),
     [ happens(setFireTo(Agent, Physobj, Fire, Offset),
               Time),
       some(Location,
-           '$kolem_Fn_180'(Agent,
+           '$kolem_Fn_184'(Agent,
                            Physobj,
                            Fire,
                            Offset,
@@ -185,7 +185,7 @@ axiom(holds_at(at(Agent, Location), Time),
        happens(setFireTo(Agent, Physobj, Fire, Offset),
                Time),
        some(Location,
-            '$kolem_Fn_180'(Agent,
+            '$kolem_Fn_184'(Agent,
                             Physobj,
                             Fire,
                             Offset,
@@ -193,7 +193,7 @@ axiom(holds_at(at(Agent, Location), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',43).
 
- /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_180'(Agent, Physobj, Fire, Offset, Time))] ->
+ /*  [happens(setFireTo(Agent, Physobj, Fire, Offset), Time), some(Location, '$kolem_Fn_184'(Agent, Physobj, Fire, Offset, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -205,7 +205,7 @@ axiom(holds_at(at(Physobj, Location), Time),
     [ happens(setFireTo(Agent, Physobj, Fire, Offset),
               Time),
       some(Location,
-           '$kolem_Fn_180'(Agent,
+           '$kolem_Fn_184'(Agent,
                            Physobj,
                            Fire,
                            Offset,
@@ -240,11 +240,11 @@ axiom(holds_at(at(Physobj, Location), Time),
        ;   not(holds_at(at(Physobj, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_181'(Agent, Physobj, Fire, Time)).
+            '$kolem_Fn_185'(Agent, Physobj, Fire, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_181'(Agent, Physobj, Fire, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_185'(Agent, Physobj, Fire, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -256,18 +256,18 @@ axiom(not(happens(putOutFire(Agent, Physobj, Fire), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
       some(Location,
-           '$kolem_Fn_181'(Agent, Physobj, Fire, Time))
+           '$kolem_Fn_185'(Agent, Physobj, Fire, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(putOutFire(Agent, Physobj, Fire), Time),
        some(Location,
-            '$kolem_Fn_181'(Agent, Physobj, Fire, Time)).
+            '$kolem_Fn_185'(Agent, Physobj, Fire, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_181'(Agent, Physobj, Fire, Time))] ->
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_185'(Agent, Physobj, Fire, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -278,18 +278,18 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(putOutFire(Agent, Physobj, Fire), Time),
       some(Location,
-           '$kolem_Fn_181'(Agent, Physobj, Fire, Time))
+           '$kolem_Fn_185'(Agent, Physobj, Fire, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
  /*  holds_at(at(Physobj, Location), Time) :-
        happens(putOutFire(Agent, Physobj, Fire), Time),
        some(Location,
-            '$kolem_Fn_181'(Agent, Physobj, Fire, Time)).
+            '$kolem_Fn_185'(Agent, Physobj, Fire, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Fire.e',53).
 
- /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_181'(Agent, Physobj, Fire, Time))] ->
+ /*  [happens(putOutFire(Agent, Physobj, Fire), Time), some(Location, '$kolem_Fn_185'(Agent, Physobj, Fire, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -300,7 +300,7 @@ axiom(holds_at(at(Physobj, Location), Time),
    
     [ happens(putOutFire(Agent, Physobj, Fire), Time),
       some(Location,
-           '$kolem_Fn_181'(Agent, Physobj, Fire, Time))
+           '$kolem_Fn_185'(Agent, Physobj, Fire, Time))
     ]).
 
 

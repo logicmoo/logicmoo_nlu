@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:29 GMT
+% Wed, 01 Apr 2020 19:59:31 GMT
 % From ../examples/Mueller2006/Chapter10/TwoScreens.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/OneScreen.e',110).
 
@@ -219,10 +219,10 @@ axiom(holds_at(neg(at(Object, Location2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 
  /*  holds_at(at(Object, Location), Time) :-
-       some(Location, '$kolem_Fn_6'(Object, Time)).
+       some(Location, '$kolem_Fn_10'(Object, Time)).
  */
 
- /*  [some(Location, '$kolem_Fn_6'(Object, Time))] ->
+ /*  [some(Location, '$kolem_Fn_10'(Object, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -230,7 +230,7 @@ axiom(holds_at(neg(at(Object, Location2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',63).
 axiom(holds_at(at(Object, Location), Time),
-    [some(Location, '$kolem_Fn_6'(Object, Time))]).
+    [some(Location, '$kolem_Fn_10'(Object, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e:64
@@ -550,7 +550,7 @@ axiom(adjacent(Location1, Location2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',90).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(o1, l1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(at(o1, l1), start)).
  */
 axiom(holds_at(at(o1, l1), start),
     []).
@@ -562,8 +562,8 @@ axiom(holds_at(at(o1, l1), start),
  % !HoldsAt(At(object,L5),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(at(Object, l5)), start)).
  */
@@ -577,7 +577,7 @@ axiom(holds_at(neg(at(Object, l5)), start),
 % HoldsAt(At(O2,L5),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           holds_at(at(o2, l5), Start4)).
@@ -593,7 +593,7 @@ axiom(holds_at(at(o2, l5), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter10/TwoScreens.e',94).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           holds_at(neg(at(Object, l1)), Start4)).

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:22 GMT
+% Wed, 01 Apr 2020 20:00:40 GMT
 % From ../examples/Shanahan1999/Happy.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/CoinToss.e',67).
 
@@ -279,7 +279,7 @@ axiom(terminates(clothe(Person), cold(Person), Time),
 % HoldsAt(Hungry(Fred),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(hungry(fred), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(hungry(fred), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 axiom(holds_at(hungry(fred), start),
@@ -291,8 +291,12 @@ axiom(holds_at(hungry(fred), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(cold(fred)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(cold(fred)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1999/Happy.e',56).
 axiom(holds_at(neg(cold(fred)), start),
     []).
 
@@ -302,7 +306,7 @@ axiom(holds_at(neg(cold(fred)), start),
 % Happens(Feed(Fred),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(feed(fred), Maptime)).

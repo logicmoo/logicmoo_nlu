@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:41 GMT
+% Wed, 01 Apr 2020 20:02:06 GMT
 % From ../ecnet/RepRest.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',117).
 
@@ -170,11 +170,11 @@ axiom(initiates(pickUp(Agent, Physobj), holding(Agent, Physobj), Time),
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Physobj, Location), Time))
        ),
-       some(Location, '$kolem_Fn_200'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_204'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',111).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)), some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -184,17 +184,17 @@ axiom(initiates(pickUp(Agent, Physobj), holding(Agent, Physobj), Time),
 axiom(not(happens(pickUp(Agent, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj, Location)), Time)),
-      some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',111).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(pickUp(Agent, Physobj), Time),
-       some(Location, '$kolem_Fn_200'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_204'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',111).
 
- /*  [happens(pickUp(Agent, Physobj), Time), some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))] ->
+ /*  [happens(pickUp(Agent, Physobj), Time), some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -204,17 +204,17 @@ axiom(not(happens(pickUp(Agent, Physobj), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(pickUp(Agent, Physobj), Time),
-      some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',111).
 
  /*  holds_at(at(Physobj, Location), Time) :-
        happens(pickUp(Agent, Physobj), Time),
-       some(Location, '$kolem_Fn_200'(Agent, Physobj, Time)).
+       some(Location, '$kolem_Fn_204'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',111).
 
- /*  [happens(pickUp(Agent, Physobj), Time), some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))] ->
+ /*  [happens(pickUp(Agent, Physobj), Time), some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -224,7 +224,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Physobj, Location), Time),
    
     [ happens(pickUp(Agent, Physobj), Time),
-      some(Location, '$kolem_Fn_200'(Agent, Physobj, Time))
+      some(Location, '$kolem_Fn_204'(Agent, Physobj, Time))
     ]).
 
 
@@ -566,11 +566,11 @@ axiom(terminates(placeOn(Agent, Physobj1, Physobj2), holding(Agent, Physobj1), T
        ;   not(holds_at(at(Physobj2, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
- /*  [(holds_at(neg(holding(Agent, Physobj1)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)), some(Location, '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [(holds_at(neg(holding(Agent, Physobj1)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)), some(Location, '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -582,18 +582,18 @@ axiom(not(happens(placeOn(Agent, Physobj1, Physobj2), Time)),
    
     [  (holds_at(neg(holding(Agent, Physobj1)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)),
       some(Location,
-           '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
  /*  holds_at(holding(Agent, Physobj1), Time) :-
        happens(placeOn(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
- /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -604,18 +604,18 @@ axiom(holds_at(holding(Agent, Physobj1), Time),
    
     [ happens(placeOn(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(placeOn(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
- /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -626,18 +626,18 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(placeOn(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
  /*  holds_at(at(Physobj2, Location), Time) :-
        happens(placeOn(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',165).
 
- /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(placeOn(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -648,7 +648,7 @@ axiom(holds_at(at(Physobj2, Location), Time),
    
     [ happens(placeOn(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_201'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_205'(Agent, Physobj1, Physobj2, Time))
     ]).
 
 
@@ -740,11 +740,11 @@ axiom(releases(takeOffOf(Agent, Physobj1, Physobj2), at(Physobj1, Location), Tim
        ;   not(holds_at(at(Physobj2, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
- /*  [(holds_at(neg(on(Physobj1, Physobj2)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj1, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)), some(Location, '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [(holds_at(neg(on(Physobj1, Physobj2)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj1, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)), some(Location, '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -756,18 +756,18 @@ axiom(not(happens(takeOffOf(Agent, Physobj1, Physobj2), Time)),
    
     [  (holds_at(neg(on(Physobj1, Physobj2)), Time);holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Physobj1, Location)), Time);holds_at(neg(at(Physobj2, Location)), Time)),
       some(Location,
-           '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
  /*  holds_at(on(Physobj1, Physobj2), Time) :-
        happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
- /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -778,18 +778,18 @@ axiom(holds_at(on(Physobj1, Physobj2), Time),
    
     [ happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
- /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -800,18 +800,18 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
  /*  holds_at(at(Physobj1, Location), Time) :-
        happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
- /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -822,18 +822,18 @@ axiom(holds_at(at(Physobj1, Location), Time),
    
     [ happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
  /*  holds_at(at(Physobj2, Location), Time) :-
        happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
        some(Location,
-            '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time)).
+            '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',185).
 
- /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))] ->
+ /*  [happens(takeOffOf(Agent, Physobj1, Physobj2), Time), some(Location, '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -844,7 +844,7 @@ axiom(holds_at(at(Physobj2, Location), Time),
    
     [ happens(takeOffOf(Agent, Physobj1, Physobj2), Time),
       some(Location,
-           '$kolem_Fn_202'(Agent, Physobj1, Physobj2, Time))
+           '$kolem_Fn_206'(Agent, Physobj1, Physobj2, Time))
     ]).
 
 
@@ -960,10 +960,10 @@ fluent(at(object,location)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',202).
 
  /*  holds_at(at(Object, Location), Time) :-
-       some(Location, '$kolem_Fn_203'(Object, Time)).
+       some(Location, '$kolem_Fn_207'(Object, Time)).
  */
 
- /*  [some(Location, '$kolem_Fn_203'(Object, Time))] ->
+ /*  [some(Location, '$kolem_Fn_207'(Object, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -971,7 +971,7 @@ fluent(at(object,location)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',202).
 axiom(holds_at(at(Object, Location), Time),
-    [some(Location, '$kolem_Fn_203'(Object, Time))]).
+    [some(Location, '$kolem_Fn_207'(Object, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e:204
@@ -1126,11 +1126,11 @@ fluent(nearPortal(object,portal)).
            not(equals(side2(Portal), Location))
        ;   not(holds_at(at(Object, Location), Time))
        ),
-       some(Location, '$kolem_Fn_204'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_208'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
- /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_204'(Object, Portal, Time))] ->
+ /*  [(not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)), some(Location, '$kolem_Fn_208'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1140,17 +1140,17 @@ fluent(nearPortal(object,portal)).
 axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
    
     [  (not(equals(side1(Portal), Location)), not(equals(side2(Portal), Location));holds_at(neg(at(Object, Location)), Time)),
-      some(Location, '$kolem_Fn_204'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_208'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
  /*  holds_at(at(Object, Location), Time) :-
        holds_at(nearPortal(Object, Portal), Time),
-       some(Location, '$kolem_Fn_204'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_208'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
- /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_204'(Object, Portal, Time))] ->
+ /*  [holds_at(nearPortal(Object, Portal), Time), some(Location, '$kolem_Fn_208'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1160,7 +1160,7 @@ axiom(holds_at(neg(nearPortal(Object, Portal)), Time),
 axiom(holds_at(at(Object, Location), Time),
    
     [ holds_at(nearPortal(Object, Portal), Time),
-      some(Location, '$kolem_Fn_204'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_208'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
@@ -1170,11 +1170,11 @@ axiom(holds_at(at(Object, Location), Time),
          ;   equals(side2(Portal), Location)
          )
        ),
-       some(Location, '$kolem_Fn_204'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_208'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
- /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_204'(Object, Portal, Time))] ->
+ /*  [holds_at(at(Object, Location), Time),  (equals(side1(Portal), Location);equals(side2(Portal), Location)), some(Location, '$kolem_Fn_208'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1185,7 +1185,7 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
    
     [ holds_at(at(Object, Location), Time),
        (equals(side1(Portal), Location);equals(side2(Portal), Location)),
-      some(Location, '$kolem_Fn_204'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_208'(Object, Portal, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
@@ -1194,11 +1194,11 @@ axiom(holds_at(nearPortal(Object, Portal), Time),
        ;   equals(side2(Portal), Location)
        ),
        not(holds_at(nearPortal(Object, Portal), Time)),
-       some(Location, '$kolem_Fn_204'(Object, Portal, Time)).
+       some(Location, '$kolem_Fn_208'(Object, Portal, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',218).
 
- /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_204'(Object, Portal, Time))] ->
+ /*  [(equals(side1(Portal), Location);equals(side2(Portal), Location)), holds_at(neg(nearPortal(Object, Portal)), Time), some(Location, '$kolem_Fn_208'(Object, Portal, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1209,7 +1209,7 @@ axiom(holds_at(neg(at(Object, Location)), Time),
    
     [  (equals(side1(Portal), Location);equals(side2(Portal), Location)),
       holds_at(neg(nearPortal(Object, Portal)), Time),
-      some(Location, '$kolem_Fn_204'(Object, Portal, Time))
+      some(Location, '$kolem_Fn_208'(Object, Portal, Time))
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e:222
@@ -1603,11 +1603,11 @@ event(eat(agent,food)).
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Food, Location), Time))
        ),
-       some(Location, '$kolem_Fn_205'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_209'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',263).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_205'(Agent, Food, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_209'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1617,17 +1617,17 @@ event(eat(agent,food)).
 axiom(not(happens(eat(Agent, Food), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)),
-      some(Location, '$kolem_Fn_205'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_209'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',263).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(eat(Agent, Food), Time),
-       some(Location, '$kolem_Fn_205'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_209'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',263).
 
- /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_205'(Agent, Food, Time))] ->
+ /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_209'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1637,17 +1637,17 @@ axiom(not(happens(eat(Agent, Food), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(eat(Agent, Food), Time),
-      some(Location, '$kolem_Fn_205'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_209'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',263).
 
  /*  holds_at(at(Food, Location), Time) :-
        happens(eat(Agent, Food), Time),
-       some(Location, '$kolem_Fn_205'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_209'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',263).
 
- /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_205'(Agent, Food, Time))] ->
+ /*  [happens(eat(Agent, Food), Time), some(Location, '$kolem_Fn_209'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1657,7 +1657,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Food, Location), Time),
    
     [ happens(eat(Agent, Food), Time),
-      some(Location, '$kolem_Fn_205'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_209'(Agent, Food, Time))
     ]).
 
 
@@ -3062,11 +3062,11 @@ axiom(initiates(foodPrepare(Agent, Food), foodPrepared(Food), Time),
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Food, Location), Time))
        ),
-       some(Location, '$kolem_Fn_210'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_214'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',505).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_210'(Agent, Food, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)), some(Location, '$kolem_Fn_214'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3076,17 +3076,17 @@ axiom(initiates(foodPrepare(Agent, Food), foodPrepared(Food), Time),
 axiom(not(happens(foodPrepare(Agent, Food), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Food, Location)), Time)),
-      some(Location, '$kolem_Fn_210'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_214'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',505).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(foodPrepare(Agent, Food), Time),
-       some(Location, '$kolem_Fn_210'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_214'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',505).
 
- /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_210'(Agent, Food, Time))] ->
+ /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_214'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3096,17 +3096,17 @@ axiom(not(happens(foodPrepare(Agent, Food), Time)),
 axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(foodPrepare(Agent, Food), Time),
-      some(Location, '$kolem_Fn_210'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_214'(Agent, Food, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',505).
 
  /*  holds_at(at(Food, Location), Time) :-
        happens(foodPrepare(Agent, Food), Time),
-       some(Location, '$kolem_Fn_210'(Agent, Food, Time)).
+       some(Location, '$kolem_Fn_214'(Agent, Food, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',505).
 
- /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_210'(Agent, Food, Time))] ->
+ /*  [happens(foodPrepare(Agent, Food), Time), some(Location, '$kolem_Fn_214'(Agent, Food, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3116,7 +3116,7 @@ axiom(holds_at(at(Agent, Location), Time),
 axiom(holds_at(at(Food, Location), Time),
    
     [ happens(foodPrepare(Agent, Food), Time),
-      some(Location, '$kolem_Fn_210'(Agent, Food, Time))
+      some(Location, '$kolem_Fn_214'(Agent, Food, Time))
     ]).
 
 
@@ -3272,11 +3272,11 @@ event(tip(agent,agent)).
        (   not(holds_at(at(Agent, Room), Time))
        ;   not(holds_at(at(Physobj, Room), Time))
        ),
-       some(Room, '$kolem_Fn_211'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_215'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',533).
 
- /*  [(holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)), some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)), some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3286,17 +3286,17 @@ event(tip(agent,agent)).
 axiom(not(happens(lieOn(Agent, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)),
-      some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',533).
 
  /*  holds_at(at(Agent, Room), Time) :-
        happens(lieOn(Agent, Physobj), Time),
-       some(Room, '$kolem_Fn_211'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_215'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',533).
 
- /*  [happens(lieOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))] ->
+ /*  [happens(lieOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3306,17 +3306,17 @@ axiom(not(happens(lieOn(Agent, Physobj), Time)),
 axiom(holds_at(at(Agent, Room), Time),
    
     [ happens(lieOn(Agent, Physobj), Time),
-      some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',533).
 
  /*  holds_at(at(Physobj, Room), Time) :-
        happens(lieOn(Agent, Physobj), Time),
-       some(Room, '$kolem_Fn_211'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_215'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',533).
 
- /*  [happens(lieOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))] ->
+ /*  [happens(lieOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3326,7 +3326,7 @@ axiom(holds_at(at(Agent, Room), Time),
 axiom(holds_at(at(Physobj, Room), Time),
    
     [ happens(lieOn(Agent, Physobj), Time),
-      some(Room, '$kolem_Fn_211'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_215'(Agent, Physobj, Time))
     ]).
 
 
@@ -3351,11 +3351,11 @@ axiom(holds_at(at(Physobj, Room), Time),
        (   not(holds_at(at(Agent, Room), Time))
        ;   not(holds_at(at(Physobj, Room), Time))
        ),
-       some(Room, '$kolem_Fn_212'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_216'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',538).
 
- /*  [(holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)), some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)), some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3365,17 +3365,17 @@ axiom(holds_at(at(Physobj, Room), Time),
 axiom(not(happens(sitOn(Agent, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent, Room)), Time);holds_at(neg(at(Physobj, Room)), Time)),
-      some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',538).
 
  /*  holds_at(at(Agent, Room), Time) :-
        happens(sitOn(Agent, Physobj), Time),
-       some(Room, '$kolem_Fn_212'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_216'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',538).
 
- /*  [happens(sitOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))] ->
+ /*  [happens(sitOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3385,17 +3385,17 @@ axiom(not(happens(sitOn(Agent, Physobj), Time)),
 axiom(holds_at(at(Agent, Room), Time),
    
     [ happens(sitOn(Agent, Physobj), Time),
-      some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',538).
 
  /*  holds_at(at(Physobj, Room), Time) :-
        happens(sitOn(Agent, Physobj), Time),
-       some(Room, '$kolem_Fn_212'(Agent, Physobj, Time)).
+       some(Room, '$kolem_Fn_216'(Agent, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',538).
 
- /*  [happens(sitOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))] ->
+ /*  [happens(sitOn(Agent, Physobj), Time), some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3405,7 +3405,7 @@ axiom(holds_at(at(Agent, Room), Time),
 axiom(holds_at(at(Physobj, Room), Time),
    
     [ happens(sitOn(Agent, Physobj), Time),
-      some(Room, '$kolem_Fn_212'(Agent, Physobj, Time))
+      some(Room, '$kolem_Fn_216'(Agent, Physobj, Time))
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e:542
@@ -3858,11 +3858,11 @@ event(sayGoodbye(agent,agent)).
        (   not(holds_at(at(Agent1, Location), Time))
        ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',625).
 
- /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))] ->
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3872,17 +3872,17 @@ event(sayGoodbye(agent,agent)).
 axiom(not(happens(greet(Agent1, Agent2), Time)),
    
     [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
-      some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',625).
 
  /*  holds_at(at(Agent1, Location), Time) :-
        happens(greet(Agent1, Agent2), Time),
-       some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',625).
 
- /*  [happens(greet(Agent1, Agent2), Time), some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))] ->
+ /*  [happens(greet(Agent1, Agent2), Time), some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3892,17 +3892,17 @@ axiom(not(happens(greet(Agent1, Agent2), Time)),
 axiom(holds_at(at(Agent1, Location), Time),
    
     [ happens(greet(Agent1, Agent2), Time),
-      some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',625).
 
  /*  holds_at(at(Agent2, Location), Time) :-
        happens(greet(Agent1, Agent2), Time),
-       some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',625).
 
- /*  [happens(greet(Agent1, Agent2), Time), some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))] ->
+ /*  [happens(greet(Agent1, Agent2), Time), some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3912,7 +3912,7 @@ axiom(holds_at(at(Agent1, Location), Time),
 axiom(holds_at(at(Agent2, Location), Time),
    
     [ happens(greet(Agent1, Agent2), Time),
-      some(Location, '$kolem_Fn_213'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_217'(Agent1, Agent2, Time))
     ]).
 
 
@@ -3937,11 +3937,11 @@ axiom(holds_at(at(Agent2, Location), Time),
        (   not(holds_at(at(Agent1, Location), Time))
        ;   not(holds_at(at(Agent2, Location), Time))
        ),
-       some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',630).
 
- /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))] ->
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3951,17 +3951,17 @@ axiom(holds_at(at(Agent2, Location), Time),
 axiom(not(happens(sayGoodbye(Agent1, Agent2), Time)),
    
     [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
-      some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',630).
 
  /*  holds_at(at(Agent1, Location), Time) :-
        happens(sayGoodbye(Agent1, Agent2), Time),
-       some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',630).
 
- /*  [happens(sayGoodbye(Agent1, Agent2), Time), some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))] ->
+ /*  [happens(sayGoodbye(Agent1, Agent2), Time), some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3971,17 +3971,17 @@ axiom(not(happens(sayGoodbye(Agent1, Agent2), Time)),
 axiom(holds_at(at(Agent1, Location), Time),
    
     [ happens(sayGoodbye(Agent1, Agent2), Time),
-      some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',630).
 
  /*  holds_at(at(Agent2, Location), Time) :-
        happens(sayGoodbye(Agent1, Agent2), Time),
-       some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time)).
+       some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',630).
 
- /*  [happens(sayGoodbye(Agent1, Agent2), Time), some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))] ->
+ /*  [happens(sayGoodbye(Agent1, Agent2), Time), some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -3991,7 +3991,7 @@ axiom(holds_at(at(Agent1, Location), Time),
 axiom(holds_at(at(Agent2, Location), Time),
    
     [ happens(sayGoodbye(Agent1, Agent2), Time),
-      some(Location, '$kolem_Fn_214'(Agent1, Agent2, Time))
+      some(Location, '$kolem_Fn_218'(Agent1, Agent2, Time))
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e:634
@@ -4053,11 +4053,11 @@ axiom(initiates(order(Agent1, Agent2, Physobj), knowOrder(Agent2, Agent1, Physob
        ;   not(holds_at(at(Agent2, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',645).
 
- /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4068,18 +4068,18 @@ axiom(not(happens(order(Agent1, Agent2, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
       some(Location,
-           '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',645).
 
  /*  holds_at(at(Agent1, Location), Time) :-
        happens(order(Agent1, Agent2, Physobj), Time),
        some(Location,
-            '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',645).
 
- /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4090,18 +4090,18 @@ axiom(holds_at(at(Agent1, Location), Time),
    
     [ happens(order(Agent1, Agent2, Physobj), Time),
       some(Location,
-           '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',645).
 
  /*  holds_at(at(Agent2, Location), Time) :-
        happens(order(Agent1, Agent2, Physobj), Time),
        some(Location,
-            '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',645).
 
- /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [happens(order(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4112,7 +4112,7 @@ axiom(holds_at(at(Agent2, Location), Time),
    
     [ happens(order(Agent1, Agent2, Physobj), Time),
       some(Location,
-           '$kolem_Fn_215'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_219'(Agent1, Agent2, Physobj, Time))
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e:649
@@ -4174,11 +4174,11 @@ axiom(initiates(request(Agent1, Agent2, Physobj), knowRequest(Agent2, Agent1, Ph
        ;   not(holds_at(at(Agent2, Location), Time))
        ),
        some(Location,
-            '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',660).
 
- /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [(holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)), some(Location, '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4190,18 +4190,18 @@ axiom(not(happens(request(Agent1, Agent2, Physobj), Time)),
    
     [  (holds_at(neg(at(Agent1, Location)), Time);holds_at(neg(at(Agent2, Location)), Time)),
       some(Location,
-           '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',660).
 
  /*  holds_at(at(Agent1, Location), Time) :-
        happens(request(Agent1, Agent2, Physobj), Time),
        some(Location,
-            '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',660).
 
- /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4212,18 +4212,18 @@ axiom(holds_at(at(Agent1, Location), Time),
    
     [ happens(request(Agent1, Agent2, Physobj), Time),
       some(Location,
-           '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',660).
 
  /*  holds_at(at(Agent2, Location), Time) :-
        happens(request(Agent1, Agent2, Physobj), Time),
        some(Location,
-            '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time)).
+            '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RepRest.e',660).
 
- /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))] ->
+ /*  [happens(request(Agent1, Agent2, Physobj), Time), some(Location, '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -4234,7 +4234,7 @@ axiom(holds_at(at(Agent2, Location), Time),
    
     [ happens(request(Agent1, Agent2, Physobj), Time),
       some(Location,
-           '$kolem_Fn_216'(Agent1, Agent2, Physobj, Time))
+           '$kolem_Fn_220'(Agent1, Agent2, Physobj, Time))
     ]).
 
 

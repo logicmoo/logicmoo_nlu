@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:51 GMT
+% Wed, 01 Apr 2020 20:00:00 GMT
 % From ../examples/Mueller2006/Exercises/Counter.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter9/RunningAndDriving.e',50).
 
@@ -102,21 +102,7 @@ fluent(inputLine(counter)).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e:42
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -129,17 +115,21 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e:45
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
- /*  holds_at(neg(true(Counter)), Time), holds_at(inputLine(Counter), Time) ->
-       happens(falseToTrue(Counter), Time).
- */
-
- /*  happens(falseToTrue(Counter), Time) :-
-       holds_at(neg(true(Counter)), Time),
-       holds_at(inputLine(Counter), Time).
+ /*  axiom_uses(delta) ->
+       ( holds_at(neg(true(Counter)), Time), holds_at(inputLine(Counter), Time)->happens(falseToTrue(Counter), Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
- /*  [holds_at(neg(true(Counter)), Time), holds_at(inputLine(Counter), Time)] ->
+ /*  happens(falseToTrue(Counter), Time) :-
+       ( holds_at(neg(true(Counter)), Time),
+         holds_at(inputLine(Counter), Time)
+       ),
+       axiom_uses(delta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
+
+ /*  [holds_at(neg(true(Counter)), Time), holds_at(inputLine(Counter), Time), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -149,17 +139,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 axiom(happens(falseToTrue(Counter), Time),
    
     [ holds_at(neg(true(Counter)), Time),
-      holds_at(inputLine(Counter), Time)
+      holds_at(inputLine(Counter), Time),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
  /*  not(holds_at(neg(true(Counter)), Time)) :-
        holds_at(inputLine(Counter), Time),
-       not(happens(falseToTrue(Counter), Time)).
+       not(happens(falseToTrue(Counter), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
- /*  [holds_at(inputLine(Counter), Time), not(happens(falseToTrue(Counter), Time))] ->
+ /*  [holds_at(inputLine(Counter), Time), not(happens(falseToTrue(Counter), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -169,17 +161,19 @@ axiom(happens(falseToTrue(Counter), Time),
 axiom(holds_at(true(Counter), Time),
    
     [ holds_at(inputLine(Counter), Time),
-      not(happens(falseToTrue(Counter), Time))
+      not(happens(falseToTrue(Counter), Time)),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
  /*  not(holds_at(inputLine(Counter), Time)) :-
        holds_at(neg(true(Counter)), Time),
-       not(happens(falseToTrue(Counter), Time)).
+       not(happens(falseToTrue(Counter), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
 
- /*  [holds_at(neg(true(Counter)), Time), not(happens(falseToTrue(Counter), Time))] ->
+ /*  [holds_at(neg(true(Counter)), Time), not(happens(falseToTrue(Counter), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -189,26 +183,40 @@ axiom(holds_at(true(Counter), Time),
 axiom(holds_at(neg(inputLine(Counter)), Time),
    
     [ holds_at(neg(true(Counter)), Time),
-      not(happens(falseToTrue(Counter), Time))
+      not(happens(falseToTrue(Counter), Time)),
+      axiom_uses(delta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
+
+ /*  not(axiom_uses(delta)) :-
+       not(happens(falseToTrue(Counter), Time)),
+       holds_at(neg(true(Counter)), Time),
+       holds_at(inputLine(Counter), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(delta)), ->, not(axiom_uses(delta, Time))].
+ */
+
+ /*  [not(happens(falseToTrue(Counter), Time)), holds_at(neg(true(Counter)), Time), holds_at(inputLine(Counter), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(delta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',43).
+axiom(not(axiom_uses(delta, Time)),
+   
+    [ not(happens(falseToTrue(Counter), Time)),
+      holds_at(neg(true(Counter)), Time),
+      holds_at(inputLine(Counter), Time)
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e:47
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',47).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',47).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -220,17 +228,21 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e:50
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
- /*  holds_at(true(Counter), Time), holds_at(neg(inputLine(Counter)), Time) ->
-       happens(trueToFalse(Counter), Time).
- */
-
- /*  happens(trueToFalse(Counter), Time) :-
-       holds_at(true(Counter), Time),
-       holds_at(neg(inputLine(Counter)), Time).
+ /*  axiom_uses(delta) ->
+       ( holds_at(true(Counter), Time), holds_at(neg(inputLine(Counter)), Time)->happens(trueToFalse(Counter), Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
- /*  [holds_at(true(Counter), Time), holds_at(neg(inputLine(Counter)), Time)] ->
+ /*  happens(trueToFalse(Counter), Time) :-
+       ( holds_at(true(Counter), Time),
+         holds_at(neg(inputLine(Counter)), Time)
+       ),
+       axiom_uses(delta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
+
+ /*  [holds_at(true(Counter), Time), holds_at(neg(inputLine(Counter)), Time), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -240,17 +252,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 axiom(happens(trueToFalse(Counter), Time),
    
     [ holds_at(true(Counter), Time),
-      holds_at(neg(inputLine(Counter)), Time)
+      holds_at(neg(inputLine(Counter)), Time),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
  /*  not(holds_at(true(Counter), Time)) :-
        holds_at(neg(inputLine(Counter)), Time),
-       not(happens(trueToFalse(Counter), Time)).
+       not(happens(trueToFalse(Counter), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
- /*  [holds_at(neg(inputLine(Counter)), Time), not(happens(trueToFalse(Counter), Time))] ->
+ /*  [holds_at(neg(inputLine(Counter)), Time), not(happens(trueToFalse(Counter), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -260,17 +274,19 @@ axiom(happens(trueToFalse(Counter), Time),
 axiom(holds_at(neg(true(Counter)), Time),
    
     [ holds_at(neg(inputLine(Counter)), Time),
-      not(happens(trueToFalse(Counter), Time))
+      not(happens(trueToFalse(Counter), Time)),
+      axiom_uses(delta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
  /*  not(holds_at(neg(inputLine(Counter)), Time)) :-
        holds_at(true(Counter), Time),
-       not(happens(trueToFalse(Counter), Time)).
+       not(happens(trueToFalse(Counter), Time)),
+       axiom_uses(delta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
 
- /*  [holds_at(true(Counter), Time), not(happens(trueToFalse(Counter), Time))] ->
+ /*  [holds_at(true(Counter), Time), not(happens(trueToFalse(Counter), Time)), axiom_uses(delta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -280,7 +296,34 @@ axiom(holds_at(neg(true(Counter)), Time),
 axiom(holds_at(inputLine(Counter), Time),
    
     [ holds_at(true(Counter), Time),
-      not(happens(trueToFalse(Counter), Time))
+      not(happens(trueToFalse(Counter), Time)),
+      axiom_uses(delta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
+
+ /*  not(axiom_uses(delta)) :-
+       not(happens(trueToFalse(Counter), Time)),
+       holds_at(true(Counter), Time),
+       holds_at(neg(inputLine(Counter)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(delta)), ->, not(axiom_uses(delta, Time))].
+ */
+
+ /*  [not(happens(trueToFalse(Counter), Time)), holds_at(true(Counter), Time), holds_at(neg(inputLine(Counter)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(delta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',49).
+axiom(not(axiom_uses(delta, Time)),
+   
+    [ not(happens(trueToFalse(Counter), Time)),
+      holds_at(true(Counter), Time),
+      holds_at(neg(inputLine(Counter)), Time)
     ]).
 
 
@@ -416,8 +459,8 @@ axiom(holds_at(neg(count(Counter, Integer2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',70).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(true(counter1)), start)).
  */
@@ -431,8 +474,8 @@ axiom(holds_at(neg(true(counter1)), start),
 % !HoldsAt(InputLine(Counter1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inputLine(counter1)), start)).
  */
@@ -446,7 +489,7 @@ axiom(holds_at(neg(inputLine(counter1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',72).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(inputLine(counter1), Time)).
@@ -461,7 +504,7 @@ axiom(holds_at(inputLine(counter1), Time),
 % HoldsAt(InputLine(Counter1),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           holds_at(inputLine(counter1), Start2)).
@@ -476,7 +519,7 @@ axiom(holds_at(inputLine(counter1), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',74).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           holds_at(inputLine(counter1), Start3)).
@@ -491,7 +534,7 @@ axiom(holds_at(inputLine(counter1), Start3),
 % !HoldsAt(InputLine(Counter1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           holds_at(neg(inputLine(counter1)), Start4)).
@@ -506,7 +549,7 @@ axiom(holds_at(neg(inputLine(counter1)), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',76).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           holds_at(neg(inputLine(counter1)), Start5)).
@@ -521,7 +564,7 @@ axiom(holds_at(neg(inputLine(counter1)), Start5),
 % !HoldsAt(InputLine(Counter1),6).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           holds_at(neg(inputLine(counter1)), Start6)).
@@ -536,7 +579,7 @@ axiom(holds_at(neg(inputLine(counter1)), Start6),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',78).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           holds_at(inputLine(counter1), Start7)).
@@ -551,7 +594,7 @@ axiom(holds_at(inputLine(counter1), Start7),
 % HoldsAt(InputLine(Counter1),8).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           holds_at(inputLine(counter1), Start8)).
@@ -566,7 +609,7 @@ axiom(holds_at(inputLine(counter1), Start8),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',80).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           holds_at(inputLine(counter1), Start9)).
@@ -581,8 +624,12 @@ axiom(holds_at(inputLine(counter1), Start9),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',82).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(count(counter1, 0), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(count(counter1, 0), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',82).
 axiom(holds_at(count(counter1, 0), start),
     []).
 

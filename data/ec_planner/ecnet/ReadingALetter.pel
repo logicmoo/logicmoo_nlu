@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:40 GMT
+% Wed, 01 Apr 2020 20:02:05 GMT
 % From ../ecnet/ReadingALetter.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingABook.e',103).
 
@@ -340,8 +340,8 @@ event(takeOutOf(agent,insidea,insideb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',73).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
@@ -356,8 +356,8 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
  % !HoldsAt(LyingOn(agent,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
@@ -371,8 +371,8 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',75).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(dressed(recipient1), start)).
  */
@@ -386,7 +386,10 @@ axiom(holds_at(dressed(recipient1), start),
 % HoldsAt(Dressed(Carrier1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(carrier1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(dressed(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 axiom(holds_at(dressed(carrier1), start),
@@ -398,8 +401,12 @@ axiom(holds_at(dressed(carrier1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(recipient1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(recipient1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',77).
 axiom(holds_at(awake(recipient1), start),
     []).
 
@@ -409,7 +416,10 @@ axiom(holds_at(awake(recipient1), start),
 % HoldsAt(Awake(Carrier1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(carrier1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 axiom(holds_at(awake(carrier1), start),
@@ -421,8 +431,12 @@ axiom(holds_at(awake(carrier1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(recipient1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(sleep3(recipient1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',79).
 axiom(holds_at(sleep3(recipient1), start),
     []).
 
@@ -432,7 +446,10 @@ axiom(holds_at(sleep3(recipient1), start),
 % HoldsAt(Sleep3(Carrier1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(carrier1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(sleep3(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
 axiom(holds_at(sleep3(carrier1), start),
@@ -444,8 +461,8 @@ axiom(holds_at(sleep3(carrier1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',81).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(recipient1), start)).
  */
@@ -459,7 +476,10 @@ axiom(holds_at(standing(recipient1), start),
 % HoldsAt(Standing(Carrier1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(carrier1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(carrier1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
 axiom(holds_at(standing(carrier1), start),
@@ -471,8 +491,8 @@ axiom(holds_at(standing(carrier1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',83).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(containerClosed(envelope1), start)).
  */
@@ -486,8 +506,8 @@ axiom(holds_at(containerClosed(envelope1), start),
 % HoldsAt(Inside(Letter1,Envelope1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inside(letter1, envelope1), start)).
  */
@@ -503,11 +523,11 @@ axiom(holds_at(inside(letter1, envelope1), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:87
 
  /*  not((equals(Physobj1, letter1), equals(Physobj2, envelope1))) ->
-       holds_at(neg(inside(Physobj1, Physobj2)), start+0).
+       holds_at(neg(inside(Physobj1, Physobj2)), start).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',87).
 
- /*  holds_at(neg(inside(Physobj1, Physobj2)), start+0) :-
+ /*  holds_at(neg(inside(Physobj1, Physobj2)), start) :-
        (   not(equals(Physobj1, letter1))
        ;   not(equals(Physobj2, envelope1))
        ).
@@ -515,8 +535,8 @@ axiom(holds_at(inside(letter1, envelope1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',87).
 
  /*  [(not(equals(Physobj1, letter1));not(equals(Physobj2, envelope1)))] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
@@ -533,8 +553,8 @@ axiom(holds_at(neg(inside(Physobj1, Physobj2)), start),
  % !HoldsAt(See(agent,object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(see(Agent, Object)), start)).
  */
@@ -550,11 +570,11 @@ axiom(holds_at(neg(see(Agent, Object)), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e:91
 
  /*  not((equals(Agent, carrier1), equals(Object, envelope1))) ->
-       holds_at(neg(holding(Agent, Object)), start+0).
+       holds_at(neg(holding(Agent, Object)), start).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',91).
 
- /*  holds_at(neg(holding(Agent, Object)), start+0) :-
+ /*  holds_at(neg(holding(Agent, Object)), start) :-
        (   not(equals(Agent, carrier1))
        ;   not(equals(Object, envelope1))
        ).
@@ -562,8 +582,8 @@ axiom(holds_at(neg(see(Agent, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',91).
 
  /*  [(not(equals(Agent, carrier1));not(equals(Object, envelope1)))] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -577,8 +597,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
 % HoldsAt(Holding(Carrier1,Envelope1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(holding(carrier1, envelope1), start)).
  */
@@ -593,8 +613,8 @@ axiom(holds_at(holding(carrier1, envelope1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',93).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
@@ -612,8 +632,8 @@ axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
 % Happens(PlaceOn(Carrier1,Envelope1,Surface1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(placeOn(carrier1, envelope1, surface1), start)).
  */
@@ -627,7 +647,7 @@ axiom(happens(placeOn(carrier1, envelope1, surface1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',97).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(takeOffOf(recipient1, envelope1, surface1), Maptime)).
@@ -647,7 +667,7 @@ axiom(happens(takeOffOf(recipient1, envelope1, surface1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',99).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(sitOn(recipient1, chair1), Start2)).
@@ -662,7 +682,7 @@ axiom(happens(sitOn(recipient1, chair1), Start2),
 % Happens(ContainerOpen(Recipient1,Envelope1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(containerOpen(recipient1, envelope1), Start3)).
@@ -677,7 +697,7 @@ axiom(happens(containerOpen(recipient1, envelope1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',101).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(takeOutOf(recipient1, letter1, envelope1), Start4)).
@@ -692,7 +712,7 @@ axiom(happens(takeOutOf(recipient1, letter1, envelope1), Start4),
 % Happens(LookAt(Recipient1,Letter1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(lookAt(recipient1, letter1), Start5)).
@@ -707,7 +727,7 @@ axiom(happens(lookAt(recipient1, letter1), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',103).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(read(recipient1, letter1, content1), Start6)).
@@ -722,7 +742,7 @@ axiom(happens(read(recipient1, letter1, content1), Start6),
 % Happens(ThinkAbout(Recipient1,Content1),7).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(thinkAbout(recipient1, content1), Start7)).
@@ -737,7 +757,7 @@ axiom(happens(thinkAbout(recipient1, content1), Start7),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',105).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(understand(recipient1, content1), Start8)).
@@ -752,7 +772,7 @@ axiom(happens(understand(recipient1, content1), Start8),
 % Happens(PutInside(Recipient1,Letter1,Envelope1),9).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(putInside(recipient1, letter1, envelope1), Start9)).
@@ -767,7 +787,7 @@ axiom(happens(putInside(recipient1, letter1, envelope1), Start9),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ReadingALetter.e',107).
 
  /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
-       ta(start+10,
+       ta(Ta_Param,
           tvs1=[start+10],
           tvs2=[Startd10, start],
           happens(riseFrom(recipient1, chair1), Startd10)).
@@ -782,7 +802,7 @@ axiom(happens(riseFrom(recipient1, chair1), Startd10),
 % Happens(PlaceOn(Recipient1,Envelope1,Surface1),11).
 
  /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
-       ta(start+11,
+       ta(Ta_Param,
           tvs1=[start+11],
           tvs2=[Startd11, start],
           happens(placeOn(recipient1, envelope1, surface1), Startd11)).

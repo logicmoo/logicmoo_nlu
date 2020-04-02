@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:21 GMT
+% Wed, 01 Apr 2020 20:00:39 GMT
 % From ../examples/Shanahan1997/StuffyRoom.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StolenCar.e',56).
 
@@ -294,7 +294,7 @@ axiom(terminates(start, blocked2, Time),
 % !HoldsAt(Blocked1(),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(blocked1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(blocked1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',61).
 axiom(holds_at(neg(blocked1), start),
@@ -306,7 +306,7 @@ axiom(holds_at(neg(blocked1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',61).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(blocked2), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(blocked2), start)).
  */
 axiom(holds_at(neg(blocked2), start),
     []).
@@ -317,7 +317,7 @@ axiom(holds_at(neg(blocked2), start),
 % Happens(Start(),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(start, start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(start, start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',63).
 axiom(happens(start, start),
@@ -329,7 +329,7 @@ axiom(happens(start, start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',63).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(close2, Maptime)).

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:52 GMT
+% Wed, 01 Apr 2020 20:00:03 GMT
 % From ../examples/Mueller2006/Exercises/TeacherTells.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/SnoozeAlarm.e',112).
 
@@ -138,11 +138,11 @@ event(tell(agent,agent,fact)).
          holds_at(listeningTo(Agent2, Agent1), Time)
        ),
        some(Room,
-            '$kolem_Fn_24'(Agent1, Time, Agent2, Fact)).
+            '$kolem_Fn_28'(Agent1, Time, Agent2, Fact)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
- /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(inRoom(Agent2, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), some(Room, '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))] ->
+ /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(inRoom(Agent2, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), some(Room, '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -157,7 +157,7 @@ axiom(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time),
       holds_at(inRoom(Agent2, Room), Time),
       holds_at(listeningTo(Agent2, Agent1), Time),
       some(Room,
-           '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))
+           '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
@@ -168,11 +168,11 @@ axiom(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time),
                      know(Agent2, Fact),
                      Time)),
        some(Room,
-            '$kolem_Fn_24'(Agent1, Time, Agent2, Fact)).
+            '$kolem_Fn_28'(Agent1, Time, Agent2, Fact)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
- /*  [holds_at(inRoom(Agent2, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))] ->
+ /*  [holds_at(inRoom(Agent2, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -187,7 +187,7 @@ axiom(holds_at(neg(inRoom(Agent1, Room)), Time),
                     know(Agent2, Fact),
                     Time)),
       some(Room,
-           '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))
+           '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
@@ -198,11 +198,11 @@ axiom(holds_at(neg(inRoom(Agent1, Room)), Time),
                      know(Agent2, Fact),
                      Time)),
        some(Room,
-            '$kolem_Fn_24'(Agent1, Time, Agent2, Fact)).
+            '$kolem_Fn_28'(Agent1, Time, Agent2, Fact)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
- /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))] ->
+ /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(listeningTo(Agent2, Agent1), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -217,7 +217,7 @@ axiom(holds_at(neg(inRoom(Agent2, Room)), Time),
                     know(Agent2, Fact),
                     Time)),
       some(Room,
-           '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))
+           '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
@@ -229,11 +229,11 @@ axiom(holds_at(neg(inRoom(Agent2, Room)), Time),
                      know(Agent2, Fact),
                      Time)),
        some(Room,
-            '$kolem_Fn_24'(Agent1, Time, Agent2, Fact)).
+            '$kolem_Fn_28'(Agent1, Time, Agent2, Fact)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',41).
 
- /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(inRoom(Agent2, Room), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))] ->
+ /*  [holds_at(inRoom(Agent1, Room), Time), holds_at(inRoom(Agent2, Room), Time), not(initiates(tell(Agent1, Agent2, Fact), know(Agent2, Fact), Time)), some(Room, '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -248,7 +248,7 @@ axiom(holds_at(neg(listeningTo(Agent2, Agent1)), Time),
                     know(Agent2, Fact),
                     Time)),
       some(Room,
-           '$kolem_Fn_24'(Agent1, Time, Agent2, Fact))
+           '$kolem_Fn_28'(Agent1, Time, Agent2, Fact))
     ]).
 
 
@@ -261,8 +261,8 @@ axiom(holds_at(neg(listeningTo(Agent2, Agent1)), Time),
 % Happens(Tell(Teacher,Student,Fact1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(tell(teacher, student, fact1), start)).
  */
@@ -334,8 +334,8 @@ axiom(holds_at(neg(inRoom(Agent, Room2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',60).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(know(Agent, Fact)), start)).
  */
@@ -350,8 +350,8 @@ axiom(holds_at(neg(know(Agent, Fact)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',60).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(listeningTo(Agent1, Agent2), start)).
  */
@@ -366,8 +366,8 @@ axiom(holds_at(listeningTo(Agent1, Agent2), start),
  % HoldsAt(InRoom(agent,Classroom),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inRoom(Agent, classroom), start)).
  */

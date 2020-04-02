@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:53 GMT
+% Wed, 01 Apr 2020 20:00:03 GMT
 % From ../examples/Mueller2006/Exercises/TelephoneBugs.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TeacherTells.e',69).
 
@@ -623,8 +623,8 @@ axiom(terminates(setDown(Agent, Phone), disconnected(Phone), Time),
 % Happens(Dial(Agent1,Phone1,Phone2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(dial(agent1, phone1, phone2), start)).
  */
@@ -638,8 +638,8 @@ axiom(happens(dial(agent1, phone1, phone2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',149).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(dial(agent2, phone2, phone1), start)).
  */
@@ -657,7 +657,7 @@ axiom(happens(dial(agent2, phone2, phone1), start),
 % Happens(PickUp(Agent1,Phone1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pickUp(agent1, phone1), Maptime)).
@@ -672,7 +672,7 @@ axiom(happens(pickUp(agent1, phone1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',153).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pickUp(agent2, phone2), Maptime)).
@@ -687,7 +687,7 @@ axiom(happens(pickUp(agent2, phone2), Maptime),
 % Happens(Dial(Agent1,Phone1,Phone2),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(dial(agent1, phone1, phone2), Start2)).
@@ -702,7 +702,7 @@ axiom(happens(dial(agent1, phone1, phone2), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',155).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(dial(agent2, phone2, phone1), Start2)).
@@ -717,7 +717,7 @@ axiom(happens(dial(agent2, phone2, phone1), Start2),
 % Happens(SetDown(Agent1,Phone1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(setDown(agent1, phone1), Start3)).
@@ -732,7 +732,7 @@ axiom(happens(setDown(agent1, phone1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',157).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(setDown(agent2, phone2), Start3)).
@@ -752,7 +752,7 @@ axiom(happens(setDown(agent2, phone2), Start3),
 % Happens(PickUp(Agent1,Phone1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(pickUp(agent1, phone1), Start4)).
@@ -767,7 +767,7 @@ axiom(happens(pickUp(agent1, phone1), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',162).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(dial(agent1, phone1, phone2), Start5)).
@@ -782,7 +782,7 @@ axiom(happens(dial(agent1, phone1, phone2), Start5),
 % Happens(PickUp(Agent2,Phone2),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(pickUp(agent2, phone2), Start5)).
@@ -1075,7 +1075,10 @@ axiom(holds_at(neg(connected(Phone1, Phone2)), Time),
 % HoldsAt(Idle(phone),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(idle(Phone), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(idle(Phone), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/TelephoneBugs.e',201).
 axiom(holds_at(idle(Phone), start),

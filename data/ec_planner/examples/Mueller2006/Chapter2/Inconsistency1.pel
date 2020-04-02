@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:41 GMT
+% Wed, 01 Apr 2020 19:59:47 GMT
 % From ../examples/Mueller2006/Chapter2/Inconsistency1.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter14/Workflow.e',181).
 
@@ -102,7 +102,7 @@ axiom(terminates(e(Object), f(Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency1.e',32).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(e(o1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(e(o1), start)).
  */
 axiom(happens(e(o1), start),
     []).

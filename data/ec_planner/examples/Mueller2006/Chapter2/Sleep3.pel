@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:42 GMT
+% Wed, 01 Apr 2020 19:59:48 GMT
 % From ../examples/Mueller2006/Chapter2/Sleep3.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Sleep2.e',48).
 
@@ -165,7 +165,7 @@ axiom(not(happens(wakeUp(Agent), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Sleep3.e',42).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(wakeUp(nathan), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(wakeUp(nathan), start)).
  */
 axiom(happens(wakeUp(nathan), start),
     []).
@@ -180,7 +180,7 @@ axiom(happens(wakeUp(nathan), start),
 % HoldsAt(Awake(Nathan),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(awake(nathan), Time)).

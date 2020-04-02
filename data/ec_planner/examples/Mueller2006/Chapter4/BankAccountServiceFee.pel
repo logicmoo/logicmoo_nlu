@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:45 GMT
+% Wed, 01 Apr 2020 19:59:51 GMT
 % From ../examples/Mueller2006/Chapter4/BankAccountServiceFee.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/AlarmClock.e',90).
 
@@ -498,8 +498,8 @@ axiom(not(endOfMonth(Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',101).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(transfer(account1, account2, 1), start)).
  */
@@ -513,8 +513,8 @@ axiom(happens(transfer(account1, account2, 1), start),
 % Happens(Transfer(Account1,Account2,1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(transfer(account1, account2, 1), start)).
  */
@@ -587,8 +587,8 @@ axiom(holds_at(neg(balance(Account, Value2)), Time),
 % !HoldsAt(ServiceFeeCharged(Account1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(serviceFeeCharged(account1)), start)).
  */
@@ -602,8 +602,8 @@ axiom(holds_at(neg(serviceFeeCharged(account1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',114).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(serviceFeeCharged(account2)), start)).
  */
@@ -617,8 +617,8 @@ axiom(holds_at(neg(serviceFeeCharged(account2)), start),
 % HoldsAt(Balance(Account1,3),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(balance(account1, 3), start)).
  */
@@ -632,8 +632,8 @@ axiom(holds_at(balance(account1, 3), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter4/BankAccountServiceFee.e',116).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(balance(account2, 1), start)).
  */

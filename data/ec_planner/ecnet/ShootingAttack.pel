@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:57 GMT
+% Wed, 01 Apr 2020 20:02:25 GMT
 % From ../ecnet/ShootingAttack.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RTSpace.e',328).
 
@@ -256,7 +256,7 @@ axiom(ignore(threatenedBy),
 % HoldsAt(Intact(Gun1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(intact(gun1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(intact(gun1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',43).
 axiom(holds_at(intact(gun1), start),
@@ -268,8 +268,12 @@ axiom(holds_at(intact(gun1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',43).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(intact(bullet1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(intact(bullet1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',43).
 axiom(holds_at(intact(bullet1), start),
     []).
 
@@ -289,8 +293,8 @@ axiom(holds_at(intact(bullet1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',48).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(intact(physTarget1), start)).
  */
@@ -304,8 +308,8 @@ axiom(holds_at(intact(physTarget1), start),
 % HoldsAt(At(PhysTarget1,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(physTarget1, outside1), start)).
  */
@@ -499,7 +503,7 @@ axiom(equals(side2(street1), outside2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',78).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(alive(perp1), start)).
  */
 axiom(holds_at(alive(perp1), start),
     []).
@@ -510,7 +514,7 @@ axiom(holds_at(alive(perp1), start),
 % HoldsAt(Awake(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(awake(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',80).
 axiom(holds_at(awake(perp1), start),
@@ -522,8 +526,12 @@ axiom(holds_at(awake(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',80).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(perp1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(perp1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',80).
 axiom(holds_at(standing(perp1), start),
     []).
 
@@ -533,7 +541,7 @@ axiom(holds_at(standing(perp1), start),
 % HoldsAt(Sleep2(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep2(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(sleep2(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',82).
 axiom(holds_at(sleep2(perp1), start),
@@ -545,8 +553,8 @@ axiom(holds_at(sleep2(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',82).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(perp1)), start)).
  */
@@ -561,8 +569,8 @@ axiom(holds_at(neg(injured(perp1)), start),
  % !HoldsAt(Holding(Perp1,object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(perp1, Object)), start)).
  */
@@ -576,8 +584,12 @@ axiom(holds_at(neg(holding(perp1, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',84).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(gun1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(gun1, outside2), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',84).
 axiom(holds_at(at(gun1, outside2), start),
     []).
 
@@ -587,7 +599,10 @@ axiom(holds_at(at(gun1, outside2), start),
 % HoldsAt(At(Perp1,Outside2),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(perp1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(perp1, outside2), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',86).
 axiom(holds_at(at(perp1, outside2), start),
@@ -599,8 +614,8 @@ axiom(holds_at(at(perp1, outside2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',86).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(bullet1, outside2), start)).
  */
@@ -614,7 +629,10 @@ axiom(holds_at(at(bullet1, outside2), start),
 % HoldsAt(DoorIsOpen(Door1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(doorIsOpen(door1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',88).
 axiom(holds_at(doorIsOpen(door1), start),
@@ -626,8 +644,8 @@ axiom(holds_at(doorIsOpen(door1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',88).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(door1), start)).
  */
@@ -642,8 +660,8 @@ axiom(holds_at(doorUnlocked(door1), start),
  % !HoldsAt(Inside(physobj1,physobj2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inside(Physobj1, Physobj2)), start)).
  */
@@ -662,8 +680,12 @@ axiom(holds_at(neg(inside(Physobj1, Physobj2)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',92).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(pickUp(perp1, gun1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(pickUp(perp1, gun1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',92).
 axiom(happens(pickUp(perp1, gun1), start),
     []).
 
@@ -673,7 +695,7 @@ axiom(happens(pickUp(perp1, gun1), start),
 % Happens(PickUp(Perp1,Bullet1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(pickUp(perp1, bullet1), Maptime)).
@@ -688,7 +710,7 @@ axiom(happens(pickUp(perp1, bullet1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',94).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(putInside(perp1, bullet1, gun1), Start2)).
@@ -703,7 +725,7 @@ axiom(happens(putInside(perp1, bullet1, gun1), Start2),
 % Happens(WalkStreet21(Perp1,Street1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(walkStreet21(perp1, street1), Start3)).
@@ -718,7 +740,7 @@ axiom(happens(walkStreet21(perp1, street1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',96).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(shoot(perp1, gun1, physTarget1), Start4)).
@@ -733,7 +755,7 @@ axiom(happens(shoot(perp1, gun1, physTarget1), Start4),
 % Happens(ShootDestroy(Perp1,Gun1,PhysTarget1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(shootDestroy(perp1, gun1, physTarget1), Start4)).
@@ -748,7 +770,7 @@ axiom(happens(shootDestroy(perp1, gun1, physTarget1), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/ShootingAttack.e',98).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(walkStreet12(perp1, street1), Start5)).

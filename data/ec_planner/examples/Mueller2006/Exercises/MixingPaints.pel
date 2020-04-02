@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:51 GMT
+% Wed, 01 Apr 2020 20:00:01 GMT
 % From ../examples/Mueller2006/Exercises/MixingPaints.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/Counter.e',91).
 
@@ -246,8 +246,8 @@ axiom(holds_at(neg(onPalette(Palette, Color2)), Time),
 % HoldsAt(OnPalette(Palette1,Red),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(onPalette(palette1, red), start)).
  */
@@ -258,20 +258,7 @@ axiom(holds_at(onPalette(palette1, red), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:65
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -279,15 +266,15 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(PlaceOnPalette(Palette1,Green),0).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 
- /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+ /*  [axiom_uses(delta, Axiom_uses_Ret)] ->
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(placeOnPalette(palette1, green), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',65).
 axiom(happens(placeOnPalette(palette1, green), start),
-    []).
+    [axiom_uses(delta, Axiom_uses_Ret)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:67
@@ -296,21 +283,7 @@ axiom(happens(placeOnPalette(palette1, green), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:68
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -318,33 +291,20 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 % Happens(PlaceOnPalette(Palette1,Yellow),1).
 
- /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(placeOnPalette(palette1, yellow), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 axiom(happens(placeOnPalette(palette1, yellow), Maptime),
-    [b(start, Maptime)]).
+    [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime)]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:69
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -352,15 +312,15 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(PlaceOnPalette(Palette1,Blue),1).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 
- /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime), ignore(start+1==Maptime)] ->
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(placeOnPalette(palette1, blue), Maptime)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',69).
 axiom(happens(placeOnPalette(palette1, blue), Maptime),
-    [b(start, Maptime)]).
+    [axiom_uses(delta, Axiom_uses_Ret), b(start, Maptime)]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:71
@@ -369,21 +329,7 @@ axiom(happens(placeOnPalette(palette1, blue), Maptime),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:72
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -391,15 +337,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 % Happens(PlaceOnPalette(Palette1,Yellow),2).
 
- /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(placeOnPalette(palette1, yellow), Start2)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',73).
 axiom(happens(placeOnPalette(palette1, yellow), Start2),
-    [b(start, Start2), toffset(start, 2, Start2)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start2),
+      toffset(start, 2, Start2)
+    ]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:74
@@ -408,21 +358,7 @@ axiom(happens(placeOnPalette(palette1, yellow), Start2),
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:75
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -430,15 +366,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(PlaceOnPalette(Palette1,Blue),3).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
 
- /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(placeOnPalette(palette1, blue), Start3)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',75).
 axiom(happens(placeOnPalette(palette1, blue), Start3),
-    [b(start, Start3), toffset(start, 3, Start3)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start3),
+      toffset(start, 3, Start3)
+    ]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:77
@@ -447,21 +387,7 @@ axiom(happens(placeOnPalette(palette1, blue), Start3),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:78
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 % Delta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -469,33 +395,24 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 % Happens(PlaceOnPalette(Palette1,Yellow),4).
 
- /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(placeOnPalette(palette1, yellow), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 axiom(happens(placeOnPalette(palette1, yellow), Start4),
-    [b(start, Start4), toffset(start, 4, Start4)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start4),
+      toffset(start, 4, Start4)
+    ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:79
 % Delta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(delta), ->, holds_at(next_axiom_uses(delta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(delta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
-axiom(holds_at(next_axiom_uses(delta), Time),
-    []).
+next_axiom_uses(delta).
  
 
 
@@ -503,15 +420,19 @@ axiom(holds_at(next_axiom_uses(delta), Time),
 % Happens(PlaceOnPalette(Palette1,Blue),4).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 
- /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+ /*  [axiom_uses(delta, Axiom_uses_Ret), b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(placeOnPalette(palette1, blue), Start4)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',79).
 axiom(happens(placeOnPalette(palette1, blue), Start4),
-    [b(start, Start4), toffset(start, 4, Start4)]).
+   
+    [ axiom_uses(delta, Axiom_uses_Ret),
+      b(start, Start4),
+      toffset(start, 4, Start4)
+    ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e:81
 % completion Delta Happens

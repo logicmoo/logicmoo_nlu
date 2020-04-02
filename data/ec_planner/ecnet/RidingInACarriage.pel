@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:50 GMT
+% Wed, 01 Apr 2020 20:02:16 GMT
 % From ../ecnet/RidingInACarriage.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',148).
 
@@ -1861,11 +1861,11 @@ axiom(initiates(getOnVehicle(Agent, Vehicleon), onVehicle(Agent, Vehicleon), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehicleon, Location), Time))
        ),
-       some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)), some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1876,17 +1876,17 @@ axiom(not(happens(getOnVehicle(Agent, Vehicleon), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehicleon, Location)), Time)),
       some(Location,
-           '$kolem_Fn_222'(Agent, Vehicleon, Time))
+           '$kolem_Fn_226'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1897,17 +1897,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_222'(Agent, Vehicleon, Time))
+           '$kolem_Fn_226'(Agent, Vehicleon, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
  /*  holds_at(at(Vehicleon, Location), Time) :-
        happens(getOnVehicle(Agent, Vehicleon), Time),
-       some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time)).
+       some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',198).
 
- /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_222'(Agent, Vehicleon, Time))] ->
+ /*  [happens(getOnVehicle(Agent, Vehicleon), Time), some(Location, '$kolem_Fn_226'(Agent, Vehicleon, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1918,7 +1918,7 @@ axiom(holds_at(at(Vehicleon, Location), Time),
    
     [ happens(getOnVehicle(Agent, Vehicleon), Time),
       some(Location,
-           '$kolem_Fn_222'(Agent, Vehicleon, Time))
+           '$kolem_Fn_226'(Agent, Vehicleon, Time))
     ]).
 
 
@@ -2248,11 +2248,11 @@ axiom(initiates(getInVehicle(Agent, Vehiclein), inVehicle(Agent, Vehiclein), Tim
        (   not(holds_at(at(Agent, Location), Time))
        ;   not(holds_at(at(Vehiclein, Location), Time))
        ),
-       some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time))] ->
+ /*  [(holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)), some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2263,17 +2263,17 @@ axiom(not(happens(getInVehicle(Agent, Vehiclein), Time)),
    
     [  (holds_at(neg(at(Agent, Location)), Time);holds_at(neg(at(Vehiclein, Location)), Time)),
       some(Location,
-           '$kolem_Fn_223'(Agent, Vehiclein, Time))
+           '$kolem_Fn_227'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Agent, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2284,17 +2284,17 @@ axiom(holds_at(at(Agent, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_223'(Agent, Vehiclein, Time))
+           '$kolem_Fn_227'(Agent, Vehiclein, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
  /*  holds_at(at(Vehiclein, Location), Time) :-
        happens(getInVehicle(Agent, Vehiclein), Time),
-       some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time)).
+       some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vehicle.e',253).
 
- /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_223'(Agent, Vehiclein, Time))] ->
+ /*  [happens(getInVehicle(Agent, Vehiclein), Time), some(Location, '$kolem_Fn_227'(Agent, Vehiclein, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -2305,7 +2305,7 @@ axiom(holds_at(at(Vehiclein, Location), Time),
    
     [ happens(getInVehicle(Agent, Vehiclein), Time),
       some(Location,
-           '$kolem_Fn_223'(Agent, Vehiclein, Time))
+           '$kolem_Fn_227'(Agent, Vehiclein, Time))
     ]).
 
 
@@ -3824,8 +3824,8 @@ axiom(not(releasedAt(at(Object, Location), 0)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',140).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -3840,8 +3840,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',140).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
@@ -3856,8 +3856,8 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
  % !HoldsAt(LyingOn(agent,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
@@ -3872,8 +3872,8 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',142).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
@@ -3888,8 +3888,8 @@ axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
  % HoldsAt(Dressed(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(dressed(Agent), start)).
  */
@@ -3904,8 +3904,12 @@ axiom(holds_at(dressed(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',144).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(Agent), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(Agent), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',144).
 axiom(holds_at(awake(Agent), start),
     []).
 
@@ -3916,8 +3920,8 @@ axiom(holds_at(awake(Agent), start),
  % HoldsAt(Sleep3(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep3(Agent), start)).
  */
@@ -3932,8 +3936,8 @@ axiom(holds_at(sleep3(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',146).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(Agent), start)).
  */
@@ -3947,8 +3951,8 @@ axiom(holds_at(standing(Agent), start),
 % HoldsAt(At(Passenger1,NearLocation1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(passenger1, nearLocation1), start)).
  */
@@ -3962,8 +3966,8 @@ axiom(holds_at(at(passenger1, nearLocation1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',148).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(horse1, beforeLocation1), start)).
  */
@@ -3981,8 +3985,8 @@ axiom(holds_at(at(horse1, beforeLocation1), start),
 % HoldsAt(At(Carriage1,BeforeLocation1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(carriage1, beforeLocation1), start)).
  */
@@ -3996,8 +4000,8 @@ axiom(holds_at(at(carriage1, beforeLocation1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',150).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inVehicle(carriageSeat1, carriage1), start)).
  */
@@ -4011,8 +4015,8 @@ axiom(holds_at(inVehicle(carriageSeat1, carriage1), start),
 % HoldsAt(InVehicle(Driver1,Carriage1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(inVehicle(driver1, carriage1), start)).
  */
@@ -4028,19 +4032,19 @@ axiom(holds_at(inVehicle(driver1, carriage1), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e:154
 
  /*  diff(Object, carriageSeat1), diff(Object, driver1) ->
-       holds_at(neg(inVehicle(Object, carriage1)), start+0).
+       holds_at(neg(inVehicle(Object, carriage1)), start).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',154).
 
- /*  holds_at(neg(inVehicle(Object, carriage1)), start+0) :-
+ /*  holds_at(neg(inVehicle(Object, carriage1)), start) :-
        diff(Object, carriageSeat1),
        diff(Object, driver1).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',154).
 
  /*  [diff(Object, carriageSeat1), diff(Object, driver1)] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(inVehicle(Object, carriage1)), start)).
  */
@@ -4055,8 +4059,8 @@ axiom(holds_at(neg(inVehicle(Object, carriage1)), start),
  % !HoldsAt(KnowOrder(agent1,agent2,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start)).
  */
@@ -4071,8 +4075,8 @@ axiom(holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',156).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(knowRequest(Agent1, Agent2, Physobj)),
                    start)).
@@ -4087,8 +4091,8 @@ axiom(holds_at(neg(knowRequest(Agent1, Agent2, Physobj)), start),
 % !HoldsAt(VehicleDoorIsOpen(CarriageDoor1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(vehicleDoorIsOpen(carriageDoor1)), start)).
  */
@@ -4102,8 +4106,8 @@ axiom(holds_at(neg(vehicleDoorIsOpen(carriageDoor1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',158).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(hitchedTo(horse1, carriage1), start)).
  */
@@ -4117,8 +4121,8 @@ axiom(holds_at(hitchedTo(horse1, carriage1), start),
 % HoldsAt(PointedToward(Horse1,StreetToLocation1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(pointedToward(horse1, streetToLocation1), start)).
  */
@@ -4137,8 +4141,8 @@ axiom(holds_at(pointedToward(horse1, streetToLocation1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',162).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(walkStreet12(passenger1, street1), start)).
  */
@@ -4152,7 +4156,7 @@ axiom(happens(walkStreet12(passenger1, street1), start),
 % Happens(Lash(Driver1,Horse1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(lash(driver1, horse1), Maptime)).
@@ -4167,7 +4171,7 @@ axiom(happens(lash(driver1, horse1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',164).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(vehicleDoorOpen(passenger1, carriageDoor1), Start2)).
@@ -4182,7 +4186,7 @@ axiom(happens(vehicleDoorOpen(passenger1, carriageDoor1), Start2),
 % Happens(GetInVehicle(Passenger1,Carriage1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(getInVehicle(passenger1, carriage1), Start3)).
@@ -4197,7 +4201,7 @@ axiom(happens(getInVehicle(passenger1, carriage1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',166).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(vehicleDoorClose(passenger1, carriageDoor1), Start4)).
@@ -4212,7 +4216,7 @@ axiom(happens(vehicleDoorClose(passenger1, carriageDoor1), Start4),
 % Happens(SitOn(Passenger1,CarriageSeat1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(sitOn(passenger1, carriageSeat1), Start5)).
@@ -4227,7 +4231,7 @@ axiom(happens(sitOn(passenger1, carriageSeat1), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',168).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(pointToward(driver1, horse1, streetToBetweenLocation1And2),
@@ -4243,7 +4247,7 @@ axiom(happens(pointToward(driver1, horse1, streetToBetweenLocation1And2), Start6
 % Happens(Lash(Driver1,Horse1),7).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(lash(driver1, horse1), Start7)).
@@ -4258,7 +4262,7 @@ axiom(happens(lash(driver1, horse1), Start7),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',170).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(pointToward(driver1, horse1, streetToLocation2), Start8)).
@@ -4273,7 +4277,7 @@ axiom(happens(pointToward(driver1, horse1, streetToLocation2), Start8),
 % Happens(Lash(Driver1,Horse1),9).
 
  /*  [b(start, Start9), toffset(start, 9, Start9), ignore(start+9==Start9)] ->
-       ta(start+9,
+       ta(Ta_Param,
           tvs1=[start+9],
           tvs2=[Start9, start],
           happens(lash(driver1, horse1), Start9)).
@@ -4288,7 +4292,7 @@ axiom(happens(lash(driver1, horse1), Start9),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',172).
 
  /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
-       ta(start+10,
+       ta(Ta_Param,
           tvs1=[start+10],
           tvs2=[Startd10, start],
           happens(riseFrom(passenger1, carriageSeat1), Startd10)).
@@ -4303,7 +4307,7 @@ axiom(happens(riseFrom(passenger1, carriageSeat1), Startd10),
 % Happens(VehicleDoorOpen(Passenger1,CarriageDoor1),11).
 
  /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
-       ta(start+11,
+       ta(Ta_Param,
           tvs1=[start+11],
           tvs2=[Startd11, start],
           happens(vehicleDoorOpen(passenger1, carriageDoor1), Startd11)).
@@ -4318,7 +4322,7 @@ axiom(happens(vehicleDoorOpen(passenger1, carriageDoor1), Startd11),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',174).
 
  /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
-       ta(start+12,
+       ta(Ta_Param,
           tvs1=[start+12],
           tvs2=[Startd12, start],
           happens(getOutOfVehicle(passenger1, carriage1), Startd12)).
@@ -4333,7 +4337,7 @@ axiom(happens(getOutOfVehicle(passenger1, carriage1), Startd12),
 % Happens(VehicleDoorClose(Passenger1,CarriageDoor1),13).
 
  /*  [b(start, Startd13), toffset(start, 13, Startd13), ignore(start+13==Startd13)] ->
-       ta(start+13,
+       ta(Ta_Param,
           tvs1=[start+13],
           tvs2=[Startd13, start],
           happens(vehicleDoorClose(passenger1, carriageDoor1), Startd13)).
@@ -4348,7 +4352,7 @@ axiom(happens(vehicleDoorClose(passenger1, carriageDoor1), Startd13),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/RidingInACarriage.e',176).
 
  /*  [b(start, Startd14), toffset(start, 14, Startd14), ignore(start+14==Startd14)] ->
-       ta(start+14,
+       ta(Ta_Param,
           tvs1=[start+14],
           tvs2=[Startd14, start],
           happens(walkStreet12(passenger1, street2), Startd14)).

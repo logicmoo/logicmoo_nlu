@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:42 GMT
+% Wed, 01 Apr 2020 19:59:47 GMT
 % From ../examples/Mueller2006/Chapter2/Inconsistency4.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency3.e',38).
 
@@ -176,7 +176,7 @@ axiom(holds_at(neg(f2(Object)), Time),
 % !HoldsAt(F2(O1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(f2(o1)), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(f2(o1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
 axiom(holds_at(neg(f2(o1)), start),
@@ -188,7 +188,7 @@ axiom(holds_at(neg(f2(o1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',37).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(e(o1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(e(o1), start)).
  */
 axiom(happens(e(o1), start),
     []).

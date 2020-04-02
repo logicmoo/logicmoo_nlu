@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:34 GMT
+% Wed, 01 Apr 2020 19:59:37 GMT
 % From ../examples/Mueller2006/Chapter12/ErraticDevice.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',72).
 
@@ -144,8 +144,8 @@ axiom(initiates(turnOn(Agent, Device), on(Device), Time),
 % Happens(TurnOn(Nathan,Device1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(turnOn(nathan, device1), start)).
  */
@@ -161,20 +161,7 @@ axiom(happens(turnOn(nathan, device1), start),
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:53
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -183,16 +170,23 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  % HoldsAt(BrokenSwitch(device),time) -> Ab1(device,time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
- /*  holds_at(brokenSwitch(Device), Time) ->
-       ab1(Device, Time).
- */
-
- /*  ab1(Device, Time) :-
-       holds_at(brokenSwitch(Device), Time).
+ /*  axiom_uses(theta) ->
+       ( holds_at(brokenSwitch(Device), Time)->ab1(Device, Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
- /*  [holds_at(brokenSwitch(Device), Time)] ->
+ /*  ab1(Device, Time) :-
+       holds_at(brokenSwitch(Device), Time),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
+
+ /*  fix_axiom_head(Time) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Time)].
+ */
+
+ /*  [holds_at(brokenSwitch(Device), Time), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -200,14 +194,19 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 axiom(ab1(Device, Time),
-    [holds_at(brokenSwitch(Device), Time)]).
+   
+    [ holds_at(brokenSwitch(Device), Time),
+      axiom_uses(theta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
  /*  not(holds_at(brokenSwitch(Device), Time)) :-
-       not(ab1(Device, Time)).
+       not(ab1(Device, Time)),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 
- /*  [not(ab1(Device, Time))] ->
+ /*  [not(ab1(Device, Time)), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -215,26 +214,35 @@ axiom(ab1(Device, Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
 axiom(holds_at(neg(brokenSwitch(Device)), Time),
-    [not(ab1(Device, Time))]).
+    [not(ab1(Device, Time)), axiom_uses(theta, Time)]).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab1(Device, Time)),
+       holds_at(brokenSwitch(Device), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Time))].
+ */
+
+ /*  [not(ab1(Device, Time)), holds_at(brokenSwitch(Device), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(theta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',53).
+axiom(not(axiom_uses(theta, Time)),
+   
+    [ not(ab1(Device, Time)),
+      holds_at(brokenSwitch(Device), Time)
+    ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:54
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 % Theta: 
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -245,18 +253,25 @@ axiom(holds_at(next_axiom_uses(theta), Time),
 % Ab1(device,time).
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:56
 
- /*  holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time) ->
-       ab1(Device, Time).
+ /*  axiom_uses(theta) ->
+       ( holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time)->ab1(Device, Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
  /*  ab1(Device, Time) :-
-       holds_at(erratic(Device), Time),
-       holds_at(determiningFluent(Device), Time).
+       ( holds_at(erratic(Device), Time),
+         holds_at(determiningFluent(Device), Time)
+       ),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
- /*  [holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time)] ->
+ /*  fix_axiom_head(Time) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Time)].
+ */
+
+ /*  [holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -266,17 +281,19 @@ axiom(holds_at(next_axiom_uses(theta), Time),
 axiom(ab1(Device, Time),
    
     [ holds_at(erratic(Device), Time),
-      holds_at(determiningFluent(Device), Time)
+      holds_at(determiningFluent(Device), Time),
+      axiom_uses(theta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
  /*  not(holds_at(erratic(Device), Time)) :-
        holds_at(determiningFluent(Device), Time),
-       not(ab1(Device, Time)).
+       not(ab1(Device, Time)),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
- /*  [holds_at(determiningFluent(Device), Time), not(ab1(Device, Time))] ->
+ /*  [holds_at(determiningFluent(Device), Time), not(ab1(Device, Time)), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -286,17 +303,19 @@ axiom(ab1(Device, Time),
 axiom(holds_at(neg(erratic(Device)), Time),
    
     [ holds_at(determiningFluent(Device), Time),
-      not(ab1(Device, Time))
+      not(ab1(Device, Time)),
+      axiom_uses(theta, Time)
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
  /*  not(holds_at(determiningFluent(Device), Time)) :-
        holds_at(erratic(Device), Time),
-       not(ab1(Device, Time)).
+       not(ab1(Device, Time)),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
 
- /*  [holds_at(erratic(Device), Time), not(ab1(Device, Time))] ->
+ /*  [holds_at(erratic(Device), Time), not(ab1(Device, Time)), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -306,26 +325,40 @@ axiom(holds_at(neg(erratic(Device)), Time),
 axiom(holds_at(neg(determiningFluent(Device)), Time),
    
     [ holds_at(erratic(Device), Time),
-      not(ab1(Device, Time))
+      not(ab1(Device, Time)),
+      axiom_uses(theta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab1(Device, Time)),
+       holds_at(erratic(Device), Time),
+       holds_at(determiningFluent(Device), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Time))].
+ */
+
+ /*  [not(ab1(Device, Time)), holds_at(erratic(Device), Time), holds_at(determiningFluent(Device), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(theta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',55).
+axiom(not(axiom_uses(theta, Time)),
+   
+    [ not(ab1(Device, Time)),
+      holds_at(erratic(Device), Time),
+      holds_at(determiningFluent(Device), Time)
     ]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:58
 % Theta: 
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
-
- /*  fix_axiom_head(Time) ->
-       [next_axiom_uses(theta), ->, holds_at(next_axiom_uses(theta), Time)].
- */
-
- /*  [] ->
-       ta(Time,
-          tvs1=[Time],
-          tvs2=[Time],
-          holds_at(next_axiom_uses(theta), Time)).
- */
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
-axiom(holds_at(next_axiom_uses(theta), Time),
-    []).
+next_axiom_uses(theta).
  
 
 
@@ -334,16 +367,23 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  % !HoldsAt(PluggedIn(device),time) -> Ab1(device,time).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
- /*  holds_at(neg(pluggedIn(Device)), Time) ->
-       ab1(Device, Time).
- */
-
- /*  ab1(Device, Time) :-
-       holds_at(neg(pluggedIn(Device)), Time).
+ /*  axiom_uses(theta) ->
+       ( holds_at(neg(pluggedIn(Device)), Time)->ab1(Device, Time)
+       ).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
- /*  [holds_at(neg(pluggedIn(Device)), Time)] ->
+ /*  ab1(Device, Time) :-
+       holds_at(neg(pluggedIn(Device)), Time),
+       axiom_uses(theta).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
+
+ /*  fix_axiom_head(Time) ->
+       [axiom_uses(theta), ->, axiom_uses(theta, Time)].
+ */
+
+ /*  [holds_at(neg(pluggedIn(Device)), Time), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -351,14 +391,19 @@ axiom(holds_at(next_axiom_uses(theta), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 axiom(ab1(Device, Time),
-    [holds_at(neg(pluggedIn(Device)), Time)]).
+   
+    [ holds_at(neg(pluggedIn(Device)), Time),
+      axiom_uses(theta, Time)
+    ]).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
  /*  not(holds_at(neg(pluggedIn(Device)), Time)) :-
-       not(ab1(Device, Time)).
+       not(ab1(Device, Time)),
+       axiom_uses(theta).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 
- /*  [not(ab1(Device, Time))] ->
+ /*  [not(ab1(Device, Time)), axiom_uses(theta, Time)] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -366,7 +411,30 @@ axiom(ab1(Device, Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
 axiom(holds_at(pluggedIn(Device), Time),
-    [not(ab1(Device, Time))]).
+    [not(ab1(Device, Time)), axiom_uses(theta, Time)]).
+
+ /*  not(axiom_uses(theta)) :-
+       not(ab1(Device, Time)),
+       holds_at(neg(pluggedIn(Device)), Time).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
+
+ /*  fix_axiom_head(Time) ->
+       [not(axiom_uses(theta)), ->, not(axiom_uses(theta, Time))].
+ */
+
+ /*  [not(ab1(Device, Time)), holds_at(neg(pluggedIn(Device)), Time)] ->
+       ta(Time,
+          tvs1=[Time],
+          tvs2=[Time],
+          not(axiom_uses(theta, Time))).
+ */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',58).
+axiom(not(axiom_uses(theta, Time)),
+   
+    [ not(ab1(Device, Time)),
+      holds_at(neg(pluggedIn(Device)), Time)
+    ]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e:60
@@ -378,7 +446,10 @@ axiom(holds_at(pluggedIn(Device), Time),
 % !HoldsAt(On(Device1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(on(device1)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(on(device1)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
 axiom(holds_at(neg(on(device1)), start),
@@ -390,8 +461,8 @@ axiom(holds_at(neg(on(device1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',63).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(brokenSwitch(device1)), start)).
  */
@@ -405,7 +476,10 @@ axiom(holds_at(neg(brokenSwitch(device1)), start),
 % HoldsAt(Erratic(Device1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(erratic(device1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(erratic(device1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 axiom(holds_at(erratic(device1), start),
@@ -417,8 +491,12 @@ axiom(holds_at(erratic(device1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(pluggedIn(device1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(pluggedIn(device1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/ErraticDevice.e',65).
 axiom(holds_at(pluggedIn(device1), start),
     []).
 
@@ -432,7 +510,7 @@ axiom(holds_at(pluggedIn(device1), start),
 % HoldsAt(DeterminingFluent(Device1),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(determiningFluent(device1), Time)).

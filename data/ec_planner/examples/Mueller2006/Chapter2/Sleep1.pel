@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:42 GMT
+% Wed, 01 Apr 2020 19:59:47 GMT
 % From ../examples/Mueller2006/Chapter2/Sleep1.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Inconsistency4.e',43).
 
@@ -116,7 +116,7 @@ axiom(terminates(fallAsleep(Agent), awake(Agent), Time),
 % Happens(WakeUp(Nathan),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(wakeUp(nathan), Maptime)).
@@ -136,7 +136,10 @@ axiom(happens(wakeUp(nathan), Maptime),
 % !HoldsAt(Awake(Nathan),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(awake(nathan)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(awake(nathan)), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter2/Sleep1.e',43).
 axiom(holds_at(neg(awake(nathan)), start),

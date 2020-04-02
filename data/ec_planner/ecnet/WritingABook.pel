@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:14 GMT
+% Wed, 01 Apr 2020 20:02:44 GMT
 % From ../ecnet/WritingABook.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Vision.e',75).
 
@@ -279,8 +279,8 @@ axiom(equals(side2(door1), room1),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',60).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -295,8 +295,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
  % !HoldsAt(SittingOn(agent,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(sittingOn(Agent, Physobj)), start)).
  */
@@ -311,8 +311,8 @@ axiom(holds_at(neg(sittingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',62).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(lyingOn(Agent, Physobj)), start)).
  */
@@ -331,10 +331,10 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
 
  /*  not((equals(Physobj1, pen1), equals(Physobj2, desk1))), not((equals(Physobj1, paper1), equals(Physobj2, desk1))) ->
-       holds_at(neg(on(Physobj1, Physobj2)), start+0).
+       holds_at(neg(on(Physobj1, Physobj2)), start).
  */
 
- /*  holds_at(neg(on(Physobj1, Physobj2)), start+0) :-
+ /*  holds_at(neg(on(Physobj1, Physobj2)), start) :-
        (   not(equals(Physobj1, pen1))
        ;   not(equals(Physobj2, desk1))
        ),
@@ -345,8 +345,8 @@ axiom(holds_at(neg(lyingOn(Agent, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',64).
 
  /*  [(not(equals(Physobj1, pen1));not(equals(Physobj2, desk1))),  (not(equals(Physobj1, paper1));not(equals(Physobj2, desk1)))] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(on(Physobj1, Physobj2)), start)).
  */
@@ -363,7 +363,10 @@ axiom(holds_at(neg(on(Physobj1, Physobj2)), start),
 % HoldsAt(On(Paper1,Desk1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(on(paper1, desk1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(on(paper1, desk1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 axiom(holds_at(on(paper1, desk1), start),
@@ -375,8 +378,12 @@ axiom(holds_at(on(paper1, desk1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(on(pen1, desk1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(on(pen1, desk1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',68).
 axiom(holds_at(on(pen1, desk1), start),
     []).
 
@@ -386,7 +393,10 @@ axiom(holds_at(on(pen1, desk1), start),
 % HoldsAt(Dressed(Writer1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(dressed(writer1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(dressed(writer1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 axiom(holds_at(dressed(writer1), start),
@@ -398,8 +408,12 @@ axiom(holds_at(dressed(writer1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(writer1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(awake(writer1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',70).
 axiom(holds_at(awake(writer1), start),
     []).
 
@@ -409,7 +423,10 @@ axiom(holds_at(awake(writer1), start),
 % HoldsAt(Sleep3(Writer1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep3(writer1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(sleep3(writer1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 axiom(holds_at(sleep3(writer1), start),
@@ -421,8 +438,12 @@ axiom(holds_at(sleep3(writer1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(writer1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(writer1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',72).
 axiom(holds_at(standing(writer1), start),
     []).
 
@@ -432,8 +453,8 @@ axiom(holds_at(standing(writer1), start),
 % HoldsAt(DoorUnlocked(Door1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(door1), start)).
  */
@@ -447,8 +468,12 @@ axiom(holds_at(doorUnlocked(door1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(doorIsOpen(door1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(doorIsOpen(door1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',74).
 axiom(holds_at(doorIsOpen(door1), start),
     []).
 
@@ -458,7 +483,10 @@ axiom(holds_at(doorIsOpen(door1), start),
 % HoldsAt(At(Writer1,Room0),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(writer1, room0), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(writer1, room0), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 axiom(holds_at(at(writer1, room0), start),
@@ -470,8 +498,12 @@ axiom(holds_at(at(writer1, room0), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(chair1, room1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(chair1, room1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',76).
 axiom(holds_at(at(chair1, room1), start),
     []).
 
@@ -481,7 +513,10 @@ axiom(holds_at(at(chair1, room1), start),
 % HoldsAt(At(Desk1,Room1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(desk1, room1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(desk1, room1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',78).
 axiom(holds_at(at(desk1, room1), start),
@@ -498,8 +533,8 @@ axiom(holds_at(at(desk1, room1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',80).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(walkThroughDoor12(writer1, door1), start)).
  */
@@ -513,7 +548,7 @@ axiom(happens(walkThroughDoor12(writer1, door1), start),
 % Happens(SitOn(Writer1,Chair1),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(sitOn(writer1, chair1), Maptime)).
@@ -528,7 +563,7 @@ axiom(happens(sitOn(writer1, chair1), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',82).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(takeOffOf(writer1, pen1, desk1), Start2)).
@@ -543,7 +578,7 @@ axiom(happens(takeOffOf(writer1, pen1, desk1), Start2),
 % Happens(Think(Writer1),3).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(think(writer1), Start3)).
@@ -558,7 +593,7 @@ axiom(happens(think(writer1), Start3),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',84).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(writeOn(writer1, paper1, pen1), Start4)).
@@ -573,7 +608,7 @@ axiom(happens(writeOn(writer1, paper1, pen1), Start4),
 % Happens(WriteOn(Writer1,Paper1,Pen1),5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(writeOn(writer1, paper1, pen1), Start5)).
@@ -588,7 +623,7 @@ axiom(happens(writeOn(writer1, paper1, pen1), Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',86).
 
  /*  [b(start, Start6), toffset(start, 6, Start6), ignore(start+6==Start6)] ->
-       ta(start+6,
+       ta(Ta_Param,
           tvs1=[start+6],
           tvs2=[Start6, start],
           happens(placeOn(writer1, pen1, desk1), Start6)).
@@ -603,7 +638,7 @@ axiom(happens(placeOn(writer1, pen1, desk1), Start6),
 % Happens(RiseFrom(Writer1,Chair1),7).
 
  /*  [b(start, Start7), toffset(start, 7, Start7), ignore(start+7==Start7)] ->
-       ta(start+7,
+       ta(Ta_Param,
           tvs1=[start+7],
           tvs2=[Start7, start],
           happens(riseFrom(writer1, chair1), Start7)).
@@ -618,7 +653,7 @@ axiom(happens(riseFrom(writer1, chair1), Start7),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',88).
 
  /*  [b(start, Start8), toffset(start, 8, Start8), ignore(start+8==Start8)] ->
-       ta(start+8,
+       ta(Ta_Param,
           tvs1=[start+8],
           tvs2=[Start8, start],
           happens(walkThroughDoor21(writer1, door1), Start8)).

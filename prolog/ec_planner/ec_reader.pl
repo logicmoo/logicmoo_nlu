@@ -37,6 +37,7 @@ set_ec_option(N,V):- retractall(etmp:ec_option(N,_)),asserta(etmp:ec_option(N,V)
 % used by ec_reader
 verbatum_functor(function).  verbatum_functor(event). 
 verbatum_functor(predicate).  verbatum_functor(fluent).
+verbatum_functor(next_axiom_uses).
 
 is_reified_sort(S):- S==belief.
 
@@ -49,6 +50,8 @@ non_list_functor(reified).
 non_list_functor(noninertial).
 non_list_functor(mutex).
 non_list_functor(completion).
+non_list_functor(next_axiom_uses).
+
 is_non_sort(range).
 is_non_sort(option).
 is_non_sort(load).
@@ -838,11 +841,11 @@ is_output_lang(_).
 
 :- export(pprint_ecp_cmt/2).
 pprint_ecp_cmt(C, P):-
-  echo_format('~N'),  
+ notrace((echo_format('~N'),  
   print_e_to_string(P, S0),
   into_space_cmt(S0,S),
   to_ansi(C, C0),
-  real_ansi_format(C0, '~s', [S]).
+  real_ansi_format(C0, '~s', [S]))).
 
 :- export(pprint_ecp/2).
 pprint_ecp(C, P):- \+ is_output_lang(C), !, pprint_ecp_cmt(C, P).

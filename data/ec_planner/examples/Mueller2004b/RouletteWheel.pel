@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:17 GMT
+% Wed, 01 Apr 2020 20:00:35 GMT
 % From ../examples/Mueller2004b/RouletteWheel.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/PickUp.e',110).
 
@@ -251,10 +251,10 @@ axiom(terminates(spin(Wheel), wheelValue(Wheel, Value1), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',55).
 
  /*  holds_at(wheelValueDeterminingFluent(Wheel, Value), Time) :-
-       some(Value, '$kolem_Fn_141'(Wheel, Time)).
+       some(Value, '$kolem_Fn_145'(Wheel, Time)).
  */
 
- /*  [some(Value, '$kolem_Fn_141'(Wheel, Time))] ->
+ /*  [some(Value, '$kolem_Fn_145'(Wheel, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -263,7 +263,7 @@ axiom(terminates(spin(Wheel), wheelValue(Wheel, Value1), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',55).
 axiom(holds_at(wheelValueDeterminingFluent(Wheel, Value), Time),
-    [some(Value, '$kolem_Fn_141'(Wheel, Time))]).
+    [some(Value, '$kolem_Fn_145'(Wheel, Time))]).
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e:56
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',57).
@@ -276,8 +276,8 @@ axiom(holds_at(wheelValueDeterminingFluent(Wheel, Value), Time),
 % HoldsAt(WheelValue(Wheel,7),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(wheelValue(wheel, 7), start)).
  */
@@ -291,7 +291,7 @@ axiom(holds_at(wheelValue(wheel, 7), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004b/RouletteWheel.e',59).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(spin(wheel), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(spin(wheel), start)).
  */
 axiom(happens(spin(wheel), start),
     []).
@@ -302,7 +302,7 @@ axiom(happens(spin(wheel), start),
 % HoldsAt(WheelValueDeterminingFluent(Wheel,7),1).
 
  /*  [b(start, Time), ignore(start+1==Time)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Time, start],
           holds_at(wheelValueDeterminingFluent(wheel, 7), Time)).

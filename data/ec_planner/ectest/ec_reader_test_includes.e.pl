@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:51:40 GMT
+% Wed, 01 Apr 2020 20:05:33 GMT
 % From ../ectest/ec_reader_test_includes.e.pl:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_foundations.e',262).
 
@@ -93,8 +93,8 @@ axiom(initiates(epermit(Rule), f_rulePermitted(Rule), Time),
  % !HoldsAt(F_RulePermitted(rule),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_rulePermitted(Rule)), start)).
  */
@@ -109,8 +109,8 @@ axiom(holds_at(neg(f_rulePermitted(Rule)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',35).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_ruleDenied(Rule)), start)).
  */
@@ -298,8 +298,8 @@ axiom(not(happens(e_dontMatchRuleParametters(Rule), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',69).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_targetHolds(Rule)), start)).
  */
@@ -314,8 +314,8 @@ axiom(holds_at(neg(f_targetHolds(Rule)), start),
  % !HoldsAt(F_TargetDoesntHolds(rule),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_targetDoesntHolds(Rule)), start)).
  */
@@ -350,8 +350,8 @@ fluent(f_conditionSatisfied(rule)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',88).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(f_conditionSatisfied(Rule), start)).
  */
@@ -760,8 +760,8 @@ axiom(not(happens(eRuleDoesNotApply(Rule), Time)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',130).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_rulePermitted(Rule)), start)).
  */
@@ -776,8 +776,8 @@ axiom(holds_at(neg(f_rulePermitted(Rule)), start),
  % !HoldsAt(F_RuleDenied(rule),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_ruleDenied(Rule)), start)).
  */
@@ -792,8 +792,8 @@ axiom(holds_at(neg(f_ruleDenied(Rule)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',132).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_ruleNotApplicable(Rule)), start)).
  */
@@ -1254,8 +1254,8 @@ axiom(not(policysetHaspolicies(Policyset, Policy)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',205).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policysetPermitted(Policyset)), start)).
  */
@@ -1270,8 +1270,8 @@ axiom(holds_at(neg(f_policysetPermitted(Policyset)), start),
 % !HoldsAt(F_policysetDenied(policyset),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policysetDenied(Policyset)), start)).
  */
@@ -1286,8 +1286,8 @@ axiom(holds_at(neg(f_policysetDenied(Policyset)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',207).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policySetNotApplicable(Policyset)), start)).
  */
@@ -1633,8 +1633,8 @@ axiom(not(policyHasRules(Policy, Rule)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',243).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policyPermitted(Policy)), start)).
  */
@@ -1649,8 +1649,8 @@ axiom(holds_at(neg(f_policyPermitted(Policy)), start),
 % !HoldsAt(F_policyDenied(policy),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policyDenied(Policy)), start)).
  */
@@ -1665,8 +1665,8 @@ axiom(holds_at(neg(f_policyDenied(Policy)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/ec_reader_test_includes.e',245).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policyNotApplicable(Policy)), start)).
  */

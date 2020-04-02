@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:09 GMT
+% Wed, 01 Apr 2020 20:02:38 GMT
 % From ../ecnet/TimeDelayBombing.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TakingAWalk.e',115).
 
@@ -343,8 +343,8 @@ axiom(holds_at(neg(killedDeterminingFluent(perp1)), Time),
 % HoldsAt(Alive(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(alive(humanTarget1), start)).
  */
@@ -358,8 +358,8 @@ axiom(holds_at(alive(humanTarget1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',51).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(awake(humanTarget1), start)).
  */
@@ -373,8 +373,8 @@ axiom(holds_at(awake(humanTarget1), start),
 % HoldsAt(Standing(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(humanTarget1), start)).
  */
@@ -388,8 +388,8 @@ axiom(holds_at(standing(humanTarget1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',53).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep2(humanTarget1), start)).
  */
@@ -403,8 +403,8 @@ axiom(holds_at(sleep2(humanTarget1), start),
 % !HoldsAt(Injured(HumanTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(humanTarget1)), start)).
  */
@@ -419,8 +419,8 @@ axiom(holds_at(neg(injured(humanTarget1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',55).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(humanTarget1, Object)), start)).
  */
@@ -434,8 +434,8 @@ axiom(holds_at(neg(holding(humanTarget1, Object)), start),
 % HoldsAt(At(HumanTarget1,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(humanTarget1, outside1), start)).
  */
@@ -486,8 +486,8 @@ axiom(holds_at(neg(injuredDeterminingFluent(humanTarget1)), Time),
 % HoldsAt(Alive(HumanTarget2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(alive(humanTarget2), start)).
  */
@@ -501,8 +501,8 @@ axiom(holds_at(alive(humanTarget2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',63).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(awake(humanTarget2), start)).
  */
@@ -516,8 +516,8 @@ axiom(holds_at(awake(humanTarget2), start),
 % HoldsAt(Standing(HumanTarget2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(humanTarget2), start)).
  */
@@ -531,8 +531,8 @@ axiom(holds_at(standing(humanTarget2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',65).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep2(humanTarget2), start)).
  */
@@ -546,8 +546,8 @@ axiom(holds_at(sleep2(humanTarget2), start),
 % !HoldsAt(Injured(HumanTarget2),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(humanTarget2)), start)).
  */
@@ -562,8 +562,8 @@ axiom(holds_at(neg(injured(humanTarget2)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',67).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(humanTarget2, Object)), start)).
  */
@@ -577,8 +577,8 @@ axiom(holds_at(neg(holding(humanTarget2, Object)), start),
 % HoldsAt(At(HumanTarget2,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(humanTarget2, outside1), start)).
  */
@@ -629,8 +629,8 @@ axiom(holds_at(neg(injuredDeterminingFluent(humanTarget2)), Time),
 % HoldsAt(Alive(HumanTarget3),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(alive(humanTarget3), start)).
  */
@@ -644,8 +644,8 @@ axiom(holds_at(alive(humanTarget3), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',75).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(awake(humanTarget3), start)).
  */
@@ -659,8 +659,8 @@ axiom(holds_at(awake(humanTarget3), start),
 % HoldsAt(Standing(HumanTarget3),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(humanTarget3), start)).
  */
@@ -674,8 +674,8 @@ axiom(holds_at(standing(humanTarget3), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',77).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep2(humanTarget3), start)).
  */
@@ -689,8 +689,8 @@ axiom(holds_at(sleep2(humanTarget3), start),
 % !HoldsAt(Injured(HumanTarget3),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(humanTarget3)), start)).
  */
@@ -705,8 +705,8 @@ axiom(holds_at(neg(injured(humanTarget3)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',79).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(humanTarget3, Object)), start)).
  */
@@ -720,8 +720,8 @@ axiom(holds_at(neg(holding(humanTarget3, Object)), start),
 % HoldsAt(At(HumanTarget3,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(humanTarget3, outside1), start)).
  */
@@ -772,8 +772,8 @@ axiom(holds_at(neg(injuredDeterminingFluent(humanTarget3)), Time),
 % HoldsAt(Alive(HumanTarget4),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(alive(humanTarget4), start)).
  */
@@ -787,8 +787,8 @@ axiom(holds_at(alive(humanTarget4), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',87).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(awake(humanTarget4), start)).
  */
@@ -802,8 +802,8 @@ axiom(holds_at(awake(humanTarget4), start),
 % HoldsAt(Standing(HumanTarget4),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(humanTarget4), start)).
  */
@@ -817,8 +817,8 @@ axiom(holds_at(standing(humanTarget4), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',89).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(sleep2(humanTarget4), start)).
  */
@@ -832,8 +832,8 @@ axiom(holds_at(sleep2(humanTarget4), start),
 % !HoldsAt(Injured(HumanTarget4),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(humanTarget4)), start)).
  */
@@ -848,8 +848,8 @@ axiom(holds_at(neg(injured(humanTarget4)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',91).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(humanTarget4, Object)), start)).
  */
@@ -863,8 +863,8 @@ axiom(holds_at(neg(holding(humanTarget4, Object)), start),
 % HoldsAt(At(HumanTarget4,Outside1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(humanTarget4, outside1), start)).
  */
@@ -915,8 +915,8 @@ axiom(holds_at(neg(injuredDeterminingFluent(humanTarget4)), Time),
 % HoldsAt(Intact(PhysTarget1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(intact(physTarget1), start)).
  */
@@ -930,8 +930,8 @@ axiom(holds_at(intact(physTarget1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',99).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(physTarget1, outside1), start)).
  */
@@ -1091,7 +1091,7 @@ axiom(equals(side2(street1), outside2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',119).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(alive(perp1), start)).
  */
 axiom(holds_at(alive(perp1), start),
     []).
@@ -1102,7 +1102,7 @@ axiom(holds_at(alive(perp1), start),
 % HoldsAt(Awake(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(awake(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(awake(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 axiom(holds_at(awake(perp1), start),
@@ -1114,8 +1114,12 @@ axiom(holds_at(awake(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(standing(perp1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(standing(perp1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',121).
 axiom(holds_at(standing(perp1), start),
     []).
 
@@ -1125,7 +1129,7 @@ axiom(holds_at(standing(perp1), start),
 % HoldsAt(Sleep2(Perp1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(sleep2(perp1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(sleep2(perp1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
 axiom(holds_at(sleep2(perp1), start),
@@ -1137,8 +1141,8 @@ axiom(holds_at(sleep2(perp1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',123).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(injured(perp1)), start)).
  */
@@ -1153,8 +1157,8 @@ axiom(holds_at(neg(injured(perp1)), start),
  % !HoldsAt(Holding(Perp1,object),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(perp1, Object)), start)).
  */
@@ -1168,8 +1172,12 @@ axiom(holds_at(neg(holding(perp1, Object)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(bomb1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(bomb1, outside2), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',125).
 axiom(holds_at(at(bomb1, outside2), start),
     []).
 
@@ -1179,7 +1187,10 @@ axiom(holds_at(at(bomb1, outside2), start),
 % HoldsAt(At(Perp1,Outside2),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(perp1, outside2), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(perp1, outside2), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
 axiom(holds_at(at(perp1, outside2), start),
@@ -1191,7 +1202,7 @@ axiom(holds_at(at(perp1, outside2), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',127).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(intact(bomb1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(intact(bomb1), start)).
  */
 axiom(holds_at(intact(bomb1), start),
     []).
@@ -1202,8 +1213,8 @@ axiom(holds_at(intact(bomb1), start),
 % !HoldsAt(BombActivated(Bomb1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(bombActivated(bomb1)), start)).
  */
@@ -1217,8 +1228,8 @@ axiom(holds_at(neg(bombActivated(bomb1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',129).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(doorIsOpen(door1)), start)).
  */
@@ -1232,8 +1243,8 @@ axiom(holds_at(neg(doorIsOpen(door1)), start),
 % HoldsAt(DoorUnlocked(Door1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(doorUnlocked(door1), start)).
  */
@@ -1247,8 +1258,8 @@ axiom(holds_at(doorUnlocked(door1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',131).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(bombTimerValue(bomb1, bombTimeDelay(bomb1)), start)).
  */
@@ -1266,7 +1277,10 @@ axiom(holds_at(bombTimerValue(bomb1, bombTimeDelay(bomb1)), start),
 % Happens(PickUp(Perp1,Bomb1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(pickUp(perp1, bomb1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          happens(pickUp(perp1, bomb1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
 axiom(happens(pickUp(perp1, bomb1), start),
@@ -1278,7 +1292,7 @@ axiom(happens(pickUp(perp1, bomb1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',135).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(walkStreet21(perp1, street1), Maptime)).
@@ -1293,7 +1307,7 @@ axiom(happens(walkStreet21(perp1, street1), Maptime),
 % Happens(BombActivate(Perp1,Bomb1),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(bombActivate(perp1, bomb1), Start2)).
@@ -1308,7 +1322,7 @@ axiom(happens(bombActivate(perp1, bomb1), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/TimeDelayBombing.e',137).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(letGoOf(perp1, bomb1), Start3)).
@@ -1323,7 +1337,7 @@ axiom(happens(letGoOf(perp1, bomb1), Start3),
 % Happens(WalkStreet12(Perp1,Street1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(walkStreet12(perp1, street1), Start4)).

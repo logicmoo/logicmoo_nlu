@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:33 GMT
+% Wed, 01 Apr 2020 20:01:57 GMT
 % From ../ecnet/OMSpace.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Money.e',12).
 
@@ -133,10 +133,10 @@ axiom(holds_at(neg(height(Object, Height2)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 
  /*  holds_at(height(Object, Height), Time) :-
-       some(Height, '$kolem_Fn_186'(Object, Time)).
+       some(Height, '$kolem_Fn_190'(Object, Time)).
  */
 
- /*  [some(Height, '$kolem_Fn_186'(Object, Time))] ->
+ /*  [some(Height, '$kolem_Fn_190'(Object, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -144,7 +144,7 @@ axiom(holds_at(neg(height(Object, Height2)), Time),
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e',51).
 axiom(holds_at(height(Object, Height), Time),
-    [some(Height, '$kolem_Fn_186'(Object, Time))]).
+    [some(Height, '$kolem_Fn_190'(Object, Time))]).
 
 
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/OMSpace.e:53

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:54 GMT
+% Wed, 01 Apr 2020 20:00:05 GMT
 % From ../includes/SaaSPatterns/PolicySetPatterns/policySetModel.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/PolicyPatterns/policyModel.e',33).
 
@@ -340,8 +340,8 @@ axiom(not(policysetHaspolicies(Policyset, Policy)),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/PolicySetPatterns/policySetModel.e',29).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policysetPermitted(Policyset)), start)).
  */
@@ -356,8 +356,8 @@ axiom(holds_at(neg(f_policysetPermitted(Policyset)), start),
 % !HoldsAt(F_policysetDenied(policyset),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policysetDenied(Policyset)), start)).
  */
@@ -372,8 +372,8 @@ axiom(holds_at(neg(f_policysetDenied(Policyset)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/includes/SaaSPatterns/PolicySetPatterns/policySetModel.e',31).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(f_policySetNotApplicable(Policyset)), start)).
  */

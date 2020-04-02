@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:48:48 GMT
+% Wed, 01 Apr 2020 20:02:14 GMT
 % From ../ecnet/Rest.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Restaurant.e',279).
 
@@ -168,8 +168,8 @@ axiom(equals(side2(kitchenDoor1), kitchen1),
 % HoldsAt(At(Customer1,Street1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(customer1, street1), start)).
  */
@@ -183,8 +183,12 @@ axiom(holds_at(at(customer1, street1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(hungry(customer1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(hungry(customer1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',43).
 axiom(holds_at(hungry(customer1), start),
     []).
 
@@ -194,8 +198,8 @@ axiom(holds_at(hungry(customer1), start),
 % HoldsAt(At(Chair1,DiningRoom1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(chair1, diningRoom1), start)).
  */
@@ -209,8 +213,8 @@ axiom(holds_at(at(chair1, diningRoom1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',45).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(menu1, diningRoom1), start)).
  */
@@ -224,7 +228,10 @@ axiom(holds_at(at(menu1, diningRoom1), start),
 % HoldsAt(On(Menu1,Table1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(on(menu1, table1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(on(menu1, table1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 axiom(holds_at(on(menu1, table1), start),
@@ -236,8 +243,12 @@ axiom(holds_at(on(menu1, table1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(food1, kitchen1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(food1, kitchen1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',47).
 axiom(holds_at(at(food1, kitchen1), start),
     []).
 
@@ -591,8 +602,8 @@ event(greet(greeta,greetb)).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',112).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(waiter1, diningRoom1), start)).
  */
@@ -606,7 +617,10 @@ axiom(holds_at(at(waiter1, diningRoom1), start),
 % HoldsAt(At(Cook1,Kitchen1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(at(cook1, kitchen1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(at(cook1, kitchen1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
 axiom(holds_at(at(cook1, kitchen1), start),
@@ -618,8 +632,8 @@ axiom(holds_at(at(cook1, kitchen1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',114).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(table1, diningRoom1), start)).
  */
@@ -633,8 +647,8 @@ axiom(holds_at(at(table1, diningRoom1), start),
 % !HoldsAt(On(Bill1,Table1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(on(bill1, table1)), start)).
  */
@@ -648,8 +662,8 @@ axiom(holds_at(neg(on(bill1, table1)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',116).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(at(bill1, diningRoom1), start)).
  */
@@ -664,8 +678,8 @@ axiom(holds_at(at(bill1, diningRoom1), start),
  % HoldsAt(Standing(agent),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(standing(Agent), start)).
  */
@@ -680,8 +694,8 @@ axiom(holds_at(standing(Agent), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',118).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(Agent, Object)), start)).
  */
@@ -696,8 +710,8 @@ axiom(holds_at(neg(holding(Agent, Object)), start),
  % !HoldsAt(KnowOrder(agent1,agent2,physobj),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start)).
  */
@@ -712,8 +726,8 @@ axiom(holds_at(neg(knowOrder(Agent1, Agent2, Physobj)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',120).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(knowRequest(Agent1, Agent2, Physobj)),
                    start)).
@@ -728,7 +742,10 @@ axiom(holds_at(neg(knowRequest(Agent1, Agent2, Physobj)), start),
 % HoldsAt(BeWaiter0(Waiter1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(beWaiter0(waiter1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(beWaiter0(waiter1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 axiom(holds_at(beWaiter0(waiter1), start),
@@ -740,8 +757,12 @@ axiom(holds_at(beWaiter0(waiter1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(beCook0(cook1), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(beCook0(cook1), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',122).
 axiom(holds_at(beCook0(cook1), start),
     []).
 
@@ -752,8 +773,8 @@ axiom(holds_at(beCook0(cook1), start),
  % !HoldsAt(FoodPrepared(food),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(foodPrepared(Food)), start)).
  */
@@ -767,8 +788,12 @@ axiom(holds_at(neg(foodPrepared(Food)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(hungry(cook1)), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(hungry(cook1)), start)).
  */
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',124).
 axiom(holds_at(neg(hungry(cook1)), start),
     []).
 
@@ -778,8 +803,8 @@ axiom(holds_at(neg(hungry(cook1)), start),
 % !HoldsAt(Hungry(Waiter1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(hungry(waiter1)), start)).
  */
@@ -793,8 +818,8 @@ axiom(holds_at(neg(hungry(waiter1)), start),
 % Happens(WalkThroughDoor12(Customer1,MainEntrance1),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(walkThroughDoor12(customer1, mainEntrance1), start)).
  */
@@ -808,7 +833,7 @@ axiom(happens(walkThroughDoor12(customer1, mainEntrance1), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',128).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(greet(waiter1, customer1), Maptime)).
@@ -823,7 +848,7 @@ axiom(happens(greet(waiter1, customer1), Maptime),
 % Happens(SitOn(Customer1,Chair1),2).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(sitOn(customer1, chair1), Start2)).
@@ -838,7 +863,7 @@ axiom(happens(sitOn(customer1, chair1), Start2),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',130).
 
  /*  [b(start, Start3), toffset(start, 3, Start3), ignore(start+3==Start3)] ->
-       ta(start+3,
+       ta(Ta_Param,
           tvs1=[start+3],
           tvs2=[Start3, start],
           happens(takeOffOf(customer1, menu1, table1), Start3)).
@@ -853,7 +878,7 @@ axiom(happens(takeOffOf(customer1, menu1, table1), Start3),
 % Happens(Order(Customer1,Waiter1,Food1),4).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(order(customer1, waiter1, food1), Start4)).
@@ -868,7 +893,7 @@ axiom(happens(order(customer1, waiter1, food1), Start4),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',132).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(placeOn(customer1, menu1, table1), Start5)).
@@ -883,7 +908,7 @@ axiom(happens(placeOn(customer1, menu1, table1), Start5),
 % Happens(Eat(Customer1,Food1),11).
 
  /*  [b(start, Startd11), toffset(start, 11, Startd11), ignore(start+11==Startd11)] ->
-       ta(start+11,
+       ta(Ta_Param,
           tvs1=[start+11],
           tvs2=[Startd11, start],
           happens(eat(customer1, food1), Startd11)).
@@ -898,7 +923,7 @@ axiom(happens(eat(customer1, food1), Startd11),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',134).
 
  /*  [b(start, Startd12), toffset(start, 12, Startd12), ignore(start+12==Startd12)] ->
-       ta(start+12,
+       ta(Ta_Param,
           tvs1=[start+12],
           tvs2=[Startd12, start],
           happens(request(customer1, waiter1, bill1), Startd12)).
@@ -913,7 +938,7 @@ axiom(happens(request(customer1, waiter1, bill1), Startd12),
 % Happens(Pay(Customer1,Waiter1),15).
 
  /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
-       ta(start+15,
+       ta(Ta_Param,
           tvs1=[start+15],
           tvs2=[Startd15, start],
           happens(pay(customer1, waiter1), Startd15)).
@@ -928,7 +953,7 @@ axiom(happens(pay(customer1, waiter1), Startd15),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',136).
 
  /*  [b(start, Startd15), toffset(start, 15, Startd15), ignore(start+15==Startd15)] ->
-       ta(start+15,
+       ta(Ta_Param,
           tvs1=[start+15],
           tvs2=[Startd15, start],
           happens(tip(customer1, waiter1), Startd15)).
@@ -943,7 +968,7 @@ axiom(happens(tip(customer1, waiter1), Startd15),
 % Happens(RiseFrom(Customer1,Chair1),16).
 
  /*  [b(start, Startd16), toffset(start, 16, Startd16), ignore(start+16==Startd16)] ->
-       ta(start+16,
+       ta(Ta_Param,
           tvs1=[start+16],
           tvs2=[Startd16, start],
           happens(riseFrom(customer1, chair1), Startd16)).
@@ -958,7 +983,7 @@ axiom(happens(riseFrom(customer1, chair1), Startd16),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/Rest.e',138).
 
  /*  [b(start, Startd17), toffset(start, 17, Startd17), ignore(start+17==Startd17)] ->
-       ta(start+17,
+       ta(Ta_Param,
           tvs1=[start+17],
           tvs2=[Startd17, start],
           happens(sayGoodbye(customer1, waiter1), Startd17)).
@@ -973,7 +998,7 @@ axiom(happens(sayGoodbye(customer1, waiter1), Startd17),
 % Happens(WalkThroughDoor21(Customer1,MainEntrance1),18).
 
  /*  [b(start, Startd18), toffset(start, 18, Startd18), ignore(start+18==Startd18)] ->
-       ta(start+18,
+       ta(Ta_Param,
           tvs1=[start+18],
           tvs2=[Startd18, start],
           happens(walkThroughDoor21(customer1, mainEntrance1), Startd18)).

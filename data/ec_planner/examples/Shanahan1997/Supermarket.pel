@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:21 GMT
+% Wed, 01 Apr 2020 20:00:39 GMT
 % From ../examples/Shanahan1997/Supermarket.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/StuffyRoom.e',71).
 
@@ -285,7 +285,7 @@ axiom(terminates(pull, spinning, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',89).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(forwards), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(forwards), start)).
  */
 axiom(holds_at(neg(forwards), start),
     []).
@@ -296,7 +296,10 @@ axiom(holds_at(neg(forwards), start),
 % !HoldsAt(Backwards(), 0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(backwards), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(neg(backwards), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 axiom(holds_at(neg(backwards), start),
@@ -308,7 +311,7 @@ axiom(holds_at(neg(backwards), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',91).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(spinning), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(spinning), start)).
  */
 axiom(holds_at(neg(spinning), start),
     []).
@@ -319,7 +322,7 @@ axiom(holds_at(neg(spinning), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',93).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(push, Start5)).
@@ -334,7 +337,7 @@ axiom(happens(push, Start5),
 % Happens(Pull(), 5).
 
  /*  [b(start, Start5), toffset(start, 5, Start5), ignore(start+5==Start5)] ->
-       ta(start+5,
+       ta(Ta_Param,
           tvs1=[start+5],
           tvs2=[Start5, start],
           happens(pull, Start5)).
@@ -349,7 +352,7 @@ axiom(happens(pull, Start5),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',95).
 
  /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
-       ta(start+10,
+       ta(Ta_Param,
           tvs1=[start+10],
           tvs2=[Startd10, start],
           happens(pull, Startd10)).
@@ -364,7 +367,7 @@ axiom(happens(pull, Startd10),
 % Happens(Push(), 10).
 
  /*  [b(start, Startd10), toffset(start, 10, Startd10), ignore(start+10==Startd10)] ->
-       ta(start+10,
+       ta(Ta_Param,
           tvs1=[start+10],
           tvs2=[Startd10, start],
           happens(push, Startd10)).

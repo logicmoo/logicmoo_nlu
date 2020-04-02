@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:36 GMT
+% Wed, 01 Apr 2020 19:59:39 GMT
 % From ../examples/Mueller2006/Chapter13/ModelFinding.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter13/Deduction2.e',38).
 

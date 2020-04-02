@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:46:52 GMT
+% Wed, 01 Apr 2020 20:00:02 GMT
 % From ../examples/Mueller2006/Exercises/SnoozeAlarm.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/MixingPaints.e',87).
 
@@ -390,8 +390,8 @@ axiom(holds_at(neg(alarmOn(Clock)), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/SnoozeAlarm.e',89).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           happens(setAlarmTime(nathan, clock, 2), start)).
  */
@@ -405,7 +405,7 @@ axiom(happens(setAlarmTime(nathan, clock, 2), start),
 % Happens(TurnOnAlarm(Nathan,Clock),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(turnOnAlarm(nathan, clock), Maptime)).
@@ -420,7 +420,7 @@ axiom(happens(turnOnAlarm(nathan, clock), Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/SnoozeAlarm.e',91).
 
  /*  [b(start, Start4), toffset(start, 4, Start4), ignore(start+4==Start4)] ->
-       ta(start+4,
+       ta(Ta_Param,
           tvs1=[start+4],
           tvs2=[Start4, start],
           happens(pressSnooze(nathan, clock), Start4)).
@@ -493,8 +493,8 @@ axiom(holds_at(neg(alarmTime(Clock, Time2)), Time),
 % !HoldsAt(AlarmOn(Clock),0).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(alarmOn(clock)), start)).
  */
@@ -508,8 +508,8 @@ axiom(holds_at(neg(alarmOn(clock)), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/SnoozeAlarm.e',103).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(beeping(clock)), start)).
  */
@@ -523,7 +523,10 @@ axiom(holds_at(neg(beeping(clock)), start),
 % HoldsAt(AlarmTime(Clock,3),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alarmTime(clock, 3), start)).
+       ta(Ta_Param,
+          tvs1=[start],
+          tvs2=[start],
+          holds_at(alarmTime(clock, 3), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Exercises/SnoozeAlarm.e',105).
 axiom(holds_at(alarmTime(clock, 3), start),

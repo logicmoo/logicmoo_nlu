@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:20 GMT
+% Wed, 01 Apr 2020 20:00:38 GMT
 % From ../examples/Shanahan1997/DeadOrAlive.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/BusRide.e',69).
 
@@ -227,7 +227,7 @@ axiom(holds_at(alive, Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',44).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(alive, start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(alive, start)).
  */
 axiom(holds_at(alive, start),
     []).
@@ -238,7 +238,7 @@ axiom(holds_at(alive, start),
 % !HoldsAt(Loaded(),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], holds_at(neg(loaded), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], holds_at(neg(loaded), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
 axiom(holds_at(neg(loaded), start),
@@ -250,7 +250,7 @@ axiom(holds_at(neg(loaded), start),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',46).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(load, start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(load, start)).
  */
 axiom(happens(load, start),
     []).
@@ -261,7 +261,7 @@ axiom(happens(load, start),
 % Happens(Sneeze(),1).
 
  /*  [b(start, Maptime), ignore(start+1==Maptime)] ->
-       ta(start+1,
+       ta(Ta_Param,
           tvs1=[start+1],
           tvs2=[Maptime, start],
           happens(sneeze, Maptime)).
@@ -276,7 +276,7 @@ axiom(happens(sneeze, Maptime),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/DeadOrAlive.e',48).
 
  /*  [b(start, Start2), toffset(start, 2, Start2), ignore(start+2==Start2)] ->
-       ta(start+2,
+       ta(Ta_Param,
           tvs1=[start+2],
           tvs2=[Start2, start],
           happens(shoot, Start2)).

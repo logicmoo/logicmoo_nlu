@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:49:15 GMT
+% Wed, 01 Apr 2020 20:02:45 GMT
 % From ../ecnet/XWalk.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/WritingABook.e',97).
 
@@ -1365,11 +1365,11 @@ axiom(terminates(xWalkReadyOff(Xschema), xWalkReady(Xschema), Time),
        (   not(happens(xWalkSteppingOn(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_239'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_243'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
- /*  [holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_239'(Xschema, Time))] ->
+ /*  [holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_243'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1381,7 +1381,7 @@ axiom(holds_at(xWalkStepping(Xschema, Distance), Time),
     [ holds_at(xWalkVisionOK(Xschema), Time),
       holds_at(xWalkReady(Xschema), Time),
        (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_239'(Xschema, Time))
+      some(Distance, '$kolem_Fn_243'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
@@ -1391,11 +1391,11 @@ axiom(holds_at(xWalkStepping(Xschema, Distance), Time),
        (   not(happens(xWalkSteppingOn(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_239'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_243'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
- /*  [holds_at(xWalkReady(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_239'(Xschema, Time))] ->
+ /*  [holds_at(xWalkReady(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_243'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1407,7 +1407,7 @@ axiom(holds_at(neg(xWalkVisionOK(Xschema)), Time),
     [ holds_at(xWalkReady(Xschema), Time),
       holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
        (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_239'(Xschema, Time))
+      some(Distance, '$kolem_Fn_243'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
@@ -1417,11 +1417,11 @@ axiom(holds_at(neg(xWalkVisionOK(Xschema)), Time),
        (   not(happens(xWalkSteppingOn(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_239'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_243'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
- /*  [holds_at(xWalkVisionOK(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_239'(Xschema, Time))] ->
+ /*  [holds_at(xWalkVisionOK(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_243'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1433,7 +1433,7 @@ axiom(holds_at(neg(xWalkReady(Xschema)), Time),
     [ holds_at(xWalkVisionOK(Xschema), Time),
       holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
        (not(happens(xWalkSteppingOn(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_239'(Xschema, Time))
+      some(Distance, '$kolem_Fn_243'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
@@ -1442,11 +1442,11 @@ axiom(holds_at(neg(xWalkReady(Xschema)), Time),
          holds_at(xWalkVisionOK(Xschema), Time),
          holds_at(xWalkReady(Xschema), Time)
        ),
-       some(Distance, '$kolem_Fn_239'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_243'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
- /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_239'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_243'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1458,7 +1458,7 @@ axiom(happens(xWalkSteppingOn(Xschema), Time),
     [ holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
       holds_at(xWalkVisionOK(Xschema), Time),
       holds_at(xWalkReady(Xschema), Time),
-      some(Distance, '$kolem_Fn_239'(Xschema, Time))
+      some(Distance, '$kolem_Fn_243'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
@@ -1467,11 +1467,11 @@ axiom(happens(xWalkSteppingOn(Xschema), Time),
          holds_at(xWalkVisionOK(Xschema), Time),
          holds_at(xWalkReady(Xschema), Time)
        ),
-       some(Distance, '$kolem_Fn_239'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_243'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',150).
 
- /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_239'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(xWalkVisionOK(Xschema), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_243'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1483,7 +1483,7 @@ axiom(happens(xWalkReadyOff(Xschema), Time),
     [ holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
       holds_at(xWalkVisionOK(Xschema), Time),
       holds_at(xWalkReady(Xschema), Time),
-      some(Distance, '$kolem_Fn_239'(Xschema, Time))
+      some(Distance, '$kolem_Fn_243'(Xschema, Time))
     ]).
 
 
@@ -1514,11 +1514,11 @@ axiom(happens(xWalkReadyOff(Xschema), Time),
        (   not(happens(xWalkTestFooting(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_240'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_244'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
- /*  [holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_240'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_244'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1530,7 +1530,7 @@ axiom(holds_at(xWalkStepping(Xschema, Distance), Time),
     [ holds_at(neg(xWalkVisionOK(Xschema)), Time),
       holds_at(xWalkReady(Xschema), Time),
        (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_240'(Xschema, Time))
+      some(Distance, '$kolem_Fn_244'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
@@ -1540,11 +1540,11 @@ axiom(holds_at(xWalkStepping(Xschema, Distance), Time),
        (   not(happens(xWalkTestFooting(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_240'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_244'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
- /*  [holds_at(xWalkReady(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_240'(Xschema, Time))] ->
+ /*  [holds_at(xWalkReady(Xschema), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_244'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1556,7 +1556,7 @@ axiom(holds_at(xWalkVisionOK(Xschema), Time),
     [ holds_at(xWalkReady(Xschema), Time),
       holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
        (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_240'(Xschema, Time))
+      some(Distance, '$kolem_Fn_244'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
@@ -1566,11 +1566,11 @@ axiom(holds_at(xWalkVisionOK(Xschema), Time),
        (   not(happens(xWalkTestFooting(Xschema), Time))
        ;   not(happens(xWalkReadyOff(Xschema), Time))
        ),
-       some(Distance, '$kolem_Fn_240'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_244'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
- /*  [holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_240'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(neg(xWalkStepping(Xschema, Distance)), Time),  (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))), some(Distance, '$kolem_Fn_244'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1582,7 +1582,7 @@ axiom(holds_at(neg(xWalkReady(Xschema)), Time),
     [ holds_at(neg(xWalkVisionOK(Xschema)), Time),
       holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
        (not(happens(xWalkTestFooting(Xschema), Time));not(happens(xWalkReadyOff(Xschema), Time))),
-      some(Distance, '$kolem_Fn_240'(Xschema, Time))
+      some(Distance, '$kolem_Fn_244'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
@@ -1591,11 +1591,11 @@ axiom(holds_at(neg(xWalkReady(Xschema)), Time),
          holds_at(neg(xWalkVisionOK(Xschema)), Time),
          holds_at(xWalkReady(Xschema), Time)
        ),
-       some(Distance, '$kolem_Fn_240'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_244'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
- /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_240'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_244'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1607,7 +1607,7 @@ axiom(happens(xWalkTestFooting(Xschema), Time),
     [ holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
       holds_at(neg(xWalkVisionOK(Xschema)), Time),
       holds_at(xWalkReady(Xschema), Time),
-      some(Distance, '$kolem_Fn_240'(Xschema, Time))
+      some(Distance, '$kolem_Fn_244'(Xschema, Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
@@ -1616,11 +1616,11 @@ axiom(happens(xWalkTestFooting(Xschema), Time),
          holds_at(neg(xWalkVisionOK(Xschema)), Time),
          holds_at(xWalkReady(Xschema), Time)
        ),
-       some(Distance, '$kolem_Fn_240'(Xschema, Time)).
+       some(Distance, '$kolem_Fn_244'(Xschema, Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ecnet/XWalk.e',158).
 
- /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_240'(Xschema, Time))] ->
+ /*  [holds_at(neg(xWalkStepping(Xschema, Distance)), Time), holds_at(neg(xWalkVisionOK(Xschema)), Time), holds_at(xWalkReady(Xschema), Time), some(Distance, '$kolem_Fn_244'(Xschema, Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -1632,7 +1632,7 @@ axiom(happens(xWalkReadyOff(Xschema), Time),
     [ holds_at(neg(xWalkStepping(Xschema, Distance)), Time),
       holds_at(neg(xWalkVisionOK(Xschema)), Time),
       holds_at(xWalkReady(Xschema), Time),
-      some(Distance, '$kolem_Fn_240'(Xschema, Time))
+      some(Distance, '$kolem_Fn_244'(Xschema, Time))
     ]).
 
 

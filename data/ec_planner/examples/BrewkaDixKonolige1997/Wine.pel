@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:09 GMT
+% Wed, 01 Apr 2020 20:00:26 GMT
 % From ../examples/BrewkaDixKonolige1997/Wine.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Antoniou1997/Student.e',49).
 

@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:15 GMT
+% Wed, 01 Apr 2020 20:00:33 GMT
 % From ../examples/Mueller2004a/Holding.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/MillerShanahan2002/Bowl.e',57).
 
@@ -89,7 +89,7 @@ fluent(holding(person,object)).
 % Happens(Hold(P1,O1),0).
 
  /*  [] ->
-       ta(start+0, tvs1=[start+0], tvs2=[start], happens(hold(p1, o1), start)).
+       ta(Ta_Param, tvs1=[start], tvs2=[start], happens(hold(p1, o1), start)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Holding.e',36).
 axiom(happens(hold(p1, o1), start),
@@ -119,8 +119,8 @@ axiom(initiates(hold(Person, Object), holding(Person, Object), Time),
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2004a/Holding.e',40).
 
  /*  [] ->
-       ta(start+0,
-          tvs1=[start+0],
+       ta(Ta_Param,
+          tvs1=[start],
           tvs2=[start],
           holds_at(neg(holding(p1, o1)), start)).
  */

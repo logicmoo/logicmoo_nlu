@@ -1,6 +1,6 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Sun, 29 Mar 2020 18:47:13 GMT
+% Wed, 01 Apr 2020 20:00:30 GMT
 % From ../examples/GiunchigliaEtAl2004/MonkeyBananas.pel:4
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/FrankEtAl2003/Story1.e',45).
 
@@ -839,11 +839,11 @@ axiom(holds_at(metreqs(graspBananas), Time),
        (   not(holds_at(at(box, Location1), Time))
        ;   not(holds_at(at(monkey, Location1), Time))
        ),
-       some(Location1, '$kolem_Fn_139'(Time)).
+       some(Location1, '$kolem_Fn_143'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [(holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)), some(Location1, '$kolem_Fn_139'(Time))] ->
+ /*  [(holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)), some(Location1, '$kolem_Fn_143'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -853,17 +853,17 @@ axiom(holds_at(metreqs(graspBananas), Time),
 axiom(holds_at(neg(onBox), Time),
    
     [  (holds_at(neg(at(box, Location1)), Time);holds_at(neg(at(monkey, Location1)), Time)),
-      some(Location1, '$kolem_Fn_139'(Time))
+      some(Location1, '$kolem_Fn_143'(Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
  /*  holds_at(at(box, Location1), Time) :-
        holds_at(onBox, Time),
-       some(Location1, '$kolem_Fn_139'(Time)).
+       some(Location1, '$kolem_Fn_143'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_139'(Time))] ->
+ /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_143'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -873,17 +873,17 @@ axiom(holds_at(neg(onBox), Time),
 axiom(holds_at(at(box, Location1), Time),
    
     [ holds_at(onBox, Time),
-      some(Location1, '$kolem_Fn_139'(Time))
+      some(Location1, '$kolem_Fn_143'(Time))
     ]).
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
  /*  holds_at(at(monkey, Location1), Time) :-
        holds_at(onBox, Time),
-       some(Location1, '$kolem_Fn_139'(Time)).
+       some(Location1, '$kolem_Fn_143'(Time)).
  */
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/GiunchigliaEtAl2004/MonkeyBananas.e',104).
 
- /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_139'(Time))] ->
+ /*  [holds_at(onBox, Time), some(Location1, '$kolem_Fn_143'(Time))] ->
        ta(Time,
           tvs1=[Time],
           tvs2=[Time],
@@ -893,7 +893,7 @@ axiom(holds_at(at(box, Location1), Time),
 axiom(holds_at(at(monkey, Location1), Time),
    
     [ holds_at(onBox, Time),
-      some(Location1, '$kolem_Fn_139'(Time))
+      some(Location1, '$kolem_Fn_143'(Time))
     ]).
 
 
