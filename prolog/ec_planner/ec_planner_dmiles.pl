@@ -114,7 +114,7 @@ next_d(D1, D2):- D1<5,!,D2 is D1+1.
 next_d(D1, D2):- next_d(D2),D2>D1,!.
 
 */
-last_d(D):- (nb_current(last_d,D),number(D))->true; D = 3000.
+last_d(D):- notrace(((nb_current(last_d,D),number(D))->true; D = 3000)).
 
 next_d(D1, _):- last_d(D), D1>D, !, fail.
 next_d(D1, D2):- D1<9,!,D2 is D1+3.
@@ -122,7 +122,8 @@ next_d(D1, D2):- D1<90,!,D2 is D1+60.
 next_d(D1, D2):- D2 is D1+300.
 
 % abdemo_special(long,Gs,R):-abdemo_timed(Gs,R).
-abdemo_special(W,Gs,R):- \+ is_list(Gs), !, functor(Gs,F,_),!, abdemo_special(W+F,[Gs],R).
+abdemo_special(W,Gs,R):- \+ is_list(Gs),!, functor(Gs,F,_),!, 
+  abdemo_special(W+F,[Gs],R).
 
 :- style_check(-singleton).
 
@@ -132,7 +133,7 @@ abdemo_special(depth(Low,High),Gs,R):-
    R = [[HA,BA],[HC,-]].
 
 abdemo_special(_,Gs,R):- 
- init_gensym(t), first_d(D),
+ init_gensym(t), first_d(D), !,
      abdemo_top(Gs,[[[],[]],[[],[]]],[[HA,HC],[BA,BC]],[],N,D),
      write_plan_len(HA,BA),
    R = [[HA,BA],[HC,-]].
@@ -150,8 +151,11 @@ abdemo_timed(Gs,[HA,BA]) :-
 
 
 abdemo_top(Gs,R1,R3,N1,N3,D) :-
-  abdemo_top_xfrm(Gs,Gss),
-     abdemo_id(Gss,R1,R2,N1,N2,D), !, abdemo_cont(R2,R3,N2,N3).
+  must(nonvar(Gs)),
+  notrace((abdemo_top_xfrm(Gs,Gss))),
+  must(nonvar(Gss)),
+     abdemo_id(Gss,R1,R2,N1,N2,D), !, 
+     abdemo_cont(R2,R3,N2,N3).
 
 
 abdemo_top_xfrm(Gs,Gss):- 
@@ -179,17 +183,17 @@ abdemo_cont([[HA,HC],[BA,BC]],R2,N1,N3) :-
 
 abdemo_id(Gs,R1,R2,N1,N2,D) :-
      write(' D'), write(D), write(' '), ttyflush, 
-     (abdemo(Gs,R1,R2,N1,N2,D)*-> true; (next_d(D,D2)->abdemo_id(Gs,R1,R2,N1,N2,D2))).
+  (abdemo(Gs,R1,R2,N1,N2,D)*-> true; (next_d(D,D2)->abdemo_id(Gs,R1,R2,N1,N2,D2))).
 
 
 
-
+all_executable(X):- \+ is_list(X),!,fail.
 all_executable([]).
+all_executable([H|R]) :- was_executable(H), all_executable(R).
+was_executable(H):- H = happens(A,_T1,_T2), must(executable(A)).
 
-all_executable([happens(A,T1,T2)|R]) :- executable(A), all_executable(R).
 
-
-
+general_interp:- true.
 
 /* ABDEMO */
 
@@ -204,16 +208,14 @@ all_executable([happens(A,T1,T2)|R]) :- executable(A), all_executable(R).
 */
 
 
-
 abdemo(Gs,[[HA,TC1],[BA,TC2]],R,N1,N2,D) :- 
-     (( N1 \== [], Gs == [] );
-      ( fail, N1 == [], Gs \== [] )),
-
+    setup_call_cleanup((notrace((
+    (( N1 \== [], Gs == [] ); ( N1 == [], Gs \== [] ); ( N1 \== [], Gs \== [] )),
      %is_dbginfo(trace=on), 
      dbginfo('Goals'=Gs),
      dbginfo('Happens'=HA),
      dbginfo('Befores'=BA),
-     dbginfo('Nafs'=N1),nl,nl,fail.
+     dbginfo('Nafs'=N1),nl,nl,fail))),true,true).
 
 abdemo([],R,R,N,N,D).
 abdemo([G|Gs],R1,R2,N1,N2,D):-
@@ -230,7 +232,7 @@ abdemo_cons(call(P),[H,I|Gs],R1,R4,N1,N3,D):- H\=call(_), !,
 abdemo_cons(call(P),[H|Gs],R1,R4,N1,N3,D):- H\=call(_), !,
  abdemo_cons(H,[call(P)|Gs],R1,R4,N1,N3,D).
 
-abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N3,D):- 
+abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N3,D):-  
   abdemo_cons_holds_at(F1,T,Gs1,R1,R3,N1,N3,D).
 
 /*
@@ -248,9 +250,16 @@ abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N3,D):-
    clauses in the object-level program. Instead, they're put straight into
    the residue. Resolving happens goals is the job of the refinement phase.
 */
+fill_in_tempargs(Pred, F1):- call(Pred,X),
+  functor(X,F,A),functor(F1,F,A).
+
+abdemo_cons_holds_at(F1,T,Gs1,R1,R3,N1,N4,D):- var(F1),!,
+  trace, fill_in_tempargs(fluent,F1), abdemo_cons(holds_at(F1,T),Gs1,R1,R3,N1,N4,D).
+abdemo_cons_holds_at(neg(F1),T,Gs1,R1,R3,N1,N4,D):- var(F1),!,
+  trace, fill_in_tempargs(fluent,F1),  abdemo_cons(holds_at(neg(F1),T),Gs1,R1,R3,N1,N4,D).
 
 abdemo_cons_holds_at(F1,T,Gs1,R1,R3,N1,N4,D) :-
-     F1 \= neg(F2), abresolve(initially(F1),R1,Gs2,R1,B),
+     F1 \= neg(_F2), abresolve(initially(F1),R1,Gs2,R1,B),
      append(Gs2,Gs1,Gs3), add_neg_car(clipped(0,F1,T),N1,N2),
      abdemo_naf_cons(clipped(0,F1,T),[],R1,R2,N2,N3,D),
      abdemo(Gs3,R2,R3,N3,N4,D).
@@ -350,11 +359,11 @@ abdemo_cons(expand([happens(A,T1,T2)|Bs]),Gs1,R1,R8,N1,N8,D) :- !,
 */
 
 % INTERP-OR-AND    
-/*
-abdemo_cons((G1;G2),Gs,R1,R3,N1,N4,D) :- !,
+
+abdemo_cons((G1;G2),Gs,R1,R3,N1,N4,D) :- general_interp, !,
   (abdemo_cons(G1,Gs,R1,R3,N1,N4,D);
    abdemo_cons(G2,Gs,R1,R3,N1,N4,D)).
-*/
+
 abdemo_cons((G,G0),Gs,R1,R2,N1,N2,D):- !,
   abdemo_cons(G,[G0|Gs],R1,R2,N1,N2,D).
 
@@ -365,7 +374,9 @@ abdemo_cons(not(G),Gs,R1,R3,N1,N4,D) :-
 
 abdemo_cons(G,Gs1,R1,R3,N1,N2,D) :-
      abresolve(G,R1,Gs2,R2,B), append(Gs2,Gs1,Gs3),
-     abdemo(Gs3,R2,R3,N1,N2,D).
+     notrace((list_to_set(Gs3,Gs4),ignore(((Gs1==Gs4,(Gs3\==Gs4;Gs2==[]))-> (fail) ; true)))),
+     ignore(Gs3 = Gs4),
+     abdemo(Gs4,R2,R3,N1,N2,D).
 
 
 check_depth(R,D) :- action_count(R,L), L =< D.
@@ -385,7 +396,7 @@ action_count([[HA,TC],RB],L) :- length(HA,L).
 abdemo_holds_ats([],R,R,N,N,D).
 
 abdemo_holds_ats([holds_at(F,T)|Gs],R1,R3,N1,N3,D) :-
-     !, abdemo_cons_holds_at(F,T,[],R1,R2,N1,N2,D),
+     !, abdemo_cons(holds_at(F,T),[],R1,R2,N1,N2,D),
      abdemo_holds_ats(Gs,R2,R3,N2,N3,D).
 
 abdemo_holds_ats([G|Gs],R1,R2,N1,N2,D) :-
@@ -403,9 +414,6 @@ regular_goal(not(Clip)):- nonvar(Clip), (Clip = clipped(_T1,_F,_T2) ; Clip = dec
 solve_other_goals([],R,R,N,N,D).
 
 solve_other_goals([G|Gs],R1,R3,N1,N3,D) :- 
-
-
-
      non_regular_goal(G), !,
      abdemo_cons(G,[],R1,R2,N1,N2,D),
      solve_other_goals(Gs,R2,R3,N2,N3,D).
@@ -476,7 +484,7 @@ check_clipping([G|Gs],R1,R2,N1,N2,D) :-
 
 
 
-ammed_preconds(A, T, Gs,Gss):- 
+ammend_preconds4(A, T, Gs,Gss):- 
   findall(PrecondL, axiom_db(requires(A, T),PrecondL),PrecondLs), 
   append([Gs|PrecondLs],Gss).
 
@@ -495,13 +503,13 @@ ammed_preconds(A, T, Gs,Gss):-
 
 abresolve(G,R1,Gs,R2,B):- notrace(var(G)),!,throw(var_abresolve(G,R1,Gs,R2,B)).
 
-abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(initially(A),R,Gss,R, False) :- !, abresolve(holds_at(A, start),R,Gss,R, False).
 
-abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(terminates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammend_preconds4(A,T,Gs,Gss).
+abresolve(terms_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(terminates(A,F,T),Gs), ammend_preconds4(A,T,Gs,Gss).
 
-abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
-
-abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(initiates(A,F,T),Gs), ammed_preconds(A,T,Gs,Gss).
+abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- axiom_db(releases(A,F,T),Gs), ammend_preconds4(A,T,Gs,Gss).
+abresolve(inits_or_rels(A,F,T),R,Gss,R,false) :- !, axiom_db(initiates(A,F,T),Gs), ammend_preconds4(A,T,Gs,Gss).
 
 
 /*
@@ -524,10 +532,10 @@ abresolve(happens(A,T1,T2),[[HA,TC],RB],[],[[HA,TC],RB],false) :-
      member(happens(A,T1,T2),HA).
 
 abresolve(happens(A,T,T),[[HA,TC],RB],[],[[[happens(A,T,T)|HA],TC],RB],B) :-
-     into_db(executable(A)), !, B = true, skolemise(T).
+     into_db(executable(A)), !, B = true, skolemise_time(T).
 
 abresolve(happens(A,T1,T2),R1,[],R2,B) :-  !, B = true, 
-     skolemise(T1), skolemise(T2), add_happens(A,T1,T2,R1,R2).
+     skolemise_time(T1), skolemise_time(T2), add_happens(A,T1,T2,R1,R2).
 
 /*
    If either X or Y is not bound in a call to abresolve(b(X,Y)) then
@@ -535,10 +543,10 @@ abresolve(happens(A,T1,T2),R1,[],R2,B) :-  !, B = true,
 */
 
 abresolve(b(X,Y),R,[],R,false) :-
-     skolemise(X), skolemise(Y), demo_before(X,Y,R), !.
+     skolemise_time(X), skolemise_time(Y), demo_before(X,Y,R), !.
 
 abresolve(b(X,Y),R1,[],R2,B) :- !, B = false, 
-     skolemise(X), skolemise(Y), \+ demo_beq(Y,X,R1),
+     skolemise_time(X), skolemise_time(Y), \+ demo_beq(Y,X,R1),
      add_before(X,Y,R1,R2).
 
 /*
@@ -550,7 +558,7 @@ abresolve(diff(X,Y),R,[],R,false) :- !, X \= Y.
 abresolve(ignore(_),R,[],R,false) :- !.
 abresolve(allDifferent(_),R,[],R,false) :- !.
 abresolve(is(X,Y),R,[],R,false) :- !, X is Y.
-
+abresolve(equals(X,Y),R,[],R,false) :- !, X = Y.
 abresolve(dif(X,Y),R,[],R,false) :- !, dif(X,Y).
 abresolve(call(G),R,[],R,false) :- !, into_db(call(G)).
 
@@ -566,7 +574,7 @@ abresolve((G1,G2),ResidueIn,Goals,ResidueOut,Flag):- !,
 
 
 
-abresolve(G,R,[],[G|R],false) :- into_db(abducible(G)).
+abresolve(G,R,[],[G|R],false) :- quietly(into_db(abducible(G))).
 
 abresolve(G,R,Gs,R,false) :- axiom_db(G,Gs).
 
@@ -632,7 +640,7 @@ abdemo_naf( [G|Gs1 ],R1,R2,N1,N2,D) :-
 abdemo_naf_cons(clipped(T1,F,T4),Gs1,R1,R2,N1,N2,D) :-
      !, findall(Gs3,
           (abresolve(terms_or_rels(A,F,T2),R1,Gs2,R1,false),
-          abresolve(happens(A,T2,T3),R1,[],R1,false),
+           abresolve(happens(A,T2,T3),R1,[],R1,false),
           append([b(T1,T3),b(T2,T4)|Gs2],Gs1,Gs3)),Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2,D).
 
@@ -671,7 +679,7 @@ abdemo_naf_cons_holds_at(_F,_T,Gs,R1,R3,N1,N3,D) :-
 */
 abdemo_naf_cons_holds_at(F1,T,Gs1,R1,R3,N1,N3,D) :-
      opposite(F1,F2), 
-     (abdemo_cons_holds_at(F2,T,[],R1,R2,N1,N2,D), !,
+     (abdemo_cons(holds_at(F2,T),[],R1,R2,N1,N2,D), !,
       (copy_term(Gs1,Gs2), abdemo_naf_cont(R1,Gs2,R2,R3,N1,N3,D))).
 
 abdemo_naf_cons_holds_at(_F,_T,Gs,R1,R3,N1,N3,D) :-
@@ -716,11 +724,9 @@ abdemo_naf_cons(postponed(b(X,Y)),Gs,R1,R2,N1,N2,D) :-
 abdemo_naf_cons((G,G0),Gs,R1,R2,N1,N2,D):- !,
   abdemo_naf_cons(G,[G0|Gs],R1,R2,N1,N2,D).
 % INTERP-OR-AND 
-/*
 abdemo_naf_cons((G1;G2),Gs,R1,R3,N1,N4,D) :- !,
   (abdemo_naf_cons(G1,Gs,R1,R3,N1,N4,D);
    abdemo_naf_cons(G2,Gs,R1,R3,N1,N4,D)).
-*/
 
 :-  discontiguous(abdemo_naf_cons/7).
 
@@ -748,8 +754,7 @@ abdemo_naf_cons(G,Gs1,R,R,N,N,D) :- \+ abresolve(G,R,Gs2,R,false), !.
 
 abdemo_naf_cons(G1,Gs1,R1,R2,N1,N2,D) :-
      findall(Gs2, 
-            (abresolve(G1,R1,Gs3,R1,false),
-                append(Gs3,Gs1,Gs2)),
+            (abresolve(G1,R1,Gs3,R1,false), append(Gs3,Gs1,Gs2)),
              Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2,D).
 
@@ -1078,9 +1083,7 @@ delete_abdemo(X,[Y|L1],[Y|L2]) :- delete_abdemo(X,L1,L2).
 
 /* Skolemisation */
 
-skolemise(T) :- var(T), gensym(t,T), !.
-
-skolemise(T).
+skolemise_time(T) :- notrace((ignore((var(T), gensym(t,T))))).
 
 
 opposite(neg(F),F) :- !.
@@ -1092,7 +1095,8 @@ opposite(F,neg(F)).
 
 
 %:- endif.
-axiom_db(H,B):- into_db(axiom(H,B)).
+%axiom_db(equals(X,Y),[call(X=Y)]).
+axiom_db(H,B):- quietly(into_db(axiom(H,B))).
 into_db(G):- call(G).
 
 

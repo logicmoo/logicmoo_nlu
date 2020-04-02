@@ -47,6 +47,8 @@ ec_current_domain_bi(G):- ec_current_domain_db(G).
 ec_current_domain_bi(executable(G)):- var(G), ec_current_domain_bi(event(Ax)), functor(Ax,F,A), functor(G,F,A).
 ec_current_domain_bi(executable(G)):- compound(G), functor(G,F,A), functor(Ax,F,A), ec_current_domain_bi(event(Ax)).
 
+ec_current_domain_bi(G):- ec_current_domain_db(axiom(G,B)), B==[].
+
 ec_current_domain_db(G):- user:ec_current_domain_db(G, _REF).
 :- lock_predicate(ec_current_domain_db/1).
  
@@ -122,7 +124,7 @@ is_dbginfo(N):- etmp:ec_option(verbose, N),!.
 
 maybe_nl:- notrace(format('~N',[])).
 
-dbginfo(NV, G):- notrace(tracing), !,notrace,dbginfo(NV, G),notrace(trace).
+dbginfo(NV, G):- notrace(tracing), !,notrace, dbginfo(NV, G), trace.
 dbginfo(NV, G):- \+ is_dbginfo(NV) -> true ; dbginfo(G). 
 :- export(dbginfo/1).
 dbginfo_else(NV,G,E):- is_dbginfo(NV) -> dbginfo(G); dbginfo(E).
@@ -130,7 +132,7 @@ dbginfo_else(NV,G,E):- is_dbginfo(NV) -> dbginfo(G); dbginfo(E).
 :- meta_predicate catch_ignore(0).
 catch_ignore(G):- ignore(catch(G,E,wdmsg(E))),!.
 
-dbginfo(G):- notrace(tracing),!,notrace,dbginfo(G),notrace(trace).
+dbginfo(G):- notrace(tracing),!,notrace,dbginfo(G),trace.
 dbginfo(Var):- var(Var),!, maybe_nl, format('ListVAR = ~p~n',[Var]).
 dbginfo([]):- !, maybe_nl. 
 dbginfo(call(G)):- !, catch_ignore(G).

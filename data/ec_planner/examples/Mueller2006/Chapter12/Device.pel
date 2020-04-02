@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Wed, 01 Apr 2020 19:59:37 GMT
-% From ../examples/Mueller2006/Chapter12/Device.pel:4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/DefaultLocation.e',112).
+% Thu, 02 Apr 2020 01:55:16 GMT
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',44).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e').
@@ -26,59 +26,72 @@
 %; }
 %;
 
-% load foundations/Root.e
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:19
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',20).
+% load foundations/Root.e
 :- load_e('foundations/Root.e', changed).
 :- if(is_e_toplevel).
 :- endif.
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:20
 % load foundations/EC.e
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',20).
 :- load_e('foundations/EC.e', changed).
 :- if(is_e_toplevel).
 :- endif.
 
-% sort agent
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:22
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',23).
+% sort agent
 ==> sort(agent).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:23
 % sort device
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',23).
 ==> sort(device).
 
-% agent Nathan
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:25
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',26).
+% agent Nathan
 ==> t(agent,nathan).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:26
 % device Device1, AntiqueDevice1
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',26).
 ==> t(device,device1).
 ==> t(device,antiqueDevice1).
 
-% predicate Ab1(device,time)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:28
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',29).
+% predicate Ab1(device,time)
 predicate(ab1(device,time)).
 ==> mpred_prop(ab1(device,time),predicate).
 ==> meta_argtypes(ab1(device,time)).
 
-% fluent On(device)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:30
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',31).
+% fluent On(device)
 fluent(on(device)).
 ==> mpred_prop(on(device),fluent).
 ==> meta_argtypes(on(device)).
 
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:31
 % fluent PluggedIn(device)
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',31).
 fluent(pluggedIn(device)).
 ==> mpred_prop(pluggedIn(device),fluent).
 ==> meta_argtypes(pluggedIn(device)).
 
-% fluent BrokenSwitch(device)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:32
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',33).
+% fluent BrokenSwitch(device)
 fluent(brokenSwitch(device)).
 ==> mpred_prop(brokenSwitch(device),fluent).
 ==> meta_argtypes(brokenSwitch(device)).
 
-% event TurnOn(agent,device)
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e:34
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Mueller2006/Chapter12/Device.e',35).
+% event TurnOn(agent,device)
 event(turnOn(agent,device)).
 ==> mpred_prop(turnOn(agent,device),event).
 ==> meta_argtypes(turnOn(agent,device)).

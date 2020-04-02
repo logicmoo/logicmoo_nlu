@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Wed, 01 Apr 2020 20:00:39 GMT
-% From ../examples/Shanahan1997/Yale.pel:4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Supermarket.e',104).
+% Thu, 02 Apr 2020 02:23:21 GMT
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Yale.pel:4
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',44).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/examples/Shanahan1997/Yale.e').

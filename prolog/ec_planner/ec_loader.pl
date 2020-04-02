@@ -1025,8 +1025,9 @@ fix_time_args(T,[G|Gs],Gss):-
   fix_time_args1(ST,[G|Gs],Gs0),
   fix_time_args2(T,Gs0,Gss).
 
+%fix_time_args2(_,Gs,Gs):-!.
 fix_time_args2(_,Gs,Gss):-
-  Gss = [b(start,now),b(now,aft),b(aft,end)|Gs].
+  Gss = [b(start,now),b(now,end)|Gs].
 
 visit_time_args(_,   In,G,G,In):- \+ compound(G),!.
 visit_time_args(Stem,In,[G|Gs],[GO|GsO],Out):- !, 
@@ -1414,21 +1415,21 @@ user:term_expansion(In,P,Out,PO):- source_location(File,_),
 
 
 % :- dynamic(axiom/2).
-
+/*
 axiom(initiates(wake_up(X), awake(X), _T), []).
 axiom(initiates(open(_, Y), opened(Y), _T), []).
 axiom(terminates(fall_asleep(X), awake(X), _T), []). 
 axiom(initially(neg(awake(N))), [N=nathan]). 
 axiom(initially(neg(opened(cont1))), []). 
 
-%:- dynamic(abducible/1).
-abducible(dummy).
 
 %:- dynamic(executable/1).
 executable(wake_up(_X)).
 executable(fall_asleep(_X)).
 executable(open(_X, _Y)).
-
+*/
+%:- dynamic(abducible/1).
+abducible(dummy).
 % :- ec:abdemo([holds_at(awake(nathan), t)], R), writeq(R).
 /*
   R = [[happens(wake_up(nathan), t1, t1)], [before(t1, t)]]
