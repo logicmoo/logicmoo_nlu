@@ -22,7 +22,7 @@
 % nohup websocket_redir.sh dbutterfly 4004 &
 :- use_module(library(logicmoo_common)).
 
-:- pack_install(dictoo).
+%:- pack_install(dictoo).
 
 %:- if(current_prolog_flag(argv,[])).
 %  sudo -u prologmud_server gdb -x gdbinit -return-child-result -ex "set pagination off" -ex run -ex quit --args swipl -l run_mud_server.pl --all --world --repl --lisp --lispsock --sumo --planner --nonet --repl --noworld

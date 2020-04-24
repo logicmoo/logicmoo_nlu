@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Thu, 02 Apr 2020 04:07:59 GMT
+% Thu, 02 Apr 2020 14:14:14 GMT
 % From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/test_story.pl:34
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ec_loader.pl',1431).
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ec_loader.pl',1433).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e').

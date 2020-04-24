@@ -1,6 +1,6 @@
 % run with 
 % cls ; swipl -f test_story.pl
-
+                                    
 :- use_module(library(logicmoo_common)).
 :- cls.
 
@@ -14,7 +14,7 @@ do_test_gen(What) :- ec_current_domain_db(fluent(P)),functor(P,F,A),functor(What
 local_demo(L):- local_demo(L,R),dbginfo('R'=R).
 
 local_demo(L,R):-  dbginfo('L'=L),abdemo_special(depth(0,10),L,R),!.
-local_demo(L,R):-  dm('FAILED:',(L:-R)),trace,!,abdemo_special(depth(0,10),L,R).
+%local_demo(L,R):-  dm('FAILED:',(L:-R)),trace,!,abdemo_special(depth(0,10),L,R).
 
 
 dm(TF,P):- format('~N~n~w ~p.~n',[TF,P]).

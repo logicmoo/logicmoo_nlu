@@ -12,7 +12,7 @@
 
 */
 
-:- include(ec_common).
+%:- include(ec_common).
 
 /*
 
@@ -65,8 +65,6 @@
         abdemo(Goals,ResidueIn,ResidueOut,NegationsIn,NegationsOut)
 */
 
-abdemo_special(loops,Gs,R):- write(cant_abdemo(loops,Gs,R)),!,nl.
-abdemo_special(_,Gs,R):- abdemo_timed(Gs,[R,N]), write_plan_len(R,N), nl, write_plan(R,[]).
 
 
 abdemo(Gs,R) :- abdemo(Gs,[[],[]],R,[],N).
@@ -112,14 +110,14 @@ abdemo([holds_at(F1,T)|Gs1],R1,R3,N1,N4) :-
    The order in which resolution steps are carried out in the next
    clause is crucial. We resolve initiates first in order to instantiate 
    A, but we don't want to proceed with sub-goals of initiates until
-   we've added the corresponding happens and before facts to the residue.
+   we've added the corresponding happens and b facts to the residue.
 */
 
 abdemo([holds_at(F1,T3)|Gs1],R1,R7,N1,N6) :-
      F1 \= neg(F2), abresolve(initiates(A,F1,T1),R1,Gs2,R1,B1),
      abresolve(happens(A,T1,T2),R1,Gs3,R2,B2),
      abdemo(Gs3,R2,R3,N1,N2),
-     abresolve(before(T2,T3),R3,[],R4,B3),
+     abresolve(b(T2,T3),R3,[],R4,B3),
      append(Gs2,Gs1,Gs4), check_nafs(B2,N2,R4,R5,N2,N3),
      add_neg([clipped(T1,F1,T3)],N3,N4),
      abdemo_naf([clipped(T1,F1,T3)],R5,R6,N4,N5),
@@ -146,7 +144,7 @@ abdemo([holds_at(neg(F),T3)|Gs1],R1,R7,N1,N6) :-
      abresolve(terminates(A,F,T1),R1,Gs2,R1,B1),
      abresolve(happens(A,T1,T2),R1,Gs3,R2,B2),
      abdemo(Gs3,R2,R3,N1,N2),
-     abresolve(before(T2,T3),R3,[],R4,B3),
+     abresolve(b(T2,T3),R3,[],R4,B3),
      append(Gs2,Gs1,Gs4), check_nafs(B2,N2,R4,R5,N2,N3),
      add_neg([declipped(T1,F,T3)],N3,N4),
      abdemo_naf([declipped(T1,F,T3)],R5,R6,N4,N5),
@@ -199,14 +197,14 @@ abresolve(happens(A,T),[RH,RB],[],[[happens(A,T)|RH],RB],true) :-
      !, skolemise(T), executable(A).
 
 /*
-   It's assumed that X and Y are bound when we call abresolve(before(X,Y)).
+   It's assumed that X and Y are bound when we call abresolve(b(X,Y)).
    If either X or Y is not bound, we may miss solutions due to the cut in
    the following clause.
 */
 
-abresolve(before(X,Y),[RH,RB],[],[RH,RB],false) :- demo_before(X,Y,RB), !.
+abresolve(b(X,Y),[RH,RB],[],[RH,RB],false) :- demo_before(X,Y,RB), !.
 
-abresolve(before(X,Y),[RH,RB1],[],[RH,RB2],false) :-
+abresolve(b(X,Y),[RH,RB1],[],[RH,RB2],false) :-
      !, skolemise(X), skolemise(Y), \+ demo_beq(Y,X,RB1),
      add_before(X,Y,RB1,RB2).
 
@@ -255,7 +253,7 @@ append_negs([N|Ns1],Ns2,Ns4) :- add_neg(N,Ns2,Ns3), append(Ns1,Ns3,Ns4).
 
    where Negations is the list of negations to be established, ResidueIn
    is the old residue, ResidueOut is the new residue (abdemo_nafs can add
-   both before and happens facts, as well as other abducibles, to the
+   both b and happens facts, as well as other abducibles, to the
    residue), NegationsIn is the old list of negations (same as Negations
    for top-level call), and NegationsOut is the new list of negations
    (abdemo_nafs can add new clipped goals to NegationsIn).
@@ -293,21 +291,21 @@ abdemo_naf([clipped(T1,F,T3)|Gs1],R1,R2,N1,N2) :-
      !, findall(Gs3,
           (resolve(terms_or_rels(A,F,T2),R1,Gs2),
           resolve(happens(A,T2),R1,[]),
-          append([before(T1,T2),before(T2,T3)|Gs2],Gs1,Gs3)),Gss),
+          append([b(T1,T2),b(T2,T3)|Gs2],Gs1,Gs3)),Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2).
 
 abdemo_naf([declipped(T1,F,T3)|Gs1],R1,R2,N1,N2) :-
      !, findall(Gs3,
           (resolve(inits_or_rels(A,F,T2),R1,Gs2),
           resolve(happens(A,T2),R1,[]),
-          append([before(T1,T2),before(T2,T3)|Gs2],Gs1,Gs3)),Gss),
+          append([b(T1,T2),b(T2,T3)|Gs2],Gs1,Gs3)),Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2).
 
 /*
    To show the classical negation of holds_at(F) (which is what we want), we
    have to show that holds_at(neg(F)). Conversely, to show the classical
    negation of holds_at(neg(F)) we have to show holds_at(F). Within a call
-   to abdemo_naf, we can add both happens and before (and other abducibles)
+   to abdemo_naf, we can add both happens and b (and other abducibles)
    to the residue. This removes a potential source of incompleteness.
    However, we only want to add to the residue as a last resort. Accordingly,
    holds_at goals are postponed if they can't be proved without adding to
@@ -331,33 +329,33 @@ abdemo_naf([postponed(holds_at(F,T))|Gs],R1,R2,N1,N2) :-
 
 /*
    Special facilities for handling temporal ordering facts are built in.
-   We can add a before fact to the residue to preserve the failure of
-   a clipped goal. The failure of a before goal does NOT mean that the
+   We can add a b fact to the residue to preserve the failure of
+   a clipped goal. The failure of a b goal does NOT mean that the
    negation of that goal is assumed to be true. (The Clark completion is
-   not applicable to temporal ordering facts.) Rather, to make before(X,Y)
-   fail, before(Y,X) has to follow. One way to achieve this is to add
-   before(Y,X) to the residue.
+   not applicable to temporal ordering facts.) Rather, to make b(X,Y)
+   fail, b(Y,X) has to follow. One way to achieve this is to add
+   b(Y,X) to the residue.
 */
 
-abdemo_naf([before(X,Y)|Gs],R,R,N,N) :- X == Y, !.
+abdemo_naf([b(X,Y)|Gs],R,R,N,N) :- X == Y, !.
 
-abdemo_naf([before(X,Y)|Gs],[RH,RB],[RH,RB],N,N) :- demo_before(Y,X,RB), !.
+abdemo_naf([b(X,Y)|Gs],[RH,RB],[RH,RB],N,N) :- demo_before(Y,X,RB), !.
 
-abdemo_naf([before(X,Y)|Gs1],R1,R2,N1,N2) :-
-     !, append(Gs1,[postponed(before(X,Y))],Gs2),
+abdemo_naf([b(X,Y)|Gs1],R1,R2,N1,N2) :-
+     !, append(Gs1,[postponed(b(X,Y))],Gs2),
      abdemo_naf(Gs2,R1,R2,N1,N2).
 
 /*
-   A before fact is only added to the residue as a last resort. Accordingly,
-   if we encounter a before(X,Y) goal and cannot show before(Y,X), we
+   A b fact is only added to the residue as a last resort. Accordingly,
+   if we encounter a b(X,Y) goal and cannot show b(Y,X), we
    postpone that goal until we've tried other possibilities. A postponed
-   before goal appears in the goal list as postponed(before(X,Y)).
+   b goal appears in the goal list as postponed(b(X,Y)).
 */
 
-abdemo_naf([postponed(before(X,Y))|Gs],[RH,RB1],[RH,RB2],N,N) :-
+abdemo_naf([postponed(b(X,Y))|Gs],[RH,RB1],[RH,RB2],N,N) :-
      \+ demo_beq(X,Y,RB1), add_before(Y,X,RB1,RB2).
 
-abdemo_naf([postponed(before(X,Y))|Gs],R1,R2,N1,N2) :-
+abdemo_naf([postponed(b(X,Y))|Gs],R1,R2,N1,N2) :-
      !, abdemo_naf(Gs,R1,R2,N1,N2).
 
 /* 
@@ -416,12 +414,12 @@ check_nafs(A,T,[N|Ns],R1,R3,N1,N3) :-
 
 
 check_naf(A,T2,[clipped(T1,F,T3)],R1,R2,N1,N2) :-
-     !, findall([before(T1,T2),before(T2,T3)|Gs],
+     !, findall([b(T1,T2),b(T2,T3)|Gs],
           (resolve(terms_or_rels(A,F,T2),R1,Gs)),Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2).
 
 check_naf(A,T2,[declipped(T1,F,T3)],R1,R2,N1,N2) :-
-     !, findall([before(T1,T2),before(T2,T3)|Gs],
+     !, findall([b(T1,T2),b(T2,T3)|Gs],
           (resolve(inits_or_rels(A,F,T2),R1,Gs)),Gss),
      abdemo_nafs(Gss,R1,R2,N1,N2).
 
@@ -446,7 +444,7 @@ demo([holds_at(F1,T)|Gs1],R,N1,N3) :-
 demo([holds_at(F1,T2)|Gs1],R,N1,N4) :-
      F1 \= neg(F2), resolve(initiates(A,F1,T1),R,Gs2),
      resolve(happens(A,T1),R,Gs3),
-     resolve(before(T1,T2),R,[]),
+     resolve(b(T1,T2),R,[]),
      demo(Gs2,R,N1,N2), demo_naf([clipped(T1,F1,T2)],R),
      append(Gs3,Gs1,Gs4), add_neg([clipped(T1,F1,T2)],N2,N3),
      demo(Gs4,R,N3,N4).
@@ -460,12 +458,12 @@ demo([holds_at(neg(F),T)|Gs1],R,N1,N3) :-
 demo([holds_at(neg(F),T2)|Gs1],R,N1,N4) :-
      resolve(terminates(A,F,T1),R,Gs2),
      resolve(happens(A,T1),R,Gs3),
-     resolve(before(T1,T2),R,[]),
+     resolve(b(T1,T2),R,[]),
      demo(Gs2,R,N1,N2), demo_naf([declipped(T1,F,T2)],R),
      append(Gs3,Gs1,Gs4), add_neg([declipped(T1,F,T2)],N2,N3),
      demo(Gs4,R,N3,N4).
 
-demo([before(X,Y)|Gs],R,N1,N2) :- !, demo_before(X,Y,R), demo(Gs,R,N1,N2).
+demo([b(X,Y)|Gs],R,N1,N2) :- !, demo_before(X,Y,R), demo(Gs,R,N1,N2).
 
 demo([not(G)|Gs],R,N1,N2) :-
      !, demo_naf([G],R), add_neg([G],N1,N2), demo(Gs,R,N2,N3).
@@ -483,9 +481,9 @@ demo([G|Gs1],R,N1,N3) :-
 
 demo_before(0,Y,R) :- !.
 
-demo_before(X,Y,R) :- member(before(X,Y),R).
+demo_before(X,Y,R) :- member(b(X,Y),R).
 
-/* demo_beq is demo before or equal. */
+/* demo_beq is demo b or equal. */
 
 demo_beq(X,Y,R) :- X == Y, !.
 
@@ -493,8 +491,8 @@ demo_beq(X,Y,R) :- demo_before(X,Y,R).
 
 
 /*
-   add_before(X,Y,R1,R2) adds before(X,Y) to the residue R1 giving R2.
-   It does this by maintaining the transitive closure of the before relation
+   add_before(X,Y,R1,R2) adds b(X,Y) to the residue R1 giving R2.
+   It does this by maintaining the transitive closure of the b relation
    in R2, and assumes that R1 is already transitively closed.
    R1 and R2 are just the temporal ordering parts of the residue.
 */
@@ -505,19 +503,19 @@ add_before(X,Y,R1,R2) :-
 
 /*
    find_connections(X,Y,R,C1,C2) creates two lists, C1 and C2,
-   containing respectively all the time points before X and after
+   containing respectively all the time points b X and after
    Y according to R, which is assumed to be transitively closed.
 */
 
 find_connections(X,Y,[],[X],[Y]).
 
-find_connections(X,Y,[before(Z,X)|R],[Z|C1],C2) :-
+find_connections(X,Y,[b(Z,X)|R],[Z|C1],C2) :-
      !, find_connections(X,Y,R,C1,C2).
 
-find_connections(X,Y,[before(Y,Z)|R],C1,[Z|C2]) :-
+find_connections(X,Y,[b(Y,Z)|R],C1,[Z|C2]) :-
      !, find_connections(X,Y,R,C1,C2).
 
-find_connections(X,Y,[before(Z1,Z2)|R],C1,C2) :-
+find_connections(X,Y,[b(Z1,Z2)|R],C1,C2) :-
      find_connections(X,Y,R,C1,C2).
 
 cross_prod([],C,[],R).
@@ -527,8 +525,8 @@ cross_prod([X|C1],C2,R3,R) :-
 
 cross_one(X,[],[],R).
 
-cross_one(X,[Y|C],[before(X,Y)|R1],R) :-
-     \+ member(before(X,Y),R), !, cross_one(X,C,R1,R).
+cross_one(X,[Y|C],[b(X,Y)|R1],R) :-
+     \+ member(b(X,Y),R), !, cross_one(X,C,R1,R).
 
 cross_one(X,[Y|C],R1,R) :- cross_one(X,C,R1,R).
 
@@ -558,7 +556,7 @@ resolve(happens(A,T,T),R,Gs) :- resolve(happens(A,T),R,Gs).
 
 resolve(happens(A,T),[RH,RB],[]) :- !, member(happens(A,T),RH).
 
-resolve(before(X,Y),[RH,RB],[]) :- !, demo_before(X,Y,RB).
+resolve(b(X,Y),[RH,RB],[]) :- !, demo_before(X,Y,RB).
 
 resolve(diff(X,Y),R,[]) :- !, X \= Y.
 
@@ -635,11 +633,11 @@ demo_naf([holds_at(F,T)|Gs],R) :- ground(F), !, demo_naf(Gs,R).
 demo_naf([holds_at(F,T)|Gs],R) :-
      !, forall(demo([holds_at(F,T)],R,[],N),(ground(F),demo_naf(Gs,R))).
 
-demo_naf([before(X,Y)|Gs],R) :- X == Y, !.
+demo_naf([b(X,Y)|Gs],R) :- X == Y, !.
 
-demo_naf([before(X,Y)|Gs],[RH,RB]) :- demo_before(Y,X,RB), !.
+demo_naf([b(X,Y)|Gs],[RH,RB]) :- demo_before(Y,X,RB), !.
 
-demo_naf([before(X,Y)|Gs],R) :- !, demo_naf(Gs,R).
+demo_naf([b(X,Y)|Gs],R) :- !, demo_naf(Gs,R).
 
 demo_naf([not(G)|Gs],R) :- demo([G],R,[],N), !.
 

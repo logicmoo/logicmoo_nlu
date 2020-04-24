@@ -8,7 +8,7 @@ is_sicstus:- \+ current_prolog_flag(version_data,swi(_,_,_,_)).
 ?- is_sicstus -> ensure_loaded(ec_common_sicstus) ; ensure_loaded(ec_common_swi).
 
 :- style_check(-singleton).
-/* Emulates the writenl(1) function */
+/* Emulates the writeNoln(1) function */
 
 % =========================================
 % Axiom Access
@@ -44,11 +44,11 @@ ec_current_domain(Var):- ec_current_domain_bi(Var).
 ec_current_domain_bi(Var):- notrace(var(Var)),!, throw(ec_current_domain_var(Var)).
 %ec_current_domain_bi(axiom(G,Gs)):- !, axiom(G,Gs).
 ec_current_domain_bi(G):- ec_current_domain_db(G).
+ec_current_domain_bi(G):- ec_current_domain_db(axiom(G,B)), B==[].
 ec_current_domain_bi(executable(G)):- var(G), ec_current_domain_bi(event(Ax)), functor(Ax,F,A), functor(G,F,A).
 ec_current_domain_bi(executable(G)):- compound(G), functor(G,F,A), functor(Ax,F,A), ec_current_domain_bi(event(Ax)).
 
-ec_current_domain_bi(G):- ec_current_domain_db(axiom(G,B)), B==[].
-
+ec_current_domain_db(axiom(call(G), [])):- nonvar(G),rtrace(G).
 ec_current_domain_db(G):- user:ec_current_domain_db(G, _REF).
 :- lock_predicate(ec_current_domain_db/1).
  
@@ -138,7 +138,8 @@ dbginfo([]):- !, maybe_nl.
 dbginfo(call(G)):- !, catch_ignore(G).
 dbginfo({G}):- !, maybe_nl, catch_ignore(G).
 dbginfo([A|B]):- !, maybe_nl, dbginfo(A), maybe_nl, dbginfo(B),!.
-dbginfo(N=V):- !, maybe_nl, catch_ignore(portray_clause(var(N):-V)).
+dbginfo(N=V):- \+compound(V),!, maybe_nl, catch_ignore(portray_clause(N=V)).
+dbginfo(N=V):- !, maybe_nl, catch_ignore(portray_clause(N:-V)).
 dbginfo(nl):- !, maybe_nl, nl.
 dbginfo(nl(N)):- !, maybe_nl, catch_ignore(forall(between(0,N,_),nl)).
 dbginfo(fmt(F,A)):- !, catch_ignore(format(F,A)).
@@ -153,14 +154,16 @@ dbginfo(NV):- catch_ignore(portray_clause(:- NV)), !.
 
 write_plan_len(A,B):- length(A,AL), length(B,BL),write_plan(AL,BL).
 write_plan(HA,BA):- write('Plan: '), write(HA), write('-'), write(BA), write('    ').
-/* Emulates the writenl(1) function */
+/* Emulates the writeNoln(1) function */
 
-%writeNoln(A) :-  write(A),!.
-writeNoln(_).
+% writeNoln(A) :- \+ atom(A),!,writeYesln(A).
+writeNoln(A) :- fresh_line, write(A).
+% writeNoln(_).
 
-writenl(_).
+% writeYesln(A):- atom(A),!,writeNoln(A).
+writeYesln(A):- write(A),fresh_line.
 
-writeYesln(_).
+writenl(A):- write(A),fresh_line.
 
 :- fixup_exports.
 

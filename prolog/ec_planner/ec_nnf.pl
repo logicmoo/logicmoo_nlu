@@ -2151,7 +2151,7 @@ the next answer is found. This is done so that the computation is left in
 an appropriate state at the end of the computation.
 \index{explain}
 \begin{verbatim} */
-explain(G) :- 
+explain_th(G) :- 
   ignore((explain_goal(G)*->fail;(format('~nUntrue: ~p.~n',[G]),forall(explain_goal(~G),true)))).
 
 explain_goal(G) :-

@@ -1,8 +1,8 @@
 :-include(library('ec_planner/ec_test_incl')).
 :-expects_dialect(pfc).
-% Wed, 01 Apr 2020 20:05:42 GMT
-% From ../ectest/TestBoxRoom.e.pl:4
-:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/Story1.e',47).
+% Sat, 04 Apr 2020 13:28:23 GMT
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/test_np_box_agent.e.pl:157
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ec_loader.pl',1433).
 
  /*  loading(load_e_pl,
    	'/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e').
@@ -262,7 +262,9 @@ fluent(inRoom(object,room)).
                     directlyIn(Physobj1, Physobj2),
                     Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:48
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',46).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:48
 axiom(initiates(move(Agent, Physobj1, Room, Physobj2), directlyIn(Physobj1, Physobj2), Time),
    
     [ holds_at(directlyIn(Agent, Room), Time),
@@ -289,7 +291,9 @@ axiom(initiates(move(Agent, Physobj1, Room, Physobj2), directlyIn(Physobj1, Phys
                      directlyIn(Physobj1, Room),
                      Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:55
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',52).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:55
 axiom(terminates(move(Agent, Physobj1, Room, Physobj2), directlyIn(Physobj1, Room), Time),
    
     [ holds_at(directlyIn(Agent, Room), Time),
@@ -314,7 +318,9 @@ axiom(terminates(move(Agent, Physobj1, Room, Physobj2), directlyIn(Physobj1, Roo
                     directlyIn(Physobj1, Room),
                     Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:60
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',59).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:60
 axiom(initiates(move(Agent, Physobj1, Physobj2, Room), directlyIn(Physobj1, Room), Time),
     [holds_at(directlyIn(Agent, Room), Time)]).
 
@@ -335,7 +341,9 @@ axiom(initiates(move(Agent, Physobj1, Physobj2, Room), directlyIn(Physobj1, Room
                      directlyIn(Physobj1, Physobj2),
                      Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:65
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',64).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:65
 axiom(terminates(move(Agent, Physobj1, Physobj2, Room), directlyIn(Physobj1, Physobj2), Time),
     [holds_at(directlyIn(Agent, Room), Time)]).
 
@@ -356,7 +364,9 @@ axiom(terminates(move(Agent, Physobj1, Physobj2, Room), directlyIn(Physobj1, Phy
                     directlyIn(Agent, Room2),
                     Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:70
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',69).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:70
 axiom(initiates(move(Agent, Agent, Room1, Room2), directlyIn(Agent, Room2), Time),
     [holds_at(directlyIn(Agent, Room1), Time)]).
 
@@ -377,7 +387,9 @@ axiom(initiates(move(Agent, Agent, Room1, Room2), directlyIn(Agent, Room2), Time
                      directlyIn(Agent, Room1),
                      Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:75
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',74).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:75
 axiom(terminates(move(Agent, Agent, Room1, Room2), directlyIn(Agent, Room1), Time),
     [holds_at(directlyIn(Agent, Room1), Time)]).
 
@@ -399,7 +411,9 @@ axiom(terminates(move(Agent, Agent, Room1, Room2), directlyIn(Agent, Room1), Tim
                     directlyIn(Physobj, Agent),
                     Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:81
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',79).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:81
 axiom(initiates(move(Agent, Physobj, Room, Agent), directlyIn(Physobj, Agent), Time),
    
     [ holds_at(directlyIn(Agent, Room), Time),
@@ -424,7 +438,9 @@ axiom(initiates(move(Agent, Physobj, Room, Agent), directlyIn(Physobj, Agent), T
                      directlyIn(Physobj, Room),
                      Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:87
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',85).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:87
 axiom(terminates(move(Agent, Physobj, Room, Agent), directlyIn(Physobj, Room), Time),
    
     [ holds_at(directlyIn(Agent, Room), Time),
@@ -449,7 +465,9 @@ axiom(terminates(move(Agent, Physobj, Room, Agent), directlyIn(Physobj, Room), T
                     directlyIn(Physobj, Room),
                     Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:93
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',91).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:93
 axiom(initiates(move(Agent, Physobj, Agent, Room), directlyIn(Physobj, Room), Time),
    
     [ holds_at(directlyIn(Physobj, Agent), Time),
@@ -474,7 +492,9 @@ axiom(initiates(move(Agent, Physobj, Agent, Room), directlyIn(Physobj, Room), Ti
                      directlyIn(Physobj, Agent),
                      Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:99
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',97).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:99
 axiom(terminates(move(Agent, Physobj, Agent, Room), directlyIn(Physobj, Agent), Time),
    
     [ holds_at(directlyIn(Physobj, Agent), Time),
@@ -593,10 +613,13 @@ axiom(holds_at(neg(directlyIn(Object, Object)), Time),
  /*  holds_at(directlyIn(Object1, Object2), Time) ->
        holds_at(neg(directlyIn(Object2, Object1)), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 
  /*  holds_at(neg(directlyIn(Object2, Object1)), Time) :-
        holds_at(directlyIn(Object1, Object2), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 
  /*  [holds_at(directlyIn(Object1, Object2), Time)] ->
@@ -605,13 +628,17 @@ axiom(holds_at(neg(directlyIn(Object, Object)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object2, Object1)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 axiom(holds_at(neg(directlyIn(Object2, Object1)), Time),
     [holds_at(directlyIn(Object1, Object2), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 
  /*  not(holds_at(directlyIn(Object1, Object2), Time)) :-
        not(holds_at(neg(directlyIn(Object2, Object1)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
 
  /*  [holds_at(directlyIn(Object2, Object1), Time)] ->
@@ -620,7 +647,9 @@ axiom(holds_at(neg(directlyIn(Object2, Object1)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object1, Object2)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',116).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:117
 axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
     [holds_at(directlyIn(Object2, Object1), Time)]).
 
@@ -637,11 +666,14 @@ axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
  /*  holds_at(directlyIn(Object1, Object2), Time), holds_at(directlyIn(Object2, Object3), Time) ->
        holds_at(neg(directlyIn(Object1, Object3)), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  holds_at(neg(directlyIn(Object1, Object3)), Time) :-
        holds_at(directlyIn(Object1, Object2), Time),
        holds_at(directlyIn(Object2, Object3), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  [holds_at(directlyIn(Object1, Object2), Time), holds_at(directlyIn(Object2, Object3), Time)] ->
@@ -650,18 +682,22 @@ axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object1, Object3)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 axiom(holds_at(neg(directlyIn(Object1, Object3)), Time),
    
     [ holds_at(directlyIn(Object1, Object2), Time),
       holds_at(directlyIn(Object2, Object3), Time)
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  not(holds_at(directlyIn(Object1, Object2), Time)) :-
        holds_at(directlyIn(Object2, Object3), Time),
        not(holds_at(neg(directlyIn(Object1, Object3)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  [holds_at(directlyIn(Object2, Object3), Time), holds_at(directlyIn(Object1, Object3), Time)] ->
@@ -670,18 +706,22 @@ axiom(holds_at(neg(directlyIn(Object1, Object3)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object1, Object2)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
    
     [ holds_at(directlyIn(Object2, Object3), Time),
       holds_at(directlyIn(Object1, Object3), Time)
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  not(holds_at(directlyIn(Object2, Object3), Time)) :-
        holds_at(directlyIn(Object1, Object2), Time),
        not(holds_at(neg(directlyIn(Object1, Object3)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
 
  /*  [holds_at(directlyIn(Object1, Object2), Time), holds_at(directlyIn(Object1, Object3), Time)] ->
@@ -690,7 +730,9 @@ axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object2, Object3)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',121).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:123
 axiom(holds_at(neg(directlyIn(Object2, Object3)), Time),
    
     [ holds_at(directlyIn(Object1, Object2), Time),
@@ -710,11 +752,14 @@ axiom(holds_at(neg(directlyIn(Object2, Object3)), Time),
  /*  holds_at(directlyIn(Object, Object1), Time), holds_at(directlyIn(Object, Object2), Time) ->
        equals(Object1, Object2).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
 
  /*  not(holds_at(directlyIn(Object, Object1), Time)) :-
        holds_at(directlyIn(Object, Object2), Time),
        not(equals(Object1, Object2)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
 
  /*  [holds_at(directlyIn(Object, Object2), Time), not(equals(Object1, Object2))] ->
@@ -723,18 +768,22 @@ axiom(holds_at(neg(directlyIn(Object2, Object3)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object, Object1)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 axiom(holds_at(neg(directlyIn(Object, Object1)), Time),
    
     [ holds_at(directlyIn(Object, Object2), Time),
       not(equals(Object1, Object2))
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
 
  /*  not(holds_at(directlyIn(Object, Object2), Time)) :-
        holds_at(directlyIn(Object, Object1), Time),
        not(equals(Object1, Object2)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
 
  /*  [holds_at(directlyIn(Object, Object1), Time), not(equals(Object1, Object2))] ->
@@ -743,7 +792,9 @@ axiom(holds_at(neg(directlyIn(Object, Object1)), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object, Object2)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',127).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:129
 axiom(holds_at(neg(directlyIn(Object, Object2)), Time),
    
     [ holds_at(directlyIn(Object, Object1), Time),
@@ -762,10 +813,13 @@ axiom(holds_at(neg(directlyIn(Object, Object2)), Time),
  /*  holds_at(directlyIn(Object, Room), Time) ->
        holds_at(inRoom(Object, Room), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 
  /*  holds_at(inRoom(Object, Room), Time) :-
        holds_at(directlyIn(Object, Room), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 
  /*  [holds_at(directlyIn(Object, Room), Time)] ->
@@ -774,13 +828,17 @@ axiom(holds_at(neg(directlyIn(Object, Object2)), Time),
           tvs2=[Time],
           holds_at(inRoom(Object, Room), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 axiom(holds_at(inRoom(Object, Room), Time),
     [holds_at(directlyIn(Object, Room), Time)]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 
  /*  not(holds_at(directlyIn(Object, Room), Time)) :-
        not(holds_at(inRoom(Object, Room), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
 
  /*  [holds_at(neg(inRoom(Object, Room)), Time)] ->
@@ -789,7 +847,9 @@ axiom(holds_at(inRoom(Object, Room), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object, Room)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',133).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:134
 axiom(holds_at(neg(directlyIn(Object, Room)), Time),
     [holds_at(neg(inRoom(Object, Room)), Time)]).
 
@@ -806,11 +866,14 @@ axiom(holds_at(neg(directlyIn(Object, Room)), Time),
  /*  holds_at(directlyIn(Object1, Object2), Time), holds_at(inRoom(Object2, Room), Time) ->
        holds_at(inRoom(Object1, Room), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  holds_at(inRoom(Object1, Room), Time) :-
        holds_at(directlyIn(Object1, Object2), Time),
        holds_at(inRoom(Object2, Room), Time).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  [holds_at(directlyIn(Object1, Object2), Time), holds_at(inRoom(Object2, Room), Time)] ->
@@ -819,18 +882,22 @@ axiom(holds_at(neg(directlyIn(Object, Room)), Time),
           tvs2=[Time],
           holds_at(inRoom(Object1, Room), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 axiom(holds_at(inRoom(Object1, Room), Time),
    
     [ holds_at(directlyIn(Object1, Object2), Time),
       holds_at(inRoom(Object2, Room), Time)
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  not(holds_at(directlyIn(Object1, Object2), Time)) :-
        holds_at(inRoom(Object2, Room), Time),
        not(holds_at(inRoom(Object1, Room), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  [holds_at(inRoom(Object2, Room), Time), holds_at(neg(inRoom(Object1, Room)), Time)] ->
@@ -839,18 +906,22 @@ axiom(holds_at(inRoom(Object1, Room), Time),
           tvs2=[Time],
           holds_at(neg(directlyIn(Object1, Object2)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
    
     [ holds_at(inRoom(Object2, Room), Time),
       holds_at(neg(inRoom(Object1, Room)), Time)
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  not(holds_at(inRoom(Object2, Room), Time)) :-
        holds_at(directlyIn(Object1, Object2), Time),
        not(holds_at(inRoom(Object1, Room), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
 
  /*  [holds_at(directlyIn(Object1, Object2), Time), holds_at(neg(inRoom(Object1, Room)), Time)] ->
@@ -859,7 +930,9 @@ axiom(holds_at(neg(directlyIn(Object1, Object2)), Time),
           tvs2=[Time],
           holds_at(neg(inRoom(Object2, Room)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',138).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:140
 axiom(holds_at(neg(inRoom(Object2, Room)), Time),
    
     [ holds_at(directlyIn(Object1, Object2), Time),
@@ -879,11 +952,14 @@ axiom(holds_at(neg(inRoom(Object2, Room)), Time),
  /*  holds_at(inRoom(Object, Room1), Time), holds_at(inRoom(Object, Room2), Time) ->
        equals(Room1, Room2).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
+:-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
 
  /*  not(holds_at(inRoom(Object, Room1), Time)) :-
        holds_at(inRoom(Object, Room2), Time),
        not(equals(Room1, Room2)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
 
  /*  [holds_at(inRoom(Object, Room2), Time), not(equals(Room1, Room2))] ->
@@ -892,18 +968,22 @@ axiom(holds_at(neg(inRoom(Object2, Room)), Time),
           tvs2=[Time],
           holds_at(neg(inRoom(Object, Room1)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 axiom(holds_at(neg(inRoom(Object, Room1)), Time),
    
     [ holds_at(inRoom(Object, Room2), Time),
       not(equals(Room1, Room2))
     ]).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
 
  /*  not(holds_at(inRoom(Object, Room2), Time)) :-
        holds_at(inRoom(Object, Room1), Time),
        not(equals(Room1, Room2)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
 
  /*  [holds_at(inRoom(Object, Room1), Time), not(equals(Room1, Room2))] ->
@@ -912,7 +992,9 @@ axiom(holds_at(neg(inRoom(Object, Room1)), Time),
           tvs2=[Time],
           holds_at(neg(inRoom(Object, Room2)), Time)).
  */
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 :-was_s_l('/opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e',144).
+% From /opt/logicmoo_workspace/packs_sys/logicmoo_nlu/prolog/ec_planner/ectest/TestBoxRoom.e:146
 axiom(holds_at(neg(inRoom(Object, Room2)), Time),
    
     [ holds_at(inRoom(Object, Room1), Time),

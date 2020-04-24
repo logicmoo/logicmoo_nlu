@@ -162,6 +162,10 @@ axiom(initially(neg(has_occured(Event))),[]):- executable(Event).
 :- listing(ec_current_domain_db).
 
 
+:- run_tests.
+
+% :- halt.
+
 
 
 

@@ -492,7 +492,7 @@ assert_ele('->'(B,H)):- nonvar(B),
 assert_ele('->'(B,H)):- nonvar(B),B=((B1;B2)),!,assert_ele('->'(B1,H)),assert_ele('->'(B2,H)).
 */
 
-assert_ele('<-'(H,B)):- conjuncts_to_list(B,BL), !, must(assert_axiom(H,BL)).
+assert_ele('<-'(H,B)):- barf, conjuncts_to_list(B,BL), !, must(assert_axiom(H,BL)).
 assert_ele((H :- B)):- !,  assert_ready( (H :- B)).
 % assert_ele((H :- B)):- (H=not(_);is_axiom_head(H)), !, conjuncts_to_list(B,BL), assert_axiom(H,BL).
 assert_ele(axiom(H,B)):- echo_format('~N'), !,
@@ -561,10 +561,14 @@ ForAll([event,animal,time],
 */
 
 barf:- dumpST,wdmsg(i_BaRfzzzzzzzzzzzzzzzzzzzzzzzzzzz), break.
+use_inititally:- true.
 
 cvt0_full(T,G,GG):- must(cvt0(T,G,Y)), !, (G==Y -> G=GG ; cvt0(T,Y,GG)),!.
 
-start_plus(Zero,start):- Zero == 0,!.
+is_start_t(Zero):- Zero == 0,!.
+is_start_t(Zero):- Zero == start,!.
+
+start_plus(Zero,start):- is_start_t(Zero).
 start_plus(Zero,start+Zero):- number(Zero),!.
 
 cvt0(_, X, Y):-  (\+ callable(X);\+ compound(X)), !, X=Y.
@@ -573,8 +577,8 @@ cvt0(_, X=Y, Equals):- !,as_equals(X,Y,Equals).
 cvt0(T0, holds_at(NotH,T),O):- compound(NotH),not(H)= NotH, !, cvt0(T0, holds_at(neg(H),T), O).
 %cvt0(T, P, call(P)):- predicate_property(P,foreign),!.
 %cvt0(_, not(exists(_Vars, holds_at(P, Time))),not(holds_at(neg(P), Time))).
-cvt0(T, initially(N), Out):- cvt0(T, holds_at(N,0), Out).
-
+cvt0(T, initially(N), Out):- \+ use_inititally, cvt0(T, holds_at(N, 0), Out).
+cvt0(_, holds_at(N,Zero),initially(N)):- use_inititally, is_start_t(Zero),!.
 cvt0(_, holds_at(N,Zero),holds_at(N,Expr)):- start_plus(Zero,Expr),!.
 cvt0(_, happens(N,Zero),happens(N,Expr)):- start_plus(Zero,Expr),!.
 %cvt0(T, holds_at(N,AT),'<-'(holds_at(N,TN),(start(T),toffset(T,AT,TN)))):- number(AT),!,atom_concat(t,AT,TN).
@@ -848,8 +852,7 @@ assert_axiom(A1;A2, B):-
 */
 
 assert_axiom_2(H,B):- 
-  compound_name_arity(H, F, 2), needs_cononicalization(F), 
-  !,
+  compound(H), compound_name_arity(H, F, 2), needs_cononicalization(F), !,
   list_to_conjuncts(B, BB),
   assert_m_axiom('->'(BB,H)).
 
@@ -1027,7 +1030,7 @@ fix_time_args(T,[G|Gs],Gss):-
 
 %fix_time_args2(_,Gs,Gs):-!.
 fix_time_args2(_,Gs,Gss):-
-  Gss = [b(start,now),b(now,end)|Gs].
+  list_to_set([b(start,t),b(t,end)|Gs],Gss),!.
 
 visit_time_args(_,   In,G,G,In):- \+ compound(G),!.
 visit_time_args(Stem,In,[G|Gs],[GO|GsO],Out):- !, 
@@ -1125,6 +1128,7 @@ already_good(happens, 3).
 already_good(some, 2).
 already_good(some, 1).
 already_good(ignore, 1).
+already_good(call, 1).
 already_good(holds_at, 2).
 already_good(holds_at, 3).
 already_good(b, 2).
@@ -1219,7 +1223,8 @@ convert_to_axiom(T, (Pre -> '<->'(HB,BH)), HBO):-
 
 convert_to_axiom(T, '<->'(HB,BH), HBOO):-
   convert_to_axiom(T, '->'(HB,BH), HBO1),
-   convert_to_axiom(T, '<-'(HB,BH), HBO2),
+  convert_to_axiom(T, '->'(BH,HB), HBO2),
+   % convert_to_axiom(T, '<-'(HB,BH), HBO2),
   flatten([HBO1,HBO2],HBO),
   convert_to_axiom1(T,HBO,HBOO),!.
 
@@ -1291,7 +1296,7 @@ lock_ec_pred(F,A):- current_predicate(system:F/A),!.
 lock_ec_pred(F,A):- 
   module_transparent(system:F/A),
   functor(P,F,A),
-  assert((system:P:- ec_current_domain_bi(P))),
+  assert((system:P:- ec_current_domain(P))),
   compile_predicates([system:P]),
   export(system:F/A),
   user:import(system:F/A),
@@ -1332,7 +1337,7 @@ needs_process_axiom(executable(_)).
 needs_process_axiom(P):- compound_name_arity(P,F,A),needs_process_axiom_fa(F,A).
 
 needs_process_axiom_fa(iff,2).
-needs_process_axiom_fa('<-',2).
+%needs_process_axiom_fa('<-',2).
 needs_process_axiom_fa('->',2).
 needs_process_axiom_fa(F,A):- arg_info(_,F,Args), (Args==arginfo-> true; functor(Args,_,A)).
 
@@ -1346,8 +1351,8 @@ needs_proccess( File, (H :- _),How):- \+ skipped_ec_file(File), !, nonvar(H),!,n
 
 skipped_ec_file(File):- var(File),fail.
 
-:- export_transparent(hook_ec_axioms/2).
-:- export_transparent(hook_ec_axioms/2).
+:- export(hook_ec_axioms/2).
+:- module_transparent(hook_ec_axioms/2).
 
 :- (prolog:(import(hook_ec_axioms/2))).
 
@@ -1383,6 +1388,8 @@ make_falling_edges(V2,Stem_plus_, T_minus_1_Start, SoFar, Was, Edges, Out):-
   Edges = [Was], Out = SoFar,!.
 
 
+:- use_module(library(ec_planner/code_icl/'icl_int.tex')).
+:- reexport(library(ec_planner/code_icl/'icl_int.tex')).
 
 :- fixup_exports.
 

@@ -37,3 +37,9 @@ executable(open_valve).
 executable(turn_off_boiler).
 
 
+
+
+:- run_tests.
+
+:- halt.
+

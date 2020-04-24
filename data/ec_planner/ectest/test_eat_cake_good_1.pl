@@ -16,24 +16,24 @@ do_test(G) :- G= neg(num_cakes(1)), ec_prove(G).
 do_test(G) :- G= eat_cakes(0), ec_prove(G).
 do_test(G) :- G= eat_cakes(1), ec_prove(G).
 
-%do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(0),now)], fail_solve_goal(G,R).
-%do_test(G) :- G= [happens(eat_cakes(1),now),holds_at(eat_cakes(1),now)], ec_prove(G).
+%do_test(G) :- G= [happens(eat_cakes(1),t),holds_at(eat_cakes(0),t)], fail_solve_goal(G,R).
+%do_test(G) :- G= [happens(eat_cakes(1),t),holds_at(eat_cakes(1),t)], ec_prove(G).
 
-do_test(G) :-  G= [ b(start, now), b(now, aft), b(aft, end), happens(eat_cakes(1), now), holds_at(num_cakes(0), aft) ], 
+do_test(G) :-  G= [ b(start, t), b(t, end), happens(eat_cakes(1), t), holds_at(num_cakes(0), end) ], 
   ec_prove(G).
 
 do_test(G) :- G= {eat_cakes(1),num_cakes(0)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),start)}, ec_prove(G).
+do_test(G) :- G= {happens(eat_cakes(1),t),holds_at(num_cakes(1),start)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(1),now-1)}, ec_prove(G).
+do_test(G) :- G= {happens(eat_cakes(1),t),holds_at(num_cakes(1),t-1)}, ec_prove(G).
 
-do_test(G) :- G= {happens(eat_cakes(1),now),holds_at(num_cakes(0),aft)}, ec_prove(G).
+do_test(G) :- G= {happens(eat_cakes(1),t),holds_at(num_cakes(0),end)}, ec_prove(G).
 
 % rus out of stack but should just fail
-% do_test(G) :- G= {happens(eat_cakes(1),start),holds_at(num_cakes(1),aft)}, ec_prove(G).
+% do_test(G) :- G= {happens(eat_cakes(1),start),holds_at(num_cakes(1),end)}, ec_prove(G).
 
-fluent(num_cakes(integer)).
+fluent(num_cakes(_Integer)).
 
 axiom(initially(num_cakes(5))).
 
@@ -71,10 +71,8 @@ axiom(terminates(make_cakes(Made),num_cakes(N),T), [call((number(E),Made>0)),hol
 
 abducible(dummy).
 
-%executable(imagine_terminates(_)).
-%executable(imagine_initiates(_)).
 executable(make_cake(_)).
 executable(eat_cakes(_)).
-%executable(ignore_cakes(_)).
+
 
 
