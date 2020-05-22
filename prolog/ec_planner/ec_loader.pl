@@ -1413,7 +1413,9 @@ prolog:message(welcome) -->  {hook_ec_axioms(welcome, welcome),fail}.
 :- module_transparent(user:term_expansion/4).
 :- user:import(ec_loader:needs_proccess/3).
 :- user:import(ec_loader:process_ec/2).
-user:term_expansion(In,P,Out,PO):- source_location(File,_), 
+user:term_expansion(In,P,Out,PO):- 
+  \+ current_prolog_flag(ec_loader,false),
+  source_location(File,_), 
   notrace((nonvar(P),compound(In), In\=(:- _), 
       needs_proccess(File, In, Type),PO=P)),
   Out = ( :- call(Type, In) ).
