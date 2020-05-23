@@ -1414,7 +1414,7 @@ prolog:message(welcome) -->  {hook_ec_axioms(welcome, welcome),fail}.
 :- user:import(ec_loader:needs_proccess/3).
 :- user:import(ec_loader:process_ec/2).
 user:term_expansion(In,P,Out,PO):- 
-  \+ current_prolog_flag(ec_loader,false),
+  (\+ current_prolog_flag(ec_loader,false)),
   source_location(File,_), 
   notrace((nonvar(P),compound(In), In\=(:- _), 
       needs_proccess(File, In, Type),PO=P)),
@@ -1438,7 +1438,7 @@ executable(fall_asleep(_X)).
 executable(open(_X, _Y)).
 */
 %:- dynamic(abducible/1).
-abducible(dummy).
+%abducible(dummy).
 % :- ec:abdemo([holds_at(awake(nathan), t)], R), writeq(R).
 /*
   R = [[happens(wake_up(nathan), t1, t1)], [before(t1, t)]]
