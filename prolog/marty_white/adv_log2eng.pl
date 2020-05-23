@@ -415,8 +415,9 @@ logic2english(_Doer, Logic, Text):- \+ \+ tl_loop:in_logic2english(Logic), !, te
 logic2english( Doer, Logic, Text):- locally(tl_loop:in_logic2english(Logic),
   ((logic2eng(Doer, Logic, Eng), must_mw1((eng2txt(Doer, Doer, Eng, Text)))))), !.
 
-
+:- if( current_prolog_flag(xpce,true) ).
 :- noguitracer.
+:- endif.
 
 any2eng(_Speaker, _I, Eng, EngLO):- is_english(Eng), !, EngLO=Eng.
 any2eng(_Speaker, I, Eng, EngLO):- logic2eng(I, Eng, EngLO).
