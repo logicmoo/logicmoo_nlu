@@ -31,7 +31,8 @@ flp_words :-
 	view([words,Words]).
 
 flp_nomicmu_query(Input,Result) :-
-	convert_input_to_words(Input,Words0),
+     with_output_to(string(Result),
+       (convert_input_to_words(Input,Words0),
 	set_flp_words0(Words0),
 	Agent = 'player~1',
 	advstate_db(S0),
@@ -41,7 +42,7 @@ flp_nomicmu_query(Input,Result) :-
 	declare(memories(Agent, Mem2), S1, S),
 	retractall(advstate_db(_)),
 	asserta(advstate_db(S)),
-	once(main_once).
+	once(main_once))).
 	    
 convert_input_to_words(Input,Result) :-
 	atom_string(Input,String),
@@ -88,9 +89,9 @@ get_goals(Goals) :-
 	member(memories('player~1',M),S0),
 	member(todo(Goals),M).
                   
-
-aXiom(view(Item)) ==>>
-  queue_local_event(msg_from(Agent, Msg), [Here]).
+% TODO write this
+%aXiom(view(Item)) ==>>
+%   queue_local_event(msg_from(Agent, Msg), [Here]).
 
 view(Item) :-
 	pprint(Item, always).
