@@ -210,12 +210,14 @@ talk_db(superl, far, furthest).
 %:- include('talk_db.nldata').
 :- absolute_file_name(pldata('talk_db.nldata'),
         File, [access(read)]),
-   open(File, read, In),
-   set_stream(In, encoding(iso_latin_1)),
-   repeat,
-   read(In, P),
-   (P= (:- (G)) -> call(G) ; talkdb:assertz_if_new(P)),
-      P==end_of_file, !.
+   setup_call_cleanup(
+    open(File, read, In),
+    (set_stream(In, encoding(iso_latin_1)),
+     repeat,
+     read(In, P),
+     (P= (:- (G)) -> call(G) ; talkdb:assertz_if_new(P)),
+     P==end_of_file),
+    close(In)).
 
 
 
