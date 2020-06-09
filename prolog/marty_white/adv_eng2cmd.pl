@@ -144,7 +144,7 @@ reframed_call( Pred, Doer, [cls|Args], Logic, M) :- Args\==[], !, cls, reframed_
 reframed_call( Pred,  Self,  Words, Logic, Mem):- call( Pred,  Self,  Words, Logic, Mem).
 
 
-eng2logic(Self, Words, Cmd,   Mem):- show_success(eng2cmd( Self,  Words, Cmd, Mem)), !.
+eng2logic(Self, Words, Cmd,   Mem):- eng2cmd( Self,  Words, Cmd, Mem), !.
 eng2logic(Self, Words, Logic, Mem):- show_success(eng2state( Self,  Words, Logic, Mem)), !.
 eng2logic(Self, Words, Logic, Mem):- append([Self, wonders], Words, Decl), show_success(eng2state( Self,  Decl, Logic, Mem)), !. 
 
@@ -731,7 +731,7 @@ bpart_contol(light, lit).
 bpart_contol(unlight, unlit).
 % %%%%%%%%%%%%%%
 verb_frame1(Action, Light,
-   \[does-done_by:tAnimate, some-objectActedOn, with-using:bpart],
+   [does-done_by:tAnimate, some-objectActedOn, with-using:bpart],
    [Doer, does, $verb, some, Object, using, Instrument], 
    [done_by(Action, Doer),
     pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),    
