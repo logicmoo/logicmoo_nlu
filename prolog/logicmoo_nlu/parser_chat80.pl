@@ -90,7 +90,7 @@ cycQuery80(Q):- current_predicate(_,Q),call(Q).
 :- share_mp(common_logic_kb_hooks:cyckb_t/6).
 :- share_mp(common_logic_kb_hooks:cyckb_t/7).
 :- share_mp(common_logic_kb_hooks:cyckb_t/8).
-:- share_mp(mpred_core:call_u/1).
+:- share_mp(pfc_lib:call_u/1).
 :- share_mp(memoize_pos_to_db/4).
 :- share_mp(must_test_801/3).
 
