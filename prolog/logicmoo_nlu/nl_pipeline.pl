@@ -58,12 +58,14 @@
 :- asserta(t_l:disable_px).
 
 :- shared_parser_data(baseKB:type_action_info/3).
+
+
 :- shared_parser_data(baseKB:agent_call_command/2).
 :- shared_parser_data(baseKB:mud_test/2).
 :- multifile(baseKB:sanity_test/0).
 :- shared_parser_data(baseKB:sanity_test/0).
 :- multifile(baseKB:regression_test/0).
-e:- shared_parser_data(baseKB:regression_test/0).
+:- shared_parser_data(baseKB:regression_test/0).
 :- multifile(baseKB:feature_test/0).
 :- shared_parser_data(baseKB:feature_test/0).
 :- shared_parser_data(baseKB:sanity_test/1).
@@ -511,19 +513,28 @@ load_parser_stanford:-  load_parser_interface(parser_stanford).
 % :- get_pos_tagger(I),jpl_set(I,is_DEBUG,'@'(false)).
 
 :- reexport(library('logicmoo/common_logic/common_logic_snark.pl')). 
+ 
+
+%% with_el_holds_enabled_4_nl( :Goal) is semidet.
+%
+% Using El Holds Enabled.
+%
+:- meta_predicate(with_el_holds_enabled_4_nl(0)).
+with_el_holds_enabled_4_nl(Goal):-locally_hide(el_holds_DISABLED_KB,Goal).
+
 
 :- dynamic is_cyckb_t_pred/2.
 :- dynamic is_cyckb_t_pred_rename/2.
 
 :- dmsg("Scanning el_assertions.pl for programatic definations (This may take 10-30 seconds)").
 %:- ain(cyckb_t(A, _, _) ==> is_cyckb_t_pred(A,2)).
-:- with_el_holds_enabled(gripe_time(10,forall(cyckb_t(A, _, _) , assert_if_new(is_cyckb_t_pred(A,2))))).
+:- with_el_holds_enabled_4_nl(gripe_time(10,forall(cyckb_t(A, _, _) , assert_if_new(is_cyckb_t_pred(A,2))))).
 %:- ain(cyckb_t(A, _, _, _ ) ==> is_cyckb_t_pred(A,3)).
-:- with_el_holds_enabled(gripe_time(2,forall(cyckb_t(A, _, _, _) , assert_if_new(is_cyckb_t_pred(A,3))))).
+:- with_el_holds_enabled_4_nl(gripe_time(2,forall(cyckb_t(A, _, _, _) , assert_if_new(is_cyckb_t_pred(A,3))))).
 %:- ain(cyckb_t(A, _, _, _, _ ) ==> is_cyckb_t_pred(A,4)).
-:- with_el_holds_enabled(gripe_time(2,forall(cyckb_t(A, _, _,_ ,_ ) , assert_if_new(is_cyckb_t_pred(A,4))))).
+:- with_el_holds_enabled_4_nl(gripe_time(2,forall(cyckb_t(A, _, _,_ ,_ ) , assert_if_new(is_cyckb_t_pred(A,4))))).
 %:- ain(cyckb_t(A, _, _, _, _, _ ) ==> is_cyckb_t_pred(A,5)).
-:- with_el_holds_enabled(gripe_time(2,forall(cyckb_t(A, _, _,_ ,_,_ ) , assert_if_new(is_cyckb_t_pred(A,5))))).
+:- with_el_holds_enabled_4_nl(gripe_time(2,forall(cyckb_t(A, _, _,_ ,_,_ ) , assert_if_new(is_cyckb_t_pred(A,5))))).
 
 :- dmsg("Implementing programatic definations (This shoiuld take less than 2 seconds)").
 % :- ain((is_cyckb_t_pred(F,A) ==> {functor(H,F,A),H=..[F|ARGS],KB=..[cyckb_t,F|ARGS],assert_if_new((H:-KB))})).

@@ -11,12 +11,15 @@
 
 :- shared_parser_data(in_continent/2).
 
+:- set_prolog_flag(expect_pfc_file,never).
 :- use_module(library(clpr),[]).
 :- use_module(library(logicmoo_util_body_reorder)).
 :- use_module(library(logicmoo_util_autocut)).
+:- gripe_time(60,baseKB:ensure_loaded(library('logicmoo/plarkc/logicmoo_i_cyc_rewriting'))).
+
 
 %:- install_constant_renamer_until_eof.
-:- call_on_eof(if_defined(show_missing_renames)),  
+:- call_on_eof(show_missing_renames),
    call_on_eof(set_prolog_flag(do_renames_sumo,maybe)),
    set_prolog_flag_until_eof(do_renames,term_expansion).
 
@@ -394,7 +397,9 @@ river(R) :- river_pathlist(R,_L).
 
 
 
+:- set_prolog_flag(expect_pfc_file,some_preds).
 ==>in_continent(north_america, america).
+:- set_prolog_flag(expect_pfc_file,never).
 
 % ------------------------------
 % "Whoable Count Nouns" 

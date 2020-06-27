@@ -36,6 +36,8 @@
 %:- '$set_source_module'(baseKB).
 %:- '$set_typein_module'(baseKB).
 
+:- set_prolog_flag(expect_pfc_file,never).
+
 
 %:- parser_chat80:export(parser_chat80:theText80/3).
 %:- import(parser_chat80:theText80/3).
@@ -46,6 +48,7 @@
 
 :- use_module(library(logicmoo_nlu/parser_sharing)).
 :- use_module(library(pfc_lib)).
+:- set_prolog_flag(expect_pfc_file,never).
 
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
@@ -161,9 +164,11 @@ with_traits(X):- forall((chat80(XX, Ans, Traits), contains_subterm(Traits,X)),ch
 
 :- set_how_virtualize_file(part).
 
+:- set_prolog_flag(expect_pfc_file,some_preds).
 parser_chat80:chat80(X):- awc, ground(X), !, (is_trait(X)-> with_traits(X) ; test_chat80(X)).
 parser_chat80:chat80(X, Ans):- awc, ground(X),!, chat80(X), ignore((nonvar(Ans),dmsg(answersShouldBe(Ans)))). 
 parser_chat80:chat80(X, Ans, Traits):- awc, ground(X),!, chat80(X, Ans), ignore((nonvar(Traits),dmsg(traitsShouldBe(Traits)))). 
+:- set_prolog_flag(expect_pfc_file,never).
 
 :- set_how_virtualize_file(false).
 
@@ -299,11 +304,12 @@ baseKB:feature_test:- chat80_tests.
 % ===========================================================
 % CHAT80 command
 % ===========================================================
+:- set_prolog_flag(expect_pfc_file,some_preds).
 ==>type_action_info(tHumanControlled,actChat80(ftListFn(ftTerm)),"Development test CHAT-80 Text for a human.  Usage: CHAT80 Cant i see the blue backpack?").
 
 ==>agent_call_command(_Gent,actChat80([])):- chat80.
 ==>agent_call_command(_Gent,actChat80(StringM)):- chat80(StringM).  
-
+:- set_prolog_flag(expect_pfc_file,never).
 
 % ===========================================================
 % CHAT80 REPL
