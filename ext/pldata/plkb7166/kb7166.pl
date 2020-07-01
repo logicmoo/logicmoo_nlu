@@ -13,7 +13,7 @@
 do_mdep(FA):-
   '$current_source_module'(M),
   '$current_typein_module'(CM),
-  M:multifile(FA),
+  M:multifile(FA),  
   M:dynamic(FA),
   M:export(FA),
   CM:import(M:FA),

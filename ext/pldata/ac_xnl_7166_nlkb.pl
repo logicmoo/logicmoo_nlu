@@ -5,7 +5,7 @@
 
 findset(T,G,L):- setof(T,G,L0)->(flatten([L0],List),list_to_set(List,L)); L=[].
 
-ac_nl_info(Str,Infos):- 
+ac_nl_info(Str,Infos):-
        findset(Info,ac_nl_info_0(Str,Info),Info0),
        maplist(ac_nl_info_1,Info0,More),
        append([Info0|More],ListM),list_to_set(ListM,Infos),!.
@@ -13,8 +13,8 @@ ac_nl_info(Str,Infos):-
 ac_nl_info_0(Str,[cycWord(CycWord),cycPOS(RegularAdverb)]):- acnl(RegularAdverb,CycWord,Str,_645343).
 ac_nl_info_0(Str,[str(Str)]):- string(Str).
 ac_nl_info_0(CycWord,[cycWord(CycWord)]):-  acnl('isa',CycWord,_,_645347).
-ac_nl_info_0(Word,Results):- 
-   atom(Word), % \+ acnl('isa',xCleverTheWord,_,_645347), 
+ac_nl_info_0(Word,Results):-
+   atom(Word), % \+ acnl('isa',xCleverTheWord,_,_645347),
    downcase_atom(Word,Word),atom_string(Word,String),!,ac_nl_info_0(String,Results).
 
 
@@ -38,6 +38,7 @@ killBadNL:- killBadNLC(nlkb7166:acnl(retainTerm,_,_)),fail.
 %killBadNL:- killBadNLC(nlkb7166:acnl(_,xxxxx,_,_)),fail.
 %killBadNL:- killBadNLC(nlkb7166:acnl(_,_,xxxxx,_)),fail.
 killBadNL:- between(1,8,N),length(L,N),append([acnl,F|L],[_ID],Out),member('$BORKED_ARG',L),P=..Out,
+  volatile(nlkb7166:acnl/N),
   call(nlkb7166:P),
   (F==verbSemTrans-> (wdmsg(retain(P)),fail) ; (killBadNL(nlkb7166:P),fail)).
 killBadNL.
