@@ -170,7 +170,7 @@ telnet_decide_action(Agent, Mem, Mem) :-
 
 
 %:- if(\+ prolog_load_context(reloading, t)).
-:- initialization(adventure, main).
+%:- initialization(adventure, main).
 %:- endif.
 
 main_once:- 

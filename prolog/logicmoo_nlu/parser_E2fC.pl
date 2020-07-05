@@ -4228,7 +4228,7 @@ end_of_file.
         isPOS/5 is declared as meta_predicate isPOS(?,?,?,?,?), but has no clauses
         logicmoo_util_shared_dynamic:decl_as/1 is declared as meta_predicate decl_as(+), but has no clauses
         mpred_agenda:arity/2),
-        mpred_agenda:call_OnEachLoad/1),
+        baseKB:call_OnEachLoad/1),
         mpred_at_box:genlMt/2),
         mpred_expansion:t/2),
         mpred_hooks:arity/2),

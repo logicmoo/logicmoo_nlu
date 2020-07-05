@@ -17,6 +17,18 @@
 %
 */
 
+%:- system:use_module(library(console_input)).
+%:- system:use_module(library(date)).
+:- system:use_module(library(make)).
+%:- system:use_module(library(qsave)).
+:- system:use_module(library(prolog_autoload)).
+%:- system:use_module(library(prolog_pack)).
+:- system:use_module(library(lists)).
+:- system:use_module(library(backcomp)).
+%:- system:use_module(library(edit)).
+%:- system:use_module(library(prolog_trace)).
+%:- system:use_module(library(threadutil)).
+:- system:use_module(library(debug)).
 
 :- reexport(library(logicmoo_utils_all)).
 ludef:- list_undefined([module_class([user, system, library, test, development])]).

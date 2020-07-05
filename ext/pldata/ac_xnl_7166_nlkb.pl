@@ -38,7 +38,7 @@ killBadNL:- killBadNLC(nlkb7166:acnl(retainTerm,_,_)),fail.
 %killBadNL:- killBadNLC(nlkb7166:acnl(_,xxxxx,_,_)),fail.
 %killBadNL:- killBadNLC(nlkb7166:acnl(_,_,xxxxx,_)),fail.
 killBadNL:- between(1,8,N),length(L,N),append([acnl,F|L],[_ID],Out),member('$BORKED_ARG',L),P=..Out,
-  volatile(nlkb7166:acnl/N),
+  % volatile(nlkb7166:acnl/N),
   call(nlkb7166:P),
   (F==verbSemTrans-> (wdmsg(retain(P)),fail) ; (killBadNL(nlkb7166:P),fail)).
 killBadNL.

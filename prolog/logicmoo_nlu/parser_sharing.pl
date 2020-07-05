@@ -9,6 +9,7 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
+
 :- module(parser_sharing,[
   % term_expansion/4,
    op(1150,fx,(share_mp)),
@@ -22,12 +23,14 @@
 
 % :- ensure_loaded(nl_pipeline).
 
-:- expand_file_search_path(pack(logicmoo_nlu/ext/pldata),X),
-   exists_directory(X),!,assert_if_new(user:file_search_path(pldata,X)).
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo_nlu_ext,Dir)).
 :- absolute_file_name('../../ext/',Dir,[file_type(directory)]),
    asserta_new(user:file_search_path(logicmoo,Dir)).
+:- absolute_file_name('../../ext/pldata/',Dir,[file_type(directory)]),
+   asserta_new(user:file_search_path(pldata,Dir)).
+
+
 
 if_giveup_dcg(S,_):- var(S),!.
 if_giveup_dcg(_,_,S,_):- var(S),!.

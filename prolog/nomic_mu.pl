@@ -27,6 +27,7 @@
 %:- if(current_prolog_flag(argv,[])).
 %  sudo -u prologmud_server gdb -x gdbinit -return-child-result -ex "set pagination off" -ex run -ex quit --args swipl -l run_mud_server.pl --all --world --repl --lisp --lispsock --sumo --planner --nonet --repl --noworld
 :- if(\+ ((current_prolog_flag(argv,X),member(E,X),atom_concat('--',_,E)))).
+/*
 :- current_prolog_flag('argv',WasArgV),
    append(WasArgV,[         
    '--', % '--all',
@@ -38,22 +39,12 @@
    %'--world',
    '--sumo', '--planner'], NewArgV),
    set_prolog_flag('argv',NewArgV).
-
 :- current_prolog_flag('argv',Is),writeq(set_prolog_flag('argv',Is)),!,nl.
+*/
 :- endif.
 
-:-if(exists_source(library(pldoc))).
-:- use_module(library(pldoc), []). % Must be loaded before doc_process	
-:- use_module(library(pldoc/doc_process)).
-:- use_module(library(prolog_xref)).
-:- doc_collect(true).
-:-endif.
-
-:-if(exists_source(library(instant_prolog_docs))).
-:- use_module(library(instant_prolog_docs)).
-:-endif.
-
-
+%:- use_module(library(logicmoo_nlu)).
+/*
 % :- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_chat80)).
 %:- system:ensure_loaded(pack(logicmoo_nlu/prolog/logicmoo_nlu/parser_pldata)).
 
@@ -82,6 +73,7 @@
 :- load_wordnet.
 :- endif.
 
+*/
 
 
 :- ensure_loaded('./marty_white/adv_main').
@@ -148,8 +140,8 @@ or to run as single player use:
 
 %:- '$set_typein_module'(mu).
 
-:- initialization(srv_mu_main, (main)).
-:- initialization(usage_mu, (now)).
-:- initialization(usage_mu, (program)).
+%:- runtime_boot(srv_mu_main, (main)).
+:- initialization(usage_mu, program).
+%:- initialization(usage_mu, (program)).
 
 

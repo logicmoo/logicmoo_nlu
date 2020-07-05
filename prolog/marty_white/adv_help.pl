@@ -27,6 +27,17 @@
 :- use_module(library(help)). %, [online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
 :- use_module(library(pldoc)).
 :- use_module(library(pldoc/doc_man)).
+
+:-if(exists_source(library(pldoc))).
+:- use_module(library(pldoc), []). % Must be loaded before doc_process	
+:- use_module(library(pldoc/doc_process)).
+:- use_module(library(prolog_xref)).
+:- set_prolog_flag(pldoc_collecting, true).
+:-endif.
+
+:-if(exists_source(library(instant_prolog_docs))).
+:- use_module(library(instant_prolog_docs)).
+:-endif.
 */
 
 

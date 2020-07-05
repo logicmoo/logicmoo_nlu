@@ -1311,7 +1311,7 @@ lock_ec_pred(F,A):-
 :- lock_ec_pred(axiom,2).
 :- lock_ec_pred(executable,1).
 :- lock_ec_pred(abducible,1).
-:- forall(arg_info_arity(_,F,A), lock_ec_pred(F,A)).
+:- forall((arg_info_arity(_,F,A),F\==t), lock_ec_pred(F,A)).
 
 correct_ax_args(T,F,A,Args,axiom_head,_Arity,N, PP):-  N is A +1 ,!, append(Args,[T],NewArgs), PP =.. [F|NewArgs].
 correct_ax_args(_T,F,A,Args,axiom_head,_Arity,N,PP):- A=N, PP =.. [F|Args].

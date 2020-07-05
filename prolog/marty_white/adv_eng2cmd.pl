@@ -81,7 +81,7 @@ convert_reflexive_self(Agent, Words, NewWords) :-
 
 :- meta_predicate(with_parse_mem(*, 0)).
 with_parse_mem(Mem, Goal):-
-  b_getval(parsemem, MemWas),
+  (nb_current(parsemem, MemWas)->true;parsemem = []),
   setup_call_cleanup(
         b_setval(parsemem, Mem),
         Goal,

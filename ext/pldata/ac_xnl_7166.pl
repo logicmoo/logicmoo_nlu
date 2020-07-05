@@ -22,7 +22,7 @@
 :- set_prolog_flag(double_quotes,string).
 :- style_check(-singleton).
 
-:- if(exists_source('ac_xnl/ac_xnl_7166_part_000000.nldata')).
+:- if(true; exists_source('ac_xnl/ac_xnl_7166_part_000000.nldata')).
 
 :-dynamic(acnl/3).
 :-dynamic(acnl/4).

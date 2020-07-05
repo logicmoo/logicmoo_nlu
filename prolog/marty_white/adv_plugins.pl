@@ -80,7 +80,4 @@ get_plug_prefix(Plug, Prefix):- get_advstate(S0), getprop(Plug, prefix=Prefix, S
 get_plugins(PlugList):- get_advstate(S0),
    get_objects(inherited(nomicmu_plugin);inherit(nomicmu_plugin), PlugList, S0), !.
 
-
-:- initialization(scan_and_load_plugins).
-
-:- initialization(scan_and_load_plugins, restore_state).
+:- during_boot(scan_and_load_plugins).
