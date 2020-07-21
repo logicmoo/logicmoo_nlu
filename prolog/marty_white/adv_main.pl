@@ -20,7 +20,9 @@
 
 :- use_module(library(logicmoo_common)).
 
+:- if(\+ current_prolog_flag(ec_loader,false)).
 :- use_module(library(ec_planner/ec_loader)).
+:- endif.
 
 /*
 :- if(\+ exists_source(library(poor_bugger))).

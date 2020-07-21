@@ -2028,7 +2028,7 @@ nnf(';'(X,Y),odd,(XB;YB)) :- !,
    nnf(X,odd,XB),
    nnf(Y,odd,YB).
 
-nnf((~ X),P,B) :- !,
+nnf('~'( X),P,B) :- !,
    nnf((not(X)),P,B).
 
 nnf((not(X)),P,B) :- !,
@@ -2152,7 +2152,7 @@ an appropriate state at the end of the computation.
 \index{explain}
 \begin{verbatim} */
 explain_th(G) :- 
-  ignore((explain_goal(G)*->fail;(format('~nUntrue: ~p.~n',[G]),forall(explain_goal(~G),true)))).
+  ignore((explain_goal(G)*->fail;(format('~nUntrue: ~p.~n',[G]),forall(explain_goal('~'(G)),true)))).
 
 explain_goal(G) :-
    (flagth((timing,on))),!,

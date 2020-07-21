@@ -16,6 +16,8 @@
 %
 %
 */
+:- op(500,fx,~).
+
 
 
 :- discontiguous(implications/4).

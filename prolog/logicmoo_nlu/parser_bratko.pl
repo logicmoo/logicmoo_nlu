@@ -49,10 +49,57 @@ test_bratko("an author of every book wrote a program").
 test_bratko("bertand wrote a book about gottlob").
 test_bratko("bertand wrote about gottlob").
 test_bratko("bertand wrote nothing about gottlob").
+test_bratko("bertand wrote to alfred about gottlob").
+test_bratko("bertand wrote a letter to alfred about gottlob").
+
+test_bratko("bertand wrote alfred a letter about gottlob").
+
+test_bratko("bertand wrote alfred").
+
+test_bratko("bertand wrote alfred a letter").
+%              BY     wrote     TO      OBJECT
+
+test_bratko("bertand wrote a letter to alfred").
+test_bratko("bertand wrote to alfred a letter").
+test_bratko("to alfred bertand wrote a letter").
+test_bratko("bertand wrote a letter"). 
+
+"without a paddle for fun Bertand wrote."
+PREP + SLOT
 
 test_bratko("what did alfred give to bertrand").
-test_bratko("alfred gave a book to bertrand").
+test_bratko("alfred gave ").
 test_bratko("who did alfred give a book to").
+
+
+
+
+prep_list([by,$write,to,object]).
+prep_list([by,$jump,over]).
+prep_list([at_time,from,$gave,to,object]).
+
+secure, ((s:_\np)/np)/np, ['Beneficiary','Theme','Cause'
+
+"alfred gave for fun joe a book "
+I bet you $100 i will win.
+by $bet, to, worth, object
+
+
+I wrote you "i will win."
+
+
+
+%            BY     jump  OVER
+test_bratko("alfred jumped ").
+up the creek 
+without a paddle
+
+
+
+"up the creek for fun alfred jumped  without a paddle"
+
+"up the creek  without a paddle for fun alfred jumped "
+
 
 :- throw(module(parser_e2c)).
 

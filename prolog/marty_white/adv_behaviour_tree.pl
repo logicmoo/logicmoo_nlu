@@ -82,7 +82,7 @@ maybe_dcg(HH, BB, Out):-
   discontiguous(HH), multifile(HH),
   dcg_translate_rule((HH-->BB), Out).
 
-bt_accept_fwd(Assert):- dbug1(==> did_bt_accept_fwd(Assert)).
+bt_accept_fwd(Assert):- dbug1('==>'(did_bt_accept_fwd(Assert))).
 bt_accept_low(AssertO):- assert(bt_data(AssertO)), bt_accept_fwd(AssertO).
 bt_accept(Assert):- expand_bt(h, Assert, AssertO), bt_accept_low(AssertO).
 

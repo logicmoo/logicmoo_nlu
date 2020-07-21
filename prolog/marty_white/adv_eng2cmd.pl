@@ -523,7 +523,60 @@ make_dataframe_simple([Prop| FrameArgs], TextArgs, [NewArg|VarsOf], Action, Fram
 % did player1 give love to sally?
 % give sally love
 % give love to sally
-% give sally some love
+%    From    GIVE    To      That
+% player1   give    sally    love
+/*
+
+player1   give    [to sally]    [That] love
+
+
+
+ "from" SENDS "to" "that"
+  joe  sends  sally  love
+
+   A sends  B     C
+   from     to  that
+
+   A eats  B     C
+   
+
+
+
+O = [[ player1], [did, give], [t sally], [that, love]] ;
+O = [[ player1], [did, give], [that, love], [to, sally]] ;
+O = [[ player1], [to, sally], [did, give], [that, love]] ;
+O = [[player1], [to, sally], [that, love], [did, give]] ;
+O = [[player1], [that, love], [did, give], [to, sally]] ;
+O = [[player1], [that, love], [ sally], [did, give]] ;
+O = [[was, given], [from, player1], [ sally], [ love]] ;
+O = [[did, give], [from, player1], [that, love], [to, sally]] ;
+O = [[did, give], [to, sally], [from, player1], [ love]] ;
+O = [[did, give], [to, sally], [that, love], [from, player1]] ;
+O = [[did, give], [that, love], [from, player1], [to, sally]] ;
+O = [[did, give], [that, love], [to, sally], [from, player1]] ;
+O = [[to, sally], [from, player1], [did, give], [that, love]] ;
+O = [[to, sally], [from, player1], [that, love], [did, give]] ;
+O = [[to, sally], [did, give], [from, player1], [ love]] ;
+O = [[to, sally], [did, give], [that, love], [from, player1]] ;
+O = [[to, sally], [that, love], [from, player1], [did, give]] ;
+O = [[to, sally], [that, love], [did, give], [from, player1]] ;
+O = [[that, love], [from, player1], [did, give], [to, sally]] ;
+O = [[that, love], [from, player1], [to, sally], [did, give]] ;
+O = [[that, love], [did, give], [from, player1], [to, sally]] ;
+O = [[that, love], [did, give], [to, sally], [from, player1]] ;
+O = [[that, love], [to, sally], [from, player1], [did, give]] ;
+O = [[that, love], [to, sally], [did, give], [from, player1]] ;
+
+
+
+|[That love] player1   gave    [to sally]    
+[That love] [to sally]  player1   gave    
+[to sally]  [That love]  player1   gave    
+ player1   gave   [That love]    [to sally] 
+
+*/
+
+% player1 give sally love
 verb_frame1(Action, give,
   [does-done_by:tAnimate, some-objectActedOn:object, to-recipient:tAnimate, with-using:bpart],
   [Doer, does, $verb, some, Object, to, Recipient, using, Instrument],
@@ -567,6 +620,35 @@ verb_frame1(Action, give,
 %    lower part of trunk of tree
 %    in part of trunk of tree
 
+/*
+
+The experts attributed Raphael this picture.
+
+I forwarded Winifred the letter.
+
+Managers presented the_foreman a_gold_watch.
+
+Ted Kicked John the ball
+
+Monica hit Martina the ball.
+
+The critics ascribe Shakespeare this play
+
+She was given the job by the previous manager.
+
+The previous manager gave her the job  from Joe in the office at 9pm for a joke 
+
+
+9pm, The previous manager gave her joe's  office job  
+ AT      BY                    TO   FROM   IN
+
+
+
+
+       BY            GAVE   TO    THAT        
+       
+*/
+
 
 %    on tree = on tree trunk = on tree bark
 %    at tree trunk = under tree bark
@@ -582,6 +664,7 @@ verb_frame1(Action, give,
 %    at book cover
 %    at cover of book
 % 
+
 verb_frame1(Action, etch,
  [does-done_by:tAnimate, some-depliction:glyphic, on-target:surface, of-objectActedOn, with-using:tTool],
  [Doer, does, $verb, some, Depliction, on, Surface, of, Object, using, Instrument],

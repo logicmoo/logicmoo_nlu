@@ -224,7 +224,7 @@ set_mpred_props(M:P,E):- compound_name_arity(P,F,A),set_mpred_props(M:F/A,E),
 
 add_mat(P):- compound_name_arity(P,_,0),!.
 add_mat(P):-
-   assert_ready(red, (==>meta_argtypes(P))),
+   assert_ready(red, ('==>'(meta_argtypes(P)))),
    ain(meta_argtypes(P)).
 
 
@@ -419,7 +419,7 @@ assert_ele(Cvt1):-  (some_renames(Cvt1,Cvt2) -> Cvt1\=@=Cvt2), !, assert_ele(Cvt
 
 assert_ele(_):- notrace((echo_format('~N'), fail)).
 assert_ele(translate(Event, Outfile)):- !, mention_s_l, echo_format('% translate: ~w  File: ~w ~n',[Event, Outfile]).
-%assert_ele(==>(S0)):- !, assert_ready( ==>(S0)).
+%assert_ele('==>'(S0)):- !, assert_ready( '==>'(S0)).
 assert_ele(:- S0):- !, assert_ready( (:-(S0))).
 
 assert_ele(axiom(H,B)):- !, assert_axiom(H,B).
@@ -449,21 +449,21 @@ assert_ele(HB):- HB=..[function, RelSpec, RetType],
    get_functor(PredSpec,P),
    assert_ele(functional_predicate(F,P)),
    
-   assert_ele(==>resultIsa(F, RetType)))).
+   assert_ele('==>'(resultIsa(F, RetType))))).
 
 assert_ele(HB):- HB=..[RelType,RelSpec],arg_info(domain,RelType,arginfo), !, 
   functor_skel(RelSpec,P),!, 
   RelTypeOpen=..[RelType,P],
   nop(assert_ready(blue, RelTypeOpen)),
   assert_ready(blue, HB),
-  assert_ready(red, (==>(mpred_prop(RelSpec, RelType)))),
+  assert_ready(red, ('==>'(mpred_prop(RelSpec, RelType)))),
   must(set_mpred_props(RelSpec,RelType)).
 
-assert_ele(HB):- functor(HB,F, L), arg_info(abducible,F,Args),Args=..[v|ArgL], length(ArgL,L), !, assert_ready(yellow, ==>(HB)).
+assert_ele(HB):- functor(HB,F, L), arg_info(abducible,F,Args),Args=..[v|ArgL], length(ArgL,L), !, assert_ready(yellow, '==>'(HB)).
 assert_ele(subsort(F, W)):- !, must_maplist(assert_ready(yellow),[sort(F),sort(W),subsort(F, W)]).
 assert_ele(option(X,Y)):- set_ec_option(X,Y), must_maplist(assert_ready(yellow),[:- set_ec_option(X,Y)]).
-assert_ele(xor(XORS)):- conjuncts_to_list(XORS,List),  !, assert_ready(red, ==>xor(List)).
-assert_ele(t(F, W)):- !, must_maplist(assert_ready(yellow),[==>(sort(F)), ==>(t(F, W))]).
+assert_ele(xor(XORS)):- conjuncts_to_list(XORS,List),  !, assert_ready(red, '==>'xor(List)).
+assert_ele(t(F, W)):- !, must_maplist(assert_ready(yellow),['==>'(sort(F)), '==>'(t(F, W))]).
 
 % assert_ele(not(holds_at(H,T))):- assert_ele(holds_at(neg(H),T)).
 assert_ele(Cvt1):-  (cvt0(_T, Cvt1,Cvt2) -> Cvt1\=@=Cvt2), !, assert_ele(Cvt2).
@@ -532,8 +532,8 @@ assert_ele(H):- compound_name_arity(H, F, 2),
 
 assert_ele(not(H)):-  !,  assert_m_axiom(not(H)).
 
-assert_ele(==>(SS)):- echo_format('~N'), !,
-  assert_ready(red, ==>(SS)).
+assert_ele('==>'(SS)):- echo_format('~N'), !,
+  assert_ready(red, '==>'(SS)).
 
 assert_ele(axiom(H)):- !, assert_ele(axiom(H,[])).
 

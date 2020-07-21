@@ -229,7 +229,7 @@ kill_talk_db_bad_verbs:-
          retract(talkdb:talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed)),
          assertz_if_new(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed)),
          assertz_if_new(talkdb:talk_db(noun_or_verb,Jackets,Jacketing,Jacket)),
-        % dmsg(fixed_talkdb_noun_verb(VerbType,(Jacket-->Jackets/Jacketed/Jacketing))),
+         dmsg(fixed_talkdb_noun_verb(VerbType,(Jacket-->Jackets/Jacketed/Jacketing))),
          fail.
 kill_talk_db_bad_verbs:-
          talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished),
@@ -237,7 +237,7 @@ kill_talk_db_bad_verbs:-
          retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished):-true),
          assertz_if_new(talkdb:talk_db(VerbType,Fishes,Fishes,Fished,Fishing,Fished)),
          assertz_if_new(talkdb:talk_db(noun_or_verb,Fishes,Fishing,Fish)),
-         % dmsg(fixed_talkdb_noun_verb(VerbType,(Fish-->Fishes/Fished/Fishing))),
+         dmsg(fixed_talkdb_noun_verb(VerbType,(Fish-->Fishes/Fished/Fishing))),
          fail.
 
 % noun1/3
