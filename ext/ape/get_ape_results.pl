@@ -25,7 +25,7 @@
 	]).
 
 :- reexport('prolog/ape').
-:- use_module(parser_sharing).
+:- use_module(library(logicmoo_nlu/parser_sharing)).
 :-export(rename_vars/2).
 rename_vars(Content):-rename_vars(Content,RContent),ignore(Content=RContent).
 rename_vars(Content0,RContent):-

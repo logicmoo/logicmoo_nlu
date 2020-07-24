@@ -171,7 +171,7 @@ clean_ccg_skips(_,0).
 
 ignore_1_line(Out):- read_line_to_string(Out, String),dmsg(ignore_1_line(String)).
 
-:-debug.
+%:-debug.
 
 fix_apos(A,AA):- atom(A), atomic_list_concat_safe([X,'-APOS-',Y],A),ground(X:Y),!,must(atomic_list_concat_safe([X,'\'',Y],AA)),!.
 fix_apos([],[]):-!.
