@@ -25,12 +25,12 @@ is_e_toplevel :- prolog_load_context(source,File),prolog_load_context(file,File)
 
 :- if(\+ current_prolog_flag(lm_no_autoload,_)).
 :- set_prolog_flag(lm_no_autoload,false).
-:- wdmsg("WARNING: PFC_AUTOLOAD").
+:- dmsg("WARNING: PFC_AUTOLOAD").
 :- endif.
 
 :- if(\+ current_prolog_flag(lm_pfc_lean,_)).
 :- set_prolog_flag(lm_pfc_lean,false).
-:- wdmsg("WARNING: PFC_NOT_LEAN").
+:- dmsg("WARNING: PFC_NOT_LEAN").
 :- endif.
 
 :- use_module(library(logicmoo_utils_all)).
@@ -302,8 +302,8 @@ fix_axiom_head(_, G, G):- G\=not(_), functor_skel(G,P), syntx_term_check(predica
 fix_axiom_head(T, P, PP):-  
    P =..[F|Args],functor(P,F,A), arg_info(AxH,F,Arity),
    functor(Arity,_,N),  correct_ax_args(T,F,A,Args,AxH,Arity,N,PP),!. 
-fix_axiom_head(T, P, Out):- predicate_property(P,foreign),!,if_debugging(ec,((call(dumpST), wdmsg(fix_axiom_head(T, call(P))),break))),!,Out=call(P).
-fix_axiom_head(T, G, GG):- if_debugging(ec, ((call(dumpST), wdmsg(fix_axiom_head(T, G)), break))), GG = holds_at(G, T).
+fix_axiom_head(T, P, Out):- predicate_property(P,foreign),!,if_debugging(ec,((call(dumpST), dmsg(fix_axiom_head(T, call(P))),break))),!,Out=call(P).
+fix_axiom_head(T, G, GG):- if_debugging(ec, ((call(dumpST), dmsg(fix_axiom_head(T, G)), break))), GG = holds_at(G, T).
 
 :- export_transparent(fix_axiom_head/3).
 
@@ -384,7 +384,7 @@ assertz_if_new_domain_db((H:-B),T):- !, assertz_if_new_msg((user:ec_current_doma
 assertz_if_new_domain_db(ValueO,_):- ValueO =@= axiom(holds_at(neg(raining), _), []),!,barf.
 assertz_if_new_domain_db(ValueO,T):- assertz_if_new_msg(user:ec_current_domain_db(ValueO,T)).
 
-assertz_if_new_msg(Stuff):- clause_asserted(Stuff),wdmsg(already(Stuff)).
+assertz_if_new_msg(Stuff):- clause_asserted(Stuff),dmsg(already(Stuff)).
 assertz_if_new_msg(Stuff):- assertz_if_new(Stuff).
 
 some_renames(O,O):- \+ compound(O),!.
@@ -560,7 +560,7 @@ ForAll([event,animal,time],
    (Exists([human1].  event=ThrowOff(animal,human1)))))).
 */
 
-barf:- dumpST,wdmsg(i_BaRfzzzzzzzzzzzzzzzzzzzzzzzzzzz), break.
+barf:- dumpST,dmsg(i_BaRfzzzzzzzzzzzzzzzzzzzzzzzzzzz), break.
 use_inititally:- true.
 
 cvt0_full(T,G,GG):- must(cvt0(T,G,Y)), !, (G==Y -> G=GG ; cvt0(T,Y,GG)),!.
@@ -1182,7 +1182,7 @@ brk_on:attribute_goals(Var,[brk_on(Vars,Var)|L],L):- get_attr(Var,brk_on,Vars).
 
 brk_on_unify_hook(Var,Vars):- 
  (var(Var), \+ ( member(E,Vars), E==Var)) -> true ;
-    if_debugging(ec,((dumpST,wdmsg(brk_on(Var)),break))).
+    if_debugging(ec,((dumpST,dmsg(brk_on(Var)),break))).
 
 brk_on_bind(HB):- term_variables(HB,Vars),must_maplist(brk_on(Vars),Vars).
 brk_on(Vars,X):- ord_del_element(Vars,X,Rest),put_attr(X,brk_on,Rest).
@@ -1204,7 +1204,7 @@ do_process_ec(Why, M, NEWHB):- is_list(NEWHB), !, must_maplist(do_process_ec(Why
 do_process_ec(_Why, M, (:- GOAL)):- !, must(M:GOAL).
 do_process_ec(_Why, M, (?- GOAL)):- !, (M:forall(GOAL, true)).
 % How to? M:assertz('$source_location'(S, L):NEWHB),
-%do_process_ec(Why, M, NEWHB):- wdmsg(do_process_ec(Why, M, NEWHB)),fail.
+%do_process_ec(Why, M, NEWHB):- dmsg(do_process_ec(Why, M, NEWHB)),fail.
 do_process_ec(Why, M, NEWHB):- M:call(Why, NEWHB).
 
 :- export_transparent(convert_to_axiom/3).

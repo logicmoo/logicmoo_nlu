@@ -88,8 +88,8 @@ do_test(problem_header(O)):- write('\n/*\n'), fmt(O),write('\n\n*/\n').
 do_test(O):- format('~N~q.~n',[:-O]),call(O).
 
 switch_test(N,_,_,_):- fmt(switch_test(N)).
-note(N,Note):-wdmsg(note(N,Note)),!.
-problem(N,Else,Text):- wdmsg(problem(N,Else,Text)),fail.
+note(N,Note):-dmsg(note(N,Note)),!.
+problem(N,Else,Text):- dmsg(problem(N,Else,Text)),fail.
 % problem(_N,_Else,_Text):-!.
 problem(_N,p,Text):- !, e2c(Text).
 problem(_N,q,Text):- !, e2c(Text).

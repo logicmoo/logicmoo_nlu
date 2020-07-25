@@ -357,9 +357,11 @@ show_pipeline(TID):-
 show_pipeline:-forall(installed_converter(M,CNV),wdmsg(installed_converter(M,CNV))).
 
 
-:- user:ignore(( Z = ('/'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
-:- user:ignore((Z = (':'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
-:- user:ignore((Z = ('-'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
+maybe_display(G):- dmsg(call(writeq(G))).
+
+:- ignore(( Z = ('/'),user:current_op(X,Y,Z),maybe_display(:-(op(X,Y,Z))),nl,fail)).
+:- ignore((Z = (':'),user:current_op(X,Y,Z),maybe_display(:-(op(X,Y,Z))),nl,fail)).
+:- ignore((Z = ('-'),user:current_op(X,Y,Z),maybe_display(:-(op(X,Y,Z))),nl,fail)).
 :- dmsg(parser_all_start).
 
                                              
@@ -581,7 +583,7 @@ with_el_holds_enabled_4_nl(Goal):-locally_hide(el_holds_DISABLED_KB,Goal).
 :- dmsg("List of possible data transformations").
 
 
-:- show_pipeline.
+:- dmsg(call(show_pipeline)).
 
 :- ensure_loaded(parser_pldata).
 
@@ -622,7 +624,8 @@ baseKB:regression_test:- gripe_time(5,test_chat80_sanity).
 :- op(200,fy,(-)).
 :- must((current_op(P,FXY,(-)),((arg(_,v(fy,fx),FXY),P =< 300)))).
 
-:- user:ignore((Z = ('`'),current_op(X,Y,Z),display(:-(op(X,Y,Z))),nl,fail)).
+:- ignore((Z = ('`'),user:current_op(X,Y,Z),dmsg(call((writeq(:-(op(X,Y,Z))),nl,fail))))).
+% :- halt(666).
 
 baseKB:feature_test:- run_pipeline("what countries are there in europe ?").
 baseKB:feature_test:- run_pipeline("What countries are there in europe ?").
@@ -633,17 +636,20 @@ baseKB:feature_test(must_test_80):-
     (ignore(\+ \+ process_run_diff(report,U,R,O)),
      ignore(\+ \+ (run_pipeline([input=U],[results80=_],OL),show_kvs(OL))))).
 
-
-:- listing(feature_test).
-:- listing(sanity_test).
-:- listing(regression_test).
-:- listing(chat80/3).
-:- listing(chat80/1).
-:- listing(chat80/2).
-:- listing(test_e2c/1).
-:- listing(test_e2c/2).
 :- fixup_exports.
-:- threads.
+
+:- if((current_prolog_flag(runtime_debug,D),D>2)).
+:- dmsg(call((
+   listing(feature_test),
+   listing(sanity_test),
+   listing(regression_test),
+   listing(chat80/3),
+   listing(chat80/1),
+   listing(chat80/2),
+   listing(test_e2c/1),
+   listing(test_e2c/2),
+   threads))).
+:- endif.
 
 %:- must_test_80.
 %:- test_chat80_regressions.

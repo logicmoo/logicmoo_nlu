@@ -59,8 +59,8 @@ simplify_dbug(Z, G, GG):- compound_name_arguments(G, F, GL), F\==percept_props, 
 simplify_dbug(_, G, G).   
 
 
-mwmsg(G):- compound(G), G=..[F, GG], !, wdmsg(F:-GG).
-mwmsg(G):- simplify_dbug(G, GG)->guess_pretty(GG)->wdmsg(GG).
+mwmsg(G):- compound(G), G=..[F, GG], !, dmsg(F:-GG).
+mwmsg(G):- simplify_dbug(G, GG)->guess_pretty(GG)->dmsg(GG).
 
 %:- system:import(simplify_dbug/2).
 %:- listing(simplify_dbug/2).

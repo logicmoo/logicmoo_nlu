@@ -429,16 +429,18 @@ noun_plu_db(cities,city).
 subject_LF(thing,city,feature&city,X,city(X)).
 
 city(C) :- city(C,_,_).
-:- show_shared_pred_info(city/1).
+:- dmsg(call(show_shared_pred_info(city/1))).
 
 :- dynamic(city/3).
 city(tehran,iran,1010).
-:- show_shared_pred_info(city/3).
+:- dmsg(call(show_shared_pred_info(city/3))).
+
 /* THAT INVOKES GOVERNING ACTIONS ... */
 
 trans_LF(govern,feature&_,X,feature&place&country,Y,capital(Y,X),[], _,_).
 
-:- show_shared_pred_info((trans_LF/9)).
+:- dmsg(call(show_shared_pred_info((trans_LF/9)))).
+
 
 verb_root_db(govern).
 regular_pres_db(govern).
@@ -573,7 +575,8 @@ name_db([W1,W2],Name) :- reorder_if_var(W2,atomic_list_concat([W1,'_',W2],Name),
 name_db([Name],Name) :- last_clause(name_template_db(Name,_)).
 name_db([Name],Name) :- t_l:useAltPOS,downcase_atom(Name,DCName),loop_check(not(cw_db(DCName,_))).
 
-:- listing(name_db/2).
+
+:- dmsg(call(listing(name_db/2))).
 
 name_template_db(X,feature&circle) :- circle_of_latitude(X).
 

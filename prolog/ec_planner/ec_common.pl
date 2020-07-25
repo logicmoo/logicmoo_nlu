@@ -130,7 +130,7 @@ dbginfo(NV, G):- \+ is_dbginfo(NV) -> true ; dbginfo(G).
 dbginfo_else(NV,G,E):- is_dbginfo(NV) -> dbginfo(G); dbginfo(E).
 
 :- meta_predicate catch_ignore(0).
-catch_ignore(G):- ignore(catch(G,E,wdmsg(E))),!.
+catch_ignore(G):- ignore(catch(G,E,dmsg(E))),!.
 
 dbginfo(G):- notrace(tracing),!,notrace,dbginfo(G),trace.
 dbginfo(Var):- var(Var),!, maybe_nl, format('ListVAR = ~p~n',[Var]).

@@ -11,7 +11,7 @@
 
 :-nodebug(xgproc).
 
-xg_msg(M):- (debugging(xgproc);debugging(logicmoo(nlu))),!,wdmsg_pretty(M).
+xg_msg(M):- (debugging(xgproc);debugging(logicmoo(nlu))),!,dmsg_pretty(M).
 xg_msg(_):- prolog_load_context(reloading,true),!.
 xg_msg(M):- nop(dmsg(M)).
 
@@ -124,7 +124,7 @@ consume0(F0,Mode) :-
 %   U is H-Hf-H0+Hf0,
     U is H-H0,
     flag(xg_assertions,XAC,XAC),
-   dfmt('~N** Grammar from file ~w: ~w words .. time ~w **~n~n',[F,Mode:XAC,U]).
+   dmsg(call(dfmt('~N** Grammar from file ~w: ~w words .. time ~w **~n~n',[F,Mode:XAC,U]))).
 
 
 tidy_consume(F,Mode) :-

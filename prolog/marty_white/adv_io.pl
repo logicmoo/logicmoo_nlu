@@ -143,6 +143,7 @@ prolog_pprint(Term, Options):-
 
 :- thread_local(t_l:no_english/0).
 
+dbug1(_):- notrace(current_prolog_flag(dmsg_level,never)),!.
 dbug1(Fmt) :- 
   \+ \+ 
    ((mu:simplify_dbug(Fmt, FmtSS),
@@ -173,8 +174,8 @@ bugout4(_, _, _, _).
 %:- set_stream(user_input, timeout(0.1)).
 
 pprint(Term):- pprint(Term, always).
-pprint(Term, B) :-
- bug(B),
+pprint(Term, When) :-
+ bug(When),
  setup_call_cleanup(
   flag('english', ELevel, ELevel+0), % put a little English on it
   player_format('~N~@~N', [mu:prolog_pprint(Term, [])]),

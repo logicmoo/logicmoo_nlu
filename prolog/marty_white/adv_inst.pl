@@ -177,7 +177,7 @@ create_instances(_Suffix, _Info, [], S0, S0).
 
 
 create_objs([Obj|Objs], [NewObj|NewObjs], Suffix, Info, S0, S2):-
- wdmsg(create_1obj(Suffix, Info, Obj, NewObj)),
+ dmsg(create_1obj(Suffix, Info, Obj, NewObj)),
  must_mw1(create_1obj(Suffix, Info, Obj, NewObj, S0, S1)),
  create_objs(Objs, NewObjs, Suffix, Info, S1, S2).
 create_objs([], [], _Suffix, _Info, S0, S0).

@@ -640,6 +640,6 @@ extra_decl0(T, P):- member(type_props(T, P), [  ]).
    
 :- op(0, xfx, props).
 
-:- listing(istate).
+%:- listing(istate).
 %:- istate(IState), sort(IState, SIState), reverse(SIState, RIState), pprint(RIState, always).
 
