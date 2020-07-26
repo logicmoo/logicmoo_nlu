@@ -88,7 +88,7 @@ setup_console(In):-
  assert(mu_global:has_setup_setup_console(In)),
  set_prolog_flag(color_term, true),
  ensure_loaded(library(prolog_history)),
- (current_prolog_flag(readline, X)-> ensure_loaded(library(X));ensure_loaded(library(editline))),
+ %(current_prolog_flag(readline, X)-> ensure_loaded(library(X));ensure_loaded(library(editline))),
  %ensure_loaded(library(editline)),
  '$toplevel':(
    
