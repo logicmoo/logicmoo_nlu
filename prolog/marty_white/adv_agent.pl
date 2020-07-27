@@ -179,6 +179,10 @@ makep:-
   nop(list_void_declarations)
  ))))).
 
+wait_for_input_safe(List,ListReady,Time):- catch(wait_for_input(List,ListReady,Time),_,ListReady=List),!.
+
+
+  
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION
@@ -219,7 +223,8 @@ decide_action(Agent, Mem0, Mem1) :-
  agent_to_input(Agent, In),
  ensure_has_prompt(Agent),
  ttyflush,
- (tracing->catch(wait_for_input([In, user_input], Found, 20), _, (nortrace, notrace, break));wait_for_input([In, user_input], Found, 0)),
+ (tracing->catch(wait_for_input_safe([In, user_input], Found, 20), _, (nortrace, notrace, break));
+                 catch(wait_for_input([In, user_input], Found, 0),_,wait_for_input_safe([user_input], Found, 0))),
  (Found==[] -> (Mem0=Mem1) ;  quietly(((console_decide_action(Agent, Mem0, Mem1))))).
 
 decide_action(Agent, Mem0, Mem3) :-
