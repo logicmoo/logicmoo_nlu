@@ -20,7 +20,7 @@
 /*
 :- module(adv_io, [
  read_line_to_tokens/4,
- clear_overwritten_chars/1,
+ clear_already_consumed_input/1,
  is_main_console/0,
  overwrote_prompt/1, ensure_has_prompt/1,
  player_format/2,
@@ -35,8 +35,8 @@
  bug/1,
  agent_to_input/2,
  agent_to_output/2,
- get_overwritten_chars/2,
- restore_overwritten_chars/1,
+ get_already_consumed_input/2,
+ reshow_already_consumed_input/1,
  %setup_console/0, 
  setup_console/1,
 
@@ -142,6 +142,8 @@ prolog_pprint(Term, Options):-
 
 
 :- thread_local(t_l:no_english/0).
+
+:- mu:ensure_loaded(adv_debug).
 
 dbug1(_):- notrace(current_prolog_flag(dmsg_level,never)),!.
 dbug1(Fmt) :- 
@@ -353,28 +355,80 @@ line_to_tokens(LineCodes, _, Tokens):-
 :- multifile(prolog:history/2).
 save_to_history(LineCodes):- 
  ignore(notrace((
- atom_string(AtomLineCodes, LineCodes), 
- current_input(In),
- % dmsg(LineCodes->AtomLineCodes),
- ignore(catch('$save_history_line'(AtomLineCodes), _, true)),
- ignore(catch(prolog:history(user_input, add(AtomLineCodes)), _, true)),
+ atom_string(AtomLineCodes, LineCodes), % dmsg(LineCodes->AtomLineCodes),
+ current_input(In), 
  ignore(catch(prolog:history(In, add(AtomLineCodes)), _, true))))).
 
+% Immediate `ready` return on waitable_stream(s)
+has_data_ready(_NonIntZero, Stream):-
+ catch(wait_for_input([Stream], StreamsReady, 0.0),error(domain_error(waitable_stream,_),_),fail),!,
+ StreamsReady = [Stream].
+% read_pending_codes/3 might do the job
+has_data_ready(_NonIntZero, Stream):- ttyflush,
+  read_pending_codes(Stream,Chars,[]), 
+  Chars\==[], nop((write(read_pending_codes(Chars)),nl)),
+  % this is saved elsewhere via asserta/1
+  add_prepended_input_assert(Stream, Chars).
+% Single char infinite timeout on `user_input` (works fine)
+has_data_ready( 0, Stream):- is_user_input_stream(Stream), !,
+  get_single_char(Char),add_prepended_input_assert(Stream,[Char]).
+ 
+% Crazy workarrounds that probly dont even work
+has_data_ready(_NonIntZero, Stream) :-
+    once((
+        stream_property(Stream, buffer(Was)),
+        stream_property(Stream, buffer_size(Sz)),
+        stream_property(Stream, position(LinePos)),
+        call_cleanup(catch((   
+                               % set_stream(Stream,buffer_size(1)),
+                               % set_stream(Stream,buffer(false)),   
+                               ( (read_pending_codes(Stream, Chars, []), Chars\==[] )
+                                ; (%set_stream(Stream,buffer(full)),
+                                   peek_code(Stream, Char),Chars=[Char] ) )
+                           ),Err,
+                           ( writeln(Err), ttyflush,
+                             read_pending_codes(Stream, Chars, [])
+                           )),
+                     ( set_stream(Stream, buffer(Was)),
+                       set_stream(Stream, buffer_size(Sz))
+                     ))
+     )),
+    (  (Chars\==[],
+          nop((write(read_pending_codes(Chars)), nl)),
+          add_prepended_input_assert(Stream, Chars))
+      ; (stream_property(Stream, position(LinePosNew)),
+         LinePosNew\==LinePos )
+    ), !.
 
-:- dynamic(overwritten_chars/2).
-:- volatile(overwritten_chars/2).
 
-add_pending_input(Agent, C):- agent_to_input(Agent, In), add_pending_input0(In, C).
-add_pending_input0(In, C):- retract(overwritten_chars(In, SoFar)), append(SoFar, [C], New), !, assert(overwritten_chars(In, New)).
-add_pending_input0(In, C):- assert(overwritten_chars(In, [C])).
+is_user_input_stream(Stream):- is_stream(Stream),!,stream_property(Stream,file_no(0)).
+is_user_input_stream(Agent):- into_real_stream(Agent,Stream),!,stream_property(Stream,file_no(0)).
 
-clear_overwritten_chars(Agent):- agent_to_input(Agent, In), retractall(overwritten_chars(In, _SoFar)).
-restore_overwritten_chars(Agent):- agent_to_input(Agent, In), overwritten_chars(In, SoFar), format('~s', [SoFar]).
+% Mostly non-Windows 
+wait_for_input_safe(ListOfStream, StreamsReady, Time):- 
+  catch(wait_for_input(ListOfStream, StreamsReady, Time),error(domain_error(waitable_stream,_),_),fail),!.
+% infinite timeout
+wait_for_input_safe(ListOfStream, StreamsReady, Time):- (Time==0; Time==infinite; Time is inf), !,
+     repeat, sleep(0.01), include(has_data_ready(0),ListOfStream,StreamsReady), StreamsReady\==[],!.
+% Wait until a tine
+wait_for_input_safe(ListOfStream, StreamsReady, Time):- 
+  get_time(Now), Until is Now+Time,
+  wait_for_input_safe_until(ListOfStream, StreamsReady, Until).
+
+% Ping the ready list
+wait_for_input_safe_until( ListOfStream, StreamsReady,_Until):- include(has_data_ready(0.01),ListOfStream,StreamsReady)-> (StreamsReady\==[],!).
+% Timed out?
+wait_for_input_safe_until(_ListOfStream, StreamsReady, Until):- get_time(Now),Now>Until,!,StreamsReady=[].
+% Try for a little longer
+wait_for_input_safe_until( ListOfStream, StreamsReady, Until):- sleep(0.05), wait_for_input_safe_until(ListOfStream, StreamsReady, Until).
 
 
-stream_pairs(In, Out):- nonvar(In), var(Out), stream_property(In, file_no(F)), stream_property(Out, file_no(F)), stream_property(Out, output), !.
-stream_pairs(In, Out):- nonvar(Out), var(In), stream_property(Out, file_no(F)), stream_property(In, file_no(F)), stream_property(In, input), !.
+into_real_stream(In,Stream):- atom(In),!,must(stream_property(Stream,alias(In));agent_to_input(In, Stream)), !.
+into_real_stream(In,Stream):- must(is_stream(In)),Stream=In.
+
 stream_pairs(In, Out):- mu_global:console_io_player(In, Out, _Agent).
+stream_pairs(In, Out):- nonvar(In), var(Out), stream_property(In, file_no(F)), F > 2, stream_property(Out, file_no(F)), stream_property(Out, output), !.
+stream_pairs(In, Out):- nonvar(Out), var(In), stream_property(Out, file_no(F)), F > 2, stream_property(In, file_no(F)), stream_property(In, input), !.
 stream_pairs(In, Out):- var(In), !, stream_property(Out, input), \+ stream_property(Out, file_name(_)), once(stream_pairs(In, Out)), \+ using_stream_in(In, _OtherAgent).
 %stream_pairs(In, Out):- var(Out), !, stream_property(Out, output), \+ stream_property(Out, fileno(2)), once(stream_pairs(In, Out)), \+ using_stream_in(In, _OtherAgent).
 
@@ -384,37 +438,46 @@ using_stream_in(Stream, OtherAgent):- mu_global:console_io_player(Stream, _, Oth
 using_stream(Stream, OtherAgent):- using_stream_in(Stream, OtherAgent).
 using_stream(Stream, OtherAgent):- mu_global:console_io_player(_, Stream, OtherAgent).
 
-agent_to_output(Agent, Stream):- mu_global:console_io_player(_, Stream, Agent).
-agent_to_output(Agent, Stream):- mu_global:console_io_player(InStream, _, Agent), stream_pairs(InStream, Stream).
+agent_to_output( Agent, Stream):- mu_global:console_io_player(_, Stream, Agent), !.
+agent_to_output( Agent, Stream):- mu_global:console_io_player(InStream, _, Agent), stream_pairs(InStream, Stream), !.
 agent_to_output(_Agent, Stream):- current_output(Stream), \+ using_stream(Stream, _Other), !.
 agent_to_output(_Agent, Stream):- stream_property(Stream, file_no(1)), \+ using_stream(Stream, _Other), !.
-agent_to_output(Agent, Stream):- fail, agent_to_input(Agent, In), stream_property(In, file_no(F)), stream_property(Stream, file_no(F)), stream_property(Stream, write), !.
-agent_to_output(Agent, Stream):- throw(agent_io(Agent, agent_to_output(Agent, Stream))).
+agent_to_output( Agent, Stream):- fail, agent_to_input(Agent, In), stream_property(In, file_no(F)), F > 2, stream_property(Stream, file_no(F)), stream_property(Stream, write), !.
+agent_to_output( Agent, Stream):- throw(agent_io(Agent, agent_to_output(Agent, Stream))).
 %agent_to_output(Agent, Stream):- mu_global:console_host_io_history_unused(_Id, _Alias, _In, Stream, _Host, _Peer, Agent), !.
        
-% agent_to_input(Agent, In):- overwritten_chars(Agent, _SoFar), In=Agent,
-agent_to_input(Agent, Stream):- using_stream_in(Stream, Agent), !.
+% agent_to_input(Agent, In):- mu_global:already_consumed_input(Agent, _SoFar), In=Agent,
+agent_to_input(StreamNotAgent, Stream):- is_stream(StreamNotAgent),stream_property(StreamNotAgent,input),!,Stream=StreamNotAgent.
+agent_to_input(StreamNotAgent, Stream):- is_stream(StreamNotAgent),using_stream(StreamNotAgent, OtherAgent),!,using_stream_in(Stream, OtherAgent).
+agent_to_input( Agent, Stream):- using_stream_in(Stream, Agent), !.
 agent_to_input(_Agent, Stream):- current_input(Stream), \+ using_stream(Stream, _Other), !.
 agent_to_input(_Agent, Stream):- stream_property(Stream, file_no(0)), \+ using_stream(Stream, _Other), !.
-agent_to_input(Agent, Stream):- fail, agent_to_output(Agent, Stream), stream_property(Stream, file_no(F)), stream_property(Stream, file_no(F)), stream_property(Stream, read), !.
-agent_to_input(Agent, Stream):- throw(agent_io(Agent, agent_to_input(Agent, Stream))).
+agent_to_input( Agent, Stream):- fail, agent_to_output(Agent, Stream), stream_property(Stream, file_no(F)), stream_property(Stream, file_no(F)), stream_property(Stream, read), !.
+agent_to_input( Agent, Stream):- throw(agent_io(Agent, agent_to_input(Agent, Stream))).
 %agent_to_input(Agent, Stream):- mu_global:console_host_io_history_unused(_Id, _Alias, Stream, _Out, _Host, _Peer, Agent), !.
 
 is_main_console:- current_input(Stream), stream_property(Stream, file_no(0)).
 
+:- dynamic(mu_global:already_consumed_input/2).
+:- volatile(mu_global:already_consumed_input/2).
+get_already_consumed_input( Agent, SoFar):- agent_to_input(Agent, In), mu_global:already_consumed_input(In, SoFar).
+get_already_consumed_input(_Agent, []).
+clear_already_consumed_input(Agent):- into_real_stream(Agent, In), retractall(mu_global:already_consumed_input(In, _SoFar)).
+reshow_already_consumed_input(Agent):- into_real_stream(Agent, In), mu_global:already_consumed_input(In, SoFar), format('~s', [SoFar]).
+add_prepended_input_assert(Agent, C):- \+ is_list(C),!, add_prepended_input_assert(Agent, [C]).
+add_prepended_input_assert(Agent, Chars):- into_real_stream(Agent, In), 
+  (retract(mu_global:already_consumed_input(In, SoFar));SoFar=[]),!,  
+  append(SoFar, Chars, New),
+  assert(mu_global:already_consumed_input(In, New)).
+
+% showing debug info for Agent's IO streams
 user:ci:- ci('telnet~1').
 user:ci(Agent):- 
- agent_to_input(Agent, In),
- agent_to_output(Agent, Out),
- forall(stream_property(In, P), dbug(ci,ins(P))),
- listing(overwritten_chars),
- %line_position(In, LIn),
- %dbug(ci,ins(line_position(In, LIn))),
- forall(stream_property(Out, P), dbug(ci,outs(P))),
- line_position(Out, LInOut), !, dbug(ci,outs(line_position(Out, LInOut))), !.
-
-get_overwritten_chars(Agent, Chars):- agent_to_input(Agent, In), overwritten_chars(In, Chars).
-get_overwritten_chars(_Agent, []).
+ agent_to_input(Agent, In), forall(stream_property(In, P), dbug(ci,ins(P))),
+ % line_position(In, LIn), dbug(ci,ins(line_position(In, LIn))),
+ listing(mu_global:already_consumed_input/2),
+ agent_to_output(Agent, Out), forall(stream_property(Out, P), dbug(ci,outs(P))),
+ line_position(Out, LInOut), dbug(ci,outs(line_position(Out, LInOut))), !.
 
 
 wordlist(List) --> optional_ws, wordlist1(List), optional_ws.

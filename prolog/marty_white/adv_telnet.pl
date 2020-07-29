@@ -193,7 +193,7 @@ adv_tlnet_readloop(_Id, _InStream, OutStream, Agent):-
  sleep(0.1), !.
 adv_tlnet_readloop(_Id, InStream, OutStream, Agent):- 
  ensure_has_prompt(Agent),
- current_input(In), wait_for_input([In, InStream, user_input], Found, 0.1), 
+ wait_for_input_safe([InStream], Found, 0.1), 
  Found==[], !,
  tflush(OutStream).
 adv_tlnet_readloop(Id, InStream, OutStream, Agent):-
