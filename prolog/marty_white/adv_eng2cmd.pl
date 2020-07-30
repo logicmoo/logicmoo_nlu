@@ -15,7 +15,7 @@
 %
 */
 
-
+:- use_module(library(logicmoo_nlu/parser_sharing)).
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
 
 
@@ -1009,10 +1009,15 @@ sub_term_atom(Term, T) :-
 
 
 
+to_wordlist_atoms_adv(Sentence,WordsA):- to_word_list(Sentence,Words),maplist(any_to_atom,Words,WordsA),!.
+to_wordlist_atoms_adv(Sentence,WordsA):- into_text80(Sentence,WordsA),!.
+
+
 call_lf(X,LFOut):- freeze(X,ignore(LFOut)).
 
 coerce_text_to_args(X,[]):- []==X, !.
-coerce_text_to_args(List, [X|Args]):- is_list(List), to_wordlist_atoms(List, WL), 
+coerce_text_to_args(List, [X|Args]):- is_list(List), 
+   to_wordlist_atoms_adv(List, WL), 
    noun_phrase(_SO, X, true, LFOut, WL, Rest),!,
    must((call_lf(X,LFOut),
    from_wordlist_atoms(Rest,More),
