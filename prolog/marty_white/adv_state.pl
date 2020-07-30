@@ -29,6 +29,12 @@
 :- dynamic(advstate_db/1).
 advstate_db([]).
 
+is_pred1_state(advstate_db).
+is_pred1_state(istate).
+is_pred1_state(statest).
+is_pred1_state(parseFrame(_)).
+
+
 get_agent_memory(Agent, Mem):- 
    get_advstate(State),
    declared(props(Agent, Mem), State).
@@ -126,11 +132,6 @@ declare(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List],
   ignore( \+ \+ retract(Call)),
   NewArg=Object,
   asserta(Call).
-
-is_pred1_state(istate).
-is_pred1_state(statest).
-is_pred1_state(parseFrame(_)).
-is_pred1_state(advstate_db).
 
 declare_list(Fact, State, NewState) :- assertion(compound(Fact)), assertion(var(NewState)), Fact==[], !, NewState = State.
 declare_list((Fact1, Fact2), State, NewState) :- !, declare_list(Fact1, State, MidState), declare_list(Fact2, MidState, NewState).
