@@ -179,6 +179,7 @@ is_state_ignorer(P):- \+ atom(P), !, compound(P), safe_functor(P, F, _), !, is_s
 is_state_ignorer(F):- is_state_pred(F, 1).
 %is_state_ignorer('{}'(term)).
 
+must_input_state(S0):- var(S0),!,get_advstate(S0).
 must_input_state(S0):- quietly(check4bugs(input, S0)).
 must_output_state(S0):- quietly(check4bugs(output, S0)).
 %must_state(S0):- quietly(check4bugs(anon, S0)).
