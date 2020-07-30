@@ -20,9 +20,6 @@
 
 :- use_module(library(logicmoo_common)).
 
-:- if(\+ current_prolog_flag(ec_loader,false)).
-:- use_module(library(ec_planner/ec_loader)).
-:- endif.
 
 /*
 :- if(\+ exists_source(library(poor_bugger))).
@@ -90,8 +87,8 @@ extra :- true. % Fuller, but questionable if needed yet.
 
 adventure_reset :-
  must_mw1((
- test_ordering,
- init_logging,
+ test_ordering, !,
+ init_logging, !,
  retractall(advstate_db(_)), !,
  istate(S0), !,
  player_format('=============================================~n', []),
@@ -101,10 +98,11 @@ adventure_reset :-
 
 
 adventure_init :- 
- (get_advstate(S0) -> true; (adventure_reset, get_advstate(S0))),
+ ((get_advstate(S0), S0\==[]) -> true; (adventure_reset, get_advstate(S0))),
  must_mw1((
+ retractall(advstate_db(_)), !,
  init_objects(S0, S1), !,
- asserta(advstate_db(S1)))),
+ set_advstate(S1))),
    player_format('=============================================~n', []),
    player_format('INIT STATE~n', []),
    player_format('=============================================~n', []),
@@ -113,7 +111,6 @@ adventure_init :-
 
 
 adventure:- 
- adventure_reset,
  adventure_init,
  player_format('=============================================~n', []),
  player_format('Welcome to Marty\'s Prolog Adventure Prototype~n', []),
@@ -128,9 +125,23 @@ adventure :-
  player_format('adventure FAILED~n', []),
  !, fail.  
 
+mainloop :-
+ repeat,
+ once(main_once),
+ (get_advstate(S1)->declared(quit, S1)),
+ !. % Don't allow future failure to redo mainloop.
+
+
+main_once:- 
+ must_mw1((
+   get_advstate(S0),
+   must_input_state(S0),
+   main(S0, S1),
+   must_output_state(S1),
+   set_advstate(S1))), !.
 
 main(S0, S9) :-
- notrace((set_advstate(S0))),
+ notrace((var(S0)->get_advstate(S0);set_advstate(S0))),
  must_mw1(update_telnet_clients(S0, S1)),
  ((set_advstate(S1),
  % pprint(S1, state),
@@ -174,20 +185,6 @@ telnet_decide_action(Agent, Mem, Mem) :-
 %:- if(\+ prolog_load_context(reloading, t)).
 %:- initialization(adventure, main).
 %:- endif.
-
-main_once:- 
- must_mw1((
-   advstate_db(S0),
-   main(S0, S1),
-   must_output_state(S1),
-   retractall(advstate_db(_)),
-   asserta(advstate_db(S1)))), !.
-
-mainloop :-
- repeat,
- once(main_once),
- (advstate_db(S1)->declared(quit, S1)),
- !. % Don't allow future failure to redo mainloop.
 
 % TODO: try converting this to a true "repeat" loop.
 /*main_loop(State) :-

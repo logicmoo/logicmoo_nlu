@@ -32,9 +32,9 @@
 :- (abolish(apply_macros:expand_apply,2), assert((apply_macros:expand_apply(_In,_):- fail))).
 
 
-:- use_module(library(logicmoo_utils_all)).
+:- use_module(library(logicmoo_utils)).
 
-:- use_module(library(logicmoo_lib)).
+%:- use_module(library(logicmoo_lib)).
 
 :- use_module(parser_sharing).
 :- use_module(parser_tokenize).

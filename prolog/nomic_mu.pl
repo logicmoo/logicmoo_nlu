@@ -78,6 +78,12 @@
 
 :- ensure_loaded('./marty_white/adv_main').
 :- ensure_loaded('./marty_white/adv_telnet').
+:- if(\+ current_prolog_flag(ec_loader,false)).
+%  :- use_module(library(ec_planner/ec_loader)).
+:- endif.
+
+%:- use_module(library(pfc_lib)).
+% :- use_module(library(logicmoo_nlu)).
 
 % :- use_module(library(logicmoo_mud)).
 

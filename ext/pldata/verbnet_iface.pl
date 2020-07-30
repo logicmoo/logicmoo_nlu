@@ -58,7 +58,7 @@ varify_frames:-
    append(LogicVL,SlotsV,LF),
    once(list_to_conjuncts(',',LF,LFV)),
    assert_verbnet(Cl)))),
-  dmsg(call(listing(vndata:verbnet_frame))).
+  nop(dmsg(call(listing(vndata:verbnet_frame)))).
 
   
 
@@ -120,7 +120,7 @@ ppfs:- cls, make, kill_old_preds, ppfs0, !.
 ppfs0 :- ppfs(pldata('verbnet-3.2/*.xml')),   
   %listing(vndata:verbnet_type),nb_setval(verbnet_iface_loaded,true),
   varify_frames,
-  dmsg(call(listing(vndata:verbnet_pred))).
+  nop(dmsg(call(listing(vndata:verbnet_pred)))).
 
 ppfs1 :- cls, make, kill_old_preds,
           ppfs('verbnet-3.2/weather-57.xml'),
