@@ -18,13 +18,6 @@
 */
 :- ensure_loaded(adv_naming).
 
-filter_spec(true, _):- !.
-filter_spec( \+ Spec, PropList):- !,
- \+ filter_spec(Spec, PropList).
-filter_spec((Spec1;Spec2), PropList):- !, filter_spec(Spec1, PropList);filter_spec(Spec2, PropList).
-filter_spec((Spec1, Spec2), PropList):- !, filter_spec(Spec1, PropList), filter_spec(Spec2, PropList).
-filter_spec( Spec, PropList):- declared(Spec, PropList).
-
 create_new_unlocated(Type, Inst, S0, S2):- 
  %atom_concat(Type, '~', TType), gensym(TType, TTypeT1), Inst = o(Type, TTypeT1), trace,
  atom_concat(Type, '~', TType), gensym(TType, TTypeT1), Inst = TTypeT1,
@@ -133,7 +126,7 @@ create_objprop(_Why, _Object, inherit(Other, t), S0, S0):- direct_props(Other, P
 
 create_objprop(Why, Object, inherit(Other, t), S0, S9):- 
  direct_props_or(Other, PropList0, [], S0),
- adv_subst(PropList0, $class, Other, PropList1),
+ adv_subst(equivalent, $class, Other, PropList0, PropList1),
  (member(adjs(_), PropList1)-> PropList1=PropList;  [nouns(Other)|PropList1]=PropList),
  copy_term(PropList, PropListC), !,
  % must_mw1(updateprop(Object, inherit(Other, t), S5, S9)), !,

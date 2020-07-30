@@ -182,6 +182,13 @@ declared_link(Pred2, Fact, Object):- var(Object), get_advstate(State), member(Pr
   call(Pred2, Fact, PropList).
   
 
+filter_spec(true, _):- !.
+filter_spec( \+ Spec, PropList):- !,
+ \+ filter_spec(Spec, PropList).
+filter_spec((Spec1;Spec2), PropList):- !, (filter_spec(Spec1, PropList);filter_spec(Spec2, PropList)).
+filter_spec((Spec1, Spec2), PropList):- !, filter_spec(Spec1, PropList), filter_spec(Spec2, PropList).
+filter_spec( Spec, PropList):- declared(Spec, PropList).
+
 
 % extra_decl(Object, PropList):- get_advstate(State), direct_props(Object, PropList, State).
 
