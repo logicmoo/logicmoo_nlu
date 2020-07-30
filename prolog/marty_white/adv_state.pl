@@ -40,13 +40,31 @@ get_agent_memory(Agent, Mem):-
    declared(props(Agent, Mem), State).
 
 get_advstate_varname(Varname):- nb_current(advstate_var, Varname), Varname\==[], !.
-get_advstate_varname(advstate).
+get_advstate_varname(advstate_db).
 
-get_advstate(State):- get_advstate_varname(Var), nb_current(Var, State).
-set_advstate(State):- get_advstate_varname(Var), nb_setval(Var, State).
+get_advstate_db(State):- var(State), !, findall(State1,advstate_db(State1),StateL),flatten([StateL],State).
+get_advstate_db(State):- advstate_db(State).
 
-get_advstate_fork(StateC):- set_advstate(State), duplicate_term(State, StateC).
+get_advstate(State):- get_advstate_varname(Var), ((nb_current(Var, PreState), PreState\==[]) -> State=PreState ; get_advstate_db(State)).
+set_advstate(State):- get_advstate_varname(Var), ((nb_current(Var, PreState), PreState\==[]) -> nb_setval(Var, State) ; set_advstate_db(State)).
 
+set_advstate_db(State):- is_list(State), !, 
+   % retractall(advstate_db(_)),
+   maplist(set_advstate_db, State).
+set_advstate_db(structure_label(_Label)).
+
+set_advstate_db(State):- 
+   % dmsg(set_advstate_db(State)),
+   State =.. [Pred,Object|StateL], append(WithoutLastArg,[_NewData],StateL), 
+   append(WithoutLastArg,[_OldData],PreStateL), PreState =.. [Pred,Object|PreStateL],
+   must_be(ground,Object),
+   forall(clause(advstate_db(PreState),true,Ref),erase(Ref)),
+   asserta(advstate_db(State)),!.
+set_advstate_db(State):- dumpST, dmsg(set_advstate_db(State)), break.
+
+get_advstate_fork(StateC):- get_advstate(State), duplicate_term(State, StateC).
+
+declared_advstate(Fact):- \+ is_list(Fact), advstate_db(Fact),!.
 declared_advstate(Fact):- get_advstate(State), declared(Fact, State).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,15 +189,17 @@ declared_list(Fact, State) :- member(inst(Object), State), declared_link(declare
 
 :- meta_predicate(declared_link(2, ?, *)).
 declared_link(Pred2, Fact, VarName):- strip_module(Pred2, _, Var), var(Var), !, declared_link(declared, Fact, VarName).
-declared_link(Pred2, Fact, VarName):- atom(VarName), nb_current(VarName, PropList), call(Pred2, Fact, PropList).
+declared_link(Pred2, Fact, VarName):- atom(VarName), nb_current(VarName, PropList), PropList\==[],!, call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, inst(Obj)):- declared_advstate(props(Obj, PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, type(Type)):- declared_advstate(type_props(Type, PropList)), call(Pred2, Fact, PropList).
 % declared_link(Pred2, Fact, inst_model(Obj, Type)):- declared_advstate(props(Type, PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- nonvar(Object), extra_decl(Object, PropList), call(Pred2, Fact, PropList).
-declared_link(Pred2, Fact, Object):- get_advstate(State), direct_props(Object, PropList, State), call(Pred2, Fact, PropList).
-declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], current_predicate(_, Call), !, call(Call).
+declared_link(Pred2, Fact, Object):- get_advstate(State), direct_props(Object, PropList, State), call(Pred2, Fact, PropList), !.
+declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], current_predicate(_, Call), call(Call), !.
+declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], advstate_db(Call),!.
 declared_link(Pred2, Fact, Object):- var(Object), get_advstate(State), member(Prop, State), arg(1, Prop, Object), arg(2, Prop, PropList),
   call(Pred2, Fact, PropList).
+declared_link(declared, Fact, _Object):- advstate_db(Fact),!.
   
 
 filter_spec(true, _):- !.

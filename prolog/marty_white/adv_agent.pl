@@ -259,6 +259,7 @@ run_agent_pass_1(Agent, S0, S) :-
 
 
 run_agent_pass_1_0(Agent, S0, S) :-
+ dif(PerceptQ, []),
  undeclare(perceptq(Agent, PerceptQ), S0, S1), PerceptQ \== [],
  declare(perceptq(Agent, []), S1, S2),
  do_percept_list(Agent, PerceptQ, S2, S3),
@@ -267,7 +268,7 @@ run_agent_pass_1_0(Agent, S0, S) :-
 run_agent_pass_1_0(Agent, S0, S) :- 
  undeclare(memories(Agent, Mem0), S0, S1),
  set_advstate(S1), % backtrackable leaks :( b_setval(advstate, S2),
- decide_action(Agent, Mem0, Mem2),
+ must_mw1(decide_action(Agent, Mem0, Mem2)),
  declare(memories(Agent, Mem2), S1, S).
 
 run_agent_pass_1_0(Agent, S0, S0) :-

@@ -16,6 +16,9 @@
 */
 
 
+:- use_module(library(logicmoo_nlu/parser_tokenize)).
+
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CODE FILE SECTION
 % :- ensure_loaded('adv_eng2cmd').
@@ -126,7 +129,7 @@ reframed_call(Pred, Text, Logic):-
    nl_context(current_subject, Self, vSpeaker, Frame),
    set_nl_context(current_subject, Self, Frame),
    %set_nl_context(current_frame, Mem, Frame),
-   into_text80(Text, Term),
+   munl_call(into_text80(Text, Term)),
    reframed_call(Pred, Self, Term, Logic, Frame), !.
 
 % -- parse(Doer, WordList, ActionOrQuery, Memory)
@@ -136,7 +139,7 @@ reframed_call(Pred,  Self,  Logic, NewLogic, Mem) :- compound(Logic), \+ is_list
   (Logic = NewLogic -> true;
   (logic2eng(Self, Logic, Words), reframed_call(Pred, Self, Words, NewLogic, Mem))), !.
 
-reframed_call( Pred,  Self, NonText,   Logic, Mem) :- \+ is_list(NonText), into_text80(NonText, Text), !, reframed_call( Pred,  Self, Text,   Logic, Mem).
+reframed_call( Pred,  Self, NonText,   Logic, Mem) :- \+ is_list(NonText), munl_call(into_text80(NonText, Text)), !, reframed_call( Pred,  Self, Text,   Logic, Mem).
 reframed_call( Pred,  Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, reframed_call( Pred,  Self, NonText, Logic, Mem) .
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).
 reframed_call( Pred, Doer, [notrace|Args], Logic, M) :- Args\==[], !, notrace(reframed_call( Pred, Doer, Args, Logic, M)).
@@ -318,9 +321,10 @@ acdb(F, A, B):- munl_call(ttholds(F, A, B)).
 acdb(F, A, B):- munl_call(acnl(F, A, B, _)).
 
 :- set_prolog_flag(debug_on_error, true).
-munl_call(G):- catch(nl_call(G), munl_call2(G), fail).
-munl_call2(G):- catch(rtrace(nl_call(G)), _, fail).
 %munl_call(G):-nl_call(G).
+munl_call(G):- catch(nl_call(G), _, munl_call2(G)).
+munl_call2(G):- catch(rtrace(nl_call(G)), _, fail).
+
 
 two_adjs(W1, W2, W3):- var(W1), nonvar(W2), !, two_adjs(W2, W1, W3).
 two_adjs(W1, W2, W3):- var(W1), var(W2), !, 
@@ -1110,8 +1114,8 @@ txt2goto(Doer, Walk, Dest, goto_loc(Doer, Walk, Where), M) :-
 
 
 txt2place(List, Place, M):- is_list(List), parse2object(List, Object, M), txt2place(Object, Place, M), !.
-txt2place(Dest, Place, M):- in_agent_model(advstate, h(_, _, Dest), M), Dest = Place.
-txt2place(Dest, Place, M):- in_agent_model(advstate, h(_, Dest, _), M), Dest = Place.
+txt2place(Dest, Place, M):- in_agent_model(advstate_db, h(_, _, Dest), M), Dest = Place.
+txt2place(Dest, Place, M):- in_agent_model(advstate_db, h(_, Dest, _), M), Dest = Place.
 txt2place(Dest, Place, M):- parse2object(Dest, Place, M).
 
 

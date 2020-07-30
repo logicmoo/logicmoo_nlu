@@ -253,7 +253,7 @@ apply_act( Action, S0, S0) :-
 
 must_act( Action , S0, S9) :- 
   (apply_act( Action, S0, S9)) *-> ! ; fail.
-must_act( Action, S0, S1) :- {debugging(apply_act)}, !, rtrace(apply_act( Action, S0, S1)), !.
+must_act( Action, S0, S1) :- debugging(apply_act), !, rtrace(apply_act( Action, S0, S1)), !.
 must_act( Action) --> 
  action_doer(Action, Agent), 
  send_1percept(Agent, [failure(Action, unknown_to(Agent, Action))]).

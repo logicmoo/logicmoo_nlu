@@ -78,7 +78,8 @@ redirect_error_to_string(Goal, String) :-
   memory_file_to_string(Handle, String).
 
 
-user:setup_console :- current_input(In), setup_console(In).
+%user:
+setup_console :- current_input(In), setup_console(In).
 
 :- dynamic(mu_global:has_setup_setup_console/1).
 :- volatile(mu_global:has_setup_setup_console/1).
@@ -143,7 +144,7 @@ prolog_pprint(Term, Options):-
 
 :- thread_local(t_l:no_english/0).
 
-:- mu:ensure_loaded(adv_debug).
+% :- mu:ensure_loaded(adv_debug).
 
 dbug1(_):- notrace(current_prolog_flag(dmsg_level,never)),!.
 dbug1(Fmt) :- 
@@ -472,7 +473,7 @@ add_prepended_input_assert(Agent, Chars):- into_real_stream(Agent, In),
 
 % showing debug info for Agent's IO streams
 user:ci:- ci('telnet~1').
-user:ci(Agent):- 
+ci(Agent):- 
  agent_to_input(Agent, In), forall(stream_property(In, P), dbug(ci,ins(P))),
  % line_position(In, LIn), dbug(ci,ins(line_position(In, LIn))),
  listing(mu_global:already_consumed_input/2),

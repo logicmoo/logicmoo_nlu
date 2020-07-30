@@ -9,8 +9,8 @@ flatten_ul(NewData, NewDataF):- NewData=NewDataF.
 
 remove_any_elements( Ctx, Dom, Term):- is_list(Dom), must_maplist(remove_any_elements(Ctx), Dom, Term).
 remove_any_elements(_Ctx, Dom, Term):- var(Dom), Term=Dom, !.
-remove_any_elements(_Ctx, Dom, Term):- string(Dom), into_text80(Dom, Term), !.
-remove_any_elements(_Ctx, Dom, Term):- atom(Dom), into_text80(Dom, TermM), !, (TermM=[Term] -> true; TermM=Term), !.
+remove_any_elements(_Ctx, Dom, Term):- string(Dom), munl_call(into_text80(Dom, Term)), !.
+remove_any_elements(_Ctx, Dom, Term):- atom(Dom), munl_call(into_text80(Dom, TermM)), !, (TermM=[Term] -> true; TermM=Term), !.
 remove_any_elements(_Ctx, Dom, Term):- \+ compound(Dom), Term = Dom, !.
 remove_any_elements( Ctx, element(M:S, [], Data), Term):-
   remove_any_elements(e(M:S, Ctx), Data, NewData),

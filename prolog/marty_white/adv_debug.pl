@@ -180,7 +180,8 @@ must_mw(G):- G*->true;(mwmsg(fail(must_mw):-G), fail).
 must_mw1(G):- must(callable(G)), fail.
 must_mw1((G1, G2)):- !, must_mw1(G1), must_mw1(G2).
 must_mw1((G1;G2)):- !, G1;must_mw1(G2).
-must_mw1(G):- G*->true;(mwmsg(fail(must_mw1):-G), fail).
+must_mw1(G):- G*->!;(mwmsg(fail(must_mw1):-G), fail).
+% must_mw1(G):- G*->true;(mwmsg(fail(must_mw1):-G),rtrace(G),fail).
 
 :- meta_predicate(must_mw1(*, +, -)).
 must_mw1(Goal, S0, S2):- apply_state(must_mw1, Goal, S0, S2).
