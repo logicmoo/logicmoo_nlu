@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -35,22 +35,23 @@ include_functor(List, P):- compound(P), safe_functor(P, F, _), member(F, List), 
 
 :- defn_state_setter(do_metacmd(agent, action)).
 
-do_metacmd(_Doer, quit(Agent)) -->
+do_metacmd(Doer, quit(Agent)) -->
  declare(wishes(Agent, quit)),
- {player_format('Bye!~n', [])}.
+ {player_format(Doer, 'logging off~w ~n', [Agent]),
+  player_format(Agent, 'Bye! (from ~w)~n', [Doer])}.
 
-do_metacmd(_Doer, help, S0, S0) :- !,
- listing(mu_global:cmd_help).
+do_metacmd(Doer, help, S0, S0) :- !,
+ with_agent_console(Doer, listing(mu_global:cmd_help)).
 
 :- add_help(english, "english <level>: turn on paraphrase generation.").
 do_metacmd(Doer, english, S0, S0) :- security_of(Doer, admin),
  flag(english, Was, Was),
- player_format('~w=~q~n', [english, Was]).
+ player_format(Doer, '~w=~q~n', [english, Was]).
 do_metacmd(Doer, english(N0), S0, S0) :- security_of(Doer, admin),
  any_to_number(N0, N),
  flag(english, _Was, N),
  flag(english, New, New),
- player_format('~w=~q~n', [english, N]).
+ player_format(Doer, '~w=~q~n', [english, N]).
 
 :- add_help(rtrace, "Debbuging: Start the non-interactive tracer.").
 do_metacmd(Doer, rtrace, S0, S0) :- security_of(Doer, admin), rtrace.
@@ -78,10 +79,12 @@ do_metacmd(Doer, possess(NewAgent), S0, S0) :-
  retractall(console_controls_agent(_, OldAgent)),
  retractall(console_controls_agent(_, NewAgent)),
  asserta(console_controls_agent(InputConsole, NewAgent)).
+
 do_metacmd(Doer, Echo, S0, S0) :-
  security_of(Doer, admin),
  Echo =.. [echo|Args],
- player_format('~w~n', [Args]).
+ player_format(Doer, '~w~n', [Args]).
+
 do_metacmd(Doer, state, S0, S0) :-
  security_of(Doer, wizard),
  printable_state(S0, S),
@@ -136,8 +139,8 @@ do_metacmd(Doer, prolog, S0, S0) :-
  setup_call_cleanup('$set_typein_module'(mu), prolog, '$set_typein_module'(Was)),
  ensure_has_prompt(Doer).
 
-do_metacmd(Doer, CLS, S0, S9) :- security_of(Doer, wizard), 
- current_predicate(_, CLS), 
+do_metacmd(Doer, CLS, S0, S9) :- security_of(Doer, wizard),
+ current_predicate(_, CLS),
  set_advstate(S0),
  (is_main_console -> catch(CLS, E, (dbug1(CLS:- throw(E)), fail)) ;
     (redirect_error_to_string(catch(CLS, E, (dbug1(CLS:- throw(E)), fail)), Str), !, write(Str))), !,
@@ -161,36 +164,36 @@ do_metacmd(Doer, rez(Type), S0, S9) :-
  h(Prep, Agent, Here, S0),
  create_new_unlocated(Type, Object, S0, S1),
  declare(h(Prep, Object, Here), S1, S9),
- player_format('You now see a ~w.~n', [Object]))).
+ player_format(Doer, 'You now see a ~w.~n', [Object]))).
 
 do_metacmd(Doer, derez(Object), S0, S1) :-
  security_of(Doer, wizard),
  undeclare(h(_, Object, _), S0, S1),
- player_format('It vanishes instantly.~n', []).
+ player_format(Doer, 'It vanishes instantly.~n', []).
 
 do_metacmd(Doer, PropCmd, S0, S1) :-
  action_verb_agent_args(PropCmd, setprop, _, [Object | Args]), Prop =.. Args,
  security_of(Doer, wizard),
  setprop(Object, Prop, S0, S1),
- player_format('Properties of ~p now include ~w~n', [Object, Prop]).
+ player_format(Doer, 'Properties of ~p now include ~w~n', [Object, Prop]).
 do_metacmd(Doer, DelProp, S0, S1) :-
  action_verb_agent_args(DelProp, delprop, _, [Object | Args]), Prop =.. Args,
- security_of(Doer, wizard), 
+ security_of(Doer, wizard),
  delprop(Object, Prop, S0, S1),
- player_format('Deleted.~n', []).
+ player_format(Doer, 'Deleted.~n', []).
 
 do_metacmd(Doer, properties(Object), S0, S0) :-
  security_of(Doer, wizard),
  (declared(props(Object, PropList), S0);declared(type_props(Object, PropList), S0)), !,
- player_format('Properties of ~p are now ~w~n', [Object, PropList]).
+ player_format(Doer, 'Properties of ~p are now ~w~n', [Object, PropList]).
 do_metacmd(Doer, undo, S0, S1) :-
  declare(wants(Doer, undo), S0, S1),
- player_format('undo...OK~nKO...odnu~n', []).
+ player_format(Doer, 'undo...OK~nKO...odnu~n', []).
 do_metacmd(_Doer, save(Basename), S0, S0) :-
  atom_concat(Basename, '.adv', Filename),
- save_term(Filename, S0).
+ save_term_exists(Filename, S0).
 
-do_metacmd(Doer, WA, S0, S1) :- 
+do_metacmd(Doer, WA, S0, S1) :-
  ((cmd_workarround(WA, WB) -> WB\==WA)), !, do_metacmd(Doer, WB, S0, S1).
 
 

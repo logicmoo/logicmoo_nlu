@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -76,8 +76,8 @@ extra :- true. % Fuller, but questionable if needed yet.
 
 :- ensure_loaded(adv_state).
 
-:- ensure_loaded(adv_data).
 :- ensure_loaded(adv_portray).
+:- ensure_loaded(adv_data).
 
 :- ensure_loaded(adv_plugins).
 
@@ -97,72 +97,116 @@ adventure_reset :-
  set_advstate(S0))), !.
 
 
-adventure_init :- 
+adventure_init :-
  ((get_advstate(S0), S0\==[]) -> true; (adventure_reset, get_advstate(S0))),
  must_mw1((
  retractall(advstate_db(_)), !,
- init_objects(S0, S1), !,
- set_advstate(S1))),
+ set_advstate(S0),
+ init_objects, !,
+ get_advstate(S1))),
    player_format('=============================================~n', []),
    player_format('INIT STATE~n', []),
    player_format('=============================================~n', []),
- printable_state(S1, SP), 
+ printable_state(S1, SP),
  pprint(SP, state), !.
 
+thread_create_adv(_, _, C):-member(alias(Alias), C), thread_property(X, _),
+  (Alias=X;(thread_property(X, alias(Y)), Alias=Y)),
+  thread_property(X, status(Running)),
+  (Running == running-> ! ; (join_threads, fail)).
+thread_create_adv(A, B, C):-thread_create(A, B, C).
 
-adventure:- 
+adventure:-
  adventure_init,
  player_format('=============================================~n', []),
  player_format('Welcome to Marty\'s Prolog Adventure Prototype~n', []),
- player_format('=============================================~n', []), 
- % trace, 
+ player_format('=============================================~n', []),
+ setup_player_console,
+ % start_missing_threads,
  mainloop,
- %main_loop(S3),
- stop_logging.
+ !.
+ % start_player_console.
 
-adventure :-
- stop_logging,
- player_format('adventure FAILED~n', []),
- !, fail.  
+start_missing_threads:-
+ thread_create_adv(mainloop, _, [detached(true), alias(adv_mainloop)]),
+ !.
+
+setup_player_console:-
+  mu_current_agent(Agent), current_input(InStream), current_output(OutStream),
+  asserta(mu_global:console_io_player(InStream, OutStream, Agent)), !.
+
+run_player_console:-
+  mu_current_agent(Agent), current_input(InStream), current_output(OutStream),
+  adventure_client_process(Agent, Agent, InStream, OutStream, 'Host', 'Peer'), !.
+
 
 mainloop :-
  repeat,
- once(main_once),
+ call_cleanup(once(main_once),set_prolog_flag(gc,true)),
  (get_advstate(S1)->declared(quit, S1)),
+ stop_logging,
  !. % Don't allow future failure to redo mainloop.
 
+flush_output_s(S):- notrace(ignore(catch(flush_output(S),_,true))).
+my_ttyflush:- 
+ notrace((
+  ttyflush,
+   ignore((stream_property(User_Out,file_no(1)), flush_output_s(User_Out))),
+   ignore((stream_property(User_Err,file_no(2)), flush_output_s(User_Err))),
+   flush_output_s(user_error),
+   flush_output_s(user_output),
+   flush_output_s(current_output),
+   flush_output_s(current_error),
+   !)).
 
-main_once:- 
- must_mw1((
-   get_advstate(S0),
-   must_input_state(S0),
-   main(S0, S1),
-   must_output_state(S1),
-   set_advstate(S1))), !.
+main_once:-
+   my_ttyflush,
+   sleep(0.005),
+   set_prolog_flag(gc,true),
+   % gc_heap,
+   garbage_collect_atoms,
+   garbage_collect_clauses,
+   garbage_collect,
+   set_prolog_flag(gc,false),
+   my_ttyflush,
+   update_network_connections,
+   get_live_agents(LiveAgents),
+   my_ttyflush, !,
+   % ignore((LiveAgents\=[_], dbug1(liveAgents = LiveAgents))),
+   with_agents(run_perceptq, LiveAgents),
+   with_agents(decide_action, LiveAgents),
+   with_agents(do_todo, LiveAgents),
+   %notrace((set_advstate(S9))),
+   !. % Don't allow future failure to redo main.
+main_once:-
+ dbug(general, 'main_once FAILED~n').
 
-main(S0, S9) :-
- notrace((var(S0)->get_advstate(S0);set_advstate(S0))),
- must_mw1(update_telnet_clients(S0, S1)),
- ((set_advstate(S1),
- % pprint(S1, state),
- get_live_agents(LiveAgents, S1),
- ttyflush)),
- %dbug1(liveAgents = LiveAgents),
- apply_mapl_state(run_agent_pass_1(), LiveAgents, S1, S2),
- apply_mapl_state(run_agent_pass_2(), LiveAgents, S2, S9),
- notrace((set_advstate(S9))),
- !. % Don't allow future failure to redo main.
-main(S0, S0) :-
- dbug(general, 'main FAILED~n').
+:- dynamic(mu_temp:needs_agent_conn/4).
+:- volatile(mu_temp:needs_agent_conn/4).
 
-:- dynamic(mu_global:agent_conn/4).
 
-update_telnet_clients(S0, S2):-
- retract(mu_global:agent_conn(Agent, Named, _Alias, Info)),
- create_agent_conn(Agent, Named, Info, S0, S1),
- update_telnet_clients(S1, S2).
-update_telnet_clients(S0, S0).
+update_network_connections :-
+  with_mutex(get_advstate,
+    update_network_connections_in_mutex).
 
+update_network_connections_in_mutex:-
+ forall(retract(mu_temp:needs_agent_conn(Agent, Named, _Alias, Info)),
+        create_agent_conn(Agent, Named, Info)).
+
+% create_agent_conn(Agent, _Named, _Info, S0, S0) :- declared(agent(Agent, t), S0), !.
+ %create_new_unlocated('watch', Watch),
+    %create_new_unlocated('bag', Bag),
+    %create_new_unlocated('coins', Coins),
+     % h(worn_by, Watch, Agent),
+    %h(in, Bag, Coins),
+    %h(held_by, Bag, Agent),
+create_agent_conn(Agent, Named, Info):-
+  set_advstate(props(Agent,
+        [name(Named), inherit(telnet, t), inherit(humanoid, t), inherit(player, t), info(Info)])),
+  set_advstate(h(in, Agent, kitchen)),
+  get_advstate(S0),
+  mu_create_object(Agent, S0, S9),
+  set_advstate(S9).
 
 
 :- dynamic(mu_global:console_tokens/2).
@@ -177,7 +221,7 @@ telnet_decide_action(Agent, Mem0, Mem1) :-
  retract(mu_global:console_tokens(Agent, Words)), !,
  must_mw1((eng2log(Agent, Words, Action, Mem0),
  if_tracing(dbug(telnet, 'Telnet TODO ~p~n', [Agent: Words->Action])),
- add_todo(Action, Mem0, Mem1))), !.
+ add_todo(Agent, Action, Mem0, Mem1))), !.
 telnet_decide_action(Agent, Mem, Mem) :-
  nop(dbug(telnet, '~w: Can\'t think of anything to do.~n', [Agent])).
 
@@ -211,22 +255,4 @@ main_loop(_) :-
  dbug(general, 'main_loop() FAILED!~n').
 */
 
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CODE FILE SECTION
-:- nop(ensure_loaded('adv_main_commands')).
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-save_term(Filename, Term) :-
- \+ access_file(Filename, exist),
- open(Filename, write, FH),
- write(FH, Term),
- close(FH),
- player_format('Saved to file "~w".~n', [Filename]).
-save_term(Filename, _) :-
- access_file(Filename, exist),
- player_format('Save FAILED! Does file "~w" already exist?~n', [Filename]).
-save_term(Filename, _) :-
- player_format('Failed to open file "~w" for saving.~n', [Filename]).
 

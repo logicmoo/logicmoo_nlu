@@ -1,15 +1,15 @@
 /*
 % NomicMUD: A MUD server written in Prolog
 % Maintainer: Douglas Miles
-% Dec 13, 2035
+% Jan 19, 2038 @ 03:14:07
 %
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -22,7 +22,7 @@
 :- meta_predicate(memorize_edit(3, *, *, *)).
 memorize_edit(Pred3, Figment, M0, M2) :- assertion(\+ is_list(Figment)),
    Figment =.. [Name, Value], OldFigment =.. [Name, OldValue],
-   (forget(OldFigment, M0, M1) 
+   (forget(OldFigment, M0, M1)
      -> ( call(Pred3, OldValue, Value, NewValue), NewFigment =.. [Name, NewValue])
      ; (NewFigment=Figment, M0=M1)),
    memorize(NewFigment, M1, M2).
@@ -70,13 +70,13 @@ update_relation( NewHow, Item, NewParent, Timestamp, M0, M2) :-
  append([(h(NewHow, Item, NewParent))], M1, M2).
 
 remove_old_info( _NewHow, '<mystery>'(_, _, _), _NewParent, _Timestamp, M0, M0) :- !.
-remove_old_info( _NewHow, Item, _NewParent, _Timestamp, M0, M2) :- 
+remove_old_info( _NewHow, Item, _NewParent, _Timestamp, M0, M2) :-
  select_always((h(_OldHow, Item, _OldWhere)), M0, M1),
  select_always(h(_OldHow2, Item, _OldWhere2), M1, M2).
 
 
 remove_children(_At, '<mystery>'(_, _, _), _Object, _Timestamp, M0, M0):- !.
-remove_children( At, _, Object, Timestamp, M0, M2):- 
+remove_children( At, _, Object, Timestamp, M0, M2):-
   select_from((h(At, _, Object)), M0, M1), !,
   remove_children( At, _, Object, Timestamp, M1, M2).
 remove_children( _At, _, _Object, _Timestamp, M0, M0).
@@ -84,7 +84,7 @@ remove_children( _At, _, _Object, _Timestamp, M0, M0).
 % Batch-update relations.
 
 update_relations(Prep, '<mystery>'(How, What, Object2), Object, Timestamp, M0, M1):-
-  \+ in_model((h(What, _Child, Object2)), M0), 
+  \+ in_model((h(What, _Child, Object2)), M0),
   % \+ in_model((h(What, Object2, _Parent), _), M0),
   update_relation( Prep, '<mystery>'(How, What, Object2), Object, Timestamp, M0, M1).
 
@@ -114,7 +114,7 @@ update_model_exits([Exit|Tail], From, Timestamp, M0, M2) :-
  realize_model_exit(Exit, From, Timestamp, M0, M1),
  update_model_exits(Tail, From, Timestamp, M1, M2).
 
-update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M0, M2) :-  
+update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M0, M2) :-
    \+ in_model(h(exit(ExitNameReversed), Here, _There), M0),
    realize_model_exit(ExitNameReversed, Here, Timestamp, M0, M1),
    update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M1, M2).
@@ -125,23 +125,23 @@ update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestam
 % append(RecentMemory, [Figment|_Tail], Memory),
 % \+ member(FreshFigment, RecentMemory).
 
-update_model(Knower, arriving(Agent, At, Here, _, ExitNameReversed), Timestamp, Mem, M0, M2) :-  Knower == Agent,    
+update_model(Knower, arriving(Agent, At, Here, _, ExitNameReversed), Timestamp, Mem, M0, M2) :-  Knower == Agent,
   % According to model, where was I?
   must_mw(in_model(h(_Was, Agent, There), M0)),
   % TODO: Handle goto(Agent, walk, on, table)
   % reverse_dir(ExitNameReversed, ExitName, advstate),
-  % How did I get Here?  
-  append(RecentMem, [attempts(Agent, go_dir(Agent, _, ExitName))|OlderMem], Mem), 
+  % How did I get Here?
+  append(RecentMem, [attempts(Agent, go_dir(Agent, _, ExitName))|OlderMem], Mem),
     % find figment
-  \+ member(attempts(Agent, go_dir(Agent, _, _)), RecentMem),               % guarrantee recentness
-  memberchk(timestamp(_T1, _OldNow), OlderMem),               % get associated stamp
+  \+ member(attempts(Agent, go_dir(Agent, _, _)), RecentMem), % guarrantee recentness
+  memberchk(timestamp(_T1, _OldNow), OlderMem), % get associated stamp
   %player_format(Agent, '~p moved: goto(Agent, walk, ~p, ~p) from ~p leads to ~p~n',
   %       [Agent, AtGo, Dest, There, Here]),
   update_model_exit(ExitName, There, Here, Timestamp, M0, M11), % Model the path.
-  update_model_exit(ExitNameReversed, Here, There, Timestamp, M11, M1), 
+  update_model_exit(ExitNameReversed, Here, There, Timestamp, M11, M1),
   update_relation(At, Agent, Here, Timestamp, M1, M2), !. % And update location.
 
-update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M0, M2) :-  
+update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M0, M2) :-
    \+ in_model(h(In, Agent, Here), M0),
    update_relations( In, [Agent], Here, Timestamp, M0, M1),
    update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M1, M2).
@@ -150,7 +150,7 @@ update_model(_Agent, moved(_Doer, _How, Object, _From, At, To), Timestamp, _Mem,
   update_relation(At, Object, To, Timestamp, M0, M1).
 
 update_model(Agent, Event, Timestamp, Memory, M0, M2) :- fail,
-  implications(event , ( Event), Preconds, Postconds),   
+  implications(event , ( Event), Preconds, Postconds),
     (satisfy_each(preCond(_), Preconds, M0, _)  ->
       satisfy_each(postCond(_), Postconds, M0, M1) -> M0\=@= M1), !,
     update_model(Agent, Event, Timestamp, Memory, M1, M2).
@@ -177,7 +177,7 @@ update_model(Agent, percept(Agent, _, _, exit_list(in, Here, ExitRelations)), Ti
 
 % Model objects seen Here
 update_model(Agent, percept(Agent, _Sense, child_list(_Depth, Here, Prep, Objects)), Timestamp, _Mem, M0, M3):- !,
-   update_relations(Prep, Objects, Here, Timestamp, M0, M3). 
+   update_relations(Prep, Objects, Here, Timestamp, M0, M3).
 
 update_model(_Agent, [], _Timestamp, _Memory, M, M).
 update_model(Agent, [Percept|Tail], Timestamp, Memory, M0, M2) :-
@@ -206,6 +206,6 @@ maybe_remember(Percept, M0, M1):- append([Percept], M0, M1).
 each_update_model(_Agent, [], _Timestamp, _Memory, M, M).
 each_update_model( Agent, [Percept|Tail], Timestamp, Memory, M0, M3) :-
  maybe_remember(Percept, M0, M1),
- update_model(Agent, Percept, Timestamp, Memory, M1, M2), 
+ update_model(Agent, Percept, Timestamp, Memory, M1, M2),
  each_update_model( Agent, Tail, Timestamp, Memory, M2, M3).
 

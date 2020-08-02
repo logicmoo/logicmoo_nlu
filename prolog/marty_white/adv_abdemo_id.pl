@@ -161,7 +161,7 @@ abdemo([holds_at(F1, T)|Gs1], R1, R3, N1, N4, D) :-
 
 /*
    The order in which resolution steps are carried out in the next
-   clause is crucial. We resolve initiates first in order to instantiate 
+   clause is crucial. We resolve initiates first in order to instantiate
    A, but we don't want to proceed with sub-goals of initiates until
    we've added the corresponding happens and before facts to the residue.
 */
@@ -554,7 +554,7 @@ abdemo_naf([postponed(before(X, Y))|Gs], R1, R2, N, N, D) :-
 abdemo_naf([postponed(before(X, Y))|Gs], R1, R2, N1, N2, D) :-
      !, abdemo_naf(Gs, R1, R2, N1, N2, D).
 
-/* 
+/*
    We drop through to the general case for goals other than special event
    calculus goals.
 */

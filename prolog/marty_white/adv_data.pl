@@ -74,7 +74,7 @@ dest_target(loc(_, _, _, Target), Target):- nonvar(Target), !.
 :- retractall(istate(_)).
 :- asserta(istate([ structure_label(istate), propOf(istate, world) ])).
 
-% this hacks the state above 
+% this hacks the state above
 :- push_to_state([
 
 
@@ -104,14 +104,14 @@ exit(south, living_room, kitchen),
 exit(west, kitchen, living_room),
 
 
-in(the(shelf), pantry),  % the shelf is in pantry
+in(the(shelf), pantry), % the shelf is in pantry
 in(the(locker), pantry), % the locker is in pantry
-in(the(rock), garden),   % xformed:  in('rock~1', garden).
+in(the(rock), garden), % xformed:  in('rock~1', garden).
 % there are rocks in the garden
-in(a(rock), garden),     % xformed:  in('rock~11', garden).
-%in(s(rock), garden),     % in('rock~21', garden).
+in(a(rock), garden), % xformed:  in('rock~11', garden).
+%in(s(rock), garden), % in('rock~21', garden).
 % in({atLeast(2)}/in(a(rock), garden)).
-                         % 
+                         %
 in(the(fountain), garden),
 in(the(mushroom), garden),
 in(the(shovel), basement), % FYI shovel has no props (this is a lttle test to see what happens)
@@ -134,16 +134,16 @@ term_expansion(StateInfo, Pos, (:- push_to_state(StateInfo)), PosO):- mu:is_stat
 
 % type/2s are noticed by the term_expansion is_state_info
 door type      % xformed: type_props(door, ... the below ... )
-  ~can(take),  % xformed: can(actTake)= f
-   can(open),  % xformed: can(actOpen)= t
+  ~can(take), % xformed: can(actTake)= f
+   can(open), % xformed: can(actOpen)= t
    can(close), % xformed: can(actClose)= t
    (opened = f),
-   nouns(door),  % xformed: nouns(["door"])
+   nouns(door), % xformed: nouns(["door"])
    fully_corporial.  % xformed:  inherits(fully_corporial)
 
 food type
    can(eat),
-   moveable,      % xformed:  inherits(moveable)
+   moveable, % xformed:  inherits(moveable)
    measurable.  % xformed:  inherits(measurable)
 
 basement props place,
@@ -204,7 +204,7 @@ props(brklamp,
    effect(hit, [print_("Hit brklamp"), setprop($self, inherit(broken))]),
    inherit(lamp)).
 
-    
+
 props(screendoor, [
    % see DM4
    door_to(kitchen),
@@ -227,7 +227,7 @@ props(screendoor, [
  type_props(mushroom, [
    % See DM4
    name = ("speckled mushroom"),
-   % singular,                     
+   % singular,
    food,
    nouns(eachOf([mushroom, fungus, toadstool])),
    adjs([speckled]),
@@ -241,14 +241,14 @@ props(screendoor, [
    before(eat, (random100 =< 30, die("It was poisoned!"); "yuck!")),
    after(take,
     (initial, "You pick the mushroom, neatly cleaving its thin stalk."))]),
-                               
+
  type_props(door, [
    % ~can(take),
     inherit(furnature),
     can(open),
     can(close),
     (opened = f),
-    nouns($class),    
+    nouns($class),
     inherit(fully_corporial)]),
 
  type_props(unthinkable, [
@@ -281,7 +281,7 @@ props(screendoor, [
    adjs($class),
    inherit(noncorporial),
    class_desc(["kind is both partly corporial and non-corporial"])]),
-   
+
  type_props(fully_corporial, [
    can(touch),
    can(examine),
@@ -289,7 +289,7 @@ props(screendoor, [
    cleanliness = clean,
    adjs($class),
    class_desc(["kind is corporial"])]),
-   
+
  type_props(moveable, [
     can(examine),
     adjs(physical),
@@ -299,13 +299,13 @@ props(screendoor, [
     inherit(fully_corporial),
     inherit(thinkable),
     class_desc(["kind is an Movable Object"])]),
-   
+
  type_props(untakeable, [
     adjs($class),
    ~can(take),
     class_desc(["kind is an Immobile Object"])]),
-   
-   
+
+
  type_props(furnature, [
    can(examine),
    nouns(furnature),
@@ -315,20 +315,20 @@ props(screendoor, [
    inherit(thinkable),
    adjs(physical),
    class_desc(["kind is furnature"])]),
-   
+
 
  % People
  props(floyd, [name = ("Floyd the robot"), powered = f, inherit(autonomous), inherit(robot)]),
 
  type_props(telnet, [adjs(remote), inherit(player), nouns([player])]),
  type_props(player, [name = ($self),
-   % 1 = look at object  2 = glance at child_list 3 = glance at grandchildren 
+   % 1 = look at object  2 = glance at child_list 3 = glance at grandchildren
    model_depth = 3, % how much of the model to get
    % 5 = save game |  4 = debug | 3 = look at Obj | 2 =  | 1 = basic fun info
    % prop_depth = 3, % what prop level to get
    % Basic fun props
    inherit(autoscan),
-   look_depth = 2, 
+   look_depth = 2,
    user_mode = 2, % 1 = fun-only, normal, debug
    access_level = admin, % guest, user, admin, wizard
    inherit(console), inherit(humanoid)]),
@@ -343,19 +343,19 @@ props(screendoor, [
    knows_verbs(eat),
    volume = 50, % liters  (water is 1 kilogram per liter)
    mass = 50, % kilograms
-   inherit(character),   
+   inherit(character),
    inherit(memorizer),
-   
-   
+
+
    % players use power but cant be powered down
    can(switch(off), f), powered = t
   ]),
-   
+
  type_props(autonomous, [inherit(autoscan), inherit(impulsive),
-   class_desc(["like Floyd the robot will, instances will automatically use its planner 
+   class_desc(["like Floyd the robot will, instances will automatically use its planner
         about planning to decide on what to do"])]),
 
- type_props(decider, [       
+ type_props(decider, [
        class_desc(["agents of this type/class call decide_action/3 hooks (and per plugin)"])]),
 
   type_props(nomicmu_plugin, [
@@ -375,7 +375,7 @@ props(screendoor, [
 
  type_props(autolook, [
       adjs($class),
-          class_desc(["When entering a new area the Agent will automatically 
+          class_desc(["When entering a new area the Agent will automatically
             get an overview of the env (without purposeful looking)"])]),
 
 
@@ -419,7 +419,7 @@ props(screendoor, [
   ]),
 
   type_props(natural_force, [
-   ~knows_verbs(eat),      
+   ~knows_verbs(eat),
    ~can(touch),
    ~has_rel(held_by),
    ~has_rel(worn_by),
@@ -429,7 +429,7 @@ props(screendoor, [
     inherit(actor)
    ]),
 
-   
+
    % Places
  type_props(place, [
    volume_capacity = 10000,
@@ -447,7 +447,7 @@ props(screendoor, [
    % inherit(container),
    has_rel(exit(_))
   ]),
-   
+
  type_props(container, [
    default_rel = in,
    opened = f,
@@ -462,11 +462,11 @@ props(screendoor, [
  type_props(bag, [
    volume_capacity = 10,
    inherit(container),
-   inherit(moveable)   
+   inherit(moveable)
   ]),
-   
+
  type_props(cup, [inherit(flask)]),
-   
+
  type_props(flask, [
    adjs(physical),
   oper(put($agent, Thing, in, $self),
@@ -477,7 +477,7 @@ props(screendoor, [
    inherit(container),
    inherit(moveable)
   ]),
-   
+
  type_props(bowl, [
    inherit(uncloseable),
    inherit(flask),
@@ -509,7 +509,7 @@ props(screendoor, [
    opened = f,
    volume_capacity = 11,
    inherit(container),
-   inherit(moveable),   
+   inherit(moveable),
    inherit(cardboard)
   ]),
 
@@ -571,15 +571,15 @@ props(screendoor, [
    inherit(place),
    inherit(sink)
   ]),
-   
+
  type_props(measurable, [adjs($class), ammount = some]),
-   
-   
+
+
    % shiny things are fully_corporial
  type_props(shiny, [adjs($class), inherit(moveable), inherit(fully_corporial)]),
-   
+
  type_props(coins, [inherit(shiny), inherit(measurable)]),
-   
+
  type_props(flour, [inherit(food), inherit(measurable)]),
 
  type_props(lamp, [
@@ -606,11 +606,11 @@ props(screendoor, [
    effect(switch(on), true),
    effect(switch(off), true) % calls true(S0, S1) !
   ]),
-   
+
  type_props(surface, [has_rel(on), default_rel = on, adjs(physical), cleanliness=clean]),
-   
+
  type_props(shelf, [inherit(surface), adjs(physical), inherit(furnature)]),
-   
+
  type_props(table, [inherit(surface), adjs(physical), default_rel=on])
  ]).
 
@@ -637,7 +637,7 @@ props(screendoor, [
 
 extra_decl(T, PP):- extra_decl0(T, P), correct_props(T, P, PP).
 extra_decl0(T, P):- member(type_props(T, P), [  ]).
-   
+
 :- op(0, xfx, props).
 
 %:- listing(istate).

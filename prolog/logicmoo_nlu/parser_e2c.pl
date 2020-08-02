@@ -72,6 +72,7 @@
 :- reexport(parser_chat80).
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
 :- reexport(parser_tokenize).
+:- reexport(parser_pldata).
 %:- use_module(pldata(clex_iface)).
 %:- use_module(parser_chat80,[plt/0,print_tree/1]).
 :- mu:export(mu:nop/3).

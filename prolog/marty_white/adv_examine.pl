@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -18,20 +18,20 @@
 */
 
 /*
-nearby_objs(Agent, Here, Nearby, S0):- 
+nearby_objs(Agent, Here, Nearby, S0):-
  ignore(h(At, Agent, Here, S0)),
- findall_set(What,  
+ findall_set(What,
    (h(At, What, Here, S0),
     sub_objs(descended, Here, What, S0)),
    Nearby).
 */
 
-sub_objs(At, Here, What, S0):- 
+sub_objs(At, Here, What, S0):-
   h(At, What, Here, S0),
- \+ ((h(inside, What, Container, S0), 
+ \+ ((h(inside, What, Container, S0),
    Container\==Here, h(descended, Container, Here, S0))).
 
-prep_object_exitnames(in, Object, Exits, S0) :- 
+prep_object_exitnames(in, Object, Exits, S0) :-
   findall(Direction, h(exit(Direction), Object, _, S0), Exits), Exits\==[], !.
 prep_object_exitnames(in, _Object, [escape], _S0) :- !.
 prep_object_exitnames(on, _Object, [escape], _S0) :- !.
@@ -54,7 +54,7 @@ is_prop_public_at(see, 3, volume).
 % groped
 is_prop_public_at(touch, 3, locked).
 
-% looked 
+% looked
 is_prop_public_at(see, 2, shiny).
 is_prop_public_at(see, 2, opened).
 is_prop_public_at(see, 2, worn_on).
@@ -108,39 +108,39 @@ is_prop_public_at(S, N, F = _):- !, is_prop_public_at(S, N, F).
 is_prop_public_at(S, N, P):- safe_functor(P, F, _), is_prop_public_at(S, N, F).
 is_prop_public_at(S, N, P) :- arg(1, P, F), is_prop_public_at(S, N, F).
 
-object_props(Object, Sense, PropDepth, PropList, S0):- 
+object_props(Object, Sense, PropDepth, PropList, S0):-
  findall(P, (getprop(Object, P, S0), is_prop_public(Sense, PropDepth, P)), PropListL),
  list_to_set(PropListL, PropList), !.
-                                   
+
 :- meta_predicate(maybe_send_sense(0, *, *, *, *, *, *)).
-maybe_send_sense(IF, Agent, Sense, Depth, Data, S0, S1):- 
+maybe_send_sense(IF, Agent, Sense, Depth, Data, S0, S1):-
  call(IF) ->
    send_sense(Agent, Sense, Depth, Data, S0, S1)
   ; S0 = S1.
 
-send_sense(Agent, Sense, Depth, Data, S0, S1):- 
+send_sense(Agent, Sense, Depth, Data, S0, S1):-
    queue_agent_percept(Agent, percept(Agent, Sense, Depth, Data), S0, S1).
 
-act_examine(Agent, Sense, PrepIn, Object, Depth, SA, S3):- 
- object_props(Object, know, Depth, KPropList, SA), 
+act_examine(Agent, Sense, PrepIn, Object, Depth, SA, S3):-
+ object_props(Object, know, Depth, KPropList, SA),
  maybe_send_sense((KPropList\==[]), Agent, know, Depth, props(Object, KPropList), SA, S0 ),
- object_props(Object, Sense, Depth, PropList, SA), 
+ object_props(Object, Sense, Depth, PropList, SA),
  maybe_send_sense((PropList\==[]), Agent, Sense, Depth, props(Object, PropList), S0, S1),
  add_child_percepts(Sense, Agent, PrepIn, Depth, Object, S1, S2),
- (Depth>2 -> 
+ (Depth>2 ->
    (prep_object_exitnames(PrepIn, Object, Exits, S0),
-       send_sense(Agent, Sense, Depth, exit_list(PrepIn, Object, Exits), S2, S3)) 
+       send_sense(Agent, Sense, Depth, exit_list(PrepIn, Object, Exits), S2, S3))
     ; S2 = S3), !.
 
 
-get_relation_list(Object, RelationSet, S1) :- 
-  findall_set(At, 
-     ((getprop(Object, has_rel(At, t), S1);      
-      (declared(h(At, _, Object), S1))), 
+get_relation_list(Object, RelationSet, S1) :-
+  findall_set(At,
+     ((getprop(Object, has_rel(At, t), S1);
+      (declared(h(At, _, Object), S1))),
      At\=exit(_)), RelationSet).
 
 % add_child_percepts(_Sense, _Agent, _PrepIn, Depth, _Object, S1, S1):- Depth > 2, !.
-add_child_percepts(Sense, Agent, PrepIn, Depth, Object, S1, S2):- 
+add_child_percepts(Sense, Agent, PrepIn, Depth, Object, S1, S2):-
  get_relation_list(Object, RelationSet, S1),
  (member(PrepIn, RelationSet) -> UseRelationSet = [PrepIn] ; UseRelationSet= RelationSet),
  % dmsg(get_relation_list(Object, RelationSet)),
@@ -157,9 +157,9 @@ child_percepts(_Agent, _All, Object, At, _Depth, '<mystery>'(closed, At, Object)
  getprop(Object, default_rel = Default, S0), Default\==At, !,
  act_examine(Agent, Sense, Default, Here, Depth, S0, S9).
 */
-child_percepts(Agent, Sense, Object, At, _Depth, Children, S1):- 
- findall_set(What,  
-  (h(At, What, Object, S1), 
-   nop(once(can_sense(Agent, Sense, What, S1)))), 
-   Children). 
+child_percepts(Agent, Sense, Object, At, _Depth, Children, S1):-
+ findall_set(What,
+  (h(At, What, Object, S1),
+   nop(once(can_sense(Agent, Sense, What, S1)))),
+   Children).
 

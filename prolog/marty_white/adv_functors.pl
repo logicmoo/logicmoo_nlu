@@ -72,7 +72,7 @@ is_m_type_functor(_, Type, Term):-
   is_type_functor(Type, F, A).
 
 
-is_type_functor(Type, F, A):- 
+is_type_functor(Type, F, A):-
    safe_functor(Skel, F, A),
    type_functor(Type, Skel).
 
@@ -80,6 +80,9 @@ is_type_functor(Type, F, A):-
 
 %functor_arity_state(F, A):- is_spatial_rel(F).
 
+
+%type_functor(state, holds_at(state, time)).
+%type_functor(action, get_advstate_db(list(state))).
 
 
 type_functor(dest, spatially(in, inst)).
@@ -91,7 +94,7 @@ type_functor(dest, of(west, $here)).
 
 type_functor(memory, goals(list(goals))).
 type_functor(memory, goals_skipped(list(goals))).
-type_functor(memory, goals_satisfied(list(goals))).            
+type_functor(memory, goals_satisfied(list(goals))).
 type_functor(memory, todo(list(action))).
 %type_functor(memory, model(list(state_with_stamps))).
 type_functor(event, timestamp(ordinal, timept)).
@@ -176,7 +179,7 @@ type_functor(event, destroyed(inst)).
 type_functor(event, did(action)).
 type_functor(event, percept(agent, sense, depth, props)).
 type_functor(event, percept(agent, exit_list(in, dest, list(exit)))). % paths noticable
-type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))). 
+type_functor(event, percept(agent, child_list(sense, dest, domrel, depth, list(inst)))).
 type_functor(event, failed(action, msg)). % some action has failed
 type_functor(event, transformed(inst, inst2)). % inst1 got derezed and rerezed as inst2
 
@@ -196,20 +199,20 @@ type_functor(nv, co(list(nv))).  % item is created
 type_functor(nv, desc(sv(text))).
 type_functor(nv, prefix(sv(text))).
 type_functor(nv, door_to(inst)).
-type_functor(nv, effect(verb_targeted, script)). % 
+type_functor(nv, effect(verb_targeted, script)). %
 type_functor(nv, breaks_into = type).
 type_functor(nv, has_rel(domrel, tf)).
-type_functor(nv, has_sense(sense)). 
-type_functor(nv, can_be(verb, tf)). 
-type_functor(nv, initial(sv(text))). 
+type_functor(nv, has_sense(sense)).
+type_functor(nv, can_be(verb, tf)).
+type_functor(nv, initial(sv(text))).
 
-type_functor(nv, has_sense(sense)). 
+type_functor(nv, has_sense(sense)).
 type_functor(nv, isnt(type)). % stops inheritance into some type
 type_functor(nv, inherit(type, tf)).
 type_functor(nv, inherited(type)).
 type_functor(nv, default_rel=type).
 type_functor(nv, inst(sv(term))).
-type_functor(nv, name = (sv(text))).  
+type_functor(nv, name = (sv(text))).
 type_functor(nv, oper(action, preconds, postconds)).
 type_functor(nv, emitting(sense, type)).
 % type_functor(nv, domrel=value).
@@ -218,7 +221,7 @@ remember_arity(T, P):- safe_functor(P, F, A), asserta(type_functor_arity(T, F, A
 :- forall(type_functor(T, P), remember_arity(T, P)).
 
 
-get_functor_types(T, Functor, Types):-  
+get_functor_types(T, Functor, Types):-
   safe_functor(Functor, F, _),
   type_functor_arity(T, F, A),
   length(Types, A),
@@ -226,7 +229,7 @@ get_functor_types(T, Functor, Types):-
   type_functor(T, P).
 
 
-current_mfa(M, F, A, P):- 
+current_mfa(M, F, A, P):-
   current_predicate(M:F/A),
   safe_functor(P, F, A),
   \+ predicate_property(M:P, imported_from(_)).
@@ -245,7 +248,7 @@ scan_predicate(M, P):- forall(clause(M:P, Body), (scan_functors(P), scan_functor
 
 scan_functors(Body):- \+ compound(Body), !.
 scan_functors(Body):- compound_name_arity(Body, _, 0), !.
-scan_functors(Body):- safe_functor(Body, F, A),  \+ \+ remember_functor(Body, F, A),
+scan_functors(Body):- safe_functor(Body, F, A), \+ \+ remember_functor(Body, F, A),
   Body=..[_|Args], must_maplist(scan_functors, Args), !.
 
 
@@ -336,7 +339,7 @@ type_functor(unk, step(start, oper(A, do_nothing(A), [], []))).
 type_functor(unk, add_todo(A, {|i7||<action> A does goto loc walk pantry |})).
 type_functor(unk, im(A)).
 type_functor(unk, log2eng(A, B, C)).
-type_functor(unk, add_goal(A, {|i7||<action> A does take crate |})).
+type_functor(unk, add_goal(agent, {|i7||<action> A does take crate |})).
 type_functor(unk, switch(on)).
 type_functor(unk, enters(A, B, C)).
 type_functor(unk, to(place(A))).
@@ -364,7 +367,6 @@ type_functor(unk, causes(start, ~A, B)).
 type_functor(unk, completeFn(A)).
 type_functor(unk, before(eat, (random100=<30, die("It was poisoned!");"yuck!"))).
 type_functor(unk, create_1obj(A, B, C, D)).
-type_functor(unk, holds_at(neg(A), B)).
 type_functor(unk, frame(A)).
 type_functor(unk, failed_update_model(A, B, C)).
 type_functor(unk, dbug1(failed_update_model(A, B, C), model)).
@@ -405,7 +407,7 @@ type_functor(unk, success(followed_plan(A, B))).
 type_functor(unk, assert_text(A, B)).
 type_functor(unk, assert_text(A)).
 type_functor(unk, eng2log(A)).
-type_functor(unk, type(A, B)).            
+type_functor(unk, type(A, B)).
 type_functor(unk, unknown_push_to_state(A)).
 type_functor(unk, parse_for_kind(state, A, B)).
 type_functor(unk, bprocess_percept(A, B, C)).

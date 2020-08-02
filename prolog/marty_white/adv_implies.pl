@@ -6,17 +6,17 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
+%
 % Feb 20, 2020 - Andrew Dougherty
-% Copyright (C) 2004 Marty White under the GNU GPL 
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
 %
 */
-:- op(500,fx,~).
+:- op(500, fx, ~).
 
 
 
@@ -28,9 +28,9 @@ implications(does, go_dir(Agent, Walk, ExitName),
 
 
 implications(event, moving_in_dir(Object, Manner, ExitName, From, Here, To, There),
-     [ Here \= There,  h(exit(ExitName), Here, There), h(exit(ReverseExit), There, Here) ],
+     [ Here \= There, h(exit(ExitName), Here, There), h(exit(ReverseExit), There, Here) ],
      [  event(departing(Object, From, Here, Manner, ExitName)),
-        event(arriving(Object, To, There, Manner,  ReverseExit))
+        event(arriving(Object, To, There, Manner, ReverseExit))
         ]).
 
 implications(event, departing(Agent, In, There, _Walk, ExitName),
@@ -44,29 +44,29 @@ only_goto:- fail, true.
 
 :- discontiguous(oper_db/4).
 % oper_db(_Self, Action, Preconds, Effects)
-oper_db(Self, Action, Preconds, Effects):- fail,  % Hooks to KR above
+oper_db(Self, Action, Preconds, Effects):- fail, % Hooks to KR above
   sequenced(Self, Whole),
  append(Preconds, [did(Action)|Effects], Whole).
 
 oper_db(Agent, do_nothing(Agent), [], []).
 
 oper_db(Agent, go_dir(Agent, Walk, ExitName),
-   [ Here \= Agent, There \= Agent, Here \= There, 
+   [ Here \= Agent, There \= Agent, Here \= There,
     k(In, Agent, Here),
     b(exit(ExitName), Here, _),
-    h(exit(ExitName), Here, There),       
-    ReverseExit \= ExitName, 
+    h(exit(ExitName), Here, There),
+    ReverseExit \= ExitName,
     h(exit(ReverseExit), There, Here)],
-   [ 
+   [
      % implies believe(Agent, ~h(in, Agent, Here)),
-     percept_local(Here, departing(Agent, In, Here, Walk, ExitName)),        
-   ~h(In, Agent, Here),  
+     percept_local(Here, departing(Agent, In, Here, Walk, ExitName)),
+   ~h(In, Agent, Here),
     h(In, Agent, There),
    %b(exit(ExitName), Here, There),
    %b(exit(ReverseExit), There, Here),
-   % implies, believe(Agent, h(in, Agent, There)),  
-    percept_local(There, arriving(Agent, In, There, Walk,  ReverseExit))
-   %  ~b(In, Agent, Here),  
+   % implies, believe(Agent, h(in, Agent, There)),
+    percept_local(There, arriving(Agent, In, There, Walk, ReverseExit))
+   %  ~b(In, Agent, Here),
    %   b(In, Agent, There),
      % There \= Here
      ]):- dif(ExitName, escape).
@@ -74,8 +74,8 @@ oper_db(Agent, go_dir(Agent, Walk, ExitName),
 
 % Return an operator after substituting Agent for Agent.
 oper_db(Agent, go_dir(Agent, _Walk, ExitName),
-     [ b(in, Agent, Here),     
-       b(exit(ExitName), Here, There),             
+     [ b(in, Agent, Here),
+       b(exit(ExitName), Here, There),
        Here \= Agent, There \= Agent, Here \= There
        ], % path(Here, There)
      [ ~b(in, Agent, Here),
@@ -88,13 +88,13 @@ oper_db(Agent, go_dir(Agent, Walk, Escape),
      [ Object \= Agent, Here \= Agent,
        k(OldIn, Agent, Object),
        h(NewIn, Object, Here),
-       Object \= Here      
+       Object \= Here
      ],
-     [ 
+     [
         percept_local(Object, departing(Agent, OldIn, Object, Walk, Escape)),
         % implies believe(Agent, ~h(in, Agent, Object)),
-       ~k(OldIn, Agent, Object),        
-        k(NewIn, Agent, Here),        
+       ~k(OldIn, Agent, Object),
+        k(NewIn, Agent, Here),
         percept_local(Here, arriving(Agent, NewIn, Here, Walk, EscapedObject))
         % implies, believe(Agent, h(in, Agent, Here))
      ]) :- Escape = escape, EscapedObject = escaped, \+ only_goto.
@@ -104,22 +104,22 @@ oper_db(Agent, go_dir(Agent, Walk, Escape),
 oper_db(Agent, looky(Agent),
      [ Here \= Agent,
        % believe(Agent, h(_, Agent, _)),
-       h(Sub, Agent, Here)       
-       ], 
+       h(Sub, Agent, Here)
+       ],
      [ foreach(
-         (h(Sub, Child, Here), must_mw1(h(At, Child, Where))), 
+         (h(Sub, Child, Here), must_mw1(h(At, Child, Where))),
              percept(Agent, h(At, Child, Where))) ] ) :- \+ only_goto.
 
 
 
 % the World agent has a *goal that no events go unhandled
 oper_db(world, handle_events(Here),
-     [ percept_local(Here, Event)],               
-     [ ~percept_local(Here, Event), 
+     [ percept_local(Here, Event)],
+     [ ~percept_local(Here, Event),
        foreach((h(in, Agent, Here), prop(Agent, inherited(perceptq))), percept(Agent, Event))]):- \+ only_goto.
 
 
-% deducer Agents who preceive leavers from some exit believe the departing point is an exit 
+% deducer Agents who preceive leavers from some exit believe the departing point is an exit
 oper_db(Agent, percept(Agent, departing(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
        prop(Agent, inherited(deducer)),
@@ -127,7 +127,7 @@ oper_db(Agent, percept(Agent, departing(Someone, In, Here, Walk, ExitName)),
      [ believe(Agent, h(exit(ExitName), Here, _)),
        believe(Agent, prop(Someone, inherited(actor)))]):- \+ only_goto.
 
-% deducer Agents who preceive arivers from some entrance believe the entry location is an exit 
+% deducer Agents who preceive arivers from some entrance believe the entry location is an exit
 oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
        prop(Agent, inherited(deducer)),
@@ -138,20 +138,20 @@ oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
        believe(Agent, h(In, Someone, Here)),
        believe(Agent, prop(Someone, inherited(actor)))]):- \+ only_goto.
 
-% deducer Agents who preceive arivers from some entrance believe the entry location is an exit 
+% deducer Agents who preceive arivers from some entrance believe the entry location is an exit
 oper_db(Agent, percept(Agent, arriving(Someone, In, Here, Walk, ExitName)),
      [ did(go_dir(Someone, Walk, ExitName)),
        isa(Agent, deducer),
-       b(Agent, 
+       b(Agent,
                 [percept_local(There, departing(Someone, In, There, Walk, EnterName)),
                 in(Agent, Here)]) ],
-     [ b(Agent, 
+     [ b(Agent,
                 [exit(ExitName, Here, There),
                 did(go_dir(Someone, Walk, EnterName)),
                 in(Someone, Here),
                 isa(Someone, actor)])]):- \+ only_goto.
 
-% ~h(Prep,'<mystery>'(closed,Prep,Object),Object)
+% ~h(Prep, '<mystery>'(closed, Prep, Object), Object)
 
 % h = is really true
 % b = is belived
@@ -167,7 +167,7 @@ oper_db(Agent, take(Agent, Thing), % from same room
       k(held_by, Thing, Agent)]):- \+ only_goto.
 
 oper_db(Agent, drop(Agent, Thing),
-  [ Thing \= Agent, exists(Thing), 
+  [ Thing \= Agent, exists(Thing),
       k(held_by, Thing, Agent),
       k(At, Agent, Where)],
   [ ~ h(held_by, Thing, Agent),
@@ -183,7 +183,7 @@ oper_db(Agent, put(Agent, Thing, Relation, Where), % in somewhere
   [ ~ k(held_by, Thing, Agent),
       moves(held_by, Thing, Agent, put, Relation, Thing, Where),
       k(Relation, Thing, Where)] ):- \+ only_goto.
-     
+
 
 oper_db(Agent, give(Agent, Thing, Recipient), % in somewhere
   [ Thing \= Agent, Recipient \= Agent,

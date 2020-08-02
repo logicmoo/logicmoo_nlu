@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -39,28 +39,31 @@ simply_debug_opts([len=5]).
 
 get_zoption(Z, N, V, E):- member(N=V, Z)->true;V=E.
 
+simplify_dbug(G, GG):- notrace(simplify_dbug_3(G, GG)).
+simplify_dbug(Z, G, GG):- notrace(simplify_dbug_3(Z, G, GG)).
 
-simplify_dbug(G, GG):- is_list(G), must_det(maplist(simplify_dbug, G, GG)), !.
-simplify_dbug(G, GG):- simply_debug_opts(Z), simplify_dbug(Z, G, GG).
+simplify_dbug_3(G, GG):- is_list(G), must_det(maplist(simplify_dbug_3, G, GG)), !.
+simplify_dbug_3(G, GG):- simply_debug_opts(Z), simplify_dbug_3(Z, G, GG).
 
-simplify_dbug(_, G, GG):- \+ compound(G), !, GG=G.
-simplify_dbug(_, {O}, {O}):- !.
+simplify_dbug_3(_, G, GG):- \+ compound(G), !, GG=G.
+simplify_dbug_3(_, {O}, {O}):- !.
 
-simplify_dbug(Z, List, O):-
+simplify_dbug_3(Z, List, O):-
  ( is_list(List) -> clip_cons(Z, List, '...'(Clipped), O) ;
  ( List = [_|_], append(LeftSide, Open, List),
   ((var(Open);Open \= [_|_])), !, assertion(is_list(LeftSide)),
  clip_cons(Z, LeftSide, '...'(Open), O))), debug_var('CO', Open), debug_var('OC', Clipped).
 
-simplify_dbug(_, (X \= Y), (X \= Y)):- atom(X), debug_var(['Not', X], Y).
-simplify_dbug(_, (X \= Y), (X \= Y)):- atom(Y), debug_var(['Not', X], Y).
-simplify_dbug(Z, G, GG):- compound_name_arguments(G, F, GL), F\==percept_props, !,
- maplist(simplify_dbug(Z), GL, GGL), !, compound_name_arguments(GG, F, GGL).
-simplify_dbug(_, G, G).   
+simplify_dbug_3(_, (X \= Y), (X \= Y)):- atom(X), debug_var(['Not', X], Y).
+simplify_dbug_3(_, (X \= Y), (X \= Y)):- atom(Y), debug_var(['Not', X], Y).
+simplify_dbug_3(Z, G, GG):- compound_name_arguments(G, F, GL), F\==percept_props, !,
+ maplist(simplify_dbug_3(Z), GL, GGL), !, compound_name_arguments(GG, F, GGL).
+simplify_dbug_3(_, G, G).
 
 
-mwmsg(G):- compound(G), G=..[F, GG], !, dmsg(F:-GG).
-mwmsg(G):- simplify_dbug(G, GG)->guess_pretty(GG)->dmsg(GG).
+mwmsg(G):- notrace(mwmsg_3(G)).
+mwmsg_3(G):- compound(G), compound_name_arity(G,_,2),G=..[F, GG], !, dmsg(F:-GG).
+mwmsg_3(G):- simplify_dbug(G, GG)->guess_pretty(GG)->dmsg(GG).
 
 %:- system:import(simplify_dbug/2).
 %:- listing(simplify_dbug/2).
@@ -113,7 +116,7 @@ check4bugs(_, _).
 :- meta_predicate reset_prolog_flag(0, *, *).
 :- meta_predicate system_default_debug(0).
 
-reset_prolog_flag(YN, Name, SystemValue):- 
+reset_prolog_flag(YN, Name, SystemValue):-
   YN -> set_prolog_flag(Name, SystemValue) ; true.
 
 reset_prolog_flag(YN, Name, SystemValue, OverrideValue):-
@@ -121,40 +124,40 @@ reset_prolog_flag(YN, Name, SystemValue, OverrideValue):-
    ;  set_prolog_flag(Name, OverrideValue).
 
 system_default_debug(YN):-
-  reset_prolog_flag(YN, answer_format, '~p', '~q'), 
-  reset_prolog_flag(YN, answer_write_options, [quoted(true), portray(true), max_depth(10), spacing(next_argument)], 
-   [quoted(true), portray(true), max_depth(4), spacing(next_argument)]), 
-  reset_prolog_flag(YN, debugger_write_options, [quoted(true), portray(false), max_depth(10), attributes(portray), spacing(next_argument)], 
-   [quoted(true), portray(true), max_depth(4), attributes(portray), spacing(next_argument)]), 
-  reset_prolog_flag(YN, print_write_options, [portray(true), quoted(true), numbervars(true)], 
-   [portray(true), quoted(true), numbervars(true)]), 
+  reset_prolog_flag(YN, answer_format, '~p', '~q'),
+  reset_prolog_flag(YN, answer_write_options, [quoted(true), portray(true), max_depth(10), spacing(next_argument)],
+   [quoted(true), portray(true), max_depth(4), spacing(next_argument)]),
+  reset_prolog_flag(YN, debugger_write_options, [quoted(true), portray(false), max_depth(10), attributes(portray), spacing(next_argument)],
+   [quoted(true), portray(true), max_depth(4), attributes(portray), spacing(next_argument)]),
+  reset_prolog_flag(YN, print_write_options, [portray(true), quoted(true), numbervars(true)],
+   [portray(true), quoted(true), numbervars(true)]),
 
-  reset_prolog_flag(YN, backtrace, true), 
-  reset_prolog_flag(YN, backtrace_depth, 20, 2000), 
-  reset_prolog_flag(YN, backtrace_goal_depth, 3, 4), 
-  reset_prolog_flag(YN, backtrace_show_lines, true), 
-  reset_prolog_flag(YN, debug, false, true), 
-  reset_prolog_flag(YN, debug_on_error, true), 
-  reset_prolog_flag(YN, debugger_show_context, false, true), 
+  reset_prolog_flag(YN, backtrace, true),
+  reset_prolog_flag(YN, backtrace_depth, 20, 2000),
+  reset_prolog_flag(YN, backtrace_goal_depth, 3, 4),
+  reset_prolog_flag(YN, backtrace_show_lines, true),
+  reset_prolog_flag(YN, debug, false, true),
+  reset_prolog_flag(YN, debug_on_error, true),
+  reset_prolog_flag(YN, debugger_show_context, false, true),
 
-  reset_prolog_flag(YN, gc, true), 
+  reset_prolog_flag(YN, gc, true),
 
-  reset_prolog_flag(YN, last_call_optimisation, true, false), 
-  reset_prolog_flag(YN, optimise, false), 
-  reset_prolog_flag(YN, optimise_debug, default), 
+  reset_prolog_flag(YN, last_call_optimisation, true, false),
+  reset_prolog_flag(YN, optimise, false),
+  reset_prolog_flag(YN, optimise_debug, default),
 
-  reset_prolog_flag(YN, prompt_alternatives_on, determinism), 
-  reset_prolog_flag(YN, toplevel_goal, default), 
-  reset_prolog_flag(YN, toplevel_mode, backtracking), 
-  reset_prolog_flag(YN, toplevel_residue_vars, false, true), 
-  reset_prolog_flag(YN, toplevel_print_anon, true), 
-  reset_prolog_flag(YN, toplevel_print_factorized, false, true), 
+  reset_prolog_flag(YN, prompt_alternatives_on, determinism),
+  reset_prolog_flag(YN, toplevel_goal, default),
+  reset_prolog_flag(YN, toplevel_mode, backtracking),
+  reset_prolog_flag(YN, toplevel_residue_vars, false, true),
+  reset_prolog_flag(YN, toplevel_print_anon, true),
+  reset_prolog_flag(YN, toplevel_print_factorized, false, true),
   reset_prolog_flag(YN, write_attributes, ignore),
 
-  reset_prolog_flag(YN, warn_override_implicit_import, true), 
+  reset_prolog_flag(YN, warn_override_implicit_import, true),
   reset_prolog_flag(YN, access_level, user),
-  reset_prolog_flag(YN, sandboxed_load, false), 
-  reset_prolog_flag(YN, save_history, true), 
+  reset_prolog_flag(YN, sandboxed_load, false),
+  reset_prolog_flag(YN, save_history, true),
   !.
 
 :- system_default_debug(false).
@@ -177,11 +180,11 @@ must_mw(G):- G*->true;(mwmsg(fail(must_mw):-G), fail).
 
 :- export(must_mw1/1).
 :- meta_predicate(must_mw1(*)).
-must_mw1(G):- must(callable(G)), fail.
+must_mw1(G):- notrace((assertion(callable(G)), fail)).
 must_mw1((G1, G2)):- !, must_mw1(G1), must_mw1(G2).
-must_mw1((G1;G2)):- !, G1;must_mw1(G2).
-must_mw1(G):- G*->!;(mwmsg(fail(must_mw1):-G), fail).
-% must_mw1(G):- G*->true;(mwmsg(fail(must_mw1):-G),rtrace(G),fail).
+must_mw1((G1;G2)):- !, (G1;must_mw1(G2)).
+must_mw1(G):- G*->!;notrace((mwmsg(fail(must_mw1):-G), dumpST, fail)).
+% must_mw1(G):- G*->true;(mwmsg(fail(must_mw1):-G), rtrace(G), fail).
 
 :- meta_predicate(must_mw1(*, +, -)).
 must_mw1(Goal, S0, S2):- apply_state(must_mw1, Goal, S0, S2).

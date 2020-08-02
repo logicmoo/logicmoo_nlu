@@ -61,7 +61,7 @@ flp_decide_action(Agent,Mem0,Mem1) :-
 	view([words,Words]),
 	eng2log(Agent, Words, Action, Mem0),
 	view([action,Action]),
-        add_todo(Action, Mem0, Mem1).
+        add_todo(Agent, Action, Mem0, Mem1).
 
 % Decide action hook
 % :- push_to_state(type_props(adv_flp,[inherit(nomic_plugin),prefix('flp_'), desc("FLP plugin that contains decide action")]).

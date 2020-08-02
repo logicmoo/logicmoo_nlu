@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -32,31 +32,31 @@ test_adv(M-N) :- !,
  between(M, N, O),
  test_adv(O)).
 
-test_adv(N) :- 
+test_adv(N) :-
  adv_reset,
  adv_tst(N),
  mainloop.
 
 adv_tst(0):- adv_reset.
 
-adv_tst(1):- 
+adv_tst(1):-
  nlu_assert("Player~1 is in the kitchen."),
  nlu_assert("There are boxes on the floor.").
 
-adv_tst(2):- 
+adv_tst(2):-
  nlu_assert("Player~1 opens a box."),
  nlu_assert("There are books in the box.").
 
-adv_tst(3):- 
+adv_tst(3):-
  nlu_assert("Player~1 takes out the books."),
  nlu_assert("Player~1 puts the books on the bookshelf."),
  nlu_assert("Player~1 opens another box."),
  nlu_assert("There are plates in the box."),
  nlu_assert("Player~1 takes out the plates."),
  nlu_assert("Player~1 puts them in the kitchen cabinet.").
- 
 
-adv_tst(4):- 
+
+adv_tst(4):-
  nlu_assert("He stands on the corner."),
  nlu_assert("He sells purses."),
  nlu_assert("He says, 'Ten Dollars' over and over."),
@@ -67,8 +67,8 @@ adv_tst(4):-
  nlu_assert("They put the purses on their shoulders."),
  nlu_assert("Many women buy a purse."),
  nlu_assert("Some women buy two purses."),
- 
-adv_tst(5):- 
+
+adv_tst(5):-
  nlu_assert("She is in her pajamas."),
  nlu_assert("She lies down."),
  nlu_assert("She puts her head on the pillow."),
@@ -79,8 +79,8 @@ adv_tst(5):-
  nlu_assert("Her bedroom is dark."),
  nlu_assert("She puts her head back on the pillow."),
  nlu_assert("She goes to sleep."),
- 
-adv_tst(6):- 
+
+adv_tst(6):-
  nlu_assert("She opens the envelope."),
  nlu_assert("She reads the letter."),
  nlu_assert("The letter is from her cousin."),
@@ -90,8 +90,8 @@ adv_tst(6):-
  nlu_assert("She writes a letter to her cousin."),
  nlu_assert("She tells her cousin all the latest news at home."),
  nlu_assert("She thanks her cousin for the letter."), !.
- 
-adv_tst(7):- 
+
+adv_tst(7):-
  nlu_assert("She is a model."),
  nlu_assert("She walks up and down the runway."),
  nlu_assert("She models clothes."),
@@ -103,8 +103,8 @@ adv_tst(7):-
  nlu_assert("People buy the clothes."),
  nlu_assert("She never buys the clothes."),
  nlu_assert("She just wears them.").
- 
-adv_tst(8):- 
+
+adv_tst(8):-
  nlu_assert("The baby cries."),
  nlu_assert("She looks at it."),
  nlu_assert("She talks to it."),
@@ -117,8 +117,8 @@ adv_tst(8):-
  nlu_assert("She looks at it."),
  nlu_assert("The baby looks at her."),
  nlu_assert("It smiles at her.").
- 
-adv_tst(9):- 
+
+adv_tst(9):-
  nlu_assert("He has a secret."),
  nlu_assert("He keeps his secret."),
  nlu_assert("He shares it with nobody."),
@@ -131,8 +131,8 @@ adv_tst(9):-
  nlu_assert("She likes him too."),
  nlu_assert("She gives him A's on his homework."),
  nlu_assert("She gives him gold stars for his class work."), !.
- 
-adv_tst(10):- 
+
+adv_tst(10):-
  nlu_assert("It is winter."),
  nlu_assert("It is early morning."),
  nlu_assert("He goes to the park."),
@@ -143,8 +143,8 @@ adv_tst(10):-
  nlu_assert("He has it all to himself."),
  nlu_assert("It is quiet on the pond."),
  nlu_assert("The only sound is his skates on the ice."), !.
- 
-adv_tst(11):- 
+
+adv_tst(11):-
  nlu_assert("He has a pocketknife."),
  nlu_assert("It has two parts."),
  nlu_assert("It has a knife."),
@@ -155,7 +155,7 @@ adv_tst(11):-
  nlu_assert("The other part is a file."),
  nlu_assert("The file is two inches long."),
  nlu_assert("He files his nails with the file."), !.
- 
+
 
 :- initialization(test_adv, main).
 

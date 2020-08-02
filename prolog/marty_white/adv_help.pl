@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -21,15 +21,15 @@
 :- multifile(mu_global:cmd_help/2).
 
 /*
-:- online_help:use_module(library(help)). %, [online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
+:- online_help:use_module(library(help)). %, [online_manual_stream/1, pager_stream/1, show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
 :- online_help:use_module(library(pldoc)).
 :- online_help:use_module(library(pldoc/doc_man)).
-:- use_module(library(help)). %, [online_manual_stream/1, pager_stream/1,  show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
+:- use_module(library(help)). %, [online_manual_stream/1, pager_stream/1, show_ranges/3, user_index/2, write_ranges_to_file/2, prolog:show_help_hook/2]).
 :- use_module(library(pldoc)).
 :- use_module(library(pldoc/doc_man)).
 
 :-if(exists_source(library(pldoc))).
-:- use_module(library(pldoc), []). % Must be loaded before doc_process	
+:- use_module(library(pldoc), []). % Must be loaded before doc_process
 :- use_module(library(pldoc/doc_process)).
 :- use_module(library(prolog_xref)).
 :- set_prolog_flag(pldoc_collecting, true).

@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -22,10 +22,10 @@
 
 :- dynamic(mu_global:agent_last_action/3).
 
-time_since_last_action(Agent, When):- 
+time_since_last_action(Agent, When):-
  (mu_global:agent_last_action(Agent, _Action, Last), clock_time(T), When is T - Last) *-> true; clock_time(When).
 
-set_last_action(Agent, Action):- 
+set_last_action(Agent, Action):-
  clock_time(T),
  retractall(mu_global:agent_last_action(Agent, _, _)),
  assertz(mu_global:agent_last_action(Agent, Action, T)).
@@ -119,10 +119,15 @@ do_command(Agent, Action) :-
 
 % --------
 
+do_todo(Agent):-
+ get_advstate(S0),
+ do_todo(Agent, S0, S9),
+ set_advstate(S9), !.
+
 do_todo(Agent) -->
  sg(declared(memories(Agent, Mem0))),
  {member(todo([]), Mem0)}, !.
-do_todo(Agent, S0, S9) :- 
+do_todo(Agent, S0, S9) :-
  undeclare(memories(Agent, Mem0), S0, S1),
  forget(todo(OldToDo), Mem0, Mem1),
  append([Action], NewToDo, OldToDo),
@@ -163,12 +168,12 @@ do_action(Agent, Action, S0, S3) :-
  dmust_tracing(must_act( Action, S2, S3)), !.
 
 memorize_doing(_Agent, Action, Mem0, Mem0):- has_depth(Action), !.
-memorize_doing(Agent, Action, Mem0, Mem2):- 
+memorize_doing(Agent, Action, Mem0, Mem2):-
   copy_term(Action, ActionG),
   mw_numbervars(ActionG, 999, _),
-  ( has_depth(Action) 
-    -> Mem0 = Mem1 ; 
-    (thought(timestamp(T0, _OldNow), Mem0), T1 is T0 + 1, clock_time(Now), memorize(timestamp(T1, Now), Mem0, Mem1))), 
+  ( has_depth(Action)
+    -> Mem0 = Mem1 ;
+    (thought(timestamp(T0, _OldNow), Mem0), T1 is T0 + 1, clock_time(Now), memorize(timestamp(T1, Now), Mem0, Mem1))),
   memorize(attempts(Agent, ActionG), Mem1, Mem2).
 
 has_depth(Action):- compound(Action), safe_functor(Action, _, A), arg(A, Action, E), compound(E), E=depth(_), !.
@@ -195,7 +200,7 @@ satisfy_each(Context, List) --> {is_list(List)}, !,
 
 satisfy_each(_Ctx, A \= B) --> {dif(A, B)}, !.
 
-satisfy_each(Context, believe(Beliver, Cond)) -->  
+satisfy_each(Context, believe(Beliver, Cond)) -->
    undeclare(memories(Beliver, Memory)),
    {satisfy_each(Context, Cond, Memory, NewMemory)}, !,
    declare(memories(Beliver, NewMemory)).
@@ -205,12 +210,12 @@ satisfy_each(postCond(_Action), event(Event), S0, S9) :-  must_act(Event, S0, S9
 satisfy_each(Context, (C1, C2), S0, S9) :- !,
   satisfy_each(Context, C1, S0, S1),
   satisfy_each(Context, C2, S1, S9).
-   
+
 satisfy_each(Context, foreach(Cond, Event), S0, S9) :- findall(Event, phrase(Cond, S0, _), TODO), satisfy_each(Context, TODO, S0, S9).
 satisfy_each(_, percept_local(Where, Event)) --> !, queue_local_event([Event], [Where]).
 satisfy_each(_, percept(Agent, Event)) --> !, send_1percept(Agent, Event).
 satisfy_each(postCond(_Action), ~(Cond)) --> !, undeclare_always(Cond).
-satisfy_each(postCond(_Action),  Cond) --> !, declare(Cond).
+satisfy_each(postCond(_Action), Cond) --> !, declare(Cond).
 satisfy_each(Context, ~(Cond)) --> !, (( \+ satisfy_each(Context, Cond)) ; [failed(Cond)] ).
 satisfy_each(_, Cond) --> declared(Cond).
 satisfy_each(_, Cond) --> [failed(Cond)].
@@ -230,15 +235,15 @@ split_k(Agent, [~(k(P, X, Y))|PrecondsK], [believe(Agent, ~(h(P, X, Y))), ~(h(P,
   split_k(Agent, PrecondsK, Preconds).
 split_k(Agent, [k(P, X, Y)|PrecondsK], [believe(Agent, h(P, X, Y)), h(P, X, Y)|Preconds]):- !,
   split_k(Agent, PrecondsK, Preconds).
-split_k(Agent, [~(b(P, X, Y))|PrecondsK], [believe(Agent, ~(h(P, X, Y)))|Preconds]):- !, 
+split_k(Agent, [~(b(P, X, Y))|PrecondsK], [believe(Agent, ~(h(P, X, Y)))|Preconds]):- !,
   split_k(Agent, PrecondsK, Preconds).
-split_k(Agent, [b(P, X, Y)|PrecondsK], [believe(Agent, h(P, X, Y))|Preconds]):- !, 
+split_k(Agent, [b(P, X, Y)|PrecondsK], [believe(Agent, h(P, X, Y))|Preconds]):- !,
   split_k(Agent, PrecondsK, Preconds).
-split_k(Agent, [isa(X, Y)|PrecondsK], [getprop(X, inherited(Y))|Preconds]):- 
+split_k(Agent, [isa(X, Y)|PrecondsK], [getprop(X, inherited(Y))|Preconds]):-
   split_k(Agent, PrecondsK, Preconds).
-split_k(Agent, [in(X, Y)|PrecondsK], [h(in, X, Y)|Preconds]):- 
+split_k(Agent, [in(X, Y)|PrecondsK], [h(in, X, Y)|Preconds]):-
   split_k(Agent, PrecondsK, Preconds).
-split_k(Agent, [Cond|PrecondsK], [Cond|Preconds]):- 
+split_k(Agent, [Cond|PrecondsK], [Cond|Preconds]):-
   split_k(Agent, PrecondsK, Preconds).
 
 api_invoke( Action) :- get_advstate(S), api_invoke( Action, S, E), set_advstate(E).
@@ -247,15 +252,15 @@ api_invoke( Action) --> apply_act( Action).
 
 apply_act( Action) --> aXiom(Action), !.
 apply_act( Act, S0, S9) :- ((cmd_workarround(Act, NewAct) -> Act\==NewAct)), !, apply_act( NewAct, S0, S9).
-apply_act( Action, S0, S0) :-  
-  notrace((dbug(general, failed_aXiom( Action)))), !, fail,  \+ tracing.
+apply_act( Action, S0, S0) :-
+  notrace((dbug(general, failed_aXiom( Action)))), !, fail, \+ tracing.
 
 
-must_act( Action , S0, S9) :- 
+must_act( Action , S0, S9) :-
   (apply_act( Action, S0, S9)) *-> ! ; fail.
 must_act( Action, S0, S1) :- debugging(apply_act), !, rtrace(apply_act( Action, S0, S1)), !.
-must_act( Action) --> 
- action_doer(Action, Agent), 
+must_act( Action) -->
+ action_doer(Action, Agent),
  send_1percept(Agent, [failure(Action, unknown_to(Agent, Action))]).
 
 
@@ -285,7 +290,7 @@ maybe_when(If, Then):- If -> Then ; true.
 unless_reason(_Agent, Then, _Msg) --> Then, !.
 unless_reason(Agent, _Then, Msg) --> {player_format(Agent, '~N~p~n', [Msg])}, !, {fail}.
 
-:- meta_predicate unless(*, '//', '//', ?, ?). 
+:- meta_predicate unless(*, '//', '//', ?, ?).
 unless(_Agent, Required, Then) --> Required, !, Then.
 unless(Agent, Required, _Then) --> {simplify_reason(Required, CUZ), player_format(Agent, '~N~p~n', cant( cuz(\+ CUZ)))}, !.
 
@@ -301,7 +306,7 @@ reverse_dir(reverse(ExitName), ExitName, _) :- nonvar(ExitName), !.
 reverse_dir(Dir, RDir, S0):-
  h(exit(Dir), Here, There, S0),
  h(exit(RDir), There, Here, S0), !.
-reverse_dir(Dir, RDir, S0):- 
+reverse_dir(Dir, RDir, S0):-
  h(Dir, Here, There, S0),
  h(RDir, There, Here, S0), !.
 reverse_dir(Dir, reverse(Dir), _).
@@ -313,14 +318,14 @@ add_agent_todo(Agent, Action):-
  get_advstate(S9).
 
 
-add_agent_todo(Agent, Action, S0, S9) :- 
+add_agent_todo(Agent, Action, S0, S9) :-
   undeclare(memories(Agent, Mem0), S0, S1),
-  add_todo(Action, Mem0, Mem1),
+  add_todo(Agent, Action, Mem0, Mem1),
   declare(memories(Agent, Mem1), S1, S9).
 
-add_agent_goal(Agent, Action, S0, S9) :- 
+add_agent_goal(Agent, Action, S0, S9) :-
   undeclare(memories(Agent, Mem0), S0, S1),
-  add_goal(Action, Mem0, Mem1),
+  add_goal(Agent, Action, Mem0, Mem1),
   declare(memories(Agent, Mem1), S1, S9).
 
 add_look(Agent) -->
@@ -367,7 +372,7 @@ moveto(Doer, Verb, Object, At, Dest, Vicinity, Msg) -->
   queue_local_event([moved(Doer, Verb, Object, From, At, Dest), Msg], Vicinity).
 
 
-event_props(thrown(Agent,  Thing, _Target, Prep, Here, Vicinity),
+event_props(thrown(Agent, Thing, _Target, Prep, Here, Vicinity),
  [getprop(Thing, breaks_into(NewBrokenType)),
  dbug(general, 'object ~p is breaks_into~n', [Thing]),
  undeclare(h(_, Thing, _)),
@@ -375,13 +380,13 @@ event_props(thrown(Agent,  Thing, _Target, Prep, Here, Vicinity),
  queue_local_event([transformed(Thing, NewBrokenType)], Vicinity),
  disgorge(Agent, throw, Thing, Prep, Here, Vicinity, 'Something falls out.')]).
 
-                                      
-setloc_silent(Prep, Object, Dest) --> 
+
+setloc_silent(Prep, Object, Dest) -->
  undeclare(h(_, Object, _)),
  declare(h(Prep, Object, Dest)).
 
 
-change_state(Agent, Open, Thing, Opened, TF,  S0, S):- 
+change_state(Agent, Open, Thing, Opened, TF, S0, S):-
  % must_mw1
  ((
  maybe_when(psubsetof(Open, touch),

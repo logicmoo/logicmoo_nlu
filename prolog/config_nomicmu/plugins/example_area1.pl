@@ -33,7 +33,7 @@ area_test3(Words0) :-
 figure_out_action(Words0, Agent, Mem0, Mem1) :-
 	(   Words0==[]->(Words=[wait],makep);Words=Words0),
 	eng2log(Agent, Words, Action, Mem0),
-	add_todo(Action, Mem0, Mem1),
+	add_todo(Agent, Action, Mem0, Mem1),
 	pprint(Mem1,general).
 
 area_test4 :-

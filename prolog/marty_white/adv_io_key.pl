@@ -1,4 +1,4 @@
-/*                   
+/*
 % NomicMUD: A MUD server written in Prolog
 % Maintainer: Douglas Miles
 % Dec 13, 2035
@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -31,7 +31,7 @@
  agent_to_output/2,
  get_overwritten_chars/2,
  restore_overwritten_chars/1,
- %setup_console/0, 
+ %setup_console/0,
  setup_console/1,
 
  current_error/1, set_error/1]).
@@ -177,7 +177,7 @@ log_stuff('viz~n', []).
 
 % FIXME dynamify key translations
 
-key_translate(['\014\'], redraw). 
+key_translate(['\014\'], redraw).
 
 key_translate(['\033\', '[', 'A'], up).
 key_translate(['\033\', '[', 'B'], down).

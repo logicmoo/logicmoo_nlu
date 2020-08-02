@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -43,35 +43,51 @@ clock_time(T):- statistics(walltime, [X, _]), T is ('//'(X , 100))/10.
 :- dynamic(is_state_pred/2).
 is_state_pred(F, N):- atom(F), !, is_state_pred(P, N), safe_functor(P, F, _).
 
-defn_state_pred(P, N):- is_state_pred(P, N), !.
-defn_state_pred(P, N):- asserta(is_state_pred(P, N)),
+defn_state_pred(Getter, '//'(F,A), N):- !, functor(P,F,A),!,defn_state_pred(Getter, P, N).
+defn_state_pred(get_advstate, P, N):- is_state_pred(P, N), !.
+defn_state_pred(Getter, P, N):- asserta(is_state_pred(P, N)),
   strip_module(P, M, PP),
-  assertion(compound(PP)), safe_functor(PP, F, A),            
-  ignore(defn_state_pred_wrapper(M, F, A, PP, N)).
+  assertion(compound(PP)), safe_functor(PP, F, A),
+  ignore(defn_get_set_wrapper(Getter, M, F, A, PP, N)).
 
-defn_state_pred_wrapper(M, F, A, _, 0):- 
+defn_get_set_wrapper(_Getter, M, F, A, _, 0):-
   assertion(F\==('/')), assertion(F\==('//')),
   safe_functor(PP, F, A), PP univ_safe [F|Args],
   append(Args, [S0, S9], NewArgs),
   PPS09 univ_safe [F|NewArgs],
   asserta_if_undef(M, PPS09, (M:PP, S0 = S9)).
 
-defn_state_pred_wrapper(M, F, A, _, 1):- 
+defn_get_set_wrapper(Getter, M, F, A, _, 1):-
   assertion(F\==('/')), assertion(F\==('//')),
   safe_functor(PP, F, A), PP univ_safe [F|Args],
   append(Args, [S0], NewArgs0),
   PPS0 univ_safe [F|NewArgs0],
   append(Args, [S0, S9], NewArgs09),
-  PPS09 univ_safe [F|NewArgs09],  
+  PPS09 univ_safe [F|NewArgs09],
   asserta_if_undef(M, PPS09, ( M:PPS0, S0 = S9)),
-  asserta_if_undef(M, PP, (get_advstate(S0), M:PPS0)).
- 
+  asserta_if_undef(M, PP, (call(Getter,S0), M:PPS0)).
+
+defn_get_set_wrapper(Getter, M, F, A, _, 2):-
+  assertion(F\==('/')), assertion(F\==('//')),
+  safe_functor(PP, F, A), PP univ_safe [F|Args],
+  append(Args, [S0, S9], NewArgs02),
+  PPS0 univ_safe [F|NewArgs02],
+  ignore((compound(Getter),arg(1,Getter,Mutex),arg(1,PP,Mutex))),
+  ignore((\+ compound(Getter),Mutex=Getter)),
+  getter_to_setter(Getter,Setter),
+  asserta_if_undef(M, PP, 
+   with_mutex(Mutex,(call(Getter,S0), M:PPS0, call(Setter,S9)))).
+
+getter_to_setter(get_advstate,set_advstate).
+getter_to_setter(get_memory(A),set_memory(A)).
+
 asserta_if_undef(Mod, Head, _Body):- predicate_property(Mod:Head, defined), !.
 asserta_if_undef(Mod, Head, Body):- Mod:asserta((Head:-Body)).
 
-defn_state_none(P):- defn_state_pred(P, 0).
-defn_state_getter(P):- defn_state_pred(P, 1).
-defn_state_setter(P):- defn_state_pred(P, 2).
+defn_state_none(P):- defn_state_pred(get_advstate, P, 0).
+defn_state_getter(P):- defn_state_pred(get_advstate, P, 1).
+defn_state_setter(P):- defn_state_pred(get_advstate, P, 2).
+defn_mem_setter(P):- defn_state_pred(get_memory(_), P, 2).
 
 :- defn_state_none(dbug1(term)).
 :- defn_state_none(dbug(atom, string)).
@@ -105,7 +121,7 @@ apply_mapl_state(Goal, List, S0, S2):- apply_all(List, Goal, S0, S2).
 apply_all([], _Goal, S0, S0) :- !.
 apply_all([Arg], Goal, S0, S2) :- !, apply_first_arg_state(Arg, Goal, S0, S2).
 
-apply_all(List, Goal, S0, S2) :- notrace((list_to_set(List, Set), 
+apply_all(List, Goal, S0, S2) :- notrace((list_to_set(List, Set),
  List\==Set)), !,
  apply_all(Set, Goal, S0, S2).
 
@@ -129,11 +145,11 @@ apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),
    apply(Front, APPLYARGS).
 
 
-append_goal_mw(Goal, List, Call):- 
- notrace((compound_name_arguments(Goal, F, GoalL), 
+append_goal_mw(Goal, List, Call):-
+ notrace((compound_name_arguments(Goal, F, GoalL),
   append(GoalL, List, NewGoalL), Call univ_safe [F|NewGoalL])).
 
- 
+
 
 
 runnable_goal(Goal, Goal) :- ground(Goal), !.
@@ -179,7 +195,7 @@ is_state_ignorer(P):- \+ atom(P), !, compound(P), safe_functor(P, F, _), !, is_s
 is_state_ignorer(F):- is_state_pred(F, 1).
 %is_state_ignorer('{}'(term)).
 
-must_input_state(S0):- var(S0),!,get_advstate(S0).
+must_input_state(S0):- var(S0), !, get_advstate(S0).
 must_input_state(S0):- quietly(check4bugs(input, S0)).
 must_output_state(S0):- quietly(check4bugs(output, S0)).
 %must_state(S0):- quietly(check4bugs(anon, S0)).
@@ -187,7 +203,7 @@ must_output_state(S0):- quietly(check4bugs(output, S0)).
 call_z(P, G):- call(P, G).
 mw_numbervars(G, S, E):- numbervars(G, S, E, [attvar(skip)]).
 
-:- module_transparent(apply_state//3).     
+:- module_transparent(apply_state//3).
 :- meta_predicate(apply_state(1, *, +, -)).
 :- meta_predicate(apply_state(1, *, +, -, +, -)).
 
@@ -210,7 +226,7 @@ apply_state(Z, M:{Goal}, S0, S0) :- !, call_z(Z, M:Goal).
 apply_state(_, Goal, S0, S0):- Goal==[], !.
 
 apply_state(_, List, S0, S2) :- is_list(List), !, append(S0, List, S2), !.
-apply_state(Z, G12, S0, S2) :- G12 = [_|_], !, 
+apply_state(Z, G12, S0, S2) :- G12 = [_|_], !,
  append(GL, G2, G12), (((is_list(GL), append(S0, GL, S1))-> apply_state(Z, G2, S1, S2))).
 
 %apply_state(Z, (unless(Unless, Error), More), S0, S2) :- !, (apply_state(Z, Unless, S0, S1)->apply_state(Z, More, S1, S2);apply_state(Z, Error, S0, S2)).
@@ -220,22 +236,22 @@ apply_state(Z, findall(E, Goal, L), S0, S2) :- !, findall(E, apply_state(Z, Goal
 apply_state(_, i_o(S0, S2), S0, S2) :- !.
 apply_state(_, nop(_), S0, S2) :- !, S0=S2.
 apply_state(_, current_state(S0), S0, S2) :- !, S0=S2.
-apply_state(Z, rtrace(Goal), S0, S2) :- !, rtrace(apply_state(Z, Goal, S0, S2)). 
+apply_state(Z, rtrace(Goal), S0, S2) :- !, rtrace(apply_state(Z, Goal, S0, S2)).
 apply_state(Z, dmust_tracing((G1, G2)), S0, S2) :- !, apply_state(Z, dmust_tracing(G1), S0, S1), apply_state(Z, dmust_tracing(G2), S1, S2).
-apply_state(Z, dmust_tracing(Goal), S0, S2) :- !, dmust_tracing(apply_state(Z, Goal, S0, S2)). 
+apply_state(Z, dmust_tracing(Goal), S0, S2) :- !, dmust_tracing(apply_state(Z, Goal, S0, S2)).
 apply_state(Z, dshow_failure((G1, G2)), S0, S2) :- !, apply_state(Z, dshow_failure(G1), S0, S1), apply_state(Z, dshow_failure(G2), S1, S2).
-apply_state(Z, dshow_failure(Goal), S0, S2) :- !, dshow_failure(apply_state(Z, Goal, S0, S2)). 
+apply_state(Z, dshow_failure(Goal), S0, S2) :- !, dshow_failure(apply_state(Z, Goal, S0, S2)).
 apply_state(Z, must_mw1((G1, G2)), S0, S2) :- !, apply_state(Z, must_mw1(G1), S0, S1), apply_state(Z, must_mw1(G2), S1, S2).
 apply_state(Z, must_mw1(Goal), S0, S2) :- !, must_mw1(apply_state(Z, Goal, S0, S2)).
-apply_state(Z, must_mw(Goal), S0, S2) :- !, must_mw(apply_state(Z, Goal, S0, S2)). 
+apply_state(Z, must_mw(Goal), S0, S2) :- !, must_mw(apply_state(Z, Goal, S0, S2)).
 apply_state(Z, (('->'(G1, G2));G3), S0, S2) :- !,
- apply_state(Z, G1, S0, If) -> 
+ apply_state(Z, G1, S0, If) ->
  apply_state(Z, G2, If, S2);
- apply_state(Z, G3, S0, S2). 
+ apply_state(Z, G3, S0, S2).
 apply_state(Z, (G1*->G2;G3), S0, S2) :- !,
- apply_state(Z, G1, S0, If) *-> 
+ apply_state(Z, G1, S0, If) *->
  apply_state(Z, G2, If, S2);
- apply_state(Z, G3, S0, S2). 
+ apply_state(Z, G3, S0, S2).
 apply_state(Z, (G1, G2), S0, S2) :- !,
  apply_state(Z, G1, S0, S1),
  apply_state(Z, G2, S1, S2).
@@ -247,7 +263,7 @@ apply_state(Z, Goal, S0, S2) :- is_state_ignorer(Goal), !, call_z(Z, Goal), S0=S
 apply_state(Z, Goal, S0, S2) :- is_state_getter(Goal), !, call_z(Z, call(Goal, S0)), S0=S2.
 apply_state(Z, sg(Goal), S0, S2) :- !, call_z(Z, call(Goal, S0)), S0 = S2.
 apply_state(Z, Goal, S0, S2) :- is_state_setter(Goal), !, call_z(Z, call(Goal, S0, S2)), !, notrace(must_output_state(S2)).
-apply_state(Z, Meta, S0, S2) :- is_state_meta(Meta, N), length(Left, N), Meta univ_safe [F|MetaL], !, 
+apply_state(Z, Meta, S0, S2) :- is_state_meta(Meta, N), length(Left, N), Meta univ_safe [F|MetaL], !,
    append(Left, [Goal|MetaR], MetaL),
    append(Left, [apply_state(Z, Goal, S0, S2)|MetaR], MetaC),
    apply(call(F), MetaC),
@@ -271,7 +287,7 @@ apply_first_arg_state(Arg, Goal, S0, S2) :-
  notrace(must_output_state(S2)).
 
 %:- meta_predicate(apply_first(+, 3, +, -)).
-apply_first_arg(Arg, Goal, S0, S2):- 
+apply_first_arg(Arg, Goal, S0, S2):-
  apply_first_arg_state(Arg, Goal, S0, S2).
 
 % --------

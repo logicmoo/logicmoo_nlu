@@ -78,7 +78,7 @@ nvd(N, X, A, A):- notrace(nvd(N, X)).
 nvd(N, X):- var(N), var(X), !.
 nvd(N, X):- var(N), nonvar(X), !, nvd(X, N), !.
 nvd(_, X):- nonvar(X), !.
-nvd(N & _, X):- nonvar(N), !, nvd(N, X).    
+nvd('&'(N , _), X):- nonvar(N), !, nvd(N, X).    
 nvd(N, X):- compound(N), N=.. [z, F|_], may_debug_var([F, '_Frame'], X).
 nvd(N, X):- atom(N), name(N, Name), last(Name, C), \+ char_type(C, digit), !, gensym(N, NN), !, may_debug_var(NN, X), !.
 nvd(N, X):- may_debug_var(N, X), !.

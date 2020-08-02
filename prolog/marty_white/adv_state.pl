@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -20,6 +20,46 @@
 % CODE FILE SECTION
 :- nop(ensure_loaded('adv_main_states')).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CODE FILE SECTION
+:- nop(ensure_loaded('adv_main_commands')).
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+save_term_exists(Filename, Term) :-
+ absolute_file_name(Filename, AbsFilename), !, Filename \== AbsFilename,
+ save_term_exists(AbsFilename, Term), !.
+
+save_term_exists(Filename, Term) :-
+ \+ access_file(Filename, exist),
+ save_term(Filename, write, Term),
+ player_format('Saved to file "~w".~n', [Filename]),!.
+save_term_exists(Filename, _) :-
+ access_file(Filename, exist),
+ player_format('Save FAILED! Does file "~w" already exist?~n', [Filename]).
+save_term_exists(Filename, _) :-
+ player_format('Failed to open file "~w" for saving.~n', [Filename]).
+
+
+record_saved(State) :- is_list(State),!,
+  sort(State,Term),  
+  must_mw1(save_term(library('marty_white/adv_state_db.pl'), write ,Term)),!.
+record_saved(State):- 
+  must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)).
+
+save_term(Filename, How, Term) :- 
+  is_list(Term),sort(Term,STerm),Term\==STerm,!,
+  save_term(Filename, How, STerm).
+save_term(Filename, How, Term) :-
+ absolute_file_name(Filename, AbsFilename),
+ setup_call_cleanup(open(AbsFilename, How, FH),
+  format(FH, '~N~@.~N', [mu:adv_pretty_print(Term)]), 
+  close(FH)),!.
+save_term(Filename, How, _) :-
+ player_format('Failed to ~w file "~w" for saving.~n', [How, Filename]),!.
+
 
 
 :- multifile(extra_decl/2).
@@ -35,36 +75,58 @@ is_pred1_state(statest).
 is_pred1_state(parseFrame(_)).
 
 
-get_agent_memory(Agent, Mem):- 
+get_agent_memory(Agent, Mem):-
    get_advstate(State),
    declared(props(Agent, Mem), State).
 
-get_advstate_varname(Varname):- nb_current(advstate_var, Varname), Varname\==[], !.
-get_advstate_varname(advstate_db).
+:- nb_setval(advstate_var, []).
+:- thread_initialization(nb_setval(advstate_var, [])).
 
-get_advstate_db(State):- var(State), !, findall(State1,advstate_db(State1),StateL),flatten([StateL],State).
+get_advstate_varname(Varname):- nb_current(advstate_var, Varname), Varname\==[], !.
+% get_advstate_varname(advstate_db).
+
+get_advstate_db(State):- var(State), !, findall(State1, advstate_db(State1), StateL), flatten([StateL], State).
 get_advstate_db(State):- advstate_db(State).
 
-get_advstate(State):- get_advstate_varname(Var), ((nb_current(Var, PreState), PreState\==[]) -> State=PreState ; get_advstate_db(State)).
-set_advstate(State):- get_advstate_varname(Var), ((nb_current(Var, PreState), PreState\==[]) -> nb_setval(Var, State) ; set_advstate_db(State)).
+get_advstate(State):- ((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) 
+  -> State=PreState ; get_advstate_db(State)).
 
-set_advstate_db(State):- is_list(State), !, 
+set_advstate(State):- 
+  ((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) -> nb_setval(Var, State) ; set_advstate_db(State)).
+
+add_advstate(State):- 
+  must_mw1(set_advstate_db_1(State)),
+  must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)),!.
+
+set_advstate_db(State):-
+  notrace((set_advstate_db_1(State),
+  record_saved(State))),!.
+
+
+set_advstate_db_1(Nil):- Nil==[], !.
+set_advstate_db_1(State):- \+ callable(State), dumpST, dmsg(set_advstate_db(State)), break.
+set_advstate_db_1([H|State]):- is_list(State), !,
    % retractall(advstate_db(_)),
-   maplist(set_advstate_db, State).
-set_advstate_db(structure_label(_Label)).
+   set_advstate_db_1(H),
+   set_advstate_db_1(State).
 
-set_advstate_db(State):- 
-   % dmsg(set_advstate_db(State)),
-   State =.. [Pred,Object|StateL], append(WithoutLastArg,[_NewData],StateL), 
-   append(WithoutLastArg,[_OldData],PreStateL), PreState =.. [Pred,Object|PreStateL],
-   must_be(ground,Object),
-   forall(clause(advstate_db(PreState),true,Ref),erase(Ref)),
-   asserta(advstate_db(State)),!.
-set_advstate_db(State):- dumpST, dmsg(set_advstate_db(State)), break.
+set_advstate_db_1(structure_label(_Label)).
+set_advstate_db_1(State):-
+   compound(State),
+   % dmsg(set_advstate_db_1(State)),
+   compound_name_arguments(State, Pred, [Object|StateL]) ,
+   must_be(ground, Object),
+   append(WithoutLastArg, [_NewData], StateL),
+   append(WithoutLastArg, [_OldData], PreStateL),
+   PreState =.. [Pred, Object|PreStateL],
+   forall(clause(advstate_db(PreState), true, Ref), erase(Ref)),
+   asserta(advstate_db(State)), !.
+  
+set_advstate_db_1(State):- dumpST, dmsg(set_advstate_db(State)), break.
 
 get_advstate_fork(StateC):- get_advstate(State), duplicate_term(State, StateC).
 
-declared_advstate(Fact):- \+ is_list(Fact), advstate_db(Fact),!.
+declared_advstate(Fact):- \+ is_list(Fact), advstate_db(Fact), !.
 declared_advstate(Fact):- get_advstate(State), declared(Fact, State).
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,24 +152,24 @@ declared_advstate(Fact):- get_advstate(State), declared(Fact, State).
 %:- defn_state_setter(declare(fact)).
 select_from(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(select_from_list(Fact, State, NewState)).
 select_from(Fact, inst(Object), inst(Object)):- !,
-   get_advstate(State), 
-   (declared(props(Object, PropList), State);PropList=[]), !, 
+   get_advstate(State),
+   (declared(props(Object, PropList), State);PropList=[]), !,
    select_from_list(Fact, PropList, NewPropList),
    select_always(props(Object, _), State, MidState),
    append([props(Object, NewPropList)], MidState, NewState),
    set_advstate(NewState).
 select_from(Fact, type(Type), type(Type)):- !,
-   get_advstate(State), 
-   (declared(type_props(Type, PropList), State);PropList=[]), !, 
+   get_advstate(State),
+   (declared(type_props(Type, PropList), State);PropList=[]), !,
    select_from_list(Fact, PropList, NewPropList),
    select_always(type_props(Type, _), State, MidState),
    append([type_props(Type, NewPropList)], MidState, NewState),
    set_advstate(NewState).
 select_from(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name), append_term(Pred1Name, State, DBPred), (retract(DBPred);State=[]), !, select_from_list(Fact, State, NewState), DBPredNewState=..[Pred1Name, NewState], asserta(DBPredNewState).
 select_from(Fact, VarName, VarName):- atom(VarName), nb_current(VarName, PropList), select_from_list(Fact, PropList, NewPropList), b_setval(VarName, NewPropList).
-select_from(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List], 
-  Call=..[F, NewArg|List], 
-  current_predicate(_, Call), !, 
+select_from(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List],
+  Call=..[F, NewArg|List],
+  current_predicate(_, Call), !,
   ignore( \+ \+ retract(Call)),
   NewArg=Object,
   asserta(Call).
@@ -116,7 +178,7 @@ select_from_list(Item, List, ListWithoutItem):- select(Item, List, ListWithoutIt
 
 % Like select_from, but always succeeds, for use in deleting.
 select_always(Item, List, ListWithoutItem) :- select_from(Item, List, ListWithoutItem) -> true; ListWithoutItem=List.
- 
+
 % Like select_from, but with a default value if not found in List..
 %select_default(Item, _DefaultItem, List, ListWithoutItem) :-
 % select_from(Item, List, ListWithoutItem).
@@ -128,25 +190,25 @@ select_always(Item, List, ListWithoutItem) :- select_from(Item, List, ListWithou
 :- defn_state_setter(declare(fact)).
 declare(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(declare_list(Fact, State, NewState)).
 declare(Fact, inst(Object), inst(Object)):- !,
-   get_advstate(State), 
-   (declared(props(Object, PropList), State);PropList=[]), !, 
+   get_advstate(State),
+   (declared(props(Object, PropList), State);PropList=[]), !,
    declare_list(Fact, PropList, NewPropList),
    select_always(props(Object, _), State, MidState),
    append([props(Object, NewPropList)], MidState, NewState),
    set_advstate(NewState).
 declare(Fact, type(Type), type(Type)):- !,
-   get_advstate(State), 
-   (declared(type_props(Type, PropList), State);PropList=[]), !, 
+   get_advstate(State),
+   (declared(type_props(Type, PropList), State);PropList=[]), !,
    declare_list(Fact, PropList, NewPropList),
    select_always(type_props(Type, _), State, MidState),
    append([type_props(Type, NewPropList)], MidState, NewState),
    set_advstate(NewState).
-declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name), append_term(Pred1Name, State, DBPred), (retract(DBPred);State=[]), !, 
-   declare_list(Fact, State, NewState), append_term(Pred1Name,NewState,DBPredNewState), asserta(DBPredNewState).
+declare(Fact, Pred1Name, Pred1Name):- is_pred1_state(Pred1Name), append_term(Pred1Name, State, DBPred), (retract(DBPred);State=[]), !,
+   declare_list(Fact, State, NewState), append_term(Pred1Name, NewState, DBPredNewState), asserta(DBPredNewState).
 declare(Fact, VarName, VarName):- atom(VarName), nb_current(VarName, PropList), declare_list(Fact, PropList, NewPropList), b_setval(VarName, NewPropList).
-declare(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List], 
-  Call=..[F, NewArg|List], 
-  current_predicate(_, Call), !, 
+declare(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List],
+  Call=..[F, NewArg|List],
+  current_predicate(_, Call), !,
   ignore( \+ \+ retract(Call)),
   NewArg=Object,
   asserta(Call).
@@ -154,14 +216,14 @@ declare(Fact, Object, Object):- callable(Fact), !, Fact=..[F|List],
 declare_list(Fact, State, NewState) :- assertion(compound(Fact)), assertion(var(NewState)), Fact==[], !, NewState = State.
 declare_list((Fact1, Fact2), State, NewState) :- !, declare_list(Fact1, State, MidState), declare_list(Fact2, MidState, NewState).
 declare_list([Fact1|Fact2], State, NewState) :- !, declare_list(Fact1, State, MidState), declare_list(Fact2, MidState, NewState).
-declare_list(HasList, State, [NewFront|NewState]) :- 
+declare_list(HasList, State, [NewFront|NewState]) :-
   safe_functor(HasList, F, A), arg(A, HasList, PropList), is_list(PropList),
   safe_functor(Functor, F, A), \+ \+ type_functor(state, Functor),
   arg(1, HasList, Object), arg(1, Functor, Object),
   select_from(Functor, State, NewState), !,
   arg(A, Functor, OldPropList), assertion(is_list(OldPropList)),
   append(PropList, OldPropList, NewPropList),
-  assertion(A=2;A=3), NewFront=..[F, Object, NewPropList]. 
+  assertion(A=2;A=3), NewFront=..[F, Object, NewPropList].
 declare_list(Fact, State, NewState) :- append([Fact], State, NewState).
 
 
@@ -189,18 +251,18 @@ declared_list(Fact, State) :- member(inst(Object), State), declared_link(declare
 
 :- meta_predicate(declared_link(2, ?, *)).
 declared_link(Pred2, Fact, VarName):- strip_module(Pred2, _, Var), var(Var), !, declared_link(declared, Fact, VarName).
-declared_link(Pred2, Fact, VarName):- atom(VarName), nb_current(VarName, PropList), PropList\==[],!, call(Pred2, Fact, PropList).
+declared_link(Pred2, Fact, VarName):- atom(VarName), nb_current(VarName, PropList), PropList\==[], !, call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, inst(Obj)):- declared_advstate(props(Obj, PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, type(Type)):- declared_advstate(type_props(Type, PropList)), call(Pred2, Fact, PropList).
 % declared_link(Pred2, Fact, inst_model(Obj, Type)):- declared_advstate(props(Type, PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- nonvar(Object), extra_decl(Object, PropList), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- get_advstate(State), direct_props(Object, PropList, State), call(Pred2, Fact, PropList), !.
 declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], current_predicate(_, Call), call(Call), !.
-declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], advstate_db(Call),!.
+declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], advstate_db(Call), !.
 declared_link(Pred2, Fact, Object):- var(Object), get_advstate(State), member(Prop, State), arg(1, Prop, Object), arg(2, Prop, PropList),
   call(Pred2, Fact, PropList).
-declared_link(declared, Fact, _Object):- advstate_db(Fact),!.
-  
+declared_link(declared, Fact, _Object):- advstate_db(Fact), !.
+
 
 filter_spec(true, _):- !.
 filter_spec( \+ Spec, PropList):- !,
@@ -231,14 +293,14 @@ get_object_props(Obj, ObjectProps, M0):- memberchk(propOf(_, Obj), M0), ObjectPr
 get_object_props(Obj, ObjectProps, M0):- declared(props(Obj, ObjectProps), M0), !.
 
 
-get_objects(Spec, Set, State):- 
- quietly((must_input_state(State), 
-  get_objects_(Spec, List, State, im(State)), !, 
+get_objects(Spec, Set, State):-
+ quietly((must_input_state(State),
+  get_objects_(Spec, List, State, im(State)), !,
   list_to_set(List, Set))).
 %get_objects(_Spec, [player1, floyd], _State):-!.
 
 get_objects_(_Spec, [], [], im(_)) :- !.
-get_objects_(Spec, OutList, [Store|StateList], im(S0)):- 
+get_objects_(Spec, OutList, [Store|StateList], im(S0)):-
  (( stores_props(Store, Object, PropList) -> filter_spec(Spec, PropList))
  -> OutList = [Object|MidList]
  ; OutList = MidList), !,
@@ -260,16 +322,16 @@ as_first_arg(Object, Prop, Element):-
 :- defn_state_getter(getprop(thing, nv)).
 getprop(Object, Prop, S0) :- quietly((correct_prop(Prop, PropList), getprop0(Object, PropList, S0))).
 
-getprop0(Object, Prop, S0):-  
-  ((as_first_arg(Object, Prop, Element), declared(Element, S0)) 
+getprop0(Object, Prop, S0):-
+  ((as_first_arg(Object, Prop, Element), declared(Element, S0))
      *-> true ; getprop1(Object, [], Object, Prop, S0)).
 
-getprop1(Orig, AlreadyUsed, Object, Prop, S0) :- 
+getprop1(Orig, AlreadyUsed, Object, Prop, S0) :-
  direct_props(Object, PropList, S0),
- ( declared(Prop, PropList)*-> true ; 
+ ( declared(Prop, PropList)*-> true ;
  inherited_prop1(Orig, AlreadyUsed, Object, Prop, PropList, S0)).
 
-inherited_prop1(Orig, AlreadyUsed, _Object, Prop, PropList, S0):- 
+inherited_prop1(Orig, AlreadyUsed, _Object, Prop, PropList, S0):-
  member(inherit(Delegate, t), PropList),
  \+ member(inherit(Delegate, t), AlreadyUsed),
  \+ member(inherit(Delegate, f), PropList),
@@ -278,19 +340,19 @@ inherited_prop1(Orig, AlreadyUsed, _Object, Prop, PropList, S0):-
  \+ member(isnt(Delegate), AllPropList),
  getprop1(Orig, AllPropList, Delegate, Prop, S0).
 
-inherited_prop1(_Orig, AlreadyUsed, _Object, Prop, PropList, _S0):- 
+inherited_prop1(_Orig, AlreadyUsed, _Object, Prop, PropList, _S0):-
  member(link(Delegate), PropList),
  \+ member(link(Delegate), AlreadyUsed),
  nb_current(Delegate, NewProps),
  member(Prop, NewProps).
 
 
-direct_props(Object, PropList, State):- 
+direct_props(Object, PropList, State):-
  (var(State)->get_advstate(State); true),
- (declared(props(Object, PropList), State) 
- *-> true 
- ; ( declared(type_props(Object, PropList), State) 
- *-> true 
+ (declared(props(Object, PropList), State)
+ *-> true
+ ; ( declared(type_props(Object, PropList), State)
+ *-> true
   ; extra_decl(Object, PropList))).
 
 direct_props_or(Object, PropList, Default, S0) :-
@@ -310,7 +372,7 @@ each_prop(Pred, Prop, S0, S1):- assertion(compound(Prop)), call(Pred, Prop, S0, 
 % Remove Prop.
 :- defn_state_setter(delprop(thing, nv)).
 delprop(Object, Prop, S0, S2) :- notrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_(Object), PropList, S0, S2)))).
-delprop_(Object, Prop, S0, S2) :- 
+delprop_(Object, Prop, S0, S2) :-
  undeclare(props(Object, PropList), S0, S1),
  select_from(Prop, PropList, NewPropList),
  declare(props(Object, NewPropList), S1, S2).
@@ -325,7 +387,7 @@ delprop_always_(_Object, _Prop, S0, S0).
 :- defn_state_setter(setprop(thing, nv)).
 setprop(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), each_prop(setprop_(Object), PropList, S0, S2))).
 
-setprop_(Object, Prop, S0, S2) :-  
+setprop_(Object, Prop, S0, S2) :-
  direct_props_or(Object, PropList, [], S0),
  undeclare_always(props(Object, _), S0, S1),
  safe_functor(Prop, F, A),
@@ -333,7 +395,7 @@ setprop_(Object, Prop, S0, S2) :-
  nb_setarg(A, Old, _),
  (select_from(Old, PropList, PropList2) ->
  (upmerge_prop(F, A, Old, Prop, Merged) ->
-  ((Old==Merged, fail) -> S2=S0 ; 
+  ((Old==Merged, fail) -> S2=S0 ;
   (append([Merged], PropList2, PropList3), declare(props(Object, PropList3), S1, S2)));
  append([Prop], PropList, PropList3), declare(props(Object, PropList3), S1, S2));
  (append([Prop], PropList, PropList3), declare(props(Object, PropList3), S1, S2))).
@@ -342,7 +404,7 @@ setprop_(Object, Prop, S0, S2) :-
 :- defn_state_setter(updateprop(thing, nv)).
 updateprop(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), each_prop(updateprop_(Object), PropList, S0, S2))).
 
-updateprop_(Object, Prop, S0, S2) :- 
+updateprop_(Object, Prop, S0, S2) :-
  assertion(compound(Prop)),
  direct_props_or(Object, PropList, [], S0),
  (member(Prop, PropList)
@@ -362,7 +424,7 @@ updateprop_1(Object, Prop, PropList, S0, S2) :-
  append([Prop], PropList, PropList3), declare(props(Object, PropList3), S0, S2));
  (append([Prop], PropList, PropList3), declare(props(Object, PropList3), S0, S2))).
 
-      
+
 /*
 
 setprop(Object, Prop, S0, S2) :-
@@ -432,7 +494,7 @@ update_running(StateInfo):- ignore((get_advstate(S0), !, declare(StateInfo, S0, 
 %push_to_state(State):- push_to_obj(world, State).
 
 
-push_to_state(StateInfo):- end_of_list == StateInfo, !.  
+push_to_state(StateInfo):- end_of_list == StateInfo, !.
 push_to_state(StateInfo):- is_codelist(StateInfo), any_to_string(StateInfo, SStateInfo), !, push_to_state(SStateInfo).
 push_to_state(StateInfo):- is_charlist(StateInfo), any_to_string(StateInfo, SStateInfo), !, push_to_state(SStateInfo).
 push_to_state(StateInfo):- string(StateInfo), parse_kind(state, StateInfo, Logic), push_to_state(Logic).
@@ -487,7 +549,7 @@ correct_prop(          SV, N=V):- SV=..[N, V], single_valued_prop(N), !.
 
 correct_prop( (can(Verb)), can_be(Verb, t)):- nop(check_atom(Verb)).
 correct_prop(~(can(Verb)), can_be(Verb, f)):- nop(check_atom(Verb)).
-correct_prop( (can(Verb, TF)),    can_be(Verb, TF)):- nop(check_atom(Verb)).
+correct_prop( (can(Verb, TF)), can_be(Verb, TF)):- nop(check_atom(Verb)).
 correct_prop( (knows_verbs(Verb)), knows_verbs(Verb, t)):- nop(check_atom(Verb)).
 correct_prop(~(knows_verbs(Verb)), knows_verbs(Verb, f)):- nop(check_atom(Verb)).
 correct_prop( (has_rel(Verb)), has_rel(Verb, t)):- nop(check_atom(Verb)).
@@ -495,4 +557,5 @@ correct_prop(~(has_rel(Verb)), has_rel(Verb, f)):- nop(check_atom(Verb)).
 correct_prop(  Other, Other).
 
 
-% for  the "TheSims" bot AI which will make the bots do what TheSims characters do... (they dont use the planner they use a simple priority routine)  
+% for  the "TheSims" bot AI which will make the bots do what TheSims characters do... (they dont use the planner they use a simple priority routine)
+

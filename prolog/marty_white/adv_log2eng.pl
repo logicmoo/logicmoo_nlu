@@ -64,7 +64,7 @@ list2eng(Punct, Obj, Some, English):-  is_list(Some), !,
   maplist(logic2english(Obj), Some, SomeUnused),
   exclude(unused_text, SomeUnused, SomeGone),
   list2eng_a(Punct, Obj, SomeGone, English).
-list2eng(Punct, Obj, Some, English) :- 
+list2eng(Punct, Obj, Some, English) :-
   punct_or(Punct, logic2eng, Log2Eng),
   call(Log2Eng, Obj, Some, English), !.
 
@@ -75,9 +75,9 @@ unused_text([A]):- nonvar(A), !, unused_text(A).
 
 list2eng_a(Punct, _Obj, [], [Nothing]):- punct_or(Punct, '<nothing>', Nothing).
 :- nb_setval(list2eng, []).
-list2eng_a(_Punct, Obj, Some, [' ['| English]) :- nb_current(list2eng, D), number(D), !, 
- list2eng_e(['.'=']', 'and'=','], Obj, Some, English), !.
-list2eng_a(Punct, Obj, Some, English) :- nb_current(list2eng, D), b_setval(list2eng, 1), 
+list2eng_a(_Punct, Obj, Some, [' ['| English]) :- nb_current(list2eng, D), number(D), !,
+ list2eng_e(['.'=']', 'and'=', '], Obj, Some, English), !.
+list2eng_a(Punct, Obj, Some, English) :- nb_current(list2eng, D), b_setval(list2eng, 1),
  list2eng_e(Punct, Obj, Some, English), !,
  b_setval(list2eng, D).
 
@@ -88,7 +88,7 @@ list2eng_e(Punct, Obj, [Single], English) :- !,
  punct_or(Punct, '.', PERIOD),
  flatten([Named, PERIOD], English).
 
-list2eng_e(Punct, Obj, [Last2, Last1], English) :- 
+list2eng_e(Punct, Obj, [Last2, Last1], English) :-
  punct_or(Punct, logic2eng, Log2Eng),
  call(Log2Eng, Obj, Last2, Named2),
  list2eng(Obj, Last1, Named1),
@@ -96,21 +96,21 @@ list2eng_e(Punct, Obj, [Last2, Last1], English) :-
  punct_or(Punct, '.', PERIOD),
  flatten([Named2, AND, Named1, PERIOD], English).
 
-list2eng_e(Punct, Obj, [Some| More], English) :- 
+list2eng_e(Punct, Obj, [Some| More], English) :-
  punct_or(Punct, logic2eng, Log2Eng),
  call(Log2Eng, Obj, Some, Named),
- punct_or(Punct, ',', COMMA),
+ punct_or(Punct, ', ', COMMA),
  list2eng_e(Punct, Obj, More, MoreNamed),
  flatten([Named, COMMA, MoreNamed], English).
 
-list2eng_e(Punct, Obj, Some, English) :- 
+list2eng_e(Punct, Obj, Some, English) :-
  punct_or(Punct, logic2eng, Log2Eng),
  call(Log2Eng, Obj, Some, English), !.
- 
+
 
 timestamped_pred(holds_at).
 
-logic2eng( Obj, Prop, English):- 
+logic2eng( Obj, Prop, English):-
  \+ ground(Prop), copy_term(Prop, Prop2), !,
  mw_numbervars(Prop2, 55, _), logic2eng(Obj, Prop2, English).
 
@@ -137,10 +137,10 @@ logic2eng(_Obj, '$VAR'(Prop), English):- format(atom(English), ' ?VAR-~w', [Prop
 logic2eng(_Obj, English, English):- english_directve(English), !.
 logic2eng(_Obj, [English|Rest], [English|Rest]):- english_directve(English), !.
 logic2eng(_Obj, [], []).
-logic2eng(Context, extra_verbose_eng(Eng), '...verbose...'(Compiled) ):- 
+logic2eng(Context, extra_verbose_eng(Eng), '...verbose...'(Compiled) ):-
  compile_eng_txt(Context, Eng, Compiled).
 
-logic2eng(Context, single_event(Evt), Eng):- !, logic2eng(Context, Evt, Eng). 
+logic2eng(Context, single_event(Evt), Eng):- !, logic2eng(Context, Evt, Eng).
 logic2eng(_Context, '<mystery>'(Why, Prep, About), [a, (mystery), because, quoted([Prep, About]), (', '), aux(be), (Why)]):- !.
 
 
@@ -148,12 +148,12 @@ logic2eng(_Context, '<mystery>'(Why, Prep, About), [a, (mystery), because, quote
 logic2eng(Obj, [Prop|Tail], Text) :- !,
  must_mw1((logic2eng(Obj, Tail, UText2) ->
  flatten([UText2], Text2),
- must_mw1(logic2eng(Obj, Prop, UText1)) -> 
+ must_mw1(logic2eng(Obj, Prop, UText1)) ->
  flatten([UText1], Text1),
  append_if_new(Text1, Text2, Text))), !.
 
 
-logic2eng(Obj, HWestFromTo_At, [ Ago | Info]):- 
+logic2eng(Obj, HWestFromTo_At, [ Ago | Info]):-
   HWestFromTo_At =.. [H, West, From|To_At],
   timestamped_pred(H),
   append(To, [At], To_At), number(At), !,
@@ -172,27 +172,27 @@ logic2eng(_Context, Doing, [Agent, does, Did|More]):- is_type_functor(action, Do
 
 logic2eng(_Context, percept(_Agent, How, _, _), ''):- How == know, !.
 
-logic2eng(_Context, percept(_Agent, see, Depth, props(Object, [shape=What])), []):- 
+logic2eng(_Context, percept(_Agent, see, Depth, props(Object, [shape=What])), []):-
   (Depth == 1;Depth == 2), atom(Object), atom_contains(Object, What), !.
 
-logic2eng(_Context, percept(Agent, see, Depth, props(Object, [shape=What])),  extra_verbose_logic(percept(Agent, see, Depth, props(Object, [has_shape=What])))).
+logic2eng(_Context, percept(Agent, see, Depth, props(Object, [shape=What])), extra_verbose_logic(percept(Agent, see, Depth, props(Object, [has_shape=What])))).
 
-logic2eng(Context,  percept(_Agent, _, _Depth, exit_list(Relation, Here, Exits)), ['Exits', Relation, Here, ' are:', ExitText, '\n']):-  list2eng(Context, Exits, ExitText).
+logic2eng(Context, percept(_Agent, _, _Depth, exit_list(Relation, Here, Exits)), ['Exits', Relation, Here, ' are:', ExitText, '\n']):-  list2eng(Context, Exits, ExitText).
 
-logic2eng(_Context, percept(_Agent,  Sense, Depth, child_list(Object, Prep, '<mystery>'(Closed, _, _))), extra_verbose_eng([Object, aux(be), Closed, from, ing(Sense), cap(Prep)]) ):- Depth \= depth(3).
+logic2eng(_Context, percept(_Agent, Sense, Depth, child_list(Object, Prep, '<mystery>'(Closed, _, _))), extra_verbose_eng([Object, aux(be), Closed, from, ing(Sense), cap(Prep)]) ):- Depth \= depth(3).
 logic2eng(_Context, percept(_Agent, _Sense, Depth, child_list(Object, Prep, [])), extra_verbose_eng([nothing, Prep, Object]) ):- Depth \= 1.
 
-logic2eng(Context,  percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)), 
-    [cap(subj(Agent)),  es(Sense), Prep, Here, ':'  | SeeText]):- 
- select_from(Agent, Nearby, OthersNearby), !,  list2eng(Context, OthersNearby, SeeText).
+logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)),
+    [cap(subj(Agent)), es(Sense), Prep, Here, ':'  | SeeText]):-
+ select_from(Agent, Nearby, OthersNearby), !, list2eng(Context, OthersNearby, SeeText).
 
-logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)), 
+logic2eng(Context, percept( Agent, Sense, _Depth, child_list(Here, Prep, Nearby)),
  [cap(subj(Agent)), person(Sense, es(Sense)), Prep, Here, ':', SeeText]):-  list2eng(Context, Nearby, SeeText).
-                                 
+
 logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose_logic(notices(Agent, How, Depth, What))):-  Depth=1,
   logic2eng(Context, Info, What).
 
-logic2eng(Context, percept(Agent, How, _, Info), notices(Agent, How, What)):- 
+logic2eng(Context, percept(Agent, How, _, Info), notices(Agent, How, What)):-
  \+ same_agent(Context, Agent), logic2eng(Agent, Info, What).
 
 % (...verbose...: percept('player~1', see, 2, props('shovel~1', [shape=shovel])) )
@@ -207,7 +207,7 @@ logic2eng(Context, percept(Agent, How, Depth, Info), extra_verbose_eng([Agent, e
 logic2eng(Context, carrying(Agent, Items),
    [cap(subj(Agent)), 'carrying:'|Text]) :-
  list2eng(Context, Items, Text).
-                               
+
 
 logic2eng(_Agent, moved(_Doer, _Verb, What, From, Prep, To),
    [cap(subj(What)), 'moves', ' from', From, 'to' , Prep, To]).
@@ -217,10 +217,10 @@ logic2eng(_Agent, transformed(Before, After), [Before, 'turns into', After, .]).
 
 logic2eng(_Agent, destroyed(Thing), [Thing, aux(be), 'destroyed.']).
 
-logic2eng(_Context, percept_props(_Agent, _Sense, _Object, _Depth, []),  [] ) :- !.
+logic2eng(_Context, percept_props(_Agent, _Sense, _Object, _Depth, []), [] ) :- !.
 logic2eng(Context, percept_props(Agent, see, Object, _Depth, PropList), [cap(subj(Agent)), sees | English ] ) :-
  logic2eng(Context, do_props(Object, PropList), English).
-logic2eng(Context, percept_props(Agent, Sense, Object, _Depth, PropList), 
+logic2eng(Context, percept_props(Agent, Sense, Object, _Depth, PropList),
    [cap(subj(Agent)),
     person(Sense, es(Sense))| English] ) :-
  logic2eng(Context, do_props(Object, PropList), English ).
@@ -228,15 +228,15 @@ logic2eng(Context, percept_props(Agent, Sense, Object, _Depth, PropList),
 logic2eng(Context, props(Object, PropList), [the(Object) |English] ) :-
   logic2eng(Context, do_props(Object, PropList), English ).
 
-logic2eng(_Agent, do_props(_Object, []),  '<..>' ) :- !.
+logic2eng(_Agent, do_props(_Object, []), '<..>' ) :- !.
 logic2eng(_Agent, do_props(Object, PropList), English ) :- list2eng(['.'='.'], Object, PropList, English).
 
 
-logic2eng(_Agent, memories(Object, PropList), ['\n\n', the(Object), ' remembers:\n'|English] ) :- 
+logic2eng(_Agent, memories(Object, PropList), ['\n\n', the(Object), ' remembers:\n'|English] ) :-
  reverse(PropList, PropListR),
- list2eng([','=',\n', logic2eng=percept2eng], Object, PropListR, English).
-logic2eng(_Agent, perceptq(Object, PropList), ['\n\n', the(Object), ' notices:\n'|English] ) :- 
- list2eng([','=',\n'], Object, PropList, English).
+ list2eng([', '=', \n', logic2eng=percept2eng], Object, PropListR, English).
+logic2eng(_Agent, perceptq(Object, PropList), ['\n\n', the(Object), ' notices:\n'|English] ) :-
+ list2eng([', '=', \n'], Object, PropList, English).
 
 logic2eng(_Context, departing(Actor, In, Where, How, Dir), [Actor, was, In, Where, but, left, ing(How), Dir] ) :- !.
 logic2eng(_Context, arriving(Actor, In, Where, How, Dir), [Actor, came, ing(How), Dir, In, Where] ) :- !.
@@ -259,22 +259,22 @@ logic2eng(_Agent, failure(Action), ['Action failed:', Action]).
 
 logic2eng(Obj, timestamp(Ord, Time), [timestamp, is, Ord, '(', Ago, ')']):- logic2eng(Obj, ago(Time), Ago).
 
-logic2eng(_Obj, ago(Time), [MinutesSecs, ago]):- 
+logic2eng(_Obj, ago(Time), [MinutesSecs, ago]):-
  clock_time(Now),
  Dif is round((Now - Time)*10)/10,
  Minutes is round(Dif) // 60,
  USecs is round((Dif - (Minutes*60))*10)/10,
  Secs is round(USecs),
- (Minutes>0 -> 
- (Secs<10 
+ (Minutes>0 ->
+ (Secs<10
   -> format(atom(MinutesSecs), '~w:0~ws', [Minutes, Secs])
   ; format(atom(MinutesSecs), '~w:~ws', [Minutes, Secs]))
   ; format(atom(MinutesSecs), '~ws', [USecs])).
 
 
 logic2eng(_Obj, h(exit(West), From , To), [To, 'is', West, 'of', From]):- !.
-logic2eng(_Obj, h(ExitDown, Object, Speaker), [the(Object), 'has', Exit, Down, 'to', Speaker]):- 
- compound(ExitDown), 
+logic2eng(_Obj, h(ExitDown, Object, Speaker), [the(Object), 'has', Exit, Down, 'to', Speaker]):-
+ compound(ExitDown),
  ExitDown=..[Exit, Down].
 logic2eng(_Obj, h(Held_by , Object, Speaker), [the(Object), aux(be), Held_by, Speaker]).
 
@@ -301,7 +301,7 @@ logic2eng(_Aobj, alreadyhave(It), ['already have', the(It)]).
 logic2eng(_Aobj, mustgetout(It), ['must_mw get out/off ', It, ' first.']).
 logic2eng(_Aobj, self_relation(It), ['can\'t put ', It, ' inside itself!']).
 logic2eng(_Aobj, moibeus_relation( _, _), ['Topological error!']).
-logic2eng(_Aobj, =(Dark, t),  ['It''s too ', Dark, ' to ', Sense, in, '!']):- problem_solution(Dark, Sense, _Light).
+logic2eng(_Aobj, =(Dark, t), ['It''s too ', Dark, ' to ', Sense, in, '!']):- problem_solution(Dark, Sense, _Light).
 logic2eng(_Aobj, mustdrop(It), [ 'will have to drop', It, ' first.']).
 logic2eng(_Aobj, cant( move(_Agent, It)), [It, aux(be), 'immobile']).
 logic2eng(_Aobj, cant( take(_Agent, It)), [It, aux(be), 'untakeable']).
@@ -358,7 +358,7 @@ logic2eng( Obj, effect(Action, true) , [the, action, anglify(Obj, Action), has, 
 
 logic2eng(_Obj, has_rel(Value, TF) , [TF, 'that it has, ', Value]).
 
-logic2eng( Obj, oper(Act, Precond, PostCond), OUT) :- 
+logic2eng( Obj, oper(Act, Precond, PostCond), OUT) :-
  (xtreme_english->OUT = ['{{', if, 'action: ', ActE, ' test:', PrecondE, 'resulting: ', PostCondE, '}}'];
  OUT = []),
  maplist(logic2eng(Obj), [Act, Precond, PostCond], [ActE, PrecondE, PostCondE]).
@@ -415,7 +415,7 @@ logic2english(_Doer, Logic, Text):- \+ \+ tl_loop:in_logic2english(Logic), !, te
 logic2english( Doer, Logic, Text):- locally(tl_loop:in_logic2english(Logic),
   ((logic2eng(Doer, Logic, Eng), must_mw1((eng2txt(Doer, Doer, Eng, Text)))))), !.
 
-:- if( current_prolog_flag(xpce,true) ).
+:- if( current_prolog_flag(xpce, true) ).
 :- noguitracer.
 :- endif.
 

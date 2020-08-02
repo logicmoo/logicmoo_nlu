@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -70,7 +70,7 @@ same_rel(Rel, Prep):- subrelation(Rel, Prep).
 
 :- defn_state_getter(prep_to_rel(target, preprel, -domrel)).
 prep_to_rel(Target, Prep, Rel, S0):- has_rel(Rel, Target, S0), same_rel(Rel, Prep), !.
-prep_to_rel(Target, Prep, Rel, S0):- in_model(h(Rel, Target, _), S0), same_rel(Rel, Prep), !. 
+prep_to_rel(Target, Prep, Rel, S0):- in_model(h(Rel, Target, _), S0), same_rel(Rel, Prep), !.
 prep_to_rel(Target, Prep, Rel, S0):- atom(Prep), prep_to_rel(Target, exit(Prep), Rel, S0), !.
 prep_to_rel(Target, _Prep, Rel, S0):- default_rel(Rel, Target, S0).
 
@@ -100,7 +100,7 @@ h(child, X, Y, S0) :- subrelation(At, child), h(At, X, Y, S0).
 
 h(descended, X, Z, S0) :-
   h(child, X, Z, S0).
-h(descended, X, Z, S0) :- 
+h(descended, X, Z, S0) :-
   h(child, Y, Z, S0),
   h(descended, X, Y, S0).
 
@@ -108,23 +108,23 @@ h(open_traverse, X, Z, S0):-
   h(descended, X, Z, S0),
   \+ (h(inside, X, Z, S0), is_closed(in, Z, S0)).
 
-h(in_scope, X, Z, S0):- 
+h(in_scope, X, Z, S0):-
   h(child, X, Y, S0),
   h(descended, Z, Y, S0).
-h(in_scope, X, Z, S0):- 
+h(in_scope, X, Z, S0):-
   h(descended, X, Z, S0).
 
-h(touchable, X, Z, S0):- 
+h(touchable, X, Z, S0):-
   h(in_scope, X, Z, S0),
-  \+ ((h(inside, Z, C, S0), is_closed(in, C, S0),   % cant reach what is inside of something closed unless...
+  \+ ((h(inside, Z, C, S0), is_closed(in, C, S0), % cant reach what is inside of something closed unless...
                           \+ h(inside, X, C, S0))). % ... we are inside of that something as well as well
 
-h(takeable, X, Z, S0):- 
+h(takeable, X, Z, S0):-
   h(touchable, X, Z, S0),
   X \= Z, % cant take self
   \+ getprop(Z, can_be(move, f)),
   \+ getprop(Z, can_be(take, f)),
-  \+ h(inside, X, Z, S0),  % cant take outer object
+  \+ h(inside, X, Z, S0), % cant take outer object
   \+ h(held_by, Z, X, S0). % cant take what already have
 
 
@@ -160,26 +160,26 @@ in_state(Opened, Object, S0) :-
  getprop(Object, Opened=t, S0).
 
 :- defn_state_getter(is_closed(domrel, inst)).
-is_closed(At, Object, S0) :-  
+is_closed(At, Object, S0) :-
  in_state(~(opened), Object, S0) -> getprop(Object, default_rel = At, S0).
 %  getprop(Object, openable, S0),
 %  \+ getprop(Object, open, S0).
 
-  
+
 :- defn_state_getter(from_loc(inst, place)).
 
-from_loc(Thing, Here, S0):- 
+from_loc(Thing, Here, S0):-
    h(child, Thing, Here, S0), !.
-from_loc(Thing, Here, S0):- 
+from_loc(Thing, Here, S0):-
    h(open_traverse, Thing, Here, S0), !.
-from_loc(Thing, Here, S0):- 
+from_loc(Thing, Here, S0):-
    h(_, Thing, Here, S0), !.
 
 :- defn_state_getter(open_traverse(inst, here)).
 
-open_traverse(Thing, Here, S0):- 
+open_traverse(Thing, Here, S0):-
    h(open_traverse, Thing, Here, S0).
-open_traverse(Thing, Here, S0):- 
+open_traverse(Thing, Here, S0):-
    h(open_traverse, Here, Thing, S0).
 
 
@@ -192,7 +192,7 @@ open_traverse(Thing, Here, S0):-
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 :- defn_state_getter(applied_direction(start, source, prep, domrel, target)).
-applied_direction(Start, Here, Dir, Relation, End, S0):- 
+applied_direction(Start, Here, Dir, Relation, End, S0):-
  h(_Relation, Start, Here, S0),
  h(exit(Dir), Here, End, S0),
  has_rel(Relation, End, S0).

@@ -6,10 +6,10 @@
 % Bits and pieces:
 %
 % LogicMOO, Inform7, FROLOG, Guncho, PrologMUD and Marty's Prolog Adventure Prototype
-% 
-% Copyright (C) 2004 Marty White under the GNU GPL 
+%
+% Copyright (C) 2004 Marty White under the GNU GPL
 % Sept 20, 1999 - Douglas Miles
-% July 10, 1996 - John Eikenberry 
+% July 10, 1996 - John Eikenberry
 %
 % Logicmoo Project changes:
 %
@@ -17,18 +17,18 @@
 %
 */
 
-action_handle_goals(Agent, Mem0, Mem0):- 
+action_handle_goals(Agent, Mem0, Mem0):-
   \+ thought(goals([_|_]), Mem0), !,
  dbug(planner, '~w: no goals exist~n', [Agent]).
 
-action_handle_goals(Agent, Mem0, Mem1):- 
+action_handle_goals(Agent, Mem0, Mem1):-
  dbug(planner, '~w: goals exist: generating a plan...~n', [Agent]),
  Knower = Agent,
  generate_plan(Knower, Agent, NewPlan, Mem0), !,
  serialize_plan(Knower, Agent, NewPlan, Actions), !,
  dbug(planner, 'Planned actions are ~w~n', [Actions]),
  Actions = [Action|_],
- add_todo(Action, Mem0, Mem1).
+ add_todo(Agent, Action, Mem0, Mem1).
 
 % If goals exist, forget them (since ite above failed)
 action_handle_goals(Agent, Mem0, Mem9) :-
@@ -38,13 +38,9 @@ action_handle_goals(Agent, Mem0, Mem9) :-
  memorize_appending(goals_skipped([G0|GS]), Mem2, Mem9), !.
 
 
-
-has_satisfied_goals(Agent, Mem0, Mem3):-  
- clearable_satisfied_goals(Agent, Mem0, Mem3).
-
-clearable_satisfied_goals(Agent, Mem0, Mem3):-  
- forget(goals([G0|GS]), Mem0, Mem1),
- Goals = [G0|GS],
+forget_satisfied_goals(Agent, Mem0, Mem3):-
+ Goals = [_G0|_GS],
+ forget(goals(Goals), Mem0, Mem1),
  agent_thought_model(Agent, ModelData, Mem0),
  select_unsatisfied_conditions(Goals, Unsatisfied, ModelData) ->
  subtract(Goals, Unsatisfied, Satisfied), !,
@@ -53,7 +49,7 @@ clearable_satisfied_goals(Agent, Mem0, Mem3):-
  dbug(planner, '~w Goals some Satisfied: ~p.  Unsatisfied: ~p.~n', [Agent, Satisfied, Unsatisfied]),
  memorize_appending(goals_satisfied(Satisfied), Mem2, Mem3), !.
 
-has_unsatisfied_goals(Agent, Mem0, Mem0):-  
+has_unsatisfied_goals(Agent, Mem0, Mem0):-
  agent_thought_model(Agent, ModelData, Mem0),
  thought(goals([_|_]), ModelData).
 
@@ -101,14 +97,14 @@ look(Person) is a cheap and effective strategy
 
 
 event(trys(go_dir(Person, walk, north)))
-  
+
 
 
 
 
 precond_matches_effect(Cond, Cond).
 
-precond_matches_effects(path(Here, There), StartEffects) :- 
+precond_matches_effects(path(Here, There), StartEffects) :-
  find_path(Agent, Here, There, _Route, StartEffects).
 precond_matches_effects(exists(Object), StartEffects) :-
  in_model(h(_, Object, _), StartEffects)
@@ -118,7 +114,7 @@ precond_matches_effects(Cond, Effects) :-
  in_model(E, Effects),
  precond_matches_effect(Cond, E).
 */
- 
+
 % oper(_Self, Action, Desc, Preconds, Effects)
 
 sequenced(_Self,
@@ -148,7 +144,7 @@ sequenced(_Self,
 
 
 % Return an operator after substituting Agent for Self.
-operagent(Agent, Action, BConds, BEffects) :- 
+operagent(Agent, Action, BConds, BEffects) :-
  oper_splitk(Agent, Action, Conds, Effects),
    once((oper_beliefs(Agent, Conds, BConds),
       oper_beliefs(Agent, Effects, BEffects))).
@@ -199,7 +195,7 @@ convert_state_to_goalstate(O, O):- pprint(convert_state_to_goalstate=O, planner)
 new_plan_newver(Self, CurrentState, GoalState, Plan) :-
  convert_state_to_goalstate(CurrentState, CurrentStateofGoals),
  gensym(ending_step_1, End),
- Plan = 
+ Plan =
  plan([step(start , oper(Self, do_nothing(Self), [], CurrentStateofGoals)),
        step(completeFn(End), oper(Self, do_nothing(Self), GoalState, []))],
       [before(start, completeFn(End))],
@@ -209,7 +205,7 @@ new_plan_newver(Self, CurrentState, GoalState, Plan) :-
 /*
  new_plan_oldver(Self, CurrentState, GoalState, Plan) :-
  gensym(ending_step_1, End),
- Plan = 
+ Plan =
  plan([step(start , oper(Self, true, [], CurrentState)),
        step(completeFn(End), oper(Self, true, GoalState, []))],
       [before(start, completeFn(End))],
@@ -308,10 +304,10 @@ pick_ordering(_Orderings, [], []).
 test_ordering :-
  dbug(planner, 'ORDERING TEST:~n'),
  Unordered =
- [ 
+ [
   before(start, completeFn(End)),
   before(start, x),
-  before(start, y), 
+  before(start, y),
   before(y, completeFn(End)),
   before(x, z),
   before(z, completeFn(End))
@@ -552,11 +548,11 @@ choose_operator([goal(GoalID, GoalCond)|Goals0], Goals2,
 
 choose_operator([goal(_GoalID, GoalCond)|G0], G2, Op, P0, P2, D, D) :- GoalCond = (_\=_), !,
   choose_operator(G0, G2, Op, P0, P2, D, D).
-   
+
 
 choose_operator([goal(GoalID, GoalCond)|G0], _G2, _Op, _P0, _P2, D, D) :-
  dbug(planner, ' CHOOSE_OPERATOR FAILED on goal:~n goal(~w, ~w):~w~n',
-   [GoalID, GoalCond,G0]),
+   [GoalID, GoalCond, G0]),
  !, fail.
 choose_operator(G0, _G2, _Op, _P0, _P2, D, D) :-
  dbug(planner, ' !!! CHOOSE_OPERATOR FAILED: G0 = ~w~n', [G0]), !, fail.
@@ -650,7 +646,7 @@ generate_plan(Knower, Agent, FullPlan, Mem0) :-
 % ----
 
 
-path2dir1(Doer, Here, There, go_dir(Doer, _Walk, Dir), ModelData):- 
+path2dir1(Doer, Here, There, go_dir(Doer, _Walk, Dir), ModelData):-
  in_model(h(exit(Dir), Here, There), ModelData).
 path2dir1(Doer, Here, There, goto_obj(Doer, _Walk, There), ModelData) :-
  in_model(h(descended, Here, There), ModelData).
