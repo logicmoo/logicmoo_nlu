@@ -312,11 +312,15 @@ reverse_dir(Dir, RDir, S0):-
 reverse_dir(Dir, reverse(Dir), _).
 
 
+/* 
+creates:
+
 add_agent_todo(Agent, Action):-
  get_advstate(S0),
  add_agent_todo(Agent, Action, S0, S9),
  get_advstate(S9).
-
+*/
+:- defn_state_setter(add_agent_todo(agent, action)).
 
 add_agent_todo(Agent, Action, S0, S9) :-
   undeclare(memories(Agent, Mem0), S0, S1),
