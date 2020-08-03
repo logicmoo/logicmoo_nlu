@@ -58,6 +58,7 @@ is_metacall_bt('*->').
 is_metacall_bt('->').
 
 
+
 :- nb_setval('$bt_context', []).
 expand_bt(_, H, HH):- (\+ nb_current('$bt_context', _) ; nb_current('$bt_context', [])), !, H=HH.
 expand_bt(C, H, HH):- nb_current('$bt_context', Was), expand_bt(C, Was, H, HH), !.
@@ -67,7 +68,7 @@ expand_bt(_, Was, H, HH):- compound(H), safe_functor(H, F, _), safe_functor(Was,
 expand_bt(C, Was, H, HH):- compound(H), is_bt_metacall(H), H=..[F|ArgsH],
    must_maplist(expand_bt(C, Was), ArgsH, ArgsHH),
    HH =.. [F|ArgsHH].
-expand_bt(_, Was, HB, HHBB):- compound(HB), safe_functor(HB, F, _), is_metasent_bt(F, C),
+expand_bt(_, Was, HB, HHBB):- compound(HB), wom_functor(HB, F, _), is_metasent_bt(F, C),
    HB=..[F, H|ArgsB],
    expand_bt(h, Was, H, HH),
    must_maplist(expand_bt(C, Was), ArgsB, ArgsBB),

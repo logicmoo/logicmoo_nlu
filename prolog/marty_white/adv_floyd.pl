@@ -78,6 +78,7 @@ autonomous_decide_action(Agent, Mem0, _) :-
 autonomous_decide_action(Agent, Mem0, Mem1) :-
  thought(goals([_|_]), Mem0),
  action_handle_goals(Agent, Mem0, Mem1), !.
+
 autonomous_decide_action(Agent, Mem0, Mem1) :-
  once((autonomous_create_new_goal(Agent, Mem0, Mem1);
 % If no actions or goals, but there's an unexplored exit here, go that way.
@@ -85,6 +86,7 @@ autonomous_decide_action(Agent, Mem0, Mem1) :-
  autonomous_decide_unexplored_exit(Agent, Mem0, Mem1);
  autonomous_decide_follow_player(Agent, Mem0, Mem1);
  autonomous_decide_silly_emoter_action(Agent, Mem0, Mem1))).
+
 autonomous_decide_action(Agent, Mem0, Mem0) :-
  (declared_advstate(h(in, Agent, Here))->true;Here=somewhere),
  (dbug(autonomous+verbose, '~w: Can\'t think of anything to do.~n', [Agent-Here])), fail.% trace.
@@ -109,12 +111,12 @@ autonomous_decide_unexplored_exit(Agent, Mem0, Mem1) :-
 autonomous_decide_unexplored_object(Agent, Mem0, Mem2) :-
  agent_thought_model(Agent, ModelData, Mem0),
  in_agent_model(Agent, h(_, '<mystery>'(closed, _, _), Object), ModelData),
- in_agent_model(Agent, h(in, Object, Here), ModelData),
- in_agent_model(Agent, h(in, Agent, Here), ModelData),
+ in_agent_model(Agent, h(Prep, Object, Here), ModelData),
+ in_agent_model(Agent, h(Prep, Agent, Here), ModelData),
  add_todo(Agent, open(Agent, Object), Mem0, Mem1),
  add_todo(Agent, examine(Agent, see, Object), Mem1, Mem2).
 
-autonomous_decide_unexplored_object(Agent, Mem0, Mem1) :-
+autonomous_decide_unexplored_object(Agent, Mem0, Mem1) :-  fail,
  agent_thought_model(Agent, ModelData, Mem0),
  in_agent_model(Agent, h(A, '<mystery>'(W, B, C), Object), ModelData),
  add_todo(Agent, make_true(Agent, ~(h(A, '<mystery>'(W, B, C), Object))), Mem0, Mem1).
@@ -131,7 +133,7 @@ autonomous_decide_follow_player(Agent, Mem0, Mem1) :- % 1 is random(2),
  add_todo(Agent, go_dir(Agent, walk, Dir), Mem0, Mem1).
 
 autonomous_decide_silly_emoter_action(Agent, Mem0, Mem1) :-
- 0 is random(5),
+ 1 is random(5), % fail_feature,
  random_noise(Agent, Msg),
  add_todo(Agent, emote(Agent, act, *, Msg), Mem0, Mem1).
 

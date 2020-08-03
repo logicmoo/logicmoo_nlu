@@ -45,9 +45,9 @@ save_term_exists(Filename, _) :-
 
 record_saved(State) :- is_list(State),!,
   sort(State,Term),  
-  must_mw1(save_term(library('marty_white/adv_state_db.pl'), write ,Term)),!.
+  with_mutex(save_advstate, must_mw1(save_term(library('marty_white/adv_state_db.pl'), write ,Term))),!.
 record_saved(State):- 
-  must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)).
+  with_mutex(save_advstate, must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State))).
 
 save_term(Filename, How, Term) :- 
   is_list(Term),sort(Term,STerm),Term\==STerm,!,
@@ -88,19 +88,19 @@ get_advstate_varname(Varname):- nb_current(advstate_var, Varname), Varname\==[],
 get_advstate_db(State):- var(State), !, findall(State1, advstate_db(State1), StateL), flatten([StateL], State).
 get_advstate_db(State):- advstate_db(State).
 
-get_advstate(State):- ((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) 
-  -> State=PreState ; get_advstate_db(State)).
+get_advstate(State):- with_mutex(get_advstate,((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) 
+  -> State=PreState ; get_advstate_db(State))).
 
 set_advstate(State):- 
-  ((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) -> nb_setval(Var, State) ; set_advstate_db(State)).
+  with_mutex(get_advstate,((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) -> nb_setval(Var, State) ; set_advstate_db(State))).
 
 add_advstate(State):- 
-  must_mw1(set_advstate_db_1(State)),
-  must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)),!.
+  with_mutex(get_advstate, must_mw1(set_advstate_db_1(State))),
+  nop(with_mutex(save_advstate, must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)))),!.
 
 set_advstate_db(State):-
   notrace((set_advstate_db_1(State),
-  record_saved(State))),!.
+  nop(record_saved(State)))),!.
 
 
 set_advstate_db_1(Nil):- Nil==[], !.
@@ -257,7 +257,8 @@ declared_link(Pred2, Fact, type(Type)):- declared_advstate(type_props(Type, Prop
 % declared_link(Pred2, Fact, inst_model(Obj, Type)):- declared_advstate(props(Type, PropList)), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- nonvar(Object), extra_decl(Object, PropList), call(Pred2, Fact, PropList).
 declared_link(Pred2, Fact, Object):- get_advstate(State), direct_props(Object, PropList, State), call(Pred2, Fact, PropList), !.
-declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], current_predicate(_, Call), call(Call), !.
+declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], 
+  current_predicate(_, Call), call(Call), !.
 declared_link(declared, Fact, Object):- callable(Fact), Fact=..[F|List], Call=..[F, Object|List], advstate_db(Call), !.
 declared_link(Pred2, Fact, Object):- var(Object), get_advstate(State), member(Prop, State), arg(1, Prop, Object), arg(2, Prop, PropList),
   call(Pred2, Fact, PropList).

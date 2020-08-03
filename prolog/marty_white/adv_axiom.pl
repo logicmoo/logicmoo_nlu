@@ -25,6 +25,10 @@
 :- discontiguous aXiom//1.
 :- discontiguous eVent//2.
 
+:- defn_state_setter(aXiom//1
+  ).
+:- defn_state_setter(eVent//2
+  ).
 
 will_touch(Agent, Thing) ==>>
   h(touchable, Agent, Thing).
@@ -82,15 +86,11 @@ aXiom(say(Agent, Message)) ==>>          % undirected message
   from_loc(Agent, Here),
   queue_local_event([talk(Agent, Here, *, Message)], [Here]).
 
-/*
-aXiom(emote(Agent, EmoteType, Object, Message)) ==>> !, % directed message
- must_mw1((
- action_sensory(EmoteType, Sense),
- can_sense(Agent, Sense, Object),
- % get_open_traverse(EmoteType, Sense), h(Sense, Agent, Here),
- queue_local_event([emoted(Agent, EmoteType, Object, Message)], [Here, Object]))).
 
-*/
+aXiom(emote(Agent, EmoteType, Object, Message)) ==>> !, % directed message
+ from_loc(Agent, Here),
+ queue_local_event([emoted(Agent, EmoteType, Object, Message)], [Here]).
+
 
 
 
@@ -377,13 +377,16 @@ aXiom(touch(Agent, Thing)) ==>> !,
 
 
 aXiom(change_state(Agent, Open, Thing, Opened, TF)) ==>> !,
+ unless_reason(Agent, will_touch(Agent, Thing),
+   cant( reach(Agent, Thing))),
   change_state(Agent, Open, Thing, Opened, TF).
 
 aXiom(Action, S0, S9) ::=
- notrace((action_verb_agent_thing(Action, Open, Agent, Thing),
- nonvar(Open), nonvar(Thing), nonvar(Agent))),
- act_change_state(Open, Opened, TF), !,
+ action_verb_agent_thing(Action, Open, Agent, Thing),
+ nonvar(Open), nonvar(Thing), nonvar(Agent),
+ act_change_state_or_fallback(Open, Opened, TF), !,
  eVent(Agent, change_state(Agent, Open, Thing, Opened, TF), S0, S9), !.
+
 
 :- add_bt_meta_processing(aXiom).
 

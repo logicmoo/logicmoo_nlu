@@ -30,7 +30,7 @@ action_handle_goals(Agent, Mem0, Mem1):-
  Actions = [Action|_],
  add_todo(Agent, Action, Mem0, Mem1).
 
-% If goals exist, forget them (since ite above failed)
+% If goals exist, forget them (since the above failed)
 action_handle_goals(Agent, Mem0, Mem9) :-
  forget(goals([G0|GS]), Mem0, Mem1),
  memorize(goals([]), Mem1, Mem2),

@@ -22,8 +22,6 @@
 :- set_prolog_flag(double_quotes,string).
 :- style_check(-singleton).
 
-:- if(true; exists_source('ac_xnl/ac_xnl_7166_part_000000.nldata')).
-
 :-dynamic(acnl/3).
 :-dynamic(acnl/4).
 :-dynamic(acnl/5).
@@ -50,6 +48,7 @@
 :-dynamic(acnl_not/6).
 :-dynamic(acnl_not/7).
 
+:- if(exists_source('ac_xnl/ac_xnl_7166_part_000000.nldata')).
 
 :- style_check(-discontiguous).
 :- style_check(-singleton).

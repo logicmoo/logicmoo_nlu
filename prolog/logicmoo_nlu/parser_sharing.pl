@@ -49,9 +49,11 @@ def_nl_pred(M,F,A):-
 :- export(nl_call/7).
 :- export(nl_call/8).
 nl_call([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
-nl_call(P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),      
+nl_call(M:P):-!,nl_call_mp(M,P).
+nl_call(P):- nl_call_mp(_,P).
+nl_call_mp(M,P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),      
    on_x_rtrace((nl_pred(P,M,F,A),M:P)),nl_call_exit(M,F,A,P))*->true;
-  (current_predicate(_,M:P),call(call,M:P)).
+  (current_predicate(_,M:P),call(M:P)).
 
 nl_pred(M,F,A):- var(F),!,nlfac:is_nl_pred(M,F,A).
 nl_pred(M,F,A):- (nlfac:is_nl_pred(M,F,A))*->true;((must(current_predicate(M:F/A)),def_nl_pred(M,F,A)),!).

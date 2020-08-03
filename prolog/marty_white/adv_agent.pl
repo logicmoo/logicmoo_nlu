@@ -110,7 +110,7 @@ add_goals(_Agent, Goals, Mem0, Mem2) :-
  memorize(goals(NewGoals), Mem1, Mem2).
 
 
-add_todo(Agent, Auto, Mem0, Mem3) :- Auto = auto(Agent),
+add_todo(Agent, Auto, Mem0, Mem3) :- Auto = auto(Agent), !,
  %must_mw1(member(inst(Agent), Mem0)),
  autonomous_decide_action(Agent, Mem0, Mem3), !.
 add_todo(_Agent, Action, Mem0, Mem2) :-

@@ -267,16 +267,38 @@ must_act( Action) -->
 act_required_posses('lock', 'key', $agent).
 act_required_posses('unlock', 'key', $agent).
 
-act_change_opposite('lock', 'unlock').
-act_change_opposite('open', 'close').
 
+act_change_opposite(f,t):-!.
+act_change_opposite(t,f):-!.
+act_change_opposite(F,T):- act_change_opposite_0(T,F),!.
+act_change_opposite(T,F):- act_change_opposite_0(T,F),!.
+act_change_opposite_0('close','open').
+act_change_opposite_0(UnOpen,Open):- (atom(Open) -> \+ atom_concat('un',_,Open) ; atom(UnOpen)),
+    atom_concat('un',Open,UnOpen).
+
+act_change_state(Auto,_,_):- parsed_as_simple(Auto),!,fail.
+act_change_state(Open, Opened, Value):- nonvar(Value),!,act_change_state(Open, Opened, Val),!, Value=Val.
 act_change_state('lock', 'locked', t).
 act_change_state('open', 'opened', t).
-act_change_state(Unlock, Locked, f):- act_change_state(Lock, Locked, t), act_change_opposite(Lock, Unlock).
 act_change_state(switch(on), 'powered', t).
 act_change_state(switch(off), 'powered', f).
+act_change_state(switch(Open), Opened, TF):- nonvar(Open),!, act_change_state(Open, Opened, TF).
 
-act_change_state(switch(Open), Opened, TF):- nonvar(Open), act_change_state(Open, Opened, TF).
+act_change_state(Close, Opened, Value):- 
+   act_change_state_0(Close, UnOpened, Val), nonvar(Val), as_true(UnOpened,Opened, TF),
+   (TF == f -> once(act_change_opposite(Val, Value)) ; Value = Val).
+
+as_true(UnOpen,Open,f):- atom(UnOpen),var(Open), atom_concat('un',Open,UnOpen),!.
+as_true( Opened, Opened,t).
+
+act_change_state_0(Light, Lit, t):- bpart_contol(Light, Lit),!.
+act_change_state_0(Unlock, Locked, FT):- 
+  act_change_opposite(Unlock, Lock), 
+  act_change_state(Lock, Locked, TF),act_change_opposite(TF, FT).
+
+
+act_change_state_or_fallback(Open, Opened, TF):- act_change_state(Open, Opened, TF),!.
+act_change_state_or_fallback(UnOpen, Opened, F):- act_change_opposite(Open, UnOpen), act_change_state(Open, Opened, T),act_change_opposite(T,F).
 
 % act_prevented_by(Open, Opened, TF):- act_change_state(Open, Opened, TF).
 act_prevented_by('open', 'locked', t).
@@ -347,11 +369,20 @@ action_verb_agent_thing(Action, Verb, Agent, Thing):-
   action_verb_agent_args(Action, Verb, Agent, Args),
   (Args=[Thing]->true;Thing=_), !.
 
-action_verb_agent_args(Action, Verb, Agent, Args):- show_failure(get_functor_types(action, Action, Types)),
+action_verb_agent_args(Action, Verb, Agent, Args):- 
+  univ_safe(Action, [Verb,Agent|Args]),
+  act_change_state(Verb,_,_),!.
+
+action_verb_agent_args(Action, Verb, Agent, Args):- 
+  show_failure(get_functor_types(action, Action, Types)),
   univ_safe(Action, [Verb|Rest]), !,
   ((Types = [agent|_]) -> Rest = [Agent|Args] ; Args=Rest).
 %action_verb_agent_args(Action, Verb, Agent, Args):-
 % notrace((compound(Action), Action=..[Verb, Agent|Args], \+ verbatum_anon(Verb))), !.
+action_verb_agent_args(Action, Verb, Agent, Args):- 
+  univ_safe(Action, [Verb,Agent|Args]),
+  \+ verbatum_anon(Verb),
+  Args\==[].
 
 
 

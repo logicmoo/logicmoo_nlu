@@ -29,6 +29,7 @@
 :- endif.
 */
 
+must_security_of(Doer,Level):- security_of(Doer,Level).
 
 security_of(_, _Wiz).
 admin :- true. % Potential security hazzard.
@@ -160,7 +161,7 @@ my_ttyflush:-
    !)).
 
 main_once:-
-   my_ttyflush,
+  nop(( my_ttyflush,
    sleep(0.005),
    set_prolog_flag(gc,true),
    % gc_heap,
@@ -168,7 +169,7 @@ main_once:-
    garbage_collect_clauses,
    garbage_collect,
    set_prolog_flag(gc,false),
-   my_ttyflush,
+   my_ttyflush)),
    update_network_connections,
    get_live_agents(LiveAgents),
    my_ttyflush, !,
@@ -223,7 +224,8 @@ telnet_decide_action(Agent, Mem0, Mem1) :-
  if_tracing(dbug(telnet, 'Telnet TODO ~p~n', [Agent: Words->Action])),
  add_todo(Agent, Action, Mem0, Mem1))), !.
 telnet_decide_action(Agent, Mem, Mem) :-
- nop(dbug(telnet, '~w: Can\'t think of anything to do.~n', [Agent])).
+ nop(dbug(telnet, '~w: Can\'t think of anything to do.~n', [Agent])),
+ fail.
 
 
 %:- if(\+ prolog_load_context(reloading, t)).

@@ -80,7 +80,7 @@ dest_target(loc(_, _, _, Target), Target):- nonvar(Target), !.
 
 % Relationships
 
-in(floyd, pantry),
+in(floyd, the(pantry)),
 in(the(player), kitchen),
 worn_by(the(watch), the(player)),
 held_by(the(bag), the(player)),
@@ -90,10 +90,10 @@ held_by(the(wrench), floyd),
 
 % eng2log("A pantry exits south to a kitchen", exit(south, pantry, kitchen)),
 % add_e2c_trans("?NP1 exits ?DIR to ?NP2", exit(DIR, NP1, NP2)),
-exit(south, pantry, kitchen),
-exit(north, kitchen, pantry),
-exit(down, pantry, basement),
-exit(up, basement, pantry),
+exit(south, the(pantry), kitchen),
+exit(north, kitchen, the(pantry)),
+exit(down, the(pantry), basement),
+exit(up, basement, the(pantry)),
 exit(south, kitchen, garden),
 exit(north, garden, kitchen),
 exit(east, kitchen, dining_room),
@@ -104,23 +104,23 @@ exit(south, living_room, kitchen),
 exit(west, kitchen, living_room),
 
 
-in(the(shelf), pantry), % the shelf is in pantry
-in(the(locker), pantry), % the locker is in pantry
-in(the(rock), garden), % xformed:  in('rock~1', garden).
+in(the(shelf), the(pantry)),  % the shelf is in the pantry
+in(the(locker), the(pantry)), % the locker is in the  pantry
+in(the(rock), garden),   % xformed:  in('rock~1', garden).
 % there are rocks in the garden
-in(a(rock), garden), % xformed:  in('rock~11', garden).
-%in(s(rock), garden), % in('rock~21', garden).
+in(a(rock), garden),     % xformed:  in('rock~11', garden).
+%in(s(rock), garden),     % in('rock~21', garden).
 % in({atLeast(2)}/in(a(rock), garden)).
-                         %
+                         % 
 in(the(fountain), garden),
 in(the(mushroom), garden),
 in(the(shovel), basement), % FYI shovel has no props (this is a lttle test to see what happens)
 in(the(videocamera), living_room),
 in(the(fireplace), living_room),
-in(screendoor, kitchen),
+in(the(screendoor), kitchen),
 in(the(crate), kitchen),
 in(the(apple), the(crate)),
-in(screendoor, garden),
+in(the(screendoor), garden),
 in(brklamp, garden)
 
 ]).

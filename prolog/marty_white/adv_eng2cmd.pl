@@ -93,7 +93,7 @@ with_parse_mem(Mem, Goal):-
   setup_call_cleanup(
         b_setval(parsemem, Mem),
         Goal,
-        b_setval(parsemem, MemWas)).
+        notrace(b_setval(parsemem, MemWas))).
 
 
 is_text_mw(Text):- is_charlist(Text), !.
@@ -222,10 +222,12 @@ eng2cmd(Doer, Words, Action, M) :- fail,
 
 
 
-eng2cmd(Doer, [TheVerb|Args], Action, M) :-
- quietly_talk_db([F, Verb|Forms]),
- notrace(F==intransitive;F==transitive),
- member(TheVerb, Forms), !,
+eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
+ (F==intransitive;F==transitive),
+ (TheVerb = Verb ; Verb = _),
+ quietly_talk_db([F, Verb, THE|Forms]),
+ member(TheVerb, [Verb, THE|Forms]),
+ 
  eng2cmd(Doer, [Verb|Args], Action, M).
 
 eng2cmd( Self, Words, Logic, Mem):-  fail,
@@ -332,9 +334,11 @@ acdb(F, A, B):- munl_call(ttholds(F, A, B)).
 acdb(F, A, B):- munl_call(acnl(F, A, B, _)).
 
 :- set_prolog_flag(debug_on_error, true).
-%munl_call(G):-nl_call(G).
-munl_call(G):- catch(nl_call(G), _, munl_call2(G)).
-munl_call2(G):- catch(rtrace(nl_call(G)), _, fail).
+%munl_call(G):- !, nl_call(G).
+munl_call(G):- 
+ catch(G,_,
+   catch(nl_call(G), _,
+      catch(rtrace(nl_call(G)), _, fail))).
 
 
 two_adjs(W1, W2, W3):- var(W1), nonvar(W2), !, two_adjs(W2, W1, W3).
@@ -825,8 +829,12 @@ verb_frame1(Action, want,
 % %%%%%%%%%%%%%%
 bpart_contol(break, broken).
 bpart_contol(repair, unbroken).
+bpart_contol(Smooch, Smooched):- 
+  munl_call(talkdb:talk_db(_, Smooch, _Smooches, Smooched, _Smooching, Smooched)).
 bpart_contol(light, lit).
 bpart_contol(unlight, unlit).
+bpart_contol(Open, Opened):- munl_call(clex:tv_pp(Opened, Open)).
+
 % %%%%%%%%%%%%%%
 verb_frame1(Action, Light,
    [does-done_by:tAnimate, some-objectActedOn, with-using:bpart],
