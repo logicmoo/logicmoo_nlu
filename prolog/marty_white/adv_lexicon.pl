@@ -1,3 +1,4 @@
+:- encoding(iso_latin_1).
 
 thetaRole(abandonner, abandonner_0, give_up_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(abduce, abduce_0, abduce_tt, 1, subj_tt, concept_tt, "", "", 0).
