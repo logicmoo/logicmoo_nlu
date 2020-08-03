@@ -420,8 +420,14 @@ setloc_silent(Prep, Object, Dest) -->
  undeclare(h(_, Object, _)),
  declare(h(Prep, Object, Dest)).
 
+state_value(Opened=TF,Opened,TF):-!.
+state_value(NamedValue,Named,Value):- 
+  univ_safe(NamedValue,NamedValueL),
+  append(NamedL,[Value],NamedValueL), 
+  univ_safe(Named,NamedL).
 
-change_state(Agent, Open, Thing, Opened, TF, S0, S):-
+change_state(Agent, Action, Thing, OpenedTF, S0, S):- 
+ action_verb_agent_thing(Action, Open, _, _),
  % must_mw1
  ((
  maybe_when(psubsetof(Open, touch),
@@ -449,8 +455,8 @@ change_state(Agent, Open, Thing, Opened, TF, S0, S):-
   adv_subst(equivalent, $here, Here, Term2, Term)),
   call(Term), S0, S1),
 
- setprop(Thing, =(Opened, TF), S1, S2))),
+ setprop(Thing, OpenedTF, S1, S2))),
 
- queue_local_event([setprop(Thing, =(Opened, TF)), msg([Thing, is, TF, Opened])], [Here, Thing], S2, S), !.
+ queue_local_event([msg([Agent, ensures, Thing, is, OpenedTF])], [Here, Thing], S2, S), !.
 
 

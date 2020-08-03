@@ -57,23 +57,36 @@ is_metacall_bt('not').
 is_metacall_bt('*->').
 is_metacall_bt('->').
 
+plus_2_p(P,PSE):- append_term(P,[_],PS),append_term(PS,[_],PSE).
 
+maybe_append_term(b,_Was, H, H):- (H==!),!.
+maybe_append_term(b,_Was, H, HH):- compound(H),  
+   current_predicate(_,H), plus_2_p(H, PSE), \+ current_predicate(_,PSE), !,
+   append_term({}, H, HH).
+maybe_append_term(_, Was, H, HH):- append_term(Was, H, HH).
 
 :- nb_setval('$bt_context', []).
 expand_bt(_, H, HH):- (\+ nb_current('$bt_context', _) ; nb_current('$bt_context', [])), !, H=HH.
 expand_bt(C, H, HH):- nb_current('$bt_context', Was), expand_bt(C, Was, H, HH), !.
 
-expand_bt(C, Was, H, HH):- is_wrap_bt(C, H), append_term(Was, H, HH), !.
+expand_bt(C, Was, Var, HH):-  var(Var),!, maybe_append_term(C,Was, Var, HH).
+expand_bt(C, Was, (A,B), (A,BB)):- C==b, (A == !),!, expand_bt(C, Was, B, BB).
+expand_bt(C, Was, (A,B), (AA,BB)):- C==b, !, expand_bt(C, Was, A, AA), expand_bt(C, Was, B, BB).
+expand_bt(C, Was, (A;B), (AA;BB)):-  C==b, !, expand_bt(C, Was, A, AA), expand_bt(C, Was, B, BB).
+expand_bt(C, Was, H, HH):- is_wrap_bt(C, H), maybe_append_term(C,Was, H, HH), !.
 expand_bt(_, Was, H, HH):- compound(H), safe_functor(H, F, _), safe_functor(Was, WF, _), F==WF, !, H=HH.
 expand_bt(C, Was, H, HH):- compound(H), is_bt_metacall(H), H=..[F|ArgsH],
    must_maplist(expand_bt(C, Was), ArgsH, ArgsHH),
    HH =.. [F|ArgsHH].
-expand_bt(_, Was, HB, HHBB):- compound(HB), wom_functor(HB, F, _), is_metasent_bt(F, C),
+expand_bt(C, Was, HB, HHBB):- compound(HB), wom_functor(HB, F, _), 
+   is_metasent_bt(F, C),
    HB=..[F, H|ArgsB],
    expand_bt(h, Was, H, HH),
-   must_maplist(expand_bt(C, Was), ArgsB, ArgsBB),
+   must_maplist(expand_bt(b, Was), ArgsB, ArgsBB),
    HHBB =.. [F, HH|ArgsBB].
-expand_bt(c, Was, H, HH):- append_term(Was, H, HH), !.
+
+% expand_bt(c, _Was, H, H):-!.
+expand_bt(C, Was, H, HH):- maybe_append_term(C,Was, H, HH), !.
 expand_bt(_, _, H, H).
 
 set_bt_context(Ax):- nb_setval('$bt_context', Ax), bt_accept_low(bt_meta(Ax)).
@@ -83,17 +96,36 @@ maybe_dcg(HH, BB, Out):-
   discontiguous(HH), multifile(HH),
   dcg_translate_rule((HH-->BB), Out).
 
-bt_accept_fwd(Assert):- dbug1('==>'(did_bt_accept_fwd(Assert))).
+bt_accept_fwd(Assert):- \+ \+ dbug1(Assert),
+  ignore(((Assert = (HH==>>BB)),
+   term_variables(Assert,AVs),
+   dcg_translate_rule((HH-->BB), Out),
+   term_variables(Out,OVs),
+   subtract_eq(OVs,AVs,[X1|DV0s]),
+   reverse(DV0s,DVs),
+   numbervars_body([X1|DVs],Out),
+   portray_vars:pretty_numbervars(Out, OutO),
+   wdmsg(OutO))),
+  ignore(((Assert = (HH::=BB)),
+   wdmsg(HH:-BB))).
+
+:- hprolog:use_module(library(dialect/hprolog)).
+numbervars_body(DVs,(_:-((!,A=A),B))):- term_variables(B,BVs), hprolog:intersect_eq(DVs,BVs,NVs),numbervars(NVs,234,_,[attvars(skip)]),!.
+numbervars_body(DVs,(_:-B)):- term_variables(B,BVs), hprolog:intersect_eq(DVs,BVs,NVs),numbervars(NVs,234,_,[attvars(skip)]),!.
+numbervars_body(DVs,_):- numbervars(DVs,234,_,[attvars(skip)]),!.
+  
 bt_accept_low(AssertO):- assert(bt_data(AssertO)), bt_accept_fwd(AssertO).
-bt_accept(Assert):- expand_bt(h, Assert, AssertO), bt_accept_low(AssertO).
+
+bt_accept(Assert):- \+ \+ ((expand_bt(c, Assert, AssertO), bt_accept_low(AssertO))).
 
 :- export(bt_term_expansion/3).
 :- module_transparent(bt_term_expansion/3).
 bt_term_expansion(_M, (H ==>> B), Out):- !,
-  must((expand_bt(h, H, HH), expand_bt(b, B, BB), bt_accept_low(HH ==>> BB),
+  must((expand_bt(h, H, HH), expand_bt(b, B, BB), 
+  bt_accept_low(HH ==>> BB),
   maybe_dcg(HH, BB, Out))).
 bt_term_expansion(_M, (H ::= B), Out):- !,
-  must((expand_bt(h, H, HH), expand_bt(c, B, BB),
+  must((expand_bt(h, H, HH), expand_bt(b, B, BB),
   expand_term((HH:-BB), Out),
   bt_accept_low(HH ::= BB))).
 
@@ -109,3 +141,4 @@ term_expansion(In, Out):-
   strip_module(M0:In, M, _))),
   bt_term_expansion(M, In, Out).
 
+:- reconsult(adv_axiom).

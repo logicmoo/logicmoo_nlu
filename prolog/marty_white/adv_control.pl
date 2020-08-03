@@ -1,10 +1,13 @@
 
+:- '$set_source_module'(mu).
+% :- asserta(mu:is_a_module).
+
 :- module(mu).
 :- set_prolog_flag(ec_loader, false).
 
 :- use_module(library(nomic_mu)).
 
-:- use_module(library(pfc)).
+:- mu:use_module(library(pfc)).
 :- set_fileAssertMt(mu).
 
 :- nodebug.

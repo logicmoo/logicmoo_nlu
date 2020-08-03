@@ -56,16 +56,16 @@ aXiom(wait(Agent)) ==>>
 
 aXiom(Action) ==>>
  {implications(_DoesEvent, (Action), Preconds, Postconds), action_doer(Action, Agent) },
- /*dmust_tracing*/(satisfy_each(preCond(_), Preconds)),
+ /*dmust_tracing*/(satisfy_each(preCond(_1), Preconds)),
  (((sg(member(failed(Why))), send_1percept(Agent, failed(Action, Why))))
-    ; (satisfy_each(postCond(_), Postconds), send_1percept(Agent, (Action)))), !.
+    ; (satisfy_each(postCond(_2), Postconds), send_1percept(Agent, (Action)))), !.
 
 aXiom( Action) ==>>
  {oper_splitk(Agent, Action, Preconds, Postconds)},
  /*dmust_tracing*/
- (satisfy_each(preCond(_), Preconds)),
+ (satisfy_each(preCond(_1), Preconds)),
  (((sg(member(failed(Why))), send_1percept(Agent, failed(Action, Why))))
-    ; (satisfy_each(postCond(_), Postconds), send_1percept(Agent, success(Action)))), !.
+    ; (satisfy_each(postCond(_2), Postconds), send_1percept(Agent, success(Action)))), !.
 
 
 :- defn_state_getter(eng2log(agent, english, action)).
@@ -313,7 +313,7 @@ aXiom(dig(Agent, Hole, Where, Tool)) ==>>
 
 aXiom(eat(Agent, Thing)) ==>>
   (getprop(Thing, can_be(eat, t)) ->
-  (undeclare(h(_, Thing, _)), send_1percept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
+  (undeclare(h(_1, Thing, _2)), send_1percept(Agent, [destroyed(Thing), 'Mmmm, good!'])) ;
   send_1percept(Agent, [failure(eat(Thing)), 'It''s inedible!'])).
 
 
@@ -376,16 +376,20 @@ aXiom(touch(Agent, Thing)) ==>> !,
  send_1percept(Agent, [success(touch(Agent, Thing), 'Ok.')]).
 
 
-aXiom(change_state(Agent, Open, Thing, Opened, TF)) ==>> !,
- unless_reason(Agent, will_touch(Agent, Thing),
-   cant( reach(Agent, Thing))),
-  change_state(Agent, Open, Thing, Opened, TF).
+aXiom(change_state(Agent, Action, Thing, Prop)) ==>> !,
+  change_state(Agent, Action, Thing, Prop).
+ 
 
 aXiom(Action, S0, S9) ::=
  action_verb_agent_thing(Action, Open, Agent, Thing),
  nonvar(Open), nonvar(Thing), nonvar(Agent),
  act_change_state_or_fallback(Open, Opened, TF), !,
- eVent(Agent, change_state(Agent, Open, Thing, Opened, TF), S0, S9), !.
+ eVent(Agent, change_state(Agent, Action, Thing, Opened=TF), S0, S9), !.
+
+
+aXiom(Action,S,E) ::= 
+  current_predicate(_,mu:Action), !,
+  call(Action,S,E).
 
 
 :- add_bt_meta_processing(aXiom).

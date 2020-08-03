@@ -115,6 +115,7 @@ logic2eng( Obj, Prop, English):-
  mw_numbervars(Prop2, 55, _), logic2eng(Obj, Prop2, English).
 
 logic2eng(_Obj, desc = (Out), [' "', Out, '"']):- !.
+logic2eng(_Obj, setprop(Obj,Prop), [Obj, setprop, Prop]):- !.
 logic2eng(Obj, Some, English):- \+ attvar(English), \+ pretty, dif(English, []), !, logic2eng(Obj, Some, English).
 logic2eng(Context, Inst, TheThing):- atom(Inst), inst_of(Inst, Type, N), !,
  (nth0(N, [(unknown), '', thee, old, some, a], Det) -> true; atom_concat('#', N, Det)),
