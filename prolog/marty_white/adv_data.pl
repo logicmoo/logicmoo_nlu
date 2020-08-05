@@ -386,8 +386,8 @@ props(screendoor, [
    model_depth = 3,
    mass = 50, volume = 50, % liters  (water is 1 kilogram per liter)
    has_sense(see),
-   %inherit(perceptq),
-   inherit(no_perceptq),
+   inherit(perceptq),
+   %inherit(no_perceptq),
    inherit(memorizer),
    inherit(actor),
    inherit(autoscan),
@@ -475,6 +475,7 @@ props(screendoor, [
    % body(clause)
    body(take($agent, Thing, in, $self))),
    inherit(container),
+   (opened = t),
    inherit(moveable)
   ]),
 

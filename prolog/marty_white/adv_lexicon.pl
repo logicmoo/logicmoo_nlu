@@ -7,17 +7,24 @@ thetaRole(absolve, absolve_0, absolve_tt, 1, subj_tt, concept_tt, "", "", 0).
 thetaRole(absolve, absolve_0, absolve_tt, 2, obj_tt, concept_tt, "", "", 0).
 thetaRole(abuse, abuse_0, judgment_abuse_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(abuse, abuse_0, judgment_abuse_tt, 2, obj_tt, human_tt, "", "", 0).
+
 thetaRole(acceep, acceep_0, finally_accept_tt, -1, expl_tt, concept_tt, "finally", "_v", 0).
 thetaRole(acceep, acceep_0, finally_accept_tt, 1, subj_tt, human_tt, "", "", 0).
+
 thetaRole(acceep, acceep_1, accept_tt, 1, subj_tt, human_tt, "", "", 0).
+
+% joe accept from  f by subj 
 thetaRole(acceep, acceep_2, accept_from_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(acceep, acceep_2, accept_from_tt, 2, iobj_tt, animal_tt, "from", "", 1).
 thetaRole(acceep, acceep_2, accept_from_tt, 3, obj_tt, object_tt, "", "", 0).
+
 thetaRole(acclaim, acclaim_0, acclaim_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(acclaim, acclaim_0, acclaim_tt, 2, obj_tt, human_tt, "", "", 0).
+
 thetaRole(accompany, accompany_0, accompany_to_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(accompany, accompany_0, accompany_to_tt, 2, obj_tt, human_tt, "", "", 0).
 thetaRole(accompany, accompany_0, accompany_to_tt, 3, iobj_tt, object_tt, "to", "", 1).
+
 thetaRole(accord, accord_5, admire_tt, -1, expl_tt, concept_tt, "respect", "v_o", 0).
 thetaRole(accord, accord_5, admire_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(accord, accord_5, admire_tt, 2, iobj_tt, concept_tt, "to", "", 0).
@@ -27,20 +34,27 @@ thetaRole(accouter, accouter_0, dress_put_on_tt, 3, iobj_tt, concept_tt, "in", "
 thetaRole(accumulate, accumulate_0, accumulate_from_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(accumulate, accumulate_0, accumulate_from_tt, 2, iobj_tt, animal_tt, "from", "", 1).
 thetaRole(accumulate, accumulate_0, accumulate_from_tt, 3, obj_tt, object_tt, "", "", 0).
+
 thetaRole(accuse, accuse_0, accuse_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(accuse, accuse_0, accuse_tt, 2, obj_tt, human_tt, "", "", 0).
 thetaRole(accuse, accuse_0, accuse_tt, 3, iobj_tt, concept_tt, "of", "", 1).
+
 thetaRole(achieve, achieve_0, a_social_esteem_tt, -1, expl_tt, concept_tt, s("social", "esteem"), "v_o", 0).
 thetaRole(achieve, achieve_0, a_social_esteem_tt, 1, subj_tt, human_tt, "", "", 0).
+
 thetaRole(achieve, achieve_1, a_self_esteem_tt, -1, expl_tt, concept_tt, s("self", "esteem"), "v_o", 0).
 thetaRole(achieve, achieve_1, a_self_esteem_tt, 1, subj_tt, human_tt, "", "", 0).
+
 thetaRole(achieve, achieve_2, a_shelter_tt, -1, expl_tt, concept_tt, "shelter", "v_o", 0).
 thetaRole(achieve, achieve_2, a_shelter_tt, 1, subj_tt, human_tt, "", "", 0).
+
 thetaRole(achieve, achieve_3, a_safety_tt, -1, expl_tt, concept_tt, "safety", "v_o", 0).
 thetaRole(achieve, achieve_3, a_safety_tt, 1, subj_tt, human_tt, "", "", 0).
+
 thetaRole(acknowledge, acknowledge_0, concede_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(acknowledge, acknowledge_0, concede_tt, 2, na_tt, human_tt, "", "", 1).
 thetaRole(acknowledge, acknowledge_0, concede_tt, 3, obj_tt, concept_tt, "", "", 0).
+
 thetaRole(acquire, acquire_0, learn_acquire_tt, 1, subj_tt, concept_tt, "", "", 0).
 thetaRole(acquire, acquire_0, learn_acquire_tt, 2, obj_tt, concept_tt, "", "", 0).
 thetaRole(acquire, acquire_1, acquisition_tt, 1, subj_tt, animal_tt, "", "", 0).
@@ -2150,17 +2164,22 @@ thetaRole(get, get_8, dress_put_on_tt, 2, obj_tt, clothing_tt, "", "", 0).
 thetaRole(get, get_9, strip_tt, -1, expl_tt, concept_tt, "undressed", "v_o", 0).
 thetaRole(get, get_9, strip_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(giggle, giggle_0, giggle_tt, 1, subj_tt, animal_tt, "", "", 0).
+
 thetaRole(give, give_0, phonestate_audible_ring_tt, -1, expl_tt, concept_tt, s("a", "ring", "tone"), "v_o", 0).
 thetaRole(give, give_0, phonestate_audible_ring_tt, 1, subj_tt, phone_tt, "", "", 0).
+
 thetaRole(give, give_1, phonestate_busy_signal_tt, -1, expl_tt, concept_tt, s("an", "engaged", "tone"), "v_o", 0).
 thetaRole(give, give_1, phonestate_busy_signal_tt, 1, subj_tt, phone_tt, "", "", 0).
+
 thetaRole(give, give_10, give_tour_tt, -1, expl_tt, concept_tt, s("a", "tour"), "v_o", 0).
 thetaRole(give, give_10, give_tour_tt, 1, subj_tt, concept_tt, "", "", 0).
 thetaRole(give, give_10, give_tour_tt, 2, iobj_tt, concept_tt, "of", "", 1).
+
 thetaRole(give, give_11, give_tour_tt, -1, expl_tt, concept_tt, s("a", "tour"), "vo_", 0).
 thetaRole(give, give_11, give_tour_tt, 1, subj_tt, concept_tt, "", "", 0).
 thetaRole(give, give_11, give_tour_tt, 2, obj_tt, concept_tt, "", "", 0).
 thetaRole(give, give_11, give_tour_tt, 3, iobj_tt, concept_tt, "of", "", 1).
+
 thetaRole(give, give_12, advertise_promote_tt, -1, expl_tt, concept_tt, s("a", "plug"), "vo_", 0).
 thetaRole(give, give_12, advertise_promote_tt, 1, subj_tt, concept_tt, "", "", 0).
 thetaRole(give, give_12, advertise_promote_tt, 2, obj_tt, concept_tt, "", "", 0).
@@ -2184,12 +2203,15 @@ thetaRole(give, give_19, advise_tt, 1, subj_tt, human_tt, "", "", 0).
 thetaRole(give, give_19, advise_tt, 2, iobj_tt, human_tt, "to", "", 0).
 thetaRole(give, give_2, phonestate_busy_signal_tt, -1, expl_tt, concept_tt, s("a", "busy", "signal"), "v_o", 0).
 thetaRole(give, give_2, phonestate_busy_signal_tt, 1, subj_tt, phone_tt, "", "", 0).
+
 thetaRole(give, give_20, give_to_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(give, give_20, give_to_tt, 2, obj_tt, animal_tt, "", "", 0).
 thetaRole(give, give_20, give_to_tt, 3, obj_tt, object_tt, "", "", 0).
+
 thetaRole(give, give_21, give_to_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(give, give_21, give_to_tt, 2, iobj_tt, animal_tt, "to", "", 0).
 thetaRole(give, give_21, give_to_tt, 3, obj_tt, object_tt, "", "", 0).
+
 thetaRole(give, give_22, give_birth_tt, -1, expl_tt, concept_tt, "birth", "v_o", 0).
 thetaRole(give, give_22, give_birth_tt, 1, subj_tt, animal_tt, "", "", 0).
 thetaRole(give, give_22, give_birth_tt, 2, iobj_tt, animal_tt, "to", "", 1).

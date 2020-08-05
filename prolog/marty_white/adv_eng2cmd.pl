@@ -51,6 +51,11 @@ cmdalias(whois, who).
 cmdalias(turn, switch).
 cmdalias(flip, switch).
 
+is_prep(P):- parser_chat80:prep(prep(PP),_,_,_,_), PP==P.
+is_prep(P):- preposition(_, P).
+
+is_prep_for_type(P,tObject):- is_prep(P).
+
 preposition(_, P) :- notrace(member(P, [at, down, in, inside, into, of, off, on, onto, out, over, to, under, up, with])).
 
 preposition(_Other, P) :-
@@ -135,8 +140,7 @@ reframed_call(Pred, Text, Logic):-
    nl_context(current_subject, Self, vSpeaker, Frame),
    set_nl_context(current_subject, Self, Frame),
    %set_nl_context(current_frame, Mem, Frame),   
-   munl_call(into_text80(Text, Term)),
-   dumpST,
+   into_text80(Text, Term),
    reframed_call(Pred, Self, Term, Logic, Frame), !.
 
 % -- parse(Doer, WordList, ActionOrQuery, Memory)
@@ -154,12 +158,12 @@ reframed_call( Pred, Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, refram
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).
 reframed_call( Pred, Doer, [notrace|Args], Logic, M) :- Args\==[], !, notrace(reframed_call( Pred, Doer, Args, Logic, M)).
 reframed_call( Pred, Doer, [cls|Args], Logic, M) :- Args\==[], !, cls, reframed_call( Pred, Doer, Args, Logic, M).
-
 reframed_call( Pred, Self, Words, Logic, Mem):- call( Pred, Self, Words, Logic, Mem).
 
 
-eng2logic(Self, Words, Cmd, Mem):- eng2cmd( Self, Words, Cmd, Mem), !.
+eng2logic(Self, Words, Cmd, Mem):-  \+ ([Self|_] = Cmd) , eng2cmd( Self, Words, Cmd, Mem), !.
 eng2logic(Self, Words, Logic, Mem):- show_success(eng2state( Self, Words, Logic, Mem)), !.
+eng2logic(Self, Words, Cmd, Mem):- eng2logic_frame( Self, Words, Cmd, Mem), !.
 eng2logic(Self, Words, Logic, Mem):- append([Self, wonders], Words, Decl), show_success(eng2state( Self, Decl, Logic, Mem)), !.
 
 /*
@@ -239,6 +243,11 @@ eng2cmd(Doer, [TheVerb|Args], Action, M) :-
  munl_call(clex_verb(TheVerb, Verb, _, _)),
  Verb\==TheVerb, !,
  eng2cmd(Doer, [Verb|Args], Action, M).
+
+
+eng2cmd(Doer, Cmd, Action, M) :-
+  eng2logic(Doer, [Doer|Cmd], Action, M).
+
 
 % %%%%%%%%%%%%%%
 % Simple
@@ -359,7 +368,7 @@ two_adjs_0(A, W2, C, W3, D):-
 
 verb_formtense_str(GiveStr, RootStr, Else):-
     acdb(baseForm, GiveTheWord, GiveStr),
-    acdb(posForms, GiveTheWord, xtVerb), !,
+    acdb(posForms, GiveTheWord, xtVerb),
     RootStr = GiveStr,
     Else = baseForm.
 verb_formtense_str(GaveStr, GiveStr, Past):-
@@ -377,12 +386,12 @@ verb_formtense_atom(Giving, Give, Past):-
 
 
 verb_formtense(Var, _, _):- var(Var), !, fail.
+verb_formtense(Gave, Give, Past):- atom(Gave), verb_formtense_atom(Gave, Give, Past).
 verb_formtense(Gave, Give, Past):- atom(Gave),
     atom_string(Gave, GaveStr),
     verb_formtense_str(GaveStr, GiveStr, Past),
     atom_string(Give, GiveStr).
 verb_formtense(GaveStr, GiveStr, Past):- verb_formtense_str(GaveStr, GiveStr, Past).
-verb_formtense(Gave, Give, Past):- atom(Gave), !, verb_formtense_atom(Gave, Give, Past).
 verb_formtense(GaveStr, GiveStr, Past):-
     atom_string(Gave, GaveStr),
     verb_formtense_atom(Gave, Give, Past),
@@ -394,7 +403,7 @@ do_eval_or_same({O}, {O}):- !.
 do_eval_or_same(G, GG):- compound_name_arguments(G, HT, [F|GL]), atom(F), member(HT, [t, h]), !,
  compound_name_arguments(GM, F, GL), !, do_eval_or_same(GM, GG).
 
-do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), !, must_mw(to_string_lc(G, GG)), !.
+do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), !, G=GG,!. % must_mw(to_string_lc(G, GG)), !.
 /*
 do_eval_or_same(PEG, PEGG):- notrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
   append(Left, [G], Args))), ground(G), \+ string(G), !, must_mw(to_string_lc(G, GG)), !,
@@ -428,503 +437,6 @@ to_upcase_name(T, N):- format(atom(A), '~w', [T]), upcase_atom(A, N).
 
 
 same_name(T1, T2):- ground(T1), ground(T2), to_upcase_name(T1, N1), to_upcase_name(T2, N2), !, N1==N2.
-
-push_frame(Info, Frame):- var(Frame), !, gensym(frame, F), Frame = [lbl(F)], push_frame(Info, Frame).
-push_frame(Info, Frame):- do_eval_or_same(Info, BetterInfo), Info\=@=BetterInfo, push_frame(BetterInfo, Frame).
-push_frame(Info, Frame):- member(Sub, Frame), Sub==Info, !.
-push_frame(Info, Frame):- Frame = [H|T], setarg(2, Frame, [H|T]), setarg(1, Frame, Info).
-
-
-
-assign_var_name(_Frame, with-using:Type, Var):- !, upcase_atom(Type, UP), debug_var(UP, Var), !.
-assign_var_name(_Frame, _-_:Type, Var):- atom(Type), !, debug_var(Type, Var), !.
-assign_var_name(Frame, _Prep-Prop:_Type, Var):- !, assign_var_name(Frame, Prop, Var), !.
-assign_var_name(Frame, Prop:_Type, Var):- !, assign_var_name(Frame, Prop, Var), !.
-assign_var_name(Frame, _Prep-Prop, Var):- !, assign_var_name(Frame, Prop, Var), !.
-assign_var_name(_Frame, Prop, Var):- debug_var(Prop, Var), !.
-
-add_dataframe_types([], [], _Frame, []).
-add_dataframe_types([Prep-Prop:Type| FrameArgs], [NewArg|VarsOf], Frame, NextProps):-
-  push_frame(isa(NewArg, Type), Frame), !,
-  add_dataframe_types([Prep-Prop| FrameArgs], [NewArg|VarsOf] , Frame, NextProps).
-add_dataframe_types([PrepProp:Type| FrameArgs], [NewArg|VarsOf], Frame, NextProps):-
-  push_frame(isa(NewArg, Type), Frame), !,
-  add_dataframe_types([PrepProp| FrameArgs], [NewArg|VarsOf] , Frame, NextProps).
-add_dataframe_types([PrepProp| FrameArgs], [_|VarsOf], Frame, [PrepProp| NextProps]):-
-  add_dataframe_types(FrameArgs, VarsOf , Frame, NextProps).
-
-
-parse_dataframe(FrameArgs, VarsOf, Action, Frame, TextArgs):-
-  nth0(Nth, FrameArgs, Prep-Prop, NewFrameArgs), atom(Prop),
-  append(Left, [SamePrep, TextArg| Right], TextArgs),
-  same_word(Prep, SamePrep), !,
-  append(Left, Right, NewTextArgs),
-  nth0(Nth, VarsOf, NewArg, NewVarsOf),
-   push_frame(textString(NewArg, TextArg), Frame),
-   push_frame(t(Prop, Action, NewArg), Frame),
-   parse_dataframe(NewFrameArgs, NewVarsOf, Action, Frame, NewTextArgs).
-
-parse_dataframe(FrameArgs, VarsOf, Action, Frame, TextArgs):-
-  nth0(Nth, FrameArgs, Prop, NewFrameArgs), atom(Prop), Prep = Prop,
-  append(Left, [SamePrep, TextArg| Right], TextArgs),
-  same_word(Prep, SamePrep), !,
-  append(Left, Right, NewTextArgs),
-  nth0(Nth, VarsOf, NewArg, NewVarsOf),
-  delete(NewArg, VarsOf, NewVarsOf),
-  push_frame(textString(NewArg, TextArg), Frame),
-  push_frame(t(Prop, Action, NewArg), Frame),
-  parse_dataframe(NewFrameArgs, NewVarsOf, Action, Frame, NewTextArgs).
-
-parse_dataframe(FrameArgs, VarsOf, Action, Frame, TextArgs):-
-  make_dataframe_simple(FrameArgs , TextArgs, VarsOf, Action, Frame).
-
-make_dataframe_simple([], [], _VarsOf, _Action, _Frame):- !.
-make_dataframe_simple([], TextArgs, VarsOf, Action, Frame):- !, push_frame(zexistsLeftOverText(VarsOf, Action, TextArgs), Frame).
-make_dataframe_simple(_FrameArgs, [], VarsOf, Action, Frame):- !, push_frame(zexistsLeftOver(VarsOf, Action), Frame).
-
-make_dataframe_simple([_Prep-Prop| FrameArgs], TextArgs, VarsOf, Action, Frame):- !,
-  make_dataframe_simple([Prop| FrameArgs], TextArgs, VarsOf, Action, Frame).
-
-make_dataframe_simple([Prop| FrameArgs], TextArgs, [NewArg|VarsOf], Action, Frame):- !,
-  Left = [],
-  append(Left, [TextArg| Right], TextArgs),
-  push_frame(textString(NewArg, TextArg), Frame),
-  push_frame(t(Prop, Action, NewArg), Frame),
-  append(Left, Right, NewTextArgs),
-  make_dataframe_simple(FrameArgs, NewTextArgs, VarsOf, Action, Frame).
-
-/*
-   Take the sentence:
-
-      London 2pm 200 men mouths loudly protesting law not give police hell
-
-
-   Add Blanks like:
-
-   " _ London _ 2pm _ 200  _ men _ mouths _ loudly _ protesting _ law _ not _ give  _ police _ hell "
-
-
-  Fill in blanks:
-
-  " in London at 2pm approx 200 using mouths by men very loudly orderTo protest about law did not acually give to police some hell"
-
-
-  Lets make each one a frameroles:
-
-  ?- premutation(["in London", "about 2pm", "approx 200", "using mouths", "by men", "very loudly", "orderto protest", "about law"
-                                                "did not", "acually give", "to police", "some hell"], Res).
-
-
-  is the permutations output accepbale?
-
-
-  If this is correct you can immagine a declarion as the "psuedo-preps"
-
-   in _ about _ approx _ using _ by _ very _ orderto _ about  _ did _ acually _ to _ some _  of this GIVE frame
-
-
-
-  dataformat would be...
-
-
-  default_args_prep_order(give, in-place, about-time, approx-number, using-device,
-               by-doer, very-adverb, orderto-reason, about-theme, did-truthvalue, acually-verb, to-doee, some-thing).
-
-*/
-
-/*
-   at(Place-London), when(Time-2pm), because(Reason-protesting),
-   by(Doer-men), with(MoreDoers, "and women"), own(Instrument-"knife"), VrtuhValue, did(Action-), toward(Vector-up), to(Doee), of(
-*/
-:- discontiguous(verb_frame1/5).
-% to sally give love
-% to sally does player1 give love
-% did player1 give love to sally?
-% give sally love
-% give love to sally
-%    From    GIVE    To      That
-% player1   give    sally    love
-/*
-
-player1   give    [to sally]    [That] love
-
-
-
- "from" SENDS "to" "that"
-  joe  sends  sally  love
-
-   A sends  B     C
-   from     to  that
-
-   A eats  B     C
-
-
-
-
-O = [[ player1], [did, give], [t sally], [that, love]] ;
-O = [[ player1], [did, give], [that, love], [to, sally]] ;
-O = [[ player1], [to, sally], [did, give], [that, love]] ;
-O = [[player1], [to, sally], [that, love], [did, give]] ;
-O = [[player1], [that, love], [did, give], [to, sally]] ;
-O = [[player1], [that, love], [ sally], [did, give]] ;
-O = [[was, given], [from, player1], [ sally], [ love]] ;
-O = [[did, give], [from, player1], [that, love], [to, sally]] ;
-O = [[did, give], [to, sally], [from, player1], [ love]] ;
-O = [[did, give], [to, sally], [that, love], [from, player1]] ;
-O = [[did, give], [that, love], [from, player1], [to, sally]] ;
-O = [[did, give], [that, love], [to, sally], [from, player1]] ;
-O = [[to, sally], [from, player1], [did, give], [that, love]] ;
-O = [[to, sally], [from, player1], [that, love], [did, give]] ;
-O = [[to, sally], [did, give], [from, player1], [ love]] ;
-O = [[to, sally], [did, give], [that, love], [from, player1]] ;
-O = [[to, sally], [that, love], [from, player1], [did, give]] ;
-O = [[to, sally], [that, love], [did, give], [from, player1]] ;
-O = [[that, love], [from, player1], [did, give], [to, sally]] ;
-O = [[that, love], [from, player1], [to, sally], [did, give]] ;
-O = [[that, love], [did, give], [from, player1], [to, sally]] ;
-O = [[that, love], [did, give], [to, sally], [from, player1]] ;
-O = [[that, love], [to, sally], [from, player1], [did, give]] ;
-O = [[that, love], [to, sally], [did, give], [from, player1]] ;
-
-
-
-|[That love] player1   gave    [to sally]
-[That love] [to sally]  player1   gave
-[to sally]  [That love]  player1   gave
- player1   gave   [That love]    [to sally]
-
-*/
-
-% player1 give sally love
-verb_frame1(Action, give,
-  [does-done_by:tAnimate, some-objectActedOn:object, to-recipient:tAnimate, with-using:bpart],
-  [Doer, does, $verb, some, Object, to, Recipient, using, Instrument],
-  [done_by(Action, Doer),
-
-   normally(
-            isa(Instrument, tBodyPart),
-            cntrls(Doer, Instrument),
-            can_reach(Instrument, Recipient)),
-   pre(
-            cntrls(Doer, Object),
-           ~cntrls(Recipient, Object)),
-   post(
-           ~cntrls(Doer, Object),
-            cntrls(Recipient, Object)),
-   end_of_list]).
-
-
-% write name in book with pen
-% etch name on tree [with] knife
-% player~1 etches name onto the tree's bark with a knife
-%
-% surface
-%    tree
-%    on tree
-%    in tree
-%    at tree
-
-%    at bark
-%    at tree bark
-%    on tree bark
-%    in tree bark
-%    at bark of tree
-
-%    trunk of tree
-% ======================
-%    under trunk of tree
-%    on trunk of tree
-%    in trunk of tree
-%    at trunk of tree
-%    lower part of trunk of tree
-%    in part of trunk of tree
-
-/*
-
-The experts attributed Raphael this picture.
-
-I forwarded Winifred the letter.
-
-Managers presented the_foreman a_gold_watch.
-
-Ted Kicked John the ball
-
-Monica hit Martina the ball.
-
-The critics ascribe Shakespeare this play
-
-She was given the job by the previous manager.
-
-The previous manager gave her the job  from Joe in the office at 9pm for a joke
-
-
-9pm, The previous manager gave her joe's  office job
- AT      BY                    TO   FROM   IN
-
-
-
-
-       BY            GAVE   TO    THAT
-
-*/
-
-
-%    on tree = on tree trunk = on tree bark
-%    at tree trunk = under tree bark
-%    book
-%    on book
-%    in book
-%    at book
-%    at book page
-%    on book page
-%    in book page
-%    at page of book
-%    at page
-%    at book cover
-%    at cover of book
-%
-
-verb_frame1(Action, etch,
- [does-done_by:tAnimate, some-depliction:glyphic, on-target:surface, of-objectActedOn, with-using:tTool],
- [Doer, does, $verb, some, Depliction, on, Surface, of, Object, using, Instrument],
- [done_by(Action, Doer),
-   pre(isa(Instrument, tKnife), cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  part_of(Surface, Object),
-  ~pre(exists(Depliction)),
-  pre(~part_of(Depliction, Surface)),
-  post(part_of(Depliction, Surface))]).
-
-verb_frame1(Action, put, % to-region, of-container
- [does-done_by:tAnimate, some-objectActedOn:object, at-toLocation:place, with-using:bpart],
- [Doer, does, $verb, some, Object, at, Place, using, Instrument],
- [done_by(Action, Doer),
-  cntrls(Doer, Instrument), can_reach(Instrument, Place),
-  part_of(Place, Container),
-  or(h(How, Place, Container), h(How, Container, Place)),
-  post(h(How, Container, Object))]).
-
-
-% %%%%%%%%%%%%%%
-% Dig
-% %%%%%%%%%%%%%%
-/*
-reframed_call( Pred, Agent, [dig, ShapeHole], dig(Agent, ShapeHole, Where, Instrument), M) :- fail,
- in_agent_model(Agent, inst(Agent), M),
- in_agent_model(Agent, h(_, Agent, Where), M),
- Instrument=shovel.
-*/
-
-verb_frame1(Action, dig,
- [does-done_by:tAnimate, some-shape_of, on-faceOf:surfaceOf(Object), in-objectActedOn:tGround, with-using:tTool],
- [Doer, does, $verb, some, ShapeHole, on, Surface, into, Object, using, Instrument],
-[done_by(Action, Doer),
-  normally(
-           isa(Instrument, tKnife),
-           cntrls(Doer, Instrument),
-           can_reach(Instrument, Surface)),
- part_of(Surface, Object),
- ~pre(exists(ShapeHole)),
- pre(~part_of(ShapeHole, Object)),
- post(part_of(ShapeHole, Object))]):- debug_var(tool, Instrument), debug_var(hole, ShapeHole).
-
-
-
-
-eng2cmd_frame(Doer, [VerbText|TextArgs], FrameOut, _Mem):-
-    %talkdb:talk_db(transitive, give, gives, gave, giving, given).
-    verb_formtense(VerbText, VerbD, Tense) ->
-    verb_frame1(Action, Verb, DoerFrame, English, UNormals),
-    correct_normals(UNormals, Normals),
-    DoerFrame=[DoerAgent|FrameArgs],
-    term_variables(English, VarsOf),
-    all_different_bindings([Action|VarsOf]),
-    once(VerbText=Verb;same_word(VerbD, Verb)),
-    select_from(done_by(Action, Doer), Normals, Frame),
-    must_mw1((push_frame(isa(Action, 'tAction'), Frame),
-    push_frame(textString(Action, VerbText), Frame),
-    push_frame(occurs(Action, Tense), Frame),
-    debug_var([Verb, 'Event'], Action),
-    debug_var("Actor", Doer),
-    maplist(assign_var_name(Frame), [DoerAgent|FrameArgs], VarsOf),
-    add_dataframe_types([DoerAgent|FrameArgs], VarsOf, Frame, BetterFrameArgs),
-    parse_dataframe(BetterFrameArgs, VarsOf, Action, Frame, [Doer|TextArgs]),
-    frame_to_asserts(Frame, FrameOut),
-    pprint(FrameOut, always))).
-
-frame_to_asserts(List, cmdFrame(Frame)):- is_list(List), sort(List, ListR), list_to_conjuncts('&', ListR, Frame), !.
-frame_to_asserts(Frame, cmdFrame(Frame)).
-
-frmprint(Frame) :-
-    %catch(make_pretty(I, O), _, I=O),
-    guess_pretty(Frame),
-    predsort(frcmp, Frame, FrameA),
-    reverse(FrameA, FrameO),
-    maplist(frmprint_e, FrameO).
-frmprint_e(Frame) :- format('~N  ', []), fmt90(Frame).
-
-sortDeref(P, PP):- \+ compound(P), !, P=PP.
-%sortDeref(isa(X, Y), visa(X, Y)):-!.
-sortDeref(~(P), PP):-!, sortDeref(P, PP).
-sortDeref(P, PP):- arg(1, P, PP), compound(PP).
-sortDeref(P, PP):- safe_functor(P, F, N), wrapper_funct_sortin(F), arg(N, P, E), !, sortDeref(E, PP).
-sortDeref(P, P).
-
-
-all_different_bindings([]):- !.
-all_different_bindings([_]):- !.
-all_different_bindings([X, Y]):- !, dif(X, Y).
-all_different_bindings([X, Y, Z]):- !, dif(X, Y), dif(X, Z), dif(Z, Y).
-all_different_bindings([X|Text]):- maplist(dif(X), Text), all_different_bindings(Text).
-
-wrapper_funct_sortin(F):- arg(_, v(~, post, pre), F).
-wrapper_funct_correction(F):- arg(_, v(~, post, normally, pre), F).
-
-correct_normals(Nil, Nil):- Nil==[], !.
-correct_normals(EOL, []):- EOL==end_of_list, !.
-correct_normals(UNormals, Normals):- \+ compound(UNormals), !, [UNormals]=Normals.
-correct_normals((U, UU), Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
-correct_normals([U|UU], Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
-correct_normals(P, Normals):- P=..[F, A1, A2|List], wrapper_funct_correction(F),
-  P1=..[F, A1], P2=..[F, A2|List], !,
-  correct_normals([P1|P2], Normals).
-correct_normals(Normal, [Normal]).
-
-frcmp(P1, P2, Cmp):- (\+ compound(P1) ; \+ compound(P2)), !, compare(P1, P2, Cmp).
-frcmp(P2, P1, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(P2, PP1, Cmp).
-frcmp(P1, P2, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(PP1, P2, Cmp).
-frcmp(P1, P2, Cmp):- N=1, arg(N, P1, F1), arg(N, P2, F2), F1==F2, !, compare(P1, P2, Cmp).
-frcmp(P1, P2, Cmp):- safe_functor(P1, F1, _), safe_functor(P2, F2, _), F1\==F2, compare(F1, F2, Cmp), Cmp \= (=), !.
-frcmp(P1, P2, Cmp):- arg(N, P1, F1), arg(N, P2, F2), frcmp(F1, F2, Cmp), Cmp \= (=), !.
-frcmp(P1, P2, Cmp):- compare(P1, P2, Cmp).
-%reframed_call( Pred, Doer, [give, Object, to, Recipient], give(Doer, Object, Recipient), _Mem):- !.
-/*
-verb(bite,
- [tAnimate(Doer), done_by(Doer, Action),
-  frame(Action), act_of(Action, biting),
-  tAnimate(Object), object(Object, Action),
-  type_of(Instrument, teeth), using(Instrument, Action),
-  part_of(Instrument, Doer) ] ).
-*/
-verb_frame1(Action, bite,
-  [does-done_by:tAnimate, some-victem, with-using:teeth],
-  [Doer, does, $verb, some, Object, using, BPart],
-  [done_by(Action, Doer),
-   part_of(BPart, Doer),
-   can_reach(BPart, Object),
-   normally(isa(BPart, tBodyPart))]).
-
-verb_frame1(Action, like,
-  [does-done_by:tAnimate, some-targetObject, so-amount],
-  [Doer, does, $verb, some, Object, a, LotsOrLittle],
-  [done_by(Action, Doer),
-   feelsAbout(Doer, Object, LotsOrLittle)]).
-
-verb_frame1(Action, want,
-  [does-done_by:tAnimate, to-targetAction:action],
-  [Doer, does, $verb, want, to, AlsoDo],
-  [done_by(Action, Doer),
-   wantsToDo(Doer, Action, AlsoDo)]).
-
-
-% %%%%%%%%%%%%%%
-bpart_contol(break, broken).
-bpart_contol(repair, unbroken).
-bpart_contol(Smooch, Smooched):- 
-  munl_call(talkdb:talk_db(_, Smooch, _Smooches, Smooched, _Smooching, Smooched)).
-bpart_contol(light, lit).
-bpart_contol(unlight, unlit).
-bpart_contol(Open, Opened):- munl_call(clex:tv_pp(Opened, Open)).
-
-% %%%%%%%%%%%%%%
-verb_frame1(Action, Light,
-   [does-done_by:tAnimate, some-objectActedOn, with-using:bpart],
-   [Doer, does, $verb, some, Object, using, Instrument],
-   [done_by(Action, Doer),
-    pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  symetrically(opposite_values(Lit, Unlit)),
-  pre(status(Object, Unlit)),
-  pre(~status(Object, Lit)),
-  post(~status(Object, Unlit)),
-  post(status(Object, Lit)),
-  end_of_list]):- bpart_contol(Light, Lit).
-
-
-
-
-%reframed_call( Pred, Doer, [switch, Thing, OnOff], Result, M) :- preposition(_, OnOff), !, reframed_call( Pred, Doer, [switch, OnOff, Thing], Result, M).
-
-verb_frame1(Action, switch,
-   [does-done_by:tAnimate, some-objectActedOn, to-state:on_off, with-using:bpart],
-   [Doer, does, $verb, some, Object, to, On, using, Instrument],
- [done_by(Action, Doer),
-  pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  pre(position(Object, Off)),
-  pre(~position(Object, On)),
-  symetrically(opposite_values(On, Off)),
-  post(~position(Object, Off)),
-  post(position(Object, On)),
-  end_of_list]):- On = on.
-
-
-% %%%%%%%%%%%%%%
-verb_undos(unlight, lit, bpart).
-verb_undos(close, opened, bpart).
-verb_undos(unlock, locked, key).
-% %%%%%%%%%%%%%%
-verb_frame1(Action, Unlock,
- [does-done_by:tAnimate, some-objectActedOn, with-using:Key],
- [Doer, does, $verb, some, Object, using, Instrument],
- [done_by(Action, Doer),
-  pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  pre(status(Object, Locked)),
-  post(~status(Object, Locked))]):- verb_undos(Unlock, Locked, Key).
-
-% %%%%%%%%%%%%%%
-verb_cantbe_causes(open, locked, opened).
-% %%%%%%%%%%%%%%
-verb_frame1(Action, Open,
-   [does-done_by:tAnimate, some-objectActedOn, with-using:bpart],
-   [Doer, does, $verb, some, Object, using, Instrument],
-  [done_by(Action, Doer),
-   pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-   pre(~status(Object, Opened)),
-   pre(~status(Object, Locked)),
-    post(~status(Object, Locked)),
-    post(status(Object, Opened)),
-  end_of_list]):- verb_cantbe_causes(Open, Locked, Opened).
-
-% %%%%%%%%%%%%%%
-verb_undos_causes1(lock, opened, locked, key).
-% %%%%%%%%%%%%%%
-verb_frame1(Action, Lock,
- [does-done_by:tAnimate, some-objectActedOn, with-using:Key],
- [Doer, does, $verb, some, Object, using, Instrument],
- [done_by(Action, Doer),
-  pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  pre(~status(Object, Locked)),
-  post(~status(Object, StateOpened)),
-  post(status(Object, Locked)),
-  end_of_list]) :-
-  verb_undos_causes1(Lock, StateOpened, Locked, Key).
-
-% %%%%%%%%%%%%%%
-verb_tool_ends_ensures(burn, match, unflaming, burned).
-verb_tool_ends_ensures(extinguish, extinguiser, flaming, unburned).
-% %%%%%%%%%%%%%%
-verb_frame1(Action, Burn,
- [does-done_by:tAnimate, some-objectActedOn, with-using:Match],
- [Doer, does, $verb, some, Object, with, Instrument],
- [done_by(Action, Doer),
-  pre(cntrls(Doer, Instrument), can_reach(Instrument, Object)),
-  symetrically(opposite_values(Unflaming, Flaming)),
-   pre(status(Object, Unflaming)),
-   post(~status(Object, Unflaming)),
-   post(status(Object, Flaming)),
-  symetrically(opposite_values(Burnt, Unburnt)),
-   post(~status(Object, Unburnt)),
-   post(status(Object, Burnt)),
-  end_of_list]):-
- verb_tool_ends_ensures(Burn, Match, Unflaming, Burnt).
 
 
 verbatum_anon(Verb):- verbatum_anon_n_args(Verb).
@@ -1058,32 +570,6 @@ is_already_an_arg(Atom):- atom_chars(Atom, [_|Chars]), member(C, Chars),
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 % %%%%%%%%%%%%%%
 % Movement
 % %%%%%%%%%%%%%%
@@ -1143,10 +629,12 @@ txt2place(Dest, Place, M):- in_agent_model(advstate_db, h(_, Dest, _), M), Dest 
 txt2place(Dest, Place, M):- parse2object(Dest, Place, M).
 
 
+            
+:- discontiguous(verb_frame1/4).
+:- include(adv_eng2cmd_frame).
+
 
 :- fixup_exports.
-
-
 
 
 end_of_file.
@@ -1318,5 +806,4 @@ nlac(verbSemTrans, xGiveTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven('ACT
 nlac(verbSemTrans, xGiveTheWord, 4, nartR(xPPCompFrameFn, ttDitransitivePPFrameType, xForTheWord), and(isa('ACTION', actYieldingMakingSomethingAvailable), performedBy('ACTION', 'SUBJECT'), transportees('ACTION', 'OBJECT'), target('ACTION', 'OBLIQUE-OBJECT')), 3308275).
 nlac(verbSemTrans, xGiveTheWord, 4, nartR(xPPCompFrameFn, ttDitransitivePPFrameType, xToTheWord), and(isa('ACTION', actYieldingMakingSomethingAvailable), performedBy('ACTION', 'SUBJECT'), transferredObject('ACTION', 'OBJECT'), target('ACTION', 'OBLIQUE-OBJECT')), 3307880).
 nlac(verbSemTrans, xGiveTheWord, 4, xTransitiveNPFrame, and(isa('ACTION', actYieldingMakingSomethingAvailable), performedBy('ACTION', 'SUBJECT'), objectActedOn('ACTION', 'OBJECT')), 1896612).
-
 

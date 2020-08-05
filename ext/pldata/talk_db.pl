@@ -223,19 +223,18 @@ talk_db(superl, far, furthest).
 
 %kill_talk_db_bad_verbs:-!.
 kill_talk_db_bad_verbs:-
-         show_size_left("correcting..."),
+         show_size_left("correcting..."),        
          talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed),
          \+ \+ clause(talkdb:talk_db(noun1,Jacket,Jackets),true),
-         retract(talkdb:talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed)),
-         assertz_if_new(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed)),
+         %fail, retract(talkdb:talk_db(VerbType,Jacket,Jackets,Jacketed,Jacketing,Jacketed)), assertz_if_new(talkdb:talk_db(VerbType,Jackets,Jackets,Jacketed,Jacketing,Jacketed)),
          assertz_if_new(talkdb:talk_db(noun_or_verb,Jackets,Jacketing,Jacket)),
          nop(dmsg(fixed_talkdb_noun_verb(VerbType,(Jacket-->Jackets/Jacketed/Jacketing)))),
          fail.
-kill_talk_db_bad_verbs:-
+kill_talk_db_bad_verbs:-  
+         
          talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished),
          \+ \+ clause(talkdb:talk_db(noun2,Fish),true),
-         retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished):-true),
-         assertz_if_new(talkdb:talk_db(VerbType,Fishes,Fishes,Fished,Fishing,Fished)),
+         %fail, retract(talkdb:talk_db(VerbType,Fish,Fishes,Fished,Fishing,Fished):-true), assertz_if_new(talkdb:talk_db(VerbType,Fishes,Fishes,Fished,Fishing,Fished)),
          assertz_if_new(talkdb:talk_db(noun_or_verb,Fishes,Fishing,Fish)),
          nop(dmsg(fixed_talkdb_noun_verb(VerbType,(Fish-->Fishes/Fished/Fishing)))),
          fail.

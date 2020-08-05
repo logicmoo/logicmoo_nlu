@@ -108,10 +108,10 @@ psubsetof(A, C) :-
 
 maybe_pause(Agent):- stdio_player(CP), (Agent==CP -> wait_for_input([user_input], _, 0) ; true).
 
-do_command(Agent, Action) -->
+do_command(Agent, Action) ==>>
   {overwrote_prompt(Agent)},
   do_metacmd(Agent, Action), !.
-do_command(Agent, Action) -->
+do_command(Agent, Action) ==>>
   {set_last_action(Agent, Action)},
  do_action(Agent, Action), !.
 do_command(Agent, Action) :-
@@ -124,7 +124,7 @@ do_todo(Agent):-
  do_todo(Agent, S0, S9),
  set_advstate(S9), !.
 
-do_todo(Agent) -->
+do_todo(Agent) ==>>
  sg(declared(memories(Agent, Mem0))),
  {member(todo([]), Mem0)}, !.
 do_todo(Agent, S0, S9) :-
@@ -187,20 +187,20 @@ trival_act(look(_)).
 trival_act(wait(_)).
 
 
-satisfy_each_cond(Ctxt, [], success(Ctxt)) --> [], !.
-satisfy_each_cond(Context, [Cond|CondList], Out) -->
+satisfy_each_cond(Ctxt, [], success(Ctxt)) ==>> !.
+satisfy_each_cond(Context, [Cond|CondList], Out) ==>>
   dmust_tracing(satisfy_each(Context, Cond)), !,
   ((sg(member(failed(Why))) -> Out=failed(Why) ; satisfy_each_cond(Context, CondList, Out))), !.
-% satisfy_each_cond(_Context, [Cond|_CondList], failed(Cond)) --> !.
+% satisfy_each_cond(_Context, [Cond|_CondList], failed(Cond)) ==>> !.
 
 
-satisfy_each(Context, List) --> {is_list(List)}, !,
+satisfy_each(Context, List) ==>> {is_list(List)}, !,
   satisfy_each_cond(Context, List, Out), !,
   {dmust_tracing(Out\=failed(_))}.
 
-satisfy_each(_Ctx, A \= B) --> {dif(A, B)}, !.
+satisfy_each(_Ctx, A \= B) ==>> {dif(A, B)}, !.
 
-satisfy_each(Context, believe(Beliver, Cond)) -->
+satisfy_each(Context, believe(Beliver, Cond)) ==>>
    undeclare(memories(Beliver, Memory)),
    {satisfy_each(Context, Cond, Memory, NewMemory)}, !,
    declare(memories(Beliver, NewMemory)).
@@ -212,13 +212,13 @@ satisfy_each(Context, (C1, C2), S0, S9) :- !,
   satisfy_each(Context, C2, S1, S9).
 
 satisfy_each(Context, foreach(Cond, Event), S0, S9) :- findall(Event, phrase(Cond, S0, _), TODO), satisfy_each(Context, TODO, S0, S9).
-satisfy_each(_, percept_local(Where, Event)) --> !, queue_local_event([Event], [Where]).
-satisfy_each(_, percept(Agent, Event)) --> !, send_1percept(Agent, Event).
-satisfy_each(postCond(_Action), ~(Cond)) --> !, undeclare_always(Cond).
-satisfy_each(postCond(_Action), Cond) --> !, declare(Cond).
-satisfy_each(Context, ~(Cond)) --> !, (( \+ satisfy_each(Context, Cond)) ; [failed(Cond)] ).
-satisfy_each(_, Cond) --> declared(Cond).
-satisfy_each(_, Cond) --> [failed(Cond)].
+satisfy_each(_, percept_local(Where, Event)) ==>> !, queue_local_event([Event], [Where]).
+satisfy_each(_, percept(Agent, Event)) ==>> !, send_1percept(Agent, Event).
+satisfy_each(postCond(_Action), ~(Cond)) ==>> !, undeclare_always(Cond).
+satisfy_each(postCond(_Action), Cond) ==>> !, declare(Cond).
+satisfy_each(Context, ~(Cond)) ==>> !, (( \+ satisfy_each(Context, Cond)) ; [failed(Cond)] ).
+satisfy_each(_, Cond) ==>> declared(Cond).
+satisfy_each(_, Cond) ==>> [failed(Cond)].
 
 
 oper_splitk(Agent, Action, Preconds, Postconds):-
@@ -248,9 +248,9 @@ split_k(Agent, [Cond|PrecondsK], [Cond|Preconds]):-
 
 api_invoke( Action) :- get_advstate(S), api_invoke( Action, S, E), set_advstate(E).
 
-api_invoke( Action) --> apply_act( Action).
+api_invoke( Action) ==>> apply_act( Action).
 
-apply_act( Action) --> aXiom(Action), !.
+apply_act( Action) ==>> aXiom(Action), !.
 apply_act( Act, S0, S9) :- ((cmd_workarround(Act, NewAct) -> Act\==NewAct)), !, apply_act( NewAct, S0, S9).
 apply_act( Action, S0, S0) :-
   notrace((dbug(general, failed_aXiom( Action)))), !, fail, \+ tracing.
@@ -259,7 +259,7 @@ apply_act( Action, S0, S0) :-
 must_act( Action , S0, S9) :-
   (apply_act( Action, S0, S9)) *-> ! ; fail.
 must_act( Action, S0, S1) :- debugging(apply_act), !, rtrace(apply_act( Action, S0, S1)), !.
-must_act( Action) -->
+must_act( Action) ==>>
  action_doer(Action, Agent),
  send_1percept(Agent, [failure(Action, unknown_to(Agent, Action))]).
 
@@ -309,12 +309,12 @@ act_prevented_by('close', 'locked', t).
 maybe_when(If, Then):- If -> Then ; true.
 
 :- meta_predicate unless_reason(*, '//', *, ?, ?).
-unless_reason(_Agent, Then, _Msg) --> Then, !.
-unless_reason(Agent, _Then, Msg) --> {player_format(Agent, '~N~p~n', [Msg])}, !, {fail}.
+unless_reason(_Agent, Then, _Msg) ==>> Then, !.
+unless_reason(Agent, _Then, Msg) ==>> {player_format(Agent, '~N~p~n', [Msg])}, !, {fail}.
 
 :- meta_predicate unless(*, '//', '//', ?, ?).
-unless(_Agent, Required, Then) --> Required, !, Then.
-unless(Agent, Required, _Then) --> {simplify_reason(Required, CUZ), player_format(Agent, '~N~p~n', cant( cuz(\+ CUZ)))}, !.
+unless(_Agent, Required, Then) ==>> Required, !, Then.
+unless(Agent, Required, _Then) ==>> {simplify_reason(Required, CUZ), player_format(Agent, '~N~p~n', cant( cuz(\+ CUZ)))}, !.
 
 :- meta_predicate required_reason(*, 0).
 required_reason(_Agent, Required):- Required, !.
@@ -354,7 +354,7 @@ add_agent_goal(Agent, Action, S0, S9) :-
   add_goal(Agent, Action, Mem0, Mem1),
   declare(memories(Agent, Mem1), S1, S9).
 
-add_look(Agent) -->
+add_look(Agent) ==>>
   h(inside, Agent, _Somewhere),
   add_agent_todo(Agent, look(Agent)).
 
@@ -393,15 +393,15 @@ disgorge(Doer, How, Container, At, Here, Vicinity, Msg) :-
   moveto(Doer, How, Contents, At, Here, Vicinity, Msg).
 disgorge(Doer, How, _Container, _At, _Here, _Vicinity, _Msg).
 */
-disgorge(Doer, How, Container, Prep, Here, Vicinity, Msg) -->
+disgorge(Doer, How, Container, Prep, Here, Vicinity, Msg) ==>>
   findall(Inner, h(child, Inner, Container), Contents),
    {dbug(general, '~p contained ~p~n', [Container, Contents])},
   moveto(Doer, How, Contents, Prep, Here, Vicinity, Msg).
 
 :- defn_state_setter(moveto(agent, verb, listof(inst), domrel, dest, list(dest), msg)).
-moveto(Doer, Verb, List, At, Dest, Vicinity, Msg) --> {is_list(List)}, !,
+moveto(Doer, Verb, List, At, Dest, Vicinity, Msg) ==>> {is_list(List)}, !,
  apply_mapl_rest_state(moveto(Doer, Verb), List, [At, Dest, Vicinity, Msg]).
-moveto(Doer, Verb, Object, At, Dest, Vicinity, Msg) -->
+moveto(Doer, Verb, Object, At, Dest, Vicinity, Msg) ==>>
   undeclare(h(_, Object, From)),
   declare(h(At, Object, Dest)),
   queue_local_event([moved(Doer, Verb, Object, From, At, Dest), Msg], Vicinity).
@@ -416,7 +416,7 @@ event_props(thrown(Agent, Thing, _Target, Prep, Here, Vicinity),
  disgorge(Agent, throw, Thing, Prep, Here, Vicinity, 'Something falls out.')]).
 
 
-setloc_silent(Prep, Object, Dest) -->
+setloc_silent(Prep, Object, Dest) ==>>
  undeclare(h(_, Object, _)),
  declare(h(Prep, Object, Dest)).
 

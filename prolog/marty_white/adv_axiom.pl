@@ -97,8 +97,8 @@ aXiom(emote(Agent, EmoteType, Object, Message)) ==>> !, % directed message
 % ==============
 %  WALK WEST
 % ==============
-/*
-aXiom(go_dir(Agent, Walk, ExitName)) ==>>   {fail}, % go n/s/e/w/u/d/in/out
+
+aXiom(go_dir(Agent, Walk, ExitName)) ==>> !,  %{fail}, % go n/s/e/w/u/d/in/out
   must_act(status_msg(vBegin, go_dir(Agent, Walk, ExitName))),
   % {break},
   must_mw1(from_loc(Agent, Here)),
@@ -107,7 +107,7 @@ aXiom(go_dir(Agent, Walk, ExitName)) ==>>   {fail}, % go n/s/e/w/u/d/in/out
   (eVent(Agent, departing(Agent, in, Here, Walk, ExitName)),
    must_act(status_msg(vDone, go_dir(Agent, Walk, ExitName))))).
 
-aXiom(departing(Agent, in, Here, Walk, ExitName)) ==>>  {fail},
+aXiom(departing(Agent, in, Here, Walk, ExitName)) ==>> !,% {fail},
   %member(At, [*, to, at, through, thru]),
   h(exit(ExitName), Here, There),
   eVent(Agent, terminates(h(_, Agent, Here))),
@@ -116,11 +116,11 @@ aXiom(departing(Agent, in, Here, Walk, ExitName)) ==>>  {fail},
   sg(reverse_dir(ExitName, ExitNameR)),
   must_mw1(eVent(Agent, arriving(Agent, There, Walk, ExitNameR))).
 
-aXiom(terminates(h(Prep, Object, Here))) ==>>  {fail},
+aXiom(terminates(h(Prep, Object, Here))) ==>> !,% {fail},
  %ignore(sg(declared(h(Prep, Object, Here)))),
  undeclare(h(Prep, Object, Here)).
 
-aXiom(arriving(Agent, Here, Walk, ReverseDir)) ==>>  {fail},
+aXiom(arriving(Agent, Here, Walk, ReverseDir)) ==>>  !,% {fail},
   queue_local_event( arriving(Agent, Here, Walk, ReverseDir), [Here]),
   %sg(default_rel(PrepIn, Here)), {atom(PrepIn)},
   {PrepIn = in},
@@ -128,9 +128,8 @@ aXiom(arriving(Agent, Here, Walk, ReverseDir)) ==>>  {fail},
   must_mw1(eVent(Agent, initiates(h(PrepIn, Agent, Here)))),
   must_mw1(add_look(Agent)).
 
-aXiom(initiates(h(Prep, Object, Dest))) ==>>
+aXiom(initiates(h(Prep, Object, Dest))) ==>> !,% {fail},
  declare(h(Prep, Object, Dest)).
- */
 
 
 aXiom(status_msg(_Begin, _End)) ==>> [].
