@@ -22,13 +22,13 @@ push_frame(Info, Frame):- Frame = [H|T], setarg(2, Frame, [H|T]), setarg(1, Fram
 
   Fill in blanks:
 
-  " in London at 2pm approx 200 using mouths by men very loudly orderTo protest about law did not acually give to police some hell"
+  " in London at 2pm using mouths by men very loudly orderTo protest about law did not acually give to police some hell"
 
 
   Lets make each one a frameroles:
 
-  ?- premutation(["in London", "about 2pm", "approx 200", "using mouths", "by men", "very loudly", "orderto protest", "about law"
-                                                "did not", "acually give", "to police", "some hell"], Res).
+  ?- permutation(["in London", "about 2pm", "acually", "using mouths", "by 200 men", "very loudly", "in_order_to protest", "about a new law",
+                                                "did not give", "to police", "some hell"], Res).
 
 
   is the permutations output accepbale?
@@ -47,6 +47,14 @@ push_frame(Info, Frame):- Frame = [H|T], setarg(2, Frame, [H|T]), setarg(1, Fram
                by-doer, very-adverb, orderto-reason, about-theme, did-truthvalue, acually-verb, to-doee, some-thing).
 
 */
+
+some_hell_example:- forall(permutation([
+           "in London", "about 2pm", "acually", "using mouths", "by 200 men", "very loudly", 
+           "in_order_to protest", "about a new law",
+            "did not give", "some hell", "to police"], Res),
+
+  once((into_text80(Res, WL),any_to_string(WL,S),dmsg(S)))).
+    
 
 /*
    at(Place-London), when(Time-2pm), because(Reason-protesting),
@@ -109,7 +117,6 @@ O = [[that, love], [to, sally], [did, give], [from, player1]] ;
  player1   gave   [That love]    [to sally]
 
 */
-
 
   
 eng2flogic(Sentence):-
