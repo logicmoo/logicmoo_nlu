@@ -158,13 +158,14 @@ use_new_morefile:- fail.
 
 check_marker(Type,Possibles):- \+ compound(Type), !,
   member(W, Possibles), atom(W), 
-  concat_atom([Type,Base],':',W), !,
+  concat_atom_safe([Type,Base],':',W), !,
   fill_in_blanks(Base,Possibles).
 
 check_marker(Marks,Possibles):- 
-   member(W,Possibles),
-   atom(W),concat_atom([Type,Base],':',W), !,
-   arg(_,Marks,Type),!,fill_in_blanks(Base,Possibles).
+   member(W,Possibles), atom(W),
+   arg(_,Marks,Type),
+   concat_atom_safe([Type,Base],':',W), !,
+   fill_in_blanks(Base,Possibles).
 
 fill_in_blanks( Base,[H|T]):- ignore(H=Base), !, fill_in_blanks(Base,T).
 fill_in_blanks(_Base,[]).
@@ -195,7 +196,7 @@ talk_db(noun1,Sing,Plural):- check_marker(v('n','cn'),[Sing,Plural]).
 talk_db(noun2,Sing,Sing):- check_marker(v('n','mn'),[Sing]).
 talk_db(adj,Sing):- check_marker('jj',[Sing]).
 talk_db(adv,Sing):- check_marker('av',[Sing]).
-talk_db(Type,A):- atom(A), concat_atom([Type,_],':', A).
+talk_db(Type,A):- atom(A), concat_atom_safe([Type,_],':', A).
 talk_db(Type,A,B):- check_marker(Type,[A,B]).
 talk_db(Type,A,B,C):- check_marker(Type,[A,B,C]).
 talk_db(Type,A,B,D,C):- check_marker(Type,[A,B,C,D]).

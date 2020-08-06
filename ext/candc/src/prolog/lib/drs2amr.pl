@@ -13,6 +13,7 @@
 :- use_module(knowledge(nationality),[nationality/5]).
 :- use_module(knowledge(wiki),[wiki/3]).
 
+:- set_prolog_flag(double_quotes,codes).
 /* ========================================================================
    Main Predicate
 ======================================================================== */

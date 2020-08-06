@@ -8,7 +8,7 @@ plt(A, A):- notrace(plt).
 
 quietly(DCG, S, E):- setup_call_cleanup(quietly(phrase(DCG, S, E)),true,true).
 % quietly(DCG,S,E):- quietly(phrase(DCG,S,E)).
-notrace(DCG,S,E):- notrace(phrase(DCG,S,E)).
+notrace(DCG,S,E):- quietly(DCG,S,E). %notrace(phrase(DCG,S,E)).
 must(DCG,S,E):- must(phrase(DCG,S,E)).
 ignore_must(DCG,S,E):- ignore_must(phrase(DCG,S,E)).
 

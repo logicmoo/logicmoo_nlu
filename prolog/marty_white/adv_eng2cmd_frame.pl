@@ -111,31 +111,54 @@ O = [[that, love], [to, sally], [did, give], [from, player1]] ;
 */
 
 
+  
+eng2flogic(Sentence):-
+  make,
+  call_residue_vars((eng2flogic(Sentence, FrameOut),!,
+  print_reply_colored(FrameOut)),Vs),
+  remove_term_attr_type(Vs,['varnames','vn']).
 
-eng2logic_frame_test(Sentence):- 
-  wdmsg(english=Sentence),
-  eng2logic_frame(_, Sentence, FrameOut, _Mem),
-  pprint(FrameOut, always),!.
 
+eng2flogic(Sentence, FrameOutR):- 
+  quietly(into_text80(Sentence, WL)), !,
+  any_to_string(WL,S),
+   wdmsg(eng2flogic(S)),
+   eng2logic_frame(_,WL,FrameOut, _Mem),
+   predsort(frcmp,FrameOut,FrameOutS),
+   reverse(FrameOutS,FrameOutR).
 
-some_eng2logic_frame_test([give,sally,love,joe]).
-some_eng2logic_frame_test([give,sally,it]).
-some_eng2logic_frame_test([give,to,sally]).
-some_eng2logic_frame_test([give | English]):-
+%frame_sort(~(A),~(B),C):- !, compare(A,B,C).
+%frame_sort(~(A), (B),C):- !, compare(A,B,C).
+frame_sort(~(A),~(B),C):- !, frcmp(A,B,C).
+
+eng2flogic_test([give,sally,love,joe]).
+eng2flogic_test([give,sally,it]).
+eng2flogic_test([give,to,sally]).
+eng2flogic_test([give | English]):-
    permutation([[by, player1], [to, sally], [love]],P),flatten(P,English).
-some_eng2logic_frame_test(English):- fail, 
+eng2flogic_test(English):- fail, 
   permutation([[by, player1],gave, [to, sally], [love]],P),flatten(P,English).
-some_eng2logic_frame_test([some,love,we,gave,to,sally]).
+eng2flogic_test([some,love,we,gave,to,sally]).
 
-some_eng2logic_frame_test([to,sally,we,gave,some,love]).
+eng2flogic_test([to,sally,we,gave,some,love]).
 
 run_end2cmd_tests:- make,
-  forall(some_eng2logic_frame_test(English),eng2logic_frame_test(English)).
+  forall(eng2flogic_test(English),eng2flogic(English)).
 
 
 
-parseForMWType(_Type,ParseText,[TextArg],Right):- 
-  append([TextArg],Right,ParseText), \+ is_prep(TextArg).
+parseForMWType(_Frame, _X, _Type,ParseText,[TextArg],Right):- 
+   append([TextArg],Right,ParseText), is_prep(TextArg), !, fail.
+
+parseForMWType(Frame, X, Type,ParseText, TextArg, Right):- 
+   append([L|Eft],[Prep|Rest],ParseText), is_prep(Prep),
+   parseForMWType(Frame, X, Type,[L|Eft], TextArg, RightL),
+   append(RightL,[Prep|Rest], Right),!.
+parseForMWType(Frame, X, _Type,ParseText, TextArg,Right):- 
+   noun_phrase(_SO, X, true, LFOut, ParseText, Right),
+   push_frame(LFOut,Frame),
+   append(TextArg,Right,ParseText).
+
 
 verb_tenses(Verb,VerbTensed,Tense):-
   List = [Verb, _Smooches, _Smoochered, _Smooching, _Smooched],
@@ -162,7 +185,7 @@ eng2logic_frame(Doer, SomeVerbText, FrameOut, _Mem):-
     % all_different_bindings(VarsOf),    
     %push_frame(isa(Action, 'tAction'), Frame),
     push_frame(cmd(Verb,Tense,Slots), Frame),
-    %push_frame(textString(Action, VerbText), Frame),
+    push_frame(textString(Action, s(VerbText)), Frame),
     push_frame(occurs(Action, Tense), Frame),
     debug_var([Verb, 'Event'], Action),
     debug_var("Actor", Doer),  
@@ -174,7 +197,7 @@ eng2logic_frame(Doer, SomeVerbText, FrameOut, _Mem):-
 
 shift_text_args_right( [], TextRS, TextR):- !, TextR= TextRS.
 shift_text_args_right( [Prep|Text], TextRS, TextR):-
- is_prep_for_type(Prep,Type),parseForMWType(Type,Text,Left,Right),
+ is_prep_for_type(Prep,Type), parseForMWType(_Frame, _X, Type, Text,Left,Right),
  append(TextRS,[Prep|Left],TextRS),!,
  shift_text_args_right( Right, TextRS, TextR).
 shift_text_args_right( Left, TextRS, TextR):- 
@@ -192,11 +215,12 @@ parse_dataframe_right(FrameArgS, Action, Frame, Text):-
    once((append(Left, [PrepText| TextArgRight], Text),
      same_word(Prep, PrepText))),
    push_frame(prepOf(NewArg,Prep), Frame),
+   FrameVars = [$prep=Prep,$action=Action],
    ignore((member(isa(Type),FrameArg),push_frame(isa(NewArg, Type), Frame))),
-   show_failure(parseForMWType(Type,TextArgRight,TextArg,Right)),!,
-   txt_to_obj(TextArg,NewArgValue),
+   show_failure(parseForMWType(Frame, NewArgValue, Type, TextArgRight,TextArg,Right)),!,
    ignore((member(var(NewArg),FrameArg),var(NewArg),ignore(=(NewArgValue,NewArg)))),
-   push_frame(textString(NewArg, TextArg), Frame),   
+   ignore((member(frame(Info),FrameArg),subst_each(Info,FrameVars,FInfo), push_frame(FInfo,Frame))),
+   push_frame(textString(NewArg, TextArg), Frame),  
    
    ignore((member(pred(Prop),FrameArg),push_frame(t(Prop, Action, NewArg), Frame))),
    ignore((member(default(Default),FrameArg),debug_var(Default, NewArg))),   
@@ -215,9 +239,8 @@ cont_parse_dataframe([FrameArg| FrameArgS], Text, Action, Frame):-
    member(var(NewArg),FrameArg),
 
    (((\+ member(optional(true),FrameArg), 
-    show_failure(parseForMWType(Type,Text,TextArg,Right)))) 
-      -> (push_frame(textString(NewArg, TextArg), Frame),txt_to_obj(TextArg,NewArgValue))
-      ; Right = Text),
+    show_failure(parseForMWType(Frame, NewArgValue, Type,Text,TextArg,Right)))) 
+      -> push_frame(textString(NewArg, TextArg), Frame) ; Right = Text),
 
    ignore((member(pred(Prop),FrameArg),push_frame(t(Prop, Action, NewArg), Frame))),
    ignore((member(default(Default),FrameArg),debug_var(Default, NewArg))),
@@ -295,6 +318,7 @@ wrapper_funct_correction(F):- arg(_, v(~, post, normally, pre), F).
 correct_normals(Nil, Nil):- Nil==[], !.
 correct_normals(EOL, []):- EOL==end_of_list, !.
 correct_normals(UNormals, Normals):- \+ compound(UNormals), !, [UNormals]=Normals.
+correct_normals(~(PreU), Normals):- compound(PreU), PreU=pre(U), !, correct_normals(pre(~(U)), Normals).
 correct_normals((U, UU), Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
 correct_normals([U|UU], Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
 correct_normals(P, Normals):- P=..[F, A1, A2|List], wrapper_funct_correction(F),
@@ -303,6 +327,7 @@ correct_normals(P, Normals):- P=..[F, A1, A2|List], wrapper_funct_correction(F),
 correct_normals(Normal, [Normal]).
 
 frcmp(P1, P2, Cmp):- (\+ compound(P1) ; \+ compound(P2)), !, compare(P1, P2, Cmp).
+frcmp(P1, P2, Cmp):- N=1, (arg(N, P1, A);arg(N, P2, A)), is_list(A), !, compare(P1, P2, Cmp).
 frcmp(P2, P1, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(P2, PP1, Cmp).
 frcmp(P1, P2, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(PP1, P2, Cmp).
 frcmp(P1, P2, Cmp):- N=1, arg(N, P1, F1), arg(N, P2, F2), F1==F2, !, compare(P1, P2, Cmp).
@@ -410,16 +435,20 @@ The previous manager gave her the job  from Joe in the office at 9pm for a joke
 
 verb_frame1(Action, Write,
   [   +default(Write)+var(Action)+isa(actWriting)+prep(do),
-      default(surface)+var(Object)+prep(on)+prep(in)+prep(under)+isa(tObject)+pred(objectActedOn), 
-      default(glyphs)+var(Depliction)+prep(some)+isa(tGlyphic)+pred(deplicts), 
-      default(doer)+var(Doer)+isa(tAnimate)+prep(from)+prep(by)+pred(done_by), 
-      +default(tKnife)+var(Instr)+prep(using;with)+isa(tTool)+pred(instrument)],  
+
+      default(someone)+var(Someone)+prep(to)+isa(tAnimate)+pred(receiver),      
+      +default(object)+var(Object)+prep(into)+isa(tObject)+pred(objectActedOn)+frame(part_of(Surface, Object)), 
+      +default(surface)+var(Surface)+prep(on)+prep(in)+prep(under)+isa(tObject)+pred(surface)+
+         frame(partOf(Surface,$prep,Object)), 
+      default(glyphs)+var(Glyphs)+prep(about)+isa(tGlyphic)+pred(deplicts), 
+      +default(doer)+var(Doer)+isa(tAnimate)+prep(from)+prep(by)+pred(done_by), 
+      +default(instrument(Write))+var(Instr)+prep(using)+prep(with)+isa(tTool)+pred(instrument)],  
   [done_by(Action, Doer),
       pre(isa(Instr, tKnife), cntrls(Doer, Instr), can_reach(Instr, Object)),
-      part_of(Surface, Object),
-      ~pre(exists(Depliction)),
-       pre(~part_of(Depliction, Surface)),
-       post(part_of(Depliction, Surface))]):-
+      part_of(Surface, Object),later(see(Someone, Object)),
+      ~pre(exists(Glyphs)),
+       pre(~part_of(Glyphs, Surface)),
+       post(part_of(Glyphs, Surface))]):-
   arg(_,v(etch,write,carve,dig),Write).
 
 verb_frame1(Action,  Put, % to-region, of-container

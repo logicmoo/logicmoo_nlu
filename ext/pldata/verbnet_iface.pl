@@ -37,7 +37,8 @@ varify_frames:-
    (verbnet_frame(N1,N2,L,A1,A2,B,Frame):-
     nop(english(Example)),
     %continue_parsing(A ,NewSyntaxV),
-    into_lf(LFV,B)))), 
+    into_lf(LFV,B)))),
+
   forall(call(vndata:verbnet_frame_vars(Frame,Vars,Slots)),
   must_det_l((
    vndata:verbnet_example(Frame,Example),
@@ -80,11 +81,15 @@ subst_vars([V|Vars],B,A):- trim_varname(V,VV), !,
 subst_vars(_,B,A):- var_subst4('VerbSpecific','$VAR'('Pred'),B,A).
 
 
-assert_verbnet(O):- sub_term(S,O),is_list(S),member(C,S),compound(C),!,vndata:assert(O),is_reloading((nl,portray_clause(:-O),!,nl)).
-assert_verbnet(O):- O = (_:-_), !,  vndata:assert(O),is_reloading((nl,portray_clause(O),!,nl)).
+assert_verbnet(O):- sub_term(S,O),is_list(S),member(C,S),compound(C),!,vndata_assert(O),is_reloading((nl,portray_clause(:-O),!,nl)).
+assert_verbnet(O):- O = (_:-_), !,  vndata_assert(O),is_reloading((nl,portray_clause(O),!,nl)).
 assert_verbnet(O):- assert_verbnet0(O).
-assert_verbnet0(O):- vndata:assert(O),is_reloading(format('~p.~n',[O])).
-assert_verbnet1(O):- vndata:assert(O),is_reloading(format('~p.~n',[O])).
+assert_verbnet0(O):- vndata_assert(O),is_reloading(format('~p.~n',[O])).
+assert_verbnet1(O):- vndata_assert(O),is_reloading(format('~p.~n',[O])).
+
+vndata_assert(O):- expand_to_hb(O,H,B),vndata_assert(H,B).
+vndata_assert(H,B):- vndata:clause(H,B,Ref),vndata:clause(HH,BB,Ref), ((H+B)=@=(HH+BB)),!.
+vndata_assert(H,B):- vndata:assert((H:-B)).
 
 var_subst4(Find, Replace, X, Res) :- X == Find, !, Res = Replace.
 var_subst4(_, _, X, Res) :- \+ compound(X), X = Res.

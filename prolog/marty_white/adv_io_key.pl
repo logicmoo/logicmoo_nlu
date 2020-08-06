@@ -33,24 +33,35 @@
  restore_overwritten_chars/1,
  %setup_console/0,
  setup_console/1,
+ current_error/1 % ,  set_error/1
+ ]).
 
- current_error/1, set_error/1]).
-
+:- dumpST.
+:- throw(dont_use_this_file(adv_io_key)).
 
 mutex_create_safe(M):- notrace(catch(mutex_create(M), _, true)).
 
 messages_init:-
  mutex_create_safe(messages).
 
-flag(N, V):-
- flag(N, _, V).
+int_or_var(V):- integer(V);var(V).
+
+:- dynamic(adv_io_temp:adv_flag_val/2).
+
+adv_flag(N, O, V):- int_or_var(O),int_or_var(V),!, flag(N, O, V).
+adv_flag(N, O, V):- clause(adv_io_temp:adv_flag_val(N,W),true,Ref),!,O=W,
+  erase(Ref),assert(adv_io_temp:adv_flag_val(N,V)).
+adv_flag(N, _, V):- assert(adv_io_temp:adv_flag_val(N,V)).
+
+adv_flag(N, V):-
+ adv_flag(N, _, V).
 
 % FIXME - word wrap
 % post_message(M):-
 % atom_length(M, N), N>72
 post_message(M):-
  with_mutex(messages, (post_message_int(M),
-      flag(unacked_messages, _, 1))),
+      adv_flag(unacked_messages, _, 1))),
  nop(request_screen_update(0, 0, 1, 80)).
 
 post_message(F, L):-
@@ -58,43 +69,43 @@ post_message(F, L):-
  format(AtomStream, F, L), post_message(A).
 
 post_message_int(M):-
- flag(line0, '', M),
+ adv_flag(line0, '', M),
  atom_length(M, L),
- flag(requested_cursor_row, _, 0),
- flag(requested_cursor_col, _, L), !.
+ adv_flag(requested_cursor_row, _, 0),
+ adv_flag(requested_cursor_col, _, L), !.
 post_message_int(M):-
- \+(more_prompt),
- flag(line0, OL),
+ \+ (more_prompt),
+ adv_flag(line0, OL),
  atom_length(OL, OLL),
  atom_length(M, ML),
  OLL+ML=<70,
  concat_atom([OL, ' ', M], NL),
- flag(line0, _, NL),
+ adv_flag(line0, _, NL),
  atom_length(NL, Len),
- flag(requested_cursor_row, _, 0),
- flag(requested_cursor_col, _, Len), !.
+ adv_flag(requested_cursor_row, _, 0),
+ adv_flag(requested_cursor_col, _, Len), !.
 post_message_int(M):-
  more_prompt,
  recordz(messages, M), !.
 post_message_int(M):-
- flag(more_prompt, _, 1),
- flag(line0, OL),
+ adv_flag(more_prompt, _, 1),
+ adv_flag(line0, OL),
  atom_concat(OL, ' [More]', NL),
- flag(line0, _, NL), !,
+ adv_flag(line0, _, NL), !,
  post_message_int(M).
 
-more_prompt:-flag(more_prompt, 1).
+more_prompt:-adv_flag(more_prompt, 1).
 
-ack_messages:-flag(unacked_messages, 0).
+ack_messages:-adv_flag(unacked_messages, 0).
 ack_messages:-
  with_mutex(messages, (
-  flag(line0, _, ''),
-  flag(unacked_messages, _, 0),
-  flag(more_prompt, _, 0),
-  flag(requested_cursor_row, _, 0),
-  flag(requested_cursor_col, _, 0),
+  adv_flag(line0, _, ''),
+  adv_flag(unacked_messages, _, 0),
+  adv_flag(more_prompt, _, 0),
+  adv_flag(requested_cursor_row, _, 0),
+  adv_flag(requested_cursor_col, _, 0),
   gather_messages(L),
-  (L=[];flag(unacked_messages, _, 1), resend_messages(L))
+  (L=[];adv_flag(unacked_messages, _, 1), resend_messages(L))
  )),
  nop(request_screen_update(0, 0, 1, 80)).
 
@@ -177,15 +188,15 @@ log_stuff('viz~n', []).
 
 % FIXME dynamify key translations
 
-key_translate(['\014\'], redraw).
+key_translate(['\014\'], redraw).  % '
 
-key_translate(['\033\', '[', 'A'], up).
-key_translate(['\033\', '[', 'B'], down).
-key_translate(['\033\', '[', 'C'], right).
-key_translate(['\033\', '[', 'D'], left).
+key_translate(['\033\', '[', 'A'], up).  % '
+key_translate(['\033\', '[', 'B'], down). % '
+key_translate(['\033\', '[', 'C'], right). % '
+key_translate(['\033\', '[', 'D'], left). % '
 
-key_translate(['\033\', '[', '5', '~'], page_up).
-key_translate(['\033\', '[', '6', '~'], page_down).
+key_translate(['\033\', '[', '5', '~'], page_up).     % '
+key_translate(['\033\', '[', '6', '~'], page_down).  % '
 
 key_translate(['\033\', K], meta(K)):-char_type(K, alnum). %'
 

@@ -200,8 +200,8 @@ find_predicate_module_maybe(MPO,P):- find_predicate_module_maybe(MPO,baseKB:P).
 :- share_mp(find_predicate_module_maybe/2).
 
 :- dynamic(using_shared_parser_data/2).
-use_shared_parser_data(User,File):- using_shared_parser_data(User,File),!.
-use_shared_parser_data(User,File):- asserta(using_shared_parser_data(User,File)),!.
+use_shared_parser_data(User,File):- parser_sharing:using_shared_parser_data(User,File),!.
+use_shared_parser_data(User,File):- asserta(parser_sharing:using_shared_parser_data(User,File)),!.
 
 :- module_transparent(use_shared_parser_data/0).
 use_shared_parser_data:- 

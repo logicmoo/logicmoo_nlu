@@ -54,6 +54,8 @@ rexport_qlf(Module,Name,_PLF,_QLF):- exists_source(Name),!,
 :- system:reexport(clex_iface).
 :- system:reexport(talk_db).
 :- system:reexport(verbnet_iface).
+:- system:reexport(framenet).
+
 % :- ensure_loaded('../candc/src/prolog/boxer/boxer').
 
 		 /*******************************

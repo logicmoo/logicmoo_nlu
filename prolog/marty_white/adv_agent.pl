@@ -172,7 +172,7 @@ console_decide_action(Agent, Mem0, Mem1):-
  %thought(timestamp(T0), Mem0),
  %dbug1(read_pending_codes(In, Codes, Found, Missing)),
  % repeat,
- notrace((
+ enotrace((
  ttyflush,
  agent_to_input(Agent, In),
  must_mw1(is_stream(In)),
@@ -241,18 +241,18 @@ decide_action(Agent, Mem0, Mem1) :-
 % Telnet client (Covered by the above)
 decide_action(Agent, Mem0, Mem1) :- 
  fail,
- notrace(declared(inherited(telnet), Mem0)), !,
+ enotrace(declared(inherited(telnet), Mem0)), !,
  must_mw1(telnet_decide_action(Agent, Mem0, Mem1)).
 
 
 % Stdin Client
 decide_action(Agent, Mem0, Mem1) :-
  % fail,
- once(notrace((declared(inherited(console), Mem0), current_input(In), agent_to_input(Agent, AgentIn)))),
+ once(enotrace((declared(inherited(console), Mem0), current_input(In), agent_to_input(Agent, AgentIn)))),
  AgentIn == In,
  ensure_has_prompt(Agent),
  ttyflush,
- (tracing->catch(wait_for_input_safe([In], Found, 20.0), _, (nortrace, notrace, break));
+ (tracing->catch(wait_for_input_safe([In], Found, 20.0), _, (nortrace, enotrace, break));
                  wait_for_input_safe([In], Found, 0.0)),
  (Found==[] -> (Mem0=Mem1) ;  quietly(((console_decide_action(Agent, Mem0, Mem1))))).
 

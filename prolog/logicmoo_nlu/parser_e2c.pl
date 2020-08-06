@@ -246,21 +246,23 @@ e2c(Sentence):-
   make,
   setup_call_cleanup(   
    must(notrace((to_wordlist_atoms(Sentence, Words), fmt(e2c(Sentence))))),
-   must(e2c_0(Words)),
+   (call_residue_vars(must(e2c_0(Words)),Vs),del_e2c_attributes(Vs)),
    true),!.
 :-system:import(e2c/1).
 
 :-export(e2c_0/1).
 e2c_0(Words):-
   ignore_must(e2c_0(Words, Reply)), %cls, % ignore(also_show_chat80(Words)),!,
+  del_e2c_attributes(Reply),
   print_reply_colored(Reply),!.
 
 
 :-export(e2c/2).
 e2c(Sentence, Reply):- callable(Reply),!,e2c(Sentence).
 e2c(Sentence, Reply):-
- quietly(to_wordlist_atoms(Sentence, WL)), !,
- e2c_0(WL, Reply),!.
+ quietly(to_wordlist_atoms(Sentence, WL)), !, 
+ call_residue_vars(e2c_0(WL, Reply),Vs),!,
+ del_e2c_attributes(Reply+Vs),!.
 :-system:import(e2c/2).
 
 e2c_0(Sentence, Reply) :-
@@ -276,8 +278,9 @@ e2c_0(Sentence,
 :- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_parse,2,prologOnly)).
 
 e2c_parse(Sentence, LF):- cwc,
-  quietly(to_wordlist_atoms(Sentence, WL)), !,
-  e2c_parse0(WL, LF).
+  quietly(to_wordlist_atoms(Sentence, WL)), !,   
+  e2c_parse0(WL, LF),
+  del_e2c_attributes(LF).
 
 :- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_parse0,2,prologOnly)).
 

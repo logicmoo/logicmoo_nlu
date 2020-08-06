@@ -80,7 +80,7 @@ write_nv(_, Term) :-
 % pretty printed as capital letters.
 
 convert(In, Out) :-
-    format(atom(Out), '~v', [In]).
+    format(atom(Out), '~p', [In]).
 
 
 %% convert_vars(+VarList, -Atom) is det

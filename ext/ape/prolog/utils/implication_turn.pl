@@ -174,14 +174,14 @@ get_pred(l(_), S:S, predicate(Ref, Verb, S, O)-Id, _, predicate(Ref, Verb, S, O)
 
 get_pred(l(_), S:S, predicate(Ref, Verb, O, S)-Id, _, predicate(Ref, i(Verb), S, O)-Id) :-
 	Verb \= be,
-	debug(verbose, 'turning2: ~w :: ~w~n', [S, Verb, O-S]).
+	debug(verbose, 'turning2: ~w :: ~w :: ~w~n', [S, Verb, O-S]).
 
 get_pred(l(_), S:O, predicate(Ref, Verb, S, O)-Id, _, predicate(Ref, Verb, S, O)-Id) :-
-	debug(verbose, 'turning3: ~w :: ~w~n', [O, Verb, S-O]).
+	debug(verbose, 'turning3: ~w :: ~w ::  ~w~n', [O, Verb, S-O]).
 
 get_pred(l(_), S:O, predicate(Ref, Verb, O, S)-Id, _, predicate(Ref, i(Verb), S, O)-Id) :-
 	Verb \= be,
-	debug(verbose, 'turning4: ~w :: ~w~n', [O, Verb, O-S]).
+	debug(verbose, 'turning4: ~w :: ~w ::  ~w~n', [O, Verb, O-S]).
 
 
 % Handling intransitive verbs.
@@ -196,14 +196,14 @@ get_pred(l(_), _:S, predicate(Ref, Verb, S, O)-Id, S, predicate(Ref, Verb, S, O)
 
 get_pred(l(_), _:S, predicate(Ref, Verb, O, S)-Id, S, predicate(Ref, i(Verb), S, O)-Id) :-
 	Verb \= be,
-	debug(verbose, 'turning2: ~w :: ~w~n', [S, Verb, O-S]).
+	debug(verbose, 'turning2: ~w :: ~w :: ~w~n', [S, Verb, O-S]).
 
 get_pred(l(_), _:O, predicate(Ref, Verb, S, O)-Id, S, predicate(Ref, Verb, S, O)-Id) :-
-	debug(verbose, 'turning3: ~w :: ~w~n', [O, Verb, S-O]).
+	debug(verbose, 'turning3: ~w :: ~w :: ~w~n', [O, Verb, S-O]).
 
 get_pred(l(_), _:O, predicate(Ref, Verb, O, S)-Id, S, predicate(Ref, i(Verb), S, O)-Id) :-
 	Verb \= be,
-	debug(verbose, 'turning4: ~w :: ~w~n', [O, Verb, O-S]).
+	debug(verbose, 'turning4: ~w :: ~w :: ~w~n', [O, Verb, O-S]).
 
 
 % Handling intransitive verbs.

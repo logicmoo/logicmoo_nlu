@@ -314,7 +314,7 @@ sub_var_match(Sub,VarName,VarFn,X,LF,Out):- VarName\=='',
 my_framevar(VarName,VarFn,X):- downcase_atom(VarName,DC),pronoun_to_var(DC,Var),!, foc_framevar(Var,VarFn,X).
 my_framevar(Var,VarFn,X):- foc_framevar(Var,VarFn,X),!.
 
-pronoun_var(PN,VarFn,X):- must(pronoun_to_var(PN,VarFn)),!,foc_framevar(VarFn,_,X).
+pronoun_var(PN,VarFn,X):- pronoun_to_var(PN,VarFn),!,foc_framevar(VarFn,_,X).
 
 pronoun_to_var(PN,VarFn):- atomic(PN),downcase_atom(PN,DC),DC\==PN,!,pronoun_to_var(DC,VarFn).
 pronoun_to_var(PN,VarFn):- reflexive_pronoun(Var,PN,_),toPropercase(Var,VarFn).

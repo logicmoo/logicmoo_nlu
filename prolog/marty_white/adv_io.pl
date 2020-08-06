@@ -42,7 +42,7 @@
 
  get_current_portray_level/1,
 
- current_error_io/1, set_error/1, redirect_error_to_string/2
+ current_error_io/1, adv_set_error/1, redirect_error_to_string/2
 
    /*post_message/1,
    post_message/2,
@@ -61,7 +61,7 @@
 current_error_io(Stream) :- stream_property(Stream, alias(user_error)), !. % force det.
 current_error_io(Stream) :- stream_property(Stream, alias(current_error)), !. % force det.
 current_error_io(Stream) :- stream_property(Stream, file_no(2)), !. % force det.
-set_error(Stream) :- set_stream(Stream, alias(user_error)).
+adv_set_error(Stream) :- set_stream(Stream, alias(user_error)).
 
 :- meta_predicate redirect_error_to_string(0, -).
 redirect_error_to_string(Goal, String) :-
@@ -70,10 +70,10 @@ redirect_error_to_string(Goal, String) :-
   setup_call_cleanup(
    open_memory_file(Handle, write, Err),
    setup_call_cleanup(
-    set_error(Err),
+    adv_set_error(Err),
     (once(Goal),
      flush_output(Err)),
-    set_error(OldErr)),
+    adv_set_error(OldErr)),
    close(Err)),
   memory_file_to_string(Handle, String).
 
@@ -146,19 +146,19 @@ prolog_pprint(Term, Options):-
 
 % :- mu:ensure_loaded(adv_debug).
 
-dbug1(_):- notrace(current_prolog_flag(dmsg_level, never)), !.
+dbug1(_):- enotrace(current_prolog_flag(dmsg_level, never)), !.
 dbug1(Fmt) :-
- notrace(( \+ \+
+ enotrace(( \+ \+
    ((mu:simplify_dbug(Fmt, FmtSS),
      portray_vars:pretty_numbervars(FmtSS, FmtS),
      locally(t_l:no_english, term_to_pretty_string(FmtS, "% ", SSS)),
      bugout4("", '~s~n', [SSS], always))))).
 
 dbug(DebugDest, Fmt) :-
-  notrace((compound(Fmt) -> dbug_3(DebugDest, '~p', Fmt) ; dbug_3(DebugDest, Fmt, []))).
+  enotrace((compound(Fmt) -> dbug_3(DebugDest, '~p', Fmt) ; dbug_3(DebugDest, Fmt, []))).
 
 dbug(DebugDest, Fmt, Args0):- 
- notrace(dbug_3(DebugDest, Fmt, Args0)).
+ enotrace(dbug_3(DebugDest, Fmt, Args0)).
 
 dbug_3(DebugDest, Fmt, Args0) :-
   listify(Args0, Args),
@@ -179,8 +179,8 @@ bugout4(_, _, _, _).
 %:- set_stream(user_input, buffer(none)).
 %:- set_stream(user_input, timeout(0.1)).
 
-pprint(Term):- notrace(pprint_2(Term, always)).
-pprint(Term, When):- notrace(pprint_2(Term, When)).
+pprint(Term):- enotrace(pprint_2(Term, always)).
+pprint(Term, When):- enotrace(pprint_2(Term, When)).
 
 pprint_2(Term, When) :-
  bug(When),
@@ -223,7 +223,7 @@ ensure_has_prompt(Agent):-
 
 player_format(Fmt, List):-
  mu_current_agent(Agent) ->
- notrace(player_format(Agent, Fmt, List)).
+ enotrace(player_format(Agent, Fmt, List)).
 
 player_format(Agent, Fmt, List):-
  agent_to_output(Agent, OutStream),
@@ -281,7 +281,7 @@ tokenize_mw([_BadChar|Tail], Rest) :-
 log_codes([-1]).
 log_codes(_) :- \+ mu_global:input_log(_), !.
 log_codes(LineCodes) :-
- ignore(notrace(catch((atom_codes(Line, LineCodes),
+ ignore(enotrace(catch((atom_codes(Line, LineCodes),
  mu_global:input_log(FH),
  format(FH, '>~w\n', [Line])), _, true))).
 
@@ -340,7 +340,7 @@ line_to_tokens([NegOne], NegOne, end_of_file):-!.
 line_to_tokens(LineCodes, _NegOne, Tokens) :-
  last(LineCodes, L),
  memberchk(L, [46, 41|`.)`]),
- notrace(catch((read_term_from_codes(LineCodes, Term,
+ enotrace(catch((read_term_from_codes(LineCodes, Term,
   [syntax_errors(error), var_prefix(false),
   % variables(Vars),
   variable_names(VNs), cycles(true), dotlists(true), singletons(_)])), _, fail)),
@@ -366,7 +366,7 @@ line_to_tokens(LineCodes, _, Tokens):-
 
 :- multifile(prolog:history/2).
 save_to_history(LineCodes):-
- ignore(notrace((
+ ignore(enotrace((
  atom_string(AtomLineCodes, LineCodes), % dmsg(LineCodes->AtomLineCodes),
  current_input(In),
  ignore(catch(prolog:history(In, add(AtomLineCodes)), _, true))))).

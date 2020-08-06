@@ -637,7 +637,8 @@ props(screendoor, [
 :- dynamic(extra_decl/2).
 
 extra_decl(T, PP):- extra_decl0(T, P), correct_props(T, P, PP).
-extra_decl0(T, P):- member(type_props(T, P), [  ]).
+extra_decl0(_T, _P):-  fail.
+% extra_decl0(T, P):-  member(type_props(T, P), [  ]).
 
 :- op(0, xfx, props).
 

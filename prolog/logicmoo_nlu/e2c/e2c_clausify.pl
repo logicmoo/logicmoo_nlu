@@ -197,8 +197,7 @@ det_quantify(ignore,_X, Found,              Found ).
 det_quantify(Q,      X, Found,    q(Q,   X, Found)).
 
 del_e2c_attributes(Term):- 
-  remove_term_attr_type(Term,'$quant_marker'),
-  remove_term_attr_type(Term,'$quant_needed').
+  remove_term_attr_type(Term, ['$quant_needed','$quant_marker','$root']).
 
 '$root':attr_unify_hook(_,_) :- !.
 '$quant_marker':attr_unify_hook(_,_) :- !.

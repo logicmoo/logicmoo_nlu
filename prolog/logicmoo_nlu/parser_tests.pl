@@ -237,7 +237,9 @@ test_e2c("Bertrand wrote nothing.", [ bratko(book)]).
 test_e2c("Bertrand wrote.", [ bratko(book)]).
 test_e2c("Bertrand wrote a book about Gottlob.", [ bratko(book)]).
 test_e2c("Bertrand wrote about Gottlob.", [ bratko(book)]).
+
 test_e2c("Bertrand wrote nothing about Gottlob.", [ bratko(book)]).
+test_e2c("Bertrand wrote nothing about Gottlob to Fred.", [ bratko(book)]).
 
 test_e2c("What did alfred write to Bertrand?", [ bratko(book)]).
 test_e2c("Alfred wrote a letter.", [ bratko(book)]).

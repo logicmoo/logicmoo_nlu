@@ -30,8 +30,8 @@ w2_to_t(Txt,Txt).
 into_combines(Words,WordsO):- must_maplist(parser_tokenize:any_nb_to_atom, Words, WordsA), do_txt_rewrites(WordsA,WordsB),
   must_maplist(t_to_w2,WordsB,WordsO).
 
-to_wordlist_atoms(Sentence, WordsA):- notrace((into_text80(Sentence, Words),into_combines(Words,WordsA))),!.
-from_wordlist_atoms(Sentence, Words):- notrace((must_maplist(w2_to_t,Sentence, Words))).
+to_wordlist_atoms(Sentence, WordsA):- enotrace((into_text80(Sentence, Words),into_combines(Words,WordsA))),!.
+from_wordlist_atoms(Sentence, Words):- enotrace((must_maplist(w2_to_t,Sentence, Words))).
 /*to_wordlist_atoms(Sentence, WordsA):-
    to_word_list(Sentence, Words),
    must_maplist(any_to_atom, Words, WordsA), !.

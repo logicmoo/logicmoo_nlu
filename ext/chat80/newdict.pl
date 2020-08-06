@@ -482,7 +482,7 @@ gen_typemask(Type,feature&Type&_).
 gen_typemask(_,feature&_).
 
 
-noun_plu_db_via_types(TS,T):- maybe_noun_or_adj(T),maybe_noun_or_adj(TS), (atom(TS)->atom_concat(T,'s80',TS);true),tSet(T),atom(T),atom_concat(T,'s80',TS).
+noun_plu_db_via_types(TS,T):- maybe_noun_or_adj(T),maybe_noun_or_adj(TS), (atom(TS)->atom_concat_safe(T,'s80',TS);true),tSet(T),atom(T),atom_concat_safe(T,'s80',TS).
 maybe_noun_or_adj(T):- var(T)->true;(atom(T),not_ccw(T)).
 
 % 
@@ -657,9 +657,9 @@ ocw_db1(W,C):-ocw_db2(W,C),not_ccw(W).
 ocw_db2(W,'Noun'):-noun_plu_db(W,_).
 ocw_db2(W,'Adjective'):-adj_db(W,_).
 ocw_db2(W,'Noun'):-noun_plu_db(_,W).
-ocw_db3(W,SPOS):-  cycQuery80('suffixString'(CycWord,String)),String\='',atom_concat(_First,String,W),cycQuery80('derivationalAffixResultPOS'(CycWord,POS)),simplePOS(POS,SPOS).
+ocw_db3(W,SPOS):-  cycQuery80('suffixString'(CycWord,String)),String\='',atom_concat_safe(_First,String,W),cycQuery80('derivationalAffixResultPOS'(CycWord,POS)),simplePOS(POS,SPOS).
 
-simplePOS(POS,SIMP):-posName(SIMP),atom_concat(_,SIMP,POS).
+simplePOS(POS,SIMP):-posName(SIMP),atom_concat_safe(_,SIMP,POS).
 
 
 subject_LF(restriction,AdjNounEan,feature&_,X,adjIsa(X,AdjNounEan)):- plt, adj_db(AdjNounEan,restr),not_ccw(AdjNounEan).

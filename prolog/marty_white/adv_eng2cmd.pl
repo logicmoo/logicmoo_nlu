@@ -17,7 +17,9 @@
 
 :- use_module(library(logicmoo_nlu/parser_sharing)).
 :- use_module(library(logicmoo_nlu/parser_tokenize)).
-:- ensure_loaded(library(logicmoo_nlu/parser_e2c)).
+:- parser_e2c:use_module(library(logicmoo_nlu/parser_e2c)).
+:- parser_pldata:use_module(library(logicmoo_nlu/parser_pldata)).
+:- parser_chat80:use_module(library(logicmoo_nlu/parser_chat80)).
 %:- parser_e2c:ensure_loaded(library(logicmoo_nlu/e2c/e2c_utility)).
 %:- parser_e2c:ensure_loaded(library(logicmoo_nlu/e2c/e2c_commands)).
 %:- parser_e2c:ensure_loaded(library(logicmoo_nlu/e2c/e2c_noun_phrase)).
@@ -56,7 +58,7 @@ is_prep(P):- preposition(_, P).
 
 is_prep_for_type(P,tObject):- is_prep(P).
 
-preposition(_, P) :- notrace(member(P, [at, down, in, inside, into, of, off, on, onto, out, over, to, under, up, with])).
+preposition(_, P) :- enotrace(member(P, [at, down, in, inside, into, of, off, on, onto, out, over, to, under, up, with])).
 
 preposition(_Other, P) :-
  member(P, [of, beside]).
@@ -98,7 +100,7 @@ with_parse_mem(Mem, Goal):-
   setup_call_cleanup(
         b_setval(parsemem, Mem),
         Goal,
-        notrace(b_setval(parsemem, MemWas))).
+        enotrace(b_setval(parsemem, MemWas))).
 
 
 is_text_mw(Text):- is_charlist(Text), !.
@@ -156,7 +158,7 @@ reframed_call( Pred, Self, Words0, Logic, Mem):-
   reframed_call( Pred, Self, Words, Logic, Mem).
 reframed_call( Pred, Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, reframed_call( Pred, Self, NonText, Logic, Mem) .
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).
-reframed_call( Pred, Doer, [notrace|Args], Logic, M) :- Args\==[], !, notrace(reframed_call( Pred, Doer, Args, Logic, M)).
+reframed_call( Pred, Doer, [enotrace|Args], Logic, M) :- Args\==[], !, enotrace(reframed_call( Pred, Doer, Args, Logic, M)).
 reframed_call( Pred, Doer, [cls|Args], Logic, M) :- Args\==[], !, cls, reframed_call( Pred, Doer, Args, Logic, M).
 reframed_call( Pred, Self, Words, Logic, Mem):- call( Pred, Self, Words, Logic, Mem).
 
@@ -403,9 +405,9 @@ do_eval_or_same({O}, {O}):- !.
 do_eval_or_same(G, GG):- compound_name_arguments(G, HT, [F|GL]), atom(F), member(HT, [t, h]), !,
  compound_name_arguments(GM, F, GL), !, do_eval_or_same(GM, GG).
 
-do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), !, G=GG,!. % must_mw(to_string_lc(G, GG)), !.
+do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), must_mw(to_string_lc(G, GG)), !.
 /*
-do_eval_or_same(PEG, PEGG):- notrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
+do_eval_or_same(PEG, PEGG):- enotrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
   append(Left, [G], Args))), ground(G), \+ string(G), !, must_mw(to_string_lc(G, GG)), !,
   append(Left, [GG], NewArgs), compound_name_arguments(PEGG, F, NewArgs).
 */
@@ -451,7 +453,7 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
  memory, model, properties, state, status, perceptq, help, threads,
  spy, nospy, call,
  rtrace, nortrace,
- trace, notrace %, %whereami, whereis, whoami
+ trace, enotrace %, %whereami, whereis, whoami
  ]).
 
 verbatum_anon_one_or_zero_arg(N):- atom(N), atom_length(N, L), L>1, current_predicate(N/0).
@@ -484,12 +486,14 @@ as1object(TheThing, Thing, M):- get_advstate(Mem2), Mem2\=M, as1object(TheThing,
 % as1object(Thing, Thing, _Mem).
 
 to_string_lc(A, S):- var(A), !, freeze(A, to_string_lc(A, S)).
+to_string_lc([], ""):- !.
 to_string_lc(S, L):- atomic(S), S\=[], !, string_lower(S, L).
+to_string_lc(S, L):- compound_name_arguments(S,'s',SS), !, to_string_lc(SS, L).
 to_string_lc(S, L):- catch(text_to_string(L, S), _, fail), !, string_lower(S, L).
 to_string_lc(S, L):- is_list(S), !, maplist(to_string_lc, S, W), atomics_to_string(W, ' ', L).
 to_string_lc(A, S):- format(string(S), '~w', [A]).
 
-same_word(T1, T2):- notrace((to_string_lc(T1, S1), to_string_lc(T2, S2), !, S1=S2)).
+same_word(T1, T2):- enotrace((to_string_lc(T1, S1), to_string_lc(T2, S2), !, S1=S2)).
 
 % same_verb(T1, T2):- ground(T1), ground(T2), to_upcase_name(T1, N1), to_upcase_name(T2, N2), !, (atom_concat(N1, _, N2);atom_concat(N2, _, N1)).
 same_verb(Verb, Text):-  to_string_lc(Verb, LVerb), to_string_lc(Text, LText), atom_concat(LVerb, _, LText).

@@ -19,12 +19,12 @@
 
 
 
-ppfs:- cls, make  , ppfs(pack('logicmoo_nlu/test/fracas.xml')).
+pp_fracas:- cls, make  , pp_fracas(pack('logicmoo_nlu/test/fracas.xml')).
 
-ppfs(FNI):- absolute_file_name(FNI,FN),expand_file_name(FN,Exp),member(F,Exp),ppfs1(F),fail.
-ppfs(_):-!.
+pp_fracas(FNI):- absolute_file_name(FNI,FN),expand_file_name(FN,Exp),member(F,Exp),pp_fracas1(F),fail.
+pp_fracas(_):-!.
 
-ppfs1(File):-
+pp_fracas1(File):-
     fileToLineInfoElements(_Ctx,File,Z),
      writeEachTo([],[],Z).
 

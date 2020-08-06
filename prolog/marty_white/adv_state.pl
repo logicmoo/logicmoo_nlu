@@ -99,7 +99,7 @@ add_advstate(State):-
   nop(with_mutex(save_advstate, must_mw1(save_term(library('marty_white/adv_state_db.pl'), append ,State)))),!.
 
 set_advstate_db(State):-
-  notrace((set_advstate_db_1(State),
+  enotrace((set_advstate_db_1(State),
   nop(record_saved(State)))),!.
 
 
@@ -150,7 +150,7 @@ declared_advstate(Fact):- get_advstate(State), declared(Fact, State).
 
 :- export(declare/3).
 %:- defn_state_setter(declare(fact)).
-select_from(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(select_from_list(Fact, State, NewState)).
+select_from(Fact, State, NewState) :- enotrace((assertion(var(NewState)), is_list(State))), !, enotrace(select_from_list(Fact, State, NewState)).
 select_from(Fact, inst(Object), inst(Object)):- !,
    get_advstate(State),
    (declared(props(Object, PropList), State);PropList=[]), !,
@@ -188,7 +188,7 @@ select_always(Item, List, ListWithoutItem) :- select_from(Item, List, ListWithou
 %declare(Fact, State):- player_local(Fact, Player), !, declare(wishes(Player, Fact), State).
 :- export(declare/3).
 :- defn_state_setter(declare(fact)).
-declare(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(declare_list(Fact, State, NewState)).
+declare(Fact, State, NewState) :- enotrace((assertion(var(NewState)), is_list(State))), !, enotrace(declare_list(Fact, State, NewState)).
 declare(Fact, inst(Object), inst(Object)):- !,
    get_advstate(State),
    (declared(props(Object, PropList), State);PropList=[]), !,
@@ -231,7 +231,7 @@ declare_list(Fact, State, NewState) :- append([Fact], State, NewState).
 
 
 %undeclare(Fact, State):- player_local(Fact, Player), !, undeclare(wishes(Player, Fact), State).
-undeclare(Fact, State, NewState):- notrace(undeclare_(Fact, State, NewState)).
+undeclare(Fact, State, NewState):- enotrace(undeclare_(Fact, State, NewState)).
 undeclare_(Fact, State, NewState) :- copy_term(State, Copy), select_from(Fact, State, NewState),
  assertion( \+ member(Copy , NewState)).
 
@@ -372,7 +372,7 @@ each_prop(Pred, Prop, S0, S1):- assertion(compound(Prop)), call(Pred, Prop, S0, 
 
 % Remove Prop.
 :- defn_state_setter(delprop(thing, nv)).
-delprop(Object, Prop, S0, S2) :- notrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_(Object), PropList, S0, S2)))).
+delprop(Object, Prop, S0, S2) :- enotrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_(Object), PropList, S0, S2)))).
 delprop_(Object, Prop, S0, S2) :-
  undeclare(props(Object, PropList), S0, S1),
  select_from(Prop, PropList, NewPropList),
@@ -380,13 +380,13 @@ delprop_(Object, Prop, S0, S2) :-
 
 % Remove Prop Always.
 :- defn_state_setter(delprop_always(thing, nv)).
-delprop_always(Object, Prop, S0, S2) :- notrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_always_(Object), PropList, S0, S2)))).
+delprop_always(Object, Prop, S0, S2) :- enotrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_always_(Object), PropList, S0, S2)))).
 delprop_always_(Object, Prop, S0, S2) :-  delprop_(Object, Prop, S0, S2), !.
 delprop_always_(_Object, _Prop, S0, S0).
 
 % Replace or create Prop.
 :- defn_state_setter(setprop(thing, nv)).
-setprop(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), each_prop(setprop_(Object), PropList, S0, S2))).
+setprop(Object, Prop, S0, S2) :- enotrace((correct_props(Object, Prop, PropList), each_prop(setprop_(Object), PropList, S0, S2))).
 
 setprop_(Object, Prop, S0, S2) :-
  direct_props_or(Object, PropList, [], S0),
@@ -403,7 +403,7 @@ setprop_(Object, Prop, S0, S2) :-
 
 % Update or create Prop.
 :- defn_state_setter(updateprop(thing, nv)).
-updateprop(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), each_prop(updateprop_(Object), PropList, S0, S2))).
+updateprop(Object, Prop, S0, S2) :- enotrace((correct_props(Object, Prop, PropList), each_prop(updateprop_(Object), PropList, S0, S2))).
 
 updateprop_(Object, Prop, S0, S2) :-
  assertion(compound(Prop)),

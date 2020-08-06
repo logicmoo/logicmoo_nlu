@@ -343,7 +343,7 @@ cond_is_achieved(step(J, _Oper), C, plan(_Steps, _Orderings, _)) :-
 % steps, or are already true?
 step_is_achieved(step(_J, oper(_Self, _, _, [])), _Planed). % No conditions, OK.
 step_is_achieved(step(J, oper(Self, _, _, [C|Tail])), plan(Steps, Orderings, _)) :-
- cond_is_achieved(step(J), C, plan(Steps, Orderings, _)),
+ cond_is_achieved(step(J, _), C, plan(Steps, Orderings, _)),
  step_is_achieved(step(J, oper(Self, _, _, Tail)), plan(Steps, Orderings, _)).
 
 all_steps_are_achieved([Step|Tail], Plan) :-

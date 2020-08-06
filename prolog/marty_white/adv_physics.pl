@@ -28,7 +28,7 @@ never_equal(Sense, Thing, Agent):- nop(never_equal(Sense, Thing, Agent)), !.
 never_equal(Sense, Thing, Agent):-
   never_equal(Sense, Thing), never_equal(Sense, Agent).
 never_equal(Sense, Thing):-
- notrace((freeze(Thing, (must_mw1(Thing\==Sense))), freeze(Sense, (must_mw1(Thing\==Sense))))).
+ enotrace((freeze(Thing, (must_mw1(Thing\==Sense))), freeze(Sense, (must_mw1(Thing\==Sense))))).
 
 
 

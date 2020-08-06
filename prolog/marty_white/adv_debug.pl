@@ -39,8 +39,8 @@ simply_debug_opts([len=5]).
 
 get_zoption(Z, N, V, E):- member(N=V, Z)->true;V=E.
 
-simplify_dbug(G, GG):- notrace(simplify_dbug_3(G, GG)).
-simplify_dbug(Z, G, GG):- notrace(simplify_dbug_3(Z, G, GG)).
+simplify_dbug(G, GG):- enotrace(simplify_dbug_3(G, GG)).
+simplify_dbug(Z, G, GG):- enotrace(simplify_dbug_3(Z, G, GG)).
 
 simplify_dbug_3(G, GG):- is_list(G), must_det(maplist(simplify_dbug_3, G, GG)), !.
 simplify_dbug_3(G, GG):- simply_debug_opts(Z), simplify_dbug_3(Z, G, GG).
@@ -61,7 +61,7 @@ simplify_dbug_3(Z, G, GG):- compound_name_arguments(G, F, GL), F\==percept_props
 simplify_dbug_3(_, G, G).
 
 
-mwmsg(G):- notrace(mwmsg_3(G)).
+mwmsg(G):- enotrace(mwmsg_3(G)).
 mwmsg_3(G):- compound(G), compound_name_arity(G,_,2),G=..[F, GG], !, dmsg(F:-GG).
 mwmsg_3(G):- simplify_dbug(G, GG)->guess_pretty(GG)->dmsg(GG).
 
@@ -172,7 +172,7 @@ system_default_debug(YN):-
 :- module_transparent(dmust_tracing/1).
 :- module_transparent(if_tracing/1).
 :- meta_predicate(if_tracing(*)).
-if_tracing(G):- tracing -> notrace(G) ; true.
+if_tracing(G):- tracing -> enotrace(G) ; true.
 
 :- export(must_mw1/1).
 :- meta_predicate(must_mw(0)).
@@ -180,17 +180,17 @@ must_mw(G):- G*->true;(mwmsg(fail(must_mw):-G), fail).
 
 :- export(must_mw1/1).
 :- meta_predicate(must_mw1(*)).
-must_mw1(G):- notrace((assertion(callable(G)), fail)).
+must_mw1(G):- enotrace((assertion(callable(G)), fail)).
 must_mw1((G1, G2)):- !, must_mw1(G1), must_mw1(G2).
 must_mw1((G1;G2)):- !, (G1;must_mw1(G2)).
-must_mw1(G):- G*->!;notrace((mwmsg(fail(must_mw1):-G), dumpST, fail)).
+must_mw1(G):- G*->!;enotrace((mwmsg(fail(must_mw1):-G), dumpST, fail)).
 % must_mw1(G):- G*->true;(mwmsg(fail(must_mw1):-G), rtrace(G), fail).
 
 :- meta_predicate(must_mw1(*, +, -)).
 must_mw1(Goal, S0, S2):- apply_state(must_mw1, Goal, S0, S2).
 
 :- meta_predicate(dmust_tracing(*)).
-dmust_tracing(G):- notrace((tracing, cls)), !, must_mw1(G).
+dmust_tracing(G):- enotrace((tracing, cls)), !, must_mw1(G).
 dmust_tracing(G):- G*->true;(mwmsg(fail(dmust_tracing):-G), fail).
 
 :- meta_predicate(dmust_tracing(*, +, -)).
