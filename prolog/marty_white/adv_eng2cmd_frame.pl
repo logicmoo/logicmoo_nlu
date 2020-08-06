@@ -160,6 +160,9 @@ run_end2cmd_tests:- make,
 parseForMWType(_Frame, _X, _Type,ParseText,[TextArg],Right):- 
    append([TextArg],Right,ParseText), is_prep(TextArg), !, fail.
 
+parseForMWType(_Frame, _X, _Type,ParseText, TextArg,Right):- 
+   append([a|TextArg], Right, ParseText).
+
 parseForMWType(Frame, X, Type,ParseText, TextArg, Right):- 
    append([L|Eft],[Prep|Rest],ParseText), is_prep(Prep),
    parseForMWType(Frame, X, Type,[L|Eft], TextArg, RightL),
