@@ -635,6 +635,7 @@ txt2place(Dest, Place, M):- parse2object(Dest, Place, M).
 
             
 :- discontiguous(verb_frame1/4).
+:- discontiguous(eng2flogic_test/1).
 :- include(adv_eng2cmd_frame).
 
 
