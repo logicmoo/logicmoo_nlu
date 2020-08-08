@@ -122,9 +122,9 @@ queue_agent_percept(Agent, Events, S0, S2) :-
  getprop(Agent, inherited(no_perceptq), S0), !,
  do_percept_list(Agent, Events, S0, S2).
 queue_agent_percept(Agent, Events, S0, S2) :-
- must_mw1((select_from(perceptq(Agent, Queue), S0, S1),
+ must_mw1((undeclare(perceptq(Agent, Queue), S0, S1),
  append(Queue, Events, NewQueue),
- append([perceptq(Agent, NewQueue)], S1, S2))).
+ declare(perceptq(Agent, NewQueue), S1, S2))).
 
 
 :- defn_state_setter(queue_event(listok(event))).

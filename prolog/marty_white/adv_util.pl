@@ -32,7 +32,7 @@ term_expansion_was_dcg('-->'(DCG , Keeper), '-->'(DCG , was_dcg(M, Keeper))):- K
 :- meta_predicate(sg(1, ?, ?)).
 sg(G, S0, S9) :- call(G, S0), S0=S9.
 
-%mu:term_expansion(I, P, O, PO):- enotrace((compound(I), nonvar(P))), term_expansion_was_dcg(I, O), P=PO.
+%mu:term_expansion(I, P, O, PO):- xnotrace((compound(I), nonvar(P))), term_expansion_was_dcg(I, O), P=PO.
 %foo --> bar , !.
 %foo --> bar, baz.
 %:- break.
@@ -75,8 +75,10 @@ defn_get_set_wrapper(Getter, M, F, A, _, 2):-
   ignore((compound(Getter),arg(1,Getter,Mutex),arg(1,PP,Mutex))),
   ignore((\+ compound(Getter),Mutex=Getter)),
   getter_to_setter(Getter,Setter),
-  asserta_if_undef(M, PP, 
-   with_mutex(Mutex,(call(Getter,S0), M:PPS0, call(Setter,S9)))).
+   asserta_if_undef(M, PP, 
+    with_mutex(Mutex,(call(Getter,S0), M:PPS0, call(Setter,S9)))).
+  %asserta_if_undef(M, PP, 
+   %with_mutex(Mutex,(pprint(enter(PP),trace),call(Getter,S0), M:PPS0, call(Setter,S9),pprint(exit(PP),trace)))).
 
 getter_to_setter(get_advstate,set_advstate).
 getter_to_setter(get_memory(A),set_memory(A)).
@@ -121,7 +123,7 @@ apply_mapl_state(Goal, List, S0, S2):- apply_all(List, Goal, S0, S2).
 apply_all([], _Goal, S0, S0) :- !.
 apply_all([Arg], Goal, S0, S2) :- !, apply_first_arg_state(Arg, Goal, S0, S2).
 
-apply_all(List, Goal, S0, S2) :- enotrace((list_to_set(List, Set),
+apply_all(List, Goal, S0, S2) :- xnotrace((list_to_set(List, Set),
  List\==Set)), !,
  apply_all(Set, Goal, S0, S2).
 
@@ -146,7 +148,7 @@ apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),
 
 
 append_goal_mw(Goal, List, Call):-
- enotrace((compound_name_arguments(Goal, F, GoalL),
+ xnotrace((compound_name_arguments(Goal, F, GoalL),
   append(GoalL, List, NewGoalL), Call univ_safe [F|NewGoalL])).
 
 
@@ -171,6 +173,9 @@ apply_forall(Forall, Apply, S0, S1):-
   apply_forall_frames(Frames, Forall, Apply, S0, S1).
 
 findall(E, Goal, L, S0, S2):- apply_state(call, findall(E, Goal, L), S0, S2).
+
+map_apply_findall(Goal, M1, M2):- call(Goal, M1, M2).
+
 
 %unless(G, Else, S0, S2):- apply_state(Z, unless(G, Else), S0, S2).
 ignore(Goal, S0, S2):- apply_state(call, ignore(Goal), S0, S2).
@@ -217,7 +222,7 @@ rapply_state(Z, S0, S2, Goal):- apply_state(Z, Goal, S0, S2).
 :- module_transparent(apply_state//1).
 %:- meta_predicate(apply_state(Z, //, +, -)).
 
-apply_state(_, _NonGoal, S0, _S2) :- enotrace(must_input_state(S0)), fail.
+apply_state(_, _NonGoal, S0, _S2) :- xnotrace(must_input_state(S0)), fail.
 apply_state(_, NonGoal, S0, S2) :- \+ callable(NonGoal), !, trace, S0=S2.
 apply_state(Z, M:Goal, S0, S2) :- !, assertion(atom(M)),
  M:apply_state(Z, Goal, S0, S2).
@@ -262,16 +267,16 @@ apply_state(Z, (G1;G2), S0, S2) :- !,
 apply_state(Z, Goal, S0, S2) :- is_state_ignorer(Goal), !, call_z(Z, Goal), S0=S2.
 apply_state(Z, Goal, S0, S2) :- is_state_getter(Goal), !, call_z(Z, call(Goal, S0)), S0=S2.
 apply_state(Z, sg(Goal), S0, S2) :- !, call_z(Z, call(Goal, S0)), S0 = S2.
-apply_state(Z, Goal, S0, S2) :- is_state_setter(Goal), !, call_z(Z, call(Goal, S0, S2)), !, enotrace(must_output_state(S2)).
+apply_state(Z, Goal, S0, S2) :- is_state_setter(Goal), !, call_z(Z, call(Goal, S0, S2)), !, xnotrace(must_output_state(S2)).
 apply_state(Z, Meta, S0, S2) :- is_state_meta(Meta, N), length(Left, N), Meta univ_safe [F|MetaL], !,
    append(Left, [Goal|MetaR], MetaL),
    append(Left, [apply_state(Z, Goal, S0, S2)|MetaR], MetaC),
    apply(call(F), MetaC),
-   enotrace(must_output_state(S2)).
+   xnotrace(must_output_state(S2)).
 
-apply_state(Z, Goal, S0, S2) :- call_z(Z, call(Goal, S0, S2)), !, enotrace(must_output_state(S2)).
+apply_state(Z, Goal, S0, S2) :- call_z(Z, call(Goal, S0, S2)), !, xnotrace(must_output_state(S2)).
 
-% apply_state(Z, Goal, S0, S2) :- enotrace(append_goal_mw(Goal, [S0, S2], Call)), must_mw1(Call), enotrace(must_output_state(S2)).
+% apply_state(Z, Goal, S0, S2) :- xnotrace(append_goal_mw(Goal, [S0, S2], Call)), must_mw1(Call), xnotrace(must_output_state(S2)).
 
  %apply_state(Z, Goal, S0, S2):- phrase(Goal, S0, S2).
 
@@ -279,12 +284,12 @@ apply_state(Z, Goal, S0, S2) :- call_z(Z, call(Goal, S0, S2)), !, enotrace(must_
 
 %:- meta_predicate(apply_first_arg_state(+, 3, +, -)).
 apply_first_arg_state(Arg, Goal, S0, S2) :-
- enotrace((compound_name_arguments(Goal, F, GoalL),
+ xnotrace((compound_name_arguments(Goal, F, GoalL),
  append(GoalL, [S0, S2], NewGoalL),
  must_input_state(S0),
  Call univ_safe [F, Arg|NewGoalL])),
  must_mw1(Call),
- enotrace(must_output_state(S2)).
+ xnotrace(must_output_state(S2)).
 
 %:- meta_predicate(apply_first(+, 3, +, -)).
 apply_first_arg(Arg, Goal, S0, S2):-

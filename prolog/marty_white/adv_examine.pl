@@ -40,76 +40,77 @@ prep_object_exitnames(at, _Object, [escape], _S0) :- !.
 prep_object_exitnames(Other, _Object, [reverse(Other)], _S0).
 
 
-is_prop_public(_, N, _):- N == 5, !.
-is_prop_public(_, N, _):- N == 4, admin, !.
-is_prop_public(Sense, N, Prop):- is_prop_public_at(Sense, NL, Prop), !, N >= NL.
-% is_prop_public(_, 1, _):- !.
+is_prop_accessable(_, N, _):- N == 5, !.
+is_prop_accessable(_, N, _):- N == 4, admin, !.
+is_prop_accessable(Sense, N, Prop):- is_prop_accessable_at(Sense, NL, Prop), !, N >= NL.
+% is_prop_accessable(_, 1, _):- !.
 
-is_prop_public_at(_, _, P):- \+ callable(P), !, fail.
+is_prop_accessable_at(_, _, P):- \+ callable(P), !, fail.
 
 % stared at
-is_prop_public_at(see, 3, desc).
-is_prop_public_at(see, 3, volume_capacity).
-is_prop_public_at(see, 3, volume).
+is_prop_accessable_at(see, 3, desc).
+is_prop_accessable_at(see, 3, volume_capacity).
+is_prop_accessable_at(see, 3, volume).
 % groped
-is_prop_public_at(touch, 3, locked).
+is_prop_accessable_at(touch, 3, locked).
 
 % looked
-is_prop_public_at(see, 2, shiny).
-is_prop_public_at(see, 2, opened).
-is_prop_public_at(see, 2, worn_on).
-is_prop_public_at(_, 2, has_rel).
-is_prop_public_at(see, 2, emitting).
+is_prop_accessable_at(see, 2, shiny).
+is_prop_accessable_at(see, 2, opened).
+is_prop_accessable_at(see, 2, worn_on).
+is_prop_accessable_at(_, 2, has_rel).
+is_prop_accessable_at(see, 2, emitting).
 % felt
-is_prop_public_at(touch, 2, shape).
-is_prop_public_at(touch, 2, volume).
+is_prop_accessable_at(touch, 2, shape).
+is_prop_accessable_at(touch, 2, volume).
 
 % glanced
-is_prop_public_at(see, 1, in). % has_rel
-is_prop_public_at(see, 1, on). % has_rel
-is_prop_public_at(see, 1, shape).
+is_prop_accessable_at(see, 1, in). % has_rel
+is_prop_accessable_at(see, 1, on). % has_rel
+is_prop_accessable_at(see, 1, shape).
 % bumped
-is_prop_public_at(touch, 1, texture).
+is_prop_accessable_at(touch, 1, texture).
 
 % parsing
-is_prop_public_at(know, 1, name).
-is_prop_public_at(know, 1, adjs).
-is_prop_public_at(know, 1, nouns).
-is_prop_public_at(know, 1, default_rel).
+is_prop_accessable_at(know, 1, name).
+is_prop_accessable_at(know, 1, adjs).
+is_prop_accessable_at(know, 1, nouns).
+is_prop_accessable_at(know, 1, default_rel).
 
 % dunno where to put eatable
-is_prop_public_at(know, 2, eat).
+is_prop_accessable_at(know, 2, eat).
 
 % debugging
-is_prop_public_at(know, 3, inherit).
-is_prop_public_at(know, 3, isnt).
-is_prop_public_at(know, 3, inherited).
+is_prop_accessable_at(know, 3, inherit).
+is_prop_accessable_at(know, 3, isnt).
+is_prop_accessable_at(know, 3, inherited).
 
-is_prop_public_at(know, 4, held_by).
-is_prop_public_at(know, 4, class_desc).
-is_prop_public_at(know, 4, has_sense).
-is_prop_public_at(know, 4, knows_verbs).
-is_prop_public_at(know, 4, can_be).
+is_prop_accessable_at(know, 4, held_by).
+is_prop_accessable_at(know, 4, class_desc).
+is_prop_accessable_at(know, 4, has_sense).
+is_prop_accessable_at(know, 4, knows_verbs).
+is_prop_accessable_at(know, 4, can_be).
 
-is_prop_public_at(see, 5, co(_)).
+is_prop_accessable_at(see, 5, co(_)).
 
 % action = try it to find out
-is_prop_public_at(action, 3, move).
-is_prop_public_at(action, 5, effect).
-is_prop_public_at(action, 5, after).
-is_prop_public_at(action, 5, before).
-is_prop_public_at(action, 5, breaks_into).
-is_prop_public_at(action, 5, oper).
-is_prop_public_at(action, 5, cant_go).
-is_prop_public_at(_, N, P):- var(N), compound(P), safe_functor(P, F, _), is_prop_public_at(action, 5, F), !, N = 5.
+is_prop_accessable_at(action, 3, move).
+is_prop_accessable_at(action, 5, effect).
+is_prop_accessable_at(action, 5, after).
+is_prop_accessable_at(action, 5, before).
+is_prop_accessable_at(action, 5, breaks_into).
+is_prop_accessable_at(action, 5, oper).
+is_prop_accessable_at(action, 5, cant_go).
+is_prop_accessable_at(_, N, P):- var(N), compound(P), safe_functor(P, F, _), is_prop_accessable_at(action, 5, F), !, N = 5.
 
-is_prop_public_at(_, _, P):- \+ compound(P), !, fail.
-is_prop_public_at(S, N, F = _):- !, is_prop_public_at(S, N, F).
-is_prop_public_at(S, N, P):- safe_functor(P, F, _), is_prop_public_at(S, N, F).
-is_prop_public_at(S, N, P) :- arg(1, P, F), is_prop_public_at(S, N, F).
+
+is_prop_accessable_at(_, _, P):- \+ compound(P), !, fail.
+is_prop_accessable_at(S, N, F = _):- !, is_prop_accessable_at(S, N, F).
+is_prop_accessable_at(S, N, P):- safe_functor(P, F, _), is_prop_accessable_at(S, N, F).
+is_prop_accessable_at(S, N, P) :- arg(1, P, F), is_prop_accessable_at(S, N, F).
 
 object_props(Object, Sense, PropDepth, PropList, S0):-
- findall(P, (getprop(Object, P, S0), is_prop_public(Sense, PropDepth, P)), PropListL),
+ findall(P, (getprop(Object, P, S0), is_prop_accessable(Sense, PropDepth, P)), PropListL),
  list_to_set(PropListL, PropList), !.
 
 :- meta_predicate(maybe_send_sense(0, *, *, *, *, *, *)).

@@ -58,7 +58,7 @@ is_prep(P):- preposition(_, P).
 
 is_prep_for_type(P,tObject):- is_prep(P).
 
-preposition(_, P) :- enotrace(member(P, [at, down, in, inside, into, of, off, on, onto, out, over, to, under, up, with])).
+preposition(_, P) :- xnotrace(member(P, [at, down, in, inside, into, of, off, on, onto, out, over, to, under, up, with])).
 
 preposition(_Other, P) :-
  member(P, [of, beside]).
@@ -100,7 +100,7 @@ with_parse_mem(Mem, Goal):-
   setup_call_cleanup(
         b_setval(parsemem, Mem),
         Goal,
-        enotrace(b_setval(parsemem, MemWas))).
+        xnotrace(b_setval(parsemem, MemWas))).
 
 
 is_text_mw(Text):- is_charlist(Text), !.
@@ -158,14 +158,20 @@ reframed_call( Pred, Self, Words0, Logic, Mem):-
   reframed_call( Pred, Self, Words, Logic, Mem).
 reframed_call( Pred, Self, [NonText], Logic, Mem) :- \+ atom(NonText), !, reframed_call( Pred, Self, NonText, Logic, Mem) .
 reframed_call( Pred, Doer, [rtrace|Args], Logic, M) :- Args\==[], !, rtrace(reframed_call( Pred, Doer, Args, Logic, M)).
-reframed_call( Pred, Doer, [enotrace|Args], Logic, M) :- Args\==[], !, enotrace(reframed_call( Pred, Doer, Args, Logic, M)).
+reframed_call( Pred, Doer, [xnotrace|Args], Logic, M) :- Args\==[], !, xnotrace(reframed_call( Pred, Doer, Args, Logic, M)).
+reframed_call( Pred, Doer, [notrace|Args], Logic, M) :- Args\==[], !, notrace(reframed_call( Pred, Doer, Args, Logic, M)).
 reframed_call( Pred, Doer, [cls|Args], Logic, M) :- Args\==[], !, cls, reframed_call( Pred, Doer, Args, Logic, M).
+
 reframed_call( Pred, Self, Words, Logic, Mem):- call( Pred, Self, Words, Logic, Mem).
 
-
-eng2logic(Self, Words, Cmd, Mem):-  \+ ([Self|_] = Cmd) , eng2cmd( Self, Words, Cmd, Mem), !.
+eng2logic(Self, Words, Cmd, Mem):- 
+   [Self|AsCmd] = Words, 
+   eng2cmd( Self, AsCmd, Cmd, Mem), !.
+   
+eng2logic(Self, Words, Cmd, Mem):-      
+   eng2cmd( Self, Words, Cmd, Mem), !.
 eng2logic(Self, Words, Logic, Mem):- show_success(eng2state( Self, Words, Logic, Mem)), !.
-eng2logic(Self, Words, Cmd, Mem):- eng2logic_frame( Self, Words, Cmd, Mem), !.
+eng2logic(Self, Words, frame(Cmd), Mem):- eng2logic_frame( Self, Words, Cmd, Mem), !.
 eng2logic(Self, Words, Logic, Mem):- append([Self, wonders], Words, Decl), show_success(eng2state( Self, Decl, Logic, Mem)), !.
 
 /*
@@ -247,7 +253,7 @@ eng2cmd(Doer, [TheVerb|Args], Action, M) :-
  eng2cmd(Doer, [Verb|Args], Action, M).
 
 
-eng2cmd(Doer, Cmd, Action, M) :-
+eng2cmd(Doer, Cmd, Action, M) :- ( \+ Cmd = [Doer|_] ),
   eng2logic(Doer, [Doer|Cmd], Action, M).
 
 
@@ -370,7 +376,7 @@ two_adjs_0(A, W2, C, W3, D):-
 
 verb_formtense_str(GiveStr, RootStr, Else):-
     acdb(baseForm, GiveTheWord, GiveStr),
-    acdb(posForms, GiveTheWord, xtVerb),
+    acdb(posForms, GiveTheWord, xtVerb), !,
     RootStr = GiveStr,
     Else = baseForm.
 verb_formtense_str(GaveStr, GiveStr, Past):-
@@ -407,7 +413,7 @@ do_eval_or_same(G, GG):- compound_name_arguments(G, HT, [F|GL]), atom(F), member
 
 do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), must_mw(to_string_lc(G, GG)), !.
 /*
-do_eval_or_same(PEG, PEGG):- enotrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
+do_eval_or_same(PEG, PEGG):- xnotrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
   append(Left, [G], Args))), ground(G), \+ string(G), !, must_mw(to_string_lc(G, GG)), !,
   append(Left, [GG], NewArgs), compound_name_arguments(PEGG, F, NewArgs).
 */
@@ -453,7 +459,7 @@ verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
  memory, model, properties, state, status, perceptq, help, threads,
  spy, nospy, call,
  rtrace, nortrace,
- trace, enotrace %, %whereami, whereis, whoami
+ trace, xnotrace, notrace %, %whereami, whereis, whoami
  ]).
 
 verbatum_anon_one_or_zero_arg(N):- atom(N), atom_length(N, L), L>1, current_predicate(N/0).
@@ -493,7 +499,7 @@ to_string_lc(S, L):- catch(text_to_string(L, S), _, fail), !, string_lower(S, L)
 to_string_lc(S, L):- is_list(S), !, maplist(to_string_lc, S, W), atomics_to_string(W, ' ', L).
 to_string_lc(A, S):- format(string(S), '~w', [A]).
 
-same_word(T1, T2):- enotrace((to_string_lc(T1, S1), to_string_lc(T2, S2), !, S1=S2)).
+same_word(T1, T2):- xnotrace((to_string_lc(T1, S1), to_string_lc(T2, S2), !, S1=S2)).
 
 % same_verb(T1, T2):- ground(T1), ground(T2), to_upcase_name(T1, N1), to_upcase_name(T2, N2), !, (atom_concat(N1, _, N2);atom_concat(N2, _, N1)).
 same_verb(Verb, Text):-  to_string_lc(Verb, LVerb), to_string_lc(Text, LText), atom_concat(LVerb, _, LText).

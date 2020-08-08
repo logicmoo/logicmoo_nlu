@@ -38,7 +38,7 @@ eVent(Agent, Event) ==>>
  aXiom(Event).
 
 
-aXiom(Action, _S0, _S9)::= enotrace(( \+ trival_act(Action), dbug1(aXiom(Action)))), enotrace(fail).
+aXiom(Action, _S0, _S9)::= xnotrace(( \+ trival_act(Action), dbug1(aXiom(Action)))), xnotrace(fail).
 
 
 aXiom( Action) ==>>
@@ -353,7 +353,7 @@ aXiom(examine(Agent, Sense, Prep, Object)) ==>> eVent(Agent, sub__examine(Agent,
 
 % listen, smell ...
 aXiom(Action) ==>>
- {enotrace((Action=..[Verb, Agent|Args],
+ {xnotrace((Action=..[Verb, Agent|Args],
  sensory_verb(Sense, Verb)))}, !,
  {NewAction=..[examine, Agent, Sense|Args]},
  eVent(Agent, NewAction).

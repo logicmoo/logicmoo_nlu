@@ -146,19 +146,19 @@ prolog_pprint(Term, Options):-
 
 % :- mu:ensure_loaded(adv_debug).
 
-dbug1(_):- enotrace(current_prolog_flag(dmsg_level, never)), !.
+dbug1(_):- xnotrace(current_prolog_flag(dmsg_level, never)), !.
 dbug1(Fmt) :-
- enotrace(( \+ \+
+ xnotrace(( \+ \+
    ((mu:simplify_dbug(Fmt, FmtSS),
      portray_vars:pretty_numbervars(FmtSS, FmtS),
      locally(t_l:no_english, term_to_pretty_string(FmtS, "% ", SSS)),
      bugout4("", '~s~n', [SSS], always))))).
 
 dbug(DebugDest, Fmt) :-
-  enotrace((compound(Fmt) -> dbug_3(DebugDest, '~p', Fmt) ; dbug_3(DebugDest, Fmt, []))).
+  xnotrace((compound(Fmt) -> dbug_3(DebugDest, '~p', Fmt) ; dbug_3(DebugDest, Fmt, []))).
 
 dbug(DebugDest, Fmt, Args0):- 
- enotrace(dbug_3(DebugDest, Fmt, Args0)).
+ xnotrace(dbug_3(DebugDest, Fmt, Args0)).
 
 dbug_3(DebugDest, Fmt, Args0) :-
   listify(Args0, Args),
@@ -179,8 +179,8 @@ bugout4(_, _, _, _).
 %:- set_stream(user_input, buffer(none)).
 %:- set_stream(user_input, timeout(0.1)).
 
-pprint(Term):- enotrace(pprint_2(Term, always)).
-pprint(Term, When):- enotrace(pprint_2(Term, When)).
+pprint(Term):- xnotrace(pprint_2(Term, always)).
+pprint(Term, When):- xnotrace(pprint_2(Term, When)).
 
 pprint_2(Term, When) :-
  bug(When),
@@ -223,7 +223,7 @@ ensure_has_prompt(Agent):-
 
 player_format(Fmt, List):-
  mu_current_agent(Agent) ->
- enotrace(player_format(Agent, Fmt, List)).
+ xnotrace(player_format(Agent, Fmt, List)).
 
 player_format(Agent, Fmt, List):-
  agent_to_output(Agent, OutStream),
@@ -281,7 +281,7 @@ tokenize_mw([_BadChar|Tail], Rest) :-
 log_codes([-1]).
 log_codes(_) :- \+ mu_global:input_log(_), !.
 log_codes(LineCodes) :-
- ignore(enotrace(catch((atom_codes(Line, LineCodes),
+ ignore(xnotrace(catch((atom_codes(Line, LineCodes),
  mu_global:input_log(FH),
  format(FH, '>~w\n', [Line])), _, true))).
 
@@ -340,7 +340,7 @@ line_to_tokens([NegOne], NegOne, end_of_file):-!.
 line_to_tokens(LineCodes, _NegOne, Tokens) :-
  last(LineCodes, L),
  memberchk(L, [46, 41|`.)`]),
- enotrace(catch((read_term_from_codes(LineCodes, Term,
+ xnotrace(catch((read_term_from_codes(LineCodes, Term,
   [syntax_errors(error), var_prefix(false),
   % variables(Vars),
   variable_names(VNs), cycles(true), dotlists(true), singletons(_)])), _, fail)),
@@ -366,7 +366,7 @@ line_to_tokens(LineCodes, _, Tokens):-
 
 :- multifile(prolog:history/2).
 save_to_history(LineCodes):-
- ignore(enotrace((
+ ignore(xnotrace((
  atom_string(AtomLineCodes, LineCodes), % dmsg(LineCodes->AtomLineCodes),
  current_input(In),
  ignore(catch(prolog:history(In, add(AtomLineCodes)), _, true))))).

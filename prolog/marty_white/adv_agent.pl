@@ -31,18 +31,30 @@ with_agent_console(Agent, Goal):-
 with_agent_console(Agent, Goal):-
  setup_call_cleanup(
   asserta(mu_global:current_agent_tl(Agent), E),
-   with_mutex(get_advstate, with_mutex(Agent,  Goal)), erase(E)), !.
+   with_mutex(get_advstate, with_mutex(Agent, Goal)), erase(E)), !.
 
 with_agents(_Pred1, []):-!.
 with_agents( Pred1, [Agent|More]) :- !, with_agents(Pred1, Agent), !, with_agents(Pred1, More).
-with_agents( Pred1, Agent):- with_agent_console(Agent, ignore(call(Pred1, Agent))).
+with_agents( Pred1, Agent):- with_agent_console(Agent, must(call(Pred1, Agent))).
 
 
 run_perceptq(Agent) :-
  declared(perceptq(Agent, PerceptQ)),
  set_advstate(perceptq(Agent, [])),
  do_percept_list(Agent, PerceptQ),!.
- 
+run_perceptq(_Agent) :- !. 
+
+/*
+:- defn_state_setter(run_perceptq(+agent)).
+run_perceptq(Agent, S0, S9) :-
+ % get_advstate(S0),
+ undeclare(perceptq(Agent, PerceptQ), S0, S1), PerceptQ \==[],
+ declare(perceptq(Agent, []), S1, S2),
+ %set_advstate(S9),
+ do_percept_list(Agent, PerceptQ, S2, S9), !.
+run_perceptq(_Agent, S0, S0).
+
+*/
 
 each_live_agent(NewGoal, S0, S2) :-
  get_live_agents(List, S0),
@@ -95,7 +107,7 @@ each_agent(Precond, NewGoal, S0, S2) :-
 % CODE FILE SECTION
 :- nop(ensure_loaded('adv_agent_goal')).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-:- defn_mem_setter(add_goal(agent,cmd)).
+:- defn_mem_setter(add_goal(agent, cmd)).
 add_goal(Agent, Goal, Mem0, Mem2) :- is_list(Goal), !,
  apply_mapl_state(add_goal(Agent), Goal, Mem0, Mem2).
 add_goal(Agent, Goal, Mem0, Mem2) :-
@@ -172,7 +184,7 @@ console_decide_action(Agent, Mem0, Mem1):-
  %thought(timestamp(T0), Mem0),
  %dbug1(read_pending_codes(In, Codes, Found, Missing)),
  % repeat,
- enotrace((
+ xnotrace((
  ttyflush,
  agent_to_input(Agent, In),
  must_mw1(is_stream(In)),
@@ -213,10 +225,15 @@ makep:-
 
 
 decide_action(Agent) :-
- declared(memories(Agent, Mem0)),
+ %pprint(decide_action(Agent)),
+ %get_advstate(State),
+  declared(memories(Agent, Mem0)),
  must_mw1(decide_action(Agent, Mem0, Mem2)),
+ Mem0 \== Mem2, !,
  set_advstate(memories(Agent, Mem2)).
+decide_action(_Agent) :- !.
 
+:- defn_mem_setter(run_perceptq(+agent)).
 decide_action(Agent, Mem0, Mem2):-
   forget_satisfied_goals(Agent, Mem0, Mem1), !,
   decide_action(Agent, Mem1, Mem2).
@@ -233,26 +250,26 @@ decide_action(Agent, Mem0, Mem0) :-
 
 decide_action(Agent, Mem0, Mem1) :-
  %must_mw1(thought(timestamp(T0), Mem0)),
- retract(mu_global:console_tokens(Agent, Words)), !,   
+ retract(mu_global:console_tokens(Agent, Words)), !,
  must_mw1((eng2log(Agent, Words, Action, Mem0),
  if_tracing(dbug(planner, 'Agent TODO ~p~n', [Agent: Words->Action])),
  add_todo(Agent, Action, Mem0, Mem1))).
 
 % Telnet client (Covered by the above)
-decide_action(Agent, Mem0, Mem1) :- 
+decide_action(Agent, Mem0, Mem1) :-
  fail,
- enotrace(declared(inherited(telnet), Mem0)), !,
+ xnotrace(declared(inherited(telnet), Mem0)), !,
  must_mw1(telnet_decide_action(Agent, Mem0, Mem1)).
 
 
 % Stdin Client
 decide_action(Agent, Mem0, Mem1) :-
  % fail,
- once(enotrace((declared(inherited(console), Mem0), current_input(In), agent_to_input(Agent, AgentIn)))),
+ once(xnotrace((declared(inherited(console), Mem0), current_input(In), agent_to_input(Agent, AgentIn)))),
  AgentIn == In,
  ensure_has_prompt(Agent),
  ttyflush,
- (tracing->catch(wait_for_input_safe([In], Found, 20.0), _, (nortrace, enotrace, break));
+ (tracing->catch(wait_for_input_safe([In], Found, 20.0), _, (nortrace, xnotrace, break));
                  wait_for_input_safe([In], Found, 0.0)),
  (Found==[] -> (Mem0=Mem1) ;  quietly(((console_decide_action(Agent, Mem0, Mem1))))).
 

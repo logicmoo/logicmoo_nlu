@@ -220,7 +220,7 @@ no_space_words(W1, W2) :-
 
 insert_spaces([W], [W]).
 insert_spaces([W1, W2|Tail1], [W1, W2|Tail2]) :-
- enotrace(no_space_words(W1, W2)),
+ xnotrace(no_space_words(W1, W2)),
  !,
  insert_spaces([W2|Tail1], [W2|Tail2]).
 insert_spaces([W1, W2|Tail1], [W1, ' ', W3|Tail2]) :-

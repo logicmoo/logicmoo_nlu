@@ -72,7 +72,7 @@ dest_target(loc(_, _, _, Target), Target):- nonvar(Target), !.
 :- dynamic(istate/1).
 % empty intial state
 :- retractall(istate(_)).
-:- asserta(istate([ structure_label(istate), propOf(istate, world) ])).
+:- asserta(istate([ structure_label(istate),propOf(istate, world) ])).
 
 % this hacks the state above
 :- push_to_state([
@@ -386,8 +386,10 @@ props(screendoor, [
    model_depth = 3,
    mass = 50, volume = 50, % liters  (water is 1 kilogram per liter)
    has_sense(see),
-   inherit(perceptq),
-   %inherit(no_perceptq),
+   
+    %inherit(perceptq),
+    inherit(no_perceptq),
+      
    inherit(memorizer),
    inherit(actor),
    inherit(autoscan),
@@ -429,6 +431,14 @@ props(screendoor, [
     inherit(actor)
    ]),
 
+
+  type_props(no_perceptq, [
+    ~inherit(perceptq)
+   ]),
+
+  type_props(perceptq, [
+    ~inherit(no_perceptq)
+   ]),
 
    % Places
  type_props(place, [

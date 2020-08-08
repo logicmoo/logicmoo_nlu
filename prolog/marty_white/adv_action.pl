@@ -119,10 +119,13 @@ do_command(Agent, Action) :-
 
 % --------
 
-do_todo(Agent):-
+/*
+new_do_todo(Agent):-
  get_advstate(S0),
  do_todo(Agent, S0, S9),
  set_advstate(S9), !.
+*/
+:- defn_state_setter(do_todo(+agent)).
 
 do_todo(Agent) ==>>
  sg(declared(memories(Agent, Mem0))),
@@ -136,6 +139,8 @@ do_todo(Agent, S0, S9) :-
  set_last_action(Agent, Action),
  do_command(Agent, Action, S2, S9).
 do_todo(_Agent, S0, S0).
+
+
 
 %do_todo_while(Agent, S0, S9) :-
 % declared(memories(Agent, Mem0), S0),

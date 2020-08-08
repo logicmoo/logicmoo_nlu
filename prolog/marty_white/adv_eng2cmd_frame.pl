@@ -185,7 +185,7 @@ verb_tenses(Verb,Verb,base).
 
 
 eng2logic_frame(Doer, SomeVerbText, FrameOut, _Mem):-
-    length(SomeVerbText,L), L > 2,
+    length(SomeVerbText,L), L > 5,
     %talkdb:talk_db(transitive, give, gives, gave, giving, given).    
     verb_frame1(Action, Verb, FrameArgSInfo, UNormals),
     verb_tenses(Verb, VerbText, Tense),
@@ -706,6 +706,62 @@ verb_frame1(Action,  Burn,
 end_of_file.
 
 
+
+joe gave sally love
+NP armed NP NP
+
+acnl('verbSemTrans','xArmTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actArmingAnAgent'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308003).
+acnl('verbSemTrans','xAwardTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307999).
+acnl('verbSemTrans','xBestowTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308006).
+acnl('verbSemTrans','xBestowTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actBestowing'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308002).
+acnl('verbSemTrans','xBringTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCarryingWhileLocomoting'),'transportees'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'doneBy'('ACTION','SUBJECT')),663266).
+acnl('verbSemTrans','xBuyTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'buyer'('ACTION','SUBJECT'),'objectPaidFor'('ACTION','OBJECT')),658092).
+acnl('verbSemTrans','xCastTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308512).
+acnl('verbSemTrans','xCastTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCastingAFishingLine'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308509).
+acnl('verbSemTrans','xCauseTheWord',2,'xDitransitiveNPNPFrame','causesThingprop'('SUBJECT','possessiveRelation'('OBJECT','OBLIQUE-OBJECT')),710353).
+acnl('verbSemTrans','xConsiderTheWord',0,'xDitransitiveNPNPFrame','opinions'('SUBJECT','isUnderspecified'('OBLIQUE-OBJECT','OBJECT')),761838).
+acnl('verbSemTrans','xCookTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCookingFood'),'beneficiary'('ACTION','INDIRECT-OBJECT'),'performedBy'('ACTION','SUBJECT'),'objectOfStateChange'('ACTION','OBJECT')),648799).
+acnl('verbSemTrans','xCostTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'buyer'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','SUBJECT'),'expenseFor'('INDIRECT-OBJECT','ACTION','OBJECT')),681250).
+acnl('verbSemTrans','xDecorateTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actDecoratingSomeoneGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307998).
+acnl('verbSemTrans','xDelegateTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventDelegatingAuthority'),'performedBy'('ACTION','SUBJECT'),'delegate'('ACTION','INDIRECT-OBJECT'),'delegatedAuthority'('ACTION',SIT_TYPE,'OBJECT')),779757).
+acnl('verbSemTrans','xDeliverTheWord',0,'xDitransitiveNPNPFrame','and'('objectsDelivered'('ACTION','OBJECT'),'isa'('ACTION','actDeliveringSomeoneSomething'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),2160880).
+acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308442).
+acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308208).
+acnl('verbSemTrans','xDonateTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actCharitableDonation'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307995).
+acnl('verbSemTrans','xFindTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventFindingSomething'),'objectFound'('ACTION','OBJECT'),'doneBy'('ACTION','SUBJECT'),'affectedAgent'('ACTION','INDIRECT-OBJECT')),1789907).
+acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308441).
+acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308207).
+acnl('verbSemTrans','xGetTheWord',3,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actGainingUserRights'),'performedBy'('ACTION','SUBJECT'),'toPossessor'('ACTION','OBJECT'),'objectOfPossessionTransfer'('ACTION','OBLIQUE-OBJECT')),2094972).
+acnl('verbSemTrans','xGiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),2046576).
+acnl('verbSemTrans','xGrantTheWord',24,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGrantingMoney'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307994).
+acnl('verbSemTrans','xHandTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694161).
+acnl('verbSemTrans','xIssueTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656364).
+acnl('verbSemTrans','xLeaveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'deliberateActors'('ACTION','SUBJECT')),656368).
+acnl('verbSemTrans','xLendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),675934).
+acnl('verbSemTrans','xLoanTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656359).
+acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308438).
+acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308204).
+acnl('verbSemTrans','xMakeTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingSomething'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'products'('ACTION','OBJECT')),640773).
+acnl('verbSemTrans','xPassTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694162).
+acnl('verbSemTrans','xPayTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656362).
+acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308440).
+acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308206).
+acnl('verbSemTrans','xProvideTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308005).
+acnl('verbSemTrans','xReadTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actReadingAloud'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'informationOrigin'('ACTION','OBJECT')),314572).
+acnl('verbSemTrans','xReceiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308007).
+acnl('verbSemTrans','xRefundTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),674612).
+acnl('verbSemTrans','xRentTheWord',0,'xDitransitiveNPNPFrame','rentsFrom'('INDIRECT-OBJECT','OBJECT','SUBJECT'),639082).
+acnl('verbSemTrans','xReserveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingAReservation'),'doneBy'('ACTION','SUBJECT'),'exists'(RESERVATION,'and'('outputs'('ACTION',RESERVATION),'objectReserved'(RESERVATION,'OBJECT')))),1319880).
+acnl('verbSemTrans','xReturnTheWord',2,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actReturningSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308001).
+acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308439).
+acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308205).
+acnl('verbSemTrans','xServeTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actServingFoodOrDrink'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),689166).
+acnl('verbSemTrans','xSubmitTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actSubmittingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307997).
+acnl('verbSemTrans','xSupplyTheWord',3,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308004).
+acnl('verbSemTrans','xThrowTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308510).
+acnl('verbSemTrans','xTipTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAGratuity'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308000).
+acnl('verbSemTrans','xTossTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308511).
+acnl('verbSemTrans',nartR('xWordWithPrefixFn','xReThePrefix','xGiftTheWord'),0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actRegifting'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307996).
 
 
 
