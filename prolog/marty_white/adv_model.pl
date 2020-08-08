@@ -74,6 +74,9 @@ update_model_exits([Exit|Tail], From, Timestamp, M0, M2) :-
  realize_model_exit(Exit, From, Timestamp, M0, M1),
  update_model_exits(Tail, From, Timestamp, M1, M2).
 
+
+dumpST_break:- dumpST, break.
+
 update_model(Knower, arriving(Agent, In, Here, Walk, ExitNameReversed), Timestamp, Mem, M0, M2) :-
    \+ in_model(h(exit(ExitNameReversed), Here, _There), M0),
    realize_model_exit(ExitNameReversed, Here, Timestamp, M0, M1),
@@ -121,28 +124,29 @@ update_model(Agent, carrying(Agent, Objects), Timestamp, _Memory, M0, M1) :-
 update_model(Agent, wearing(Agent, Objects), Timestamp, _Memory, M0, M1) :-
  update_relations( worn_by, Objects, Agent, Timestamp, M0, M1).
 
-update_model(Agent, percept(Agent, _Sense, _Depth, props(Object, PropList)), _Stamp, _Mem, M0, M2) :-
- apply_mapl_rest_state(updateprop(Object), PropList, [], M0, M2).
-
-update_model(Agent, percept(Agent, _Sense, _Depth, child_list(Object, At, Children)), Timestamp, _Mem, M0, M2) :-
- must_mw1((remove_children( At, Children, Object, Timestamp, M0, M1),
-   update_relations( At, Children, Object, Timestamp, M1, M2))).
 
 update_model(Agent, percept_props(Agent, _Sense, Object, _Depth, PropList), _Stamp, _Mem, M0, M2) :-
- apply_mapl_rest_state(updateprop(Object), PropList, [], M0, M2).
+ apply_mapl_rest_state(updateprop_from_create(Object), PropList, [], M0, M2).
 
 update_model(_Agent, props(Object, PropList), _Stamp, _Mem, M0, M2) :-
   apply_mapl_rest_state(updateprop(Object), PropList, [], M0, M2).
 
-
+% Wrong Agent !
 update_model(Agent, percept(Agent2, _, _, _Info), _Timestamp, _Mem, M0, M0):- Agent \=@= Agent2, !.
 % Model exits from Here.
 update_model(Agent, percept(Agent, _, _, exit_list(in, Here, ExitRelations)), Timestamp, _Mem, M0, M4) :-
   update_model_exits(ExitRelations, Here, Timestamp, M0, M4).
-
-% Model objects seen Here
-update_model(Agent, percept(Agent, _Sense, child_list(_Depth, There, Prep, Objects)), Timestamp, _Mem, M0, M3):- !,
+% Model objects seen Here.. This is no longer used right?
+update_model(Agent, percept(Agent, _Sense, child_list(_Depth, There, Prep, Objects)), Timestamp, _Mem, M0, M3):- 
+   dumpST_break, !,
    update_relations(Prep, Objects, There, Timestamp, M0, M3).
+% Model objects seen Here ... this replaces the above code
+update_model(Agent, percept(Agent, _Sense, _Depth, child_list(Object, At, Children)), Timestamp, _Mem, M0, M2) :-
+ must_mw1((remove_children( At, Children, Object, Timestamp, M0, M1),
+   update_relations( At, Children, Object, Timestamp, M1, M2))).
+% Copy objects props Here
+update_model(Agent, percept(Agent, _Sense, _Depth, props(Object, PropList)), _Stamp, _Mem, M0, M2) :-
+  apply_mapl_rest_state(updateprop_from_create(Object), PropList, [], M0, M2).
 
 update_model(_Agent, [], _Timestamp, _Memory, M, M).
 update_model(Agent, [Percept|Tail], Timestamp, Memory, M0, M2) :-

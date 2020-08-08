@@ -136,16 +136,21 @@ apply_all([Arg|ArgTail], Goal, S0, S2) :-
 
 apply_mapl_rest_state(_Front, [], _Rest, S, S).
 apply_mapl_rest_state(Front, [E|List], Rest, S0, S2) :-
- copy_term(Front+Rest, FrontC+RestC),
- apply_state_rest(Front, E, Rest, S0, S1),
- apply_mapl_rest_state(FrontC, List, RestC, S1, S2).
+ copy_term(Front+List+Rest, FrontC+ListC+RestC),
+ must_or_rtrace(apply_state_rest(Front, E, Rest, S0, S1)),
+ apply_mapl_rest_state(FrontC, ListC, RestC, S1, S2).
 
 as_rest_list(Rest, RestL):- is_list(Rest)->Rest=RestL;Rest univ_safe [_|RestL].
 
-apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),
-   append(E, RestL, ERestL), append(ERestL, [S0, S1], APPLYARGS),
-   apply(Front, APPLYARGS).
+apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),   
+   append([E|RestL], [S0, S1], APPLYARGS),
+   apply_to_call(Front, APPLYARGS, Call),
+   (call(Call)->!;(nortrace,trace,dumpST_break,Call)).
 
+apply_to_call(Front, APPLYARGS, Call):-
+  append_goal_mw(Front, APPLYARGS, Call), !.
+apply_to_call(Front, APPLYARGS, Call):-
+  Call = apply(Front, APPLYARGS), !.
 
 append_goal_mw(Goal, List, Call):-
  xnotrace((compound_name_arguments(Goal, F, GoalL),

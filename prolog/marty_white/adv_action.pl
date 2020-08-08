@@ -109,8 +109,8 @@ psubsetof(A, C) :-
 maybe_pause(Agent):- stdio_player(CP), (Agent==CP -> wait_for_input([user_input], _, 0) ; true).
 
 do_command(Agent, Action) ==>>
-  {overwrote_prompt(Agent)},
-  do_metacmd(Agent, Action), !.
+  do_metacmd(Agent, Action),
+  {overwrote_prompt(Agent)}, !.
 do_command(Agent, Action) ==>>
   {set_last_action(Agent, Action)},
  do_action(Agent, Action), !.
@@ -277,7 +277,9 @@ act_change_opposite(f,t):-!.
 act_change_opposite(t,f):-!.
 act_change_opposite(F,T):- act_change_opposite_0(T,F),!.
 act_change_opposite(T,F):- act_change_opposite_0(T,F),!.
+
 act_change_opposite_0('close','open').
+act_change_opposite_0(Auto,_):- parsed_as_simple(Auto),!,fail.
 act_change_opposite_0(UnOpen,Open):- (atom(Open) -> \+ atom_concat('un',_,Open) ; atom(UnOpen)),
     atom_concat('un',Open,UnOpen).
 
@@ -372,7 +374,7 @@ action_doer(Action, Agent):- trace, throw(missing(action_doer(Action, Agent))).
 
 action_verb_agent_thing(Action, Verb, Agent, Thing):-
   action_verb_agent_args(Action, Verb, Agent, Args),
-  (Args=[Thing]->true;Thing=_), !.
+  (Args=[[Thing]]->true;Args=[Thing]->true;Thing=_), !.
 
 action_verb_agent_args(Action, Verb, Agent, Args):- 
   univ_safe(Action, [Verb,Agent|Args]),

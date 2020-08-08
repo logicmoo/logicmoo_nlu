@@ -175,20 +175,33 @@ do_metacmd(Doer, PropCmd, S0, S1) :-
  action_verb_agent_args(PropCmd, setprop, _, [Object | Args]), Prop =.. Args,
  must_security_of(Doer, wizard),
  setprop(Object, Prop, S0, S1),
- player_format(Doer, 'Properties of ~p now include ~w~n', [Object, Prop]).
+ player_format(Doer, 'Set ~p ~p.~n', [Object,Prop]),
+ do_metacmd(Doer, properties(Object), S1, S1).
+
+do_metacmd(Doer, PropCmd, S0, S1) :-
+ action_verb_agent_args(PropCmd, updateprop, _, [Object | Args]), Prop =.. Args,
+ must_security_of(Doer, wizard),
+ updateprop(Object, Prop, S0, S1),
+ player_format(Doer, 'Update ~p ~p.~n', [Object,Prop]),
+ do_metacmd(Doer, properties(Object), S1, S1).
+
 do_metacmd(Doer, DelProp, S0, S1) :-
  action_verb_agent_args(DelProp, delprop, _, [Object | Args]), Prop =.. Args,
  must_security_of(Doer, wizard),
  delprop(Object, Prop, S0, S1),
- player_format(Doer, 'Deleted.~n', []).
+ player_format(Doer, 'Deleted ~p ~p.~n', [Object,Prop]),
+ do_metacmd(Doer, properties(Object), S1, S1).
 
-do_metacmd(Doer, properties(Object), S0, S0) :-
+do_metacmd(Doer, Properties, S0, S0) :-
+ action_verb_agent_thing(Properties, properties, _, Object), % Prop =.. Args,
  must_security_of(Doer, wizard),
  (declared(props(Object, PropList), S0);declared(type_props(Object, PropList), S0)), !,
- player_format(Doer, 'Properties of ~p are now ~w~n', [Object, PropList]).
+ player_format(Doer, 'Properties now: ~@~n', [pprint(props(Object, PropList))]).
+
 do_metacmd(Doer, undo, S0, S1) :-
  declare(wants(Doer, undo), S0, S1),
  player_format(Doer, 'undo...OK~nKO...odnu~n', []).
+
 do_metacmd(_Doer, save(Basename), S0, S0) :-
  atom_concat(Basename, '.adv', Filename),
  save_term_exists(Filename, S0).
