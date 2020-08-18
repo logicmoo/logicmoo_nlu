@@ -84,7 +84,7 @@ convert_reflexive_self(Agent, Words, NewWords) :-
     Token = Word )),
    NewWords).
 
-:- discontiguous(eng2logic/4).
+:- discontiguous(eng2logic4/4).
 :- discontiguous(parse_cmd/4).
 
 % %%%%%%%%%%%%%%
@@ -128,13 +128,29 @@ parse2state(Text, State):- % reframed_call( Pred, Term, Logic).
 
 parseFrame(e2l, [current_subject(vSpeaker)]).
 
+eng2log(Agent, Words, Logic, Mem):- reframed_call( eng2logic, Agent, Words, Logic, Mem).
+eng2cmd(Agent, Words, Logic, Mem):- reframed_call( eng2action, Agent, Words, Logic, Mem).
+
 eng2log(Term, Logic)  :- eng2logic(Term, Logic).
+
 eng2logic(Term, Logic):- reframed_call(eng2logic, Term, Logic).
-eng2cmd(Term, Logic)  :- reframed_call(eng2cmd, Term, Logic).
+eng2action(Term, Logic)  :- reframed_call(eng2action, Term, Logic).
 eng2state(Term, Logic):- reframed_call(eng2state, Term, Logic).
 eng2query(Term, Logic):- reframed_call(eng2state, Term, Logic).
 
-eng2log(Agent, Words, Logic, Mem):- reframed_call( eng2logic, Agent, Words, Logic, Mem).
+eng2action(Doer, Cmd, Action, M) :- 
+  eng2cmd4(Doer, Cmd, Action, M),!.
+eng2action(Doer, Cmd, Action, M) :- ( \+ Cmd = [Doer|_] ),
+  eng2logic4(Doer, [Doer|Cmd], Action, M).
+
+eng2logic(Self, Words, Cmd, Mem):- [Self|AsCmd] = Words, !,
+   eng2cmd4( Self, AsCmd, Cmd, Mem), !.
+eng2logic(Self, Words, Cmd, Mem):- eng2cmd4( Self, Words, Cmd, Mem), !.
+eng2logic(Self, Words, Logic, Mem):- show_success(eng2state( Self, Words, Logic, Mem)), !.
+eng2logic(Self, Words, Logic, Mem):- append([Self, wonders], Words, Decl), show_success(eng2state( Self, Decl, Logic, Mem)), !.
+
+
+
 
 reframed_call(_Pred, Text, _Logic):- var(Text),dumpST,break.
 reframed_call(Pred, Text, Logic):-
@@ -164,15 +180,6 @@ reframed_call( Pred, Doer, [cls|Args], Logic, M) :- Args\==[], !, cls, reframed_
 
 reframed_call( Pred, Self, Words, Logic, Mem):- call( Pred, Self, Words, Logic, Mem).
 
-eng2logic(Self, Words, Cmd, Mem):- 
-   [Self|AsCmd] = Words, 
-   eng2cmd( Self, AsCmd, Cmd, Mem), !.
-   
-eng2logic(Self, Words, Cmd, Mem):-      
-   eng2cmd( Self, Words, Cmd, Mem), !.
-eng2logic(Self, Words, Logic, Mem):- show_success(eng2state( Self, Words, Logic, Mem)), !.
-eng2logic(Self, Words, frame(Cmd), Mem):- eng2logic_frame( Self, Words, Cmd, Mem), !.
-eng2logic(Self, Words, Logic, Mem):- append([Self, wonders], Words, Decl), show_success(eng2state( Self, Decl, Logic, Mem)), !.
 
 /*
 reframed_call( Pred, Doer, [Verb], Action, _M) :- Action=..[Verb, Doer], !.
@@ -201,60 +208,61 @@ user:parse_chat80(Text, Q):-
    try_maybe_p(parser_chat80:qplan, C, Q))).
 */
 
-eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_one_or_zero_arg(Verb), !,
-  (Args =[A|Text] ->
-     Logic =.. [Verb, [A|Text]];
-     Logic = Verb).
+eng2cmd4(_Self, [Verb|Args], Logic, _M) :- atom(Verb), verbatum_anon_one_or_zero_arg(Verb), !,
+  (Args =[_,_|_] ->
+     Logic =.. [Verb, Args];
+     Logic =.. [Verb |Args]).
 
-eng2cmd(_Self, [Verb|Args], Logic, _M) :- verbatum_anon_n_args(Verb), !,
-  (Args =[A|Text] ->
-     Logic =.. [Verb, A|Text];
-     Logic = Verb).
+eng2cmd4(_Self, [Verb|Args], Logic, _M) :-  atom(Verb), verbatum_anon_n_args(Verb), !,
+  (Args =[_,_|_] ->
+      Logic =.. [Verb |Args];
+      Logic =.. [Verb |Args]).
 
-eng2cmd(Self, [Alias|Args], Logic, Mem):- cmdalias(Alias, Cmd), !, eng2cmd(Self, [Cmd|Args], Logic, Mem).
-eng2cmd(Doer, Words, Action, M) :- parse_imperative_movement(Doer, Words, Action, M), !.
+
+eng2cmd4(Self, Words, frame(Cmd), Mem):- 
+  length(Words,L), L > 3, eng2logic_frame( Self, Words, Cmd, Mem), !.
+
+
+eng2cmd4(Self, [Alias|Args], Logic, Mem):- cmdalias(Alias, Cmd), !, eng2cmd4(Self, [Cmd|Args], Logic, Mem).
+eng2cmd4(Doer, Words, Action, M) :- parse_imperative_movement(Doer, Words, Action, M), !.
 
 % %%%%%%%%%%%%%%
 % Take
 % %%%%%%%%%%%%%%
 
-eng2cmd(Doer, [take| ObjectSpec], take(Doer, Object), Mem) :- parse2object(ObjectSpec, Object, Mem), !.
+eng2cmd4(Doer, [take| ObjectSpec], take(Doer, Object), Mem) :- parse2object(ObjectSpec, Object, Mem), !.
 
-eng2cmd(Doer, Tokens, Logic, Mem) :-
+eng2cmd4(Doer, Tokens, Logic, Mem) :-
   with_parse_mem(Mem, phrase(parse_cmd(Doer, Logic), Tokens, [])), !.
 
-eng2cmd(Doer, Words, Action, M) :- fail,
+eng2cmd4(Doer, Words, Action, M) :- fail,
  Words \== [i], % Dont interfere with inventory
  % If not talking to someone else, substitute Agent for 'self'.
  append(Before, [Doer|After], Words),
  reflexive_self(Doer),
  once(thought(propOf(memories, Agent), M);thought(inst(Agent), M)),
  append(Before, [Agent|After], NewWords),
- reframed_call(eng2cmd, Doer, NewWords, Action, M).
+ reframed_call(eng2cmd4, Doer, NewWords, Action, M).
 
 
 
-eng2cmd(Doer, [TheVerb|Args], Action, M) :- 
+eng2cmd4(Doer, [TheVerb|Args], Action, M) :- 
  (F==intransitive;F==transitive),
  (TheVerb = Verb ; Verb = _),
  quietly_talk_db([F, Verb, THE|Forms]),
  member(TheVerb, [Verb, THE|Forms]),
  
- eng2cmd(Doer, [Verb|Args], Action, M).
+ eng2cmd4(Doer, [Verb|Args], Action, M).
 
-eng2cmd( Self, Words, Logic, Mem):-  fail,
+eng2cmd4( Self, Words, Logic, Mem):-  fail,
     \+ member(Self, Words),
    (get_agent_prompt(Self, Prompt)->true;Prompt = [does]),
    append([Self|Prompt], Words, Decl), eng2state( Self, Decl, Logic, Mem), !.
 
-eng2cmd(Doer, [TheVerb|Args], Action, M) :-
+eng2cmd4(Doer, [TheVerb|Args], Action, M) :-
  munl_call(clex_verb(TheVerb, Verb, _, _)),
  Verb\==TheVerb, !,
- eng2cmd(Doer, [Verb|Args], Action, M).
-
-
-eng2cmd(Doer, Cmd, Action, M) :- ( \+ Cmd = [Doer|_] ),
-  eng2logic(Doer, [Doer|Cmd], Action, M).
+ eng2cmd4(Doer, [Verb|Args], Action, M).
 
 
 % %%%%%%%%%%%%%%
@@ -263,7 +271,8 @@ eng2cmd(Doer, Cmd, Action, M) :- ( \+ Cmd = [Doer|_] ),
 
 parsed_as_simple(X):- arg(_, v(look, wait, auto, inventory), X).
 
-parse_cmd(Agent, Logic) --> [X], {parsed_as_simple(X0), same_verb(X0, X), !, Logic=..[X0, Agent]}.
+%parse_cmd(Agent, Logic) --> [X], {parsed_as_simple(X0), same_verb(X0, X), !, Logic=..[X0, Agent]}.
+parse_cmd(Agent, Logic) --> [X|Args], {parsed_as_simple(X0), same_verb(X0, X), !, Logic=..[X0, Agent|Args]}.
 
 
 parse_cmd(Agent, Cmd) --> [Alias], {cmdalias(Alias, Cmd), flatten([Cmd], Flat)}, dcg_push(Flat), parse_cmd(Agent, Cmd).
@@ -417,6 +426,7 @@ do_eval_or_same(PEG, PEGG):- xnotrace((compound_name_arguments(PEG, F, Args), do
   append(Left, [G], Args))), ground(G), \+ string(G), !, must_mw(to_string_lc(G, GG)), !,
   append(Left, [GG], NewArgs), compound_name_arguments(PEGG, F, NewArgs).
 */
+do_eval_or_same(iza(P, G), Out):- !, do_eval_or_same(isa(P, G), Out). 
 do_eval_or_same(isa(P, G), isa(P, GG)):- ground(G), !, must_mw(asCol(G, GG)), !.
 
 do_eval_or_same(xfn(P, G), GG):- !, must_mw( call(P, G, GG)), !.

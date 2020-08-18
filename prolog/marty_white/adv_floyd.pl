@@ -146,7 +146,7 @@ always_action(go_dir(_, _, _)).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 consider_text(Speaker, _EmoteType, Agent, Words, Mem0, Mem1):-
- eng2log(Agent, Words, Action, Mem0) ->
+ eng2cmd(Agent, Words, Action, Mem0) ->
  consider_request(Speaker, Agent, Action, Mem0, Mem1).
 
 % For now, agents will attempt to satisfy all commands.

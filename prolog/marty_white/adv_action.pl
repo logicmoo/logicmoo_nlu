@@ -170,7 +170,7 @@ do_action(Agent, Action, S0, S3) :-
  undeclare(memories(Agent, Mem0), S0, S1),
  memorize_doing(Agent, Action, Mem0, Mem1),
  declare(memories(Agent, Mem1), S1, S2))),
- dmust_tracing(must_act( Action, S2, S3)), !.
+ once(show_failure(must_act( Action, S2, S3));S2=S3), !.
 
 memorize_doing(_Agent, Action, Mem0, Mem0):- has_depth(Action), !.
 memorize_doing(Agent, Action, Mem0, Mem2):-

@@ -406,7 +406,6 @@ type_functor(unk, satisfy_each(A, B)).
 type_functor(unk, success(followed_plan(A, B))).
 type_functor(unk, assert_text(A, B)).
 type_functor(unk, assert_text(A)).
-type_functor(unk, eng2log(A)).
 type_functor(unk, type(A, B)).
 type_functor(unk, unknown_push_to_state(A)).
 type_functor(unk, parse_for_kind(state, A, B)).
@@ -608,7 +607,6 @@ type_functor(unk, talk(A, B, *, C)).
 type_functor(unk, say(A, B)).
 type_functor(unk, talk(A, B, C)).
 type_functor(unk, todo_english(A, B)).
-type_functor(unk, eng2log(A, B, C, D, E)).
 type_functor(unk, do_english(A, B)).
 type_functor(unk, answer(A)).
 type_functor(unk, aXiom(A)).

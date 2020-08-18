@@ -220,7 +220,7 @@ telnet_decide_action(Agent, Mem0, Mem0):-
 telnet_decide_action(Agent, Mem0, Mem1) :-
  %must_mw1(thought(timestamp(T0), Mem0)),
  retract(mu_global:console_tokens(Agent, Words)), !,
- must_mw1((eng2log(Agent, Words, Action, Mem0),
+ must_mw1((eng2cmd(Agent, Words, Action, Mem0),
  if_tracing(dbug(telnet, 'Telnet TODO ~p~n', [Agent: Words->Action])),
  add_todo(Agent, Action, Mem0, Mem1))), !.
 telnet_decide_action(Agent, Mem, Mem) :-

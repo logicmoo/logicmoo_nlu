@@ -68,9 +68,9 @@ aXiom( Action) ==>>
     ; (satisfy_each(postCond(_2), Postconds), send_1percept(Agent, success(Action)))), !.
 
 
-:- defn_state_getter(eng2log(agent, english, action)).
+:- defn_state_getter(eng2cmd(agent, english, action)).
 aXiom(do_english(Agent, English)) ==>>
- eng2log(Agent, English, Action),
+ eng2cmd(Agent, English, Action),
  add_todo(Agent, Action).
 
 aXiom(todo_english(Agent, English)) ==>> !,

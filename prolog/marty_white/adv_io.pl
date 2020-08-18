@@ -451,22 +451,24 @@ using_stream_in(Stream, OtherAgent):- mu_global:console_io_conn_history(Id, Alia
 using_stream(Stream, OtherAgent):- using_stream_in(Stream, OtherAgent).
 using_stream(Stream, OtherAgent):- mu_global:console_io_player(_, Stream, OtherAgent).
 
-agent_to_output( Agent, Stream):- mu_global:console_io_player(_, Stream, Agent), !.
-agent_to_output( Agent, Stream):- mu_global:console_io_player(InStream, _, Agent), stream_pairs(InStream, Stream), !.
-agent_to_output(_Agent, Stream):- current_output(Stream), \+ using_stream(Stream, _Other), !.
-agent_to_output(_Agent, Stream):- stream_property(Stream, file_no(1)), \+ using_stream(Stream, _Other), !.
-agent_to_output( Agent, Stream):- fail, agent_to_input(Agent, In), stream_property(In, file_no(F)), F > 2, stream_property(Stream, file_no(F)), stream_property(Stream, write), !.
-agent_to_output( Agent, Stream):- dmsg(throw(agent_io(Agent, agent_to_output(Agent, Stream)))), stream_property(Stream, file_no(2)),!.
+agent_to_output( Agent, Stream):- notrace(agent_to_output0( Agent, Stream)).
+agent_to_output0( Agent, Stream):- mu_global:console_io_player(_, Stream, Agent), !.
+agent_to_output0( Agent, Stream):- mu_global:console_io_player(InStream, _, Agent), stream_pairs(InStream, Stream), !.
+agent_to_output0(_Agent, Stream):- current_output(Stream), \+ using_stream(Stream, _Other), !.
+agent_to_output0(_Agent, Stream):- stream_property(Stream, file_no(1)), \+ using_stream(Stream, _Other), !.
+agent_to_output0( Agent, Stream):- fail, agent_to_input(Agent, In), stream_property(In, file_no(F)), F > 2, stream_property(Stream, file_no(F)), stream_property(Stream, write), !.
+agent_to_output0( Agent, Stream):- dmsg(throw(agent_io(Agent, agent_to_output(Agent, Stream)))), stream_property(Stream, file_no(2)),!.
 %agent_to_output(Agent, Stream):- mu_global:console_host_io_history_unused(_Id, _Alias, _In, Stream, _Host, _Peer, Agent), !.
 
 % agent_to_input(Agent, In):- mu_global:already_consumed_input(Agent, _SoFar), In=Agent,
-agent_to_input(StreamNotAgent, Stream):- is_stream(StreamNotAgent), stream_property(StreamNotAgent, input), !, Stream=StreamNotAgent.
-agent_to_input(StreamNotAgent, Stream):- is_stream(StreamNotAgent), using_stream(StreamNotAgent, OtherAgent), !, using_stream_in(Stream, OtherAgent).
-agent_to_input( Agent, Stream):- using_stream_in(Stream, Agent), !.
-agent_to_input(_Agent, Stream):- current_input(Stream), \+ using_stream(Stream, _Other), !.
-agent_to_input(_Agent, Stream):- stream_property(Stream, file_no(0)), \+ using_stream(Stream, _Other), !.
-agent_to_input( Agent, Stream):- fail, agent_to_output(Agent, Stream), stream_property(Stream, file_no(F)), stream_property(Stream, file_no(F)), stream_property(Stream, read), !.
-agent_to_input( Agent, Stream):- dmsg(throw(agent_io(Agent, agent_to_input(Agent, Stream)))).
+agent_to_input( Agent, Stream):- notrace(agent_to_input0( Agent, Stream)).
+agent_to_input0(StreamNotAgent, Stream):- is_stream(StreamNotAgent), stream_property(StreamNotAgent, input), !, Stream=StreamNotAgent.
+agent_to_input0(StreamNotAgent, Stream):- is_stream(StreamNotAgent), using_stream(StreamNotAgent, OtherAgent), !, using_stream_in(Stream, OtherAgent).
+agent_to_input0( Agent, Stream):- using_stream_in(Stream, Agent), !.
+agent_to_input0(_Agent, Stream):- current_input(Stream), \+ using_stream(Stream, _Other), !.
+agent_to_input0(_Agent, Stream):- stream_property(Stream, file_no(0)), \+ using_stream(Stream, _Other), !.
+agent_to_input0( Agent, Stream):- fail, agent_to_output(Agent, Stream), stream_property(Stream, file_no(F)), stream_property(Stream, file_no(F)), stream_property(Stream, read), !.
+agent_to_input0( Agent, Stream):- dmsg(throw(agent_io(Agent, agent_to_input(Agent, Stream)))).
 %agent_to_input( OtherAgent, Stream):- agent_to_input( Agent, Stream).
 %agent_to_input(Agent, Stream):- mu_global:console_host_io_history_unused(_Id, _Alias, Stream, _Out, _Host, _Peer, Agent), !.
 

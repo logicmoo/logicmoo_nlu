@@ -85,7 +85,7 @@ get_agent_memory(Agent, Mem):-
 get_advstate_varname(Varname):- nb_current(advstate_var, Varname), Varname\==[], !.
 % get_advstate_varname(advstate_db).
 
-get_advstate_db(State):- var(State), !, findall(State1, advstate_db(State1), StateL), flatten([StateL], State).
+get_advstate_db(State):- var(State), !, findall(State1, advstate_db(State1), StateL), flatten([structure_label(cur_state),StateL], State).
 get_advstate_db(State):- advstate_db(State).
 
 into_ref(State,State):-!.
@@ -111,14 +111,14 @@ get_advstate_0(State):- with_mutex(get_advstate,
 */
 
 
-set_advstate(StateRef):- xnotrace((from_ref(StateRef,State), set_advstate_0(State))).
+set_advstate(StateRef):- notrace((from_ref(StateRef,State), set_advstate_0(State))).
 
 set_advstate_0(State):- 
   with_mutex(get_advstate,((get_advstate_varname(Var), nb_current(Var, PreState), PreState\==[]) -> 
    nb_setval(Var, State) ; set_advstate_db(State))).
 
 set_advstate_db(State):- from_ref(State,State0),
-  xnotrace((set_advstate_db_1(State0),
+  notrace((set_advstate_db_1(State0),
   nop(record_saved(State0)))),!.
 
 
@@ -177,8 +177,8 @@ memorize_edit(Pred3, Figment, M0, M2) :- assertion(\+ is_list(Figment)),
 memorize_appending(Figment, M0, M2) :-  memorize_edit(append, Figment, M0, M2).
 
 % Manipulate memories (M stands for Memories)
-memorize(Figment, M0, M1) :- assertion(\+ is_list(Figment)), xnotrace(append([Figment], M0, M1)).
-% memorize(Figment, M0, M1) :- xnotrace(append([Figment], M0, M1)).
+memorize(Figment, M0, M1) :- assertion(\+ is_list(Figment)), notrace(append([Figment], M0, M1)).
+% memorize(Figment, M0, M1) :- notrace(append([Figment], M0, M1)).
 forget(Figment, M0, M1) :- select_from(Figment, M0, M1).
 forget_always(Figment, M0, M1) :- select_always(Figment, M0, M1).
 %forget_default(Figment, Default, M0, M1) :-
@@ -207,7 +207,7 @@ agent_thought_model(Agent, ModelData, M0):- declared(memories(Agent, M1), M0), !
 
 :- export(declare/3).
 %:- defn_state_setter(declare(fact)).
-select_from(Fact, State, NewState) :- xnotrace((assertion(var(NewState)), is_list(State))), !, xnotrace(select_from_list(Fact, State, NewState)).
+select_from(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(select_from_list(Fact, State, NewState)).
 select_from(Fact, inst(Object), inst(Object)):- !,
    get_advstate(State),
    (declared(props(Object, PropList), State);PropList=[]), !,
@@ -248,7 +248,7 @@ select_always(Item, List, ListWithoutItem) :- select_from(Item, List, ListWithou
 
 declare(Fact, State, NewState):- declare_0(Fact, State, NewState).
 
-declare_0(Fact, State, NewState) :- xnotrace((assertion(var(NewState)), is_list(State))), !, xnotrace(declare_list(Fact, State, NewState)).
+declare_0(Fact, State, NewState) :- notrace((assertion(var(NewState)), is_list(State))), !, notrace(declare_list(Fact, State, NewState)).
 declare_0(Fact, inst(Object), inst(Object)):- !,
    get_advstate(State),
    (declared(props(Object, PropList), State);PropList=[]), !,
@@ -291,7 +291,7 @@ declare_list(Fact, State, NewState) :- append([Fact], State, NewState).
 
 
 %undeclare(Fact, State):- player_local(Fact, Player), !, undeclare(wishes(Player, Fact), State).
-undeclare(Fact, State, NewState):- xnotrace(undeclare_list(Fact, State, NewState)).
+undeclare(Fact, State, NewState):- notrace(undeclare_list(Fact, State, NewState)).
 undeclare_list(Fact, State, NewState) :- assertion(is_list(State)), copy_term(State, Copy), select_from(Fact, State, NewState),
  assertion( \+ member(Copy , NewState)).
 
@@ -305,7 +305,7 @@ declared(State) :- % dumpST,throw
 
 :- export(declared/2).
 :- defn_state_getter(declared(fact)).
-declared(Fact, State) :- declared_0(Fact, State).
+declared(Fact, State) :- quietly(declared_0(Fact, State)).
 
 declared_0(Fact, State) :-
   quietly(( is_list(State)->declared_list(Fact, State);declared_link(declared, Fact, State))).
@@ -439,7 +439,7 @@ each_prop(Pred, Prop, S0, S1):- assertion(compound(Prop)), call(Pred, Prop, S0, 
 
 % Remove Prop.  @TODO @BUG may not undo side-effects 
 :- defn_state_setter(delprop(thing, nv)).
-delprop(Object, Prop, S0, S2) :- xnotrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_(Object), PropList, S0, S2)))).
+delprop(Object, Prop, S0, S2) :- notrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_(Object), PropList, S0, S2)))).
 delprop_(Object, Prop, S0, S2) :-
  undeclare(props(Object, PropList), S0, S1),
  select_from(Prop, PropList, NewPropList),
@@ -447,14 +447,14 @@ delprop_(Object, Prop, S0, S2) :-
 
 % Remove Prop Always. @TODO @BUG may not undo side-effects 
 :- defn_state_setter(delprop_always(thing, nv)).
-delprop_always(Object, Prop, S0, S2) :- xnotrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_always_(Object), PropList, S0, S2)))).
+delprop_always(Object, Prop, S0, S2) :- notrace(must_mw1((correct_props(Object, Prop, PropList), each_prop(delprop_always_(Object), PropList, S0, S2)))).
 delprop_always_(Object, Prop, S0, S2) :-  delprop_(Object, Prop, S0, S2), !.
 delprop_always_(_Object, _Prop, S0, S0).
 
 % Replace or create Prop.
 :- defn_state_setter(setprop(thing, nv)).
 setprop(Object, Prop, S0, S2):- create_objprop(setprop, Object, Prop, S0, S2),!.
-setprop_from_create(Object, Prop, S0, S2) :- xnotrace((correct_props(Object, Prop, PropList), each_prop(setprop_(Object), PropList, S0, S2))).
+setprop_from_create(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), each_prop(setprop_(Object), PropList, S0, S2))).
 
 setprop_(Object, Prop, S0, S2) :- 
   assertion(is_list(S0)),
@@ -479,7 +479,7 @@ setprop_(Object, Prop, S0, S2) :-
 :- defn_state_setter(updateprop(thing, nv)).
 updateprop(Object, Prop, S0, S2):- create_objprop(updateprop, Object, Prop, S0, S2).
 
-updateprop_from_create(Object, Prop, S0, S2) :- xnotrace((correct_props(Object, Prop, PropList), 
+updateprop_from_create(Object, Prop, S0, S2) :- notrace((correct_props(Object, Prop, PropList), 
   must(each_prop(updateprop_(Object), PropList, S0, S2)))).
 
 updateprop_(Object, Prop, S0, S2) :- 
@@ -593,8 +593,6 @@ push_2_state(type_props(Obj, Conj)):-  props_to_list(Conj, List) -> Conj\== List
 push_2_state(StateInfo):- StateInfo=..[F, Obj, E1, E2|More], functor_arity_state(F, 2), !, StateInfoNew=..[F, Obj, [E1, E2|More]], !, push_2_state(StateInfoNew).
 push_2_state(StateInfo):- props_to_list(StateInfo, StateInfo2)->StateInfo2\=[StateInfo], !, push_2_state(StateInfo2).
 
-push_2_state(eng2log(Text)):- must(eng2log(istate, Text, Translation, [])), push_2_state(Translation).
-push_2_state(eng2log(_Text, Translation)):- !, push_2_state(Translation).
 push_2_state(assert_text(Text)):- must(eng2log(istate, Text, Translation, [])), push_2_state(Translation).
 push_2_state(assert_text(Where, Text)):- !, must(eng2log(Where, Text, Translation, [])), push_2_state(Translation).
 

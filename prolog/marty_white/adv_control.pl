@@ -19,3 +19,6 @@ setup_moo ==> {writeln(setup_moo)}.
 setup_moo2 ==> {writeln(setup_moo2)}.
 
 
+:- ensure_loaded(adv_lexical).
+
+:- set_prolog_flag(debugger_write_options, [quoted(true), portray(true), max_depth(20), attributes(dots)]).

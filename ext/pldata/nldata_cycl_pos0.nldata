@@ -20,8 +20,11 @@
 % =======================================================
 % utterance breaker
 % =======================================================
+:- export(sentenceTagger/1).
+
 sentenceTagger(String):-sentenceTagger(String,X),dumpList(X).
 
+:- export(sentenceBreaker/2).
 sentenceBreaker(String,BrokenA):-
       getWordTokens(String,Words),!,
       sentenceBreakerRespace(Words,Broken000),
@@ -29,6 +32,7 @@ sentenceBreaker(String,BrokenA):-
       sentenceBreakerDenoter(Broken00,Broken0),
       sentenceBreakerReMWS(Broken00,Broken0,BrokenA),!.
       
+:- export(sentenceTagger/2).
 sentenceTagger(String,Tagged):-
       sentenceBreaker(String,BrokenA),!,
       sentencePos(BrokenA,Tagged).
@@ -125,6 +129,7 @@ getPos(S,POSP,Word):-cycQuery(and(wordForms(Word,Pred,string(S)),speechPartPreds
 % ================================================================================
 % sentenceViterbi/2
 % ================================================================================
+:- export(sentenceViterbi/2).
 sentenceViterbi(In,Out):-!,
      append(In,[  [[txt,('.')], _:_ , 0.8 - ('.'), 'BEST'|'NIL'] ], Do),
       most_probable_hmm_path(In,_,Best),!,
@@ -136,7 +141,7 @@ replacePOSFixer([S|In],[B|Best],[O|Out]):-
       replacePOSFixer(In,Best,Out),!.
 replacePOSFixer(S,B,S):-nl,writeq(replacePOSFixer(S,B,O)),nl,nl. %true.
 
-
+:- export(e2p/2).
 e2p(S,O):- sentenceBreaker(S,B),most_probable_hmm_path(B,_,O).
 
 testPos :- e2p([can,he,can,can,a,can],Path), write(Path),nl.

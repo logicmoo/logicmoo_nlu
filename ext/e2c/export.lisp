@@ -100,6 +100,7 @@
 	))
 
 (defvar *a* ())
+(csetq *a* ())
 (defvar *ASSRTID* ())
 (define assertion-id-plusn (assrt) (ret (- (assertion-id assrt))))
 (define deduction-id-plusn (assrt) (ret (+ 988000000000 (deduction-id assrt))))
@@ -112,8 +113,8 @@
 (defvar *assrtform* ())
 (defvar *ded* ())
 (defvar *every1* 1)
-(defvar *oftenFlush* 300)
-(defvar *oftenProgress* 3000)
+(defvar *oftenFlush* 10)
+(defvar *oftenProgress* 100)
 
 
 (define my-coerce-string (trm)
@@ -413,11 +414,12 @@
 	  ( ruleinfo assrt 'assertion-mt)
 	  (pwhen elvars (plw-str "assertion_varnames(")(plw-str *assrtid*) (plw-str ",[") (plw-list (assertion-varnames *a*)) (plw-str "]).")(plw-nl))
 
-	  ( plw-ruleinfo (fif (RULE-ASSERTION? assrt) "rule" "fact"))
-          ( plw-ruleinfo (string-downcase (symbol-name (assertion-strength assrt))))
-	  ( plw-ruleinfo (string-downcase (symbol-name (assertion-direction assrt))))
- 	  (ruleinfo-not assrt 'ASSERTION-P "assertion")
-          (mruleinfo assrt)))))
+	  (my-debug ( plw-ruleinfo (fif (RULE-ASSERTION? assrt) "rule" "fact")))
+      (my-debug ( plw-ruleinfo (string-downcase (symbol-name (assertion-strength assrt)))))
+	  (my-debug ( plw-ruleinfo (string-downcase (symbol-name (assertion-direction assrt)))))
+ 	  (my-debug (ruleinfo-not assrt 'ASSERTION-P "assertion"))
+      (mruleinfo assrt)
+      ))))
           
 
 
@@ -450,7 +452,7 @@
   (clet ((value (my-funcall type assrt)))
    (pwhen value      
       (punless str (csetq str (simple-type-str type)))
-      (plw-ruleinfo str value))))))
+      (my-debug (plw-ruleinfo str value)))))))
 
 
 (defvar *error-message* *terminal-io*)
@@ -464,7 +466,9 @@
     (force-output)(format t "~%~&")(force-output)
     (format *terminal-io* "~&~&~&~&;; made-handler ~S durring: ~S err= ~S ~S ~&~&~&" 
       *error-message* whatevah ,err ',code) 
-      (force-output)(format t "~%~&")(force-output)(break)(ret haderror))
+      (force-output)(format t "~%~&")(force-output)
+      ;; (break)
+      (ret haderror))
    (csetq lastVal (progn (csetq lastVal ())(csetq haderror ()) ,@code)))
     (fif haderror (progn (print haderror) ',err) lastVal))))
 
@@ -474,9 +478,9 @@
    (cdolist (tipe type)
      (ruleinfo-not assrt tipe))
   (pwhen (fboundp type)
-   (punless (funcall type assrt)
+    (punless (my-debug (funcall type assrt))
     (punless str (csetq str (simple-type-str type)))
-    (plw-ruleinfo (cconcatenate "not_" str))))))
+     (plw-ruleinfo (cconcatenate "not_" str))))))
 
 
 (define mruleinfo (assrt) 
@@ -678,23 +682,26 @@ timedatectl set-ntp 1 ; timedatectl
 
 
 ;; ((anum 1190000 (1+ anum))) ((= anum 1190005))
-(define ri2 (&optional (start 8014) (len 5)) 
+(define ri2 (&optional (start 5848550) (len 50000)) 
  (load "/mnt/gggg/c/Users/logicmoo/AppData/Local/swi-prolog/pack/logicmoo_nlu/ext/e2c/export.lisp")
 (cdo  
  ((anum start (1+ anum))) ((= anum (+ start len)))
    (clet ((assrt (find-assertion-by-id anum)))
+   
+    ( pwhen   assrt
     (force-output)(format t "~%~&")(force-output)
-    (force-output)(format t "~%~&")(force-output)
+
     
     (fif (equal (assertion-hl-formula assrt) (assertion-el-formula assrt))
-     (force-print (assertion-hl-formula assrt))
-     (force-print (list (assertion-hl-formula assrt) 'vs (assertion-el-formula assrt))))
-      (force-output)(format t "~%~&")(force-output)
-      (force-output)(format t "~%~&")(force-output)
-     (my-debug (showa assrt)) (force-output) )))
+     (progn (princ ";;" )(force-print (assertion-hl-formula assrt)))
+     (progn (princ ";;" )(force-print (list (assertion-hl-formula assrt) 'vs (assertion-el-formula assrt))))
+      (force-output)(format t "~%~&")(force-output))
+     (my-debug (showa assrt)) (force-output)))))
  
 
-(define dumpt (&optional start)
+;; 5848503-5851381
+
+(define dumpt (&optional (start 5848550))
   (pre-export)
   (loadr)  
   (punless start 
@@ -708,9 +715,10 @@ timedatectl set-ntp 1 ; timedatectl
 :- include('dir.header').
 " *file-output* )
 (noting-percent-progress "exporting KB..."
- (clet ((total (- (assertion-count) 1)))
+ (clet ((total (+ (assertion-count) 200000)))
   (cdo ((anum start (1+ anum))) ((= anum total))
 	 (clet ((assrt (find-assertion-by-id anum)))
+     ( pwhen   assrt
       (cinc *every1*)
 
 	  (pwhen  (equal (rem *every1* *oftenFlush*) 0)
@@ -723,9 +731,9 @@ timedatectl set-ntp 1 ; timedatectl
 	  (pwhen  (equal (rem  *every1* *oftenProgress*) 0)
            (showa assrt *terminal-io*) (force-output *terminal-io*))
 
-   (showa assrt *file-output*))
-   (note-percent-progress anum (- total start)))))
- (SL::close *file-output*)))
+   (force-output *file-output*) (showa assrt *file-output*)(force-output *file-output*))
+   (note-percent-progress anum (- total start))))))
+ (force-output *file-output*)(SL::close *file-output*)))
 
 
 ;; #-:LOADING (force-output) #-:LOADING (plw-str "hi1")

@@ -191,8 +191,8 @@ console_decide_action(Agent, Mem0, Mem1):-
  setup_console,
  ensure_has_prompt(Agent),
  read_line_to_tokens(Agent, In, [], Words0),
- (Words0==[]->(Words=[wait], makep);Words=Words0))),
- eng2log(Agent, Words, Action, Mem0),
+ (Words0==[]->(Words=[wait], notrace(makep));Words=Words0))),
+ eng2cmd(Agent, Words, Action, Mem0),
  !,
  if_tracing(dbug(telnet, 'Console TODO ~p~n', [Agent: Words->Action])),
  add_todo(Agent, Action, Mem0, Mem1), ttyflush, !.
@@ -251,7 +251,7 @@ decide_action(Agent, Mem0, Mem0) :-
 decide_action(Agent, Mem0, Mem1) :-
  %must_mw1(thought(timestamp(T0), Mem0)),
  retract(mu_global:console_tokens(Agent, Words)), !,
- must_mw1((eng2log(Agent, Words, Action, Mem0),
+ must_mw1((eng2cmd(Agent, Words, Action, Mem0),
  if_tracing(dbug(planner, 'Agent TODO ~p~n', [Agent: Words->Action])),
  add_todo(Agent, Action, Mem0, Mem1))).
 
@@ -271,7 +271,8 @@ decide_action(Agent, Mem0, Mem1) :-
  ttyflush,
  (tracing->catch(wait_for_input_safe([In], Found, 20.0), _, (nortrace, xnotrace, break));
                  wait_for_input_safe([In], Found, 0.0)),
- (Found==[] -> (Mem0=Mem1) ;  quietly(((console_decide_action(Agent, Mem0, Mem1))))).
+ Found \==[], 
+ console_decide_action(Agent, Mem0, Mem1), !.
 
 decide_action(Agent, Mem0, Mem3) :-
  declared(inherited(autonomous), Mem0),

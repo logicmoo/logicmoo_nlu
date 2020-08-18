@@ -108,6 +108,10 @@ portray_string(Type, Term):- current_prolog_flag(double_quotes, Type), format('"
 
 :- thread_local(t_l:no_english/0).
 
-user:portray(Term) :- \+ tracing, \+ t_l:no_english, adv_prolog_portray(Term), !.
+adv_prolog_portray_hook(Term) :- \+ tracing, \+ t_l:no_english, adv_prolog_portray(Term), !.
+adv_prolog_portray_hook(Term) :- tracing, is_list(Term),member(E,Term),compound(E),
+  ((E = inst(Some), format('[~w|...]',[inst(Some)]));(E = structure_label(Some), format('[~w|...]',[Some]))),!.
+
+user:portray(Term):- notrace(adv_prolog_portray_hook(Term)),!.
 
 

@@ -4,6 +4,8 @@
 push_frame(Info, Frame):- var(Frame), !, gensym(frame, F), Frame = [lbl(F)], push_frame(Info, Frame).
 push_frame(Info, Frame):- do_eval_or_same(Info, BetterInfo), Info\=@=BetterInfo, push_frame(BetterInfo, Frame).
 push_frame(Info, Frame):- member(Sub, Frame), Sub==Info, !.
+push_frame([I1|I2], Frame):- !, push_frame(I1, Frame), push_frame(I2, Frame).
+push_frame(I1&I2, Frame):- !, push_frame(I1, Frame), push_frame(I2, Frame).
 push_frame(Info, Frame):- Frame = [H|T], setarg(2, Frame, [H|T]), setarg(1, Frame, Info).
 
 
@@ -129,10 +131,8 @@ eng2flogic(Sentence):-
 eng2flogic(Sentence, FrameOutR):- 
   quietly(into_text80(Sentence, WL)), !,
   any_to_string(WL,S),
-   wdmsg(?-eng2flogic(S)),
-   eng2logic_frame(_,WL,FrameOut, _Mem),
-   predsort(frcmp,FrameOut,FrameOutS),
-   reverse(FrameOutS,FrameOutR).
+   wdmsg(' ?- ~p.',[eng2flogic(S)]),
+   eng2logic_frame(_, WL, FrameOutR, _Mem),!.
 
 %frame_sort(~(A),~(B),C):- !, compare(A,B,C).
 %frame_sort(~(A), (B),C):- !, compare(A,B,C).
@@ -158,8 +158,9 @@ run_end2cmd_tests:- make,
 
 
 
-parseForMWType(_Frame, _X, _Type,ParseText, TextArg,Right):- 
-   append([a|TextArg], Right, ParseText).
+parseForMWType(Frame, X, _Type, ParseText, [TextArg], Right):- 
+   append([a, TextArg], Right, ParseText),
+   push_frame(isa(X,TextArg), Frame).
 
 parseForMWType(_Frame, _X, _Type,ParseText,[TextArg],Right):- 
    append([TextArg],Right,ParseText), is_prep(TextArg), !, fail.
@@ -184,8 +185,8 @@ verb_tenses(Verb,VerbTensed,Tense):-
 verb_tenses(Verb,Verb,base).
 
 
-eng2logic_frame(Doer, SomeVerbText, FrameOut, _Mem):-
-    length(SomeVerbText,L), L > 5,
+eng2logic_frame(Doer, SomeVerbText, FrameOutR, _Mem):-
+    length(SomeVerbText,L), L > 2,
     %talkdb:talk_db(transitive, give, gives, gave, giving, given).    
     verb_frame1(Action, Verb, FrameArgSInfo, UNormals),
     verb_tenses(Verb, VerbText, Tense),
@@ -207,7 +208,9 @@ eng2logic_frame(Doer, SomeVerbText, FrameOut, _Mem):-
     % pprint([shift=[TextR],FrameArgS],always),
     once((parse_dataframe_right(FrameArgS, Action, Frame, TextR);pprint(failed([shift=[TextR],FrameArgS],always)))),
     %frame_defaults(FrameArgS, Frame),
-    frame_to_asserts(Frame, FrameOut))).
+    frame_to_asserts(Frame, FrameOut),
+    predsort(frcmp,FrameOut,FrameOutS),
+    reverse(FrameOutS,FrameOutR))).
 
 shift_text_args_right( [], TextRS, TextR):- !, TextR= TextRS.
 shift_text_args_right( [Prep|Text], TextRS, TextR):-
@@ -585,7 +588,7 @@ bpart_contol(Smooch, Smooched):-
   munl_call(talkdb:talk_db(_, Smooch, _Smooches, Smooched, _Smooching, Smooched)).
 bpart_contol(light, lit).
 bpart_contol(unlight, unlit).
-bpart_contol(Open, Opened):- munl_call(clex:tv_pp(Opened, Open)).
+%bpart_contol(Open, Opened):- munl_call(clex:tv_pp(Opened, Open)).
 
 % %%%%%%%%%%%%%%
 verb_frame1(Action,  Light,
@@ -709,60 +712,6 @@ end_of_file.
 
 joe gave sally love
 NP armed NP NP
-
-acnl('verbSemTrans','xArmTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actArmingAnAgent'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308003).
-acnl('verbSemTrans','xAwardTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307999).
-acnl('verbSemTrans','xBestowTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308006).
-acnl('verbSemTrans','xBestowTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actBestowing'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308002).
-acnl('verbSemTrans','xBringTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCarryingWhileLocomoting'),'transportees'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'doneBy'('ACTION','SUBJECT')),663266).
-acnl('verbSemTrans','xBuyTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'buyer'('ACTION','SUBJECT'),'objectPaidFor'('ACTION','OBJECT')),658092).
-acnl('verbSemTrans','xCastTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308512).
-acnl('verbSemTrans','xCastTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCastingAFishingLine'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308509).
-acnl('verbSemTrans','xCauseTheWord',2,'xDitransitiveNPNPFrame','causesThingprop'('SUBJECT','possessiveRelation'('OBJECT','OBLIQUE-OBJECT')),710353).
-acnl('verbSemTrans','xConsiderTheWord',0,'xDitransitiveNPNPFrame','opinions'('SUBJECT','isUnderspecified'('OBLIQUE-OBJECT','OBJECT')),761838).
-acnl('verbSemTrans','xCookTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCookingFood'),'beneficiary'('ACTION','INDIRECT-OBJECT'),'performedBy'('ACTION','SUBJECT'),'objectOfStateChange'('ACTION','OBJECT')),648799).
-acnl('verbSemTrans','xCostTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'buyer'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','SUBJECT'),'expenseFor'('INDIRECT-OBJECT','ACTION','OBJECT')),681250).
-acnl('verbSemTrans','xDecorateTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actDecoratingSomeoneGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307998).
-acnl('verbSemTrans','xDelegateTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventDelegatingAuthority'),'performedBy'('ACTION','SUBJECT'),'delegate'('ACTION','INDIRECT-OBJECT'),'delegatedAuthority'('ACTION',SIT_TYPE,'OBJECT')),779757).
-acnl('verbSemTrans','xDeliverTheWord',0,'xDitransitiveNPNPFrame','and'('objectsDelivered'('ACTION','OBJECT'),'isa'('ACTION','actDeliveringSomeoneSomething'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),2160880).
-acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308442).
-acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308208).
-acnl('verbSemTrans','xDonateTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actCharitableDonation'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307995).
-acnl('verbSemTrans','xFindTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventFindingSomething'),'objectFound'('ACTION','OBJECT'),'doneBy'('ACTION','SUBJECT'),'affectedAgent'('ACTION','INDIRECT-OBJECT')),1789907).
-acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308441).
-acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308207).
-acnl('verbSemTrans','xGetTheWord',3,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actGainingUserRights'),'performedBy'('ACTION','SUBJECT'),'toPossessor'('ACTION','OBJECT'),'objectOfPossessionTransfer'('ACTION','OBLIQUE-OBJECT')),2094972).
-acnl('verbSemTrans','xGiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),2046576).
-acnl('verbSemTrans','xGrantTheWord',24,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGrantingMoney'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307994).
-acnl('verbSemTrans','xHandTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694161).
-acnl('verbSemTrans','xIssueTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656364).
-acnl('verbSemTrans','xLeaveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'deliberateActors'('ACTION','SUBJECT')),656368).
-acnl('verbSemTrans','xLendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),675934).
-acnl('verbSemTrans','xLoanTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656359).
-acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308438).
-acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308204).
-acnl('verbSemTrans','xMakeTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingSomething'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'products'('ACTION','OBJECT')),640773).
-acnl('verbSemTrans','xPassTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694162).
-acnl('verbSemTrans','xPayTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656362).
-acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308440).
-acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308206).
-acnl('verbSemTrans','xProvideTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308005).
-acnl('verbSemTrans','xReadTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actReadingAloud'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'informationOrigin'('ACTION','OBJECT')),314572).
-acnl('verbSemTrans','xReceiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308007).
-acnl('verbSemTrans','xRefundTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),674612).
-acnl('verbSemTrans','xRentTheWord',0,'xDitransitiveNPNPFrame','rentsFrom'('INDIRECT-OBJECT','OBJECT','SUBJECT'),639082).
-acnl('verbSemTrans','xReserveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingAReservation'),'doneBy'('ACTION','SUBJECT'),'exists'(RESERVATION,'and'('outputs'('ACTION',RESERVATION),'objectReserved'(RESERVATION,'OBJECT')))),1319880).
-acnl('verbSemTrans','xReturnTheWord',2,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actReturningSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308001).
-acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308439).
-acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308205).
-acnl('verbSemTrans','xServeTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actServingFoodOrDrink'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),689166).
-acnl('verbSemTrans','xSubmitTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actSubmittingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307997).
-acnl('verbSemTrans','xSupplyTheWord',3,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308004).
-acnl('verbSemTrans','xThrowTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308510).
-acnl('verbSemTrans','xTipTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAGratuity'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308000).
-acnl('verbSemTrans','xTossTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308511).
-acnl('verbSemTrans',nartR('xWordWithPrefixFn','xReThePrefix','xGiftTheWord'),0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actRegifting'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307996).
-
 
 
 
@@ -2404,5 +2353,369 @@ acnl('verbSemTrans',nartR('xWordWithPrefixFn','xReThePrefix','xGiftTheWord'),0,'
 true.
 
 mu:  ?-
+
+
+?- xlisting(xDitransitiveNPNPFrame).
+% From database (decompiled)
+acnl(cycSubjectClumps, xDitransitiveNPNPFrame, vSubcategorizationFramesLexiconCSC, -335133).
+acnl(inTopic, xDitransitiveNPNPFrame, iUI_SubcategorizationFramesLexiconTopic, -1668759).
+acnl(isa, xDitransitiveNPNPFrame, iUI_SubcategorizationFramesLexiconTopic, -1660468).
+acnl(isa, xDitransitiveNPNPFrame, ttDitransitiveNPGenericframetype, -921694).
+acnl(isa, xDitransitiveNPNPFrame, xtPassivizableFrame, -923121).
+acnl(oldConstantName, xDitransitiveNPNPFrame, "DitransitiveNPCompFrame", -21328).
+acnl(oldConstantName, xDitransitiveNPNPFrame, "DoubleObjectFrame", -20375).
+acnl(subcatFramesForAlternation, xtDoubleObjectAlternation, xDitransitiveNPNPFrame, nartR(xPPCompFrameFn, ttDitransitivePPFrameType, xToTheWord), -2227458).
+acnl(verbClassSemTrans, xGetVerbClass, xDitransitiveNPNPFrame, and(isa(':ACTION', actGainingUserRights), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -364219).
+acnl(verbClassSemTrans, xGiveVerbClass, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTransferringPossession), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -364218).
+
+acnl(verbSemTrans, nartR(xWordFn, "airmail"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Airmailing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358900).
+acnl(verbSemTrans, nartR(xWordFn, "airmail"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Airmailing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359118).
+acnl(verbSemTrans, nartR(xWordFn, "bash"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Bashing-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359165).
+acnl(verbSemTrans, nartR(xWordFn, "bash"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Bashing-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358955).
+acnl(verbSemTrans, nartR(xWordFn, "conjure"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Conjuring-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358831).
+acnl(verbSemTrans, nartR(xWordFn, "conjure"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Conjuring-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359048).
+acnl(verbSemTrans, nartR(xWordFn, "FedEx"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'FedExing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358902).
+acnl(verbSemTrans, nartR(xWordFn, "FedEx"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'FedExing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359120).
+acnl(verbSemTrans, nartR(xWordFn, "fling"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Flinging-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359168).
+acnl(verbSemTrans, nartR(xWordFn, "fling"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Flinging-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358958).
+acnl(verbSemTrans, nartR(xWordFn, "hurl"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Hurling-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359169).
+acnl(verbSemTrans, nartR(xWordFn, "hurl"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Hurling-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358959).
+acnl(verbSemTrans, nartR(xWordFn, "lob"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Lobbing-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359171).
+acnl(verbSemTrans, nartR(xWordFn, "lob"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Lobbing-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358961).
+acnl(verbSemTrans, nartR(xWordFn, "nudge"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Nudging-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359173).
+acnl(verbSemTrans, nartR(xWordFn, "nudge"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Nudging-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358963).
+acnl(verbSemTrans, nartR(xWordFn, "pawn"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Pawning-TransferringPossession'), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4321412).
+acnl(verbSemTrans, nartR(xWordFn, "pawn"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Pawning-TransferringPossession'), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358882).
+acnl(verbSemTrans, nartR(xWordFn, "pawn"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Pawning-TransferringPossession'), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359100).
+acnl(verbSemTrans, nartR(xWordFn, "UPS"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'UPSing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358905).
+acnl(verbSemTrans, nartR(xWordFn, "UPS"), 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'UPSing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359123).
+acnl(verbSemTrans, nartR(xWordWithPrefixFn, xReThePrefix, xGiftTheWord), 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actRegifting), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613425).
+acnl(verbSemTrans, xArmTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actArmingAnAgent), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613432).
+acnl(verbSemTrans, xAwardTheWord, 1, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingAnAward), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613428).
+acnl(verbSemTrans, xBargeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBarge)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288071).
+acnl(verbSemTrans, xBargeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBarge)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358997).
+acnl(verbSemTrans, xBargeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBarge)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359210).
+acnl(verbSemTrans, xBatTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballSwing), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359178).
+acnl(verbSemTrans, xBatTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballSwing), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289207).
+acnl(verbSemTrans, xBatTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballSwing), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358968).
+acnl(verbSemTrans, xBestowTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613435).
+acnl(verbSemTrans, xBestowTheWord, 1, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actBestowing), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613431).
+acnl(verbSemTrans, xBringTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actCarryingWhileLocomoting), transportees(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -446232).
+acnl(verbSemTrans, xBuntTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Bunting-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359166).
+acnl(verbSemTrans, xBuntTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Bunting-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358956).
+acnl(verbSemTrans, xBusTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBusRoadVehicle)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288067).
+acnl(verbSemTrans, xBusTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBusRoadVehicle)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358996).
+acnl(verbSemTrans, xBusTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectBusRoadVehicle)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359209).
+acnl(verbSemTrans, xBuyTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actBuying), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), buyer(':ACTION', ':SUBJECT'), objectPaidFor(':ACTION', ':OBJECT')), -440994).
+acnl(verbSemTrans, xCardTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actCreditCardFraud), toPossessor(':ACTION', ':INDIRECT-OBJECT'), buyer(':ACTION', ':SUBJECT'), objectPaidFor(':ACTION', ':OBJECT')), -181066).
+acnl(verbSemTrans, xCartTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectWagon)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288063).
+acnl(verbSemTrans, xCartTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectWagon)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358995).
+acnl(verbSemTrans, xCartTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectWagon)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359208).
+acnl(verbSemTrans, xCastTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingAnObject), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -5614013).
+acnl(verbSemTrans, xCastTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actCastingAFishingLine), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -5614009).
+acnl(verbSemTrans, xCauseTheWord, 2, xDitransitiveNPNPFrame, causesThingprop(':SUBJECT', possessiveRelation(':OBJECT', ':OBLIQUE-OBJECT')), -499782).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actChuckingAbandoningSomething), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359181).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actChuckingAbandoningSomething), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289209).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actChuckingAbandoningSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358971).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359179).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289208).
+acnl(verbSemTrans, xChuckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358969).
+acnl(verbSemTrans, xConsiderTheWord, 0, xDitransitiveNPNPFrame, opinions(':SUBJECT', isUnderspecified(':OBLIQUE-OBJECT', ':OBJECT')), -558794).
+acnl(verbSemTrans, xCookTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actCookingFood), beneficiary(':ACTION', ':INDIRECT-OBJECT'), performedBy(':ACTION', ':SUBJECT'), objectOfStateChange(':ACTION', ':OBJECT')), -431551).
+acnl(verbSemTrans, xCostTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actBuying), buyer(':ACTION', ':INDIRECT-OBJECT'), objectOfPossessionTransfer(':ACTION', ':SUBJECT'), expenseFor(':INDIRECT-OBJECT', ':ACTION', ':OBJECT')), -464495).
+acnl(verbSemTrans, xDecorateTheWord, 1, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actDecoratingSomeoneGivingAnAward), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613427).
+acnl(verbSemTrans, xDelegateTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', eventDelegatingAuthority), performedBy(':ACTION', ':SUBJECT'), delegate(':ACTION', ':INDIRECT-OBJECT'), delegatedAuthority(':ACTION', _, ':OBJECT')), -583177).
+acnl(verbSemTrans, xDeliverTheWord, 0, xDitransitiveNPNPFrame, and(objectsDelivered(':ACTION', ':OBJECT'), isa(':ACTION', actDeliveringSomeoneSomething), performedBy(':ACTION', ':SUBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -3192984).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDesigning), beneficiary(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288175).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDesigning), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358836).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDesigning), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359053).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actMakingAPlan), beneficiary(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288176).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actMakingAPlan), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358837).
+acnl(verbSemTrans, xDesignTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actMakingAPlan), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359054).
+acnl(verbSemTrans, xDictateTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCommand), recipientOfInfo(':ACTION', ':OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289165).
+acnl(verbSemTrans, xDictateTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCommand), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358922).
+acnl(verbSemTrans, xDictateTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCommand), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), infoTransferred(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359221).
+acnl(verbSemTrans, xDigTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDiggingAHole), beneficiary(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288178).
+acnl(verbSemTrans, xDigTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDiggingAHole), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358839).
+acnl(verbSemTrans, xDigTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actDiggingAHole), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359056).
+acnl(verbSemTrans, xDiscardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359180).
+acnl(verbSemTrans, xDiscardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289210).
+acnl(verbSemTrans, xDiscardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingSomethingAway), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358970).
+acnl(verbSemTrans, xDispatchTheWord, 24, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -5613938).
+acnl(verbSemTrans, xDispatchTheWord, 24, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -5613684).
+acnl(verbSemTrans, xDonateTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actCharitableDonation), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613424).
+acnl(verbSemTrans, xExpressTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Expressing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358901).
+acnl(verbSemTrans, xExpressTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Expressing-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359119).
+acnl(verbSemTrans, xFerryTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectFerry)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288055).
+acnl(verbSemTrans, xFerryTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectFerry)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358993).
+acnl(verbSemTrans, xFerryTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectFerry)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359206).
+acnl(verbSemTrans, xFindTheWord, 1, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFindingSomething), objectFound(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT'), affectedAgent(':ACTION', ':INDIRECT-OBJECT')), -2342093).
+acnl(verbSemTrans, xFireTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359182).
+acnl(verbSemTrans, xFireTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289211).
+acnl(verbSemTrans, xFireTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358972).
+acnl(verbSemTrans, xFlickTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Flicking-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359167).
+acnl(verbSemTrans, xFlickTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Flicking-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358957).
+acnl(verbSemTrans, xFlipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlipping), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359184).
+acnl(verbSemTrans, xFlipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlipping), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289212).
+acnl(verbSemTrans, xFlipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlipping), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358974).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlying), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288042).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlying), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358990).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventFlying), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359203).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectAirTransportationDevice)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288047).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectAirTransportationDevice)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358991).
+acnl(verbSemTrans, xFlyTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectAirTransportationDevice)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359204).
+acnl(verbSemTrans, xForwardTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -5613937).
+acnl(verbSemTrans, xForwardTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -5613683).
+acnl(verbSemTrans, xForwardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288835).
+acnl(verbSemTrans, xForwardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358907).
+acnl(verbSemTrans, xForwardTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359125).
+acnl(verbSemTrans, xGetTheWord, 3, xDitransitiveNPNPFrame, and(isa(':ACTION', actGainingUserRights), performedBy(':ACTION', ':SUBJECT'), toPossessor(':ACTION', ':OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBLIQUE-OBJECT')), -3055665).
+acnl(verbSemTrans, xGiveTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -2950998).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingOfferingCommunicationAct), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288293).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingOfferingCommunicationAct), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358877).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingOfferingCommunicationAct), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359095).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingSomething), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288292).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358876).
+acnl(verbSemTrans, xGiveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actGivingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359094).
+acnl(verbSemTrans, xGrantTheWord, 24, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGrantingMoney), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613423).
+acnl(verbSemTrans, xHandTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':INDIRECT-OBJECT'), fromLocation(':ACTION', ':SUBJECT'), objectMoving(':ACTION', ':OBJECT')), -477499).
+acnl(verbSemTrans, xHandTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288836).
+acnl(verbSemTrans, xHandTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358910).
+acnl(verbSemTrans, xHandTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359128).
+acnl(verbSemTrans, xHeaveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHeavingAnObject), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4287793).
+acnl(verbSemTrans, xHeaveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHeavingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358846).
+acnl(verbSemTrans, xHeaveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHeavingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359063).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingAnObject), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359185).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingAnObject), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289213).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358975).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingCausingAnotherObjectsTranslationalMotion), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359187).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingCausingAnotherObjectsTranslationalMotion), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289215).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHittingCausingAnotherObjectsTranslationalMotion), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358977).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAndHittingSomething), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359186).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAndHittingSomething), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289214).
+acnl(verbSemTrans, xHitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAndHittingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358976).
+acnl(verbSemTrans, xHockTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHockingSomethingDisablingSomeone), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288296).
+acnl(verbSemTrans, xHockTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHockingSomethingDisablingSomeone), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358880).
+acnl(verbSemTrans, xHockTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHockingSomethingDisablingSomeone), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359098).
+acnl(verbSemTrans, xIssueTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTransferringPossession), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -439237).
+acnl(verbSemTrans, xKickTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actKicking), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4287794).
+acnl(verbSemTrans, xKickTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actKicking), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358847).
+acnl(verbSemTrans, xKickTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actKicking), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359064).
+acnl(verbSemTrans, xKnockTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Knocking-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359170).
+acnl(verbSemTrans, xKnockTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Knocking-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358960).
+acnl(verbSemTrans, xLeaseTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288295).
+acnl(verbSemTrans, xLeaseTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358879).
+acnl(verbSemTrans, xLeaseTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359097).
+acnl(verbSemTrans, xLeaveTheWord, 1, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTransferringPossession), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), deliberateActors(':ACTION', ':SUBJECT')), -439241).
+acnl(verbSemTrans, xLendTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -459129).
+acnl(verbSemTrans, xLendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288286).
+acnl(verbSemTrans, xLendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358871).
+acnl(verbSemTrans, xLendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359088).
+acnl(verbSemTrans, xLendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventLending), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288288).
+acnl(verbSemTrans, xLendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventLending), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359090).
+acnl(verbSemTrans, xLoanTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -439232).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288285).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358870).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBorrowingSomething), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359087).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventLending), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288287).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventLending), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358872).
+acnl(verbSemTrans, xLoanTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventLending), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359089).
+acnl(verbSemTrans, xLoftTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Lofting-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359172).
+acnl(verbSemTrans, xLoftTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Lofting-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358962).
+acnl(verbSemTrans, xMailTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -5613934).
+acnl(verbSemTrans, xMailTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -5613680).
+acnl(verbSemTrans, xMailTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288837).
+acnl(verbSemTrans, xMailTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358908).
+acnl(verbSemTrans, xMailTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359126).
+acnl(verbSemTrans, xMakeTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actMakingSomething), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), performedBy(':ACTION', ':SUBJECT'), products(':ACTION', ':OBJECT')), -423352).
+acnl(verbSemTrans, xMintTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actMakingFn, tObjectCoinCurrency)), beneficiary(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288174).
+acnl(verbSemTrans, xMintTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actMakingFn, tObjectCoinCurrency)), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358835).
+acnl(verbSemTrans, xMintTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actMakingFn, tObjectCoinCurrency)), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359052).
+acnl(verbSemTrans, xPassTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':INDIRECT-OBJECT'), fromLocation(':ACTION', ':SUBJECT'), objectMoving(':ACTION', ':OBJECT')), -477500).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359189).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288839).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358911).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359129).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288284).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358869).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actHandingSomethingToSomeone), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359086).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOvertakingACompetitor), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288283).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOvertakingACompetitor), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358868).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOvertakingACompetitor), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359085).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359188).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288838).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358912).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359130).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288282).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358867).
+acnl(verbSemTrans, xPassTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPassingAGameBall), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359084).
+acnl(verbSemTrans, xPayTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actPaying), moneyTransferred(':ACTION', ':OBJECT'), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -439235).
+acnl(verbSemTrans, xPeddleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288289).
+acnl(verbSemTrans, xPeddleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358873).
+acnl(verbSemTrans, xPeddleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359091).
+acnl(verbSemTrans, xPitchTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballDelivery), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -5614010).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballDelivery), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359190).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballDelivery), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289216).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballDelivery), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358978).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballPitch), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359191).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballPitch), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289217).
+acnl(verbSemTrans, xPitchTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actBaseballPitch), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358979).
+acnl(verbSemTrans, xPostTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -5613936).
+acnl(verbSemTrans, xPostTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -5613682).
+acnl(verbSemTrans, xProvideTheWord, 1, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613434).
+acnl(verbSemTrans, xPublishTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPublishingWrittenMaterial), beneficiary(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288177).
+acnl(verbSemTrans, xPublishTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPublishingWrittenMaterial), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358838).
+acnl(verbSemTrans, xPublishTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPublishingWrittenMaterial), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359055).
+acnl(verbSemTrans, xPuntTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Punting-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359174).
+acnl(verbSemTrans, xPuntTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Punting-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358964).
+acnl(verbSemTrans, xPushTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4287791).
+acnl(verbSemTrans, xPushTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358844).
+acnl(verbSemTrans, xPushTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359061).
+acnl(verbSemTrans, xQuoteTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Quoting-InformationTransferEvent'), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358921).
+acnl(verbSemTrans, xQuoteTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Quoting-InformationTransferEvent'), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), infoTransferred(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359220).
+acnl(verbSemTrans, xReadTheWord, 2, xDitransitiveNPNPFrame, and(isa(':ACTION', actReadingAloud), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), performedBy(':ACTION', ':SUBJECT'), informationOrigin(':ACTION', ':OBJECT')), -15240).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actReading), recipientOfInfo(':ACTION', ':OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289166).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actReading), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358923).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actReading), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), infoTransferred(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359222).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'ReadingSomething-Speaking'), recipientOfInfo(':ACTION', ':OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289167).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'ReadingSomething-Speaking'), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358924).
+acnl(verbSemTrans, xReadTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'ReadingSomething-Speaking'), recipientOfInfo(':ACTION', ':OBLIQUE-OBJECT'), informationOrigin(':ACTION', ':SUBJECT'), infoTransferred(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359223).
+acnl(verbSemTrans, xRearrangeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Rearranging-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358832).
+acnl(verbSemTrans, xRearrangeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Rearranging-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359049).
+acnl(verbSemTrans, xReceiveTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613436).
+acnl(verbSemTrans, xRefundTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actPaying), moneyTransferred(':ACTION', ':OBJECT'), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -457781).
+acnl(verbSemTrans, xRefundTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRefunding), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288281).
+acnl(verbSemTrans, xRefundTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRefunding), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358866).
+acnl(verbSemTrans, xRefundTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRefunding), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359083).
+acnl(verbSemTrans, xRenderTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCausingToBeInACertainCondition), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288291).
+acnl(verbSemTrans, xRenderTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCausingToBeInACertainCondition), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358875).
+acnl(verbSemTrans, xRenderTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventCausingToBeInACertainCondition), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359093).
+acnl(verbSemTrans, xRentTheWord, 0, xDitransitiveNPNPFrame, rentsFrom(':INDIRECT-OBJECT', ':OBJECT', ':SUBJECT'), -421620).
+acnl(verbSemTrans, xRentTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288294).
+acnl(verbSemTrans, xRentTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358878).
+acnl(verbSemTrans, xRentTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actRenting), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359096).
+acnl(verbSemTrans, xReorganizeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Reorganizing-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358833).
+acnl(verbSemTrans, xReorganizeTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Reorganizing-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359050).
+acnl(verbSemTrans, xReserveTheWord, 1, xDitransitiveNPNPFrame, and(isa(':ACTION', actMakingAReservation), doneBy(':ACTION', ':SUBJECT'), exists(A, and(outputs(':ACTION', A), objectReserved(A, ':OBJECT')))), -1287341).
+acnl(verbSemTrans, xReturnTheWord, 2, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actReturningSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613430).
+acnl(verbSemTrans, xScheduleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Scheduling-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358834).
+acnl(verbSemTrans, xScheduleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Scheduling-CreationEvent'), beneficiary(':ACTION', ':OBLIQUE-OBJECT'), outputsCreated(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359051).
+acnl(verbSemTrans, xSellTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288290).
+acnl(verbSemTrans, xSellTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358874).
+acnl(verbSemTrans, xSellTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actOfferingForSale), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359092).
+acnl(verbSemTrans, xSendTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -5613935).
+acnl(verbSemTrans, xSendTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -5613681).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288840).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358909).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSendingSomething), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359127).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288841).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358913).
+acnl(verbSemTrans, xSendTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359131).
+acnl(verbSemTrans, xServeTheWord, 0, xDitransitiveNPNPFrame, and(isa(':ACTION', actServingFoodOrDrink), performedBy(':ACTION', ':SUBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -472464).
+acnl(verbSemTrans, xShipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288842).
+acnl(verbSemTrans, xShipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358914).
+acnl(verbSemTrans, xShipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShipping), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359132).
+acnl(verbSemTrans, xShootTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359183).
+acnl(verbSemTrans, xShootTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289218).
+acnl(verbSemTrans, xShootTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actShootingAProjectileWeapon), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358973).
+acnl(verbSemTrans, xShoveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359192).
+acnl(verbSemTrans, xShoveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4287792).
+acnl(verbSemTrans, xShoveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358845).
+acnl(verbSemTrans, xShoveTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actPushingAnObject), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359062).
+acnl(verbSemTrans, xShuttleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTranslationBackAndForth), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288059).
+acnl(verbSemTrans, xShuttleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTranslationBackAndForth), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358994).
+acnl(verbSemTrans, xShuttleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', eventTranslationBackAndForth), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359207).
+acnl(verbSemTrans, xSlamTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Colliding'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359193).
+acnl(verbSemTrans, xSlamTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Colliding'), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289219).
+acnl(verbSemTrans, xSlamTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Colliding'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358980).
+acnl(verbSemTrans, xSlapTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slapping-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359175).
+acnl(verbSemTrans, xSlapTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slapping-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358965).
+acnl(verbSemTrans, xSlingTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slinging-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359176).
+acnl(verbSemTrans, xSlingTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slinging-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358966).
+acnl(verbSemTrans, xSlipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slipping-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358903).
+acnl(verbSemTrans, xSlipTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Slipping-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359121).
+acnl(verbSemTrans, xSmashTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Smashing-Propelling'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359177).
+acnl(verbSemTrans, xSmashTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Smashing-Propelling'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358967).
+acnl(verbSemTrans, xSmuggleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSmuggling), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288843).
+acnl(verbSemTrans, xSmuggleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSmuggling), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358915).
+acnl(verbSemTrans, xSmuggleTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actSmuggling), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359133).
+acnl(verbSemTrans, xSneakTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Sneaking-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358904).
+acnl(verbSemTrans, xSneakTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Sneaking-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359122).
+acnl(verbSemTrans, xSubmitTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actSubmittingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613426).
+acnl(verbSemTrans, xSupplyTheWord, 3, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingSomething), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613433).
+acnl(verbSemTrans, xTapTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actTappingHitting), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359194).
+acnl(verbSemTrans, xTapTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actTappingHitting), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4289220).
+acnl(verbSemTrans, xTapTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', actTappingHitting), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358981).
+acnl(verbSemTrans, xThrowTheWord, 1, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingAnObject), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -5614011).
+acnl(verbSemTrans, xTipTheWord, 0, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', actGivingAGratuity), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -5613429).
+acnl(verbSemTrans, xTossTheWord, 1, xDitransitiveNPNPFrame, and(isa(':ACTION', actThrowingAnObject), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -5614012).
+acnl(verbSemTrans, xTransmitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'TransmittingSomething'), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288844).
+acnl(verbSemTrans, xTransmitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'TransmittingSomething'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358916).
+acnl(verbSemTrans, xTransmitTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'TransmittingSomething'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359134).
+acnl(verbSemTrans, xTruckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectTruck)), toLocation(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4288051).
+acnl(verbSemTrans, xTruckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectTruck)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358992).
+acnl(verbSemTrans, xTruckTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', nartR(actTransportViaFn, tObjectTruck)), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359205).
+acnl(verbSemTrans, xVolunteerTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Volunteering-TransferringPossession'), toPossessor(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4321395).
+acnl(verbSemTrans, xVolunteerTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Volunteering-TransferringPossession'), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358881).
+acnl(verbSemTrans, xVolunteerTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Volunteering-TransferringPossession'), toPossessor(':ACTION', ':OBLIQUE-OBJECT'), objectOfPossessionTransfer(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359099).
+acnl(verbSemTrans, xWireTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Wiring-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4358906).
+acnl(verbSemTrans, xWireTheWord, 789, xDitransitiveNPNPFrame, and(isa(':ACTION', 'Wiring-CausingAnotherObjectsTranslationalMotion'), toLocation(':ACTION', ':OBLIQUE-OBJECT'), objectMoving(':ACTION', ':OBJECT'), doneBy(':ACTION', ':SUBJECT')), -4359124).
+
+acnl('verbSemTrans','xArmTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actArmingAnAgent'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308003).
+acnl('verbSemTrans','xAwardTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307999).
+acnl('verbSemTrans','xBestowTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308006).
+acnl('verbSemTrans','xBestowTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actBestowing'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308002).
+acnl('verbSemTrans','xBringTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCarryingWhileLocomoting'),'transportees'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'doneBy'('ACTION','SUBJECT')),663266).
+acnl('verbSemTrans','xBuyTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'buyer'('ACTION','SUBJECT'),'objectPaidFor'('ACTION','OBJECT')),658092).
+acnl('verbSemTrans','xCastTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308512).
+acnl('verbSemTrans','xCastTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCastingAFishingLine'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308509).
+acnl('verbSemTrans','xCauseTheWord',2,'xDitransitiveNPNPFrame','causesThingprop'('SUBJECT','possessiveRelation'('OBJECT','OBLIQUE-OBJECT')),710353).
+acnl('verbSemTrans','xConsiderTheWord',0,'xDitransitiveNPNPFrame','opinions'('SUBJECT','isUnderspecified'('OBLIQUE-OBJECT','OBJECT')),761838).
+acnl('verbSemTrans','xCookTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actCookingFood'),'beneficiary'('ACTION','INDIRECT-OBJECT'),'performedBy'('ACTION','SUBJECT'),'objectOfStateChange'('ACTION','OBJECT')),648799).
+acnl('verbSemTrans','xCostTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBuying'),'buyer'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','SUBJECT'),'expenseFor'('INDIRECT-OBJECT','ACTION','OBJECT')),681250).
+acnl('verbSemTrans','xDecorateTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actDecoratingSomeoneGivingAnAward'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307998).
+acnl('verbSemTrans','xDelegateTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventDelegatingAuthority'),'performedBy'('ACTION','SUBJECT'),'delegate'('ACTION','INDIRECT-OBJECT'),'delegatedAuthority'('ACTION',SIT_TYPE,'OBJECT')),779757).
+acnl('verbSemTrans','xDeliverTheWord',0,'xDitransitiveNPNPFrame','and'('objectsDelivered'('ACTION','OBJECT'),'isa'('ACTION','actDeliveringSomeoneSomething'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),2160880).
+acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308442).
+acnl('verbSemTrans','xDispatchTheWord',24,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308208).
+acnl('verbSemTrans','xDonateTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actCharitableDonation'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307995).
+acnl('verbSemTrans','xFindTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventFindingSomething'),'objectFound'('ACTION','OBJECT'),'doneBy'('ACTION','SUBJECT'),'affectedAgent'('ACTION','INDIRECT-OBJECT')),1789907).
+acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308441).
+acnl('verbSemTrans','xForwardTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308207).
+acnl('verbSemTrans','xGetTheWord',3,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actGainingUserRights'),'performedBy'('ACTION','SUBJECT'),'toPossessor'('ACTION','OBJECT'),'objectOfPossessionTransfer'('ACTION','OBLIQUE-OBJECT')),2094972).
+acnl(verbSemTransTemplate, actGivingSomething, xDitransitiveNPNPFrame, and(objectGiven(':ACTION', ':OBJECT'), isa(':ACTION', ':DENOT'), giver(':ACTION', ':SUBJECT'), givee(':ACTION', ':OBLIQUE-OBJECT')), -2918914).
+acnl(verbSemTransTemplate, actSendingSomething, xDitransitiveNPNPFrame, and(isa(':ACTION', ':DENOT'), toPossessor(':ACTION', ':INDIRECT-OBJECT'), fromPossessor(':ACTION', ':SUBJECT'), primaryObjectMoving(':ACTION', ':OBJECT')), -483899).
+acnl(verbSemTransTemplate, actSendingSomething, xDitransitiveNPNPFrame, and(isa(':ACTION', ':DENOT'), toPossessor(':ACTION', ':INDIRECT-OBJECT'), objectMoving(':ACTION', ':OBJECT'), fromPossessor(':ACTION', ':SUBJECT')), -483901).
+acnl(verbSemTransTemplate, actThrowingAnObject, xDitransitiveNPNPFrame, and(isa(':ACTION', ':DENOT'), performedBy(':ACTION', ':SUBJECT'), objectActedOn(':ACTION', ':OBJECT'), toLocation(':ACTION', ':INDIRECT-OBJECT')), -483900).
+acnl('verbSemTrans','xGiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),2046576).
+acnl('verbSemTrans','xGrantTheWord',24,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGrantingMoney'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307994).
+acnl('verbSemTrans','xHandTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694161).
+acnl('verbSemTrans','xIssueTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656364).
+acnl('verbSemTrans','xLeaveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','eventTransferringPossession'),'toPossessor'('ACTION','OBLIQUE-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'deliberateActors'('ACTION','SUBJECT')),656368).
+acnl('verbSemTrans','xLendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),675934).
+acnl('verbSemTrans','xLoanTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actBorrowingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectOfPossessionTransfer'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656359).
+acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308438).
+acnl('verbSemTrans','xMailTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308204).
+acnl('verbSemTrans','xMakeTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingSomething'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'products'('ACTION','OBJECT')),640773).
+acnl('verbSemTrans','xPassTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actHandingSomethingToSomeone'),'toLocation'('ACTION','INDIRECT-OBJECT'),'fromLocation'('ACTION','SUBJECT'),'objectMoving'('ACTION','OBJECT')),694162).
+acnl('verbSemTrans','xPayTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),656362).
+acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308440).
+acnl('verbSemTrans','xPostTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308206).
+acnl('verbSemTrans','xProvideTheWord',1,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308005).
+acnl('verbSemTrans','xReadTheWord',2,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actReadingAloud'),'beneficiary'('ACTION','OBLIQUE-OBJECT'),'performedBy'('ACTION','SUBJECT'),'informationOrigin'('ACTION','OBJECT')),314572).
+acnl('verbSemTrans','xReceiveTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308007).
+acnl('verbSemTrans','xRefundTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actPaying'),'moneyTransferred'('ACTION','OBJECT'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT')),674612).
+acnl('verbSemTrans','xRentTheWord',0,'xDitransitiveNPNPFrame','rentsFrom'('INDIRECT-OBJECT','OBJECT','SUBJECT'),639082).
+acnl('verbSemTrans','xReserveTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actMakingAReservation'),'doneBy'('ACTION','SUBJECT'),'exists'(RESERVATION,'and'('outputs'('ACTION',RESERVATION),'objectReserved'(RESERVATION,'OBJECT')))),1319880).
+acnl('verbSemTrans','xReturnTheWord',2,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actReturningSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308001).
+acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'fromPossessor'('ACTION','SUBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),3308439).
+acnl('verbSemTrans','xSendTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actSendingSomething'),'toPossessor'('ACTION','INDIRECT-OBJECT'),'objectMoving'('ACTION','OBJECT'),'fromPossessor'('ACTION','SUBJECT')),3308205).
+acnl('verbSemTrans','xServeTheWord',0,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actServingFoodOrDrink'),'performedBy'('ACTION','SUBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT'),'primaryObjectMoving'('ACTION','OBJECT')),689166).
+acnl('verbSemTrans','xSubmitTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actSubmittingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307997).
+acnl('verbSemTrans','xSupplyTheWord',3,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingSomething'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308004).
+acnl('verbSemTrans','xThrowTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308510).
+acnl('verbSemTrans','xTipTheWord',0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actGivingAGratuity'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3308000).
+acnl('verbSemTrans','xTossTheWord',1,'xDitransitiveNPNPFrame','and'('isa'('ACTION','actThrowingAnObject'),'performedBy'('ACTION','SUBJECT'),'objectActedOn'('ACTION','OBJECT'),'toLocation'('ACTION','INDIRECT-OBJECT')),3308511).
+acnl('verbSemTrans',nartR('xWordWithPrefixFn','xReThePrefix','xGiftTheWord'),0,'xDitransitiveNPNPFrame','and'('objectGiven'('ACTION','OBJECT'),'isa'('ACTION','actRegifting'),'giver'('ACTION','SUBJECT'),'givee'('ACTION','OBLIQUE-OBJECT')),3307996).
 
 
