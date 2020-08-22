@@ -53,7 +53,7 @@ theText11(IC)--> {atomic(IC),downcase_atom(IC,DC)},w2txt(W0),{parser_tokenize:an
 theText11([H|T])--> theText11(H),!,theText11(T).
 %theText1(Txt)--> [w(Txt,_)].
 
-theBaseForm(Tex) --> theText1(Text),{atom_concat(Tex,_,Text)}.
+theBaseForm(Tex) --> theText1(Text),{atomic(Tex),atomic(Text),atom_concat(Tex,_,Text)}.
 
 optionalText1(X) --> theText1(X),!.
 optionalText1(_) --> [].

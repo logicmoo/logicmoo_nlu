@@ -1,3 +1,7 @@
+:- set_prolog_flag(double_quotes, string).
+:- install_constant_renamer_until_eof.
+:- set_prolog_flag(do_renames_sumo,never).
+
 dynamicCyc2( 'abbreviationForCompoundString'/6).
 dynamicCyc2( 'abbreviationForLexicalWord'/5).
 dynamicCyc2( 'abbreviationForMultiWordString'/6).

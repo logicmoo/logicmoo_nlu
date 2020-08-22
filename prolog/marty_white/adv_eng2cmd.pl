@@ -660,6 +660,9 @@ txt2place(Dest, Place, M):- parse2object(Dest, Place, M).
 
 end_of_file.
 
+
+
+
 mu:  ?- xlisting(xGiveTheWord).
 nlac(baseForm, nartR(xWordWithSuffixFn, xGiveTheWord, xEr_AgentTheSuffix), "giver", 3338280).
 nlac(baseForm, nartR(xWordWithSuffixFn, xGiveTheWord, xEr_AgentTheSuffix), "giver", 4562556).
@@ -702,6 +705,8 @@ nlac(preferredBaseForm, nartR(xWordWithSuffixFn, xGiveTheWord, xEr_AgentTheSuffi
 nlac(preferredBaseForm, nartR(xWordWithSuffixFn, xGiveTheWord, xEr_AgentTheSuffix), "giver", 4562559).
 
 nlac(agentiveSg, xGiveTheWord, "giver", 638995).
+
+% posForms,derivedUsingSuffix,
 
 nlac(baseForm, xGiveTheWord, "give", 3338279).
 nlac(preferredBaseForm, xGiveTheWord, "give", 4561025).

@@ -196,7 +196,7 @@ det_quantify(ignore,_X, Found,              Found ).
 %det_quantify(any,   _X, Found,              Found ).
 det_quantify(Q,      X, Found,    q(Q,   X, Found)).
 
-del_e2c_attributes(Term):- 
+del_e2c_attributes(Term):- % leave in $frame_conjunction?
   remove_term_attr_type(Term, ['$quant_needed','$quant_marker','$root']).
 
 '$root':attr_unify_hook(_,_) :- !.

@@ -19,6 +19,10 @@ setup_moo ==> {writeln(setup_moo)}.
 setup_moo2 ==> {writeln(setup_moo2)}.
 
 
+:-use_module(library(make)),redefine_system_predicate(check:list_undefined/1).
+:-abolish(check:list_undefined/1).
+check:list_undefined(_).
+
 :- ensure_loaded(adv_lexical).
 
 :- set_prolog_flag(debugger_write_options, [quoted(true), portray(true), max_depth(20), attributes(dots)]).

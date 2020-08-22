@@ -1,4 +1,7 @@
 
+
+:- ensure_loaded(adv_lexical).
+
 :- discontiguous(verb_frame1/4).
 
 push_frame(Info, Frame):- var(Frame), !, gensym(frame, F), Frame = [lbl(F)], push_frame(Info, Frame).

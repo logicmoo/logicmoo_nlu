@@ -113,6 +113,8 @@ as_is(A) :- A=..[_|S], maplist(is_arity_lt1,S), !.
 
 simple_f(denotableBy).
 simple_f(iza).
+simple_f(c).
+simple_f(p).
 simple_f(isa).
 simple_f(HasSpace):- atom_contains(HasSpace,' ').
 

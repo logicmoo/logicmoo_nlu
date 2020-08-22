@@ -270,7 +270,7 @@ pipeline_input(Text,[input=Text]):-!.
 
 run_pipeline(StartingNameValues0,WaitingOnNVs0,RAllNameValuesOut):- 
     setup_call_cleanup(
-      enotrace(
+      notrace(
         (pipeline_input(StartingNameValues0,StartingNameValues),
          flatten([WaitingOnNVs0],WaitingOnNVs),      
          gensym(iPipeline,TID),clear_pipeline(TID),init_pipeline(TID),
@@ -280,7 +280,7 @@ run_pipeline(StartingNameValues0,WaitingOnNVs0,RAllNameValuesOut):-
 
       run_pipeline_id(TID,WaitingOnNVs, ExitWhy),      
 
-      enotrace((dmsg(end(run_pipeline_id(TID,ExitWhy))),
+      notrace((dmsg(end(run_pipeline_id(TID,ExitWhy))),
          get_pipeline_nvlist(TID,AllNameValues),
          %show_pipeline(TID),
          reverse(AllNameValues,RAllNameValues),
@@ -294,7 +294,7 @@ mapnvs(WaitingOnNVs0,RAllNameValues,RAllNameValuesOut):-
       nb_setarg(2,NV,V))),!,RAllNameValuesOut=WaitingOnNVs0.
 mapnvs(_,O,O).
 
-show_kvs(O):- enotrace(show_kvs0(O)),!.
+show_kvs(O):- notrace(show_kvs0(O)),!.
 show_kvs0(V):- var(V),!,show_kvs0(var:-V).
 show_kvs0(K:-V):- !, portray_clause(current_output,K:-V).
 show_kvs0([H|List]):- !, show_kvs0(H),show_kvs0(List).

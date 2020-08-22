@@ -118,7 +118,8 @@ trans_verb2( Frame, Time, X, Y, LF) --> talk_verb(Frame, IV, tv(X, Y), Time, LF)
 my_clex_verb(Formed, Verb, tv, Type, Verbing):- clex_verb(Formed, Verb, tv, Type),to_evt_name(Verb,Verbing).
 
 % helper for talk_verb_lf/. . .
-talk_verb(Frame, IV, Type, Mod, LF) --> theText1(IV),{lf_talk_verb(Frame, IV, Type, Mod, LF, Root),put_attr(Frame,'$root',Root)}.
+talk_verb(Frame, IV, Type, Mod, LF) --> theText1(IV),
+ {lf_talk_verb(Frame, IV, Type, Mod, LF, Root), put_attr(Frame,'$root',Root)}.
  
 
 lf_talk_verb(Frame, IV, Type, nonfinite, LF, IV ) :- talk_verb_lf(Frame, Type, IV, _, _, _, _, LF).
@@ -251,7 +252,7 @@ prepositional_phrase(SO, X, _Frame, LF, Out) --> theText1(about), noun_phrase(SO
 
    prep_dict(to).
   % prep_dict(X):- loc_pred_prep_db(X,_,_).
-   prep_dict(X):- talkdb:talk_db(preposition, X).
+   prep_dict(X):- talkdb:talk_db(preposition, X), X \== a.
 
    ok_prep(M):- M\==a.
 

@@ -1,23 +1,106 @@
 
+:- forall(between(2,13,N),
+ ( length(ARGS,N),
+   H=..[cyc_t|ARGS],
+   B=..[ac|ARGS],
+   assert(H:-B))).
+
 is_synset_id(X):- integer(X), X > 100001739.
 
-english_some(X, SK):- is_synset_id(X), member(S, [5, 4, 3, 2, 1, _]), wnframes:sk(X, S, SK), !.
+english_some(X, some(SK)):- is_synset_id(X), member(S, [5, 4, 3, 2, 1, _]), wnframes:sk(X, S, SK), !.
 english_some(X, Y):- \+ compound(X), !, Y=X.
+english_some([fr,X1,M,X2|More], Y):- 
+  is_synset_id(X1), wnframes:sk(X1, X2, SK), !, english_some([vnframe,M,SK|More], Y).
 english_some([X1, X2|More], Y):- integer(X2), is_synset_id(X1), wnframes:sk(X1, X2, SK), !, english_some([SK|More], Y).
 english_some(H-T, HH-TT):- !, english_some(H, HH), =(T, TT).
 english_some([H|T], [HH|TT]):- !, english_some(H, HH), english_some(T, TT).
 english_some(X, Y):-
   compound_name_arguments(X, F, Args), F \== sk,
-  english_some(Args, ArgsO), !,
+  english_some([F|Args], [_|ArgsO]), !,
   compound_name_arguments(Y, F, ArgsO).
 english_some(X, X):- !.
 
-lex_print(X):- X == [], !, wdmsg(X), !.
-lex_print(X):- is_list(X), !, maplist(lex_print, X).
-lex_print(X):- english_some(X, Y), wdmsg(Y), !.
-lex_print(X):- english_some(X, Y), pprint(Y, always).
+lex_frivilous(senseExamples).
+lex_frivilous(senseComments).
+lex_frivilous(senseDefinition).
+lex_frivilous(X):- lex_frivilous_maybe(X).
 
-cvt_to_qa_string(A, M):- atomic_list_concat(['"', A, '"'], M).
+lex_frivilous_maybe(posForms).
+lex_frivilous_maybe(subcatFrame).
+lex_frivilous_maybe(s).
+lex_frivilous_col(xtLexicalWord).
+lex_frivilous_col(xtEnglishWord).
+:- add_e2c("a red cat fastly jumped onto the table which is in the kitchen of the house").
+:- add_e2c("After Slitscan, Laney heard about another job from Rydell, the night security man at the Chateau.").
+:- add_e2c("Rydell was a big quiet Tennessean with a sad shy grin , cheap sunglasses , and a walkie-talkie screwed permanently into one ear").
+:- add_e2c("Concrete beams overhead had been hand-painted to vaguely resemble blond oak").
+:- add_e2c("The chairs, like the rest of the furniture in the Chateau s lobby, were oversized to the extent that whoever sat in them seemed built to a smaller scale").
+:- add_e2c("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize").
+:- add_e2c("A little tribute to Gibson.").
+:- add_e2c('"You look like the cat that swallowed the canary," he said, giving her a puzzled look.').
+:- add_e2c("the monkey heard about the very next ship which is yellow and green").
+
+%lex_mws(genTemplateConstrained).
+%lex_mws(genTemplate).
+lex_mws(headMedialString).
+lex_mws(compoundString).
+lex_mws(prepCollocation).
+lex_mws(abbreviationForMultiWordString).
+lex_mws(multiWordStringDenotesArgInReln).
+lex_mws(compoundSemTrans).
+lex_mws(multiWordSemTrans).
+lex_mws(multiWordString).
+lex_mws(mws).
+
+%is_word(W):- atom(W), guess_arg_type(X, W), !, X==word. 
+%is_atom_word(W):- atom(W), guess_arg_type(X, W), !, X==word. 
+
+contains_overlap(_Atoms,Was):- \+ (select(txt(_O1),Was,Was1),member(txt(_O2),Was1)), !.
+
+contains_overlap( Atoms,Was):- 
+  list_to_set(Atoms, Atoms1), 
+  select(A1,Atoms1,Atoms2),
+  member(A2,Atoms2),
+  binds_with(A1,O1),
+  binds_with(A2,O2),  
+  member(Find1,[txt(O1)]),member(Find2,[txt(O2)]),
+  select(Find1,Was,Was1),member(Find2,Was1),
+  nop(wdmsg(contains_overlap( A1+O1,A2+O2))), !.
+  
+to_atom_or_string(A,W):-  nonvar(W),!,to_atom_word(A,O),!,O==W.
+
+to_atom_word(A,W):- nonvar(W),!,to_atom_word(A,O),!,O==W.
+to_atom_word(A,W):- to_case_break_atoms(A,O),!,(O=[W]->true;(O=['"', W, '"']->true;O=[x,DC,'The','Word'],downcase_atom(DC,W))).
+
+filter_mmw(X,O):- A=val([]), filter_mmw(A,X,X),!,arg(1,A,O).
+
+filter_mmw(_,_Was,X):- X == [], !.
+filter_mmw(O,_Was,X):- var(X),!,append_o(var(X),O).
+filter_mmw(O, Was,[H|T]):-!,filter_mmw(O, Was,H),filter_mmw(O, Was,T).
+filter_mmw(_,_Was, level(1, _,_,_)):- !.
+filter_mmw(O, Was,X):- select(X,Was,WasNt),!,filter_mmw(O, WasNt,X).
+filter_mmw(O, Was, level(0, _,X,_)):- !, filter_mmw(O, Was, X).
+filter_mmw(_, Was,X):- compound(X), functor(X,MW,_), lex_mws(MW), atoms_of(X,Atoms), \+ contains_overlap(Atoms,Was),!.
+filter_mmw(_,_Was,X):- compound(X),functor(X,MW,_),lex_frivilous(MW),!.
+filter_mmw(_,_Was,isa(_,MW)):- lex_frivilous_col(MW),!.
+filter_mmw(O,_Was,X):- append_o(X,O).
+
+append_o(X,O):- O=val([]),!,nb_setarg(1,O,[X]).
+append_o(X,val(List)):- o_put(X, List).
+o_put(F, List):- memberchk(F, List), !.
+o_put(F, List):- List=[_|T], (T==[] -> nb_setarg(2, List, [F]) ; o_put(F, T)).
+
+lex_print(X):- X == [], !, wdmsg(X), !.
+lex_print(X):- is_list(X), !, maplist(lex_print0, X).
+lex_print(X):- lex_print0(X),!.
+lex_print0(level(0, _,X,_)):- !, lex_print0(  X).
+lex_print0(level(1, _,_,_)):- !.
+lex_print0(isa(_,MW)):- lex_frivilous_col(MW),!.
+lex_print0(X):- english_some(X, Y), wdmsg(Y), !.
+lex_print0(X):- english_some(X, Y), pprint(Y, always).
+
+%cvt_to_qa_string(A, M):- atomic_list_concat(['"', A, '"'], M).
+cvt_to_qa_string(A, M):- atom_string(A, M).
 cvt_to_atom(A, M):- atomic_list_concat([A], M).
 cvt_to_real_string(A, M):- atom_string(A, M).
 
@@ -33,12 +116,10 @@ add_todo_list([M|MoreS], Todo, Done, NewTodo):- member_eq0(M, Done), !, add_todo
 add_todo_list([M|MoreS], Todo, Done, NewTodo):- add_if_new(Todo, [M], TodoM), !,
  add_todo_list(MoreS, TodoM, Done, NewTodo).
 
-string_to_cyc_word(String, P, C, nl0988(P, C, QAString)):-
- cvt_to_qa_string(String, QAString),
- nl0988(P, C, QAString), ok_speech_part_pred(P).
-string_to_cyc_word(String, P, C, acnl(P, C, RealString)):-
- cvt_to_real_string(String, RealString),
- acnl(P, C, RealString, _), ok_speech_part_pred(P).
+word_to_cycword(String, P, C, cyc_t(P, C, QAString)):-
+ cvt_to_real_string(String, QAString),
+ cyc_t(P, C, QAString), ok_speech_part_pred(P).
+
 
 string_to_info(String, P):- fail,
  catch(downcase_atom(String, Atom), _, fail),
@@ -53,7 +134,8 @@ guess_pred_pos(P, String, Pos):- arg(_, P, Pos), nonvar(Pos), Pos \== String, !.
 
 ok_speech_part_pred(P):-
  P\==firstNameInitial, P\==middleNameInitial,
- (nl0988(isa, P, rtSpeechPartPredicate); \+ nl0988(isa, P, _)), !.
+ (
+ cyc_t(isa, P, rtSpeechPartPredicate); \+ cyc_t(isa, P, _)), !.
 
 subtype_index(_, +(_), _, _Value, _CArg, _PreCall, _PostCall):- !, fail.
 subtype_index(_, word, string, Value, CArg, PreCall, PostCall):-  PreCall = cvt_to_real_string(Value, CArg), PostCall = true.
@@ -66,14 +148,6 @@ subtype_index(_, word, wordbase, Value, CArg, PreCall, PostCall):- PreCall = (CA
 subtype_index(_, W, any(W), Value, CArg, PreCall, PostCall):-  PreCall = true, PostCall = sub_var(Value, CArg).
 subtype_index(_, W, seq(W), Value, CArg, PreCall, PostCall):- atom(W), PreCall = (CArg = [_|_]), PostCall = sub_var(Value, CArg).
 subtype_index(_, W, listof(W), Value, CArg, PreCall, PostCall):- PreCall = (CArg = [_|_]), PostCall = member(Value, CArg).
-
-do_lex_arg_type(Value):-
- do_lex_arg_type(word, Value, [], [], Datum),
- lex_print(Datum).
-
-do_lex_arg_type(Type, Value):-
- do_lex_arg_type(0, Type, Value, [], Datum),
- lex_print(Datum).
 
 doable_type(_, DoType, Type):- nonvar(DoType),
   DoType\==string, DoType\==data, DoType=Type, !.
@@ -141,20 +215,23 @@ guess_args_of(P,Guess):-
    N1\==N2,
    arg(N1,P,A1), arg(N2,P,A2),
    A1\==A2,
-   atom(A1),atom(A2),
+   is_atom_word(A1),is_atom_word(A2),
    atom_concat(A1,_,A2),
    atom_length(A1, L), L > 3,
    nb_setarg(N1,Guess,wordbase),
-   nb_setarg(N2,Guess,word))).
+   nb_setarg(N2,Guess,word))),
+ duplicate_term(Guess,GuessD),
+ duplicate_term(Guess,Guess),
+ nb_setval('$guess',GuessD).
 
 
 guess_arg_type(X, S):- string(S), X= string.
-guess_arg_type(X, S):- integer(S), S > 100001739, X = id(wn).
+guess_arg_type(X, S):- is_synset_id(S), X = id(wn).
 guess_arg_type(X, S):- number(S), X = data.
 guess_arg_type(X, S):- var(S), X = data.
 guess_arg_type(X, S):- S==[], X = unk.
-guess_arg_type(listof(X),S):- S=[E|_], nonvar(E), guess_arg_type(X, E).
-guess_arg_type(X, S):- \+ atom(S), X = unk.
+guess_arg_type(listof(X),S):- S=[E|_], nonvar(E), guess_arg_type(X, E), X \== unk.
+guess_arg_type(X, S):- \+ atom(S), !, X = unk.
 
 guess_arg_type(X, S):- S=='', X = data.
 guess_arg_type(pos, neutr).
@@ -174,11 +251,33 @@ left_over_word_type(['_'],word).
 left_over_word_type(['-'],wordh).
 left_over_word_type([_],unk).
 
+is_atom_word(W):- atom(W), guess_arg_type(X, W), !, X==word. 
 get_vv(X,Arg):- compound(Arg), Arg = '++'(X).
 
+
+:- export(lex_winfo/1).
+lex_winfo(Value):- lex_tinfo(word, Value).
+
+:- export(lex_tinfo/2).
+lex_tinfo(Type, Value):-
+ findall(Datum,get_info_about_type(0, Type, Value, Datum),DatumL),
+   flatten(DatumL,DatumF),
+   maplist(wdmsg,DatumF), !.
+
+
+
 get_info_about_type(Level, Type, Value, MoreF):-
-  Level2 is Level+1,
+  get_info_about_type0(Level, Type, Value, MoreF) 
+   *-> true 
+   ; get_info_about_type1(Level, Type, Value, MoreF).
+
+get_info_about_type1(_Level, Type, Value, MoreF):-
+  get_info_about_type0(fallback, Type, Value, MoreF).
+  
+get_info_about_type0(Level, Type, Value, MoreF):-
+  (number(Level)-> Level2 is Level+1; Level2 = 1),
   lex_arg_type(Level, M, P),
+%nonvar(Level),
   arg(N, P, Matcher),
   once((nonvar(Matcher), subtype_index(Level, Type, Matcher, Value, CArg, PreCall, PostCall))),
   functor(P, F, A),
@@ -188,7 +287,7 @@ get_info_about_type(Level, Type, Value, MoreF):-
   % nop (wdmsg(( P -> C))),
   matcher_to_data_args(=(Matcher), data, P),  
   call(PreCall),
-  wdmsg(M:get_info_about_type(Level, Type, Value, P->C, PostCall)),  
+  % wdmsg(M:get_info_about_type(Level, Type, Value, P->C, PostCall)),  
   once((findall([level(Level, Type, C, Value)|Extra], ((call(M:C)), call(PostCall),
                          P=..[_|PRest], C=..[_|CRest],
                          make_new_todos(Type, Level2, CRest, PRest, [], Extra)), More1),
@@ -235,78 +334,79 @@ add_if_new(Done, Doing, NewDone):-
    -> NewDone = Done
    ; append(Done, [Doing], NewDone).
 
-:- export(denote_lex/1).
-denote_lex(String):-
- denote_lex(String, Datum),
+:- export(lex_info/1).
+lex_info(String):-
+ lex_info(String, Datum),
  lex_print(Datum).
 
-:- export(denote_lex/2).
-denote_lex(String, Datum):-
+:- export(lex_info/2).
+lex_info(String, Out):-
  munl_call(into_text80(String, Words)),
  maplist(into_dm, Words, Todo),
  Level = 0,
- denote_lex( Level, Todo, [], Datum), !.
+ lex_info( Level, Todo, [text80(Words)], Datum),!,
+ filter_mmw(Datum,Out),!.
 
 into_dm(String, txt(AString)):- cvt_to_atom(String, AString).
 didnt_do(Todo, skipped(Todo)).
 
-denote_lex(_Level, [], Done, Done):-!.
-denote_lex( Level, Todo, Done, Out):- correct_dos(Todo, TodoS), TodoS\==Todo, !, denote_lex( Level, TodoS, Done, Out).
-denote_lex( Level, Todo, Done, Out):- correct_dos(Done, DoneS), DoneS\==Done, !, denote_lex( Level, Todo, DoneS, Out).
-denote_lex( Level, [M:Did|Todo], Done, Out):- atom(M), !, denote_lex( Level, [Did|Todo], Done, Out).
+lex_info(_Level, [], Done, Done):-!.
+lex_info( Level, Todo, Done, Out):- correct_dos(Todo, TodoS), TodoS\==Todo, !, lex_info( Level, TodoS, Done, Out).
+lex_info( Level, Todo, Done, Out):- correct_dos(Done, DoneS), DoneS\==Done, !, lex_info( Level, Todo, DoneS, Out).
+lex_info( Level, [M:Did|Todo], Done, Out):- atom(M), !, lex_info( Level, [Did|Todo], Done, Out).
 
 
-denote_lex( Level, Todo, Done, Out) :- Level > 3, !, maplist(didnt_do, Todo, NotTodo), append(Done, NotTodo, Out).
-denote_lex( Level, [txt(String)|Todo], Done, Out):-
- get_denote_txt(String, Result),
+lex_info( Level, Todo, Done, Out) :- Level > 3, !, maplist(didnt_do, Todo, NotTodo), append(Done, NotTodo, Out).
+lex_info( Level, [txt(String)|Todo], Done, Out):-
+ get_lex_info(Type, String, Result),
  append(Done, Result, DoneResult), my_l2s(DoneResult, NewDone),
- denote_lex( Level, Todo, NewDone, Out).
+ lex_info( Level, Todo, NewDone, Out).
 
-denote_lex( Level, [todo(Type, Value)| Todo], Done, Out):- !,
-  denote_lex( Level, [todo(Level, Type, Value)| Todo], Done, Out).
+lex_info( Level, [todo(Type, Value)| Todo], Done, Out):- !,
+  lex_info( Level, [todo(Level, Type, Value)| Todo], Done, Out).
 
-denote_lex(_Lev__, [todo(Level, DoType, Value)| Todo], Done, Out):-
+lex_info(_Lev__, [todo(Level, DoType, Value)| Todo], Done, Out):-
  doable_type(Level, DoType, Type),
  Doing = todo(Level, Type, Value),
  add_if_new(Done, Doing, NewDone),
  findall(Info, get_info_about_type(Level, Type, Value, Info), More),
  add_do_more(More, Todo, NewDone, NewTodo),
- denote_lex( Level, NewTodo, NewDone, Out), !.
+ lex_info( Level, NewTodo, NewDone, Out), !.
 
-denote_lex( Level, [cycWord(P, C)|Todo], Done, Out):-
+lex_info( Level, [cycWord(P, C)|Todo], Done, Out):-
  findall(concept(Subj), conceptForWord(P, C, Subj), More1),
  findall(Info, info_about(C, Info), More2),
  add_if_new(Done, cycWord(P, C), NewDone),
  add_do_more([More1, More2], Todo, NewDone, NewTodo),
- denote_lex( Level, NewTodo, NewDone, Out).
+ lex_info( Level, NewTodo, NewDone, Out).
 
-denote_lex( Level, [concept(C)|Todo], Done, Out):- fail,
+lex_info( Level, [concept(C)|Todo], Done, Out):- fail,
  findall(Info, info_about(C, Info), More2),
  add_if_new(Done, concept(C), NewDone),
  add_do_more(More2, Todo, NewDone, NewTodo),
- denote_lex( Level, NewTodo, NewDone, Out).
+ lex_info( Level, NewTodo, NewDone, Out).
 
-denote_lex( Level, [Did|Todo], Done, Out):-
+lex_info( Level, [Did|Todo], Done, Out):-
  Did =..[T, F|RestP],
- member(T, [acnl, nl0988, t, talk_db]),
+ member(T, [acnl, cyc_t, t, talk_db]),
  (T == acnl -> append(Rest, [_Ref], RestP) ; RestP= Rest),
 % (T == t -> TAdd = Do ; TAdd = T),
  atom(F),
  Do =..[F|Rest],
- denote_lex( Level, [Do|Todo], Done, Out).
+ lex_info( Level, [Do|Todo], Done, Out).
 
-denote_lex( Level, [Did|Todo], Done, Out):-
+lex_info( Level, [Did|Todo], Done, Out):-
  compound(Did), functor(Did, F, A),
  findall(Arg, (arg(_, Did, Arg), nonvar(Arg), searches_arg(F, A, Arg)), List),
  List\==[],
  maplist(add_search_arg, List, DoNow),
  add_do_more(DoNow, Todo, Done, NewTodo),
- denote_lex( Level, NewTodo, Done, Out).
+ lex_info( Level, NewTodo, Done, Out).
 
 
-denote_lex( Level, [Did|Todo], Done, Out):-
+lex_info( Level, [Did|Todo], Done, Out):-
  add_if_new(Done, Did, NewDone),
- denote_lex( Level, Todo, NewDone, Out).
+ lex_info( Level, Todo, NewDone, Out).
 
 add_search_arg(Arg, concept(Arg)).
 
@@ -320,23 +420,23 @@ searches_arg(_F, _A, Arg):- atom_length(Arg, Len), Len<4, !, fail.
 
 
 
-conceptForWord(_P, C, Subj):- nl0988(denotation, C, _, _, Subj).
-conceptForWord(_P, C, Subj):- acnl(denotation, C, _, _, Subj, _).
+conceptForWord(_P, C, Subj):- cyc_t(denotation, C, _, _, Subj).
+% conceptForWord(_P, C, Subj):- acnl(denotation, C, _, _, Subj, _).
 
 :- dynamic(tmp:saved_denote_lex/2).
 :- retractall(tmp:saved_denote_lex(  _, _)).
-get_denote_txt(String, Out):- catch(downcase_atom(String, DCAtom), _, fail), DCAtom\==String, !, get_denote_txt(DCAtom, Out).
-get_denote_txt(DCAtom, Out):- tmp:saved_denote_lex( DCAtom, Out), !.
-get_denote_txt(DCAtom, Out):- do_denote_lex(DCAtom, Out), asserta(tmp:saved_denote_lex( DCAtom, Out)), !.
+get_lex_info(Type, String, Out):- catch(downcase_atom(String, DCAtom), _, fail), DCAtom\==String, !, get_lex_info(Type, DCAtom, Out).
+get_lex_info(Type, DCAtom, Out):- tmp:saved_denote_lex( DCAtom, Out), !.
+get_lex_info(Type, DCAtom, Out):- do_lex_info(Type, DCAtom, Out), asserta(tmp:saved_denote_lex( DCAtom, Out)), !.
 
-do_denote_lex(AString, OutS):-
- findall([cycWord(P, C), Why], string_to_cyc_word(AString, P, C, Why), More1),
+do_lex_info(Type, AString, OutS):-
+ findall([cycWord(P, C), Why], word_to_cycword(AString, P, C, Why), More1),
  findall(Info, string_to_info(AString, Info), More2),
  NewDone = [txt(AString)],
  cvt_to_atom(AString, Atom),
  Level = 0,
  add_do_more([todo( Level, word, Atom), More1, More2], [], NewDone, NewTodo),
- denote_lex( Level, NewTodo, NewDone, Out), !,
+ lex_info( Level, NewTodo, NewDone, Out), !,
 % =(Out, OutS).
  predsort(ignore_level, Out, OutS).
 
@@ -431,12 +531,20 @@ gen_preds_m_p(M, F, A):-
 
 
 
-gen_preds_containing(C, P):- between(2, 12, A), functor(P, nl0988, A), arg(N, P, C), N>1, call(P).
-gen_preds_containing(C, P):- ac_nl_info_1(C, Results), member(P, Results).
-gen_preds_containing(C, P):- between(3, 12, A), functor(P, acnl, A), arg(N, P, C), N<A, N>1, call(P).
+gen_preds_containing(C, P):- between(3, 12, A), functor(P, cyc_t, A), arg(N, P, C), N>1, call(P).
+gen_preds_containing(C, P):- in_call(C,P,Template,cyc_t('genTemplate',_,Template)).
+gen_preds_containing(C, P):- in_call(C,P,Template,cyc_t('genTemplateConstrained',_,_,Template)).
+gen_preds_containing(C, P):- P=cyc_t(_Pred,Cont), call(P), sub_var(C,Cont).
+
+%gen_preds_containing(C, P):- ac_nl_info_1(C, Results), member(P, Results).
+%gen_preds_containing(C, P):- between(3, 12, A), functor(P, acnl, A), arg(N, P, C), N<A, N>1, call(P).
+
+in_call(C,P,Template,Call):- P=Call,call(P),once(sub_var(C,Template)).
+
+
 %gen_preds_containing(C, P):- gen_preds_atomic(C, P).
 
-%gen_preds_containing(C, P):- between(2, 12, A), functor(P, nl0988, A), call(P), sub_term(X, P), X==C.
+%gen_preds_containing(C, P):- between(2, 12, A), functor(P, cyc_t, A), call(P), sub_term(X, P), X==C.
 info_about(C, _Info):- number(C), \+ (C > 100001739 ; C < - 100000), !, fail.
 info_about(C, Info):-
  findall(P, gen_preds_containing(C, P), L),
@@ -514,6 +622,7 @@ skip_lex_arg_type(M, P):- compound(P), functor(P, F, A), maybe_skip_search(M, F,
 lex_arg_type( _, M, P):- nonvar(P), skip_lex_arg_type(M, P), !.
 
 
+lex_arg_type( _,   mu, word_to_cycword(word, pos, cycword, data)).
 lex_arg_type( _, clex, clex_adj(word, word, data)).
 lex_arg_type( _, clex, adj_itr(word, wordbase)).
 lex_arg_type( _, clex, adj_itr_comp(word, wordbase)).
@@ -542,471 +651,50 @@ lex_arg_type( _, clex, prep(word, data)).
 lex_arg_type( _, clex, tv_finsg(word, wordbase)).
 lex_arg_type( _, clex, tv_infpl(word, wordbase)).
 lex_arg_type( _, clex, tv_pp(word, wordbase)).
+
 lex_arg_type( _, framenet, fnpattern(word, id(fn), concept(fn), data)).
-lex_arg_type( _, framenet, frel(+(causative_of), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(coreset), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(excludes), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(inchoative_of), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(inheritance), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(perspective_on), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(precedes), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(reframing_mapping), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(requires), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(see_also), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(subframe), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frel(+(using), concept(fn), concept(fn))).
-lex_arg_type( _, framenet, frels(+(causative_of), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(coreset), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(excludes), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(inchoative_of), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(inheritance), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(perspective_on), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(precedes), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(reframing_mapping), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(requires), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(see_also), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(subframe), concept(fn), concept(fn), data, data)).
-lex_arg_type( _, framenet, frels(+(using), concept(fn), concept(fn), data, data)).
+
+lex_arg_type( _, framenet, frel(+(causative_of), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(coreset), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(excludes), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(inchoative_of), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(inheritance), data, concept(fn2))).
+lex_arg_type( _, framenet, frel(+(perspective_on), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(precedes), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(reframing_mapping), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(requires), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(see_also), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(subframe), concept(fn2), concept(fn2))).
+lex_arg_type( _, framenet, frel(+(using), concept(fn2), /*concept(fn2)*/ data )).
+lex_arg_type( _, framenet, frels(+(causative_of), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(coreset), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(excludes), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(inchoative_of), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(inheritance), data, concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(perspective_on), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(precedes), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(reframing_mapping), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(requires), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(see_also), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(subframe), concept(fn2), concept(fn2), data, data)).
+lex_arg_type( _, framenet, frels(+(using), concept(fn2), data,/* concept(fn2),*/ data, data)).
+
 lex_arg_type( 0, framenet, fsr(word-pos, concept(fn), data)).
 lex_arg_type( 1, framenet, semtype(concept(fn), data, data)).
 lex_arg_type( 0, mu, thetaRole(word, data, concept(tt2), data, data, concept(tt2), string, string, data)).
 
-lex_arg_type( _, tt0, ttholds(+(male),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('SECAM'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(rare),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(film_converted_to_NTSC),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(us),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('NTSC'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fr),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(cardioid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('figure-8'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(hypercardioid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(omnidirectional),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(female),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(famous),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(brown),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(leather),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(cotton),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(white),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(closed_captioned),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fanciful),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Asian'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bronze),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('BW'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(floral),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(print),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(silk),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(large_crosshatch),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(small_chevrons),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Black'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_ankle),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_foot),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(triangles),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(glove_leather),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(encrypted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nonencrypted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(stereo),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Nagravision'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Panda1'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(vertical_polarization),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Caucasian'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Ceefax'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(ca),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(acrylic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(stripes),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(checker),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(squares),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(delayed),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(crosshatch),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(light_blue),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(blue),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(supercardioid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(original_run),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(red),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(mono),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('J17'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(copper),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(herringbone),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(large_stripes),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Hispanic'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(thin_stripes),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(thin_checker),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(green),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(uk),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(liquid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(ovals),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(splotches),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(pink),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(dark_blue),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(wide_angle_cardioid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(live),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('PAL'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(many_to_one),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(black),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(stitch_strings),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(light_gray),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(circles),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(dark_brown),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Sanforized'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('Shetland_wool'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(yellow),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nylon),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(tie_dye),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bars),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(crosses),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(barrier_isa),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(professional_product),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(in_color),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(atom_nickel),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(steel),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(abstinent),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(humorous),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(adult),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(alto),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(free_object),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(child),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(embryonic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fetal),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(annoying),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(symmetric),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fixed_object),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(walkable),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(apolitical),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_top),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(vestlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(trade_arbitrage),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(humanmade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_bottom),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_middle),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(cylinder),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_MBA_program),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_college),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_day_care),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_doctoral_program),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_eighth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_elementary_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_eleventh_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_fifth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_first_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_fourth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_graduate_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_high_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_junior_college),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_junior_high_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_kindergarten),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_law_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_medical_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_ninth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_nursery_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_preschool),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_second_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_secondary_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_seventh_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_sixth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_technical_school),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_tenth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_third_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attend_twelfth_grade),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Adventist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Afghan),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_African),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_American),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Anglican),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Anglo_Catholic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Asian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Baptist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Biarritz),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_British),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Buddhist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Burgundian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Californian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Calvinist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Canadian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Catholic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Chinese),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Christian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Christian_Scientist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Confucianist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Czech),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Czechoslovakian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Danish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Douarnenez),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Dutch),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_ENA),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_ENS),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_East_Ender),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_English),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Episcopal),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Episcopalian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_European),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Finnish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_French),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_German),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Greek_Orthodox),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Hindu),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Hongkong),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Ile_de_France),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Indian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Irish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Italian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Jaina),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Japanese),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Jewish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Kashmiri),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Korean),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Liverpudlian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Londoner),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Lutheran),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Martinique),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Mennonite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Menton),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Methodist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Mormon),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Muslem),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Neuilly),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_New_Jersey),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_New_York),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_North_Korean),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Northern_Irish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Orthodox_Eastern_Church),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Parisian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Polish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Protestant),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Quaker),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Roman_Catholic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Russian_Orthodox),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Scottish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Seventh_Day_Adventist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Shiite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Shintoist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Sikh),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Slovakian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Sorbonne),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_South_Korean),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Spanish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Sunnite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Swedish),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Swiss),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Taiwanese),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Taoist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Thai),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Tokyoite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Vedaic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Welsh),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_X),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Zen_Buddhist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_Zoroastrian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_agnostic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_animist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_anti_religious),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_atheist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_chafiite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_doer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_good_Samaritan),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_hanafite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_kharidjite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_libertine),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_malekite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_materialist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_monotheist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_occultist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_pantheist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_polytheist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_shamanist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_witch),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(attr_wrongdoing),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(illegal),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(baritone),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_hand),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bass),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bass_baritone),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(overlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(ellipsoid),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(sentient),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bigoted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fly),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(black_leather),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(underlayerpost),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bouncy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(underlayerpre),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(tweed),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(bullying),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(calfskin_velvet),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(can_hold),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(can_lift),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(cone),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(orange),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(dots),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(gray),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(sphere),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(chine_cotton),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_calf),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_forearm),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_knee),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_thigh),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(shirtlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clothing_wrist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(clumsy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(coatlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(construction_membrane),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(contralto),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(corduroy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(wool),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+('super-100_S'),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(worsted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(pin_stripe),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fine_weave),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(counter_tenor),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(cowardly),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(polka_dot),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(small_dots),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(small_squares),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(dead),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(denim),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(do_postdoctoral_work),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(drivable),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(unwalkable),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(entertaining),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(extroverted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(fine_stitch),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(ptrans_swim),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(taped),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(gas),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(groggy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(gullible),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(has_ceiling),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(heavier_than_air),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(lighter_than_air),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(underlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(intelligent),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Bolshevist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Castroite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Democratic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Fabian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Leninist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Maoist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Marxist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Marxist_Leninist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Marxist_revisionist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Owenite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Republican),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Saint_Simonian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Social_Democratic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Stalinist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Titoist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Tory),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_Trotskyite),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(political),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_anarchist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_anarcho_syndicalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_anticapitalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_capitalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(urban),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_collectivist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_communist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_conservative),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(rural),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_extremist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_fascist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_individualistic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(inexperienced),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(infant),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(introverted),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(lazy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_left_wing_radical),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_left_wing),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_liberal),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(litigious),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(lucky),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(male_chauvinist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(mezzo_soprano),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(middle_aged_adult),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_moderate),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_nationalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_nazi),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_neonazi),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nerdy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(neurosis),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_nihilist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(noble),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nonborn),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(old_adult),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(optimistic),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(pacifist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_phalansterian),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(poor),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(prejudiced),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(preppy),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_progressiste),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_progressive),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(psychosis),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(racist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_radical),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_radical_socialiste),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_reactionary),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_revolutionary),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(rich),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_right_wing),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_royalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(schizophrenia),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(skeptical),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(snobby),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_socialist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(soprano),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(spaced_out),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_state_socialist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(suburban),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_subversive),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_syndicalist),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(talkative),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(technical),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(teenager),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(tenor),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(thirty_something),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_ultraconservative),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(unintelligent),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(unkind),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(unsuccessful),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(very_old_adult),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_worker),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(politically_yippie),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(young_adult),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(insider_trading),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(ivory_colored),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(jacketlayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(khaki_color),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(light_brown),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(market_manipulation),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(silent),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nonreligious),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(not),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(nubuck),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(olive_green),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(one_to_one),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(overlayerpost),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(rollable),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(rubber),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(sick),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(sing),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(sky_blue),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(trade_speculate),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(teach),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(tielayer),concept(tt))).
-lex_arg_type( _, tt0, ttholds(+(weave),concept(tt))).
-
-lex_arg_type( _, mu, ttholds(isa, concept(tt))).
-
-lex_arg_type( _, mu, ttholds(data, id(tt), pos)).
-lex_arg_type( _, mu, ttholds(data, id(tt), pos, data)).
-lex_arg_type( _, mu, ttholds(data, id(tt), pos, data, concept(tt))).
-lex_arg_type( _, mu, ttholds(data, concept(tt), data)).
-lex_arg_type( 1, mu, ttholds(pos, id(tt), string)).
-lex_arg_type( _, nldata_BRN_WSJ_LEXICON, text_bpos(word, pos)).
+lex_arg_type( _, tt0, ttholds(concept(tt),concept(tt))).
+lex_arg_type( _, tt0, ttholds(word,concept(tt))).
+lex_arg_type( _, tt0, ttholds(data, id(tt), pos)).
+lex_arg_type( _, tt0, ttholds(data, id(tt), pos, data)).
+lex_arg_type( _, tt0, ttholds(data, id(tt), pos, data, concept(tt))).
+lex_arg_type( _, tt0, ttholds(data, concept(tt), data)).
+lex_arg_type( 1, tt0, ttholds(pos, id(tt), string)).
+lex_arg_type( fallback, nldata_BRN_WSJ_LEXICON, text_bpos(word, pos)).
 lex_arg_type( _, nldata_colloc_pdat, mws(seq(word), pos)).
 lex_arg_type( _, nldata_dictionary_some01, dictionary(pos, seq(word), seq(word))).
 lex_arg_type( _, nldata_dictionary_some01, explitVocab(word, pos)).
-lex_arg_type( _, nldata_freq_pdat, text_bpos(data, word, pos)).
+lex_arg_type( fallback, nldata_freq_pdat, text_bpos(data, word, pos)).
 lex_arg_type( _, parser_chat80, adj_sign_db(wordbase, data)).
 % lex_arg_type( _, parser_chat80, adjunction_lf(wordbase, data, data)).
 lex_arg_type( _, parser_chat80, adjunction_lf(any(word), data, data, data)).
@@ -1109,6 +797,23 @@ lex_arg_type( _, wnframes, sk(id(wn), data, data)).
 lex_arg_type( _, wnframes, syntax(id(wn), data, pos)).
 lex_arg_type( _, wnframes, vgp(id(wn), data, id(wn), data)).
 
+binds_with(C,_Val):- \+ atomic(C),!,fail.
+binds_with(C, Val):- var(Val),!, put_attr(Val, binds_atomic, C).
+binds_with(C, Val):- compound(Val),!, sub_term(V, Val), atomic(V), same_atoms(C,V),!.
+binds_with(C, Val):- same_atoms(C,Val).
+
+same_atoms(A1,A2):- A1==A2->true;(A2\==[],A1\==[],downcase_atom(A1,V1),downcase_atom(A2,V2),!,V1==V2).
+
+
+% binds_with(C, Val):- compound(Val), !, arg(_, Val, V), V==C.
+
+
+% binds_with(C, Val):- var(C), !, freeze(C,binds_with(C, Val)).
+
+
+
+binds_atomic:attr_unify_hook(C, Val):- binds_with(C, Val).
+
 
 %:- gen_preds_m_p.
 
@@ -1138,7 +843,7 @@ binds_atomic:attr_unify_hook(C, Val):- C==Val.
 binds_atomic:attr_unify_hook(C, Val):- compound(Val), !, arg(_, Val, V), V==C.
 %binds_atomic:attr_unify_hook(C, Val):- compound(Val), notrace(sub_var(C, Val)).
 
-% gen_preds_containing(C, P):- between(2, 12, A), functor(P, nl0988, A), arg(N, P, C), N>1, call(P).
+% gen_preds_containing(C, P):- between(2, 12, A), functor(P, cyc_t, A), arg(N, P, C), N>1, call(P).
 */
 
 

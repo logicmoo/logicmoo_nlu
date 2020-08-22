@@ -62,8 +62,8 @@
 /*
 */
 :- use_module(library(check)).
-:- abolish(check:list_undefined, 0).
-:- asserta((check:list_undefined:-!)).
+%:- abolish(check:list_undefined, 0).
+%:- asserta((check:list_undefined:-!)).
 %:- parser_chat80:export(parser_chat80:theText1/3).
 %:- import(parser_chat80:theText1/3).
 
@@ -240,12 +240,12 @@ e2c :- locally(tracing80,
              with_no_assertions(lmconf:use_cyc_database,
                   locally(t_l:usePlTalk, (told, repeat, prompt_read('E2FC> ', U),
                             to_wordlist_atoms(U, WL), (WL==[ bye];WL==[end, '_', of, '_', file];e2c(WL)))))).
-
+                            
 :-export(e2c/1).
 e2c(Sentence):-
-  make,
-  setup_call_cleanup(   
-   must(notrace((to_wordlist_atoms(Sentence, Words), fmt(e2c(Sentence))))),
+  with_error_to_predicate(nop,make),
+   setup_call_cleanup(   
+   must(notrace((to_wordlist_atoms(Sentence, Words), fmt('?-'(e2c(Sentence)))))),
    (call_residue_vars(must(e2c_0(Words)),Vs),del_e2c_attributes(Vs)),
    true),!.
 :-system:import(e2c/1).
@@ -267,7 +267,7 @@ e2c(Sentence, Reply):-
 
 e2c_0(Sentence, Reply) :-
    % must_or_rtrace      
-   set_prolog_flag(debugger_write_options,[quoted(true), portray(false), max_depth(50), attributes(portray)]),
+   % set_prolog_flag(debugger_write_options,[quoted(true), portray(false), max_depth(50), attributes(portray)]),
    e2c_parse0(Sentence, LF), % deepen_pos?
    e2c_clausify_and_reply(LF,Reply).
 
@@ -285,7 +285,7 @@ e2c_parse(Sentence, LF):- cwc,
 :- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_parse0,2,prologOnly)).
 
 e2c_parse0(WL, LF):-    
-  nb_setval('$variable_names',[]),
+  b_setval('$variable_names',[]),
   retractall(t_l:usePlTalk),
   retractall(t_l:useAltPOS), !,
   e2c_parse2(WL, LF).

@@ -10,6 +10,8 @@
 :- style_check(-discontiguous).
 % :- style_check(-atom).
 :- set_prolog_flag(double_quotes, string).
+:- install_constant_renamer_until_eof.
+:- set_prolog_flag(do_renames_sumo,never).
 
 % ========================================================================================
 % ========================================================================================

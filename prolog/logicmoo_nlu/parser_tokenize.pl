@@ -18,10 +18,10 @@
 :- use_module('../../ext/ape/prolog/parser/tokenizer').
 
 into_acetext(Tokens,AceText):- 
-   enotrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).
+   notrace((into_text80(Tokens,TokensP),tokens_to_acetext0(TokensP,AceText))).
 
 tokens_to_acetext0([],'').
-tokens_to_acetext0(ListIn,Out):-  enotrace((member(T,ListIn), \+ atom(T))), !, maplist(any_nb_to_atom,ListIn,List),tokens_to_acetext0(List,Out).
+tokens_to_acetext0(ListIn,Out):-  notrace((member(T,ListIn), \+ atom(T))), !, maplist(any_nb_to_atom,ListIn,List),tokens_to_acetext0(List,Out).
 tokens_to_acetext0([T],T):-!.
 tokens_to_acetext0([T,':',P|Tokens],AceText):- atomic_list_concat([T,(:),P],'',TP),!,tokens_to_acetext0([TP|Tokens],AceText).
 tokens_to_acetext0([T,P|Tokens],AceText):- atom_length(P,1),char_type_punct(P),!,atom_concat(T,P,TP),tokens_to_acetext0([TP|Tokens],AceText).
@@ -49,6 +49,10 @@ fast_break_atom_symbols(I,O):- break_atom_symbols(I,O),!.
 %fast_break_atom_symbols(I,I).
 
 break_atom_symbols([],[]).
+break_atom_symbols(['\'',I|List],[S|ListO]):- \+ keep_unbroken(I), !, 
+   atom_concat('\'',I,S),
+   break_atom_symbols(List,ListO).
+
 break_atom_symbols([I|List],[I|ListO]):- keep_unbroken(I), !, 
    break_atom_symbols(List,ListO).
 break_atom_symbols([I|List],[O|ListO]):-  unquoted(I,S),!,
@@ -104,7 +108,7 @@ rejoin_pronouns([I|List],[I|ListO]):-
   rejoin_pronouns(List,ListO).
 
 
-% into_text80(I,O):- enotrace((into_control80(I,M),!,break_atom_symbols(M,N),maplist(number_to_nb,N,O))).
+% into_text80(I,O):- notrace((into_control80(I,M),!,break_atom_symbols(M,N),maplist(number_to_nb,N,O))).
 
 into_control80(NotList,Out):-  
   string(NotList),string_to_atom(NotList,Atom),!,
