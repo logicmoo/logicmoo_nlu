@@ -15,7 +15,7 @@
 %  instantiating T2.
 
 subsumes_chk(T1,T2) :-
-   \+ ( numvars(T2), \+ (T1 = T2) ).
+   quietly((\+ ( numvars(T2), \+ (T1 = T2) ))).
 
 
 % numvars(+Term,-NewTerm)

@@ -49,6 +49,10 @@ fast_break_atom_symbols(I,O):- break_atom_symbols(I,O),!.
 %fast_break_atom_symbols(I,I).
 
 break_atom_symbols([],[]).
+break_atom_symbols([I,'\'','t'|List],[S,'n\'t'|ListO]):- \+ keep_unbroken(I), !, 
+   atom_concat(S,'n',I),
+   break_atom_symbols(List,ListO).
+
 break_atom_symbols(['\'',I|List],[S|ListO]):- \+ keep_unbroken(I), !, 
    atom_concat('\'',I,S),
    break_atom_symbols(List,ListO).

@@ -1,7 +1,11 @@
 :- ensure_loaded('earley.pl').
 
 %Standard rules and words
-/*
+
+:- multifile(word/2).
+:- multifile(rule/2).
+:- dynamic(word/2).
+:- dynamic(rule/2).
 
 rule(s,[vp]).
 rule(s,[cp,vp]).
@@ -44,7 +48,6 @@ word(p,near).
 word(conj,and).
 word(c,that).
 
-*/
 
 % constituents build a parse tree in these rules
 rule(s(s(NP,VP)),[np(NP),vp(VP)]).

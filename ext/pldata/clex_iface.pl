@@ -144,19 +144,31 @@ clex_verb(Formed, Verb, dv(Prep), infpl):- clex_call(dv_infpl,Formed, Verb, Prep
    both_of(_, Noun, Noun).
    both_of(RootNoun, Noun, NounI):- RootNoun\=Noun, Noun=NounI.
 
+
+
 :- clex_pred(clex_iface:clex_mass_noun/3).
 clex_mass_noun(NounI, RootNoun, Type):- both_of(RootNoun, Noun, NounI), clex_call(noun_mass,Noun, RootNoun, Type), 
   both_of(RootNoun, Noun, NounI).
 
 :- clex_pred(clex_iface:clex_noun/5).
-clex_noun(Noun, RootNoun, Type, _SG_OR_PL, mass):- clex_mass_noun(Noun, RootNoun, Type).
+clex_noun(Noun, RootNoun, Type, _PlOrSg, mass):- clex_mass_noun(Noun, RootNoun, Type).
 clex_noun(Noun, RootNoun, Type, SG, count):- clex_noun0(Noun, RootNoun, Type, SG), \+ clex_mass_noun(Noun, _, _).
-clex_noun(Noun, RootNoun, unkown, SG, count):- clex_noun1(Noun, RootNoun, SG), \+ clex_noun0(Noun, RootNoun, _, SG), 
- \+ clex_mass_noun(Noun, _, _).
+clex_noun(Noun, RootNoun, unkown, SG, count):- clex_noun1(Noun, RootNoun, SG), \+ clex_noun0(Noun, RootNoun, _, SG), \+ clex_mass_noun(Noun, _, _). 
+clex_noun(Noun, RootNoun, Type, SG, pn):- clex_noun2(Noun, RootNoun, Type, SG), \+ clex_noun0(Noun, RootNoun, _, SG),  \+ clex_mass_noun(Noun, _, _).
+
    clex_noun0(Noun, RootNoun, Type, sg):- clex_call(noun_sg,Noun, RootNoun, Type).
    clex_noun0(Noun, RootNoun, Type, pl):- clex_call(noun_pl,Noun, RootNoun, Type).
+
+   clex_noun0(Noun, RootNoun, mn, sg):- clex_call(mn_sg,Noun, RootNoun).
+   clex_noun0(Noun, RootNoun, mn, pl):- clex_call(mn_pl,Noun, RootNoun).
+
    clex_noun1(Noun, RootNoun, pl):- when_chat80(clex_call(noun_plu_db,Noun, RootNoun)).
    clex_noun1(RootNoun, RootNoun, sg):- when_chat80(clex_call(noun_sin_db,RootNoun)).
+
+   clex_noun2(Noun, RootNoun, Type, sg):- clex_call(pn_sg,Noun, RootNoun, Type).
+   clex_noun2(Noun, RootNoun, Type, pl):- clex_call(pn_pl,Noun, RootNoun, Type).
+   clex_noun2(Noun, RootNoun, Type, sg):- clex_call(pndef_sg,Noun, RootNoun, Type).
+   clex_noun2(Noun, RootNoun, Type, pl):- clex_call(pndef_pl,Noun, RootNoun, Type).
 
 
 
@@ -177,6 +189,13 @@ clex_adj_prep0(Biggest, Big, Prep, Type):- adj_prep0(Biggest, Big, Prep, Type).
 clex_adj_prep0(Biggest, Big, Prep, unknown):- clex_call(adj_tr,Biggest, Big, Prep), \+ adj_prep0(Biggest, _, Prep, _).
       adj_prep0(Bigger, Big, Prep, comparitve):- clex_call(adj_tr_comp,Bigger, Big, Prep).
       adj_prep0(Biggest, Big, Prep, superlative):- clex_call(adj_tr_sup,Biggest, Big, Prep).
+
+
+clex_word(adj_prep(Prep), Formed, Root, Type):- clex_adj_prep(Formed, Root, Prep, Type).
+clex_word(verb, Formed, Root, Iv+Finsg):- clex_verb(Formed, Root, Iv, Finsg).
+clex_word(noun, Formed, Root, Type+SG-Mass):- clex_noun(Formed, Root, Type, SG, Mass).
+clex_word(adj, Formed, Root, Data):- clex_adj(Formed, Root,  Data).
+clex_word(adv, Formed, Root, Data):- clex_adv(Formed, Root,  Data).
 
 
 :- clex_pred(clex_iface:clex_adj/3).

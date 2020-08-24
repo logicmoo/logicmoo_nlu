@@ -1,6 +1,6 @@
 
 
-:- ensure_loaded(adv_lexical).
+% :- ensure_loaded(adv_lexical).
 
 :- discontiguous(verb_frame1/4).
 

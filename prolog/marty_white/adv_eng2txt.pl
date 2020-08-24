@@ -88,7 +88,7 @@ compile_eng(Context, [AN, Apple|More], Text) :-
  compile_eng_txt(Context, [Apple|More], TxtApple),
  name(TxtApple, [A|_]),
  char_type(A, to_lower(Vowel)),
- (vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
+ (adv_vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
 % mu:compile_eng([agent('player~1'), person('player~1')], a(floyd), _64404)
 compile_eng(Context, [First|Rest], [First2|Rest2]) :-
  compile_eng(Context, First, First2),
@@ -176,7 +176,7 @@ compile_eng_atom(Context, Word, Textually) :- atom(Word), atom_length(Word, L), 
 compile_eng_atom(_Context, Inst, Text):- \+ compound(Inst), !, format(atom(Text), '~w', [Inst]).
 
 
-vowel(a). vowel(e). vowel(i). vowel(o). vowel(u).
+adv_vowel(a). adv_vowel(e). adv_vowel(i). adv_vowel(o). adv_vowel(u).
 
 verb_tensed(Context, Verb, past, Compiled):-
  compile_eng_txt(Context, Verb, Word),
@@ -296,7 +296,7 @@ grammar_check(Context, [AN, Apple|More], Text) :- fail,
  compile_eng_txt(Context, [Apple|More], TxtApple),
  name(TxtApple, [A|_]),
  char_type(A, to_lower(Vowel)),
- (vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
+ (adv_vowel(Vowel) -> atom_concat('an ', TxtApple, Text);atom_concat('a ', TxtApple, Text)).
 
 grammar_check(Context, [Word|More], [Word|MoreN]) :-
  grammar_check(Context, More, MoreN).

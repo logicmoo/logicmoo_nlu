@@ -17,7 +17,7 @@
 
 :- ensure_loaded('subsumes.pl').
 
-:- unknown(_,fail).
+% :- unknown(_,fail).
 
 :- dynamic chart/4.
 :- dynamic c/3.
@@ -185,7 +185,8 @@ complete(_,_,_).
 
 
 % get rid of all chart, links, and word positions.
-clear_chart :- abolish(chart/4), abolish(c/3),abolish(l/2).
+clear_chart :- abolish(chart/4), abolish(c/3),abolish(l/2),
+               dynamic(chart/4), dynamic(c/3),dynamic(l/2).
 
 
 store(chart(A,B,C,D)) :-
