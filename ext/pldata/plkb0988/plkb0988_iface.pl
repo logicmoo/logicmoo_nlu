@@ -677,7 +677,7 @@ download_0988:-
   Filename = 'pldata0988.nldata.gz',
   format(atom(Cmd),"wget -c -nc --no-check-certificate -O ~wsrc~~/~w https://logicmoo.org/downloads/~w",[Dir,Filename,Filename]),
   format(user_error,"~N% Running (shell): ~w~n",[Cmd]),
-  must_or_rtrace(shell(Cmd)),!,
+  must_or_rtrace(shell(Cmd, _)),!,
   format(user_error,"~N% Completed (shell): ~w~n",[Cmd]),
   !.
 /*
@@ -695,7 +695,7 @@ download_0988:-
 unzip_0988:- 
   directory_0988(Dir),
   Filename = 'pldata0988.nldata',
-  format(atom(Cmd),"gunzip ~wsrc~~/~w.gz",[Dir,Filename]),
+  format(atom(Cmd),"gunzip -f ~wsrc~~/~w.gz",[Dir,Filename]),
   format(user_error,"~N% Running (shell): ~w~n",[Cmd]),
   must_or_rtrace(shell(Cmd)),!,
   format(user_error,"~N% Completed (shell): ~w~n",[Cmd]),
