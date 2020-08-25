@@ -11,6 +11,9 @@
 
 :- module(parser_all,[]).
 
+:- use_module(library(pfc_lib)).
+
+
 %:- '$set_typein_module'(baseKB).
 %:- '$set_source_module'(baseKB).
 

@@ -1,4 +1,7 @@
 :- module(nldata_cycl_pos0,[brillPos/1,brillPos/1,bposToCPos/2,bcr/1,transprob/4,transprob2/3]).
+
+:- use_module(library(logicmoo_plarkc)).
+
 :- dynamic((brillPos/1,brillPos/1,bcr/1,transprob/4,transprob2/3)).
 
 

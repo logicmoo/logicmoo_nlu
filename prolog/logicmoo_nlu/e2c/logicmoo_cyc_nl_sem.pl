@@ -42,6 +42,9 @@
         (#$knows ?THEY-2 ?G57625)))))
 
 */
+
+:- use_module(library(logicmoo_plarkc)).
+
 simplifyCycL(In,Out):- catch((cyclify(In,Mid),evalSubl('SIMPLIFY-CYCL-SENTENCE-SYNTAX'(Mid),Out)),_,fail),!.
 simplifyCycL(In,In).
 

@@ -722,10 +722,10 @@ vndata:verbnet_frame(np(Agent,
                              isa(Co_Agent, tOrganization))
                         ]),
                      A,
-                     'acquiesce-95_f0') :-
+                     'acquiesce-95_f0') :- 
+
     nop(english("The enemy soldiers submitted to us.")),
-    into_lf((yield(E, Agent, Co_Agent), or(isa(Agent, tAnimate), isa(Agent, tOrganization)), or(isa(Co_Agent, tAnimate), isa(Co_Agent, tOrganization)), isa(E, actEvent)),
-            A).
+    into_lf((yield(E, Agent, Co_Agent), or(isa(Agent, tAnimate), isa(Agent, tOrganization)), or(isa(Co_Agent, tAnimate), isa(Co_Agent, tOrganization)), isa(E, actEvent)),A).
 vndata:verbnet_frame(np(Agent,
                         [ or(isa(Agent, tAnimate),
                              isa(Agent, tOrganization))

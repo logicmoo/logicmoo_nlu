@@ -4,7 +4,10 @@
 %   idiomizes List into Result
 
 :- module(nldata_dictionary_some01,[rememberDictionary2/3, idioms/3, rememberDictionary/0, translatePersonal/3, translatePersonalUTokens/2, rememberDictionary/3, explitVocab/2, to_codes/2, decontract/2, dictionary/3, dictionary_access/3, idioms_each/3, idioms2/3, isa_speechpart/1, lexicicalRefWord/2, translatePersonalCodes3/2, lexicicalRefWords/2, translatePersonalCodes2/2, translatePersonalCodes/2, my_lexicalRef/4]).
+
 :- dynamic((rememberDictionary2/3, idioms/3, rememberDictionary/0, translatePersonal/3, translatePersonalUTokens/2, rememberDictionary/3, explitVocab/2, to_codes/2, decontract/2, dictionary/3, dictionary_access/3, idioms_each/3, idioms2/3, isa_speechpart/1, lexicicalRefWord/2, translatePersonalCodes3/2, lexicicalRefWords/2, translatePersonalCodes2/2, translatePersonalCodes/2, my_lexicalRef/4)).
+
+:- use_module(library(logicmoo_plarkc)).
 
 :- style_check(-singleton).
 :- style_check(-discontiguous).

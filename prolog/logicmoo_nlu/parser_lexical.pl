@@ -11,6 +11,7 @@
 
 :-module(parser_lexical,[ ]).
 
+:- use_module(nl_pipeline).
 :- use_module(parser_lexical_gen).
 
 :- forall(between(2,13,N),
@@ -72,13 +73,13 @@ lex_frivilous_col(tIndividual).
 
 :- add_e2c("a red cat fastly jumped onto the table which is in the kitchen of the house").
 :- add_e2c("After Slitscan, Laney heard about another job from Rydell, the night security man at the Chateau.").
-:- add_e2c("Rydell was a big quiet Tennessean with a sad shy grin , cheap sunglasses , and a walkie-talkie screwed permanently into one ear").
-:- add_e2c("Concrete beams overhead had been hand-painted to vaguely resemble blond oak").
-:- add_e2c("The chairs, like the rest of the furniture in the Chateau s lobby, were oversized to the extent that whoever sat in them seemed built to a smaller scale").
-:- add_e2c("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize").
-:- add_e2c("A little tribute to Gibson.").
-:- add_e2c('"You look like the cat that swallowed the canary," he said, giving her a puzzled look.').
-:- add_e2c("the monkey heard about the very next ship which is yellow and green").
+:- add_e2c("Rydell was a big quiet Tennessean with a sad shy grin, cheap sunglasses, and a walkie-talkie screwed permanently into one ear.").
+:- add_e2c("Concrete beams overhead had been hand-painted to vaguely resemble blond oak.").
+:- add_e2c("The chairs, like the rest of the furniture in the Chateau s lobby, were oversized to the extent that whoever sat in them seemed built to a smaller scale.").
+:- add_e2c("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.").
+:- add_e2c("A little tribute to Gibson", noun_phrase).
+:- add_e2c('"You look like the cat that swallowed the canary," he said, giving her a puzzled look.',[quotes]).
+:- add_e2c("The monkey heard about the very next ship which is yellow and green.").
 
 %lex_mws(genTemplateConstrained).
 %lex_mws(genTemplate).
@@ -173,9 +174,19 @@ add_todo_list([M|MoreS], Todo, Done, NewTodo):- add_if_new(Todo, [M], TodoM), !,
 first_clause_only(Head):- Found=fnd(0), nth_clause(Head,Nth,Cl), Found==fnd(0),
    Nth\==1, clause(Head,Body,Cl), call(Body), nb_setarg(1,Found,Nth). 
 
+/* first_clause_only tests  */
+
+:- begin_tests(first_clause_only).
+
 fco_test(A):- !, first_clause_only(fco_test(A)).
 fco_test(A):- member(A,[1,2]).
 fco_test(A):- member(A,[3,4]).
+
+test(first_clause_only, all(X == [1,2])) :-
+        ( fco_test(X) ).
+
+:- end_tests(first_clause_only).
+
 
 text_to_cycword(String, P, C, How):- !, first_clause_only(text_to_cycword(String, P, C, How)).
 text_to_cycword(String, P, C, cyc_t(P, C, String)):- text_to_cycword_base(String, P, C).
@@ -246,6 +257,9 @@ copy_value_arg(P, C):- ignore((compound(P), P = +(C))).
 is_atom_word(W):- atom(W), guess_arg_type(X, W), !, X==text(a). 
 get_vv(X,Arg):- compound(Arg), Arg = +(X).
 
+
+get_test_verbs(V):- wnframes:s(_,_,V,v,_,_).
+baseKB:sanity_test:- forall(get_test_verbs(V), lex_info(V)).
 
 :- export(lex_winfo/1).
 lex_winfo(Value):- lex_tinfo(text(a), Value).

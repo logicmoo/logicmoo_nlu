@@ -22,7 +22,7 @@ f% ===================================================================
 :- use_module(library(multimodal_dcg)).  
 :- use_module(library(logicmoo_util_body_textstr)).
 :- use_module(library(logicmoo_util_body_reorder)).
-
+:- use_module(library(logicmoo_plarkc)).
 
 :- install_constant_renamer_until_eof.
 :- set_prolog_flag(do_renames_sumo,never).

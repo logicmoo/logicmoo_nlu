@@ -163,9 +163,13 @@ call_0988(P):- into_0988_form(P, PO), show_call(PO).
 
 :- export(into_0988_form/2).
 into_0988_form(M:P, M:PO):- atom(M), !, into_0988_form(P, PO).
+/*
 into_0988_form(P, PO):-
  Lambda = ({_Mt}/[I, O]>>(append_term(I, Ref, RefO), O=(RefO, mt_visible(Ref)))),
  into_0988(call, Lambda, a0988c_nl, P, PO), !.
+*/
+into_0988_form(P, PO):- 
+ into_0988(call, =, ac, P, PO), !.
 
 into_0988(DBase_t, P, PO):- into_0988(call, =, DBase_t, P, PO).
 
@@ -198,6 +202,7 @@ into_0988(_, V, T, _, F, Args, PO):- is_holds_true00(F), univ_safe(O, [T|Args]),
 % into_0988(T, _P, T, Args, Call):- a(is_holds_true, T), Call univ_safe [T|Args].
 into_0988(_, V, T, _, F, Args, PO):- univ_safe(O , [T, F|Args]), call(V, O, PO).
 
+/*
 make_hook_stubs:- 
    forall(between(3,12,N),
     (functor(P,a0988c_nl,N),
@@ -216,6 +221,7 @@ make_hook_stubs:-
      CM:import(FQ/AQ))).
 
 :- make_hook_stubs.
+*/
 
 cvt_to_atomstring(A,M):- atomic_list_concat(['"', A, '"'], M).
 
@@ -296,11 +302,11 @@ redo_0988:-
 
 redo_0988(FileIn):-
  open(FileIn, read, In),
- atom_concat(FileIn, '.out', FileOut),
- open(FileOut, write, Out),
+ atom_concat(FileIn, '.out', Out),
+ open(Out, write, Out),
  repeat,
  (at_end_of_stream(In)
- -> (close(In), close(Out), wdmsg(converted(FileIn->FileOut)) , !) ;
+ -> (close(In), close(Out), wdmsg(converted(FileIn->Out)) , !) ;
  (once(transfer_clauses(In, Out)), fail)).
 
 transfer_clauses(In, Out):-
@@ -426,7 +432,7 @@ convert_arg(_, FL, A, A):- fail, FL = [_], member(Type,[disabled,nl]), \+ f_has(
 % convert_arg(_, FL, A, A):- atom_contains(A, 'errorist'), f_put('disabled', FL).
 convert_arg(_, _, A, A).
 
-is_kb_type(nl,A):- a0988c(isa,A,Atom,_), atom(Atom), atom_contains(Atom, 'NL').
+% is_kb_type(nl,A):- a0988c(isa,A,Atom,_), atom(Atom), atom_contains(Atom, 'NL').
 is_kb_type(Type,A):- downcase_atom(A, D), nl_info(NL,Type), atom_contains(D, NL).
 
 /*
@@ -624,8 +630,11 @@ did_from_argNIsa(P,PO):-
 
 get_PredList(L):- findall(F/A,pred_0988(F/A),L).
 
-gen_kb_module:- 
- open('plkb0988_kb.pl',write,S),
+gen_kb_module:- directory_0988(Dir), gen_kb_module(Dir).
+
+gen_kb_module(Dir):-
+ absolute_file_name('plkb0988_kb.pl',File,[relative_to(Dir)]),
+ open(File,write,S),
  get_PredList(PredList),
  format(S,
 ":- ~p.
@@ -649,10 +658,68 @@ setup_kb_pred_0988s :-
 
 :- setup_kb_pred_0988s.
 
-:- include('src~~/assertions.nldata').
+:- include('src~~/pldata0988.nldata').
 
 ",[PredList]),
    close(S),!.
+
+:- dynamic(lmconf:directory_0988_conf/1).
+:- volatile(lmconf:directory_0988_conf/1).
+
+directory_0988(Dir):- lmconf:directory_0988_conf(Dir),!.
+directory_0988(Dir):- absolute_file_name(library('../ext/pldata/plkb0988/'),Dir,[access(read),file_type(directory)]),!.
+directory_0988(Dir):- prolog_load_context(directory,Dir),!.
+directory_0988(Dir):- working_directory(Dir,Dir),!.
+
+
+download_0988:- 
+  directory_0988(Dir),
+  Filename = 'pldata0988.nldata.gz',
+  format(atom(Cmd),"wget -c -O ~w/src~~/~w --no-check-certificate https://logicmoo.org/downloads/~w",[Dir,Filename,Filename]),
+  format(user_error,"~N% Running (shell): ~w~n",[Cmd]),
+  must_or_rtrace(shell(Cmd)),!,
+  format(user_error,"~N% Completed (shell): ~w~n",[Cmd]),
+  !.
+/*
+:- use_module(library(http/http_open)).
+download_0988:- 
+  setup_call_cleanup(
+   open('pldata0988.tar.gz',write,Out),
+   setup_call_cleanup(
+      http_open('https://logicmoo.org/downloads/pldata0988.nldata.gz',In,[]),      
+      copy_stream_data(In, Out),
+      close(In)),
+   close(Out)).
+*/
+
+unzip_0988:- 
+  directory_0988(Dir),
+  Filename = 'pldata0988.nldata',
+  format(atom(Cmd),"gunzip ~wsrc~~/~w.gz",[Dir,Filename]),
+  format(user_error,"~N% Running (shell): ~w~n",[Cmd]),
+  must_or_rtrace(shell(Cmd)),!,
+  format(user_error,"~N% Completed (shell): ~w~n",[Cmd]),
+  !.
+
+/*
+unzip_0988:- 
+  setup_call_cleanup(
+   gzopen('pldata0988.tar.gz',read, In),
+   setup_call_cleanup(
+      open('pldata0988.nldata',write, Out),
+      copy_stream_data(In, Out),
+      close(Out)),
+   close(In)).
+*/
+
+:- if( \+ exists_file('plkb0988_kb.qlf')).
+:- download_0988.
+:- unzip_0988.
+:- gen_kb_module.
+:- format(user_error,"~N% QCOMPILE: plkb0988_kb~n",[]).
+:- time(qcompile('plkb0988_kb')).
+:- endif.
+
 
 
 :- reexport( plkb0988_kb_supp).
@@ -664,7 +731,7 @@ setup_kb_pred_0988s :-
 
 is_clean_ref(Ref0):- compound(Ref0)-> \+ (arg(N,Ref0,E),nonvar(E),wdmsg(arg(N,Ref0,E))) ; number(Ref0).
 
-
+/*
 add_to_acnl:- between(2,12,N),length(Args,N),
    append([acnl_0988_nl|Args],[Ref1],Args0),Call0=..Args0,
    append([a0988c_nl|Args],[Ref1],Args1),Call1=..Args1,   
@@ -702,4 +769,4 @@ clear_out_redundant:- between(2,12,N),length(Args,N),
    is_clean_ref(Ref2),
    plkb0988_iface:blast_0988(Ref1),fail.
 clear_out_redundant.
-
+*/

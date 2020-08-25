@@ -20,6 +20,9 @@ THIS IS NOT LOADED DIRRECTLY - INSTEAD USE logicmoo_nl_sem.pl
 :- style_check(-singleton).
 :- style_check(-discontiguous).
 %:- style_check(-atom).
+
+:- use_module(library(logicmoo_plarkc)).
+
 :- set_prolog_flag(double_quotes, string).
 :- install_constant_renamer_until_eof.
 :- set_prolog_flag(do_renames_sumo,never).
