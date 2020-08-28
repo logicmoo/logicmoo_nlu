@@ -1,6 +1,6 @@
 :- module(nldata_cycl_pos0,[brillPos/1,
   bposToCPos/2,bposToCPos1/2,bposToCPos0/2,
-  swap_case/2,swap_case_or_not/2,
+  swap_case/2,swap_case_or_not/2, pennSyntacticTags/2,
   bposToCPosForm/2,bcr/1,transprob/4,transprob2/3]).
 
 :- use_module(library(logicmoo_plarkc)).
@@ -791,6 +791,7 @@ be_vb(BE,BEDZ,VBZ):-
 bposToCPos_aux(_BeAux,BE, BEDZ,POS):- freeze(be_vb(BE, BEDZ,VBZ)), bposToCPos1(VBZ,POS).
 bposToCPos_aux( BeAux,BE, BEDZ,POS):- member(POS,[BeAux,'AuxVerb']),freeze(BEDZ,atom_concat(BE,_Whatnot,BEDZ)).
 
+/* UNCOMMENT
 
 % bposToCPos0(Atom,_):-not(atom(Atom)),!,fail.
 bposToCPos0(HASDOLLAR,'Possessive'):- freeze(HASDOLLAR,(atom(HASDOLLAR),atom_contains(HASDOLLAR,'$'))).
@@ -799,15 +800,16 @@ bposToCPos0(BEDZ,POS):- bposToCPos_aux('BeAux','be', BEDZ,POS).
 bposToCPos0(BEDZ,POS):- bposToCPos_aux('DoAux','do', BEDZ,POS).
 bposToCPos0(BEDZ,POS):- bposToCPos_aux('HaveAux','hv', BEDZ,POS).
 
-bposToCPos0(X,Y):- frozen(X,true), freeze(concat_atom_safe([P,L],'-',X)), (bposToCPos0(P,Y);X=Y), nonvar(Y).
-bposToCPos0(X,Y):- frozen(X,true), freeze(concat_atom_safe([P,L],'|',X)), (bposToCPos0(P,Y);bposToCPos0(P,L);X=Y), nonvar(Y).
+bposToCPos0(X,Y):- frozen(X,true), atom(X), freeze(concat_atom_safe([P,L],'-',X)), (bposToCPos0(P,Y);X=Y), nonvar(Y).
+bposToCPos0(X,Y):- frozen(X,true), atom(X), freeze(concat_atom_safe([P,L],'|',X)), (bposToCPos0(P,Y);bposToCPos0(P,L);X=Y), nonvar(Y).
 
 bposToCPos0(LC,CATE):- freeze(pennSyntacticTags(LC,UCPENTAG)), ac(syntacticCategoryTags,CATE,UCPENTAG).
+*/
 
 bposToCPos0(LC,E):- swap_case_or_not(LC,DC),bposToCPos1(DC,E),freeze(E\=LC).
 bposToCPos0(ULC,ULC).
 
-pennSyntacticTags(LC,UCPENTAG):- atom(LC),upcase_atom(LC,UC),atomic_list_concat([i,UC,'PennTag'],UCPENTAG).
+pennSyntacticTags(LC,UCPENTAG):- atom(LC), \+ atom_contains(LC, 'PennTag'), upcase_atom(LC,UC),!, atomic_list_concat([i,UC,'PennTag'],UCPENTAG),ac(syntacticCategoryTags,_,UCPENTAG).
 pennSyntacticTags(LC,UCPENTAG):- atom(UCPENTAG),atomic_list_concat_safe([i,UC,'PennTag'],UCPENTAG),freeze((UC=LC ; downcase_atom(UC,LC))).
 
 swap_case_or_not(LC,DC):- LC=DC ; freeze(swap_case(LC,DC)).

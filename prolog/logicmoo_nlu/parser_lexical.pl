@@ -157,7 +157,7 @@ parse_reply_replace(_Ctx, Sub, Replace):-
  Replace =  
   coref(SentIDMinus1, seg(SIm1-EIm1), '#'(Index), WordStrings,
     % headIndex(HI),   
-    Type, SINGULAR, NEUTRAL, INANIMATE,[em=TF|Attributes]).
+    Type, SINGULAR, NEUTRAL, INANIMATE,Index,[[]],[em=TF|Attributes]).
                                                                                 
 parse_reply_replace(_Ctx, sentence(_,TokList,_), '$'):- ground(TokList),  
    member(tok(_, 'SYM', '--------', _, _),TokList), !.
@@ -237,6 +237,12 @@ lex_frivilous(senseComments).
 lex_frivilous(senseDefinition).
 lex_frivilous(X):- lex_frivilous_maybe(X).
 
+
+y_skip(Info, Why):- compound(Info),!,sub_term(Sub,Info),atom(Sub),y_skip(Sub,Why),dmsg(y_skip(Info,Why)).
+y_skip(Info, mws):- lex_mws(Info).
+y_skip(Info, friv):- lex_frivilous(Info).
+y_skip(isa, friv).
+
 lex_frivilous_maybe(posForms).
 lex_frivilous_maybe(posBaseForms).
 lex_frivilous_maybe(subcatFrame).
@@ -269,6 +275,8 @@ lex_mws(compoundSemTrans).
 lex_mws(multiWordSemTrans).
 lex_mws(multiWordString).
 lex_mws(mws).
+lex_mws(hyphenString).
+
 
 %is_word(W):- atom(W), guess_arg_type(X, W), !, X==text(a).
 %is_atom_word(W):- atom(W), guess_arg_type(X, W), !, X==text(a).
@@ -588,10 +596,6 @@ maybe_text(W, txt(S)):- cvt_to_real_string(W, S).
 append_segment(N, M, Len, StringW, Ace):-
  segment(N, M, Len, StringW, Ace).
 
-notInheritPos(xtSententialConstituent).
-notInheritPos(xtWHAdverb).
-notInheritPos(xtWHWord).
-notInheritPos(xtNLWordForm).
 
 segment(N, M, Len, StringW, Ace):-
   nlfw(SN, SM, text80(Words), Ace),
@@ -640,10 +644,6 @@ segment(N, M, Len, StringW, Ace):-
 %:- ain((nlfw(M, N, cycpos(Pos, C, W), Ace))==> \+ nlfw(M, N, xclude(Pos, C, W), Ace)).
 */
 
-pos_inherit(PosL, PosH):- ac(genls, PosL, PosH).
-pos_inherit(Pred, Pos):- ac(speechPartPreds, Pos, Pred).
-
-
 :- export(lex_info/1).
 lex_info(String):-
  lex_info(_AllKinds, String, Datum),
@@ -671,7 +671,7 @@ lex_winfo(Kind, Level, Words, String, Datum):-
 didnt_do(Todo, skipped(Todo)).
 
 
-remove_broken_corefs(Sents,coref(Sent,_, _, _,_,_,_,_,_),[]):- \+ member(sentence(Sent,_,_),Sents),!.
+remove_broken_corefs(Sents,coref(Sent,_, _, _,_,_,_,_,_,_,_),[]):- \+ member(sentence(Sent,_,_),Sents),!.
 remove_broken_corefs(_Sents,sentence(N,Words,Info),sent(N,Words,Info)).
 remove_broken_corefs(_Sents,A,A).
 
@@ -743,29 +743,46 @@ lex_info_impl(Kind, Level, [concept(C)|Todo], Done, Out):- fail,
    lex_info(Kind, Level, NewTodo, NewDone, Out).
 
 
-lex_info_impl(Kind, Level, [sent(N,Words,Info)|Todo], Done, Out):-
-   append(Done,[sent(N,Words,Info)],NewDone),
+lex_info_impl(Kind, Level, [Sent|Todo], Done, Out):-
+ Sent = sent(N,Words,Info),
+   append(Done,[Sent],NewDone),   
    add_do_more(Words, Todo, NewDone, NewTodo),
    lex_info(Kind, Level, NewTodo, NewDone, Out).
 
-lex_info_impl(Kind, Level, [TOK|Todo], Done, Out):- TOK = tok(_Index,PennPos,_Base,String, _Info),!,
+lex_info_impl(Kind, Level, [TOK|Todo], Done, Out):- 
+ TOK = tok(Index,PennPos,_Base,String, _Info), !,
   must((
-
    findall_set(MorePos,extend_brillPos(PennPos,MorePos),PosSet),
    nb_set_add(TOK,PosSet),
-   % nop 
-   AddTodo = [],
-   %(AddTodo = txt(String)),
-   
-   %get_lex_info(Kind, text(a), AString, OutS),
    functor(TOK,_,A),
    arg(A,TOK,PosInfo),
    findall_set(How, (text_pos_cycword(String, [PennPos|PosInfo], How)), OutF),
-   % filter_lex(OutS,[PennPos|MorePos],OutF),
    nb_set_add(TOK,OutF),
-   append(Done,[TOK],NewDone),
-   add_do_more(AddTodo, Todo, NewDone, NewTodo),
-   lex_info(Kind, Level, NewTodo, NewDone, Out))).
+   append(Done,Todo,AllInfo),
+   findall_set(How, (find_coref(Index, AllInfo, How)), OutC),
+   nb_set_add(TOK,OutC),
+   arg(A,TOK,PosInfo2),
+   member(cycWord(CycWord),PosInfo2),
+   findall_set(How, (cycword_sem(CycWord, PosInfo2, How)), CycSem),
+   nb_set_add(PosInfo2,CycSem),
+   sort(PosInfo2,PosInfoS),
+   nb_setarg(A,TOK,PosInfoS),     
+   lex_info(Kind, Level, Todo, [TOK|Done], Out))).
+
+find_coref(Index, AllInfo, [coREF(CRN,RefNum),A,B,C,D]):- 
+  member(coref( _, seg(Index-_), RefNum, Words,
+   A,B,C,D,CRN,_TrackBack, _Attribs),AllInfo), 
+   arg(1,RefNum,Num),
+   (number(Num) -> 
+     (atomic_list_concat(Words,'_',NameI),
+      atomic_list_concat([NameI,Num],'__',NameD),
+      upcase_atom(NameD,Name),
+      nb_setarg(1,RefNum,'$VAR'(Name))) ; true).
+find_coref(Index, AllInfo, [coREF(CRN,RefNum)]):- 
+  member(coref( _, seg(S-E), RefNum, _Words,
+   _A,_B,_C,_D,CRN,_TrackBack, _Attribs),AllInfo),
+   Index>S,Index=<E.
+
 
 findall_set(Temp,Goal,Set):-   
    findall(Temp,Goal,List),flatten(List,Flat),list_to_set(Flat,Set),!.
@@ -774,7 +791,14 @@ text_pos_cycword(String, MorePos, [cycWord(C)|Out]):-
   cvt_to_atom(String,AString),text_to_cycword(AString, P, C, How), 
   (not_violate_pos(MorePos,[P,How])
     ->Out=[P]
-     ;Out=[violate(P),violate(How)]). 
+     ;(Out=[y_violate(How)])). 
+
+cycword_sem(CycWord, MorePos, Out):- 
+  term_to_info(CycWord, Info),
+  (y_skip(Info,Why) -> Out=y_skip(Why);
+   (not_violate_pos(MorePos,Info)
+    ->Out=Info
+     ;(Out=y_skip(violate),dmsg(y_violate(Info))))).
 
 % :- forall(ac(mostSpeechPartPreds, B, C), retract(ac(speechPartPreds, B, C))).
 cycpred_to_cycpos(Pred, Pos):- atom(Pred), pos_inherit(Pred, M),atom(M),atom_concat(xt,_,M),M\==xtNLWordForm,
@@ -793,27 +817,29 @@ filter_lex(OutS,[PennPos|MorePos],OutF):-
 not_violate_pos(_MorePos,Var):- var(Var),!.
 not_violate_pos(_MorePos,[]):-!.
 not_violate_pos(MorePos,[H|T]):- !, not_violate_pos(MorePos,H),not_violate_pos(MorePos,T).
-not_violate_pos(MorePos,OutS):- 
-  violate_pos(MorePos,OutS),!,fail.
+not_violate_pos(MorePos,OutS):- violate_pos(MorePos,OutS),!,fail.
 not_violate_pos(_MorePos,_OutS).
 
 violate_pos(MorePos,OutS):- \+ compound(OutS), !, violate_pos1(MorePos,OutS).
 violate_pos(MorePos,Did):- Did =..[T, F|Rest], member(T, [acnl, cyckb_h, t, talk_db]),
- atom(F), Do =..[F|Rest], !,
+ atom(F), Do =..[F|Rest], !,                                     
  violate_pos(MorePos,Do).
-violate_pos(MorePos,OutS):- functor(OutS,F,_),violate_pos1(MorePos,F),!.
-violate_pos(MorePos,OutS):- functor(OutS,F,_),pos_inherit(F, Pos),!,violate_pos(MorePos,Pos).
-violate_pos(MorePos,OutS):- arg(_,OutS,E),violate_pos1(MorePos,E),!.
+% violate_pos(MorePos,OutS):- functor(OutS,F,_),violate_pos1(MorePos,F),!.
+violate_pos(MorePos,OutS):- functor(OutS,F,_),pos_inherit(F, Pos),violate_pos1(MorePos,Pos).
+violate_pos(MorePos,OutS):- arg(_,OutS,E), atom(E), violate_pos1(MorePos,E),!.
 violate_pos(MorePos,OutS):- violate_pos1(MorePos,OutS).
 
-pos_list([xtNoun,xtPronoun,xtCoordinatingConjunction,
-  xtVerb,xtAdjective,xtAdverb,xtPreposition,xtPunctuationSP]).
-pos_list([xtNoun,xtCoordinatingConjunction,
-  xtVerb,xtAdjective,xtAdverb,xtDeterminer,xtPreposition,xtPunctuationSP]).
+pos_list([xtCoordinatingConjunction,xtVerb,xtAdjective,xtAdverb,xtPreposition,xtPunctuationSP]).
+         
 
-incompatible_pos(XtNoun,XtVerb):- pos_list(PosList),member(XtNoun,PosList),member(XtVerb,PosList),XtNoun\==XtVerb.
+incompatible_pos(Pos1,Pos2):- pos_list(PosList),member(Pos2,PosList),member(Pos1,PosList),Pos1\==Pos2.
+incompatible_pos(Pos1,Pos2):- pos_list(PosList),member(PosA,PosList),member(PosB,[xtDeterminer,xtNoun,xtPronoun]),
+  ((Pos1=PosA,Pos2=PosB);(Pos1=PosB,Pos2=PosA)).
 
-violate_pos1(MorePos,OutS):- incompatible_pos(XtNoun,XtVerb),member(XtNoun,MorePos),OutS==XtVerb.
+% cyckb_h(denotation,xUseTheWord,xtMassNoun,0,actUsingAnObject)
+
+violate_pos1(MorePos,OutS):- incompatible_pos(XtNoun,XtVerb),member(XtNoun,MorePos),pos_inherit(OutS,XtVerb),
+  dmsg(incompatible_pos(XtVerb,XtNoun,MorePos)).
 violate_pos1(_,todo).
 violate_pos1(_,txt).
 violate_pos1(_,comment).
@@ -821,9 +847,50 @@ violate_pos1(_,flexicon).
 violate_pos1(_,M):- atom(M),member(M,[mws,flexicon,fsr]).
 %violate_pos(MorePos,OutS,OutF).
 
+
+notInheritPos(xtSententialConstituent).
+notInheritPos(xtWHAdverb).
+notInheritPos(xtWHWord).
+notInheritPos(tIndividual).
+notInheritPos(tThing).
+notInheritPos(xtNLWordForm).
+
+pos_upwards(N,xtAdjective):- member(N,[adjSemTrans,xRegularAdjFrame,xtAdjectiveGradable]).
+pos_upwards(N,xtVerb):- 
+ member(N,[verbSemTrans,
+  verbSemTransCanonical,
+  templateExpressionForVerbWRTClassAndFrame,
+  sententialPhraseForVerbWithFrameGeneric,
+  verbSenseGuessedFromVerbClass]).
+pos_upwards(N,xtNoun):- member(N,[nounSemTrans,agentiveNounSemTrans]).
+pos_upwards(PosL, PosH):- ac(genls, PosL, PosH).
+
+
+
+pos_inherit_u(PosL, PosH):- pennSyntacticTags(PosL, PosH).
+pos_inherit_u(Pred,  Pos):- ac(speechPartPreds, Pos, Pred).
+pos_inherit_u(PosL, PosH):- pos_upwards(PosL, PosH).
+pos_inherit_u(PosL, PosH):- ac(syntacticCategoryTags,PosH,PosL).
+
+
+pos_inherit_d(PosL, PosH):- ac(syntacticCategoryTags,PosH,PosL).
+pos_inherit_d(PosL, PosH):- pos_upwards(PosL, PosH).
+pos_inherit_d(Pred,  Pos):- ac(speechPartPreds, Pos, Pred).
+pos_inherit_d(PosL, PosH):- pennSyntacticTags(PosL, PosH).
+
+pos_inherit_all(Pos, Pos).
+pos_inherit_all(Pred, PosO):- nonvar(PosO),!, pos_inherit_d(Mid, PosO), pos_inherit_all(Pred, Mid).
+pos_inherit_all(Pred, PosO):- var(Pred),pos_list(List),!,member(PosH,[xtDeterminer,xtNoun,xtPronoun|List]), pos_inherit_all(PosO, PosH), pos_inherit_all(Pred, PosO).
+pos_inherit_all(Pred, PosO):- pos_inherit_u(Pred, Pos), \+ notInheritPos(Pos), pos_inherit_all(Pos, PosO).
+
+pos_inherit(Pred, PosO):- no_repeats(pos_inherit_all(Pred, PosO)).
+
+
+
 extend_brillPos(In,[Out]):- freeze(cvt_to_real_string(In,Str)),ac(pennTagString,Out,Str).
+extend_brillPos('PRP$',['Possessive','xtNoun']):- !.
 extend_brillPos('PRP$',['Possessive'|Rest]):- extend_brillPos('PRP',Rest).
-extend_brillPos('PRP',['SpecialDeterminer','xtDeterminer','second']).
+%extend_brillPos('PRP',['SpecialDeterminer','xtDeterminer','second']).
 extend_brillPos(In,Out):- bposToCPos(In,Out).
 extend_brillPos(In,form(Out)):- bposToCPosForm(In,Out).
 extend_brillPos(In,Out):- brillPos([In|Out]) *-> true 
@@ -911,6 +978,9 @@ lex_arg_type( syn, _, parser_lexical, cycword_to_cycconcept(-cycpred, -cycword, 
 
 
 lex_arg_type( syn, 0, clex, clex_word(pos, text(a), text(base), data)).
+
+lex_arg_type( syn, 0, verbnet, verbnet(text(b), data, data, data)).
+lex_arg_type( sem, 0, verbnet, verbnet(text(b), data, data, data)).
 
 lex_arg_type( syn, 0, framenet, fnpattern(text(a), id(fn), concept(fn), data)).
 
