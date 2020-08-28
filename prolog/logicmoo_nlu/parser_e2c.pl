@@ -9,33 +9,33 @@
 % Revised At:   $Date: 2012/06/06 15:43:15 $
 % ===================================================================
 
-:-module(parser_e2c, []). 
+:-module(parser_e2c, []).
 
 
-/*                                 
+/*
   Around 10% of the 1500 lines of code are from Bratko chapter 17 page 455.
    This comes from Pereira and Warren paper, AI journal, 1980
-   To see original: https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/logicmoo_nlu/parser_bratko.pl 
+   To see original: https://github.com/TeamSPoon/logicmoo_nlu/blob/master/prolog/logicmoo_nlu/parser_bratko.pl
 
-  What is fun and odd about Bratko's version was it goes straight from Text to Deep Logical-Form :) 
+  What is fun and odd about Bratko's version was it goes straight from Text to Deep Logical-Form :)
 
    */
 :- set_how_virtualize_file(false).
 
 :-
- op(1199,fx,('==>')), 
- op(1190,xfx,('::::')),
- op(1180,xfx,('==>')),
- op(1170,xfx,'<==>'),  
- op(1160,xfx,('<-')),
- op(1150,xfx,'=>'),
- op(1140,xfx,'<='),
- op(1130,xfx,'<=>'), 
- op(600,yfx,'&'), 
- op(600,yfx,'v'),
- op(350,xfx,'xor'),
- op(300,fx,'~'),
- op(300,fx,'-').
+ op(1199, fx, ('==>')),
+ op(1190, xfx, ('::::')),
+ op(1180, xfx, ('==>')),
+ op(1170, xfx, '<==>'),
+ op(1160, xfx, ('<-')),
+ op(1150, xfx, '=>'),
+ op(1140, xfx, '<='),
+ op(1130, xfx, '<=>'),
+ op(600, yfx, '&'),
+ op(600, yfx, 'v'),
+ op(350, xfx, 'xor'),
+ op(300, fx, '~'),
+ op(300, fx, '-').
 
 
 :- discontiguous(test_e2c/2).
@@ -74,27 +74,27 @@
 :- reexport(parser_tokenize).
 :- reexport(parser_pldata).
 %:- use_module(pldata(clex_iface)).
-%:- use_module(parser_chat80,[plt/0,print_tree/1]).
-:- mu:export(mu:nop/3).
-:- import(mu:nop/3).
+%:- use_module(parser_chat80, [plt/0, print_tree/1]).
+%:- mu:export(mu:nop/3).
+%:- import(mu:nop/3).
+nop(_Goal)-->[].
 
-
-make_dcg_test_stub(_,_,A):- A < 3.
-make_dcg_test_stub(M,F,_):- current_predicate(M:F/1),!. % no place for it
-make_dcg_test_stub(_,F,_):- current_predicate(F/1),!. % still no place for it?
-make_dcg_test_stub(M,F,A):-
-   functor(PrologHead,F,A),
+make_dcg_test_stub(_, _, A):- A < 3.
+make_dcg_test_stub(M, F, _):- current_predicate(M:F/1), !. % no place for it
+make_dcg_test_stub(_, F, _):- current_predicate(F/1), !. % still no place for it?
+make_dcg_test_stub(M, F, A):-
+   functor(PrologHead, F, A),
    PrologHead =.. [F|PrologHeadArgs],
-   append(_,[Out,W,E],PrologHeadArgs),   
-   TextHead =.. [F,S],
-   (Assert = ( system:TextHead:- M:(make, to_wordlist_atoms(S,W),call_print_reply(Out,M:PrologHead),!,E=[]))),
+   append(_, [Out, W, E], PrologHeadArgs),
+   TextHead =.. [F, S],
+   (Assert = ( system:TextHead:- M:(make, to_wordlist_atoms(S, W), call_print_reply(Out, M:PrologHead), !, E=[]))),
    M:assert_if_new(Assert).
 
 
-decl_is_dcg(MP):- strip_module(MP,M,P),(P=F/A;(P=F//A2,
-  A is A2+2);(atom(P),F=P,A=2);(compound(P),compound_name_arity(P,F,A2),A is A2+2)),!,
-  decl_is_dcg(M,F,A). 
-decl_is_dcg(M,F,A):- ain(baseKB:mpred_props(M,F,A,prologDcg)), ain(baseKB:mpred_props(M,F,A,prologOnly)),make_dcg_test_stub(M,F,A).
+decl_is_dcg(MP):- strip_module(MP, M, P), (P=F/A;(P=F//A2,
+  A is A2+2);(atom(P), F=P, A=2);(compound(P), compound_name_arity(P, F, A2), A is A2+2)), !,
+  decl_is_dcg(M, F, A).
+decl_is_dcg(M, F, A):- ain(baseKB:mpred_props(M, F, A, prologDcg)), ain(baseKB:mpred_props(M, F, A, prologOnly)), make_dcg_test_stub(M, F, A).
 
 :- decl_is_dcg(optionalText1/3).
 :- decl_is_dcg(theText1/3).
@@ -102,7 +102,7 @@ decl_is_dcg(M,F,A):- ain(baseKB:mpred_props(M,F,A,prologDcg)), ain(baseKB:mpred_
 
 :- multifile(system:term_expansion/4).
 :- dynamic(system:term_expansion/4).
-%system:term_expansion(MH --> _,_,_,_):- notrace((strip_module(MH,M,H),decl_is_dcg(M:H),fail)).
+%system:term_expansion(MH --> _, _, _, _):- notrace((strip_module(MH, M, H), decl_is_dcg(M:H), fail)).
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% TESTING %%%%%%%%%%%%%%%%%%%%%%%
@@ -113,28 +113,28 @@ system:t33s:- cls, test_e2c([sanity]).
 system:t33t:- cls, test_e2c([riddle]).
 system:t33ts:- cls, test_e2c([]). % all
 
-system:t33f:-  
+system:t33f:-
   mpred_trace_all,
   mpred_trace_exec,
   setup_call_cleanup(
-     true, 
-     parser_e2c:forall(test_e2c(Sent, Type), show_failure(parser_fwd:add_nl_fwd(Sent,Type))), 
+     true,
+     parser_e2c:forall(test_e2c(Sent, Type), show_failure(parser_fwd:add_nl_fwd(Sent, Type))),
      mpred_notrace_all),
   mpred_notrace_exec.
 
 
 baseKB:sanity_test:- t33.
 
-is_testing_e2c(_, _,      []).
-is_testing_e2c(_, Traits, + Include):- atom(Include),!, \+ \+ memberchk(Include,Traits).
-is_testing_e2c(_, Traits, - Exclude):- atom(Exclude),!,    \+ memberchk(Exclude,Traits).
-is_testing_e2c(_, Traits,  TestType):- atom(TestType),!,  member(T,Traits), functor(T,TestType,_).
-is_testing_e2c(S,_Traits,- CantHave):- string(CantHave), \+ atom_contains(S,CantHave).
-is_testing_e2c(S,_Traits,+ MustHave):- string(MustHave),    atom_contains(S,MustHave).
+is_testing_e2c(_, _, []).
+is_testing_e2c(_, Traits, + Include):- atom(Include), !, \+ \+ memberchk(Include, Traits).
+is_testing_e2c(_, Traits, - Exclude):- atom(Exclude), !, \+ memberchk(Exclude, Traits).
+is_testing_e2c(_, Traits, TestType):- atom(TestType), !, member(T, Traits), functor(T, TestType, _).
+is_testing_e2c(S, _Traits, - CantHave):- string(CantHave), \+ atom_contains(S, CantHave).
+is_testing_e2c(S, _Traits, + MustHave):- string(MustHave), atom_contains(S, MustHave).
 % ANY or
-is_testing_e2c(S, Traits,[Type|TestTypes]):- !, 
-  is_testing_e2c(S, Traits,Type);
-  is_testing_e2c(S, Traits,TestTypes).
+is_testing_e2c(S, Traits, [Type|TestTypes]):- !,
+  is_testing_e2c(S, Traits, Type);
+  is_testing_e2c(S, Traits, TestTypes).
 % AND
 is_testing_e2c(S, Traits, Type1+Type2):- !,
   is_testing_e2c(S, Traits, Type1),
@@ -146,13 +146,17 @@ is_testing_e2c(S, Traits, Type1-Type2):- !,
 
 run_e2c_test(S, _T):- e2c(S).
 
+add_e2c(S):- add_e2c(S, sanity).
+add_e2c(S, W):-  clause(test_e2c(S, W), true), !.
+add_e2c(S, W):- listify(W, L), assertz(test_e2c(S, L)).
+
 
 :- export(test_e2c/1).
 :- export(test_e2c/2).
 test_e2c(String) :- string(String), !, run_e2c_test(String, [requested]).
-test_e2c(TestTypes) :- 
-  forall((test_e2c(S,T), is_testing_e2c(S, T, TestTypes)), 
-         (flatten([T, TestTypes],TestInfo), run_e2c_test(S, TestInfo))).
+test_e2c(TestTypes) :-
+  forall((test_e2c(S, T), is_testing_e2c(S, T, TestTypes)),
+         (flatten([T, TestTypes], TestInfo), run_e2c_test(S, TestInfo))).
 
 
 
@@ -165,7 +169,7 @@ test_e2c(TestTypes) :-
 % regression = ran as regression test
 % feature = ran as feature test
 
-test_e2c(S,TestInfo) :- nonvar(S), run_e2c_test(S, TestInfo).
+test_e2c(S, TestInfo) :- nonvar(S), run_e2c_test(S, TestInfo).
 
 test_e2c("His friends are liked by hers.", [bad_juju, sanity]).
 test_e2c("Her friends are not liked by his.", [bad_juju, sanity]).
@@ -217,17 +221,13 @@ test_e2c("Who owns the fish?", [riddle(_), sanity]).
 
 % test_e2c(S, _T) :- \+ ground(S), !, fail.
 
-add_e2c(S):- add_e2c(S,sanity).
-add_e2c(S,W):-  clause(test_e2c(S,W),true),!.
-add_e2c(S,W):- listify(W,L),assertz(test_e2c(S,L)).
-
 baseKB:feature_test(nlu_riddle):- riddle.
 riddle :-  riddle(_AnyLevel).
-riddle(Level) :- forall(test_e2c(Text,riddle(Level)),e2c(Text)).
+riddle(Level) :- forall(test_e2c(Text, riddle(Level)), e2c(Text)).
 
 :- thread_local(t_l:into_form_code/0).
 :- asserta(t_l:into_form_code).
-             
+
 
 % =================================================================
 % %%%%%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%%%%
@@ -240,52 +240,59 @@ e2c :- locally(tracing80,
              with_no_assertions(lmconf:use_cyc_database,
                   locally(t_l:usePlTalk, (told, repeat, prompt_read('E2FC> ', U),
                             to_wordlist_atoms(U, WL), (WL==[ bye];WL==[end, '_', of, '_', file];e2c(WL)))))).
-                            
+
 :-export(e2c/1).
 e2c(Sentence):-
-  with_error_to_predicate(nop,make),
-   setup_call_cleanup(   
+  with_error_to_predicate(nop, make),
+   setup_call_cleanup(
    must(notrace((to_wordlist_atoms(Sentence, Words), fmt('?-'(e2c(Sentence)))))),
-   (call_residue_vars(must(e2c_0(Words)),Vs),del_e2c_attributes(Vs)),
-   true),!.
+   (call_residue_vars(must(e2c_0(Words)), Vs), del_e2c_attributes(Vs)),
+   true), !.
 :-system:import(e2c/1).
 
 :-export(e2c_0/1).
 e2c_0(Words):-
-  ignore_must(e2c_0(Words, Reply)), %cls, % ignore(also_show_chat80(Words)),!,
+  %cls, % ignore(also_show_chat80(Words)), !,
+  ignore_must(e2c_0(Words, Reply)), 
   del_e2c_attributes(Reply),
-  print_reply_colored(Reply),!.
+  print_reply_colored(Reply), !.
 
 
 :-export(e2c/2).
-e2c(Sentence, Reply):- callable(Reply),!,e2c(Sentence).
-e2c(Sentence, Reply):-
- quietly(to_wordlist_atoms(Sentence, WL)), !, 
- call_residue_vars(e2c_0(WL, Reply),Vs),!,
- del_e2c_attributes(Reply+Vs),!.
+e2c(Sentence, Options):- callable(Options), set_e2c_options(Options), !, e2c(Sentence).
+e2c(Sentence, Reply):- e2c(Sentence, [], Reply).
+:-export(e2c/3).
+e2c(Sentence, Options, Reply):-
+ quietly(to_wordlist_atoms(Sentence, WL)), !,
+ set_e2c_options(Options),
+ call_residue_vars(e2c_0(WL, Reply), Vs), !,
+ del_e2c_attributes(Reply+Vs), !.
 :-system:import(e2c/2).
 
+set_e2c_options(Options):- nb_setval('$e2c_options', Options).
+
+:-export(e2c_0/2).
 e2c_0(Sentence, Reply) :-
-   % must_or_rtrace      
-   % set_prolog_flag(debugger_write_options,[quoted(true), portray(false), max_depth(50), attributes(portray)]),
+   % must_or_rtrace
+   % set_prolog_flag(debugger_write_options, [quoted(true), portray(false), max_depth(50), attributes(portray)]),
    e2c_parse0(Sentence, LF), % deepen_pos?
-   e2c_clausify_and_reply(LF,Reply).
+   e2c_clausify_and_reply(LF, Reply).
 
 e2c_0(Sentence,
    error('FAILED!!!!! small bug'(Sentence))):- ansifmt(red, rtrace(e2c_0(Sentence))).
 
 
-:- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_parse,2,prologOnly)).
+:- assert_if_new(baseKB:mpred_prop(parser_e2c, e2c_parse, 2, prologOnly)).
 
 e2c_parse(Sentence, LF):- cwc,
-  quietly(to_wordlist_atoms(Sentence, WL)), !,   
+  quietly(to_wordlist_atoms(Sentence, WL)), !,
   e2c_parse0(WL, LF),
   del_e2c_attributes(LF).
 
-:- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_parse0,2,prologOnly)).
+:- assert_if_new(baseKB:mpred_prop(parser_e2c, e2c_parse0, 2, prologOnly)).
 
-e2c_parse0(WL, LF):-    
-  b_setval('$variable_names',[]),
+e2c_parse0(WL, LF):-
+  b_setval('$variable_names', []),
   retractall(t_l:usePlTalk),
   retractall(t_l:useAltPOS), !,
   e2c_parse2(WL, LF).
@@ -297,24 +304,24 @@ e2c_parse2(WL, LF):- no_repeats(LF, deepen_pos(utterance(_How, LF, WL, []))).
 e2c_parse2(WL, LF):- fail, deepen_pos(e2c_parse3(WL, LF)).
 
 
-e2c_parse3(Sentence, Reply):- notrace(into_text80(Sentence,U)),!,
-  also_chat80(U,Res), 
-  once((rewrite_result(_SF, verb,_VF,Res,Reply))).
+e2c_parse3(Sentence, Reply):- notrace(into_text80(Sentence, U)), !,
+  also_chat80(U, Res),
+  once((rewrite_result(_SF, verb, _VF, Res, Reply))).
 */
 
-:- assert_if_new(baseKB:mpred_prop(parser_e2c,e2c_reply,2,prologOnly)).
+:- assert_if_new(baseKB:mpred_prop(parser_e2c, e2c_reply, 2, prologOnly)).
 
 % e2c_reply a question
-e2c_reply((answer(Answer) :- Condition), Reply) :- fail, nonvar(Condition),!,
+e2c_reply((answer(Answer) :- Condition), Reply) :- fail, nonvar(Condition), !,
  term_variables(Condition, Vars),
- term_singletons(Answer+Vars, FreeVars), 
+ term_singletons(Answer+Vars, FreeVars),
  fmt(query(Answer, FreeVars^satisfy(Condition))),
-((baseKB:setof(Answer, FreeVars^call(call,satisfy,Condition), Answers)
+((baseKB:setof(Answer, FreeVars^call(call, satisfy, Condition), Answers)
  -> Reply = answer(Answers)
  ; (Answer == yes -> Reply = answer([ no]) ; Reply = answer([ none])))), !.
-% e2c_reply an assertion @TODO remove NOP 
-e2c_reply(A, asserted(Assertion)) :- add_quant(exists,A),expand_quants(A,Assertion),  nop(baseKB:ain(kif(Assertion))), !.
-e2c_reply(A, Reply) :- add_quant(all,A),expand_quants(A,Reply),!.
+% e2c_reply an assertion @TODO remove NOP
+e2c_reply(A, asserted(Assertion)) :- add_quant(exists, A), expand_quants(A, Assertion), nop(baseKB:ain(kif(Assertion))), !.
+e2c_reply(A, Reply) :- add_quant(all, A), expand_quants(A, Reply), !.
 e2c_reply(_, error('unknown type')).
 
 
@@ -323,8 +330,8 @@ e2c_reply(_, error('unknown type')).
 % =================================================================
 :- include(e2c/e2c_clausify).
 
-e2c_clausify_and_reply(LF,Reply) :- 
-   quietly((show_call(e2c_clausify(LF, Clause)), 
+e2c_clausify_and_reply(LF, Reply) :-
+   quietly((show_call(e2c_clausify(LF, Clause)),
    e2c_reply(Clause, Reply),
    del_e2c_attributes(Reply))), !.
 
@@ -354,5 +361,38 @@ e2c_clausify_and_reply(LF,Reply) :-
 
 :- retract(t_l:into_form_code).
 
-:- fixup_exports.
+
+create_tests_for_cmd(Cmd):-
+  forall(test_e2c(English, Options),
+     (arg(1, Cmd, English),
+      arg(2, Cmd, Options),
+      format(atom(TestName), "?- ~q", [Cmd]),
+      format("~n~n~p.~n",
+        [
+         test(TestName, [true(compound(O)), nondet]):-
+           call(Cmd, O)
+          ]))).
+
+generate_all_e2c_tests_now:-
+   create_tests_for_cmd(test_lex_info(_, _)),
+   create_tests_for_cmd(chat80(_, _)),
+   create_tests_for_cmd(curt80(_, _)),
+   create_tests_for_cmd(e2c(_, _)), !.
+
+generate_all_e2c_tests:-
+ setup_call_cleanup(
+  open('./parser_e2c.plt', write, Out),
+  with_output_to(Out, generate_all_e2c_tests_now), close(Out)).
+
+%:- generate_all_e2c_tests.
+
 %:- break.
+
+%:- forall(test_e2c(A,B),e2c(A,B)).
+
+:- fixup_exports.
+
+:- begin_tests(parser_e2c).
+:- include('./parser_e2c.plt').
+:- end_tests(parser_e2c).
+

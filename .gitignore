@@ -1,6 +1,7 @@
 ext/kalm-qa/
 ext/learningbyreading/
 ext/candc/models/
+src~
 *~/
 ~*/
 .*/

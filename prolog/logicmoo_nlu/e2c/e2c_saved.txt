@@ -1,49 +1,49 @@
 
 also_show_chat80(I):-
-  notrace(into_text80(I,U)),
-  keep_going(also_chat80(U,Res)),!,
-  %ignore_must(also_chat80(U,Res)),!,
-  rewrite_result(_SF, verb,_VF,Res,RW),!,
-  print_reply([underline,fg(green)],RW),!.
+  notrace(into_text80(I, U)),
+  keep_going(also_chat80(U, Res)), !,
+  %ignore_must(also_chat80(U, Res)), !,
+  rewrite_result(_SF, verb, _VF, Res, RW), !,
+  print_reply([underline, fg(green)], RW), !.
 
 
-also_chat80(U,Res):-  
+also_chat80(U, Res):-
   Sol=sol(failed),
-  ignore(((        
-            at_most(6,Check),
-            no_repeats(E,parser_chat80:sent_to_parsed(U,E)),
-            no_repeats(Res,parser_chat80:sent_to_prelogic(E,Res)),
-            nb_setarg(1,Sol,Res),
+  ignore(((
+            at_most(6, Check),
+            no_repeats(E, parser_chat80:sent_to_parsed(U, E)),
+            no_repeats(Res, parser_chat80:sent_to_prelogic(E, Res)),
+            nb_setarg(1, Sol, Res),
             Check,
-            %print_reply(cyan,E),
-            %print_my_sent_reply(green,Res),
-            %print_my_sent_reply(yellow,E),
+            %print_reply(cyan, E),
+            %print_my_sent_reply(green, Res),
+            %print_my_sent_reply(yellow, E),
             fail))),
   Sol=sol(Res),
   Res\==failed.
 
-also_chat80(U,Res):-  
+also_chat80(U, Res):-
   Sol=sol(failed),
-  ignore(((        
-            at_most(6,Check),
-            no_repeats(E,parser_chat80:sent_to_parsed(U,E)),  
+  ignore(((
+            at_most(6, Check),
+            no_repeats(E, parser_chat80:sent_to_parsed(U, E)),
             Check,
-            once(my_sent_to_prelogic(E,Res)),
-            nb_setarg(1,Sol,Res),
-            print_my_sent_reply(green,Res),
+            once(my_sent_to_prelogic(E, Res)),
+            nb_setarg(1, Sol, Res),
+            print_my_sent_reply(green, Res),
             fail))),
   Sol=sol(Res),
   Res\==failed, !.
 
-% also_chat80(_U,_Res):- notrace(print_reply(red,failed_parse80())),!,fail.
+% also_chat80(_U, _Res):- notrace(print_reply(red, failed_parse80())), !, fail.
 
-at_most(N,Check):- gensym(at_most_,AM),flag(AM,_,0),Check= (flag(AM,X,X+1),X<N).
+at_most(N, Check):- gensym(at_most_, AM), flag(AM, _, 0), Check= (flag(AM, X, X+1), X<N).
 
-print_my_sent_reply(Color,E):- rewrite_result(_SF, verb,_VF,E,Res),!, print_reply(Color,Res),!.
+print_my_sent_reply(Color, E):- rewrite_result(_SF, verb, _VF, E, Res), !, print_reply(Color, Res), !.
 
-my_sent_to_prelogic(E,Res):- 
-  % print_reply(yellow,(E)), 
-  rewrite_result(_SF, verb,_VF,E,Res),!. 
+my_sent_to_prelogic(E, Res):-
+  % print_reply(yellow, (E)),
+  rewrite_result(_SF, verb, _VF, E, Res), !.
 
 
 

@@ -1,8 +1,11 @@
-:- module(nldata_cycl_pos0,[brillPos/1,brillPos/1,bposToCPos/2,bcr/1,transprob/4,transprob2/3]).
+:- module(nldata_cycl_pos0,[brillPos/1,
+  bposToCPos/2,bposToCPos1/2,bposToCPos0/2,
+  swap_case/2,swap_case_or_not/2,
+  bposToCPosForm/2,bcr/1,transprob/4,transprob2/3]).
 
 :- use_module(library(logicmoo_plarkc)).
 
-:- dynamic((brillPos/1,brillPos/1,bcr/1,transprob/4,transprob2/3)).
+:- dynamic((brillPos/1,bcr/1,transprob/4,transprob2/3)).
 
 
 :- style_check(-singleton).
@@ -67,9 +70,9 @@ sentenceBreakerUncontract(['she\'s'|BrokenA],BrokenB):- sentenceBreakerUncontrac
 sentenceBreakerUncontract(['he\'s'|BrokenA],BrokenB):- sentenceBreakerUncontract([he,is|BrokenA],BrokenB).
 sentenceBreakerUncontract(['it\'s'|BrokenA],BrokenB):- sentenceBreakerUncontract([it,is|BrokenA],BrokenB).
 sentenceBreakerUncontract(['they\'s'|BrokenA],BrokenB):- sentenceBreakerUncontract([they,is|BrokenA],BrokenB).
-sentenceBreakerUncontract([SHOULDNT|BrokenA],BrokenB):-atom_concat(SHOULD,'n\'t',SHOULDNT),sentenceBreakerUncontract([SHOULD,not|BrokenA],BrokenB).
-sentenceBreakerUncontract([YOURE|BrokenA],BrokenB):-atom_concat(YOU,'\'re',YOURE),sentenceBreakerUncontract([YOU,are|BrokenA],BrokenB).
-sentenceBreakerUncontract([IAM|BrokenA],BrokenB):-atom_concat(I,'\'m',IAM),sentenceBreakerUncontract([I,am|BrokenA],BrokenB).
+sentenceBreakerUncontract([SHOULDNT|BrokenA],BrokenB):-freeze_atom_concat(SHOULD,'n\'t',SHOULDNT),sentenceBreakerUncontract([SHOULD,not|BrokenA],BrokenB).
+sentenceBreakerUncontract([YOURE|BrokenA],BrokenB):-freeze_atom_concat(YOU,'\'re',YOURE),sentenceBreakerUncontract([YOU,are|BrokenA],BrokenB).
+sentenceBreakerUncontract([IAM|BrokenA],BrokenB):-freeze_atom_concat(I,'\'m',IAM),sentenceBreakerUncontract([I,am|BrokenA],BrokenB).
 sentenceBreakerUncontract([W|BrokenA],[W|BrokenB]):-!,sentenceBreakerUncontract(BrokenA,BrokenB).
 sentenceBreakerUncontract(Broken0,Broken0).
 
@@ -77,8 +80,8 @@ sentenceBreakerDenoter(Words,Tagged):-evalSubL('MAPCAR'('#\'CAR','DENOTATION-MAP
     quote(['#$middleName','#$middleNameInitial','#$nicknames','#$givenNames','#$firstName','#$abbreviationString-PN','#$alias','#$initialismString']),':GREEDY',':greedy')),List,_),reformatStrings(List,Tagged),!.
 %sentenceBreaker0(Words,Tagged):-evalSubL('denotation-mapper'(string(Words),'NIL',':greedy'),List:_),reformatStrings(List,Tagged),!.
 
-%sentenceBreaker1(['\'',[A]|BrokenA],[[W]|BrokenB]):- atom(A),atom_concat('\'',A,W),!,sentenceBreaker1(BrokenA,BrokenB).
-%sentenceBreaker1(['\'',A|BrokenA],[[W]|BrokenB]):- atom(A),atom_concat('\'',A,W),!,sentenceBreaker1(BrokenA,BrokenB).
+%sentenceBreaker1(['\'',[A]|BrokenA],[[W]|BrokenB]):- atom(A),freeze_atom_concat('\'',A,W),!,sentenceBreaker1(BrokenA,BrokenB).
+%sentenceBreaker1(['\'',A|BrokenA],[[W]|BrokenB]):- atom(A),freeze_atom_concat('\'',A,W),!,sentenceBreaker1(BrokenA,BrokenB).
 
 noBreak(a).
 noBreak(the).
@@ -88,7 +91,7 @@ noBreak(_).
 
 sentenceBreakerReMWS([NoBreak|Rest],Breaks,[[[txt,NoBreak]]|Results]):-noBreak(NoBreak),!,sentenceBreakerReMWS(Rest,Breaks,Results).
 sentenceBreakerReMWS(Words,Breaks,[[[txt|Ws]]|Results]):- member(string(Ws),Breaks),append(Ws,Rest,Words),!,sentenceBreakerReMWS(Rest,Breaks,Results).
-sentenceBreakerReMWS([Ws|Rest],Breaks,[[[txt,W],[txt,Ws],0.7-'\'s']|Results]):-atom_concat(W,'\'s',Ws),sentenceBreakerReMWS(Rest,Breaks,Results).
+sentenceBreakerReMWS([Ws|Rest],Breaks,[[[txt,W],[txt,Ws],0.7-'\'s']|Results]):-freeze_atom_concat(W,'\'s',Ws),sentenceBreakerReMWS(Rest,Breaks,Results).
 sentenceBreakerReMWS([Ws|Rest],Breaks,[[[txt,Ws]]|Results]):-sentenceBreakerReMWS(Rest,Breaks,Results).
 sentenceBreakerReMWS([],_,[]):-!.
 
@@ -108,7 +111,7 @@ sentencePos(In,Out):-
 % ================================================================================
 wordForString(['right-wall'],'WordFn'(string('laast')),'NLWordForm'):-!.
 wordForString(['left-wall'],'WordFn'(string('staart')),'NLWordForm'):-!.
-wordForString(['.'],'Period-TheSymbol','Punctuation-SP'):-!.
+wordForString(['.'],'Period-TheSymbol','xtPunctuationSymbol'):-!.
 wordForString(String,Word,Pos):-atom(String),!,wordForString([String],Word,Pos).
 wordForString(String,Word,Pos):- once(learnText(String)),%ignore(member(Pos,['CountNoun',''])
          findall(Word:Pos,textCached(String,[lex,Word,Pos|_]),Words),leastOne(Words),sort(Words,Words9),!,member(Word:Pos,Words9).
@@ -186,8 +189,8 @@ getTextBPosR([('?')],('.'),0.3).
 getTextBPosR([W],W,1.0):-atom(W),atom_codes(W,[C]),char_type(C,M),member(M,[punct,white]),!. %text_lit(W).
 getTextBPosR([N],cd,1.0):-number(N).
 getTextBPosR(MWS,P,0.56):-mws(MWS,P),!.
-getTextBPosR([W],'\'s',0.58):-atom_concat(N,'\'s',W).
-getTextBPosR([W],'n\'t',0.59):-atom_concat(N,'n\'t',W).
+getTextBPosR([W],'\'s',0.58):-freeze_atom_concat(N,'\'s',W).
+getTextBPosR([W],'n\'t',0.59):-freeze_atom_concat(N,'n\'t',W).
 getTextBPosR([W],P,N):-text_bpos(N,W,P).
 getTextBPosR([W],P,0.25):-text_bpos(W,P),not((text_bpos(N,W,P))).
 %getTextBPosR(P,L):-dcg_rewrite(P,L).
@@ -770,40 +773,47 @@ wps  WH-pronoun, nominative  that who whoever whosoever what whatsoever
 bposToCPos1('pos','Possessive').
 bposToCPos1('pp$','Possessive').
 bposToCPos1('wps','WHPronoun').
-bposToCPos1('pp','Punctuation').
+bposToCPos1('pp','xtPunctuationSymbol').
 bposToCPos1('\'s','Possessive').
 
-bposToCPos(W,L):-no_repeats(bposToCPos0(W,L)).
-
-bposToCPos0(Atom,_):-not(atom(Atom)),!,fail.
-bposToCPos0(HASDOLLAR,'Possessive'):-concat_atom([_,_|_],'$',HASDOLLAR).
-
-bposToCPos0(BEDZ,POS):-
-   atom_concat('be',Whatnot,BEDZ),
-   ((member(POS,['BeAux','AuxVerb']));
-   ((atom_concat('vb',Whatnot,VBZ),bposToCPos1(VBZ,POS)))).
-
-bposToCPos0(BEDZ,POS):-
-   atom_concat('do',Whatnot,BEDZ),
-   ((member(POS,['DoAux','AuxVerb']));
-   ((atom_concat('vb',Whatnot,VBZ),bposToCPos1(VBZ,POS)))).
-
-bposToCPos0(BEDZ,POS):-
-   atom_concat('hv',Whatnot,BEDZ),
-   ((member(POS,['HaveAux','AuxVerb']));
-   ((atom_concat('vb',Whatnot,VBZ),bposToCPos1(VBZ,POS)))).
+bposToCPos1(H,M):- brillPos([H|L]), member(M,L), downcase_atom(M,DC), M\==DC.
 
 
-bposToCPos0(X,Y):-concat_atom([P,L],'-',X),!,(bposToCPos0(P,Y);X=Y).
-bposToCPos0(X,Y):-concat_atom([P,L],'|',X),!,(bposToCPos0(P,Y);bposToCPos0(P,L);X=Y).
-bposToCPos0(H0,M):- (upcase_atom(H0,H);downcase_atom(H0,H)),
-   brillPos([H|L]),member(M,L),nop((atom_codes(M,[C|_]),is_upper(C))).
+bposToCPos(In,L):- %swap_case_or_not(IN,DC),  
+  no_repeats(bposToCPos0(In,L)),freeze(In,atom(In)).
 
-bposToCPos0(LC,CATE):- atom(LC),upcase_atom(LC,UC),atom_concat(UC,'-PennTag',UCPENTAG),
-  el_holds(syntacticCategoryTags,CATE,UCPENTAG,_PennTagDataMt,_).
-bposToCPos0(LC,E):- atom(LC),upcase_atom(LC,DC),LC\=DC,bposToCPos1(DC,E),E\=LC.
-bposToCPos0(LC,E):- atom(LC),downcase_atom(LC,DC),LC\=DC,bposToCPos1(DC,E),E\=LC.
+
+be_vb(BE,BEDZ,VBZ):- 
+   reorder_if_var(BEDZ, 
+      atom_concat(BE,Whatnot,BEDZ),
+      atom_concat('vb',Whatnot,VBZ)).
+
+bposToCPos_aux(_BeAux,BE, BEDZ,POS):- freeze(be_vb(BE, BEDZ,VBZ)), bposToCPos1(VBZ,POS).
+bposToCPos_aux( BeAux,BE, BEDZ,POS):- member(POS,[BeAux,'AuxVerb']),freeze(BEDZ,atom_concat(BE,_Whatnot,BEDZ)).
+
+
+% bposToCPos0(Atom,_):-not(atom(Atom)),!,fail.
+bposToCPos0(HASDOLLAR,'Possessive'):- freeze(HASDOLLAR,(atom(HASDOLLAR),atom_contains(HASDOLLAR,'$'))).
+
+bposToCPos0(BEDZ,POS):- bposToCPos_aux('BeAux','be', BEDZ,POS).
+bposToCPos0(BEDZ,POS):- bposToCPos_aux('DoAux','do', BEDZ,POS).
+bposToCPos0(BEDZ,POS):- bposToCPos_aux('HaveAux','hv', BEDZ,POS).
+
+bposToCPos0(X,Y):- frozen(X,true), freeze(concat_atom_safe([P,L],'-',X)), (bposToCPos0(P,Y);X=Y), nonvar(Y).
+bposToCPos0(X,Y):- frozen(X,true), freeze(concat_atom_safe([P,L],'|',X)), (bposToCPos0(P,Y);bposToCPos0(P,L);X=Y), nonvar(Y).
+
+bposToCPos0(LC,CATE):- freeze(pennSyntacticTags(LC,UCPENTAG)), ac(syntacticCategoryTags,CATE,UCPENTAG).
+
+bposToCPos0(LC,E):- swap_case_or_not(LC,DC),bposToCPos1(DC,E),freeze(E\=LC).
 bposToCPos0(ULC,ULC).
+
+pennSyntacticTags(LC,UCPENTAG):- atom(LC),upcase_atom(LC,UC),atomic_list_concat([i,UC,'PennTag'],UCPENTAG).
+pennSyntacticTags(LC,UCPENTAG):- atom(UCPENTAG),atomic_list_concat_safe([i,UC,'PennTag'],UCPENTAG),freeze((UC=LC ; downcase_atom(UC,LC))).
+
+swap_case_or_not(LC,DC):- LC=DC ; freeze(swap_case(LC,DC)).
+
+swap_case(LC,DC):- var(LC),!,nonvar(DC), !, swap_case(DC,LC).
+swap_case(LC,DC):- atom(LC),(upcase_atom(LC,DC);downcase_atom(LC,DC)),LC\=DC.
 
 brillPos(['pp$$','Pronoun','Possessive',' ours mine his hers theirs yours  ']).
 brillPos(['abl','PrE-Qualifier']). %,'quite','rather']).
@@ -918,7 +928,7 @@ brillPos(['tl','title','(hyphenated_After_regular_tag)']).
 brillPos(['uh','Interjection','Exclamation']).
 brillPos(['vb','Verb','baseForms']).
 brillPos(['wp','Pronoun','WHPronoun']).
-brillPos(['vbz','AuxVerb','WHPronoun']).
+%brillPos(['vbz','AuxVerb','WHPronoun']).
 brillPos(['wdt','WHDeterminer']). % 'what','which'
 brillPos(['wpind','indefinite','relative','Pronoun']).
 brillPos(['wpms','relative','Pronoun','masc','singular']).
@@ -952,9 +962,9 @@ brillPos(['POS','Possessive']).  %% apostopy s,
 brillPos(['PRP','PossessiveDeterminer', 'possessive', 'second']).  %%'mine, yours
 brillPos(['PRPS','PossessiveDeterminer', 'possessive']).  %%'their, your
 brillPos(['RB','Adverb']).  %%   %%'','often, not, very, here
-brillPos(['RBR','ComparativeAdverb']).  %%'','faster
-brillPos(['RBS','SuperlativeAdverb']).  %%'','fastest
-brillPos(['RP','ParticleAdverb']).  %%'','up, off, out
+brillPos(['RBR','comparativeAdverb']).  %%'','faster
+brillPos(['RBS','superlativeAdverb']).  %%'','fastest
+brillPos(['RP','xtParticleAdverb']).  %%'','up, off, out
 brillPos(['SYM','Symbol']).  %%   %%'','*
 brillPos(['TO','Preposition']).  %%   %%'to
 brillPos(['UH','Interjection']).  %%   %%'oh, yes, mmm
@@ -968,14 +978,14 @@ brillPos(['WDT','Determiner','Question']).  %%'','which, whatever
 brillPos(['WP','Pronoun', 'Question']).  %%'','','who, whoever
 brillPos(['WPS','Determiner', 'Possessive', 'Question']). %% 'whose
 brillPos(['WRB','Adverb', 'Question']).  %%'','when, how, however
-brillPos(['PP','Punctuation']). %% sentence ender','','., !, ?
-brillPos(['PPC','Punctuation']). %% ,  comma']).  %%'','',',
-brillPos(['PPD','Punctuation']). %% , dollar sign']).  %%'','$
-brillPos(['PPL','Punctuation']). %% , quotation mark left','','``
-brillPos(['PPR','Punctuation']). %% , quotation mark right','''
-brillPos(['PPS','Punctuation']). %% , colon, semicolon, elipsis',':, ..., -
-brillPos(['LRB','Punctuation']). %% , left bracket']).  %%'(, {, [
-brillPos(['RRB','Punctuation']). %% , right bracket']).  %%'), }, ]
+brillPos(['PP','xtPunctuationSP']). %% sentence ender','','., !, ?
+brillPos(['PPC','xCommaTheSymbol']). %% ,  comma']).  %%'','',',
+brillPos(['PPD','xDollarSignTheSymbol']). %% , dollar sign']).  %%'','$
+brillPos(['PPL','xQuotationMarkDouble']). %% , quotation mark left','','``
+brillPos(['PPR','xQuotationMarkDouble']). %% , quotation mark right','''
+brillPos(['PPS','xtPunctuationSymbol']). %% , colon, semicolon, elipsis',':, ..., -
+brillPos(['LRB','xtPunctuationSymbol']). %% , left bracket']).  %%'(, {, [
+brillPos(['RRB','xtPunctuationSymbol']). %% , right bracket']).  %%'), }, ]
 
 
 

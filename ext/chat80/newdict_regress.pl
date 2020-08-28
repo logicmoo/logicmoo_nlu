@@ -72,8 +72,8 @@
 
 verb_type_to_kind(Var,Var2):-(var(Var);nonvar(Var2)),!,trace_or_throw(var_verb_type_to_kind(Var,Var2)).
 verb_type_to_kind(Aux+Have,tv):-Aux == aux, Have == have.
-verb_type_to_kind(_+Type,Kind):-must(nonvar(Type)),!,verb_type_to_kind(Type,Kind),!,must(not(Kind=have)).
-verb_type_to_kind(Kind,Kind):-must(not(Kind=have)).
+verb_type_to_kind(_+Type,Kind):-must(nonvar(Type)),!,verb_type_to_kind(Type,Kind),!,must( \+ Kind=have).
+verb_type_to_kind(Kind,Kind):-must( \+ Kind=have).
 
 
 verb_type_db(Verb,Type):- no_repeats((one_must(verb_type_db_0(Verb,Type),verb_type_db_1(Verb,Type)))).

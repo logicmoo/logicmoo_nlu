@@ -43,7 +43,7 @@ clock_time(T):- statistics(walltime, [X, _]), T is ('//'(X , 100))/10.
 :- dynamic(is_state_pred/2).
 is_state_pred(F, N):- atom(F), !, is_state_pred(P, N), safe_functor(P, F, _).
 
-defn_state_pred(Getter, '//'(F,A), N):- !, functor(P,F,A),!,defn_state_pred(Getter, P, N).
+defn_state_pred(Getter, '//'(F, A), N):- !, functor(P, F, A), !, defn_state_pred(Getter, P, N).
 defn_state_pred(get_advstate, P, N):- is_state_pred(P, N), !.
 defn_state_pred(Getter, P, N):- asserta(is_state_pred(P, N)),
   strip_module(P, M, PP),
@@ -65,23 +65,23 @@ defn_get_set_wrapper(Getter, M, F, A, _, 1):-
   append(Args, [S0, S9], NewArgs09),
   PPS09 univ_safe [F|NewArgs09],
   asserta_if_undef(M, PPS09, ( M:PPS0, S0 = S9)),
-  asserta_if_undef(M, PP, (call(Getter,S0), M:PPS0)).
+  asserta_if_undef(M, PP, (call(Getter, S0), M:PPS0)).
 
 defn_get_set_wrapper(Getter, M, F, A, _, 2):-
   assertion(F\==('/')), assertion(F\==('//')),
   safe_functor(PP, F, A), PP univ_safe [F|Args],
   append(Args, [S0, S9], NewArgs02),
   PPS0 univ_safe [F|NewArgs02],
-  ignore((compound(Getter),arg(1,Getter,Mutex),arg(1,PP,Mutex))),
-  ignore((\+ compound(Getter),Mutex=Getter)),
-  getter_to_setter(Getter,Setter),
-   asserta_if_undef(M, PP, 
-    with_mutex(Mutex,(call(Getter,S0), M:PPS0, call(Setter,S9)))).
-  %asserta_if_undef(M, PP, 
-   %with_mutex(Mutex,(pprint(enter(PP),trace),call(Getter,S0), M:PPS0, call(Setter,S9),pprint(exit(PP),trace)))).
+  ignore((compound(Getter), arg(1, Getter, Mutex), arg(1, PP, Mutex))),
+  ignore((\+ compound(Getter), Mutex=Getter)),
+  getter_to_setter(Getter, Setter),
+   asserta_if_undef(M, PP,
+    with_mutex(Mutex, (call(Getter, S0), M:PPS0, call(Setter, S9)))).
+  %asserta_if_undef(M, PP,
+   %with_mutex(Mutex, (pprint(enter(PP), trace), call(Getter, S0), M:PPS0, call(Setter, S9), pprint(exit(PP), trace)))).
 
-getter_to_setter(get_advstate,set_advstate).
-getter_to_setter(get_memory(A),set_memory(A)).
+getter_to_setter(get_advstate, set_advstate).
+getter_to_setter(get_memory(A), set_memory(A)).
 
 asserta_if_undef(Mod, Head, _Body):- predicate_property(Mod:Head, defined), !.
 asserta_if_undef(Mod, Head, Body):- Mod:asserta((Head:-Body)).
@@ -142,10 +142,10 @@ apply_mapl_rest_state(Front, [E|List], Rest, S0, S2) :-
 
 as_rest_list(Rest, RestL):- is_list(Rest)->Rest=RestL;Rest univ_safe [_|RestL].
 
-apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),   
+apply_state_rest(Front, E, Rest, S0, S1):- as_rest_list(Rest, RestL),
    append([E|RestL], [S0, S1], APPLYARGS),
    apply_to_call(Front, APPLYARGS, Call),
-   (call(Call)->!;(nortrace,trace,dumpST_break,Call)).
+   (call(Call)->!;(nortrace, trace, dumpST_break, Call)).
 
 apply_to_call(Front, APPLYARGS, Call):-
   append_goal_mw(Front, APPLYARGS, Call), !.

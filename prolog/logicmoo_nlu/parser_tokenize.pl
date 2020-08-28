@@ -32,6 +32,11 @@ tokens_to_acetext0([T,P|Tokens],AceText):- atomic_list_concat([T,P],' ',TP),!,to
 into_text80(I,O):- nonvar(I), 
   parser_tokenize:(init_to_tokens(I,T),!,fast_break_atom_symbols(T,N),!,maplist(number_to_nb,N,O)),!.
 
+into_text80_atoms(I,O):- nonvar(I), 
+  parser_tokenize:(init_to_tokens(I,T),!,fast_break_atom_symbols(T,O)),!.
+
+into_text80_strings(I,O):- into_text80_atoms(I,N),maplist(any_to_string,N,O),!.
+
 
 number_to_nb(nb(N),nb(N)):-!.
 number_to_nb(A,nb(N)):- atom(A),atom_number(A,N),!.
@@ -142,7 +147,7 @@ into_control80(ListIn,Out):-
    append(ListIn,[('.')],ListMid),!,
    into_control80(ListMid,Out).
 */
-into_control80([W,A,B|More],Out):- 
+into_control80([W,A,B|More],Out):- fail,
    downcase_atom(W,D),
    Out=[D,A,B|More],!.
 into_control80(Out,Out):- !.

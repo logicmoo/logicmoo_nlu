@@ -1,57 +1,57 @@
-:- module(nl_iface,[]).
+:- module(nl_iface, []).
 
 :- use_module(library(logicmoo_common)).
 
-:- prolog_load_context(file,File),
-   absolute_file_name('.',X,[relative_to(File),file_type(directory)]),
-   (user:file_search_path(nldata,X)-> true ; asserta(user:file_search_path(nldata,X))),
-   (user:file_search_path(pldata,X)-> true ; asserta(user:file_search_path(pldata,X))).
+:- prolog_load_context(file, File),
+   absolute_file_name('.', X, [relative_to(File), file_type(directory)]),
+   (user:file_search_path(nldata, X)-> true ; asserta(user:file_search_path(nldata, X))),
+   (user:file_search_path(pldata, X)-> true ; asserta(user:file_search_path(pldata, X))).
 
 
 :- export(qcompile_external/1).
-qcompile_external(File) :- 
-        absolute_file_name(File,R,[access(read),file_type(prolog)]),
-        file_directory_name(R,LPWD),
-        format(atom(A),'qcompile(~q)',[R]),
+qcompile_external(File) :-
+        absolute_file_name(File, R, [access(read), file_type(prolog)]),
+        file_directory_name(R, LPWD),
+        format(atom(A), 'qcompile(~q)', [R]),
         process_create(path(swipl),
                 ['-g', A, '-t', halt],
-                [cwd(LPWD),stdout(pipe(Out))]),
+                [cwd(LPWD), stdout(pipe(Out))]),
         read_string(Out, _, _Output),
         close(Out).
 
 
 :- export(rexport_qlf/2).
-rexport_qlf(Module,Name):-
+rexport_qlf(Module, Name):-
   setup_call_cleanup((
-   atom_concat(Name,'.qlf',QLF),
-   atom_concat(Name,'.pl',PLF)),
-   rexport_qlf(Module,Name,PLF,QLF),
-   format(user_error,'~NDone with ~w. ~n',[Name])).
+   atom_concat(Name, '.qlf', QLF),
+   atom_concat(Name, '.pl', PLF)),
+   rexport_qlf(Module, Name, PLF, QLF),
+   format(user_error, '~NDone with ~w. ~n', [Name])).
 
-rexport_qlf(Module,_Name,_PLF,QLF):-  exists_source(QLF),
-   format(user_error,'~NLoading ~w  ... ~n',[QLF]),
-   prolog_statistics:time(catch(((Module:reexport(QLF))),E,(dmsg(E-->QLF),fail))),!.
-rexport_qlf(Module,Name,_PLF,QLF):- \+ exists_source(QLF), 
-   format(user_error,'~NCompiling Quickload ~w (this may take 60-120 seconds the very first time) ... ~n',[QLF]),
-   %catch((prolog_statistics:time(load_files(PLF,[qcompile(always)]))),E,(dmsg(E-->Nmae),fail)),
-   prolog_statistics:time(catch(((nl_iface:qcompile_external(Name))),E,(dmsg(E-->Name),fail))),
+rexport_qlf(Module, _Name, _PLF, QLF):-  exists_source(QLF),
+   format(user_error, '~NLoading ~w  ... ~n', [QLF]),
+   prolog_statistics:time(catch(((Module:reexport(QLF))), E, (dmsg(E-->QLF), fail))), !.
+rexport_qlf(Module, Name, _PLF, QLF):- \+ exists_source(QLF),
+   format(user_error, '~NCompiling Quickload ~w (this may take 60-120 seconds the very first time) ... ~n', [QLF]),
+   %catch((prolog_statistics:time(load_files(PLF, [qcompile(always)]))), E, (dmsg(E-->Nmae), fail)),
+   prolog_statistics:time(catch(((nl_iface:qcompile_external(Name))), E, (dmsg(E-->Name), fail))),
    % prolog_statistics:time(qcompile(QLF)),
-   format(user_error,'~NMade ~w ~n',[QLF]),
+   format(user_error, '~NMade ~w ~n', [QLF]),
    Module:reexport(QLF).
-   %rexport_qlf(Module,Name,PLF,QLF).
-rexport_qlf(_M,_Name,_PLF,QLF):- \+  exists_source(QLF), 
-   format(user_error,'~NMissing ~w  ... ~n',[QLF]),fail.
-rexport_qlf(Module,_Name,PLF,_QLF):- exists_source(PLF),!,
-   format(user_error,'~NLoading ~w instead  ... ~n',[PLF]),
+   %rexport_qlf(Module, Name, PLF, QLF).
+rexport_qlf(_M, _Name, _PLF, QLF):- \+  exists_source(QLF),
+   format(user_error, '~NMissing ~w  ... ~n', [QLF]), fail.
+rexport_qlf(Module, _Name, PLF, _QLF):- exists_source(PLF), !,
+   format(user_error, '~NLoading ~w instead  ... ~n', [PLF]),
    Module:reexport(PLF).
-rexport_qlf(Module,Name,_PLF,_QLF):- exists_source(Name),!,
-   format(user_error,'~NLoading Stem ~w instead  ... ~n',[Name]),
+rexport_qlf(Module, Name, _PLF, _QLF):- exists_source(Name), !,
+   format(user_error, '~NLoading Stem ~w instead  ... ~n', [Name]),
    Module:reexport(Name).
 
 
-:- set_prolog_flag(verbose_load,true).
+:- set_prolog_flag(verbose_load, true).
 
-:- set_prolog_flag(encoding,iso_latin_1).
+:- set_prolog_flag(encoding, iso_latin_1).
 
 :- system:reexport(tt0_iface).
 :- system:reexport(ac_xnl_iface).
@@ -61,11 +61,11 @@ rexport_qlf(Module,Name,_PLF,_QLF):- exists_source(Name),!,
 :- system:reexport(framenet).
 :- system:reexport(nldata_cycl_pos0).
 :- system:reexport(pldata(kb_0988)).
-:- system:load_files(nldata_freq_pdat,[reexport(true),qcompile(large)]).
-:- system:load_files(nldata_BRN_WSJ_LEXICON,[reexport(true),qcompile(large)]).
-% :- system:reexport(nldata_BRN_WSJ_LEXICON,[text_bpos/2]).
-:- system:load_files(nldata_dictionary_some01,[reexport(true),qcompile(large)]).
-:- system:load_files(nldata_colloc_pdat,[reexport(true),qcompile(large)]).
+:- system:load_files(nldata_freq_pdat, [reexport(true), qcompile(large)]).
+:- system:load_files(nldata_BRN_WSJ_LEXICON, [reexport(true), qcompile(large)]).
+% :- system:reexport(nldata_BRN_WSJ_LEXICON, [text_bpos/2]).
+:- system:load_files(nldata_dictionary_some01, [reexport(true), qcompile(large)]).
+:- system:load_files(nldata_colloc_pdat, [reexport(true), qcompile(large)]).
 
 
 
@@ -78,14 +78,14 @@ rexport_qlf(Module,Name,_PLF,_QLF):- exists_source(Name),!,
 		 *          FIND WORDNET	*
 		 *******************************/
 
-set_rel_path_from_here:- 
-   prolog_load_context(file,File),
-   absolute_file_name('WNprolog-3.0/prolog/',WNDB,[relative_to(File),file_type(directory)]),
+set_rel_path_from_here:-
+   prolog_load_context(file, File),
+   absolute_file_name('WNprolog-3.0/prolog/', WNDB, [relative_to(File), file_type(directory)]),
    setenv('WNDB', WNDB).
 
 :- getenv('WNDB', _WNDB) -> true ; set_rel_path_from_here.
 
-:- nl_iface:rexport_qlf(nl_iface,wn_frames).
+:- nl_iface:rexport_qlf(nl_iface, wn_frames).
 % :- load_wordnet.
 
 :- fixup_exports.
@@ -120,13 +120,13 @@ tt0:ttholds(inflNounPluralUnchecked, 'TTWord_HappySurprise', s("happy", "surpris
 nlkb7166:assertion_content(compoundString, xPersonTheWord, uU(vTheListFn, ["who", "is", "happy"]), xtCountNoun, mobHappy, 894007).
 nlkb7166:assertion_content(multiWordString, uU(vTheListFn, ["happy", "birthday"]), xCardTheWord, xtCountNoun, tObjectBirthdayCard, 470153).
 nlkb7166:assertion_content(multiWordString, uU(vTheListFn, ["the", "happy", "birthday"]), xSongTheWord, xtCountNoun, iHappyBirthdayToYouTheSong, 4693486).
-nlkb7166:assertion_content(bellaStudentBioBlurb, iBELLAStudentWallace, uU(xUnicodeStringFn, s("Wallace", "is", "a", "people", "pleaser", ".", "It", "makes", "him", "especially", "happy", "when", "his", "parents", "are", "happy", ".", "He", "doesn", "&", "u2019", ";", "t", "particularly", "like", "sports", ",", "or", "math", ",", "or", "sharing", ",", "but", "his", "parents", "do", ".", "Since", "his", "parents", "like", "these", "things", ",", "Wallace", "participates", "in", "all", "three", "(", "among", "other", "things", ")", "just", "enough", "to", "say", "he", "did", ".")), 6633094).
-nlkb7166:assertion_content(comment, xAdjectiveModifyingFrame, s("This", "frame", "is", "used", "for", "adverbs", "which", "modify", "adjectives", ".", "Example", ":", "'", "very", "'", ",", "as", "in", "'", "He", "is", "very", "happy", "'"), 1055892).
-nlkb7166:assertion_content(comment, xRegularAdjFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "both", "attributively", "and", "predicatively", ",", "like", "'", "happy", "'", "in", "'", "a", "happy", "person", "'", "and", "'", "Chris", "is", "happy", "'"), 1072903).
-nlkb7166:assertion_content(comment, xtAdjectiveGradable, s("#$", "Adjectives", "that", "can", "be", "used", "comparatively", ".", "They", "either", "inflect", "for", "comparison", "using", "either", "-er", "or", "-est", "(", "such", "as", "'", "happy", "'", ")", "or", "they", "occur", "with", "the", "adverbs", "'", "more", "'", "and", "'", "most", "'", "(", "e.g", ".", "'", "delicious", "'", ",", "'", "successful", "'"), 3095533).
-nlkb7166:assertion_content(comment, xtAttributiveFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "attributively", ",", "like", "'", "happy", "'", "in", "'", "a", "happy", "person", "'"), 1072533).
+nlkb7166:assertion_content(bellaStudentBioBlurb, iBELLAStudentWallace, uU(xUnicodeStringFn, s("Wallace", "is", "a", "people", "pleaser", ".", "It", "makes", "him", "especially", "happy", "when", "his", "parents", "are", "happy", ".", "He", "doesn", "&", "u2019", ";", "t", "particularly", "like", "sports", ", ", "or", "math", ", ", "or", "sharing", ", ", "but", "his", "parents", "do", ".", "Since", "his", "parents", "like", "these", "things", ", ", "Wallace", "participates", "in", "all", "three", "(", "among", "other", "things", ")", "just", "enough", "to", "say", "he", "did", ".")), 6633094).
+nlkb7166:assertion_content(comment, xAdjectiveModifyingFrame, s("This", "frame", "is", "used", "for", "adverbs", "which", "modify", "adjectives", ".", "Example", ":", "'", "very", "'", ", ", "as", "in", "'", "He", "is", "very", "happy", "'"), 1055892).
+nlkb7166:assertion_content(comment, xRegularAdjFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "both", "attributively", "and", "predicatively", ", ", "like", "'", "happy", "'", "in", "'", "a", "happy", "person", "'", "and", "'", "Chris", "is", "happy", "'"), 1072903).
+nlkb7166:assertion_content(comment, xtAdjectiveGradable, s("#$", "Adjectives", "that", "can", "be", "used", "comparatively", ".", "They", "either", "inflect", "for", "comparison", "using", "either", "-er", "or", "-est", "(", "such", "as", "'", "happy", "'", ")", "or", "they", "occur", "with", "the", "adverbs", "'", "more", "'", "and", "'", "most", "'", "(", "e.g", ".", "'", "delicious", "'", ", ", "'", "successful", "'"), 3095533).
+nlkb7166:assertion_content(comment, xtAttributiveFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "attributively", ", ", "like", "'", "happy", "'", "in", "'", "a", "happy", "person", "'"), 1072533).
 nlkb7166:assertion_content(comment, xtNegativePrefix, s("The", "collection", "of", "prefixes", "which", "serve", "to", "negate", "the", "meaning", "|", "|", "of", "the", "words", "they", "combine", "with", ".", "Example", ":", "#$", "Un_Neg-Pre", "+", "|", "|", "#$", "Happy-TheWord", "means", "\"", "not", "\"", "happy", "."), 835865).
-nlkb7166:assertion_content(comment, xtPredicativeFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "predicatively", ",", "like", "'", "happy", "'", "in", "'", "Chris", "is", "happy", "'"), 1072167).
+nlkb7166:assertion_content(comment, xtPredicativeFrame, s("Frames", "for", "adjectives", "that", "can", "be", "used", "predicatively", ", ", "like", "'", "happy", "'", "in", "'", "Chris", "is", "happy", "'"), 1072167).
 nlkb7166:assertion_content(comment, xTransitiveForNPInfinitivePhraseFrame, s("This", "frame", "is", "used", "for", "verbs", "and", "adjectives", "which", "can", "be", "|", "|", "used", "with", "a", "'", "for-NP-infinitival", "'", "phrase", ".", "Examples", ":", "'", "I", "would", "hate", "for", "him", "to", "leave", "'", "and", "'", "I", "would", "be", "happy", "for", "you", "to", "join", "us", "'"), 1056432).
 nlkb7166:assertion_content(preferredBaseForm, xHappyTheWord, "happy", 4540039).
 nlkb7166:assertion_content(preferredBaseForm, xHappyTheWord, "happy", 834787).

@@ -194,8 +194,8 @@ talk_db(ditransitive, Jacket,Jackets,Jacketed,Jacketing,Jacketed):-
 
 talk_db(noun1,Sing,Plural):- check_marker(v('n','cn'),[Sing,Plural]).
 talk_db(noun2,Sing,Sing):- check_marker(v('n','mn'),[Sing]).
-talk_db(adj,Sing):- check_marker('jj',[Sing]).
-talk_db(adv,Sing):- check_marker('av',[Sing]).
+talk_db(adj,Word):- check_marker('jj',[Word]).
+talk_db(adv,Word):- check_marker('av',[Word]).
 talk_db(Type,A):- atom(A), concat_atom_safe([Type,_],':', A).
 talk_db(Type,A,B):- check_marker(Type,[A,B]).
 talk_db(Type,A,B,C):- check_marker(Type,[A,B,C]).
@@ -311,6 +311,26 @@ save_to_file(Name,Belongs,F):-
 :- show_size_left("Loaded talk_db.more").
 :- endif.       
 %:-share_mp(kill_talk_db_bad_verbs/0).
+
+:- ignore(retract(talkdb:talk_db(adv,there))).
+
+:- forall((
+  member(S,[adj,noun2,verb,preposition,interj,conj,sing_only,
+  pronoun,p,b_t,noun_verb,agentive,ncollect,pres_indic,
+  possessive,m,personal,impersonal,indef,auxiliary,pl_pronoun,interrog,auxilary]),
+  talkdb:talk_db(S,X)),ignore((\+ atom_concat(_,'ly',X),show_success((S=S,retract(talkdb:talk_db(adv,X))))))).
+
+:- forall((S=adj,talkdb:talk_db(S,X)),
+  ignore((S\==adv,show_success((S=S,retract(talkdb:talk_db(interj,X))))))).
+
+
+:- forall((
+  member(S,[interj,
+  pronoun,p,noun_verb,agentive,ncollect,pres_indic,
+  possessive,m,personal,impersonal,indef,auxiliary,pl_pronoun,interrog,auxilary]),
+  talkdb:talk_db(S,X)),ignore((show_success((S=S,retract(talkdb:talk_db(adj,X))))))).
+
+% :- forall((S=adv,talkdb:talk_db(S,X)), ignore((show_success((S=S,retract(talkdb:talk_db(adj,X))))))).
 
 :- fixup_exports. 
 :- fixup_exports_system.%  system:reexport(talk_db).
