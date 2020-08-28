@@ -47,141 +47,7 @@ connect_preds(HF, BF):-
 :- connect_preds(cyckb_t, cyckb_h).
 :- connect_preds(cyckb_h, ac).
 
-:- use_module(parser_lexical_gen).
-:- use_module(library(http/http_client)).
-%:- use_module(library(http/http_open)).
-:- use_module(library(http/json_convert)).
-:- use_module(library(http/http_json)).
-:- use_module(library(http/json)).
-
-call_corenlp(English):- make, call_corenlp(English, _Options).
-
-call_corenlp(English, Options):-
-  call_corenlp(English, Options, OutF),!,
-  maplist(print_reply_colored, OutF).
-
-call_corenlp(English, OptionsIn, OutS):-
-  % DefaultOpts = [tokenize, ssplit, pos, lemma, ner, coref, dcoref, depparse,  mwt, natlog ,relation, openie ],
-  DefaultOpts = [ quote, tokenize, ssplit, pos, lemma, depparse, natlog, coref, dcoref,  ner, relation, udfeats ],
-  % kbp,  % sentiment,
-  ignore('.\nSome quick brown foxes jumped over the lazy dog after we sang a song. X is Y .  Pee implies Queue.'=English),
-  ignore(OptionsIn=DefaultOpts), % depparse, lemma
-  atomic_list_concat(['\n.\n',English,"\n.\n"], PostData),
-  (OptionsIn==[]->Options=DefaultOpts;Options=OptionsIn),
-  atomic_list_concat(Options, ',', OptionsStr),
-  format(atom(For), '{"annotators":"~w", "outputFormat":"json"}', [OptionsStr]),
-  % http_open([host(localhost), port(3090), post([PostData]), path(''), search([properties=For])], In, []),
-  uri_encoded(query_value, For, Encoded), atom_concat('http://logicmoo.org:3090/?properties=', Encoded, URL),
-  http_post(URL, [PostData], json(Reply), []),
-  %maplist(print_reply_colored,Reply), print_reply_colored("==============================================================="),
-  % maplist(wdmsg, Reply),
-  must_or_rtrace(parse_reply([reply], Reply, Out)),
-  flatten([Out], OutF),
-  sort(OutF, OutR),
-  reverse(OutR, OutS),
-  !.
-
-parse_reply(Ctx, List, Out):- is_list(List),!, maplist(parse_reply(Ctx),List, Out).
-parse_reply(Ctx, InnerCtx=json(List), Out):- !,  parse_reply([InnerCtx|Ctx], List, Out).
-parse_reply(Ctx, List, Out):- 
-   sub_term(Sub, List), nonvar(Sub), 
-   parse_reply_replace(Ctx, Sub, NewSub),
-   % ignore((NewSub=='$',wdmsg(parse_reply_replace(_Ctx, Sub, NewSub)))),
-   nonvar(NewSub), Sub\==NewSub,
-   subst(List, Sub, NewSub, NewList), 
-   List\==NewList, !, 
-   parse_reply(Ctx, NewList, Out).
-%parse_reply(Ctx, [], Ctx=[]):- !.
-%parse_reply([reply], List, Out):- flatten([List], Out),!.
-%parse_reply(Ctx, List, Ctx=j(Out)):- flatten([List], Out),!.
-parse_reply(_Ctx, List, Out):- flatten([List], Out),!.
-
-label_tokens(_Index, TokensLabeled, TokensLabeled):-!.
-label_tokens(Index, json(Tokens), TokensLabeled):- !, label_tokens(Index, Tokens, TokensLabeled), !.
-label_tokens(Index, Tokens, TokensLabeled):- append_term(Tokens, Index, TokensLabeled), !.
-
- 
-parse_reply_replace(_Ctx, Sub, Replace):- is_list(Sub), 
-  subtract_eq(Sub, ['$'], Replace),
-  Replace\==Sub.
-
-parse_reply_replace(_Ctx, sentence(N,[tok(1,'.','.',".",[])],[]), '$'):- number(N).
-parse_reply_replace(_Ctx, openie=W, W):-!, nonvar(W).
-parse_reply_replace(_Ctx, sentences=W, W):-!, nonvar(W).
-parse_reply_replace(_Ctx, corefs=W, W):- !,nonvar(W).
-parse_reply_replace(_Ctx, Number=[Coref|More], [Coref|More]):- atom_number(Number,_), compound(Coref),functor(Coref,coref,_).
-%parse_reply_replace(_Ctx, _=[Coref|More], [Coref|More]):- compound(Coref),functor(Coref,coref,_).
-
-parse_reply_replace(_Ctx, Remove=Rest, '$'):- nonvar(Rest),
-  member(Remove, [
-   basicDependencies,
-   enhancedDependencies,                                      
-   enhancedPlusPlusDependencies,
-   entitymentions,
-   headIndex,
-   position,
-   parse, 
-   characterOffsetBegin, characterOffsetEnd, before, after]).
-parse_reply_replace(_Ctx, isRepresentativeMention=TF, TF).
-parse_reply_replace(_Ctx, Sub, '$'):- ground(Sub), 
-  member(Sub, [entitymentions=[], speaker='PER0', openie=[], ner='O']).
-
-parse_reply_replace(_Ctx, Sub, Replace):- 
- members([index=Index, originalText=String, word=String, 
-    lemma=Root, pos=Pos], Sub, Attributes), !,
- cvt_to_real_string(String,AString),
- Replace = tok(Index, Pos, Root, AString, Attributes).
-
-parse_reply_replace(_Ctx, Sub, Replace):- 
-  members([index=SentID, tokens=Tokens], Sub, Attributes), !,
-  maplist(label_tokens(SentID), Tokens, TokensLabeled),
-  parse_reply([sentence(SentID)],Attributes,NewAttributes),
-  flatten(NewAttributes,NewAttributesF),
-  Replace = sentence(SentID, TokensLabeled, NewAttributesF).
-
-parse_reply_replace(_Ctx, Sub, Replace):- 
-  members([relationSpan=[R1,R2],relation=Relation,subjectSpan=[S1,S2],subject=S,objectSpan=[O1,O2],object=O], Sub, Attributes), !,
-  Replace = sro([rel(Relation,R1,R2),subj(S,S1,S2),obj(O,O1,O2)|Attributes]).
-
-parse_reply_replace(_Ctx, Sub, Replace):- 
-  members([relationSpan=RelationSpan,relation=Relation], Sub, Attributes), !,
-  Replace = relation(RelationSpan,Relation,Attributes).
-
-parse_reply_replace(_Ctx, Sub, Replace):- 
- members([id=Index, text=Text, type=Type, startIndex=SI, endIndex=EI, % headIndex=HI,
-    sentNum=SentID, number=SINGULAR, gender=NEUTRAL, animacy=INANIMATE, isRepresentativeMention=TF], Sub, Attributes), !,
- into_text100_atoms(Text,Words),maplist(cvt_to_real_string,Words,WordStrings),
- SentIDMinus1 is SentID-1,
- SIm1 is SI-0,
- EIm1 is EI-1,
- Replace =  
-  coref(SentIDMinus1, seg(SIm1-EIm1), '#'(Index), WordStrings,
-    % headIndex(HI),   
-    Type, SINGULAR, NEUTRAL, INANIMATE,Index,[[]],[em=TF|Attributes]).
-                                                                                
-parse_reply_replace(_Ctx, sentence(_,TokList,_), '$'):- ground(TokList),  
-   member(tok(_, 'SYM', '--------', _, _),TokList), !.
-
-parse_reply_replace(_Ctx, json(Replace), Replace):- nonvar(Replace),!.
- 
-into_text100_atoms(Text,Words):- into_text80_atoms(Text,Words).
-
-members([], List, List):-!.
-members(EList, json(List), ListO):- !, members(EList, List, ListO).
-members([E|EList], List, ListO):- select(E, List, ListM), !, members(EList, ListM, ListO).
-
-sexpr_to_lexpr(SExpr, LExpr):-
-  atomic_list_concat(S, '(. .)', SExpr), atomic_list_concat(S, '(. ".")', LSExpr), lisp_read(LSExpr, LExpr).
-
-sentence_reply(Number, Toks, SExpr, In, Mid):- atomic(SExpr), sexpr_to_lexpr(SExpr, LExpr), !,
-   sentence_reply(Number, Toks, LExpr, In, Mid).
-sentence_reply(Number, Toks, SExpr, In, Out):- append(In, [sentence(Number)=Toks, SExpr], Out), !.
-/*
-sentence_reply(Number, Toks, SExpr, In, In):-
-  print_reply_colored(Number=SExpr),
-  print_reply_colored(Number=Toks), !.
-*/
-
+:- use_module(parser_lexical_gen). 
 
 common_logic_kb_hooks:cyckb_t(A, B, C):- cyckb_p2(A, [B, C]).
 common_logic_kb_hooks:cyckb_t(A, B, C, D):- cyckb_p2(A, [B, C, D]).
@@ -744,30 +610,30 @@ lex_info_impl(Kind, Level, [concept(C)|Todo], Done, Out):- fail,
 
 
 lex_info_impl(Kind, Level, [Sent|Todo], Done, Out):-
- Sent = sent(N,Words,Info),
-   append(Done,[Sent],NewDone),   
-   add_do_more(Words, Todo, NewDone, NewTodo),
-   lex_info(Kind, Level, NewTodo, NewDone, Out).
+ Sent = sent(N,Words,_Info),
+   % append(Done,[Sent],NewDone),     
+   add_do_more([Words, do_mws(N,Words)], Todo, Done, NewTodo),
+   lex_info(Kind, Level, NewTodo, Done, Out).
 
 lex_info_impl(Kind, Level, [TOK|Todo], Done, Out):- 
  TOK = tok(Index,PennPos,_Base,String, _Info), !,
   must((
-   findall_set(MorePos,extend_brillPos(PennPos,MorePos),PosSet),
-   nb_set_add(TOK,PosSet),
-   functor(TOK,_,A),
-   arg(A,TOK,PosInfo),
-   findall_set(How, (text_pos_cycword(String, [PennPos|PosInfo], How)), OutF),
-   nb_set_add(TOK,OutF),
    append(Done,Todo,AllInfo),
-   findall_set(How, (find_coref(Index, AllInfo, How)), OutC),
-   nb_set_add(TOK,OutC),
-   arg(A,TOK,PosInfo2),
-   member(cycWord(CycWord),PosInfo2),
-   findall_set(How, (cycword_sem(CycWord, PosInfo2, How)), CycSem),
-   nb_set_add(PosInfo2,CycSem),
-   sort(PosInfo2,PosInfoS),
-   nb_setarg(A,TOK,PosInfoS),     
-   lex_info(Kind, Level, Todo, [TOK|Done], Out))).
+   findall_set(CPos,extend_brillPos(PennPos,CPos),CPosSet),
+   POSINFO = [PennPos|CPosSet],
+   nb_set_add(TOK,POSINFO),
+   functor(TOK,_,A), arg(A,TOK,PropsTOK),
+   nb_set_add(PropsTOK,POSINFO),
+   findall_set(How, (text_pos_cycword(String, POSINFO, How)), CycWordInfo),
+   nb_set_add(PropsTOK,CycWordInfo),   
+   findall_set(How, (find_coref(Index, AllInfo, How)), CorefInfo),
+   nb_set_add(PropsTOK,CorefInfo),
+   member(cycWord(CycWord),PropsTOK),
+   findall_set(How, (cycword_sem(CycWord, PropsTOK, How)), CycSem),
+   nb_set_add(PropsTOK,CycSem),
+   sort(PropsTOK,PropsTOKS),
+   nb_setarg(A,TOK,PropsTOKS),     
+   lex_info(Kind, Level, Todo, Done, Out))).
 
 find_coref(Index, AllInfo, [coREF(CRN,RefNum),A,B,C,D]):- 
   member(coref( _, seg(Index-_), RefNum, Words,
@@ -1160,8 +1026,13 @@ test(first_clause_only, all(X == [1, 2])) :-
 :- end_tests(first_clause_only).
 */
 
-baseKB:sanity_test:- call_corenlp(
-'There are 5 houses with five different owners.
+test_lex_info:- lex_info('There are 5 houses with five different owners.').
+
+test_lex_info:- lex_info(".\nThe Norwegian lives in the first house.\n.").
+        
+test_lex_info:- lex_info("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.").
+
+test_lex_info:- lex_info('
  These five owners drink a certain type of beverage, smoke a certain brand of cigar and keep a certain pet.
  No owners have the same pet, smoke the same brand of cigar or drink the same beverage.
  The man who smokes Blends has a neighbor who drinks water.
@@ -1175,25 +1046,4 @@ baseKB:sanity_test:- call_corenlp(
  "You look like the cat that swallowed the canary, " he said, giving her a puzzled look.').
 
 
-call_corenlp:- call_corenlp(".\nThe Norwegian lives in the first house.\n.").
-call_corenlp2:- call_corenlp("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.").
-call_lex_info:- lex_info("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.").
-
-baseKB:sanity_test:- call_corenlp(
-".
-The Brit lives in the red house.
-The Swede keeps dogs as pets.
-The Dane drinks tea.
-The green house is on the immediate left of the white house.
-The green house's owner drinks coffee.
-The owner who smokes Pall Mall rears birds.
-The owner of the yellow house smokes Dunhill.
-The owner living in the center house drinks milk.
-The Norwegian lives in the first house.
-The owner who smokes Blends lives next to the one who keeps cats.
-The owner who keeps the horse lives next to the one who smokes Dunhills.
-The owner who smokes Bluemasters drinks beer.
-The German smokes Prince.
-The Norwegian lives next to the blue house.
-The owner who smokes Blends lives next to the one who drinks water.").
 

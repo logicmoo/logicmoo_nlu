@@ -9,9 +9,12 @@
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
 
-:-module(parser_stanford,[
+:-module(parser_stanford_legacy_jpl,[
 
          ]).
+
+
+
 
 :-dynamic(tag_pos/2).
 :-dynamic(tag_pos/3).
