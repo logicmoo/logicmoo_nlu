@@ -27,7 +27,7 @@
 
 
 
-endof_file.
+end_of_file.
 
 
 andrewdo@ai2:/var/lib/myfrdcsa/codebases/internal/perllib/scripts$ ./test-system-candc-5.pl
