@@ -11,6 +11,8 @@
 
 :-module(parser_e2c, []).
 
+:- set_module(class(library)).
+
 
 /*
   Around 10% of the 1500 lines of code are from Bratko chapter 17 page 455.

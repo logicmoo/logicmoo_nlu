@@ -11,6 +11,10 @@
 
 :-module(parser_lexical, [ ]).
 
+
+:- set_module(class(library)).
+:- set_module(base(system)).
+
 % ?- use_module(library(logicmoo_nlu/parser_lexical)).
 
 :- use_module(library(make)), use_module(library(check)), redefine_system_predicate(check:list_undefined/1).
@@ -33,6 +37,8 @@
 :- share_mp(common_logic_kb_hooks:cyckb_t/6).
 :- share_mp(common_logic_kb_hooks:cyckb_t/7).
 :- forall(between(1, 8, N), share_mp(common_logic_kb_hooks:cyckb_t/N)).
+
+:- system:use_module(parser_stanford).
 
 :- kb_global(baseKB:nlfw/4).
 %:- share_mp(nlf:f/4).
@@ -88,7 +94,7 @@ concat_missing(Named, [], Out):- Named=Out.
 
 english_some(X, Words):- is_synset_id(X), synset_to_words(X, _, Words), !.
 english_some(X, Y):- \+ compound(X), !, Y=X.
-english_some([fr, X1, M, X2|More], Y):- is_synset_id(X1), synset_to_words(X1, X2, SK), !, english_some([vnframe, M, SK|More], Y).
+english_some([fr, X1, M, X2|More], Y):- is_synset_id(X1), synset_to_words(X1, X2, SK), !, english_some([vnframe, M, SK|More], Y). 
 english_some([X1, X2|More], Y):- integer(X2), is_synset_id(X1), synset_to_words(X1, X2, SK), !, english_some([SK|More], Y).
 english_some(H-T, HH-TT):- !, english_some(H, HH), =(T, TT).
 english_some([H|T], [HH|TT]):- !, english_some(H, HH), english_some(T, TT).
@@ -141,6 +147,7 @@ lex_mws(compoundSemTrans).
 lex_mws(multiWordSemTrans).
 lex_mws(multiWordString).
 lex_mws(mws).
+lex_mws(xPPCompFrameFn).
 lex_mws(hyphenString).
 
 
@@ -616,21 +623,21 @@ lex_info_impl(Kind, Level, [Sent|Todo], Done, Out):-
    lex_info(Kind, Level, NewTodo, Done, Out).
 
 lex_info_impl(Kind, Level, [TOK|Todo], Done, Out):- 
- TOK = tok(Index,PennPos,_Base,String, _Info), !,
-  must((
-   append(Done,Todo,AllInfo),
+ TOK = tok(Index,PennPos,_Base,String, Info), !,
+ functor(TOK,_,A),
+  must_or_rtrace((   
    findall_set(CPos,extend_brillPos(PennPos,CPos),CPosSet),
    POSINFO = [PennPos|CPosSet],
-   nb_set_add(TOK,POSINFO),
-   functor(TOK,_,A), arg(A,TOK,PropsTOK),
-   nb_set_add(PropsTOK,POSINFO),
+   append(Info,POSINFO,PropsTOK),
+   nb_setarg(A,TOK,PropsTOK),
    findall_set(How, (text_pos_cycword(String, POSINFO, How)), CycWordInfo),
    nb_set_add(PropsTOK,CycWordInfo),   
+   append(Done,Todo,AllInfo),
    findall_set(How, (find_coref(Index, AllInfo, How)), CorefInfo),
    nb_set_add(PropsTOK,CorefInfo),
-   member(cycWord(CycWord),PropsTOK),
-   findall_set(How, (cycword_sem(CycWord, PropsTOK, How)), CycSem),
-   nb_set_add(PropsTOK,CycSem),
+   forall(member(cycWord(CycWord),PropsTOK),
+   (findall_set(How, (cycword_sem(CycWord, PropsTOK, How)), CycSem),
+    nb_set_add(PropsTOK,CycSem))),
    sort(PropsTOK,PropsTOKS),
    nb_setarg(A,TOK,PropsTOKS),     
    lex_info(Kind, Level, Todo, Done, Out))).

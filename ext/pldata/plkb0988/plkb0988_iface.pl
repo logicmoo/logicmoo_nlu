@@ -699,7 +699,7 @@ download_0988:-
 
 unzip_0988:-
   directory_0988(Dir),
-  Filename = 'pldata0988.nldata',
+  Filename = 'pldata0988.nldata',  
   format(atom(Cmd), "gunzip -f ~w/src~~/~w.gz", [Dir, Filename]),
   format(user_error, "~N% Running (shell): ~w~n", [Cmd]),
   must_or_rtrace(shell(Cmd)), !,
@@ -716,7 +716,7 @@ unzip_0988:-
       close(Out)),
    close(In)).
 */
-
+create_0988:- !.
 create_0988:-
   download_0988,
   unzip_0988,
@@ -726,6 +726,9 @@ create_0988:-
 :- if( (directory_0988(Dir),
         absolute_file_name('plkb0988_kb.qlf', File, [relative_to(Dir)]),
       \+ exists_file(File))).
+
+:- download_0988.
+:- unzip_0988.
 
 :- format(user_error, "~N% QCOMPILE: plkb0988_kb~n", []).
 %:- time(qcompile('plkb0988_kb')).

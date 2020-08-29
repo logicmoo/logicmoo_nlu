@@ -1,4 +1,7 @@
 :-module(parser_chat80, [chat80/0, chat80/3, chat80/2, test_chat80_regressions/0, t80/0, /*t10/0, t14/0, */t11/0, t12/0, t13/0, satisfy/1, holds_truthvalue/2]).
+
+:- set_module(class(library)).
+
 :- set_how_virtualize_file(false).
 /** <module>
 % Imperitive Sentence Parser (using DCG)

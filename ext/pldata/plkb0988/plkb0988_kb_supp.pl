@@ -4,7 +4,8 @@
 % ?- use_module(plkb0988_kb_supp).
 
 %:- ifexistspldata('plkb0988/plkb0988_kb.qlf')).
-:- reexport('plkb0988_kb.qlf').
+%:- reexport('plkb0988_kb.qlf').
+:- nl_iface:rexport_qlf(kb0988_supp,plkb0988_kb).
 %:- endif.
 
 make_stats(_F,_A).
