@@ -198,3 +198,5 @@ judged_dialogue_processing([[juneevu,de,yotei,sarete,iru,kaigi,wa,ari,masu,ka],[
 judged_dialogue_processing([[juneevu,de,yotei,sarete,iru,miitingu,wa,ari,masu,ka],[[question,form(present,[[aru],[de,term(name,juneevu,[])],[subject,term(null,miitingu,[[clause,form(continuous_present,[[yotei_suru]])]])]])]],[lf=[[question,form(present,[[aru],[de,term(name,juneevu,[])],[subject,term(null,kaigi,[[clause,form(continuous_present,[[yotei_suru]])]])]])]]]],[[]],im,bad).
 
 judged_dialogue_processing([[kongetsu,yotei,sarete,iru,kaigi,wa,ari,masu,ka],[[question,form(present,[[aru],[temporal,term(null,kongetsu,[])],[subject,term(null,kaigi,[[clause,form(continuous_present,[[yotei_suru]])]])]])]],[]],[[]],im,bad).
+
+:- include('japanese_calendar_dialogue_judgements.nldata')
