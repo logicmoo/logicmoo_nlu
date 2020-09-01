@@ -17,7 +17,7 @@ file_search_path(boxer,  'src/prolog/boxer').
 :- use_module(library(readutil),[read_line_to_codes/2]).
 :- use_module(boxer(version),[version/1]).
 :- use_module(semlib(errors),[error/2,warning/2]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 
@@ -26,7 +26,7 @@ file_search_path(boxer,  'src/prolog/boxer').
 ========================================================================*/
 
 tokkie:-
-   option(Option,do), 
+   candc_option(Option,do), 
    member(Option,['--version','--help']), !, 
    version,
    help.
@@ -134,21 +134,21 @@ pattern([46,Q|A]-[], Prev, B1-B2, [Q]):- bracket(Q), end(A), !, insertSpace(Prev
    Full stop and ending quotes (end of line)
 ---------------------------------------------------------------------------------- */
 
-pattern([46,Q|A]-[], Prev, B1-B2, [46]):- quote(Q),end(A),option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).      %%% X." -> X .
-pattern([46,Q|A]-[], Prev, B1-B2,  [Q]):- quote(Q),end(A),option('--quotes',keep), !, insertSpace(Prev,[46,32,Q|B2],B1).   %%% X." -> X . "
+pattern([46,Q|A]-[], Prev, B1-B2, [46]):- quote(Q),end(A),candc_option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).      %%% X." -> X .
+pattern([46,Q|A]-[], Prev, B1-B2,  [Q]):- quote(Q),end(A),candc_option('--quotes',keep), !, insertSpace(Prev,[46,32,Q|B2],B1).   %%% X." -> X . "
 
-pattern([46,Q,Q|A]-[], Prev, B1-B2, [46]):- quotes(Q),end(A),option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).       %%% X.'' -> X .
-pattern([46,Q,Q|A]-[], Prev, B1-B2,  [Q]):- quotes(Q),end(A),option('--quotes',keep), !, insertSpace(Prev,[46,32,Q,Q|B2],B1).  %%% X.'' -> X . ''
+pattern([46,Q,Q|A]-[], Prev, B1-B2, [46]):- quotes(Q),end(A),candc_option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).       %%% X.'' -> X .
+pattern([46,Q,Q|A]-[], Prev, B1-B2,  [Q]):- quotes(Q),end(A),candc_option('--quotes',keep), !, insertSpace(Prev,[46,32,Q,Q|B2],B1).  %%% X.'' -> X . ''
 
-pattern([46,32,Q1,Q2|A]-[], Prev, B1-B2,  [46]):- quote(Q1),quote(Q2),\+Q1=Q2,end(A),option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).            %%% X. '" -> X . ' "
-pattern([46,32,Q1,Q2|A]-[], Prev, B1-B2,  [Q2]):- quote(Q1),quote(Q2),\+Q1=Q2,end(A),option('--quotes',keep), !, insertSpace(Prev,[46,32,Q1,32,Q2|B2],B1).  %%% X. '" -> X . ' "
+pattern([46,32,Q1,Q2|A]-[], Prev, B1-B2,  [46]):- quote(Q1),quote(Q2),\+Q1=Q2,end(A),candc_option('--quotes',delete), !, insertSpace(Prev,[46|B2],B1).            %%% X. '" -> X . ' "
+pattern([46,32,Q1,Q2|A]-[], Prev, B1-B2,  [Q2]):- quote(Q1),quote(Q2),\+Q1=Q2,end(A),candc_option('--quotes',keep), !, insertSpace(Prev,[46,32,Q1,32,Q2|B2],B1).  %%% X. '" -> X . ' "
 
 /* ----------------------------------------------------------------------------------
    Full stop and ending quotes (not end of line)
 ---------------------------------------------------------------------------------- */
 
-pattern([46,Q,32,U|A]-[U|A], Prev, B1-B2, []):- quote(Q),upper(U),option('--quotes',delete), !, insertSpace(Prev,[46,10|B2],B1). %%% X." U
-pattern([46,Q,32,U|A]-[U|A], Prev, B1-B2, []):- quote(Q),upper(U),option('--quotes',keep), !, insertSpace(Prev,[46,32,Q,10|B2],B1). %%% X." U
+pattern([46,Q,32,U|A]-[U|A], Prev, B1-B2, []):- quote(Q),upper(U),candc_option('--quotes',delete), !, insertSpace(Prev,[46,10|B2],B1). %%% X." U
+pattern([46,Q,32,U|A]-[U|A], Prev, B1-B2, []):- quote(Q),upper(U),candc_option('--quotes',keep), !, insertSpace(Prev,[46,32,Q,10|B2],B1). %%% X." U
 pattern([46,Q,32,U|A]-[U|A], Prev, B1-B2, []):- closing_bracket(Q),upper(U), !, insertSpace(Prev,[46,32,Q,10|B2],B1). %%% X.) U
 
 /* ----------------------------------------------------------------------------------
@@ -244,28 +244,28 @@ pattern([Q,N1,N2,N|A]-[N|A], [], [Q,N1,N2|B]-B, [N2,N1,Q]):- rsq(Q), num(N1),num
    Contractions: \'s (English)
 ---------------------------------------------------------------------------------- */
 
-pattern([X,Q,115,N|A]-[N|A], [_|_], [X,32,Q,115|B]-B, [115,Q]):- option('--language',en), rsq(Q), alpha(X), \+ alphanum(N), !.  %%% "X's" -> "X 's"
-pattern([Q,115,N|A]-[N|A], Prev, [32,Q,115|B]-B, [115,Q]):- option('--language',en), abb(Prev), rsq(Q), \+ alphanum(N), !.  %%% "U.S.'s" -> "U.S. 's"
-pattern([X,Q,83,N|A]-[N|A],  [_|_], [X,32,Q,83|B]-B,  [83,Q]):- option('--language',en), rsq(Q), alpha(X), \+ alphanum(N), !.   %%% "X'S" -> "X 'S"
-pattern([Q,115,N|A]-[N|A], [], [Q,115|B]-B, [115,Q]):- option('--language',en), rsq(Q), \+ alphanum(N), !.  %%% " 's" -> " 's"
-pattern([115,Q,N|A]-[N|A], [_|_], [115,32,Q|B]-B, [Q,115]):- option('--language',en), rsq(Q), \+ alphanum(N), !.  %%% "s' " -> "s ' "
+pattern([X,Q,115,N|A]-[N|A], [_|_], [X,32,Q,115|B]-B, [115,Q]):- candc_option('--language',en), rsq(Q), alpha(X), \+ alphanum(N), !.  %%% "X's" -> "X 's"
+pattern([Q,115,N|A]-[N|A], Prev, [32,Q,115|B]-B, [115,Q]):- candc_option('--language',en), abb(Prev), rsq(Q), \+ alphanum(N), !.  %%% "U.S.'s" -> "U.S. 's"
+pattern([X,Q,83,N|A]-[N|A],  [_|_], [X,32,Q,83|B]-B,  [83,Q]):- candc_option('--language',en), rsq(Q), alpha(X), \+ alphanum(N), !.   %%% "X'S" -> "X 'S"
+pattern([Q,115,N|A]-[N|A], [], [Q,115|B]-B, [115,Q]):- candc_option('--language',en), rsq(Q), \+ alphanum(N), !.  %%% " 's" -> " 's"
+pattern([115,Q,N|A]-[N|A], [_|_], [115,32,Q|B]-B, [Q,115]):- candc_option('--language',en), rsq(Q), \+ alphanum(N), !.  %%% "s' " -> "s ' "
 
 /* ----------------------------------------------------------------------------------
    Contractions: auxiliary verbs (English)
 ---------------------------------------------------------------------------------- */
 
-pattern([X,Q,109|A]-A,     _, [X,32,Q,109|B]-B,         [109,Q]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "X'm" -> "X 'm"
-pattern([X,Q,100|A]-A,     _, [X,32,Q,100|B]-B,         [100,Q]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "X'd" -> "X 'd"
-pattern([X,Q,108,108|A]-A, _, [X,32,Q,108,108|B]-B, [108,108,Q]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "X'll" -> "X 'll"
-pattern([X,Q,118,101|A]-A, _, [X,32,Q,118,101|B]-B, [101,118,Q]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "X've" -> "X 've"
-pattern([X,Q,114,101|A]-A, _, [X,32,Q,114,101|B]-B, [101,114,Q]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "X're" -> "X 're"
-pattern([X,110,Q,116|A]-A, _, [X,32,110,Q,116|B]-B, [116,Q,110]):- option('--language',en), rsq(Q), alpha(X), !.  %%% "Xn't" -> "X n't"
+pattern([X,Q,109|A]-A,     _, [X,32,Q,109|B]-B,         [109,Q]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "X'm" -> "X 'm"
+pattern([X,Q,100|A]-A,     _, [X,32,Q,100|B]-B,         [100,Q]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "X'd" -> "X 'd"
+pattern([X,Q,108,108|A]-A, _, [X,32,Q,108,108|B]-B, [108,108,Q]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "X'll" -> "X 'll"
+pattern([X,Q,118,101|A]-A, _, [X,32,Q,118,101|B]-B, [101,118,Q]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "X've" -> "X 've"
+pattern([X,Q,114,101|A]-A, _, [X,32,Q,114,101|B]-B, [101,114,Q]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "X're" -> "X 're"
+pattern([X,110,Q,116|A]-A, _, [X,32,110,Q,116|B]-B, [116,Q,110]):- candc_option('--language',en), rsq(Q), alpha(X), !.  %%% "Xn't" -> "X n't"
 
 /* ----------------------------------------------------------------------------------
    Contractions (Italian)
 ---------------------------------------------------------------------------------- */
 
-pattern([108,Q,X|A]-[X|A],   Prev, B1-B2, []):- option('--language',it), alpha(X), rsq(Q), !, insertSpace(Prev,[108,Q,32|B2],B1).   %%% " l'X" -> " l' X"
+pattern([108,Q,X|A]-[X|A],   Prev, B1-B2, []):- candc_option('--language',it), alpha(X), rsq(Q), !, insertSpace(Prev,[108,Q,32|B2],B1).   %%% " l'X" -> " l' X"
 
 
 /* ----------------------------------------------------------------------------------
@@ -278,16 +278,16 @@ pattern([U1,Q,U2|A]-A, [], [U1,Q,U2|B]-B, [U2,Q,U1]):- rsq(Q), alpha(U1),alpha(U
    Double character quotes
 ---------------------------------------------------------------------------------- */
 
-pattern([32,Q,Q,32|A]-[32|A], X, B-B, X):- quotes(Q), option('--quotes',delete), !.
-pattern([Q,Q|A]-A, X, B-B, X):- quotes(Q), option('--quotes',delete), !.
+pattern([32,Q,Q,32|A]-[32|A], X, B-B, X):- quotes(Q), candc_option('--quotes',delete), !.
+pattern([Q,Q|A]-A, X, B-B, X):- quotes(Q), candc_option('--quotes',delete), !.
 pattern([X,X|A]-[32|A], Prev, B1-B2, [X,X]):- quotes(X), !, insertSpace(Prev,[X,X|B2],B1).
 
 /* ----------------------------------------------------------------------------------
    Single character quotes
 ---------------------------------------------------------------------------------- */
 
-pattern([32,Q,32|A]-[32|A], X, B-B, X):- quote(Q), option('--quotes',delete), !.
-pattern([Q|A]-A, X, B-B, X):- quote(Q), option('--quotes',delete), !.
+pattern([32,Q,32|A]-[32|A], X, B-B, X):- quote(Q), candc_option('--quotes',delete), !.
+pattern([Q|A]-A, X, B-B, X):- quote(Q), candc_option('--quotes',delete), !.
 pattern([X|A]-[32|A], Prev, B1-B2, [X]):- quote(X), !, insertSpace(Prev,[X|B2],B1).   
 
 
@@ -378,7 +378,7 @@ mark(33).    %%% !
    The actual string (in double quotes) is reversed!
 ---------------------------------------------------------------------------------- */
 
-title(Title):- option('--language',Language), title(Language,Title), !.
+title(Title):- candc_option('--language',Language), title(Language,Title), !.
 
 title(en, "rM").           % Mr     sg
 title(en, "srsseM").       % Messrs pl
@@ -415,7 +415,7 @@ title(en, "tM").           % Mt    Mount
 ---------------------------------------------------------------------------------- */
 
 abb(Codes):- member(46,Codes), member(X,Codes), alpha(X), !.
-abb(Abb):- option('--language',Language), abb(Language,Abb), !.
+abb(Abb):- candc_option('--language',Language), abb(Language,Abb), !.
 
 abb(en, "proC"). % Corp
 abb(en, "cnI").  % Inc
@@ -472,13 +472,13 @@ dots(Out,N,Out):-
 ========================================================================*/
 
 openInput(Stream):-
-   option('--stdin',dont),
-   option('--input',File),
+   candc_option('--stdin',dont),
+   candc_option('--input',File),
    exists_file(File), !,
    open(File,read,Stream,[encoding(utf8)]).
 
 openInput(Stream):-
-   option('--stdin',do), 
+   candc_option('--stdin',do), 
    set_prolog_flag(encoding,utf8),
    warning('reading from standard input',[]),
    prompt(_,''),
@@ -490,7 +490,7 @@ openInput(Stream):-
 ========================================================================*/
 
 openOutput(Stream):-
-   option('--output',Output),
+   candc_option('--output',Output),
    atomic(Output),
    \+ Output=user_output,
    ( access_file(Output,write), !,
@@ -506,7 +506,7 @@ openOutput(user_output).
 ========================================================================*/
 
 version:-
-   option('--version',do), !,
+   candc_option('--version',do), !,
    version(V),
    format(user_error,'~p~n',[V]).
 
@@ -518,12 +518,12 @@ version.
 ========================================================================*/
 
 help:-
-   option('--help',do), !,
+   candc_option('--help',do), !,
    format(user_error,'usage: tokkie [options]~n~n',[]),
    showOptions(tokkie).
 
 help:-
-   option('--help',dont), !.
+   candc_option('--help',dont), !.
 
 
 /* =======================================================================

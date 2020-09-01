@@ -5,7 +5,7 @@
     Load Modules
 ========================================================================*/
 
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /* =======================================================================
@@ -13,10 +13,10 @@
 ========================================================================*/
 
 countingAxioms(F,F):-
-   option('--plural',false), !.
+   candc_option('--plural',false), !.
 
 countingAxioms(F,BK):-
-   option('--plural',true), !,
+   candc_option('--plural',true), !,
 
    BK = [A0,A1,A2,A3,A4,A5,A6,A7,A8|F],
 

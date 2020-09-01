@@ -2,7 +2,7 @@
 :- module(pdrs2drs,[pdrs2drs/2]).
 
 %:- use_module(semlib(errors),[warning/2]).
-%:- use_module(semlib(options),[option/2]).
+%:- use_module(semlib(options),[candc_option/2]).
 :- use_module(library(lists),[select/3,append/3]).
 
 

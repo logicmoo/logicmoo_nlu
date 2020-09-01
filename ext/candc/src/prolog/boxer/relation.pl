@@ -4,10 +4,10 @@
 :- use_module(library(lists),[member/2]).
 :- use_module(boxer(slashes)).
 :- use_module(knowledge(relations),[nn/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 resolve_relations(X,Y):-
-   option('--nn',false), !, X=Y.
+   candc_option('--nn',false), !, X=Y.
 
 resolve_relations(X,Y):-
    rel(X,Y,[],Ts), 

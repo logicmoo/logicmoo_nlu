@@ -5,7 +5,7 @@
 :- use_module(boxer(freeVarCheck),[boundVarCheckContext/2,
                                    drsCondition/2]).
 :- use_module(library(lists),[member/2,append/3,select/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[warning/2,gold/2]).
 :- use_module(boxer(categories),[att/3]).
 
@@ -44,7 +44,7 @@ goldAntecedent(_,_).
 ======================================================================== */
 
 resolveDRS(B,Tags):- 
-   option('--resolve',true), !, 
+   candc_option('--resolve',true), !, 
    copy_term(Tags,L-[]), 
    setof(X:P,T^(member(X:T,L),member(pos:P,T)),IDs),
    resolvePDRS(B,[]-_,[]-_,IDs).
@@ -407,7 +407,7 @@ match(K1,C1,X,drs(_,C2),_IDs,_Bs,Y,NewScore,P):-
 % Experimental version of pronoun resolution
 %
 newmatch(K1,C1,X1,drs([_:_:Y1|_],C2),IDs,Bs,Y1,Score,ana):-
-%  option('--x',nottrue),                  % set to 'nottrue' to skip this work-in-progress clause
+%  candc_option('--x',nottrue),                  % set to 'nottrue' to skip this work-in-progress clause
    member( _:I2:Ana,C2), \+ I2=[],         % get anaphor condition 
    drsCondition(Y2,Ana), Y1==Y2,           % and proper DRS condition
 %   member(Pro,[male,female]), Ana=pred(_,Pro,_,_),
@@ -560,13 +560,13 @@ noConflicts(X,AnaConds,Y,AntConds):-
 ======================================================================== */   
 
 % amr matching
-matching(Y^pred(Y,i,n,1),  Z^pred(Z,i,n,1),  1.0,n:i  ):-    option('--semantics',amr).
-matching(Y^pred(Y,you,n,1),Z^pred(Z,you,n,1),1.0,n:you):-    option('--semantics',amr).
-matching(Y^pred(Y,he,n,1), Z^pred(Z,he,n,1), 1.0,n:he):-     option('--semantics',amr).
-matching(Y^pred(Y,she,n,1),Z^pred(Z,she,n,1),1.0,n:she):-    option('--semantics',amr).
-matching(Y^pred(Y,it,n,1),Z^pred(Z,it,n,1),1.0,n:she):-      option('--semantics',amr).
-matching(Y^pred(Y,we,n,1),Z^pred(Z,we,n,1),1.0,n:she):-      option('--semantics',amr).
-matching(Y^pred(Y,they,n,1),Z^pred(Z,they,n,1),1.0,n:she):-  option('--semantics',amr).
+matching(Y^pred(Y,i,n,1),  Z^pred(Z,i,n,1),  1.0,n:i  ):-    candc_option('--semantics',amr).
+matching(Y^pred(Y,you,n,1),Z^pred(Z,you,n,1),1.0,n:you):-    candc_option('--semantics',amr).
+matching(Y^pred(Y,he,n,1), Z^pred(Z,he,n,1), 1.0,n:he):-     candc_option('--semantics',amr).
+matching(Y^pred(Y,she,n,1),Z^pred(Z,she,n,1),1.0,n:she):-    candc_option('--semantics',amr).
+matching(Y^pred(Y,it,n,1),Z^pred(Z,it,n,1),1.0,n:she):-      candc_option('--semantics',amr).
+matching(Y^pred(Y,we,n,1),Z^pred(Z,we,n,1),1.0,n:she):-      candc_option('--semantics',amr).
+matching(Y^pred(Y,they,n,1),Z^pred(Z,they,n,1),1.0,n:she):-  candc_option('--semantics',amr).
 
 % time
 matching(Y^pred(Y,now,a,1),Z^pred(Z,now,a,1),0.99,a:now).
@@ -592,20 +592,20 @@ matching(Y^pred(Y,neuter,a,_),Z^pred(Z,neuter,a,_),0.99,a:neuter).
 matching(Y^pred(Y,neuter,a,_),Z^pred(Z,S,n,_),0.5,n:S).
 
 % they, them, theirs, this, that, those, these
-matching(Y^pred(Y,thing,n,12),Z^pred(Z,S,n,_),0.5,n:S):-    \+ option('--semantics',amr).
-matching(Y^pred(Y,thing,n,12),Z^named(Z,S,_,_),0.1,per:S):- \+ option('--semantics',amr).
+matching(Y^pred(Y,thing,n,12),Z^pred(Z,S,n,_),0.5,n:S):-    \+ candc_option('--semantics',amr).
+matching(Y^pred(Y,thing,n,12),Z^named(Z,S,_,_),0.1,per:S):- \+ candc_option('--semantics',amr).
 
 % I, me, mine, you, yours, we, us, ours, myself, yourself, ourselves
-matching(Y^pred(Y,person,n,1),Z^pred(Z,S,n,_),0.1,n:S):-      \+ option('--semantics',amr).
-matching(Y^pred(Y,person,n,1),Z^named(Z,S,per,_),0.8,per:S):- \+ option('--semantics',amr).
-matching(Y^pred(Y,person,n,1),Z^named(Z,S,_,_),0.5,per:S):-   \+ option('--semantics',amr).
+matching(Y^pred(Y,person,n,1),Z^pred(Z,S,n,_),0.1,n:S):-      \+ candc_option('--semantics',amr).
+matching(Y^pred(Y,person,n,1),Z^named(Z,S,per,_),0.8,per:S):- \+ candc_option('--semantics',amr).
+matching(Y^pred(Y,person,n,1),Z^named(Z,S,_,_),0.5,per:S):-   \+ candc_option('--semantics',amr).
 
 % the
-matching(Y^pred(Y,S,n,_),Z^pred(Z,S,n,_),0.9,n:S):- \+ option('--semantics',amr).
+matching(Y^pred(Y,S,n,_),Z^pred(Z,S,n,_),0.9,n:S):- \+ candc_option('--semantics',amr).
 
 % names
-matching(Y^named(Y,S,T,_),Z^named(Z,S,T,_),0.9,per:S):- \+ option('--semantics',amr).
-matching(Y^named(Y,S,_,_),Z^named(Z,S,_,_),0.7,per:S):- \+ option('--semantics',amr).
+matching(Y^named(Y,S,T,_),Z^named(Z,S,T,_),0.9,per:S):- \+ candc_option('--semantics',amr).
+matching(Y^named(Y,S,_,_),Z^named(Z,S,_,_),0.7,per:S):- \+ candc_option('--semantics',amr).
 
 % timex
-matching(Y^timex(Y,date(_:D1,_:D2,_:D3,_:D4)),Z^timex(Z,date(_:D1,_:D2,_:D3,_:D4)),0.9,timex):- \+ option('--semantics',amr).
+matching(Y^timex(Y,date(_:D1,_:D2,_:D3,_:D4)),Z^timex(Z,date(_:D1,_:D2,_:D3,_:D4)),0.9,timex):- \+ candc_option('--semantics',amr).

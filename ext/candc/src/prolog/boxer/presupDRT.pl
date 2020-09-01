@@ -6,7 +6,7 @@
 :- use_module(boxer(freeVarCheck),[freeVarCheckDrs/1]).
 :- use_module(boxer(sortalCheck),[sortalCheckDrs/2]).
 :- use_module(library(lists),[member/2,append/3,select/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[warning/2]).
 
 /* ========================================================================
@@ -22,15 +22,15 @@ resolveDrs(B1,B2):-
 ======================================================================== */
 
 resolveDrs(alfa(top,B1,B2),RDRS,Links):- 
-   option('--theory',drt), !,
+   candc_option('--theory',drt), !,
    resolveDrs(alfa(top,B1,B2),RDRS,[],Links).
 
 resolveDrs(smerge(alfa(top,B1,B2),B3),RDRS,Links):-
-   option('--theory',drt), !,
+   candc_option('--theory',drt), !,
    resolveDrs(alfa(top,B1,smerge(B2,B3)),RDRS,[],Links).
 
 resolveDrs(B,RDRS,Links):- 
-   option('--theory',drt), !,
+   candc_option('--theory',drt), !,
    resolveDrs(alfa(top,drs([],[]),B),RDRS,[],Links).
 
 
@@ -39,17 +39,17 @@ resolveDrs(B,RDRS,Links):-
 ======================================================================== */
 
 resolveDrs(B,SDRS,Links):- 
-   option('--theory',sdrt), 
+   candc_option('--theory',sdrt), 
    \+ B = sdrs(_,_), !,
    resolveDrs(sdrs([sub(lab(K1,drs([],[])),lab(K2,B))],[[]:rel(K1,K2,presupposition)]),SDRS,[],Links).
 
 resolveDrs(B,SDRS,Links):- 
-   option('--theory',sdrt), 
+   candc_option('--theory',sdrt), 
    B = sdrs(_,Rel), \+ member(_:rel(_,_,presupposition),Rel), !, 
    resolveDrs(sdrs([sub(lab(K1,drs([],[])),lab(K2,B))],[[]:rel(K1,K2,presupposition)]),SDRS,[],Links).
 
 resolveDrs(B,SDRS,Links):- 
-   option('--theory',sdrt), 
+   candc_option('--theory',sdrt), 
    resolveDrs(B,SDRS,[],Links).
 
 
@@ -208,7 +208,7 @@ findAlfaConds([Cond|C1],[Cond|C2],Alfa,Ac,Bi1-Bi2):-
 ======================================================================== */
 
 resolveAlfa(Alfa,Type,Ac,Bi,B,L1,L2):-
-   option('--presup',max),
+   candc_option('--presup',max),
    bindAlfa(Type,Bi,Alfa,L1,L2),
    dontResolve(Ac),
    \+ bindingViolationDrs(B),
@@ -253,7 +253,7 @@ bindAlfa(_,[r(drs(D2,C2),DRS)|P],drs([AnaIndex:X|D1],C1),L,[bind(AnaIndex,AntInd
    dontResolve(P).
 
 bindAlfa(Type,[r(drs(D2,C2),DRS)|P],drs([AnaIndex:X|D1],C1),L,[bind(AnaIndex,AntIndex)|L]):-
-   \+ option('--semantics',drg),
+   \+ candc_option('--semantics',drg),
    atype(Type,_,_,1),                            % check whether type permits binding
    member(AntIndex:X,D2),                        % select candidate antecedent discourse referent
    match(Type,C1,C2,X),                          % check if this candidate matches
@@ -265,7 +265,7 @@ bindAlfa(Type,[r(drs(D2,C2),DRS)|P],drs([AnaIndex:X|D1],C1),L,[bind(AnaIndex,Ant
    dontResolve(P).
 
 bindAlfa(Type,[r(drs(D2,C2),DRS)|P],drs([AnaIndex:X|D1],C1),L,[bind(AnaIndex,AntIndex)|L]):-
-   option('--semantics',drg),
+   candc_option('--semantics',drg),
    atype(Type,_,_,1),                            % check whether type permits binding
    member(AntIndex:Y,D2),                        % select candidate antecedent discourse referent
    coordinated(AnaIndex,AntIndex,L),             % copied material must have same antecedent
@@ -344,14 +344,14 @@ match(pro,C1,C2,X0):-
 
 
 /* ------------------------------------------------------------------------
-   Forced local accommodation (option 'presup --min')
+   Forced local accommodation (candc_option 'presup --min')
 ------------------------------------------------------------------------ */
 
 accommodateAlfa(_,[a(Alfa)],Alfa):- 
-   option('--presup',min), !. %%% force local accommodation
+   candc_option('--presup',min), !. %%% force local accommodation
 
 accommodateAlfa(Type,[a(drs([],[]))|P],Alfa):- 
-   option('--presup',min), !, %%% force local accommodation
+   candc_option('--presup',min), !, %%% force local accommodation
    accommodateAlfa(Type,P,Alfa).
 
 
@@ -408,7 +408,7 @@ dontResolve([r(X,X)|L]):- !,
 mergeDomains([],L,L):- !.
 
 mergeDomains([I1:X|R],L1,L3):-
-   option('--semantics',tacitus),
+   candc_option('--semantics',tacitus),
    select(I2:Y,L1,L2), X==Y, !,
    append(I1,I2,I3), sort(I3,I4),
    mergeDomains(R,[I4:X|L2],L3).
@@ -418,7 +418,7 @@ mergeDomains([_:X|R],L1,L3):-
    mergeDomains(R,[I:X|L2],L3).
 
 mergeDomains([X|R],L1,[X|L2]):-
-   option('--semantics',tacitus), !,
+   candc_option('--semantics',tacitus), !,
    mergeDomains(R,L1,L2).
 
 mergeDomains([_:X|R],L1,[[]:X|L2]):-
@@ -436,7 +436,7 @@ mergeConditions([],L,L):- !.
 %   mergeConditions(R,[I:named(X,Sym,Type,Sense)|L2],L3).
 
 mergeConditions([I1:X|R],L1,L3):-
-   option('--semantics',tacitus),  
+   candc_option('--semantics',tacitus),  
    select(I2:Y,L1,L2), X==Y, !,
    append(I1,I2,I3), sort(I3,I4),
    mergeConditions(R,[I4:X|L2],L3).
@@ -446,7 +446,7 @@ mergeConditions([_:X|R],L1,L3):-                         %%% merge identical
    mergeConditions(R,[I:X|L2],L3).                       %%% index of antecedent
 
 mergeConditions([I1:timex(X,date(D1,D2,D3,D4))|R],L1,L3):-
-   option('--semantics',drg),
+   candc_option('--semantics',drg),
    select(I2:timex(Y,date(E1,E2,E3,E4)),L1,L2), 
    mergeConditions([D1],[E1],[F1]),
    mergeConditions([D2],[E2],[F2]),

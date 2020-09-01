@@ -4,7 +4,7 @@
 :- use_module(boxer(alphaConversionDRT),[alphaConvertDRS/2]).
 :- use_module(boxer(mergeDRT),[mergeDrs/2]).
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /* ========================================================================
@@ -56,7 +56,7 @@ betaConvert(sub(B1,B3),sub(B2,B4),[]):- !,
    betaConvert(B3,B4).
 
 betaConvert(B1:drs(D1,C1),B1:drs(D2,C3),[]):- 
-   option('--elimeq',true),
+   candc_option('--elimeq',true),
    select(_:[]:eq(X1,Y1),C1,C2),
    select(B2:[]:Y2,D1,D2), B1==B2, Y1==Y2, !, X1=Y1,
    betaConvertConditions(C2,C3).

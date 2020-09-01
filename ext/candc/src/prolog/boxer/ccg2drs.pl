@@ -24,7 +24,7 @@
 :- use_module(semlib(drs2amr),[drs2amr/4]).
 :- use_module(semlib(pdrs2drs),[pdrs2drs/2]).
 :- use_module(semlib(drs2fol),[drs2fol/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[warning/2]).
 
 
@@ -34,7 +34,7 @@
 ========================================================================= */
 
 ccg2drs(L,Ders):-  
-   option('--semantics',der), !,
+   candc_option('--semantics',der), !,
    ccg2ders(L,Ders,1). 
 
 ccg2drs([CCG|L],XDRS):-  
@@ -108,16 +108,16 @@ interpretDer(CCG,CCG).
 ========================================================================= */
 
 insertDRS(merge(B1,B2),New,Merge):-
-   option('--theory',drt), !, 
+   candc_option('--theory',drt), !, 
    insertDRS(B2,New,B3), 
    Merge = merge(B1,B3).
 
 insertDRS(Old,New,Merge):- 
-   option('--theory',drt), !, 
+   candc_option('--theory',drt), !, 
    Merge = merge(Old,New).
 
 insertDRS(Old,New,SDRS):- 
-   option('--theory',sdrt), !, 
+   candc_option('--theory',sdrt), !, 
    Rel = continuation,
 %  Rel = elaboration,
    mergeSDRS(smerge(Old,New,Rel,[]),SDRS).
@@ -337,45 +337,45 @@ evaluate([_|L],Es,C,TA,TT1):-
 ========================================================================= */
 
 semantics(X,Tags,Y):-
-   option('--instantiate',true), 
-   option('--semantics',  pdrs), 
-   option('--resolve',    true), !, 
+   candc_option('--instantiate',true), 
+   candc_option('--semantics',  pdrs), 
+   candc_option('--resolve',    true), !, 
    instDrs(X), Y=X,
    equivalenceClasses(Y,[]-E1),
    cleanEquivClasses(E1,E2), 
    evaluate(E2,Tags).
 
 semantics(X,_,Y):-
-   option('--instantiate',true), 
-   option('--semantics',pdrs), !, 
+   candc_option('--instantiate',true), 
+   candc_option('--semantics',pdrs), !, 
    instDrs(X), Y=X.
 
 semantics(X,_,Y):-
-   option('--semantics',pdrs), !, 
+   candc_option('--semantics',pdrs), !, 
    Y=X.
 
 semantics(X,Tags,Y):-
-   option('--semantics',drg), !, 
+   candc_option('--semantics',drg), !, 
    instDrs(X,N), tuples(Tags,X,N,Y).
 
 semantics(A,_,B):-
-   option('--instantiate',true), option('--semantics',drs), !, 
+   candc_option('--instantiate',true), candc_option('--semantics',drs), !, 
    instDrs(A), pdrs2drs(A,B).
 
 semantics(A,_,B):-
-   option('--semantics',drs), !, 
+   candc_option('--semantics',drs), !, 
    pdrs2drs(A,B).
 
 semantics(A,_,C):-
-   option('--semantics',fol), !, 
+   candc_option('--semantics',fol), !, 
    pdrs2drs(A,B), drs2fol(B,C).
 
 semantics(A,Tags,C):-
-   option('--semantics',tacitus), !, 
+   candc_option('--semantics',tacitus), !, 
    instDrs(A,N), pdrs2drs(A,B), drs2tac(B,Tags,N,C).
 
 semantics(A,Tags,C):-
-   option('--semantics',amr), !, 
+   candc_option('--semantics',amr), !, 
 %   instDrs(A,N), pdrs2drs(A,B), drs2amr(B,Tags,N,C).
    instDrs(A,N), drs2amr(A,Tags,N,C).
 
@@ -545,6 +545,7 @@ interpret(gbxc(Cat,S,A,W,A1,F1),Der):-
    topcat(A1,ACat),
    base(ACat,S2/S3,Dollar,N),
    base(Cat,S1/S3,Dollar,N), !,
+   % WAS interp(gbxc(Cat,N,S,A,W,A1,F1),Der).
    interpret(gbxc(Cat,N,S,A,W,A1,F1),Der).
 
 /* -------------------------------------------------------------------------
@@ -552,13 +553,13 @@ interpret(gbxc(Cat,S,A,W,A1,F1),Der):-
 ------------------------------------------------------------------------- */
 
 %interp(t(Cat,_Word,_,Att,I),Sem,nil):-
-%   \+ option('--semantics',der),
+%   \+ candc_option('--semantics',der),
 %   att(Att,lemma,Lemma),
 %   downcase_atom(Lemma,Symbol),
 %   semlex(Cat,Symbol,[I],Att-_,Sem), !.
 
 interpret(t(Cat,Word,_,Att1,I),t(Cat,Word,Sem,Att2,I)):-
-%  option('--semantics',der), 
+%  candc_option('--semantics',der), 
    att(Att1,lemma,Lemma),
    downcase_atom(Lemma,Symbol),
    semlex(Cat,Symbol,[I],Att1-Att2,Sem), !.

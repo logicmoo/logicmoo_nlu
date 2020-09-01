@@ -28,7 +28,7 @@
 
 :- use_module(semlib(semlex),[lexcall/6]).
 :- use_module(semlib(drs2fol),[symbol/4]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 

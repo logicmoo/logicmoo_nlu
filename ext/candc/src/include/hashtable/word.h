@@ -45,6 +45,7 @@ namespace NLP {
 
       bool equal(const Word word){ return word == this->str; }
 
+    // was bool equal(const Word &str, const Hash hash)
       bool equal(const std::string &str, const Hash hash){
 	return hash == this->hash && str == this->str;
       }

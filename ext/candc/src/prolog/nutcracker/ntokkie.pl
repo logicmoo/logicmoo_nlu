@@ -24,7 +24,7 @@ file_search_path(boxer,  'src/prolog/boxer').
 :- use_module(library(readutil),[read_stream_to_codes/2]).
 :- use_module(semlib(abbreviations),[iAbb/2,tAbb/2]).
 :- use_module(semlib(errors),[error/2,warning/2]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 
@@ -33,7 +33,7 @@ file_search_path(boxer,  'src/prolog/boxer').
 ======================================================================== */
 
 tokkie:-
-   option(Option,do), 
+   candc_option(Option,do), 
    member(Option,['--help']), !, 
    help.
 
@@ -232,11 +232,11 @@ tokenise([X|Codes],CurrentPos,StartPos,Sofar-Tail,Tokens):-
 ---------------------------------------------------------------------- */
 
 outputTokens(Tokens,S,Stream):-
-   option('--mode',poor), !,
+   candc_option('--mode',poor), !,
    printTokens(Tokens,S,1,Stream).
 
 outputTokens(Tokens,S,Stream):-
-   option('--mode',rich), !,
+   candc_option('--mode',rich), !,
    printTokens(Tokens,S,1,Stream).
 
 outputTokens(_,_,_).
@@ -247,7 +247,7 @@ outputTokens(_,_,_).
 ---------------------------------------------------------------------- */
 
 outputIOB(Codes,Tokens,Stream):-
-   option('--mode',iob), !,
+   candc_option('--mode',iob), !,
    printIOB(Codes,0,Tokens,Stream).
 
 outputIOB(_,_,_).
@@ -291,11 +291,11 @@ printIOB([X|L],N1,TokenSet,Stream):-
 ---------------------------------------------------------------------- */
 
 tupleIOB(_,X,Tag,_,Stream):- 
-   option('--format',txt), !,
+   candc_option('--format',txt), !,
    format(Stream,'~p ~p~n',[X,Tag]).
 
 tupleIOB(N,X,Tag,Tok,Stream):- 
-   option('--format',prolog), !,
+   candc_option('--format',prolog), !,
    format(Stream,'tok(~p,\'~p\'). % ~p ~s~n',[X,Tag,N,Tok]).
 
 
@@ -306,27 +306,27 @@ tupleIOB(N,X,Tag,Tok,Stream):-
 printTokens([],_,_,_). 
 
 printTokens([tok(_,_,Tok)],_,_,Stream):- 
-   option('--mode',poor), !,
+   candc_option('--mode',poor), !,
    format(Stream,'~s~n',[Tok]). 
 
 printTokens([tok(I,J,Tok)|L],S,T1,Stream):- 
-   option('--format',prolog),
-   option('--mode',rich), !,
+   candc_option('--format',prolog),
+   candc_option('--mode',rich), !,
    Index is S*1000+T1,
    format(Stream,'tok(~p, ~p, ~p, ~s).~n',[I,J,Index,Tok]), 
    T2 is T1+1,
    printTokens(L,S,T2,Stream).
 
 printTokens([tok(I,J,Tok)|L],S,T1,Stream):- 
-   option('--format',txt),
-   option('--mode',rich), !,
+   candc_option('--format',txt),
+   candc_option('--mode',rich), !,
    Index is S*1000+T1,
    format(Stream,'~p ~p ~p ~s~n',[I,J,Index,Tok]), 
    T2 is T1+1,
    printTokens(L,S,T2,Stream).
 
 printTokens([tok(_,_,Tok)|L],S,T,Stream):- 
-   option('--mode',poor), !,
+   candc_option('--mode',poor), !,
    format(Stream,'~s ',[Tok]), 
    printTokens(L,S,T,Stream).
 
@@ -421,7 +421,7 @@ initTokkie:-
    initSplitRules.
 
 initTitles:-
-   option('--language',Language), !,
+   candc_option('--language',Language), !,
    findall(Title,
            ( tAbb(Language,Title),
              reverse(Title,Reversed),
@@ -508,13 +508,13 @@ quotes(8218).
 ========================================================================*/
 
 openInput(Stream):-
-   option('--stdin',dont),
-   option('--input',File),
+   candc_option('--stdin',dont),
+   candc_option('--input',File),
    exists_file(File), !,
    open(File,read,Stream,[encoding(utf8)]).
 
 openInput(Stream):-
-   option('--stdin',do), 
+   candc_option('--stdin',do), 
    set_prolog_flag(encoding,utf8),
    warning('reading from standard input',[]),
    prompt(_,''),
@@ -526,7 +526,7 @@ openInput(Stream):-
 ========================================================================*/
 
 openOutput(Stream):-
-   option('--output',Output),
+   candc_option('--output',Output),
    atomic(Output),
    \+ Output=user_output,
    ( access_file(Output,write), !,
@@ -542,12 +542,12 @@ openOutput(user_output).
 ========================================================================*/
 
 help:-
-   option('--help',do), !,
+   candc_option('--help',do), !,
    format(user_error,'usage: tokkie [options]~n~n',[]),
    showOptions(tokkie).
 
 help:-
-   option('--help',dont), !.
+   candc_option('--help',dont), !.
 
 
 /* =======================================================================

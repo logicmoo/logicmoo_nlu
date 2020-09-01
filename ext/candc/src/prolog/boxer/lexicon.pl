@@ -4,7 +4,7 @@
 :- use_module(boxer(slashes)).
 :- use_module(boxer(string2digit),[string2digit/2,string2score/2]).
 :- use_module(boxer(categories),[category/3,att/3,sense/4,roles/4,rel/3,role/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(knowledge(ne),[neClass/2,neClassType/3,neClassType/4]).
 :- use_module(knowledge(dates),[month/2,dofm/2,decade/2,year/2]).
 :- use_module(knowledge(punctuation),[punctuation/2]).
@@ -43,7 +43,7 @@ semlex(t:_\s:_,_,_,Att-[sem:'NIL'|Att],Sem):- !,
    Sem = lam(S,app(S,CC)).
 
 semlex(s:X\s:X,'?',Index,Att-[sem:'QUE'|Att],Sem):- 
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(S,lam(F,app(S,lam(E,merge(B:drs([],[B:Index:pred(E,interrogative,r,1)]),app(F,E)))))).
 
 semlex(Cat,_,_,Att-[sem:'NIL'|Att],Sem):- 
@@ -97,7 +97,7 @@ semlex(Cat,_,Index,Att-[sem:'SUB'|Att],Sem):-
 
 semlex(conj:n,Sym,Index,Att-[sem:'DIS'|Att],Sem):-
    Sym = or,
-   option('--semantics',drg), !,
+   candc_option('--semantics',drg), !,
    Sem = lam(P2,lam(P1,lam(X,B:drs([],[B:Index:pred(X,Sym,s,1),
                                        B:[]:or(app(P1,X),app(P2,X))])))).
 
@@ -119,28 +119,28 @@ semlex(conj:Cat,Lemma,Index,Att-[sem:'NOT'|Att],Sem):-
 ========================================================================= */
 
 semlex(conj:(s:_\np),but,Index,Att-[sem:'BUT'|Att],Sem):-    
-   option('--theory',sdrt),
-   option('--semantics',amr), !,
+   candc_option('--theory',sdrt),
+   candc_option('--semantics',amr), !,
    Sem = lam(V1,lam(V2,lam(X,lam(E,sdrs([lab(K1,app(app(V2,X),E)),
                                          lab(K2,app(app(V1,X),E))],
                                         [Index:rel(K1,K2,'contrast-01')]))))).
 
 semlex(conj:(s:_\np),but,Index,Att-[sem:'BUT'|Att],Sem):-    
-   option('--theory',sdrt), !,
+   candc_option('--theory',sdrt), !,
    Sem = lam(V1,lam(V2,lam(X,lam(E,sdrs([lab(K1,app(app(V2,X),E)),
                                          lab(K2,app(app(V1,X),E))],
                                         [Index:rel(K1,K2,continuation),
                                          []:rel(K1,K2,contrast)]))))).
 
 semlex(conj:(s:_),but,Index,Att-[sem:'BUT'|Att],Sem):- 
-   option('--theory',sdrt),
-   option('--semantics',amr), !,
+   candc_option('--theory',sdrt),
+   candc_option('--semantics',amr), !,
    Sem = lam(S1,lam(S2,lam(E,sdrs([lab(K1,app(S2,E)),
                                    lab(K2,app(S1,E))],
                                   [Index:rel(K1,K2,'contrast-01')])))).
 
 semlex(conj:(s:_),but,Index,Att-[sem:'BUT'|Att],Sem):- 
-   option('--theory',sdrt), !,
+   candc_option('--theory',sdrt), !,
    Sem = lam(S1,lam(S2,lam(E,sdrs([lab(K1,app(S2,E)),
                                    lab(K2,app(S1,E))],
                                   [Index:rel(K1,K2,continuation),
@@ -153,7 +153,7 @@ semlex(conj:(s:_),but,Index,Att-[sem:'BUT'|Att],Sem):-
 ========================================================================= */
 
 semlex(conj:n,Sym,Index,Att-[sem:'AND'|Att],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(P2,lam(P1,lam(X,merge(B:drs([B:[]:Y,B:[]:Z],
                                          [B:Index:pred(X,Sym,n,1),
                                           B:[]:rel(X,Y,op1,1),
@@ -162,7 +162,7 @@ semlex(conj:n,Sym,Index,Att-[sem:'AND'|Att],Sem):-
                                          app(P2,Z)))))).
 
 semlex(conj:n,Sym,Index,Att-[sem:'AND'|Att],Sem):- 
-   option('--semantics',drg), !,
+   candc_option('--semantics',drg), !,
    Sem = lam(P2,lam(P1,lam(X,merge(B:drs([B:[]:Y,B:[]:Z],
                                          [B:Index:pred(X,Sym,s,1),
                                           B:[]:rel(Y,X,subset_of,1),
@@ -199,7 +199,7 @@ semlex(conj:(n/n),_,_,Att-[sem:'AND'|Att],Sem):- !,
 ========================================================================= */
 
 semlex(conj:np,Sym,Index,Att-[sem:'AND'|Att],Sem):- 
-   option('--semantics',amr), !,  
+   candc_option('--semantics',amr), !,  
    Sem = lam(X2,lam(X1,lam(P,merge(merge(B:drs([B:[]:X],[B:Index:pred(X,Sym,n,0)]),
                                          merge(app(X1,lam(Y,B1:drs([],[B1:[]:rel(X,Y,op1,1)]))),
                                                app(X2,lam(Z,B2:drs([],[B2:[]:rel(X,Z,op2,1)]))))),
@@ -222,29 +222,29 @@ semlex(conj:app,_,Index,Att-[sem:'APP'|Att],Sem):- !,
 ========================================================================= */
 
 semlex(conj:(s:_\np),Sym,Index,Att-[sem:'COO'|Att],Sem):-   
-   option('--semantics',amr),
-   option('--theory',sdrt), !,
+   candc_option('--semantics',amr),
+   candc_option('--theory',sdrt), !,
    Sem = lam(V1,lam(V2,lam(N,lam(E,app(N,lam(X,sdrs([lab(K1,app(app(V2,lam(P,app(P,X))),E)),
                                                      lab(K2,app(app(V1,lam(P,app(P,X))),E))],
                                         [Index:rel(K1,K2,Sym)]))))))).
 
 semlex(conj:(s:_\np),Sym,Index,Att-[sem:'COO'|Att],Sem):-   
-   option('--semantics',amr),
-   option('--theory',sdrt), !,
+   candc_option('--semantics',amr),
+   candc_option('--theory',sdrt), !,
    Sem = lam(V1,lam(V2,lam(X,lam(E,sdrs([lab(K1,app(app(V2,X),E)),
                                          lab(K2,app(app(V1,X),E))],
                                         [Index:rel(K1,K2,Sym)]))))).
 
 
 semlex(conj:(s:_\np),_Sym,Index,Att-[sem:'COO'|Att],Sem):-   
-   option('--theory',sdrt), !,
+   candc_option('--theory',sdrt), !,
    Sem = lam(V1,lam(V2,lam(N,lam(E,app(N,lam(X,sdrs([lab(K1,app(app(V2,lam(P,app(P,X))),E)),
                                                      lab(K2,app(app(V1,lam(P,app(P,X))),E))],
                                         [Index:rel(K1,K2,continuation),
                                          []:rel(K1,K2,parallel)]))))))).
 
 semlex(conj:(s:_\np),_Sym,Index,Att-[sem:'COO'|Att],Sem):-    % VP coordination
-   option('--theory',sdrt), !,
+   candc_option('--theory',sdrt), !,
    Sem = lam(V1,lam(V2,lam(X,lam(E,sdrs([lab(K1,app(app(V2,X),E)),
                                          lab(K2,app(app(V1,X),E))],
                                         [Index:rel(K1,K2,continuation),
@@ -256,14 +256,14 @@ semlex(conj:(s:_\np),_Sym,Index,Att-[sem:'COO'|Att],Sem):-    % VP coordination
 ========================================================================= */
 
 semlex(conj:(s:_),Sym,Index,Att-[sem:'COO'|Att],Sem):-   
-   option('--semantics',amr),
-   option('--theory',sdrt), !,
+   candc_option('--semantics',amr),
+   candc_option('--theory',sdrt), !,
    Sem = lam(S1,lam(S2,lam(E,sdrs([lab(K1,app(S2,E)),
                                    lab(K2,app(S1,E))],
                                   [Index:rel(K1,K2,Sym)])))).
 
 semlex(conj:(s:_),_Sym,Index,Att-[sem:'COO'|Att],Sem):-     % S coordination
-   option('--theory',sdrt), !,
+   candc_option('--theory',sdrt), !,
    Sem = lam(S1,lam(S2,lam(E,sdrs([lab(K1,app(S2,E)),
                                    lab(K2,app(S1,E))],
                                   [Index:rel(K1,K2,continuation),
@@ -361,7 +361,7 @@ semlex(np,much,Index,Att-[sem:'QUA'|Att],Sem):- !,
 ------------------------------------------------------------------------- */
 
 semlex(np,'there',Index,Att-[sem:'UNK'|Att],Sem):-
-   option('--semantics',amr), 
+   candc_option('--semantics',amr), 
    att(Att,pos,'EX'), !,
    Sem = lam(P,merge(B:drs([B:[]:X],[B:Index:pred(X,there,n,1)]),app(P,X))).
 
@@ -375,7 +375,7 @@ semlex(np,'there',Index,Att-[sem:'UNK'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['I',i,me,mine]), !,
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,i,n,1)]),app(P,X))).
 
@@ -385,7 +385,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,person,n,1)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['we','us','\'s','ours']), !,
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,we,n,1)]),app(P,X))).
 
@@ -403,7 +403,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
                                                 app(P,X)))]))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[whom,you,thou,yours]), !,
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,you,n,1)]),app(P,X))).
 
@@ -413,7 +413,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,person,n,1)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['he','his','him']), !,
    goldAntecedent(Index,Att),
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,he,n,1)]),app(P,X))).
@@ -424,7 +424,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,male,n,2)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['she','hers','her']), !,
    goldAntecedent(Index,Att),
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,she,n,1)]),app(P,X))).
@@ -435,7 +435,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,female,n,2)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[it,'\'t']), !,
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,it,n,1)]),app(P,X))).
 
@@ -445,7 +445,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,thing,n,12)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['they','them','theirs']), !,
    Sem = lam(P,alfa(pro,B:drs([B:[]:X],[B:Index:pred(X,they,n,1)]),app(P,X))).
 
@@ -467,7 +467,7 @@ semlex( np, Lemma,Index,Att-[sem:'PRO'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[myself,yourself,thyself,ourselves]), !,
    Sem = lam(P,alfa(ref,B:drs([B:[]:X],[B:Index:pred(X,i,n,1)]),app(P,X))).
 
@@ -476,7 +476,7 @@ semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
    Sem = lam(P,alfa(ref,B:drs([B:[]:X],[B:Index:pred(X,person,n,1)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['himself']), !,
    Sem = lam(P,alfa(ref,B:drs([B:[]:X],[B:Index:pred(X,he,n,1)]),app(P,X))).
 
@@ -485,7 +485,7 @@ semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
    Sem = lam(P,alfa(ref,B:drs([B:[]:X],[B:Index:pred(X,male,n,2)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['herself']), !,
    Sem = lam(P,alfa(ref,B:drs([B:[]:X],[B:Index:pred(X,she,n,1)]),app(P,X))).
 
@@ -507,22 +507,22 @@ semlex( np, Lemma,Index,Att-[sem:'REF'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex( np, Lemma,Index,Att-[sem:'NOT'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,['none','neither',nothing]), !,
    Sem = lam(P,B1:drs([],[B1:Index:not(merge(B2:drs([B2:[]:X],[B2:Index:pred(X,thing,n,12)]),app(P,X)))])).
 
 semlex( np, Lemma,Index,Att-[sem:'DIS'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,[something,some,'both','most','more','many','less','half','another']), !,
    Sem = lam(P,merge(B:drs([B:[]:X],[B:Index:pred(X,thing,n,12)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'PRX'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['this','these']), !,
    Sem = lam(P,alfa(def,B:drs([B:[]:X],[B:Index:pred(X,this,n,1)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'DST'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,['that','those']), !,
    Sem = lam(P,alfa(def,B:drs([B:[]:X],[B:Index:pred(X,that,n,1)]),app(P,X))).
 
@@ -535,23 +535,23 @@ semlex( np, Lemma,Index,Att-[sem:'DST'|Att],Sem):-
    Sem = lam(P,alfa(def,B:drs([B:[]:X],[B:Index:pred(X,thing,n,12)]),app(P,X))).
 
 semlex( np, Lemma,Index,Att-[sem:'AND'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,['all','any','each','either',everything,anything]), !,
    Sem = lam(P,B1:drs([],[B1:[]:imp(B2:drs([B2:[]:X],[B2:Index:pred(X,thing,n,12)]),app(P,X))])).
 
 semlex( np, Lemma,Index,Att-[sem:'AND'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,[everybody,everyone,anybody,anyone]), !,
    Sem = lam(P,B1:drs([],[B1:[]:imp(B2:drs([B2:[]:X],[B2:Index:pred(X,person,n,1)]),app(P,X))])).
 
 semlex( np, Lemma,Index,Att-[sem:'NOT'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,[nobody,noone,'no-one']), !,
 %  Sem = lam(P,B1:drs([],[B1:Index:not(merge(B2:drs([B2:[]:X],[B2:Index:pred(X,people,n,1)]),app(P,X)))])).
    Sem = lam(P,B1:drs([],[B1:Index:not(merge(B2:drs([B2:[]:X],[B2:Index:pred(X,person,n,1)]),app(P,X)))])).
 
 semlex( np, Lemma,Index,Att-[sem:'AND'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Lemma,[someone,somebody]), !,
    Sem = lam(P,merge(B:drs([B:[]:X],[B:Index:pred(X,person,n,1)]),app(P,X))).
 
@@ -1018,14 +1018,14 @@ semlex(Cat,Sym,Index,Att1-[sem:'NOT'|Att2],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
    category(vpadv,Cat,_),
-   option('--semantics',drg),
+   candc_option('--semantics',drg),
    notSymbol(Sym), !,
    Sem = lam(X,lam(Q,lam(F,B1:drs([],[B1:[]:not(app(app(X,Q),lam(E,merge(B2:drs([],[B2:Index:pred(E,Sym,s,1)]),app(F,E)))))])))).
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
    category(vpadv,Cat,_),
    notSymbol(Sym), 
-   option('--x',true), !,
+   candc_option('--x',true), !,
 %  Sem = lam(V,lam(Q,lam(F,app(Q,lam(X,B:drs([],[B:Index:not(app(app(V,lam(P,app(P,X))),F))])))))). %%% subject wide scope (preferred?)
    Sem = lam(X,lam(Q,lam(F,B:drs([],[B:Index:not(app(app(X,Q),F))])))).                             %%% negation wide scope (dispreferred?)
 
@@ -1038,7 +1038,7 @@ semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
 semlex(Cat,Sym,Index,Att-[sem:'POS'|Att],Sem):-
    category(vpadv,Cat,_),
    member(Sym,[perhaps,maybe,possibly]),
-   option('--modal',true), !,
+   candc_option('--modal',true), !,
    Sem = lam(V,lam(Q,lam(F,app(Q,lam(X,B:drs([],[B:Index:pos(app(app(V,lam(P,app(P,X))),F))])))))). %%% subject wide scope (preferred?)
 %  Sem = lam(X,lam(Q,lam(F,B:drs([],[B:Index:not(app(app(X,Q),F))])))).                             %%% negation wide scope (dispreferred?)
 
@@ -1094,13 +1094,13 @@ semlex(Cat,Sym,Index,Att-[sem:'MOR'|Att],Sem):-
 
 %semlex(Cat,Sym,Index,Att-[sem:'UNK'|Att],Sem):-
 %   category(vpadv,Cat,_), 
-%   option('--x',true),
+%   candc_option('--x',true),
 %   negprefix(_, Sym, Prefix, Core), !,
 %   Sem = lam(X,lam(Q,lam(F,B1:drs([],[B1:Index:not(app(app(X,Q),lam(E,merge(B2:drs([],[B2:Index:pred(E,Prefix,a,71),B2:Index:pred(E,Core,a,1)]),app(F,E)))))])))).
 
 %semlex(Cat,Sym,Index,Att-[sem:'UNK'|Att],Sem):-
 %   category(vpadv,Cat,_), 
-%   option('--x',true), 
+%   candc_option('--x',true), 
 %   negsuffix(_, Sym, Suffix, Core), !,
 %   Sem = lam(X,lam(Q,lam(F,B1:drs([],[B1:Index:not(app(app(X,Q),lam(E,merge(B2:drs([],[B2:Index:pred(E,Suffix,a,72),B2:Index:pred(E,Core,a,1)]),app(F,E)))))])))).
 
@@ -1135,7 +1135,7 @@ semlex(Cat,the,Index,Att-[sem:'APP'|Att],Sem):-
 % temporal
 %
 semlex(Cat,Sym,Index,Att1-[sem:'PRX'|Att2],Sem):- 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Sym,[this,those]),
    Cat = (np\np)/n, !,
    role(['Time'],Att1-Att2,[Role]),
@@ -1143,7 +1143,7 @@ semlex(Cat,Sym,Index,Att1-[sem:'PRX'|Att2],Sem):-
                                              merge(app(N,Y),app(P,X)))))))).
 
 semlex(Cat,Sym,Index,Att1-[sem:'DST'|Att2],Sem):- 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Sym,[that,these]),
    Cat = (np\np)/n, !,
    role(['Time'],Att1-Att2,[Role]),
@@ -1252,7 +1252,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
                                                                 B:Index:rel(X,Y,Sym,Sense)]),merge(app(PP,Y),app(P,X)))))))).
 
 semlex(Cat,Tok,Index,Att-[sem:'NOT'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    Tok = without, Sym = with,
    member(Cat,[(np\np)/np,(np/np)/np]), !,
    Sem = lam(Q1,lam(Q2,lam(P,app(Q2,lam(X,merge(B1:drs([],[B1:Index:not(app(Q1,lam(Y,B2:drs([],[B2:Index:rel(X,Y,Sym,0)]))))]),app(P,X))))))).
@@ -1315,7 +1315,7 @@ semlex(Cat,by,Index,Att1-[sem:'AND'|Att2],Sem):-
      
                
 semlex(Cat,Tok,Index,Att-[sem:'NOT'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    Tok = without, Sym = with,
    member(Cat,[((s:X\np)\(s:X\np))/np, 
                ((s:X\np)/(s:X\np))/np]), !,
@@ -1382,7 +1382,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,if,Index,Att-[sem:'IMP'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[((s:X\np)\(s:X\np))/s:dcl]), !,
    Sem = lam(S,lam(VP,lam(Q,lam(F,app(app(VP,Q),lam(Y,merge(app(F,Y),app(S,lam(E,B2:drs([],[B2:Index:rel(Y,E,condition,1)])))))))))).
 
@@ -1409,8 +1409,8 @@ semlex(Cat,where,Index,Att1-[symbol:'location',sem:'SUB'|Att2],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--tense',true),
-   option('--theory',drt),
+   candc_option('--tense',true),
+   candc_option('--theory',drt),
    member(Cat,[((s:X\np)\(s:X\np))/s:dcl]), !,
    Sem = lam(S,lam(V,lam(Q,lam(F,merge(merge(B1:drs([B1:[]:T],[B1:Index:pred(T,time,n,1)]),
                                              app(S,lam(E,B2:drs([],[B2:[]:rel(E,T,temp_included,1)])))),
@@ -1422,14 +1422,14 @@ semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--theory',drt),
+   candc_option('--theory',drt),
    Cat = ((s:X\np)\(s:X\np))/s:inv, !,
    att(Att,sense,Sense),
    Sem = lam(S,lam(V,lam(Q,lam(F,merge(app(app(V,Q),lam(E,app(F,E))),
                                        app(S,lam(E,B:drs([],[B:Index:pred(E,Sym,r,Sense)])))))))).
 
 semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--theory',sdrt),
+   candc_option('--theory',sdrt),
    Cat = ((s:X\np)\(s:X\np))/s:inv, !,
    plosing(CC),
    Sem = lam(S,lam(V,lam(Q,lam(F,sdrs([sub(lab(K1,B1),lab(K2,B2))],[Index:rel(K1,K2,Sym)]))))),
@@ -1442,7 +1442,7 @@ semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--theory',sdrt),
+   candc_option('--theory',sdrt),
    member(Cat,[((s:X\np)\(s:X\np))/s:_,
                ((s:X\np)/(s:X\np))/s:_]), !,
    plosing(CC),
@@ -1484,7 +1484,7 @@ semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,without,Index,Att-[sem:'NOT'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Cat,[((s:X\np)\(s:X\np))/(s:ng\np),
                ((s:X\np)/(s:X\np))/(s:ng\np)]), !,
    CC=lam(Y,B2:drs([],[B2:Index:rel(E,Y,manner,1)])),
@@ -1495,7 +1495,7 @@ semlex(Cat,without,Index,Att-[sem:'NOT'|Att],Sem):-
                                                                                    CC))])))))))))).
 
 semlex(Cat,if,Index,Att-[sem:'IMP'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[((s:X\np)\(s:X\np))/(s:adj\np),((s:X\np)/(s:X\np))/(s:adj\np),
                ((s:X\np)\(s:X\np))/(s:pss\np),((s:X\np)/(s:X\np))/(s:pss\np)]), !,
    Sem = lam(VA,lam(VM,lam(Q,lam(F,app(Q,
@@ -1643,7 +1643,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Lemma,Index,Att1-[sem:'PRX'|Att2],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[this,these]), 
    member(Cat,[(s:X/s:X)/n,(s:X\s:X)/n]), !,
    role(['Time'],Att1-Att2,[Role]),
@@ -1651,7 +1651,7 @@ semlex(Cat,Lemma,Index,Att1-[sem:'PRX'|Att2],Sem):-
                                     app(S,lam(E,merge(B2:drs([],[B2:[]:role(E,Y,Role,1)]),app(F,E)))))))).
 
 semlex(Cat,Lemma,Index,Att1-[sem:'DST'|Att2],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[that,those]), 
    member(Cat,[(s:X/s:X)/n,(s:X\s:X)/n]), !,
    role(['Time'],Att1-Att2,[Role]),
@@ -1800,7 +1800,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
    notSymbol(Sym),
-   option('--semantics',drg),
+   candc_option('--semantics',drg),
    member(Cat,[((s:X\np)/(s:X\np))/((s:X\np)/(s:X\np)),
                ((s:X\np)/(s:X\np))\((s:X\np)/(s:X\np)),
                ((s:X\np)\(s:X\np))\((s:X\np)\(s:X\np)),
@@ -1868,7 +1868,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 % VP adverb modifier (negation)
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
-   option('--semantics',drg),
+   candc_option('--semantics',drg),
    member(Cat,[(((s:X\np)\(s:X\np))/((s:X\np)\(s:X\np)))/(((s:X\np)\(s:X\np))/((s:X\np)\(s:X\np))),
                (((s:X\np)\(s:X\np))\((s:X\np)\(s:X\np)))/(((s:X\np)\(s:X\np))\((s:X\np)\(s:X\np))),
                (((s:X\np)/(s:X\np))/((s:X\np)/(s:X\np)))/(((s:X\np)/(s:X\np))/((s:X\np)/(s:X\np)))]), 
@@ -1901,7 +1901,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,if,Index,Att-[sem:'IMP'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[(s:X/s:X)/(s:_\np),(s:X\s:X)/(s:_\np)]), !,
    Sem = lam(VP,lam(S,lam(G,app(app(VP,lam(P,merge(B1:drs([B1:[]:Y],[B1:Index:pred(Y,thing,n,12)]),app(P,Y)))),
                                 lam(F,merge(app(G,F),app(S,lam(E,B2:drs([],[B2:[]:rel(E,F,condition,0)]))))))))).
@@ -1989,28 +1989,28 @@ semlex(Cat,_,Index,Att-[sem:'HAS'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(np\np, himself,Index,Att-[sem:'EMP'|Att],Sem):- 
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,he,n,1)]),app(P,X)))))).
 
 semlex(np\np, himself,Index,Att-[sem:'EMP'|Att],Sem):- !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,male,n,2)]),app(P,X)))))).
 
 semlex(np\np, herself,Index,Att-[sem:'EMP'|Att],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,she,n,1)]),app(P,X)))))).
 
 semlex(np\np, herself,Index,Att-[sem:'EMP'|Att],Sem):- !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,female,n,2)]),app(P,X)))))).
 
 semlex(np\np, itself,Index,Att-[sem:'EMP'|Att],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,it,n,1)]),app(P,X)))))).
 
 semlex(np\np, itself,Index,Att-[sem:'EMP'|Att],Sem):- !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,thing,n,12)]),app(P,X)))))).
 
 semlex(np\np, Sym,Index,Att-[sem:'EMP'|Att],Sem):-
-   option('--semantics',amr), 
+   candc_option('--semantics',amr), 
    member(Sym,[myself,yourself,thyself,ourselves,themselves]), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,we,n,1)]),app(P,X)))))).
 
@@ -2024,13 +2024,13 @@ semlex(np\np, Sym,Index,Att-[sem:'EMP'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[np\np, np/np]), 
    member(Sym,[all,each]), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,Sym,r,2)]),app(P,X)))))).
 
 semlex(Cat,Sym,Index,Att-[sem:'EXC'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[np\np, np/np]), 
    member(Sym,[only]), !,
    Sem = lam(Q,lam(P,app(Q,lam(X,merge(B:drs([],[B:Index:pred(X,Sym,r,2)]),app(P,X)))))).
@@ -2047,7 +2047,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,only,Index,Att-[sem:'EXC'|Att],Sem):-
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',amr),
    member(Cat,[np\np, np/np]), !,
    Sem = lam(NP,lam(P,alfa(fac,merge(B1:drs([B1:Index:Z],[]),
                                      app(NP,lam(X,merge(app(P,X),
@@ -2246,7 +2246,7 @@ semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'POS'|Att],Sem):-
    member(Sym,[perhaps,maybe,possibly]),
-   option('--modal',true),
+   candc_option('--modal',true),
    category(smod,Cat,Sym), !,
    Sem = lam(S,lam(F,B:drs([],[B:Index:pos(app(S,F))]))).
 
@@ -2311,7 +2311,7 @@ semlex(Cat,Sym,Index,Att-[sem:'UOM'|Att],Sem):-
                                                                    app(F,E))))))))).
 
 semlex(Cat,Sym,Index,Att1-[sem:'PRX'|Att2],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[((s:X\np)\(s:X\np))/n,
                ((s:X\np)/(s:X\np))/n]), 
    member(Sym,[this,these]), !,
@@ -2322,7 +2322,7 @@ semlex(Cat,Sym,Index,Att1-[sem:'PRX'|Att2],Sem):-
                                                                    app(F,E))))))))).
 
 semlex(Cat,Sym,Index,Att1-[sem:'DST'|Att2],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[((s:X\np)\(s:X\np))/n,
                ((s:X\np)/(s:X\np))/n]), 
    member(Sym,[that,those]), !,
@@ -2411,8 +2411,8 @@ semlex(Cat,Sym,Index,Att1-[sem:'AND'|Att2],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--tense',true),
-   option('--theory',drt),
+   candc_option('--tense',true),
+   candc_option('--theory',drt),
    member(Cat,[(s:X/s:X)/s:dcl,
                (s:wq/s:wq)/s:dcl]), !, 
    Sem = lam(S1,lam(S2,lam(F,merge(merge(B1:drs([B1:[]:T],[B1:[]:pred(T,time,n,1)]),
@@ -2420,8 +2420,8 @@ semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
                                    app(S2,lam(E,merge(B3:drs([],[B3:[]:rel(E,T,temp_included,1)]),app(F,E)))))))).
 
 semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--tense',true),
-   option('--theory',drt),
+   candc_option('--tense',true),
+   candc_option('--theory',drt),
    member(Cat,[(s:X\s:X)/s:dcl,
                (s:wq\s:wq)/s:dcl]), !, 
    Sem = lam(S2,lam(S1,lam(F,merge(merge(B1:drs([B1:[]:T],[[]:pred(T,time,n,1)]),
@@ -2434,7 +2434,7 @@ semlex(Cat,when,Index,Att-[sem:'SUB'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,if,Index,Att-[sem:'IMP'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[(s:X/s:X)/s:dcl,(s:wq/s:wq)/s:dcl,
                (s:X\s:X)/s:dcl,(s:wq\s:wq)/s:dcl]), !, 
    Sem = lam(S1,lam(S2,lam(F,app(S2,lam(Y,merge(app(F,Y),app(S1,lam(E,B2:drs([],[B2:Index:rel(Y,E,condition,1)]))))))))).
@@ -2451,7 +2451,7 @@ semlex(Cat,if,Index,Att-[sem:'IMP'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex((s:X\s:X)/s:dcl,and,_Index,Att-[sem:'IMP'|Att],Sem):-
-   option('--theory',drt), !,
+   candc_option('--theory',drt), !,
    plosing(CC),
    Sem = lam(S2,lam(S1,lam(F,merge(app(S1,CC),app(S2,F))))).
 
@@ -2461,7 +2461,7 @@ semlex((s:X\s:X)/s:dcl,and,_Index,Att-[sem:'IMP'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
-   option('--theory',sdrt),
+   candc_option('--theory',sdrt),
    Cat = (s:X/s:X)/s:_, !,
    plosing(CC),
 %  Sem = lam(S1,lam(S2,lam(F,sdrs([lab(K1,B1),lab(K2,B2)],[Index:rel(K1,K2,Sym)])))),
@@ -2470,7 +2470,7 @@ semlex(Cat,Sym,Index,Att-[sem:'SUB'|Att],Sem):-
    B2 = app(S2,F).
 
 semlex(Cat,Sym,Index,Att-[sem:'COO'|Att],Sem):-
-   option('--theory',sdrt),
+   candc_option('--theory',sdrt),
    Cat = (s:X\s:X)/s:_, !,
    plosing(CC),
    Sem = lam(S2,lam(S1,lam(F,sdrs([lab(K1,B1),lab(K2,B2)],[Index:rel(K1,K2,Sym)])))),
@@ -2521,7 +2521,7 @@ semlex(Cat,Sym,_,Att1-[sem:'AND'|Att2],Sem):-
 
 semlex(Cat,_Sym,_,Att-[sem:'AND'|Att],Sem):-
    member(Cat,[(np\np)/(s:_\np),(np\np)/(s:_/np)]),
-   option('--elimeq',true), !,
+   candc_option('--elimeq',true), !,
    closing(CC),
    Sem = lam(VP,lam(Q,lam(P,app(Q,lam(X,merge(app(app(VP,
                                                       lam(P,app(P,X))),
@@ -2530,7 +2530,7 @@ semlex(Cat,_Sym,_,Att-[sem:'AND'|Att],Sem):-
 
 semlex(Cat,_Sym,Index,Att-[sem:'AND'|Att],Sem):-
    member(Cat,[(np\np)/(s:_\np), (np\np)/(s:_/np)]),
-   option('--elimeq',false), !,
+   candc_option('--elimeq',false), !,
    closing(CC),
    Sem = lam(VP,lam(Q,lam(P,app(Q,lam(X,merge(app(app(VP,
                                                       lam(P,merge(B:drs([B:Index:Y],[B:[]:eq(X,Y)]),app(P,Y)))),
@@ -2586,7 +2586,7 @@ semlex(Cat,Sym,Index,Att-[sem:'AND'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 %semlex(Cat,Sym,Index,Att-[sem:'UNK'|Att],Sem):-
-%   option('--x',true),
+%   candc_option('--x',true),
 %   member(Sym,[no]),
 %   category(s,Cat,intj), !,
 %   att(Att,sense,Sense),

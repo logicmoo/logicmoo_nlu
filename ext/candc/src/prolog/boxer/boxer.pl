@@ -1,4 +1,4 @@
-:- module(boxer,[]).
+:- module(boxer,[buildList/3]).
 % boxer.pl, by Johan Bos
 
 /*========================================================================
@@ -38,7 +38,7 @@ file_search_path(lex,        'src/prolog/boxer/lex').
 :- use_module(boxer(output),[printHeader/4,printFooter/1,printSem/4]).
 
 :- use_module(semlib(errors),[error/2,warning/2]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 
@@ -47,7 +47,7 @@ file_search_path(lex,        'src/prolog/boxer/lex').
 ========================================================================*/
 
 box(_,_):-
-   option(Option,do), 
+   candc_option(Option,do), 
    member(Option,['--version','--help']), !, 
    version,
    help.
@@ -86,7 +86,7 @@ box(_):-
 ------------------------------------------------------------------------*/
 
 openOutput(Stream):-
-   option('--output',Output),
+   candc_option('--output',Output),
    atomic(Output), 
    \+ Output=user_output, 
    ( access_file(Output,write), !,
@@ -124,7 +124,7 @@ printCCGs([N|L],Stream):-
 ------------------------------------------------------------------------*/
 
 buildList([id(_,Numbers)|L],Index,Stream):- 
-   option('--ccg',true), !,
+   candc_option('--ccg',true), !,
    sort(Numbers,Sorted),
    printCCGs(Sorted,Stream),
    buildList(L,Index,Stream).
@@ -158,7 +158,7 @@ outputSem(Stream,Id,Index,XDRS0):-
 ========================================================================*/
 
 version:-
-   option('--version',do), !,
+   candc_option('--version',do), !,
    version(V),
    format(user_error,'~p~n',[V]).
 
@@ -170,12 +170,12 @@ version.
 ========================================================================*/
 
 help:-
-   option('--help',do), !,
+   candc_option('--help',do), !,
    format(user_error,'usage: boxer [options]~n~n',[]),
    showOptions(boxer).
 
 help:-
-   option('--help',dont), !.
+   candc_option('--help',dont), !.
 
 
 /* =======================================================================

@@ -8,14 +8,284 @@
 % Revision:  $Revision: 1.3 $
 % Revised At:   $Date: 2002/06/06 15:43:15 $
 % ===================================================================
+% end_of_file.
+:-module(parser_candc,[
+            test_candc_server/0,
+            test_candc_server/1, 
+            test_candc_server/2,
+            call_candc_server/2,
+            call_candc_server/3                   
+         ]).
+:- set_module(class(library)).
+:- set_module(base(system)).
 
 :- user:ensure_loaded(library(logicmoo_utils_all)).
 
 
+:- dynamic(input:(ccg/2)).
+:- multifile(input:(ccg/2)).
+:- discontiguous(input:(ccg/2)).
+:- dynamic(input:(id/2)).
+:- multifile(input:(id/2)).
+:- discontiguous(input:(id/2)).
+
+:- use_module(parser_lexical).
 :- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/boxer/boxer.pl')).
 
+:- use_module(boxer(ccg2drs),[ccg2drs/2]).
+:- use_module(boxer(input),[openInput/0,identifyIDs/1,preferred/2]).
+:- use_module(boxer(evaluation),[initEval/0,reportEval/0]).
+:- use_module(boxer(version),[version/1]).
+:- use_module(boxer(printCCG),[printCCG/2]).
+:- use_module(boxer(transform),[preprocess/6]).
+:- use_module(boxer(drs2fdrs),[eqDrs/2]).
+:- use_module(boxer(output),[printHeader/4,printFooter/1,printSem/4,printRC/1,printRC/2,printRC/3]).
 
-%:- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/nutcracker/nutcracker.pl')).
+:- use_module(semlib(errors),[error/2,warning/2]).
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
+                               showOptions/1,setDefaultOptions/1]).
+
+print_reply_candc(L):- is_list(L),!,maplist(print_reply_candc,L).
+print_reply_candc(S):- string(S),!,format('~s',[S]).
+print_reply_candc(Drs):- print_reply_colored(Drs).
+
+parse2sem(Text):- text2sem(Text,Drs),print_reply_candc(Drs).
+text2sem(Text, Drs):- text2sem(Text, [drs,pdrs,fol,drg,amr,tacitus,der], Drs).
+
+parse2sem(Text,Options):- text2sem(Text,Options,Drs),print_reply_candc(Drs).
+text2sem(Text, Options, Drs):- 
+  notrace((call_candc_server(Text,_Options,Reply),
+  print_reply_candc(Reply))),
+  must_or_rtrace(rply2drs(Reply,Options,Drs)).
+
+
+set_memory_opts:- setDefaultOptions(boxer),
+   setOption(boxer,'--box',false),setOption(boxer,'--ccg',false),setOption(boxer,'--copula',true),setOption(boxer,'--elimeq',false),
+   setOption(boxer,'--format',prolog),setOption(boxer,'--instantiate',false),setOption(boxer,'--integrate',false),
+   setOption(boxer,'--modal',false),setOption(boxer,'--nn',false),setOption(boxer,'--output',current_output),
+   setOption(boxer,'--plural',false),
+   %setOption(boxer,'--presup',max),
+   setOption(boxer,'--resolve',false),
+   setOption(boxer,'--roles',proto),   setOption(boxer,'--theory',drt), % was drt
+   setOption(boxer,'--semantics',drs),setOption(boxer,'--tense',false),
+   setOption(boxer,'--tokid',local),setOption(boxer,'--warnings',false),setOption(boxer,'--x',false),
+   % setOption(boxer,'--input','/tmp/pl_boxer/logicmoo_33609_0.ccg'),
+    %setOption(boxer,'--loaded',do),
+    !.
+
+make_ids(ccg(N,_)):- !, assert(input:id(_,[N])).
+make_ids(_IDO).
+
+make_ids(ccg(Id,_),IDO):- !, IDO=id(_,[Id]),assert(input:IDO).
+make_ids(IDO,IDO).
+
+setInput(Reply):- 
+  retractall(input:inputtype(_)),
+  assert(input:inputtype(ccg)),
+  retractall(input:id(_,_)),
+  retractall(input:ccg(_,_)),  
+  maplist(input:asserta_new, Reply),
+  initEval,
+  ignore((
+  \+ input:id(_,_),
+  maplist(make_ids, Reply))),!.
+
+each_candc_option(N,NV):- !, options:candc_option(boxer, N, _1, V, _), once(setOption(boxer,N,V)),NV=(N=V).
+each_candc_option(N,V):- retractall(options:candc_option(N,_)), asserta(options:candc_option(N,V)).
+
+rply2drs(Reply,Options,Drs):- \+ is_list(Reply),!, rply2drs([Reply],Options,Drs). % maplist(rply2drs,Reply,Drs).
+rply2drs(Reply,Options,Drs):- 
+   setInput(Reply),
+   maplist(genSem2(),Options,Drs).
+
+%genSem2(Reply,Options,Drs):-
+
+genSem2(Options,Drs):-  
+  set_memory_opts,
+  setDefaultOptions(boxer),  
+  asserta_new(options:candc_option('--roles',framenet)),
+  asserta_new(options:candc_option('--roles',verbnet)),
+  asserta_new(options:candc_option('--roles',proto)),
+  
+  setOption(boxer,'--semantics',Options), % [drs,pdrs,fol,drg,amr,tacitus,der]
+   setOption(boxer,'--box',true),
+   setOption(boxer,'--warnings',true),
+   setOption(boxer,'--tense',true),
+   setOption(boxer,'--modal',true),
+   setOption(boxer,'--integrate',false),  
+   setOption(boxer,'--resolve',false),
+   setOption(boxer,'--copula',false),
+  
+  findall(Str, 
+       ( each_candc_option('--theory',A),
+      
+        %assert(options:candc_option('--theory',drt)), %:- member(V,[drt,sdrt]).
+        initEval,runBoxer(Str),print_reply_candc([A,Options]),print_reply_candc(Str)),
+  _ODrs).
+
+runBoxer(Drs):-
+  input:identifyIDs(NewReply),
+    with_output_to(string(Str), 
+     (boxer:buildList(NewReply, 1, current_output))),
+     nop(read_term_list(Str, Drs)),Drs=Str,!.
+
+% '--integrate'                                                                 
+do_inputIDs(Reply,NewList):- maplist(make_ids,Reply,NewList), input:identifyIDs(NewList).
+
+
+
+% :- user:ensure_loaded(logicmoo_nlu_ext('candc/src/prolog/nutcracker/nutcracker.pl')).
+
+
+
+baseKB:sanity_test:- test_candc_server.
+
+:- use_module(library(http/http_client)).
+:- use_module(library(http/json_convert)).
+:- use_module(library(http/http_json)).
+:- use_module(library(http/json)).
+
+test_candc_server(English):- make, test_candc_server(English, _Options).
+
+test_candc_server(English, Options):-
+  call_candc_server(English, Options, OutF),!,
+  maplist(print_reply_candc, OutF).
+
+call_candc_server(English, OutS):-
+  call_candc_server(English, [], OutS).
+
+call_candc_server(English0, OptionsIn, OutS):-
+  DefaultOpts = [ ],
+   (OptionsIn=[]->Options=DefaultOpts;Options=OptionsIn),  
+  % kbp,  % sentiment,
+  ignore('.\nSome quick brown foxes jumped over the lazy dog. If we sang a song, X is Y.  Pee implies queue.'=English0), 
+  any_to_string(English0,EnglishIn),
+  ((false;atom_contains(EnglishIn,'<META>'))->English=EnglishIn;string_concat("<META>'Server'\n",EnglishIn,English)),
+  into_canc_tokenized(English,PostData),
+  %format('~N---->~w<----~n',[PostData]),
+  % http_open([host(localhost), port(3090), post([PostData]), path(''), search([properties=For])], In, []),
+  uri_encoded(query_value, PostData, Encoded), 
+  atomic_list_concat(['https://logicmoo.org/doc2/logicmoocanc.php?candc_query=', Encoded,'&pos=0&boxer=0&showui=0'],URL),
+  %format('~w',[URL]),
+  http_get(URL, Reply, Options),
+  format('~w',[Reply]),
+  % print_reply_candc(Reply), print_reply_candc("==============================================================="),
+  % maplist(wdmsg, Reply),
+  must_or_rtrace(parse_reply([reply], Reply, Out)),
+  flatten([Out], OutS),
+  !.
+
+zave_varname(N,V):- debug_var(N,V),!.
+%zave_varname(N,V):- V = '$VAR'(N).
+
+implode_varnames(Vs):- (var(Vs) ; Vs==[]),!.
+implode_varnames([NV|Vs]) :- implode_varnames(Vs),
+  (var(NV) -> ignore((variable_name(NV,Name),zave_varname(Name,NV))); 
+  ignore((NV=(N=V),zave_varname(N,V)))).
+
+
+read_term_list( NonStream, Out):- \+ is_stream(NonStream), !, % wdmsg(NonStream),
+  must_or_rtrace((open_string(NonStream,Stream), read_term_list(Stream, Out))).
+
+read_term_list(Stream, Out):-
+ '$current_typein_module'(M),
+  M\== input, !,
+  setup_call_cleanup(
+   '$set_typein_module'(input),
+   read_term_list(Stream, Out),
+   '$set_typein_module'(M)).
+
+read_term_list(Stream, Out):-
+ op(601, xfx, input:(/)),
+ op(601, xfx, input:(\\)),
+ (at_end_of_stream(Stream)-> Out=[]; 
+  (catch(notrace(input:read_term(Stream, Term, [variable_names(Vs), module(input)])),E,(wdmsg(E),Term=error,throw(E))),
+    (Term == end_of_file -> Out=[];
+    ((notrace(implode_varnames(Vs)), % wdmsg(Term),
+      (Term = (:- Exec) -> (input:call(Exec), Out=More) ; Out = [Term|More]),
+       read_term_list(Stream, More)))))),!.
+
+parse_reply(_Ctx, Stream, Out):- is_stream(Stream), !, must_or_rtrace(read_term_list(Stream, Out)).  
+
+parse_reply(_Ctx, NonStream, Out):- \+ compound(NonStream), !, % wdmsg(NonStream),
+  must_or_rtrace((open_string(NonStream,Stream), read_term_list(Stream, Out))).
+
+parse_reply(Ctx, List, Out):- is_list(List),!, maplist(parse_reply(Ctx),List, Out).
+parse_reply(Ctx, InnerCtx=json(List), Out):- !,  parse_reply([InnerCtx|Ctx], List, Out).
+parse_reply(Ctx, List, Out):- 
+   sub_term(Sub, List), nonvar(Sub), 
+   parse_reply_replace(Ctx, Sub, NewSub),
+   % ignore((NewSub=='$',wdmsg(parse_reply_replace(_Ctx, Sub, NewSub)))),
+   nonvar(NewSub), Sub\==NewSub,
+   subst(List, Sub, NewSub, NewList), 
+   List\==NewList, !, 
+   parse_reply(Ctx, NewList, Out).
+parse_reply(_Ctx, List, Out):- flatten([List], Out),!.
+
+parse_reply_replace(_Ctx, json(Replace), Replace):- nonvar(Replace),!.
+
+
+join_atomics(Sep,List,Joined):- atomics_to_string(List,Sep,Joined).
+
+into_canc_tokenized(Text,TokenizedText):- \+ string(Text),!, 
+  any_to_string(Text,String), into_canc_tokenized(String,TokenizedText).
+into_canc_tokenized(Text,TokenizedText):-
+ split_string(Text, "", "\s\t\r\n", [L]), L\==Text,!,
+ into_canc_tokenized(L,M), 
+ %string_concat(M,"\n",TokenizedText).
+ string_concat(M,"",TokenizedText).
+into_canc_tokenized(Text,TokenizedText):-   L=[_S1,_S2|_SS],    
+  member(Split,["\n'","'\n","<META>'","<META>","\n"]),  
+  atomic_list_concat(L,Split,Text),  
+  maplist(into_canc_tokenized,L,LO),
+  atomics_to_string(LO,Split, TokenizedText).
+into_canc_tokenized(Text,TokenizedText):-   
+  split_string(Text, "\n", "\s\t\n\r",StringList),
+  maplist(into_text80_atoms,StringList,SentenceList),
+  maplist(join_atomics(' '),SentenceList,ListOfStrings),
+  join_atomics('\n',ListOfStrings,TokenizedText),!.
+
+
+
+test_candc_server:- call_candc_server("The Norwegian lives in the first house.").
+
+test_candc_server:- call_candc_server(
+'There are 5 houses with five different owners.
+ These five owners drink a certain type of beverage, smoke a certain brand of cigar and keep a certain pet.
+ No owners have the same pet, smoke the same brand of cigar or drink the same beverage.
+ The man who smokes Blends has a neighbor who drinks water.
+ A red cat fastly jumped onto the table which is in the kitchen of the house.
+ After Slitscan, Laney heard about another job from Rydell, the night security man at the Chateau.
+ Rydell was a big quiet Tennessean with a sad shy grin, cheap sunglasses, and a walkie-talkie screwed permanently into one ear.
+ Concrete beams overhead had been hand-painted to vaguely resemble blond oak.
+ The chairs, like the rest of the furniture in the Chateau\'s lobby, were oversized to the extent that whoever sat in them seemed built to a smaller scale.
+ Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.
+ A book called, "A little tribute to Gibson".
+ "You look like the cat that swallowed the canary, " he said, giving her a puzzled look.').
+
+
+test_candc_server:- call_candc_server("Rydell used his straw to stir the foam and ice remaining at the bottom of his tall plastic cup, as though he were hoping to find a secret prize.").
+
+test_candc_server:- call_candc_server(
+".
+The Brit lives in the red house.
+The Swede keeps dogs as pets.
+The Dane drinks tea.
+The green house is on the immediate left of the white house.
+The green house's owner drinks coffee.
+The owner who smokes Pall Mall rears birds.
+The owner of the yellow house smokes Dunhill.
+The owner living in the center house drinks milk.
+The Norwegian lives in the first house.
+The owner who smokes Blends lives next to the one who keeps cats.
+The owner who keeps the horse lives next to the one who smokes Dunhills.
+The owner who smokes Bluemasters drinks beer.
+The German smokes Prince.
+The Norwegian lives next to the blue house.
+The owner who smokes Blends lives next to the one who drinks water.").
+
+
+:- system:import(test_candc_server/0).
 
 :- user:call(op(0,xfx,'/')).
 :- user:call(op(0,fx,'-')).

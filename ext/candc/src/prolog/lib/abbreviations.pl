@@ -64,7 +64,7 @@ coord(en, "e.g").          % exempli gratia (for example)
 ---------------------------------------------------------------------------------- */
 
 abb(Codes):- member(46,Codes), member(X,Codes), alpha(X), !.
-abb(Abb):- option('--language',Language), abb(Language,Abb), !.
+abb(Abb):- candc_option('--language',Language), abb(Language,Abb), !.
 
 abb(en, "proC"). % Corp
 abb(en, "cnI").  % Inc

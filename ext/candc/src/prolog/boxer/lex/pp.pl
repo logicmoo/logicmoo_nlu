@@ -7,7 +7,7 @@
 ------------------------------------------------------------------------- */
 
 semlex(pp/np,Sym,Index,Att1-[sem:'AND'|Att2],Sem):-
-   option('--roles',verbnet),
+   candc_option('--roles',verbnet),
    roles(Sym,pp/np,[Role],Att1-Att2), !,
    Sem = lam(Q,lam(X,app(Q,lam(Y,B:drs([],[B:Index:role(X,Y,Role,1)]))))).
 
@@ -102,7 +102,7 @@ semlex((pp\np)/np,Sym,Index,Att-[sem:'AND'|Att],Sem):- !,
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):- 
-   option('--semantics',drg),   
+   candc_option('--semantics',drg),   
    notSymbol(Sym),
    member(Cat,[pp/pp,pp\pp]), !, 
    Sem = lam(P,lam(E,B:drs([],[B:Index:pred(E,Sym,s,1),B:[]:not(app(P,E))]))).

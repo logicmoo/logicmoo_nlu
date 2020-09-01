@@ -3,7 +3,7 @@
                      xfdrs2html/2,
                      xdrs2html/2]).
 
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[warning/2]).
 
 
@@ -76,7 +76,7 @@ dom2html([_Index:X|L],Stream,Tab):- !,
    dom2html(L,Stream,Tab).
 
 dom2html([X|L],Stream,Tab):-
-   option('--warnings',true), !,
+   candc_option('--warnings',true), !,
    warning('cannot print DR ~p',[X]),
    dom2html(L,Stream,Tab).
 
@@ -201,7 +201,7 @@ conds2html([_Index:eq(X,Y)|L],Stream,Tab):- !,
    conds2html(L,Stream,Tab).
 
 conds2html([X|L],Stream,Tab):-
-   option('--warnings',true), !,
+   candc_option('--warnings',true), !,
    warning('cannot print DR-Condition ~p',[X]),
    conds2html(L,Stream,Tab).
 

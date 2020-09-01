@@ -3,7 +3,7 @@
 
 :- use_module(library(lists),[select/3,member/2,append/3]).
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(drs2tacitus),[label/4]).
 :- use_module(knowledge(amrmfs),[mfs/2]).
 :- use_module(knowledge('verbalization-list-v1.01'),[verbalize/2,verbalize/3,verbalize/4,verbalize/6]).

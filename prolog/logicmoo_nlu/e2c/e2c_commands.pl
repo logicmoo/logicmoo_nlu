@@ -21,7 +21,7 @@ call_print_reply(LF, Goal):-
    ;  print_reply_colored(  failed(Goal))),
    E, print_reply_colored(  E)).
 
-print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), parser_chat80:print_tree(O))), !.
+print_reply(Other) :- quietly((portray_vars:pretty_numbervars(Other, O), print_tree(O))), !.
 
 print_reply(C, O):- notrace(((is_list(C)->CC=C;CC=[fg(C)]), ansi_format(CC, '~@', [print_reply(O)]))), !.
 

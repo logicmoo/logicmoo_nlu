@@ -23,7 +23,7 @@ file_search_path(lex,        'src/prolog/boxer/lex').
 :- use_module(library(lists),[member/2,append/3,select/3]).
 
 :- use_module(semlib(der),[der/2]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 

@@ -3,21 +3,21 @@
 
 :- use_module(library(lists),[member/2,append/3,select/3]).
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 /* ========================================================================
    Non-compositional reduction rules
 ======================================================================== */
 
 noncomp(B1:I1:named(X1,Sym1,Sort,Type),B2:I2:named(X2,Sym2,Sort,Type),K):- 
-   option('--mwe',yes),
+   candc_option('--mwe',yes),
    X1 == X2, B1 == B2, !,
    atomic_list_concat([Sym1,Sym2],'~',Sym3), 
    append(I1,I2,I3), sort(I3,I),
    K = B1:I:named(X1,Sym3,Sort,Type).
 
 noncomp(B1:I1:named(X1,Sym1,Sort,Type),B2:I2:named(X2,Sym2,_,_),K):- 
-   option('--mwe',all),
+   candc_option('--mwe',all),
    X1 == X2, B1 == B2, !,
    atomic_list_concat([Sym1,Sym2],'~',Sym3), 
    append(I1,I2,I3), sort(I3,I),

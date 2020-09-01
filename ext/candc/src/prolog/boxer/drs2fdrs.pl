@@ -4,7 +4,7 @@
                     instDrs/2]).
 
 :- use_module(library(lists),[select/3,member/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /*========================================================================
@@ -208,11 +208,11 @@ instantCond(_).
 ========================================================================*/
 
 eqDrs(xdrs(Tags,DRS1),xdrs(Tags,DRS2)):-
-   option('--elimeq',true), !,
+   candc_option('--elimeq',true), !,
    elimEqDrs(DRS1,DRS2).
 
 eqDrs(DRS1,DRS2):-
-   option('--elimeq',true), !,
+   candc_option('--elimeq',true), !,
    elimEqDrs(DRS1,DRS2).
 
 eqDrs(DRS,DRS).

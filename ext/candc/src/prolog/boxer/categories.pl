@@ -48,14 +48,14 @@ role(Roles,Att-[verbnet:Roles|Att],Roles).
    Thematic Roles introduced by PPs
 ------------------------------------------------------------------------- */
 
-roles(_,((s:X\np)\(s:X\np))/np,Roles,A-A):- option('--roles',verbnet), att(A,verbnet,Roles), \+ Roles=[], !.
-roles(by,((s:X\np)\(s:X\np))/np,Roles,A-[verbnet:Roles|A]):- option('--roles',verbnet), !, Roles = ['Agent'].
-roles(_,((s:X\np)\(s:X\np))/np,Roles,A-[verbnet:Roles|A]):- option('--roles',verbnet), !, Roles = ['Instrument'].
-roles(_,((s:X\np)\(s:X\np))/np,Roles,A-A):- option('--roles',proto), !, Roles = ['Actor'].
-roles(for,pp/(s:_\np),Roles,A-A):- option('--roles',verbnet), !, Roles = ['Goal'].
-roles(_,pp/(s:_\np),Roles,A-A):- option('--roles',verbnet), !, Roles = ['Topic'].
-roles(for,pp/s:_,Roles,A-A):- option('--roles',verbnet), !, Roles = ['Goal'].
-roles(_,pp/s:_,Roles,A-A):- option('--roles',verbnet), !, Roles = ['Topic'].
+roles(_,((s:X\np)\(s:X\np))/np,Roles,A-A):- candc_option('--roles',verbnet), att(A,verbnet,Roles), \+ Roles=[], !.
+roles(by,((s:X\np)\(s:X\np))/np,Roles,A-[verbnet:Roles|A]):- candc_option('--roles',verbnet), !, Roles = ['Agent'].
+roles(_,((s:X\np)\(s:X\np))/np,Roles,A-[verbnet:Roles|A]):- candc_option('--roles',verbnet), !, Roles = ['Instrument'].
+roles(_,((s:X\np)\(s:X\np))/np,Roles,A-A):- candc_option('--roles',proto), !, Roles = ['Actor'].
+roles(for,pp/(s:_\np),Roles,A-A):- candc_option('--roles',verbnet), !, Roles = ['Goal'].
+roles(_,pp/(s:_\np),Roles,A-A):- candc_option('--roles',verbnet), !, Roles = ['Topic'].
+roles(for,pp/s:_,Roles,A-A):- candc_option('--roles',verbnet), !, Roles = ['Goal'].
+roles(_,pp/s:_,Roles,A-A):- candc_option('--roles',verbnet), !, Roles = ['Topic'].
 
 
 /* -------------------------------------------------------------------------
@@ -73,9 +73,9 @@ roles(Verb,((s:M\s:T)\np)/np,Roles,A):- roles(Verb,((s:M\np)/s:T)/np,Roles,A), !
    Thematic Roles: standard case 
 ------------------------------------------------------------------------- */
 
-roles(_,_,Roles,A-A):- option('--roles',verbnet), att(A,verbnet,Roles), \+ Roles=[], !.
-roles(Verb,Cat,Roles,A-[verbnet:Roles|A]):- option('--roles',verbnet), verbnet(Verb,Cat,Roles), !.
-roles(Verb,Cat,Roles,A-A):- option('--roles',proto), proto(Verb,Cat,Roles), !.
+roles(_,_,Roles,A-A):- candc_option('--roles',verbnet), att(A,verbnet,Roles), \+ Roles=[], !.
+roles(Verb,Cat,Roles,A-[verbnet:Roles|A]):- candc_option('--roles',verbnet), verbnet(Verb,Cat,Roles), !.
+roles(Verb,Cat,Roles,A-A):- candc_option('--roles',proto), proto(Verb,Cat,Roles), !.
 
 
 /* -------------------------------------------------------------------------
@@ -107,8 +107,8 @@ roles(Verb,Cat,Roles,A-A):-
    Proto (roles are listed in the order of arguments, not surface order!)
 ------------------------------------------------------------------------- */
 
-proto(_, s:adj\np,           ['Holder']):- option('--semantics',amr), !.
-proto(_, (s:adj\np)\np,      ['Theme','Holder']):- option('--semantics',amr), !.
+proto(_, s:adj\np,           ['Holder']):- candc_option('--semantics',amr), !.
+proto(_, (s:adj\np)\np,      ['Theme','Holder']):- candc_option('--semantics',amr), !.
 proto(_, s:adj\np,           ['Theme']):- !.
 proto(_, (s:adj\np)\np,      ['Theme','Pivot']):- !.
 proto(_, s:_\np,             ['Actor']):- !.

@@ -2,7 +2,7 @@
 :- module(miniFrameNet,[axiomsFN/2]).
 
 :- use_module(library(lists),[member/2,append/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /* ------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 ------------------------------------------------------------------------ */
 
 axiomsFN(DRS,Axioms):- 
-   option('--roles',framenet),
+   candc_option('--roles',framenet),
    framenetfile(File),
    exists_file(File), !,
    findFrames(DRS,[]-Frames), 

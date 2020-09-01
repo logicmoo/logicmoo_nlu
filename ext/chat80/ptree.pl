@@ -22,9 +22,9 @@
 
 /* Print term as a tree */
 
-
-
-print_tree(T) :-
+% uses system version if available
+print_tree80(T) :- current_predicate(pretty_clauses:print_tree/1),pretty_clauses:print_tree(T),!.
+print_tree80(T) :-
    ignore((numbervars80(T,111,_),
    pt0('','',T,0),nl, fail)).
 

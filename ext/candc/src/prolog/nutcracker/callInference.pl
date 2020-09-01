@@ -8,7 +8,7 @@
 :- use_module(nutcracker(fol2bliksem),[fol2bliksem/3]).
 :- use_module(nutcracker(fol2tptp),[fol2tptp/3,fol2tptpOld/3]).
 
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /*========================================================================
@@ -16,7 +16,7 @@
 ========================================================================*/
 
 initEngine(Opt,Temp,Axioms,Formula,vampire):-   
-   option(Opt,vampire), 
+   candc_option(Opt,vampire), 
    access_file('ext/bin/vampire',execute), !,
    atom_concat(Temp,'/vampire.in',InFile),
    open(InFile,write,Stream),
@@ -24,7 +24,7 @@ initEngine(Opt,Temp,Axioms,Formula,vampire):-
    close(Stream).
 
 initEngine(Opt,Temp,Axioms,Formula,otter):- 
-   option(Opt,otter), 
+   candc_option(Opt,otter), 
    access_file('ext/bin/otter',execute), !,
    atom_concat(Temp,'/otter.in',InFile),
    open(InFile,write,Stream),
@@ -32,7 +32,7 @@ initEngine(Opt,Temp,Axioms,Formula,otter):-
    close(Stream).
 
 initEngine(Opt,Temp,Axioms,Formula,bliksem):- 
-   option(Opt,bliksem), 
+   candc_option(Opt,bliksem), 
    access_file('ext/bin/bliksem',execute), !,
    atom_concat(Temp,'/bliksem.in',InFile),
    open(InFile,write,Stream),
@@ -40,7 +40,7 @@ initEngine(Opt,Temp,Axioms,Formula,bliksem):-
    close(Stream).
 
 initEngine(Opt,Temp,Axioms,Formula,mace):- 
-   option(Opt,mace),
+   candc_option(Opt,mace),
    access_file('ext/bin/mace',execute), !,
    atom_concat(Temp,'/mace.in',InFile),
    open(InFile,write,Stream),
@@ -48,7 +48,7 @@ initEngine(Opt,Temp,Axioms,Formula,mace):-
    close(Stream).
 
 initEngine(Opt,Temp,Axioms,Formula,paradox):- 
-   option(Opt,paradox),
+   candc_option(Opt,paradox),
    access_file('ext/bin/paradox',execute), !,
    atom_concat(Temp,'/paradox.in',InFile),
    open(InFile,write,Stream),
@@ -56,7 +56,7 @@ initEngine(Opt,Temp,Axioms,Formula,paradox):-
    close(Stream).
 
 initEngine(Opt,_,_,_,_):- 
-   option(Opt,X),
+   candc_option(Opt,X),
    error('inference engine ext/bin/~p not accessible',[X]),
    !, fail.
 
@@ -66,7 +66,7 @@ initEngine(Opt,_,_,_,_):-
 ======================================================================== */
 
 timeLimit(TimeLim):-
-   option('--timelim',TimeLim),
+   candc_option('--timelim',TimeLim),
    access_file('ext/bin/CPULimitedRun',execute), !.
 
 timeLimit(0).
@@ -91,7 +91,7 @@ callTPandMB(Dir,Axioms,TPProblem,MBProblem,MinDom,MaxDom,Model,Engine):-
 ======================================================================== */
 
 callMBbis(_,_,_,Model,Model,Engine,Engine):-
-   option('--mbbis',none), !.
+   candc_option('--mbbis',none), !.
 
 callMBbis(Dir,Axioms,MBProblem,FirstModel,Model,FirstEngine,Engine):-
    FirstModel = model(Dom,_), length(Dom,DomSize), DomSize > 0,

@@ -16,7 +16,7 @@ file_search_path(knowledge,  'src/prolog/boxer/knowledge').
 :- use_module(boxer(slashes)).
 :- use_module(boxer(printDrs),[printDrs/2]).
 :- use_module(nutcracker(callInference),[callTPandMB/7]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 :- dynamic chart/5.

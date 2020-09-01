@@ -5,7 +5,7 @@
 :- use_module(library(lists),[member/2]).
 :- use_module(boxer(lexicon),[semlex/5]).
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 
 /* =========================================================================
@@ -14,8 +14,8 @@
 
 closing(lam(_,_:drs([],[]))).
 
-plosing(lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))):- option('--semantics',amr), !.
-plosing(lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))):- option('--semantics',tacitus), !.
+plosing(lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))):- candc_option('--semantics',amr), !.
+plosing(lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))):- candc_option('--semantics',tacitus), !.
 plosing(lam(_,_:drs([],[]))).
 
 
@@ -33,7 +33,7 @@ closure(s:_,Sem,Closed):- !,
 
 closure(Cat,Sem,Closed):-
    member(Cat,[s:b\np]), 
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Imp=lam(X,B:drs([],[B:[]:pred(X,closing,v,99),B:[]:pred(X,imperative,r,0)])),
    Closed = app(app(Sem,lam(P,merge(B:drs([B:[]:X],[B:[]:pred(X,you,n,1)]),app(P,X)))),Imp).
 
@@ -60,7 +60,7 @@ closure(Cat,Sem,Closed):-
                     lam(P,merge(B:drs([B:[]:X],[]),app(P,X)))),CC).
 
 closure(Cat,Sem,Closed):-   
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[np, np:_]), !,
    Closed = app(Sem,lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))).
 
@@ -69,7 +69,7 @@ closure(Cat,Sem,Closed):-
    Closed = app(Sem,lam(X,B:drs([],[B:[]:pred(X,topic,a,1)]))).
 
 closure(Cat,Sem,Closed):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[np:nb/n, np/n]), !, 
    Closed = app(app(Sem,lam(_,_:drs([],[]))),lam(X,B:drs([],[B:[]:pred(X,closing,v,99)]))).
 
@@ -83,7 +83,7 @@ closure(Cat,Sem,Closed):-
                 lam(X,B2:drs([],[B2:[]:pred(X,thing,n,12)]))).
 
 closure(Cat,Sem,Closed):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Cat,[n, pp]), !,
    Closed = merge(B:drs([B:[]:X],[B:[]:pred(X,closing,v,99)]),app(Sem,X)).
 

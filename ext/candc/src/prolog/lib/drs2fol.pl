@@ -2,7 +2,7 @@
 :- module(drs2fol,[drs2fol/2,symbol/4,timex/2]).
 
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(library(lists),[append/3]).
 
 
@@ -11,11 +11,11 @@
 ======================================================================== */
 
 drs2fol(B,some(W,and(possible_world(W),F))):-
-   option('--modal',true), !,
+   candc_option('--modal',true), !,
    drsfol(B,W,F).
 
 drs2fol(B,F):-
-   option('--modal',false), !,
+   candc_option('--modal',false), !,
    drsfol(B,F).
 
 
@@ -43,11 +43,11 @@ drsfol(drs([Indexed|Referents],Conds),Formula):-
    drsfol(drs([Var|Referents],Conds),Formula).
 
 drsfol(drs([X|Referents],Conds),some(X,and(some(Y,member(Y,X)),Formula))):- 
-   option('--plural',true), !,
+   candc_option('--plural',true), !,
    drsfol(drs(Referents,Conds),Formula).
 
 drsfol(drs([X|Referents],Conds),some(X,Formula)):-
-   option('--plural',false), !,
+   candc_option('--plural',false), !,
    drsfol(drs(Referents,Conds),Formula).
 
 drsfol(merge(B1,B2),Formula):- !, 
@@ -115,17 +115,17 @@ drsfolGap(drs([Indexed|Refs],Conds),F):-
    drsfolGap(drs([Ref|Refs],Conds),F).
 
 drsfolGap(drs([X],[]),Gap^some(X,and(some(Y,member(Y,X)),Gap))):-  
-   option('--plural',true), !.
+   candc_option('--plural',true), !.
 
 drsfolGap(drs([X|Dom],Conds),Gap^some(X,and(some(Y,member(Y,X)),F))):-  
-   option('--plural',true), !,
+   candc_option('--plural',true), !,
    drsfolGap(drs(Dom,Conds),Gap^F).
 
 drsfolGap(drs([X],[]),Gap^some(X,Gap)):-
-   option('--plural',false), !.
+   candc_option('--plural',false), !.
 
 drsfolGap(drs([X|Dom],Conds),Gap^some(X,F)):- 
-   option('--plural',false), !,
+   candc_option('--plural',false), !,
    drsfolGap(drs(Dom,Conds),Gap^F).
 
 drsfolGap(drs([],Conds),Gap^and(F,Gap)):- !,
@@ -215,11 +215,11 @@ cond2fol(duplex(_,Drs1,_,Drs2),F):- !,
 cond2fol(imp(B1,B2),Formula):- !,
    cond2fol(not(merge(B1,drs([],[not(B2)]))),Formula).
 
-cond2fol(card(X,1,eq),one(X)):- option('--plural',true), !.
+cond2fol(card(X,1,eq),one(X)):- candc_option('--plural',true), !.
 
-cond2fol(card(X,2,eq),two(X)):- option('--plural',true), !.
+cond2fol(card(X,2,eq),two(X)):- candc_option('--plural',true), !.
 
-cond2fol(card(X,3,eq),three(X)):- option('--plural',true), !.
+cond2fol(card(X,3,eq),three(X)):- candc_option('--plural',true), !.
 
 cond2fol(card(X,C,_),some(Y,and(card(X,Y),and(F1,F2)))):-
    integer(C), C > 0,
@@ -245,22 +245,22 @@ cond2fol(eq(X),eq(X,X)):- !.
 cond2fol(eq(X,Y),eq(X,Y)):- !.
 
 cond2fol(pred(X,Sym1,Type,Sense),all(Y,imp(member(Y,X),F))):- 
-   option('--plural',true), 
+   candc_option('--plural',true), 
    symbol(Type,Sym1,Sense,Sym2), !,
    F=..[Sym2,Y].
 
 cond2fol(pred(X,Sym1,Type,Sense),F):- 
-   option('--plural',false),
+   candc_option('--plural',false),
    symbol(Type,Sym1,Sense,Sym2), !,
    F=..[Sym2,X].
 
 cond2fol(rel(X,Y,Sym1,Sense),all(A,imp(member(A,X),all(B,imp(member(B,Y),F))))):- 
-   option('--plural',true), 
+   candc_option('--plural',true), 
    symbol(r,Sym1,Sense,Sym2), !,
    F=..[Sym2,A,B].
 
 cond2fol(rel(X,Y,Sym1,Sense),F):- 
-   option('--plural',false), 
+   candc_option('--plural',false), 
    symbol(r,Sym1,Sense,Sym2), !,
    F=..[Sym2,X,Y].
 

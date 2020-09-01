@@ -2,7 +2,7 @@
 :- module(determiners,[semlex_det/4]).
 :- use_module(boxer(resolveDRT),[goldAntecedent/2]).
 :- use_module(boxer(categories),[rel/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 
 /* =========================================================================
    Determiners: NP/N
@@ -29,7 +29,7 @@ semlex_det(Lemma,Index,Att-[sem:'UNK'|Att],Sem):-
 
 semlex_det(Lemma,Index,Att-[sem:'AND'|Att],Sem):-
    member(Lemma,[all,each,either,any,every,most,whichever,whatever]),
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    Sem = lam(N,lam(P,merge(merge(B:drs([B:[]:X,B:[]:A],[B:Index:pred(A,Lemma,a,1),
                                                         B:[]:rel(X,A,mod,2)]),
                            app(N,X)),app(P,X)))).
@@ -56,14 +56,14 @@ semlex_det(no,Index,Att-[sem:'NOT'|Att],Sem):- !,
 ------------------------------------------------------------------------- */
 
 semlex_det(Lemma,Index,Att-[sem:'PRX'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[this,these]), !,
    Sem = lam(N,lam(P,alfa(def,merge(B:drs([B:[]:X,B:[]:E],[B:Index:pred(E,this,a,1),B:[]:rel(X,E,mod,1)]),
                                     app(N,X)),
                               app(P,X)))).
 
 semlex_det(Lemma,Index,Att-[sem:'DST'|Att],Sem):-
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[that,those]), !,
    Sem = lam(N,lam(P,alfa(def,merge(B:drs([B:[]:X,B:[]:E],[B:Index:pred(E,that,a,1),B:[]:rel(X,E,mod,1)]),
                                     app(N,X)),
@@ -108,7 +108,7 @@ semlex_det(Lemma,Index,Att-[sem:'QUE'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex_det(another,Index,Att-[sem:'ALT'|Att],Sem):- 
-   \+ option('--semantics',amr), !,
+   \+ candc_option('--semantics',amr), !,
 %  goldAntecedent(Index,Att),
    Sem = lam(N,lam(P,alfa(def,merge(B1:drs([B1:[]:Y],[]),
                                     app(N,Y)),
@@ -132,7 +132,7 @@ semlex_det(neither,Index,Att-[sem:'NOT'|Att],Sem):- !,
 ------------------------------------------------------------------------- */
 
 semlex_det(my,Index,Att1-[sem:'HAS'|Att2],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,i,n,1)]),
                               alfa(def,merge(B2:drs([B2:[]:X],[B2:[]:rel(X,Y,Relation,1)]),
@@ -148,7 +148,7 @@ semlex_det(my,Index,Att1-[sem:'HAS'|Att2],Sem):- !,
                                        app(P,X))))).
 
 semlex_det(Lemma,Index,Att1-[sem:'HAS'|Att2],Sem):- 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Lemma,[your,thy]), !,
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,you,n,1)]),
@@ -166,7 +166,7 @@ semlex_det(Lemma,Index,Att1-[sem:'HAS'|Att2],Sem):-
                                        app(P,X))))).
 
 semlex_det(his,Index,Att1-[sem:'HAS'|Att2],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    goldAntecedent(Index,Att1),
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,he,n,1)]),
@@ -183,7 +183,7 @@ semlex_det(his,Index,Att1-[sem:'HAS'|Att2],Sem):- !,
                                        app(P,X))))).
 
 semlex_det(her,Index,Att1-[sem:'HAS'|Att2],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    goldAntecedent(Index,Att1),
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,she,n,1)]),
@@ -200,7 +200,7 @@ semlex_det(her,Index,Att1-[sem:'HAS'|Att2],Sem):- !,
                                        app(P,X))))).
 
 semlex_det(its,Index,Att1-[sem:'HAS'|Att2],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,it,n,1)]),
                               alfa(def,merge(B2:drs([B2:[]:X],[B2:[]:rel(X,Y,Relation,1)]),
@@ -216,7 +216,7 @@ semlex_det(its,Index,Att1-[sem:'HAS'|Att2],Sem):- !,
                                        app(P,X))))).
 
 semlex_det(our,Index,Att1-[sem:'HAS'|Att2],Sem):- 
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,we,n,1)]),
                               alfa(def,merge(B2:drs([B2:[]:X],[B2:[]:rel(X,Y,Relation,1)]),
@@ -232,7 +232,7 @@ semlex_det(our,Index,Att1-[sem:'HAS'|Att2],Sem):- !,
                                        app(P,X))))).
 
 semlex_det(their,Index,Att1-[sem:'HAS'|Att2],Sem):-
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    rel(of,Att1-Att2,Relation),
    Sem = lam(N,lam(P,alfa(pro,B1:drs([B1:[]:Y],[B1:Index:pred(Y,they,n,1)]),
                               alfa(def,merge(B2:drs([B2:[]:X],[B2:[]:rel(X,Y,Relation,1)]),

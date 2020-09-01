@@ -7,7 +7,7 @@
 
 :- use_module(library(lists),[member/2,append/3,select/3]).
 :- use_module(boxer(betaConversionDRT),[betaConvert/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[warning/2]).
 
 
@@ -15,9 +15,9 @@
    Main
 ============================================================= */
 
-resolveVPE(B,B):- option('--vpe',false), !.
+resolveVPE(B,B):- candc_option('--vpe',false), !.
 
-resolveVPE(B,B):- option('--vpe',true), !,
+resolveVPE(B,B):- candc_option('--vpe',true), !,
    warning('VPE resolution not activated',[]).
 
 resolveVPE(In,Out):- detectVPE(In,Out,[]-_Stack), !.
@@ -205,7 +205,7 @@ parallelElements([C|L1],E,[C|L2],Par1-Par2,A1-A2):-
 ============================================================= */
 
 resolveVPE(B:drs(Dom,Conds1),Ind,_Sym,E,Stack,ResolvedDrs):-
-   option('--x',false),
+   candc_option('--x',false),
    tempStack(B:drs(Dom,Conds1),Stack,TempStack),
    parallelElements(Conds1,E,Conds2,[]-Par,app(Q,E)-App),
    NewDrs = app(VP,lam(Q,merge(B:drs(Dom,Conds2),App))),
@@ -215,7 +215,7 @@ resolveVPE(B:drs(Dom,Conds1),Ind,_Sym,E,Stack,ResolvedDrs):-
    betaConvert(NewDrs,ResolvedDrs), !.
 
 resolveVPE(B:drs(Dom,Conds),Ind,Sym,E,_Stack,Drs):-
-   option('--x',false),
+   candc_option('--x',false),
    Drs = B:drs(Dom,[B:Ind:pred(E,Sym,v,0)|Conds]).
 
 
@@ -224,7 +224,7 @@ resolveVPE(B:drs(Dom,Conds),Ind,Sym,E,_Stack,Drs):-
 ============================================================= */
 
 resolveVPE(B:drs(Dom,Conds1),Ind,Sym,E,Stack,Drs):-
-   option('--x',true),
+   candc_option('--x',true),
    tempStack(B:drs(Dom,Conds1),Stack,TempStack),
 %   write('Stack:'),nl,writeStack(TempStack,1),
    findall(Par,parallelElements(Conds1,E,_,[]-Par,_),Pars),
@@ -232,7 +232,7 @@ resolveVPE(B:drs(Dom,Conds1),Ind,Sym,E,Stack,Drs):-
    Drs = B:drs(Dom,Conds3).
 
 resolveVPE(B:drs(Dom,Conds),Ind,Sym,E,_Stack,Drs):-
-   option('--x',true),
+   candc_option('--x',true),
    Drs = B:drs(Dom,[B:Ind:pred(E,Sym,v,97)|Conds]).
 
 
@@ -335,19 +335,19 @@ conceptAbstraction([I1:Cond|L],NC,Ind,AI,Dom,E,Par,AD1-AD2,AC1-AC2,J1-J3):-
    conceptAbstraction(L,NC,Ind,AI,Dom,E,Par,AD1-AD2,[I2:Cond|AC1]-AC2,J2-J3).
 
 conceptAbstraction([_:Cond|L],NC,Ind,AI,Dom,E,Par,AD1-AD2,AC1-AC2,J1-J2):- 
-   option('--x',true),                  %%% Skip already parallel-marked elements
+   candc_option('--x',true),                  %%% Skip already parallel-marked elements
    Cond = rel(_,_,parallel,1), !,
    conceptAbstraction(L,NC,Ind,AI,Dom,E,Par,AD1-AD2,AC1-AC2,J1-J2).
 
 conceptAbstraction([I1:Cond|L],NC,Ind,AI,Dom,E,Par,AD1-AD2,AC1-AC2,J1-J3):- 
-   option('--x',true),
+   candc_option('--x',true),
    Cond = rel(X,Y,_,_), X==E, 
    member(Z,Par), Z==Y, !,              %%% Parallel Element --> copy
    newIndex(I1,I2,J1,J2),
    conceptAbstraction(L,NC,Ind,AI,Dom,E,Par,AD1-AD2,[I2:Cond,[]:rel(X,Y,parallel,1)|AC1]-AC2,J2-J3).
 
 conceptAbstraction([I1:Cond|L],NC,Ind,AI,Dom,E,Par,AD1-AD2,AC1-AC2,J1-J3):- 
-   option('--x',false),
+   candc_option('--x',false),
    Cond = rel(X,Y,_,_), X==E, 
    member(Z,Par), Z==Y, !,              %%% Parallel Element --> copy
    newIndex(I1,I2,J1,J2),
@@ -406,10 +406,10 @@ conceptAbstraction([C|L],NotCopied,Ind,AI,Dom,E,Par,AD,AC,J):-
 ============================================================= */
 
 newIndex(I,I,J,J):-
-   option('--x',false), !.
+   candc_option('--x',false), !.
 
 newIndex(I1,I2,J1,J2):-
-   option('--x',true), !,
+   candc_option('--x',true), !,
    I2 = [-11|I1],
    append(I1,J1,J2).
 

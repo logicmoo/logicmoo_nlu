@@ -3,7 +3,7 @@
 
 :- use_module(semlib(drs2tacitus),[label/4]).
 :- use_module(semlib(errors),[warning/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(knowledge(punctuation),[punctuation/2]).
 :- use_module(library(lists),[member/2,append/3,last/2,select/3]).
 

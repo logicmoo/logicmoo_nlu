@@ -6,7 +6,7 @@
                      topcat/2]).    % +Der, -Category
 
 :- use_module(library(lists),[append/3]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[error/2,warning/2]).
 :- use_module(boxer(morpha),[morpha/2]).
 :- use_module(boxer(slashes)).
@@ -277,11 +277,11 @@ trans(bxs(C,X1,Y1), N1, bxs(C,nil,Att,Str,X2,Y2), N3, Tags1-Tags3):- !,
 ------------------------------------------------------------------------- */
 
 trans(t(A,B,people,C,D,E),N,Tok,M,Tags):- 
-   option('--x',true), !, % SemEval-2014
+   candc_option('--x',true), !, % SemEval-2014
    trans(t(A,B,person,C,D,E),N,Tok,M,Tags).
 
 trans(t(A,B,C,'NNP',D,E),N,Tok,M,Tags):- 
-   option('--x',true), !, % SemEval-2014
+   candc_option('--x',true), !, % SemEval-2014
    trans(t(A,B,C,'NN',D,E),N,Tok,M,Tags).
 
 trans(t(Cat,'\'t',_,'VB',S,Ne),N,Tok,M,Tags):- !,
@@ -454,8 +454,8 @@ headAtt(D0,_ ,Att):- topatt(D0,Att), !.
 ------------------------------------------------------------------------- */
 
 setTokID(_,Start,Start):-
-   option('--tokid',global), !.
+   candc_option('--tokid',global), !.
 
 setTokID(SID,_,Start):-
-   option('--tokid',local), !,
+   candc_option('--tokid',local), !,
    Start is (SID*1000)+1.

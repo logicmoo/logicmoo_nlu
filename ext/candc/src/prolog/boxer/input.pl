@@ -5,7 +5,7 @@
 
 :- use_module(boxer(slashes)).
 :- use_module(boxer(transform),[topcat/2]).
-:- use_module(semlib(options),[option/2]).
+:- use_module(semlib(options),[candc_option/2]).
 :- use_module(semlib(errors),[error/2,warning/2]).
 
 
@@ -23,15 +23,15 @@
 ------------------------------------------------------------------------*/
 
 openInput:-
-   option('--input',user_input), 
-   option('--stdin',do), !,
+   candc_option('--input',user_input), 
+   candc_option('--stdin',do), !,
    prompt(_,''),
    catch(load_files('',[autoload(true),encoding(utf8),stream(user_input)]),_,fail),
    checkInputType.
 
 openInput:-
-   option('--stdin',dont), 
-   option('--input',File), 
+   candc_option('--stdin',dont), 
+   candc_option('--input',File), 
    \+ File = user_input, !,
    checkInput(File).
 
@@ -93,12 +93,12 @@ identifyIDs(List):-
    \+ List=[], !.
 
 identifyIDs(List):-
-   option('--integrate',false), 
+   candc_option('--integrate',false), 
    ccg(_,_),
    setof(id(Id,[Id]),X^ccg(Id,X),List), !.
 
 identifyIDs([id(1,List)]):-
-   option('--integrate',true), 
+   candc_option('--integrate',true), 
    ccg(_,_),
    setof(Id,X^ccg(Id,X),List), !.
 

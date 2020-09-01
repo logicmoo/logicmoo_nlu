@@ -22,7 +22,7 @@ semlex(n,there,Index,Att-[sem:'UNK'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(n,other,Index,Att-[sem:'ALT'|Att],Sem):-       % OTHERS
-   \+ option('--semantics',drg), 
+   \+ candc_option('--semantics',drg), 
    att(Att,pos,'NNS'), !,
    Sem = lam(X,merge(B0:drs([],[B0:Index:pred(X,person,n,1)]),
                      alfa(def,
@@ -94,29 +94,29 @@ semlex(n,most,Index,Att-[sem:'TOP'|Att],Sem):-
 
 semlex(n,Sym,Index,Att-[sem:'TOP'|Att],Sem):-
    att(Att,pos,'JJS'),
-%   option('--semantics',amr),
+%   candc_option('--semantics',amr),
    !,
    att(Att,sense,Sense),
    Sem = lam(X,B:drs([],[B:Index:pred(X,Sym,n,Sense),B:[]:pred(X,most,r,1)])).
 
 semlex(n,Sym,Index,Att-[sem:'TOP'|Att],Sem):- 
-   \+ option('--semantics',drg),
-   \+ option('--semantics',amr),
+   \+ candc_option('--semantics',drg),
+   \+ candc_option('--semantics',amr),
    att(Att,pos,'JJS'), !,
    Sem = lam(X,B1:drs([],[B1:[]:imp(B2:drs([B2:[]:Y],[B2:[]:not(B3:drs([],[B3:[]:eq(Y,X)]))]),B4:drs([],[B4:Index:rel(X,Y,Sym,0)]))])).
 
 %semlex(n,Sym,_,Index,Att-[sem:'UNK'|Att],Sem):- 
-%   option('--x',true),
+%   candc_option('--x',true),
 %   negprefix(_, Sym, Prefix, Core), !,
 %   Sem = lam(X,B1:drs([],[B1:Index:not(B2:drs([],[B2:Index:pred(X,Prefix,n,71),B2:Index:pred(X,Core,n,1)]))])).
 
 %semlex(n,Sym,_,Index,Att-[sem:'UNK'|Att],Sem):- 
-%   option('--x',true),
+%   candc_option('--x',true),
 %   negsuffix(_, Sym, Suffix, Core), !,
 %   Sem = lam(X,B1:drs([],[B1:Index:not(B2:drs([],[B2:Index:pred(X,Suffix,n,72),B2:Index:pred(X,Core,n,1)]))])).
 
 semlex(n,Sym,Index,Att-[sem:'CON'|Att],Sem):-
-   option('--plural',true),
+   candc_option('--plural',true),
    att(Att,pos,'NNS'), !,
    att(Att,sense,Sense),
    Sem = lam(X,B:drs([],[B:Index:pred(X,Sym,n,Sense),B:[]:card(X,2,ge)])).
@@ -206,7 +206,7 @@ semlex(Cat,much,Index,Att-[sem:'QUA'|Att],Sem):-
 
 semlex(Cat,only,Index,Att-[sem:'EXC'|Att],Sem):- 
    cat(Cat,n|n), !,
-   \+ option('--semantics',amr), !,
+   \+ candc_option('--semantics',amr), !,
    Sem = lam(P,lam(X,merge(app(P,X),B1:drs([],[B1:[]:imp(merge(B2:drs([B2:Index:Y],[]),app(P,Y)),B3:drs([],[B3:[]:eq(X,Y)]))])))).
 
 
@@ -215,14 +215,14 @@ semlex(Cat,only,Index,Att-[sem:'EXC'|Att],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
    cat(Cat,n|n), 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    negprefix(_, Sym, _Prefix, Core), !,
    Sem = lam(P,lam(X,merge(B1:drs([],[B1:Index:not(B2:drs([B2:[]:E],[B2:[]:rel(E,X,invmod,1),
                                                                      B2:Index:pred(E,Core,a,1)]))]),app(P,X)))).
 
 semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
    cat(Cat,n|n), 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    negsuffix(_, Sym, _Suffix, Core), !,
    Sem = lam(P,lam(X,B1:drs([],[B1:Index:not(merge(B2:drs([B2:[]:E],[B2:[]:rel(X,E,mod,1),
                                                                      B2:Index:pred(E,Core,a,1)]),app(P,X)))]))).
@@ -234,8 +234,8 @@ semlex(Cat,Sym,Index,Att-[sem:'NOT'|Att],Sem):-
 ------------------------------------------------------------------------- */
 
 semlex(Cat,Sym,Index,Att-[sem:'ALT'|Att],Sem):-
-   \+ option('--semantics',drg), 
-   \+ option('--semantics',amr), 
+   \+ candc_option('--semantics',drg), 
+   \+ candc_option('--semantics',amr), 
    member(Sym,[other,previous,different]),
    cat(Cat,n|n), !,
    Sem = lam(P,lam(X,merge(app(P,X),
@@ -419,7 +419,7 @@ semlex(Cat,Sym,Index,Att1-Att2,Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'MOR'|Att],Sem):-
    att(Att,pos,'JJR'), \+ Sym=more,
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    cat(Cat,n|n), !,
    att(Att,sense,Sense),
    Sem = lam(P,lam(X,merge(B:drs([B:[]:E],[B:[]:rel(X,E,mod,1),B:Index:pred(E,Sym,a,Sense),B:[]:pred(E,more,r,1)]),app(P,X)))).
@@ -433,7 +433,7 @@ semlex(Cat,Sym,Index,Att1-[sem:'MOR'|Att2],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'TOP'|Att],Sem):-
    att(Att,pos,'JJS'), \+ Sym=most,
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    cat(Cat,n|n), !,
    att(Att,sense,Sense),
    Sem = lam(P,lam(X,merge(B:drs([B:[]:E],[B:[]:rel(X,E,mod,1),B:Index:pred(E,Sym,a,Sense),B:[]:pred(E,most,r,1)]),app(P,X)))).
@@ -446,8 +446,8 @@ semlex(Cat,Sym,Index,Att1-[sem:'TOP'|Att2],Sem):-
    Sem = lam(P,lam(X,merge(B:drs([B:[]:E],[B:[]:role(X,E,Role,-1),B:Index:pred(E,Sym,a,Sense),B:[]:pred(E,most,r,1)]),app(P,X)))).
 
 %semlex(Cat,Sym,Index,Att-[sem:'UNK'|Att],Sem):-
-%   \+ option('--semantics',drg),
-%   \+ option('--semantics',amr),
+%   \+ candc_option('--semantics',drg),
+%   \+ candc_option('--semantics',amr),
 %   att(Att,pos,'JJS'),
 %   cat(Cat,n|n), !,
 %   Sem = lam(P,lam(X,merge(app(P,X),
@@ -462,7 +462,7 @@ semlex(Cat,Sym,Index,Att1-[sem:'TOP'|Att2],Sem):-
 
 semlex(Cat,Sym,Index,Att-[sem:'IST'|Att],Sem):-
    cat(Cat,n|n), 
-   option('--semantics',amr), !,
+   candc_option('--semantics',amr), !,
    att(Att,sense,Sense),
    Sem = lam(P,lam(X,merge(B:drs([B:[]:E],[B:[]:rel(X,E,mod,1),B:Index:pred(E,Sym,a,Sense)]),app(P,X)))).
 
@@ -570,7 +570,7 @@ semlex(Cat,Sym,Index,Att1-[sem:'TOP'|Att2],Sem):-
                                                  B:[]:pred(E,most,r,1)]))))).
 
 semlex(Cat,Sym,Index,Att-[sem:'TOP'|Att],Sem):-        
-   \+ option('--semantics',drg),
+   \+ candc_option('--semantics',drg),
    att(Att,pos,'JJS'),
    member(Cat,[(n/n)/(n/n),        %%%% Example: ... fastest growing segment
                (n/n)\(n/n)]), !,   %%%% Example: ... third largest bank (incorrect semantics!)
@@ -647,14 +647,14 @@ semlex(Cat,Sym,Index,Att1-[sem:'AND'|Att2],Sem):-
                                                 merge(B3:drs([],[B3:Index:rel(X,Y,Relation,0)]),app(P,X)))])))).
 
 semlex(Cat,Sym,Index,Att-[sem:'PRX'|Att],Sem):- 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Sym,[this,these]),
    Cat = (n\n)/n, !,
    Sem = lam(N,lam(P,lam(X,alfa(def,merge(B1:drs([B1:[]:Y],[B1:Index:pred(Y,this,r,2)]),app(N,Y)),
                                     merge(B2:drs([],[B2:[]:rel(X,Y,rel,0)]),app(P,X)))))).
 
 semlex(Cat,Sym,Index,Att-[sem:'DST'|Att],Sem):- 
-   option('--semantics',amr),
+   candc_option('--semantics',amr),
    member(Sym,[that,those]),
    Cat = (n\n)/n, !,
    Sem = lam(N,lam(P,lam(X,alfa(def,merge(B1:drs([B1:[]:Y],[B1:Index:pred(Y,that,r,2)]),app(N,Y)),

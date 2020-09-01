@@ -1209,7 +1209,7 @@ rule(drs([],[]),
      [ frametarget(I,Frame) ],
 
      drs([],[I:pred(E,Sym,v,1),[]:pred(E,Frame,a,99)])):-
-   candc_option('--framenet',training).
+   candc_candc_option('--framenet',training).
 
 /*
 rule(drs([],[]),
@@ -1254,7 +1254,7 @@ rule(drs([I2:X],[[]:pred(E,_Frame,a,99)]),
      [ framerole(I2,Role) ],
 
      drs([],[I1:rel(E,X,Rel,1),[]:rel(E,X,Role,99)])):-
-   candc_option('--framenet',training).
+   candc_candc_option('--framenet',training).
 
 % adverb
 %
@@ -1264,7 +1264,7 @@ rule(drs([],[[]:pred(E,_Frame,a,99)]),
      [ framerole(I1,Role) ],
 
      drs([],[I1:pred(E,Sym,a,1),[]:rel(E,E,Role,99)])):-
-   candc_option('--framenet',training).
+   candc_candc_option('--framenet',training).
 
 % indirect (possessive)
 %
@@ -1274,7 +1274,7 @@ rule(drs([I2:Y],[[]:pred(E,_Frame,a,99),[]:rel(E,X,_,99)]),
      [ framerole(I2,Role) ],
 
      drs([],[I1:rel(X,Y,of,1),[]:rel(E,Y,Role,98)])):-
-   candc_option('--framenet',training).
+   candc_candc_option('--framenet',training).
 
 
 /*========================================================================

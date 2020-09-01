@@ -344,7 +344,7 @@ report_item(portray,Item) :-
 report_item(expr,Item) :-
    write_tree(Item), nl.
 report_item(tree,Item) :-
-   print_tree(Item), nl.
+   print_tree80(Item), nl.
 
 runtime(TimeSecs) :- statistics(runtime,[MSec,_]), TimeSecs is MSec/1000,!.
 

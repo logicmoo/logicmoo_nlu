@@ -33,7 +33,7 @@
 
 :- use_module(semlib(drs2fol),[drs2fol/2]).
 :- use_module(semlib(errors),[error/2,warning/2,inform/2]).
-:- use_module(semlib(options),[option/2,parseOptions/2,setOption/3,
+:- use_module(semlib(options),[candc_option/2,parseOptions/2,setOption/3,
                                showOptions/1,setDefaultOptions/1]).
 
 :- use_module(nutcracker(version),[version/1]).
@@ -52,7 +52,7 @@
 ======================================================================== */
 
 main:-
-   option(Option,do), 
+   candc_option(Option,do), 
    member(Option,['--version','--help']), !, 
    version,
    help.
@@ -94,20 +94,20 @@ main([_|Dirs]):-
 ------------------------------------------------------------------------*/
 
 pipeline(X,Overlap):-
-   option('--inference',yes),
+   candc_option('--inference',yes),
    meta(X), parse(X), wsd(X), box(X), 
    mwn(X,Ax1,Ax2,Ax3,Novelty),
    nc(X,Ax1,Ax2,Ax3), !,
    prediction(X,Novelty,Overlap).
 
 pipeline(X,Overlap):-
-   option('--inference',no),
+   candc_option('--inference',no),
    meta(X), parse(X), wsd(X), box(X), 
    mwn(X,_,_,_,Novelty), !,
    prediction(X,Novelty,Overlap).
 
 pipeline(X,Overlap):-
-   option('--inference',only),
+   candc_option('--inference',only),
    box(X),
    mwn(X,Ax1,Ax2,Ax3,Novelty), 
    nc(X,Ax1,Ax2,Ax3), !,
@@ -126,14 +126,14 @@ checkDir(Dirs):-
    checkDir2(Dir,Dirs).   % check permissions
 
 checkDir1(NewDir):-
-   option('--dir',Dir),
+   candc_option('--dir',Dir),
    atom_chars(Dir,Chars),
    append(NewChars,['/'],Chars), !,
    atom_chars(NewDir,NewChars),
    setOption(nutcracker,'--dir',NewDir).
 
 checkDir1(Dir):-
-   option('--dir',Dir).
+   candc_option('--dir',Dir).
 
 checkDir2(Dir,[Dir]):-
    exists_directory(Dir), 
@@ -187,10 +187,10 @@ checkFiles(Dir):-
 ------------------------------------------------------------------------*/
 
 printTHG(_,_,_,_):-
-   option('--info',false), !.
+   candc_option('--info',false), !.
 
 printTHG(Dir,TFile,HFile,GFile):-
-   option('--info',true), 
+   candc_option('--info',true), 
    inform('[=====> ~p <=====]',[Dir]),
    inform('Text:',[]),
    atomic_list_concat(['cat',TFile],' ',Shell1),
@@ -206,10 +206,10 @@ printTHG(_,_,_,_):-
    error('failed to access t and h file',[]).
 
 printTHG(_,_,_):-
-   option('--info',false), !.
+   candc_option('--info',false), !.
 
 printTHG(Dir,TFile,HFile):-
-   option('--info',true), 
+   candc_option('--info',true), 
    inform('[=====> ~p <=====]',[Dir]),
    inform('Text:',[]),
    atomic_list_concat(['cat',TFile],' ',Shell1),
@@ -328,7 +328,7 @@ parse(Dir):-
 ------------------------------------------------------------------------*/
 
 parse(In,Out):-
-   option('--soap',true),
+   candc_option('--soap',true),
    atomic_list_concat(['bin/soap_client',
                 '--url http://localhost:9000',
                 '--input',In,
@@ -337,7 +337,7 @@ parse(In,Out):-
    shell(Shell,0), !.
 
 parse(In,Out):-
-   option('--soap',false),
+   candc_option('--soap',false),
    atomic_list_concat(['bin/candc',
                 '--input',In,
                 '--output',Out,
@@ -356,7 +356,7 @@ parse(In,_):-
 ------------------------------------------------------------------------*/
 
 box(Dir):-
-   ( option('--wsd',true), !, Ext = 'ccg.wsd'; Ext = 'ccg' ),
+   ( candc_option('--wsd',true), !, Ext = 'ccg.wsd'; Ext = 'ccg' ),
    atomic_list_concat([Dir,'/', 't.',Ext], TFileCCG),
    atomic_list_concat([Dir,'/', 'h.',Ext], HFileCCG),
    atomic_list_concat([Dir,'/','th.',Ext],THFileCCG),
@@ -380,15 +380,15 @@ box(Dir):-
 ------------------------------------------------------------------------*/
 
 box(In,Out):-
-   option('--plural',PluralOpt), 
-   option('--modal',ModalOpt), 
-%  option('--vpe',VpeOpt), 
-   option('--copula',CopOpt), 
-   option('--warnings',WarOpt), 
-   option('--roles',RolesOpt), 
-   option('--resolve',ResolveOpt), 
-   option('--nn',NNOpt), 
-   option('--x',XOpt), 
+   candc_option('--plural',PluralOpt), 
+   candc_option('--modal',ModalOpt), 
+%  candc_option('--vpe',VpeOpt), 
+   candc_option('--copula',CopOpt), 
+   candc_option('--warnings',WarOpt), 
+   candc_option('--roles',RolesOpt), 
+   candc_option('--resolve',ResolveOpt), 
+   candc_option('--nn',NNOpt), 
+   candc_option('--x',XOpt), 
    atomic_list_concat([Out,xml],'.',OutXML),
    atomic_list_concat(['bin/boxer',
                 '--input',In,
@@ -434,7 +434,7 @@ box(In,_):-
 ------------------------------------------------------------------------*/
 
 wsd(Dir):-
-   option('--wsd',true), 
+   candc_option('--wsd',true), 
    atomic_list_concat([Dir,'/','t.ccg'],TFileCCG),
    atomic_list_concat([Dir,'/','h.ccg'],HFileCCG),
    atomic_list_concat([Dir,'/','th.ccg'],THFileCCG),
@@ -449,12 +449,12 @@ wsd(Dir):-
    wsd(THFileCCG,THFileWSD).
 
 wsd(Dir):-
-   option('--wsd',true), 
+   candc_option('--wsd',true), 
    error('directory ~p does not contain files named t.ccg and h.ccg',[Dir]), 
    !, fail.   
 
 wsd(_):- 
-   option('--wsd',false).
+   candc_option('--wsd',false).
 
 
 /*------------------------------------------------------------------------
@@ -512,18 +512,18 @@ nc(Dir,KT,KH,KTH):-
 ========================================================================*/
 
 axioms(_):-
-   option('--axioms',File), 
+   candc_option('--axioms',File), 
    File = none, !.
 
 axioms(Dir):-
-   option('--axioms',File), 
+   candc_option('--axioms',File), 
    access_file(File,read),
    catch(load_files([File],[autoload(true),encoding(utf8)]),_,fail),
    findall(imp(A,B),imp(A,B),Axioms), !,
    preprocessAxioms(Axioms,Dir,0).
    
 axioms(_):-
-   option('--axioms',File), 
+   candc_option('--axioms',File), 
    error('cannot access axioms ~p',[File]).
 
 
@@ -535,7 +535,7 @@ preprocessAxioms([],_,N):-
    inform('Background knowledge: ~p axioms',[N]).
 
 preprocessAxioms([imp(A,B)|L],Dir,M):-
-   option('--modal',true), N is M+1,
+   candc_option('--modal',true), N is M+1,
    drs2fol(drs([],[nec(drs([],[imp(A,B)]))]),Axiom), 
    drs2fol(A,Antecedent), !,
    callTPandMB(Dir,[],not(Antecedent),Antecedent,1,10,Model,_Engine),
@@ -545,7 +545,7 @@ preprocessAxioms([imp(A,B)|L],Dir,M):-
    preprocessAxioms(L,Dir,N).
 
 preprocessAxioms([imp(A,B)|L],Dir,M):-
-   option('--modal',false), N is M+1,
+   candc_option('--modal',false), N is M+1,
    drs2fol(drs([],[imp(A,B)]),Axiom), !,
    callTPandMB(Dir,[],not(Axiom),Axiom,1,10,Model,_Engine),
    Model = model(_,F),
@@ -610,7 +610,7 @@ consistent(_,_,Dir,Name,DomSize,Model):-
 
 consistent(B,BK,Dir,Name,MinDom,Model):-
    drs2fol(B,F),
-   option('--domsize',MaxDom),
+   candc_option('--domsize',MaxDom),
    callTPandMB(Dir,BK,not(F),F,MinDom,MaxDom,TmpModel,TmpEngine),
    ( member(Name,[kt,kh,kth]), !, callMBbis(Dir,BK,F,TmpModel,Model,TmpEngine,Engine)
    ; TmpModel = Model, TmpEngine = Engine ),
@@ -629,7 +629,7 @@ informative(B1,B2,BK,Dir,Name,MinDom,Model):-
    drs2fol(B1,F1),
    drs2fol(B2,F2),
    F = imp(F1,F2),
-   option('--domsize',MaxDom),
+   candc_option('--domsize',MaxDom),
    callTPandMB(Dir,BK,F,not(F),MinDom,MaxDom,Model,Engine),
    outputModel(Model,Name,Dir,DomSize),
    ( DomSize > 0, !, Result = 'informative'
@@ -690,14 +690,14 @@ prediction(Dir,WNNovelty,Overlap):-
 % PROOF without BK by THEOREM PROVER: INPUT INCONSISTENT
 %
 makePrediction(T,H,_,_,_,_,_,_,_,_,_,_,Prediction):-
-   option('--contradiction',true), 
+   candc_option('--contradiction',true), 
    (T = 0; H = 0), !,
    Prediction = 'unknown (simple input contradiction)'.
 
 % PROOF without BK by THEOREM PROVER: INCONSISTENT
 %
 makePrediction(T,H,TH,_,_,_,_,_,_,_,_,_,Prediction):-
-   option('--contradiction',true), 
+   candc_option('--contradiction',true), 
    T > 0, H > 0, TH = 0, !,
    Prediction = 'informative (simple inconsistency)'.
 
@@ -710,14 +710,14 @@ makePrediction(T,H,TH,TNH,_,_,_,_,_,_,_,_,Prediction):-
 % PROOF with BK by THEOREM PROVER: INPUT INCONSISTENT
 %
 makePrediction(T,H,TH,_,KT,KH,_,_,_,_,_,_,Prediction):-
-   option('--contradiction',true), 
+   candc_option('--contradiction',true), 
    T > 0, H > 0, TH > 0, (KT = 0; KH = 0),  !,
    Prediction = 'unknown (complex input contradiction)'.
 
 % PROOF with BK by THEOREM PROVER: INCONSISTENT
 %
 makePrediction(T,H,TH,_,KT,KH,KTH,_,_,_,_,_,Prediction):-
-   option('--contradiction',true), 
+   candc_option('--contradiction',true), 
    T > 0, H > 0, TH > 0, KT > 0, KH > 0, KTH = 0, !,
    Prediction = 'informative (complex inconsistency)'.
 
@@ -731,7 +731,7 @@ makePrediction(T,H,TH,TNH,KT,KH,KTH,KTNH,_,_,_,_,Prediction):-
 % WORDNET NOVELTY
 %
 makePrediction(_,_,_,_,_,_,_,_,DomNovelty,_,WNNovelty,_,Prediction):-
-   option('--modal',false), WNNovelty >= 0, DomNovelty < 0, !, 
+   candc_option('--modal',false), WNNovelty >= 0, DomNovelty < 0, !, 
    %%% DRS but no model could be computed, back off to WN novelty
 %  Threshold = 0.416667, %%% RTE-2 dev  (J48, 59.6%, n= 768)
 %  Threshold = 0.25,     %%% RTE-2 test (J48, 59.1%, n= 766)
@@ -922,7 +922,7 @@ computeNovelty(_,_,_,-1).
 ======================================================================== */
 
 computeMWN(DRS,Dir,File,Size):-   
-   option('--wordnet',true), !,
+   candc_option('--wordnet',true), !,
    clearMWN,
    compConcepts(DRS,_),
    compISA,
@@ -940,7 +940,7 @@ computeMWN(_,_,_,0).
 ========================================================================*/
 
 version:-
-   option('--version',do), !,
+   candc_option('--version',do), !,
    version(V),
    format(user_error,'~p~n',[V]).
 
@@ -952,12 +952,12 @@ version.
 ========================================================================*/
 
 help:-
-   option('--help',do), !,
+   candc_option('--help',do), !,
    format(user_error,'usage: nc [options]~n~n',[]),
    showOptions(nutcracker).
 
 help:-
-   option('--help',dont), !.
+   candc_option('--help',dont), !.
 
 
 /* =======================================================================
