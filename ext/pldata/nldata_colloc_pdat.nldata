@@ -1,3 +1,5 @@
+:- dynamic((mws/2)).
+:- multifile((mws/2)).
 
 mws(['abu','hafs','al-masri','brigades'],n).
 mws(['abu','nidal','organization'],n).

@@ -1,5 +1,6 @@
 :- module(nldata_colloc_pdat,[mws/2]).
 :- dynamic((mws/2)).
+:- multifile((mws/2)).
 
 mws(['\'s','gravenhage'],n).
 mws(['11','november'],n).

@@ -939,62 +939,6 @@ verbnet(inform, ((s:_\np)/pp)/np, ['Recipient','Agent'], [37,'.',9]).
 verbnet(notify, ((s:_\np)/pp)/np, ['Recipient','Agent'], [37,'.',9]).
 verbnet(of, pp/np, ['Topic'], [37,.,9]).
 
+:- include('verbnet.nldata').
 %%% File:    ext/VerbNet/allow-64.xml
-%%% Primary: NP V NP (allow-64)
-%%% Syntax:  [np:Agent,v,np:Theme]
-%%% CCG:     (s:_\np)/np
-%%% Roles:   [Theme,Agent]
-%%% Example: They allow birds.
-%%%
-verbnet(allow, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(approve, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(permit, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(sanction, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(tolerate, (s:_\np)/np, ['Theme','Agent'], [64]).
 
-%%% File:    ext/VerbNet/allow-64.xml
-%%% Primary: NP V S_ING (allow-64)
-%%% Syntax:  [np:Agent,v,vp_ng:Theme]
-%%% CCG:     (s:_\np)/ (s:ng\np)
-%%% Roles:   [Theme,Agent]
-%%% Example: They allow smoking.
-%%%
-verbnet(allow, (s:_\np)/ (s:ng\np), ['Theme','Agent'], [64]).
-verbnet(approve, (s:_\np)/ (s:ng\np), ['Theme','Agent'], [64]).
-verbnet(permit, (s:_\np)/ (s:ng\np), ['Theme','Agent'], [64]).
-verbnet(sanction, (s:_\np)/ (s:ng\np), ['Theme','Agent'], [64]).
-verbnet(tolerate, (s:_\np)/ (s:ng\np), ['Theme','Agent'], [64]).
-
-%%% File:    ext/VerbNet/allow-64.xml
-%%% Primary: NP V NP to be NP (allow-64)
-%%% Syntax:  [np:Agent,v,np:Theme]
-%%% CCG:     (s:_\np)/np
-%%% Roles:   [Theme,Agent]
-%%% Example: They allow us to be smokers.
-%%%
-verbnet(allow, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(approve, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(permit, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(sanction, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(tolerate, (s:_\np)/np, ['Theme','Agent'], [64]).
-
-%%% File:    ext/VerbNet/allow-64.xml
-%%% Primary: NP V S_ING (allow-64)
-%%% Syntax:  [np:Agent,v,np:Theme]
-%%% CCG:     (s:_\np)/np
-%%% Roles:   [Theme,Agent]
-%%% Example: They allow our smoking.
-%%%
-verbnet(allow, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(approve, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(permit, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(sanction, (s:_\np)/np, ['Theme','Agent'], [64]).
-verbnet(tolerate, (s:_\np)/np, ['Theme','Agent'], [64]).
-
-%%% File:    ext/VerbNet/allow-64.xml
-%%% Primary: NP V that S (allow-64)
-%%% Syntax:  [np:Agent,v,s:Theme]
-%%% CCG:     (s:_\np)/s:_
-%%% Roles:   [Theme,Agent]
-%%% Example: They allow that we smoke.
-%%%

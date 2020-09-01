@@ -989,4 +989,4 @@ brillPos(['PPS','xtPunctuationSymbol']). %% , colon, semicolon, elipsis',':, ...
 brillPos(['LRB','xtPunctuationSymbol']). %% , left bracket']).  %%'(, {, [
 brillPos(['RRB','xtPunctuationSymbol']). %% , right bracket']).  %%'), }, ]
 
-:- include('nldata_colloc_pdat.nldata').
+:- include('nldata_cycl_pos0.nldata').

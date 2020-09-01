@@ -12,11 +12,9 @@
 %textCached('You-TheWord', denotation, [ 'ObjectPronoun', 'PronounFn'('SecondPerson-NLAttr', 'Singular-NLAttr', 'Ungendered-NLAttr', 'ObjectPronoun')]).
 %textCached('You-TheWord', denotation, [ 'SubjectPronoun', 'PronounFn'('SecondPerson-NLAttr', 'Plural-NLAttr', 'Ungendered-NLAttr', 'SubjectPronoun')]).
 %textCached('You-TheWord', denotation, [ 'SubjectPronoun', 'PronounFn'('SecondPerson-NLAttr', 'Singular-NLAttr', 'Ungendered-NLAttr', 'SubjectPronoun')]).
-:- dynamic textCached/3.
+:- multifile(textCached/3).
+:- dynamic(textCached/3).
 :- style_check(-singleton).
-:- set_prolog_flag(double_quotes, string).
-:- install_constant_renamer_until_eof.
-:- set_prolog_flag(do_renames_sumo,never).
 
 textCached('A-TheWord',frame, ['A-TheWord', 'Determiner', 'QuantifierFrame', thereExists(':NOUN', and(':RESTR', ':SCOPE')), determinerSemTrans]).
 textCached('About-TheWord',frame, ['About-TheWord', 'Adverb', 'DeterminerModifyingFrame', 'ApproximatelyFn'(':DET'), adverbSemTrans]).
@@ -91,4 +89,4 @@ textCached('Be-TheWord',wsframe, ['Be-TheWord', 'TheList'(string('"able"')), 'Tr
 textCached('Be-TheWord',wsframe, ['Be-TheWord', 'TheList'(string('"made"')), 'PPCompFrameFn'('TransitivePPFrameType', 'Of-TheWord'), constituents(':SUBJECT', ':OBLIQUE-OBJECT'), 'Verb']).
 
 
-:- include('nldata_colloc_pdat.nldata').
+:- include('posm_cached_data2.nldata').

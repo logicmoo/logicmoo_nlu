@@ -1,4 +1,6 @@
 :- module(nldata_BRN_WSJ_LEXICON,[text_bpos/2]).
+
+:- multifile((text_bpos/2)).
 :- dynamic(text_bpos/2).
 
 text_bpos('%...',(':')).

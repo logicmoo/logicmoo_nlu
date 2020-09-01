@@ -1,3 +1,5 @@
+:- multifile((text_bpos/2)).
+:- dynamic(text_bpos/2).
 
 text_bpos('.fundamentally','rb').
 text_bpos('.to','to').
