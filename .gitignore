@@ -12,7 +12,7 @@ src~
 *.o
 ~*
 *_cache
-*-models.jar
+#*-models.jar
 ext/kalm-qa/query
 ext/kalm-qa/metaqa
 prolog/non_ec_planner/SandCat/
@@ -35,5 +35,7 @@ prolog/non_ec_planner/final_year_project/
 prolog/non_ec_planner/log-generator/
 prolog/non_ec_planner/parallelizing-ILP-in-ASP/
 prolog/non_ec_planner/prolexercises/
-data/
+# data/
+data/fndata-1.5/
+data/fndata-1.7/
 mount/
