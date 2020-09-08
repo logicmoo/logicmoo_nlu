@@ -337,27 +337,29 @@ tellstems:- tell(tellstems),forall(no_repeats(der_stem(O1,O2)),format('~N~q.~n',
 :-style_check(-singleton).
 :-style_check(- (discontiguous)).
 
-:- include('WNprolog-3.0/prolog/wn_ant.pl').
-:- include('WNprolog-3.0/prolog/wn_at.pl').
-:- include('WNprolog-3.0/prolog/wn_cls.pl').
-:- include('WNprolog-3.0/prolog/wn_cs.pl').
-:- include('WNprolog-3.0/prolog/wn_der.pl').
-:- include('WNprolog-3.0/prolog/wn_ent.pl').
-:- include('WNprolog-3.0/prolog/wn_fr.pl').
-:- include('WNprolog-3.0/prolog/wn_g.pl').
-:- include('WNprolog-3.0/prolog/wn_hyp.pl').
-:- include('WNprolog-3.0/prolog/wn_ins.pl').
-:- include('WNprolog-3.0/prolog/wn_mm.pl').
-:- include('WNprolog-3.0/prolog/wn_mp.pl').
-:- include('WNprolog-3.0/prolog/wn_ms.pl').
-:- include('WNprolog-3.0/prolog/wn_per.pl').
-:- include('WNprolog-3.0/prolog/wn_ppl.pl').
-:- include('WNprolog-3.0/prolog/wn_s.pl').
-:- include('WNprolog-3.0/prolog/wn_sa.pl').
-:- include('WNprolog-3.0/prolog/wn_sim.pl').
-:- include('WNprolog-3.0/prolog/wn_sk.pl').
-:- include('WNprolog-3.0/prolog/wn_syntax.pl').
-:- include('WNprolog-3.0/prolog/wn_vgp.pl').
+user:file_search_path(wndb_data,WNDB):- getenv('WNDB', WNDB).
+
+:- include(wndb_data(wn_ant)).
+:- include(wndb_data(wn_at)).
+:- include(wndb_data(wn_cls)).
+:- include(wndb_data(wn_cs)).
+:- include(wndb_data(wn_der)).
+:- include(wndb_data(wn_ent)).
+:- include(wndb_data(wn_fr)).
+:- include(wndb_data(wn_g)).
+:- include(wndb_data(wn_hyp)).
+:- include(wndb_data(wn_ins)).
+:- include(wndb_data(wn_mm)).
+:- include(wndb_data(wn_mp)).
+:- include(wndb_data(wn_ms)).
+:- include(wndb_data(wn_per)).
+:- include(wndb_data(wn_ppl)).
+:- include(wndb_data(wn_s)).
+:- include(wndb_data(wn_sa)).
+:- include(wndb_data(wn_sim)).
+:- include(wndb_data(wn_sk)).
+:- include(wndb_data(wn_syntax)).
+:- include(wndb_data(wn_vgp)).
 
 /*
 
@@ -4649,28 +4651,28 @@ ant(201346003,1,201345109,1).
 ant(201345109,1,201346003,1).
 ant(200219963,1,201348174,1).
 
-WNprolog-3.0/prolog/wn_sk.pl:sk(201983771,1,'change_posture%2:38:00::').
-WNprolog-3.0/prolog/wn_s.pl:s(201983771,1,'change posture',v,1,0).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(202098680,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(202063486,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(202040273,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(202035781,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(202035559,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201985923,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201985029,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201984902,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201984574,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201984317,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201984119,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201983771,200109660).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201983264,201983771).
-WNprolog-3.0/prolog/wn_hyp.pl:hyp(201982044,201983771).
-WNprolog-3.0/prolog/wn_g.pl:g(201983771,'undergo a change in bodily posture').
-WNprolog-3.0/prolog/wn_fr.pl:fr(201983771,0,2).
-WNprolog-3.0/prolog/wn_fr.pl:fr(201983771,0,1).
-WNprolog-3.0/prolog/wn_ent.pl:ent(202062632,201983771).
-wn_frames.pl:WNprolog-3.0/prolog/wn_sk.pl:sk(201983771,1,'change_posture%2:38:00::').
-wn_frames.pl:WNprolog-3.0/prolog/wn_s.pl:s(201983771,1,'change posture',v,1,0).
+wn_sk.pl:sk(201983771,1,'change_posture%2:38:00::').
+wn_s.pl:s(201983771,1,'change posture',v,1,0).
+wn_hyp.pl:hyp(202098680,201983771).
+wn_hyp.pl:hyp(202063486,201983771).
+wn_hyp.pl:hyp(202040273,201983771).
+wn_hyp.pl:hyp(202035781,201983771).
+wn_hyp.pl:hyp(202035559,201983771).
+wn_hyp.pl:hyp(201985923,201983771).
+wn_hyp.pl:hyp(201985029,201983771).
+wn_hyp.pl:hyp(201984902,201983771).
+wn_hyp.pl:hyp(201984574,201983771).
+wn_hyp.pl:hyp(201984317,201983771).
+wn_hyp.pl:hyp(201984119,201983771).
+wn_hyp.pl:hyp(201983771,200109660).
+wn_hyp.pl:hyp(201983264,201983771).
+wn_hyp.pl:hyp(201982044,201983771).
+wn_g.pl:g(201983771,'undergo a change in bodily posture').
+wn_fr.pl:fr(201983771,0,2).
+wn_fr.pl:fr(201983771,0,1).
+wn_ent.pl:ent(202062632,201983771).
+wn_frames.pl:wn_sk.pl:sk(201983771,1,'change_posture%2:38:00::').
+wn_frames.pl:wn_s.pl:s(201983771,1,'change posture',v,1,0).
 wn_frames.pl:learningbyreading/resources/wn30-id:01983771-v change_posture-v#1-v
 wn_frames.pl:learningbyreading/resources/wn30-id.sorted:01983771-v change_posture-v#1-v
 wn_frames.pl:learningbyreading/resources/wn30-16-id:01983771-v 01351846-v change_posture-v#1-v

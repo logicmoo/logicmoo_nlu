@@ -365,6 +365,8 @@ e2c_clausify_and_reply(LF, Reply) :-
 
 
 create_tests_for_cmd(Cmd):-
+  functor(Cmd,F,_),
+  format("~n~n:- begin_tests(~q).~n~n",[F]),
   forall(test_e2c(English, Options),
      (arg(1, Cmd, English),
       arg(2, Cmd, Options),
@@ -373,7 +375,8 @@ create_tests_for_cmd(Cmd):-
         [
          test(TestName, [true(compound(O)), nondet]):-
            call(Cmd, O)
-          ]))).
+          ]))),
+  format("~n~n:- end_tests(~q).~n~n",[F]),!.
 
 generate_all_e2c_tests_now:-
    create_tests_for_cmd(test_lex_info(_, _)),
@@ -381,12 +384,18 @@ generate_all_e2c_tests_now:-
    create_tests_for_cmd(curt80(_, _)),
    create_tests_for_cmd(e2c(_, _)), !.
 
-generate_all_e2c_tests:-
+parser_e2c_plt_file(File):- absolute_file_name(library('logicmoo_nlu/parser_e2c.plt'),File,[access(read),file_errors(fail)]).
+
+generate_e2c_plt_file:-
+ parser_e2c_plt_file(File),
+ (access_file(File,write)-> generate_e2c_plt_file(File) ; dmsg(cant_generate_e2c_plt_file(File))) .
+
+generate_e2c_plt_file(File):-
  setup_call_cleanup(
-  open('./parser_e2c.plt', write, Out),
+  open(File, write, Out),
   with_output_to(Out, generate_all_e2c_tests_now), close(Out)).
 
-%:- generate_all_e2c_tests.
+:- generate_e2c_plt_file.
 
 %:- break.
 
@@ -394,7 +403,5 @@ generate_all_e2c_tests:-
 
 :- fixup_exports.
 
-:- begin_tests(parser_e2c).
-:- include('./parser_e2c.plt').
-:- end_tests(parser_e2c).
+:- include('parser_e2c.plt').
 

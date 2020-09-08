@@ -545,7 +545,7 @@ with_el_holds_enabled_4_nl(Goal):-locally_hide(el_holds_DISABLED_KB, Goal).
 % :- ain((is_cyckb_t_pred(F, A) ==> {functor(H, F, A), H=..[F|ARGS], KB=..[cyckb_t, F|ARGS], assert_if_new((H:-KB))})).
 :- gripe_time(2, forall(is_cyckb_t_pred(F, A) , ignore((atom(F), functor(H, F, A), H=..[F|ARGS],
     KB=..[cyckb_t, F|ARGS],
-       logOnErrorIgnore(assert_if_new((H:- \+ (t_l:el_holds_DISABLED_KB), KB))))))).
+       on_x_log_cont(assert_if_new((H:- \+ (t_l:el_holds_DISABLED_KB), KB))))))).
 
 % ================================================================================================
 

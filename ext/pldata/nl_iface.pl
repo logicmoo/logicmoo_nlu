@@ -80,10 +80,10 @@ rexport_qlf(Module, Name, _PLF, _QLF):- exists_source(Name), !,
 
 set_rel_path_from_here:-
    prolog_load_context(file, File),
-   absolute_file_name('WNprolog-3.0/prolog/', WNDB, [relative_to(File), file_type(directory)]),
+   absolute_file_name('../../data/WNprolog-3.0/prolog/', WNDB, [relative_to(File), file_type(directory)]),
    setenv('WNDB', WNDB).
 
-:- getenv('WNDB', _WNDB) -> true ; set_rel_path_from_here.
+:- (getenv('WNDB', WNDB), exists_directory(WNDB)) -> true ; set_rel_path_from_here.
 
 :- nl_iface:rexport_qlf(nl_iface, wn_frames).
 % :- load_wordnet.

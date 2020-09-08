@@ -360,7 +360,7 @@ frcmp(P1, P2, Cmp):- compare(P1, P2, Cmp).
 
 % player1 give sally love
 verb_frame1(Action, Give,
-[ +default(Give)+var(Action)+isa(actGiving)+prep(do),
+[ (+default(Give))+var(Action)+isa(actGiving)+prep(do),
    default(them)+var(Recipient)+prep(to)+isa(tAnimate)+pred(recipient),
    default(it)+var(Object)+prep(some)+isa(tObject)+pred(objectActedOn),
    default(someone)+var(Doer)+isa(tAnimate)+prep(from)+prep(by)+pred(done_by),
