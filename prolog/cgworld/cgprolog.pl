@@ -1,9 +1,26 @@
 
+:- use_module(library(logicmoo_common)).
+
+:- expects_dialect(sicstus).
+
+cg_df_to_term(In,Out):- any_to_string(In,Str),
+  replace_in_string(['('='{',')'='}'],Str,Str0),
+  atom_to_term(Str0,Out,Vars),
+  maplist(call,Vars).
+
+:-multifile(cgr/3).
 :-multifile(cg/4).
 :-multifile(cgc/5).
 :-multifile(isa/2).
 :-multifile(ind/3).
 :-multifile(isa_kind/4).
+:-dynamic(cgr/3).
+:-dynamic(cg/4).
+:-dynamic(cgc/5).
+:-dynamic(isa/2).
+:-dynamic(ind/3).
+:-dynamic(isa_kind/4).
+
 :-dynamic ex_c/3.
 :-dynamic sp_c/3.
 :-dynamic broi/1.
@@ -18,6 +35,7 @@ isConcept(ID):-ground(ID),cgc(ID,_,_,_,_).
 isCG(ID):-ground(ID),cg(ID,_,_,_).
 
 isRelation(Name):-cgr(Name,_,_).
+
 isSimpleConcept(ID):-ground(ID),cgc(ID,simple,_,_,_).
 isSituationConcept(ID):-ground(ID),cgc(ID,complex,_,_,_).
 isSimpleGraph(ID):-ground(ID),cg(ID,_,_,F),member(fs(kind,normal),F).
@@ -53,7 +71,8 @@ broiId(Id):-listId(L),max_el(L,Id),asserta(broi(Id)).
 max_el(L,E):-mel(L,-1,E).
 mel([],E,E).
 mel([H|T],N,E):-ground(H),(H>=N -> mel(T,H,E));mel(T,N,E).
-:-broiId(X).
+
+:-broiId(_X).
 
 newId(Id):-retract(broi(I)),!,sum1(I,Id),asserta(broi(Id)).
 sum1(X,X1):-X1 is X+1.
@@ -172,6 +191,9 @@ maxComSubType(T1,T2,C,L1,L2,B):-
 referents1(Ref1,Ref2,Ref2):-subset(Ref1,Ref2),!.
 referents1(Ref1,Ref2,Ref):-subrefs(R1,Ref1),subrefs(R2,Ref2),!,
 	if(subset(R1,R2),Ref=R2,ref_subt(R1,R2,Ref)).
+
+:- discontiguous(ref_subt/3).
+
 /*PartialSet(1)*/
 ref_subt(R1,R2,R):-if(subt_case1(R1,R2,R),!,subt_case2(R1,R2,R)).
 subt_case1(R1,R2,R2):-check_mq(R1,Q1),check_mq(R2,Q2),!,
@@ -216,10 +238,15 @@ ref_comt1(Ref1,Ref2,Ref):-if(ref_comt2(Ref1,Ref2,Ref),!,
 	ref_comt2(Ref2,Ref1,Ref)).
 
 /*PartialSet(1)*/
+:- discontiguous(ref_comt2/3).
+
 ref_comt2(R1,R2,R):-if(comt_case1(R1,R2,R),!,comt_case2(R1,R2,R)).
+
 comt_case1(R1,R2,R2):-check_mq(R1,Q1),check_mq(R2,Q2),!,
 	brel(R1,N),brel(R2,N), Q2>=Q1,
-	if((member(fs(name,N1),R1),member(fs(name,N2),R2)), 		subset(N1,N2),!).
+	if((member(fs(name,N1),R1),member(fs(name,N2),R2)), 	     
+        subset(N1,N2),!).
+
 comt_case2(R1,R2,R2):-check_mq(R1,Q1),check_mq(R2,Q2),!,Q2>=Q1,
 	brel(R1,N),N2 is (N+1),brel(R2,N2),member(fs(name,L),R2).
 	
@@ -227,6 +254,7 @@ comt_case2(R1,R2,R):-check_mq(R1,Q1),check_mq(R2,Q2),Q2>=Q1,
 	brel(R2,N),N2 is (N+1),brel(R1,N2),member(fs(name,L),R1),
 	brel(L,L1),Q2>=L1,
 	append(R2,[fs(name,L)],R).
+
 /*DefiniteSet(1)*/
 ref_comt2(R1,R2,R2):-check_tn(R1,N1),check_tn(R2,N2),brel(R1,N),
 	brel(R2,N),subset(N1,N2).
@@ -270,8 +298,8 @@ subrefs(L,[H|T]):-subRef(H1,[H]),!,
 brel([],0).
 brel([_|T],N):-brel(T,N1),N is N1+1.
 
-subset([],_).
-subset([E|Sub],Set):-member(E,Set),!,subset(Sub,Set).
+%subset([],_).
+%subset([E|Sub],Set):-member(E,Set),!,subset(Sub,Set).
 
 /*ind(IndID,Name,Type) declares that individual with IndID conforms to the Type,this individual also conforms to all super types of the given type*/
 conformity(IndID,Type):-ind(IndID,_,Type).
@@ -1047,11 +1075,12 @@ com_rel(cgr(N,[C1|C],_),[cgr(N,[C2|C],_)|L],R):-
 com_rel(cgr(N,[C|C1],_),[_|L],L1):-
 	com_rel(cgr(N,[C|C1],_),L,L1).
 
+
 findrep([],_,[]):-!.
 findrep([cgr(N,[C|C1],_)|T],L,R):-
 	com_rel(cgr(N,[C|C1],_),L,L1),!,findrep(T,L,L2),
 	append(L1,L2,R).
-findrep([_|T],L,T1):-findrel(T,L,T1).
+findrep([_|T],L,T1):-   findrel(T,L,T1).
 
 replacement([],_,[]).
 replacement([rep(C1,C2)|L],Reld,Reld1):-
@@ -1142,8 +1171,8 @@ sec([],_,[]).
 sec([H|T],S2,[H|S]):-member(H,S2),!,sec(T,S2,S).
 sec([H|T],S2,S):-non_member(H,S2),!,sec(T,S2,S).
 
-not_member(E,L):-member(E,L),!,fail.
-not_member(_,_).
+non_member(E,L):-member(E,L),!,fail.
+non_member(_,_).
 
 union1([],L,L).
 union1([H|T],L,L1):-member(H,L),!,union1(T,L,L1).
@@ -1295,6 +1324,296 @@ exist_params(Param,Grid):-params(Param),take_last(Param,Grid),
 not_exist_params(Param,Grid):-exist_params(Param,Grid),!,fail.
 not_exist_params(_,_).
 take_last(L,E):-append(_,[E],L).
+
+
+
+
+
+/*
+
+This file translates CG from CGPro form to FOL .
+Different types of referents that the 
+Translator handles are incrementally added to the system. 
+Allowed types of referents:
+- generic [PERSON: *] <-> exists(x,person(x))
+- named concept [PERSON: John] <-> exists(x,person(x)&name(x,'John')&word('John'))
+- universally quantified concept [PERSON: every] <-> all(Y,person(Y)-> ...)
+- collective sets of named concepts [PERSON: {John,Sally}]
+
+*/
+
+
+
+:- op(850,fx,~).    % negation
+:- op(900,xfy,#).   % disjunction
+:- op(900,xfy,&).   % conjunction
+:- op(950,xfy,->).  % implication
+
+
+
+:- dynamic seed1/1.
+
+/* This predicate returns the concatenation of two atoms as an atom */
+  
+	concat(S1,S2,S):-
+	name(S1,L1),name(S2,L2),append(L1,L2,L),
+	name(S,L).
+	
+	
+seed1(0).
+
+concat1(S1,S2,S):-
+	name(S1,L1),name(S2,L2),append(L1,L2,L),
+	name(S,L).
+
+
+translate_ind(ind(A,Name,Ind),S):- S=..[Name,Ind].
+
+% translate_pred_id(Id,F):-
+% cg(Id,A,B,C),translate_cgraph(cg(Id,A,B,C),F).
+
+translate_cgraph(cg(Id,Rels,A,B),Formula):-
+	expand_names(cg(Id,Rels,A,B),cg(Id,Rels1,A,B)),
+	translate_cg(cg(Id,Rels1,A,B),Formula).
+
+translate_cg(cg(_,Rels,_,_),Formula):-
+        get_concepts_pred(Rels,CIDs),
+        assign_varsn_pred(CIDs,ListIdsConcs),
+        make_formula(Rels,ListIdsConcs,FormulaBody),
+        make_cg_prefix1(ListIdsConcs,Formula, FormulaBody).
+
+expand_names(cg(Id,Rels,A,B),cg(Id,Rels1,A,B)):-
+	get_named_concepts(Rels,CIDs),
+        add_relations(CIDs,Relations),
+        append(Rels,Relations,Rels1).
+
+add_relations([],[]).
+add_relations([Id|Next],[Rel|Next1]):-
+	cgc(Id,_,_,Ref,_),ground(Ref),
+	member(fs(name,Name),Ref),
+        kb_index(X),
+        X1 is X+1,
+        assert(ind(X1,word,Name)),
+        retract(kb_index(X)),
+	assert(kb_index(X1)),
+	Rel=cgr(name,[Id,X1],_),
+        add_relations(Next,Next1).
+
+
+
+get_named_concepts([],[]).
+
+get_named_concepts([cgr(_,Ids,_)|Next],List) :- 
+	get_named_concepts(Next,List1),
+        get_n_concepts(Ids,Ids1),
+	append3_pred(Ids1,List1,List).
+
+get_n_concepts([],[]).
+
+get_n_concepts([Id|Next],[Id|Next1]):-
+	 cgc(Id,simple,_,Ref,_),ground(Ref),
+         member(fs(name,_),Ref), 
+	 \+ member(fs(num,pl),Ref),!,
+	 get_n_concepts(Next,Next1). 	
+
+get_n_concepts([_|Next],Next1):-
+	 get_n_concepts(Next,Next1).
+
+get_concepts_pred([],[]).
+
+get_concepts_pred([cgr(_,Ids,_)|Next],List) :- 
+	get_concepts_pred(Next,List1),
+	append3_pred(Ids,List1,List).
+	
+assign_vars([],[]).
+assign_vars([Id|Next],[Id-Var|NextVars]):- 
+	    cgc(Id,simple,_,_,_),!,
+	    assign_vars(Next,NextVars).
+
+assign_vars([Id|Next],[ind-Id|NextVars]):-
+             ind(Id,_,_),
+             assign_vars(Next,NextVars).
+
+
+assign_vars([Id|Next],[cg-Id|NextVars]):-
+	     cgc(Id,situation,_,_,_),
+	     assign_vars(Next,NextVars).
+assign_varsn_pred([],[]).
+assign_varsn_pred([Id|Next],[Id-Var|NextVars]):- 
+	    cgc(Id,_,_,_,_),!,next_var_pred(Var),
+	    assign_varsn_pred(Next,NextVars).
+assign_varsn_pred([Id|Next],[Var-Id|NextVars]):-
+             assign_varsn_pred(Next,NextVars).
+
+
+next_var_pred(Var):- retract(seed1(N)),
+		    N1 is N+1,
+		    assert(seed1(N1)),
+		    concat1('A',N,Var).
+			
+
+
+
+append3_pred([],L,L).
+append3_pred([H|T],L,Lresult):-member(H,L),!,
+			  append3_pred(T,L,Lresult).
+
+append3_pred([H|T],L,[H|Lresult]):- append3_pred(T,L,Lresult).
+
+
+make_cg_prefix1([] ,F,F).
+make_cg_prefix1([Id-Var|Next],F,F1):- (Id=ind;Id=cg),!, make_cg_prefix1(Next,F,F1).
+make_cg_prefix1([Id-Var|Next],F,F1):-  cgc(Id,simple,Name,Refs,_),ground(Refs),
+					member(fs(quant,every),Refs),
+					\+ member(fs(number,pl),Refs),!,
+					T=..[Name,Var],
+					F=..[all,Var,F2],
+					F2=..[->, T ,F3],
+					make_cg_prefix1(Next,F3,F1).
+
+make_cg_prefix1([Id-Var|Next],F,F1):-  F2=..[exists,Var,F1], 
+				       make_cg_prefix1(Next,F,F2).
+
+
+make_formula([cgr(Rname,Ids,_)|OtherRels],ListIdsConcs,F):- 
+	make_formula(OtherRels,ListIdsConcs,F1),!,
+	construct_term(Rname,Ids,ListIdsConcs,Term),
+        ( F1=[] -> F=Term;
+	F=.. [&, Term, F1]).
+
+make_formula([],[Id-Var|Next],F):-
+	make_formula([],Next,F1),
+        cgc(Id,_,Name,Refs,_),
+	sing_every(Refs),!,
+        F=F1.
+
+make_formula([],[Id-Var|Next],F):-
+	make_formula([],Next,F1),
+        cgc(Id,_,Name,_,_),!,
+        construct_term(Name,[Id],[Id-Var],Term),
+        ( F1=[] -> F=Term;
+	F=.. [&, Term, F1]).
+
+make_formula([],[Var-Id|Next],F):-
+	make_formula([],Next,F1),
+        ind(Id,Type,Ind),!,
+        Term=..[Type,Ind],
+        ( F1=[] -> F=Term;
+	F=.. [&, Term, F1]).
+
+
+make_formula([],[Var-Id|Next],F):-
+        cgc(Id,situation,_,[GID],_),
+	make_formula([],Next,F).
+
+
+
+make_formula([],[],[]).
+
+
+
+construct_term(not,[Id],ListIdsConcs,Term) :- !,
+	       cgc(Id,situation,_,[GID],_),
+               cg(GID,Rels,A,B),
+               translate_cgraph(cg(GID,Rels,A,B),Term1),
+               Term=..[~, Term1].
+
+construct_term(and,[Id1,Id2],ListIdsConcs,Term) :- !,
+	       cgc(Id1,situation,_,[GID1],_),
+               cg(GID1,Rels1,A1,B1),
+               translate_cgraph(cg(GID1,Rels1,A1,B1),Term1),
+               cgc(Id2,situation,_,[GID2],_),
+               cg(GID2,Rels2,A2,B2),
+               translate_cgraph(cg(GID2,Rels2,A2,B2),Term2),
+               Term=..[&, Term1,Term2].
+
+construct_term(Rname,Ids,ListIdsConcs,Term) :- 
+	       length(Ids,1),
+		 Ids=[Id],
+		 cgc(Id,simple,Rname,Refs,_),
+		 member(fs(num,pl),Refs),
+		 member(Id-Var,ListIdsConcs),
+		 M=..[Rname,'X'],
+		 Term=(every('X',member('X',Var)->M)&set(Var)).
+		 
+		
+
+construct_term(Rname,Ids,ListIdsConcs,Term) :- 
+	       length(Ids,N), functor(Term,Rname,N),
+               insert_args(Term,Ids,ListIdsConcs,1).
+
+insert_args(Term,[Id|Next],ListIdsConcs,Num):- member(Id-Var,ListIdsConcs),
+		arg(Num,Term,Var),Num1 is Num + 1,
+                insert_args(Term,Next,ListIdsConcs,Num1).
+
+insert_args(Term,[Id|Next],ListIdsConcs,Num):- ind(Id,Type,Ind),
+		arg(Num,Term,Ind),Num1 is Num + 1,
+                insert_args(Term,Next,ListIdsConcs,Num1).
+
+insert_args(Term,[Id|Next],ListIdsConcs,Num):- cgc(Id,situation,Dummy,_,_),
+		arg(Num,Term,Dummy),Num1 is Num + 1,
+                insert_args(Term,Next,ListIdsConcs,Num1).
+
+
+insert_args(Term,[],_,_).
+
+sing_every(Refs):-  ground(Refs), 
+ 		    member(fs(quant,every),Refs), 
+		    \+ member(fs(num,pl),Refs).
+
+
+
+make_string_f(F,S):-
+   functor(F,Name,1),
+   arg(1,F,Arg),
+   make_string_f(Arg,S4),
+   concat('(',S4,S5),
+   concat(S5,')',S6),
+   concat(Name,S6,S).
+   
+make_string_f(F,S):-
+   functor(F,A,2),
+   member(A,[&,#,->]),!,
+   arg(1,F,Arg),
+   make_string_f(Arg,S4),
+   concat(S4,' ',S5),
+   concat(S5,A,S51),
+   concat(S51,' ',S52),
+   arg(2,F,Arg2),
+   make_string_f(Arg2,S6),
+   concat(S52,S6,S).
+
+make_string_f(F,S):-
+   functor(F,Name,2),
+   arg(1,F,Arg),
+   make_string_f(Arg,S4),
+   concat(S4,',',S5),
+   arg(2,F,Arg2),
+   make_string_f(Arg2,S6),
+   concat(S5,S6,S7),
+   concat('(',S7,S8),
+   concat(S8,')',S9),
+   concat(Name,S9,S).
+
+
+make_string_f(F,F):- atom(F).
+
+
+
+
+
+translate_pred_id(Id,F):- check_fol_graph(Id),!,
+  cg(Id,A,B,C),translate_cgraph(cg(Id,A,B,C),F1),
+  make_string_f(F1,F).
+
+translate_pred_id(Id,F):- F='This graph can not be translated to First Order Predicate Calculus'.
+
+check_fol_graph(Id):- cg(Id,A,B,C),member(Rel,A),Rel=cgr(Name,Args,_),
+        member(Id1,Args),
+        cgc(Id1,situation,_,_,_),
+        \+(member(Name,[and,or,not])),!, fail.
+
+check_fol_graph(_).
 
 
 
