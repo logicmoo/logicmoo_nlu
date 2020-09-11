@@ -1,16 +1,16 @@
 
-:-multifile(cgr/3).
+multifile_data(F/A):- multifile(F/A),dynamic(F/A),discontiguous(F/A).
+:-multifile_data(cgr/3).
 :-multifile(cg/4).
 :-multifile(cgc/5).
 :-multifile(isa/2).
+:-multifile(isa_rel/2).
 :-multifile(ind/3).
+:-multifile(reldef/3).
 :-multifile(isa_kind/4).
-:-dynamic(cgr/3).
-:-dynamic(cg/4).
-:-dynamic(cgc/5).
-:-dynamic(isa/2).
-:-dynamic(ind/3).
-:-dynamic(isa_kind/4).
+:-multifile(typedef/3).
+
+
 
 :-dynamic ex_c/3.
 :-dynamic sp_c/3.
@@ -21,6 +21,9 @@
 :-dynamic u_conc/3.
 :-use_module(library(lists)).
 :-dynamic params/1.
+
+:- include('CGKB.kb').
+:- include('Type_Hierarchy.kb').
 
 isConcept(ID):-ground(ID),cgc(ID,_,_,_,_).
 isCG(ID):-ground(ID),cg(ID,_,_,_).
@@ -42,6 +45,7 @@ isRelDefGraph(ID):-ground(ID),reldef(ID,_,_).
 isCLabel(Lbl):-ground(Lbl),cgc(_,simple,Lbl,_,_).
 isTLabel(Lbl):-ground(Lbl),cg(Lbl,_,_,F),
 	member(fs(kind,typedef),F).
+
 
 
 isUsedId(ID):-(
@@ -532,8 +536,8 @@ max_join(Grid1,Grid2,NGrid):-
 	append(NRels,NRest1,S),append(S,NRest2,S1),clean(S1,NRel),
 	clean_help(NRel,R),!,
 	(R\=[] -> (to_string('This graph is received from graphs ',Grid1,Com1),to_string(' and ',Grid2,Com2),
-to_string(Com1,Com2,Com3),
-to_string(Com3,' performing the maximal join operation',Comment),
+   to_string(Com1,Com2,Com3),
+   to_string(Com3,' performing the maximal join operation',Comment),
 	append(L1,L2,L),
 	exist_cg(R,L,maximal_joined,Comment,Param,NGrid)),
 	assertz(params(Param))))).
@@ -562,6 +566,9 @@ genref(R1,R2,R):-suprefs(Ref1,R1),suprefs(Ref2,R2),!,
 suprefs([],[]).
 suprefs(L,[H|T]):-supRef(H1,[H]),suprefs(L1,T),
  append(H1,L1,L).
+
+referents(R1,R2,R):-referents1(R1,R2,R).
+referents(R1,R2,R):-referents2(R1,R2,R).
 
 /*returs the generalize concept of the given concepts*/
 extend_conc(Cid1,Cid2,NCid):-
@@ -705,8 +712,8 @@ specialization(Grid1,Grid2,NGrid):-
 	comn_rels(Grid1,Grid2,Rel1,Rel2),
 	comparetrs1(Rel1,Rel2,NR),clean_help(NR,R),!,
 	(R\=[] -> (to_string('This graph is received from graphs ',Grid1,Com1),to_string(' and ',Grid2,Com2),
-to_string(Com1,Com2,Com3),
-to_string(Com3,' performing the specialization operation',Comment),
+   to_string(Com1,Com2,Com3),
+   to_string(Com3,' performing the specialization operation',Comment),
 	graph_clinks(Grid1,L1),graph_clinks(Grid2,L2),
 	append(L1,L2,L3),help_links_sp(L3,L),
 exist_cg(R,L,specialized,Comment,Param,NGrid)),
@@ -1047,8 +1054,8 @@ expand_type(Grid,TGrid,NGrid):-
 	(R=[] -> (append(Rd,Rg,Rh),clean_help(Rh,Rel));
 	(type_exp1(Rd,Rg,R,Rh),clean_help(Rh,Rel))),
 	to_string('This graph is received from graph ',Grid,Com1),to_string(' and type definition graph ',TGrid,Com2),
-to_string(Com1,Com2,Com3),
-to_string(Com3,' by performing the expand_type operation',Comment),
+   to_string(Com1,Com2,Com3),
+   to_string(Com3,' by performing the expand_type operation',Comment),
 	exist_cg(Rel,_,expanded_type,Comment,Param,NGrid),
 	assertz(params(Param)))).
 
@@ -1071,7 +1078,7 @@ findrep([],_,[]):-!.
 findrep([cgr(N,[C|C1],_)|T],L,R):-
 	com_rel(cgr(N,[C|C1],_),L,L1),!,findrep(T,L,L2),
 	append(L1,L2,R).
-findrep([_|T],L,T1):-   findrel(T,L,T1).
+findrep([_|T],L,T1):-   findrep(T,L,T1).
 
 replacement([],_,[]).
 replacement([rep(C1,C2)|L],Reld,Reld1):-
@@ -1162,6 +1169,8 @@ sec([],_,[]).
 sec([H|T],S2,[H|S]):-member(H,S2),!,sec(T,S2,S).
 sec([H|T],S2,S):-non_member(H,S2),!,sec(T,S2,S).
 
+not_member(E,L):- non_member(E,L).
+
 non_member(E,L):-member(E,L),!,fail.
 non_member(_,_).
 
@@ -1169,13 +1178,7 @@ union1([],L,L).
 union1([H|T],L,L1):-member(H,L),!,union1(T,L,L1).
 union1([H|T],L,[H|L1]):-union(T,L,L1).
 
-subset([],_).
-subset([E|Sub],Set):-member(E,Set),!,subset(Sub,Set).
 
-intersection([],_,[]).
-intersection([H|L1],L2,[H|L3]):-member(H,L2),!,
-	intersection(L1,L2,L3).
-intersection([_|L1],L2,L3):-intersection(L1,L2,L3).
 len([],0).
 len([_|T],N):-len(T,N1),N is N1+1.
 
@@ -1194,11 +1197,6 @@ inRels([H|T],[H1|T1]):-inRel(H,H1),inRels(T,T1).
 	outRels([],[]).
 outRels([H|T],[H1|T1]):-outRel(H,H1),outRels(T,T1).
 
-flatten([],[]):-!.
-flatten([[]|T],Res):-!,flatten(T,Res).
-flatten([[H1|T1]|T],Res):-!,flatten(T,Res1),!,
-	append([H1|T1],Res1,Res).
-flatten([H|T],[H|Res]):-!,flatten(T,Res).
 
 not_sub(X,Y):-sub(X,Y),!,fail.
 not_sub(_,_).
@@ -1206,13 +1204,17 @@ not_sub(_,_).
 %dobavka
 not_son(X):-isa(X,_),!,fail.
 not_son(_).
+
 find_top(X):-isa(_,X),not_son(X),!,assertz(top(X)).
-:-find_top(X).
+
+:-find_top(_X).
 
 not_father(X):-isa(_,X),!,fail.
 not_father(_).
+
 find_bottom(X):-isa(X,_),not_father(X),!,assertz(bottom(X)).
-:-find_bottom(X).
+
+:-find_bottom(_X).
 
 depth(Y,0):-top(Y),!.
 depth(X,N):-isa(X,Y),!,depth(Y,N1),N is N1+1.
@@ -1319,3 +1321,15 @@ take_last(L,E):-append(_,[E],L).
 
 
 
+/*
+
+Warning: findrel/3, which is referenced by
+Warning:        /pack/logicmoo_nlu/prolog/cgworld/cgprolog_operations.pl:1047:14: 3-th clause of findrep/3
+Warning: kb_index/1, which is referenced by
+Warning:        /pack/logicmoo_nlu/prolog/cgworld/cgprolog_translator.pl:63:13: 2-nd clause of add_relations/2
+Warning: referents/3, which is referenced by
+Warning:        /pack/logicmoo_nlu/prolog/cgworld/cgprolog_operations.pl:728:0: 1-st clause of spec_simple/5
+Warning: reldef/3, which is referenced by
+Warning:        /pack/logicmoo_nlu/prolog/cgworld/cgprolog_operations.pl:43:24: 1-st clause of isRelDefGraph/1
+
+*/

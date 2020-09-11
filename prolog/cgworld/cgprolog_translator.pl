@@ -14,9 +14,10 @@ Allowed types of referents:
 */
 
 
+:- dynamic(kb_index/1).
 
 :- op(850,fx,~).    % negation
-:- op(900,xfy,#).   % disjunction
+:- op(900,xfy,'#').   % disjunction
 :- op(900,xfy,&).   % conjunction
 :- op(950,xfy,->).  % implication
 
