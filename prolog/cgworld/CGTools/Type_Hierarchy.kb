@@ -6,7 +6,7 @@ isa(certificate,financial_instrument).
 isa(certificate_of_deposit,certificate).
 isa(negotiable_certificate_of_deposit,certificate_of_deposit).
 isa(commercial_paper,financial_instrument).
-isa(banker's_acceptance,financial_instrument).
+isa(bankers_acceptance,financial_instrument).
 
 isa(contract,financial_instrument).
 isa(option_contract,contract).
@@ -141,9 +141,6 @@ isa(brokerage_firm,organization).
 isa(government_agency,organization).
 isa(bank,organization).
 isa(investment_bank,bank).
-
-
-
 
 
 
