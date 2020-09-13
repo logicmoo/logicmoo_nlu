@@ -1,1 +1,0 @@
-(provide [primary_market] [capital *x1])(rcpt ?x1 [investment *x2])(attr ?x2 [new])

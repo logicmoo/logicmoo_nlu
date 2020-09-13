@@ -1,2 +1,0 @@
-(provide [money_market] [situation: (convert_into [money_market_investment] [cash])])
-
