@@ -414,48 +414,6 @@ verb_formtense(GaveStr, GiveStr, Past):-
     verb_formtense_atom(Gave, Give, Past),
     atom_string(Give, GiveStr).
 
-do_eval_or_same(G, GG):- \+ compound(G), !, GG=G.
-do_eval_or_same([G1|G2], [GG1|GG2]):- !, do_eval_or_same(G1, GG1), do_eval_or_same(G2, GG2).
-do_eval_or_same({O}, {O}):- !.
-do_eval_or_same(G, GG):- compound_name_arguments(G, HT, [F|GL]), atom(F), member(HT, [t, h]), !,
- compound_name_arguments(GM, F, GL), !, do_eval_or_same(GM, GG).
-
-do_eval_or_same(textString(P, G), textString(P, GG)):- ground(G), must_mw(to_string_lc(G, GG)), !.
-/*
-do_eval_or_same(PEG, PEGG):- xnotrace((compound_name_arguments(PEG, F, Args), downcase_atom(F, D), (atom_concat(_, 'text', D);atom_concat(_, 'string', D)),
-  append(Left, [G], Args))), ground(G), \+ string(G), !, must_mw(to_string_lc(G, GG)), !,
-  append(Left, [GG], NewArgs), compound_name_arguments(PEGG, F, NewArgs).
-*/
-do_eval_or_same(iza(P, G), Out):- !, do_eval_or_same(isa(P, G), Out). 
-do_eval_or_same(isa(P, G), isa(P, GG)):- ground(G), !, must_mw(asCol(G, GG)), !.
-
-do_eval_or_same(xfn(P, G), GG):- !, must_mw( call(P, G, GG)), !.
-do_eval_or_same(G, GG):- compound_name_arguments(G, F, GL), F\==percept_props, !,
- maplist(do_eval_or_same, GL, GGL), !, compound_name_arguments(GG, F, GGL).
-do_eval_or_same(G, G).
-
-frame_var(_, Frame, _):- \+ compound(Frame), !, fail.
-frame_var(Name, Frame, Var):- nonvar(Var), !, frame_var(Name, Frame, NewVar), !, NewVar=Var.
-frame_var(Name, Frame, Var):- compound(Name), !, arg(_, Name, E), frame_var(E, Frame, Var), !.
-frame_var(Name, [Frame1|Frame2], Var):- !, frame_var(Name, Frame1, Var);frame_var(Name, Frame2, Var).
-frame_var(Name, Prop = Var, Var):- !, same_word(Name, Prop).
-frame_var(Name, f(Pred, 1, [Var]), Var):- !, same_verb(Name, Pred).
-frame_var(Name, f(_, _, [Prop|List]), Var):- !, same_name(Name, Prop), last(List, Var).
-frame_var(Name, Frame, Var):- compound_name_arity(Frame, Pred, Arity), Arity > 0, compound_name_arguments(Frame, Pred, List),
-  frame_var(Name, f(Pred, Arity, List), Var).
-frame_var(Name, Frame, Var):- arg(_, Frame, E), frame_var(Name, E, Var), !.
-
-asCol(A, A):- var(A), !.
-asCol(A, 'TypeFn'(A)):- \+ callable(A), !.
-asCol(A, S):- format(atom(S), '~w', [A]).
-
-to_upcase_name(V, V):- var(V), !.
-to_upcase_name(T, N):- compound(T), !, compound_name_arity(T, A, _), !, to_upcase_name(A, N).
-to_upcase_name(T, N):- format(atom(A), '~w', [T]), upcase_atom(A, N).
-
-
-same_name(T1, T2):- ground(T1), ground(T2), to_upcase_name(T1, N1), to_upcase_name(T2, N2), !, N1==N2.
-
 
 verbatum_anon(Verb):- verbatum_anon_n_args(Verb).
 verbatum_anon(Verb):- verbatum_anon_one_or_zero_arg(Verb).

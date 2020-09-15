@@ -4,14 +4,6 @@
 
 :- discontiguous(verb_frame1/4).
 
-push_frame(Info, Frame):- var(Frame), !, gensym(frame, F), Frame = [lbl(F)], push_frame(Info, Frame).
-push_frame(Info, Frame):- do_eval_or_same(Info, BetterInfo), Info\=@=BetterInfo, push_frame(BetterInfo, Frame).
-push_frame(Info, Frame):- member(Sub, Frame), Sub==Info, !.
-push_frame([I1|I2], Frame):- !, push_frame(I1, Frame), push_frame(I2, Frame).
-push_frame(I1&I2, Frame):- !, push_frame(I1, Frame), push_frame(I2, Frame).
-push_frame(Info, Frame):- Frame = [H|T], setarg(2, Frame, [H|T]), setarg(1, Frame, Info).
-
-
 
 
 /*
@@ -267,94 +259,6 @@ cont_parse_dataframe([FrameArg| FrameArgS], Text, Action, Frame):-
    ignore((member(var(NewArg), FrameArg), var(NewArg), ignore(=(NewArgValue, NewArg)))),
    ignore((member(prep(Prep), FrameArg), push_frame(prepOf(NewArg, Prep), Frame))),
   cont_parse_dataframe(FrameArgS, Right, Action, Frame).
-
-
-%frame_to_asserts(List, cmdFrame(Frame)):- is_list(List), sort(List, ListR), list_to_conjuncts('&', ListR, Frame), !.
-%frame_to_asserts(Frame, cmdFrame(Frame)).
-frame_to_asserts(Frame, Frame).
-
-frame_defaults([], _Frame):-!.
-frame_defaults([FrameArg| FrameArgS], Frame):-
-   ignore((
-     member(var(NewArg), FrameArg), var(NewArg),
-     member(default(D), FrameArg),
-     debug_var(D, NewArg),
-    % D=NewArg,
-   !)),
-   frame_defaults(FrameArgS, Frame).
-
-subst_into_list([], []).
-subst_into_list(+(AB), [optional(true)|AABB]):- !, subst_into_list(AB, AABB), !.
-subst_into_list(A+B, AABB):-!, subst_into_list(A, AA), subst_into_list(B, BB), append(AA, BB, AABB).
-subst_into_list([A|B], AABB):-!, subst_into_list(A, AA), subst_into_list(B, BB), append(AA, BB, AABB).
-subst_into_list(A, [A]):-!.
-
-fix_frame_args([], []).
-fix_frame_args([LastArg, []], BetterFrameArgS):- !, fix_frame_args([LastArg], BetterFrameArgS).
-fix_frame_args([FrameArg| FrameArgS], [[slot(Slot)|FrameArgL]|BetterFrameArgS]):-
-  subst_into_list(FrameArg, FrameArgL),
-  ignore(member(var(NewArg), FrameArgL)),
-  ignore((member(default(Name), FrameArgL), functor(Name, F, _), debug_var(F, NewArg), debug_var(F, Slot))),
-  fix_frame_args(FrameArgS, BetterFrameArgS).
-
-compute_frame_slots([], []).
-compute_frame_slots([FrameArg| FrameArgS], [FrameSlot|FrameSlotS]):-
-  frame_arg_to_slot(FrameArg, FrameSlot),
-  compute_frame_slots(FrameArgS, FrameSlotS).
-compute_frame_slots([_FrameArg| FrameArgS], FrameSlotS):-
-  compute_frame_slots(FrameArgS, FrameSlotS).
-
-frame_arg_to_slot(FrameArg, Name=NewArg):-
-   % \+ member(optional(true), FrameArg),
-   (member(var(NewArg), FrameArg);member(slot(NewArg), FrameArg)), !,
-   (member(pred(Name), FrameArg);member(prep(Name), FrameArg);member(default(Name), FrameArg)), !.
-
-
-frmprint(Frame) :-
-    %catch(make_pretty(I, O), _, I=O),
-    guess_pretty(Frame),
-    predsort(frcmp, Frame, FrameA),
-    reverse(FrameA, FrameO),
-    maplist(frmprint_e, FrameO).
-frmprint_e(Frame) :- format('~N  ', []), fmt90(Frame).
-
-sortDeref(P, PP):- \+ compound(P), !, P=PP.
-%sortDeref(isa(X, Y), visa(X, Y)):-!.
-sortDeref(~(P), PP):-!, sortDeref(P, PP).
-sortDeref(P, PP):- arg(1, P, PP), compound(PP).
-sortDeref(P, PP):- safe_functor(P, F, N), wrapper_funct_sortin(F), arg(N, P, E), !, sortDeref(E, PP).
-sortDeref(P, P).
-
-
-all_different_bindings([]):- !.
-all_different_bindings([_]):- !.
-all_different_bindings([X, Y]):- !, dif(X, Y).
-all_different_bindings([X, Y, Z]):- !, dif(X, Y), dif(X, Z), dif(Z, Y).
-all_different_bindings([X|Text]):- maplist(dif(X), Text), all_different_bindings(Text).
-
-wrapper_funct_sortin(F):- arg(_, v(~, post, pre), F).
-wrapper_funct_correction(F):- arg(_, v(~, post, normally, pre), F).
-
-correct_normals(Nil, Nil):- Nil==[], !.
-correct_normals(EOL, []):- EOL==end_of_list, !.
-correct_normals(UNormals, Normals):- \+ compound(UNormals), !, [UNormals]=Normals.
-correct_normals(~(PreU), Normals):- compound(PreU), PreU=pre(U), !, correct_normals(pre(~(U)), Normals).
-correct_normals((U, UU), Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
-correct_normals([U|UU], Normals):- !, correct_normals(U, UC), correct_normals(UU, UUC), !, append(UC, UUC, Normals).
-correct_normals(P, Normals):- P=..[F, A1, A2|List], wrapper_funct_correction(F),
-  P1=..[F, A1], P2=..[F, A2|List], !,
-  correct_normals([P1|P2], Normals).
-correct_normals(Normal, [Normal]).
-
-frcmp(P1, P2, Cmp):- (\+ compound(P1) ; \+ compound(P2)), !, compare(P1, P2, Cmp).
-frcmp(P1, P2, Cmp):- N=1, (arg(N, P1, A);arg(N, P2, A)), is_list(A), !, compare(P1, P2, Cmp).
-frcmp(P2, P1, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(P2, PP1, Cmp).
-frcmp(P1, P2, Cmp):- sortDeref(P1, PP1)->P1\=@=PP1, !, frcmp(PP1, P2, Cmp).
-frcmp(P1, P2, Cmp):- N=1, arg(N, P1, F1), arg(N, P2, F2), F1==F2, !, compare(P1, P2, Cmp).
-frcmp(P1, P2, Cmp):- safe_functor(P1, F1, _), safe_functor(P2, F2, _), F1\==F2, compare(F1, F2, Cmp), Cmp \= (=), !.
-frcmp(P1, P2, Cmp):- arg(N, P1, F1), arg(N, P2, F2), frcmp(F1, F2, Cmp), Cmp \= (=), !.
-frcmp(P1, P2, Cmp):- compare(P1, P2, Cmp).
-%reframed_call( Pred, Doer, [give, Object, to, Recipient], give(Doer, Object, Recipient), _Mem):- !.
 
 
 
