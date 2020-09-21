@@ -351,7 +351,7 @@ replace_vars_in_head([variable(RName,
 replace_var_in_head([Disjunct|MoreDisjuncts],N,N,OName,RName,
 		    [NewDisjunct|MoreDisjuncts]):-
 	!,
-	replace(Disjunct,OName,RName,NewDisjunct).
+	ics_replace(Disjunct,OName,RName,NewDisjunct).
 replace_var_in_head([Disjunct|MoreDisjuncts],M,N,OName,RName,
 		    [Disjunct|MoreNewDisjuncts]):-
 	M1 is M+1,
@@ -608,7 +608,7 @@ in_h([_|MoreOccurrences]):-
 
 /*
 
-replace(T,O,R,T1)
+ics_replace(T,O,R,T1)
 
 T1 is T with O replaced by R.
 
@@ -616,19 +616,19 @@ Isn't there anyhing of the like built-in???
 
 */
 
-replace(T,O,R,T1):-
+ics_replace(T,O,R,T1):-
 	compound(T),
 	!,
 	T=..[F|Args],
 	replace_list(Args,O,R,Args1),
 	T1=..[F|Args1].
 
-replace(T,X,Y,Y):-
+ics_replace(T,X,Y,Y):-
 	T==X,
 	!.
-replace(T,_,_,T).
+ics_replace(T,_,_,T).
 	
 replace_list([],_,_,[]).
 replace_list([H|T],O,R,[H1|T1]):-
-	replace(H,O,R,H1),
+	ics_replace(H,O,R,H1),
 	replace_list(T,O,R,T1).
