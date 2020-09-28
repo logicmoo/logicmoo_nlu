@@ -92,8 +92,8 @@ expand_bt(_, _, H, H).
 set_bt_context(Ax):- nb_setval('$bt_context', Ax), bt_accept_low(bt_meta(Ax)).
 
 
-maybe_dcg(HH, BB, Out):-
-  discontiguous(HH), multifile(HH),
+maybe_dcg(HH, BB, Out):- functor(HH,F,A),
+  discontiguous(F/A), multifile(F/A),
   dcg_translate_rule((HH-->BB), Out).
 
 bt_accept_fwd(Assert):- \+ \+ dbug1(Assert),

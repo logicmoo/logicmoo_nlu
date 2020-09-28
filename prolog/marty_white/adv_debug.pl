@@ -200,7 +200,8 @@ dmust_tracing(G, S, E):- apply_state(dmust_tracing, (G), S, E).
 
 % '$hide'(Pred) :- '$set_predicate_attribute'(Pred, trace, false).
 never_trace(_Spec):- prolog_load_context(reloading, true), !.
-never_trace(Spec):- '$hide'(Spec), '$iso'(Spec), ignore(trace(Spec, -all)).
+never_trace(M:F/A):- !, '$hide'(M:F/A), '$iso'(M:F/A), ignore(trace(M:F/A, -all)).
+never_trace(M:Spec):- functor(Spec,F,A),!,never_trace(M:F/A).
 :- call(ensure_loaded, library(lists)).
 :- never_trace(lists:append(_, _, _)).
 :- never_trace(lists:list_to_set/2).

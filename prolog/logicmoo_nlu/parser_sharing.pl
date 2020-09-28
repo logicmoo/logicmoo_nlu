@@ -171,8 +171,8 @@ shared_parser_data(XY):- var(XY),!,nop(dumpST),fail.
 shared_parser_data(XY):- assertion(compound(XY)),fail.
 shared_parser_data(XY):- pi_splits(XY,X,Y),!,shared_parser_data(X),shared_parser_data(Y).
 shared_parser_data(XY):- pi_p(XY,PI)-> XY\==PI,!,shared_parser_data(PI).
-shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!, functor(P,F,A),M:multifile(M:F/A),M:export(M:F/A),shared_parser_data(M:P),Imp:import(M:P).
-shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_),share_mp(M:P),Imp:import(M:P).
+shared_parser_data(MP):- predicate_visible_home(MP,M)->strip_module(MP,Imp,P),MP\==M:P,!, functor(P,F,A),M:multifile(M:F/A),M:export(M:F/A),shared_parser_data(M:P),Imp:import(M:F/A).
+shared_parser_data(M:P):- !,def_parser_data(M,P),strip_module(_,Imp,_),share_mp(M:P),functor(P,F,A),Imp:import(M:F/A).
 % shared_parser_data(P):- each_parser_module(M),predicate_property(M:P,defined), \+ predicate_property(M:P,imported_from(_)),!,shared_parser_data(M:P).
 shared_parser_data(P):-  get_query_from(SM),shared_parser_data(SM:P).
 :- share_mp((shared_parser_data)/1).
@@ -231,12 +231,14 @@ define_shared_loadable_pred(M,P):- current_prolog_flag(access_level,system),!,se
    define_shared_loadable_pred(M,P),set_prolog_flag(access_level,system).
 
 % define_shared_loadable_pred(M,P):- !, mpred_ain(isBorked==>M:P).
+define_shared_loadable_pred(M,F/A):- functor(P,F,A),define_shared_loadable_pred(M,P),!.
 define_shared_loadable_pred(M,P):- % throw(old_code),
    '$current_source_module'(SM),'$current_typein_module'(CM),
    %mpred_ain(isBorked==>M:P),   
    functor(P,F,A),dmsg(def_parser_data(sm=SM,cm=CM,m=M,F/A)),
    def_nl_pred(M,F,A),
-   dynamic(M:P),multifile(M:P),discontiguous(M:P).
+   MFA = M:F/A,
+   dynamic(MFA),multifile(MFA),discontiguous(MFA).
 
 :- module_transparent(show_shared_pred_info/1).
 show_shared_pred_info(FA):- nonvar(FA),

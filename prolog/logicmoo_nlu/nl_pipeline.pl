@@ -46,6 +46,7 @@
 %:- ensure_loaded(library(wamcl_runtime)).
 
 % :- dynamic(baseKB:installed_converter/2).
+%:- rtrace.
 :- shared_parser_data(baseKB:installed_converter/2).
 :- export(baseKB:installed_converter/2).
 
@@ -55,8 +56,8 @@
 
 % ==============================================================================
 
-:- volatile(t_l:disable_px).
-:- thread_local(t_l:disable_px).
+:- volatile(t_l:disable_px/0).
+:- thread_local(t_l:disable_px/0).
 :- retractall(t_l:disable_px).
 :- asserta(t_l:disable_px).
 

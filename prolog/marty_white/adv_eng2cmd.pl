@@ -15,8 +15,13 @@
 %
 */
 
-:- use_module(library(logicmoo_nlu/parser_sharing)).
-:- use_module(library(logicmoo_nlu/parser_tokenize)).
+:- rtrace.
+:- use_module(library('logicmoo_nlu/parser_sharing')).
+:- set_prolog_flag(debug,true).
+:- set_prolog_flag(access_level,system).
+%:- rtrace.
+:- use_module(library('logicmoo_nlu/parser_tokenize')).
+:- nortrace.
 :- parser_e2c:use_module(library(logicmoo_nlu/parser_e2c)).
 :- parser_pldata:use_module(library(logicmoo_nlu/parser_pldata)).
 :- parser_chat80:use_module(library(logicmoo_nlu/parser_chat80)).

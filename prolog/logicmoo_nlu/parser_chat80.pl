@@ -61,7 +61,7 @@
 :- thread_local(t_l:useAltPOS/0).
 :- thread_local(t_l:tracing80/0).
 :- thread_local(t_l:chat80_interactive/0).
-:- thread_local(t_l:useOnlyExternalDBs).
+:- thread_local(t_l:useOnlyExternalDBs/0).
 :- dynamic(thglobal:use_cyc_database/0).
 
 cycQuery80(Q):- current_predicate(_, Q), call(Q).

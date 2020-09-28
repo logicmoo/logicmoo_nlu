@@ -14,6 +14,7 @@
 %into_acetext(Input,AceText):- atomic(Input), !, tokenizer:tokenize(Input, Tokens), into_acetext(Tokens,AceText).
 %into_acetext(Input,AceText):- into_acetext(Input,AceText).
 
+:- use_module(parser_sharing).
 
 :- use_module('../../ext/ape/prolog/parser/tokenizer').
 
