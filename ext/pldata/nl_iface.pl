@@ -61,12 +61,14 @@ rexport_qlf(Module, Name, _PLF, _QLF):- exists_source(Name), !,
 :- system:reexport(framenet).
 :- system:reexport(nldata_cycl_pos0).
 :- system:reexport(pldata(kb_0988)).
-:- system:load_files(nldata_freq_pdat, [reexport(true), qcompile(large)]).
-:- system:load_files(nldata_BRN_WSJ_LEXICON, [reexport(true), qcompile(large)]).
 % :- system:reexport(nldata_BRN_WSJ_LEXICON, [text_bpos/2]).
 :- system:load_files(nldata_dictionary_some01, [reexport(true), qcompile(large)]).
-:- system:load_files(nldata_colloc_pdat, [reexport(true), qcompile(large)]).
 
+/*
+:- system:load_files(nldata_colloc_pdat, [reexport(true), qcompile(large)]).
+:- system:load_files(nldata_freq_pdat, [reexport(true), qcompile(large)]).
+:- system:load_files(nldata_BRN_WSJ_LEXICON, [reexport(true), qcompile(large)]).
+*/
 
 
 

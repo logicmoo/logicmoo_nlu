@@ -1,1 +1,0 @@
-:- consult( 'domain' ).

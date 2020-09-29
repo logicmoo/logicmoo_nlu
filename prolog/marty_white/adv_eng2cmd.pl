@@ -15,13 +15,30 @@
 %
 */
 
-:- rtrace.
-:- use_module(library('logicmoo_nlu/parser_sharing')).
-:- set_prolog_flag(debug,true).
-:- set_prolog_flag(access_level,system).
 %:- rtrace.
+
+:- listing(user:prolog_load_file/2).
+:- listing(user:file_search_path/2).
+:- listing(user:library_directory/1).
+:- abolish(user:prolog_load_file/2).
+:- dynamic(user:prolog_load_file/2).
+% :- trace(sub_string/5).
+%:- trace(sub_atom/5).
+%:- trace('$expanded_term'/10).
+%:- trace(user:'prolog_load_file'/2).
+%:- trace('$toplevel':'$initialise'/0).
+% :- trace(system:'$make_path'/3).
+%:- trace('$expand_file_search_path'/4).
+%:- trace('functor'/3).
+
+:- noguitracer.
+
+%:- break.
+
+:- use_module(library('logicmoo_nlu/parser_sharing')).
 :- use_module(library('logicmoo_nlu/parser_tokenize')).
-:- nortrace.
+
+
 :- parser_e2c:use_module(library(logicmoo_nlu/parser_e2c)).
 :- parser_pldata:use_module(library(logicmoo_nlu/parser_pldata)).
 :- parser_chat80:use_module(library(logicmoo_nlu/parser_chat80)).
