@@ -17,11 +17,11 @@
 
 %:- rtrace.
 
-:- listing(user:prolog_load_file/2).
-:- listing(user:file_search_path/2).
-:- listing(user:library_directory/1).
-:- abolish(user:prolog_load_file/2).
-:- dynamic(user:prolog_load_file/2).
+% % %:- listing(user:prolog_load_file/2).
+% % %:- listing(user:file_search_path/2).
+% % %:- listing(user:library_directory/1).
+%:- abolish(user:prolog_load_file/2).
+%:- retractall(user:prolog_load_file(_,_)).
 % :- trace(sub_string/5).
 %:- trace(sub_atom/5).
 %:- trace('$expanded_term'/10).
@@ -31,7 +31,7 @@
 %:- trace('$expand_file_search_path'/4).
 %:- trace('functor'/3).
 
-:- noguitracer.
+%:- noguitracer.
 
 %:- break.
 
@@ -442,7 +442,7 @@ verbatum_anon(Verb):- verbatum_anon_one_or_zero_arg(Verb).
 
 
 verbatum_anon_one_or_zero_arg(Verb):- member(Verb, [
- prolog, make, cls,
+ prolog, make, update_changed_files, cls,
  mem, types, props, debug,
  ls, cd, pwd,
  useragent, echo, halt, english,
