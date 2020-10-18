@@ -20,7 +20,7 @@ requires(eggdrop).
 requires(narsese).
 requires(pfc).
 requires(wam_common_lisp).
-requires(logicmoo_base).
+% requires(logicmoo_base).
 requires(prologmud).
 requires(prologmud_samples).
 requires(logicmoo_webui).
