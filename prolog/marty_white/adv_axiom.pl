@@ -30,6 +30,9 @@
 :- defn_state_setter(eVent//2
   ).
 
+:- expand_term((will_touch(Agent, Thing) ==>>
+  h(touchable, Agent, Thing)),_).
+% :- trace.
 will_touch(Agent, Thing) ==>>
   h(touchable, Agent, Thing).
 

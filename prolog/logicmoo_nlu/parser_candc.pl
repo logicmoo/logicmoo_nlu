@@ -96,7 +96,7 @@ each_candc_option(N,V):- retractall(options:candc_option(N,_)), asserta(options:
 rply2drs(Reply,Options,Drs):- \+ is_list(Reply),!, rply2drs([Reply],Options,Drs). % maplist(rply2drs,Reply,Drs).
 rply2drs(Reply,Options,Drs):- 
    setInput(Reply),
-   maplist(genSem2(),Options,Drs).
+   maplist(genSem2,Options,Drs).
 
 %genSem2(Reply,Options,Drs):-
 
@@ -121,7 +121,7 @@ genSem2(Options,Drs):-
       
         %assert(options:candc_option('--theory',drt)), %:- member(V,[drt,sdrt]).
         initEval,runBoxer(Str),print_reply_candc([A,Options]),print_reply_candc(Str)),
-  _ODrs).
+  Drs).
 
 runBoxer(Drs):-
   input:identifyIDs(NewReply),
