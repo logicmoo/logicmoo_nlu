@@ -21,8 +21,8 @@
 
 % Miscellaneous generic utility predicates.
 
-:- meta_predicate findall_set(?, 0, *).
-findall_set(E, G, S):- findall(E, G, L), list_to_set(L, S).
+:- meta_predicate findall_to_set(?, 0, *).
+findall_to_set(E, G, S):- findall(E, G, L), list_to_set(L, S).
 
 % was_dcg(M, Kept, S0, S2):- !, M:apply_state(Z, Kept, S0, S2).
 was_dcg(M, Kept, S0, S2):- call(M:phrase(Kept, S0, S2)).
@@ -99,7 +99,7 @@ defn_mem_setter(P):- defn_state_pred(get_memory(_), P, 2).
 :- defn_state_none(=(term, term)).
 :- defn_state_none(\=(term, term)).
 :- defn_state_none(dif(term, term)).
-:- defn_state_none(nop(term)).
+% :- defn_state_none(nop(term)).
 
 
 mk_complex(R, I, '@'(R, I)).
