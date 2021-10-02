@@ -21,7 +21,7 @@
 :- defn_state_none(update_flp(agent,term,term,term)).
 
 update_flp(Agent,Name,Plan,Step) :-
-	Agent = 'player~1',
+	current_player(Agent),
 	view([query_agent(flp,'127.0.0.1',flp_update([current(name,Name),current(plan,Plan),current(step,Step)],Result1),Result2)]),
 	(   query_agent(flp,'127.0.0.1',flp_update([current(name,Name),current(plan,Plan),current(step,Step)],Result1),Result2) -> true ; true).
 
@@ -34,7 +34,7 @@ flp_nomicmu_query(Input,Result) :-
      with_output_to(string(Result),
        (convert_input_to_words(Input,Words0),
 	set_flp_words0(Words0),
-	Agent = 'player~1',
+	current_player(Agent),
 	advstate_db(S0),
 	undeclare(memories(Agent, Mem0), S0, S1),
 	set_advstate(S1),
@@ -61,7 +61,7 @@ flp_decide_action(Agent,Mem0,Mem1) :-
 	view([words,Words]),
 	eng2log(Agent, Words, Action, Mem0),
 	view([action,Action]),
-        add_todo(Agent, Action, Mem0, Mem1).
+        add_todo( Agent, Action, Mem0, Mem1).
 
 % Decide action hook
 % :- push_to_state(type_props(adv_flp,[inherit(nomic_plugin),prefix('flp_'), desc("FLP plugin that contains decide action")]).
@@ -79,15 +79,16 @@ flp_state :-
 flp_state_eng :-
 	get_advstate(State),print_english(world,State).
 
-:- defn_state_none(goals()).
+:- defn_state_none( goals()).
 goals :-
 	get_goals(Goals),
 	pprint(Goals,general).
 
 get_goals(Goals) :-
 	get_advstate(S0),
-	member(memories('player~1',M),S0),
-	member(todo(Goals),M).
+        current_player(Player),
+	member(memories(Player,M),S0),
+	member( todo(Player, Goals),M).
                   
 % TODO write this
 %aXiom(view(Item)) ==>>

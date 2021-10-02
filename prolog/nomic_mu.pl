@@ -22,6 +22,11 @@
 % nohup websocket_redir.sh dbutterfly 4004 &
 :- use_module(library(logicmoo_common)).
 
+:- multifile aXiom/1.
+:- meta_predicate aXiom(+).
+:- multifile aXiom/3.
+:- meta_predicate aXiom(+,?,?).
+
 %:- pack_install(dictoo).
 
 %:- if(current_prolog_flag(argv,[])).
@@ -76,8 +81,8 @@
 */
 
 
-:- ensure_loaded('./marty_white/adv_main').
-:- ensure_loaded('./marty_white/adv_telnet').
+:- ensure_loaded(library(episodic_memory/adv_main)).
+:- ensure_loaded(library(episodic_memory/adv_telnet)).
 :- if(\+ current_prolog_flag(ec_loader,false)).
 %  :- use_module(library(ec_planner/ec_loader)).
 :- endif.
@@ -91,7 +96,8 @@
 % :- use_module(./chat80).
 % :- ensure_loaded('./adv_chat80'). 
 
-:- dynamic(no_autostart/0).
+:- dynamic(mu_tmp:no_autostart/0).
+:- volatile(mu_tmp:no_autostart/0).
 
 srv_mu(TwoSixSixSix) :-
   atom_concat('mu_',TwoSixSixSix,Alias),
@@ -101,7 +107,7 @@ srv_mu(TwoSixSixSix) :-
 
 srv_mu(TwoSixSixSix) :- 
   adv_server(TwoSixSixSix),
-  asserta(no_autostart),
+  asserta(mu_tmp:no_autostart),
   format('~NServer is starting on port ~w~n',[TwoSixSixSix]),
   threads,  
   !.
@@ -112,11 +118,13 @@ srv_mu:-
   run_mu.
  
 run_mu:- 
-   asserta(no_autostart),
    setup_console,
-   must(mu:adventure),!.
+   setup_call_cleanup(
+      asserta(mu_tmp:no_autostart),
+      once(must(mu:adventure)),
+      retractall(mu_tmp:no_autostart)).
 
-srv_mu_main:- no_autostart,!.
+srv_mu_main:- mu_tmp:no_autostart,!.
 srv_mu_main:- srv_mu.
 
 mu_port(4004).
@@ -150,4 +158,6 @@ or to run as single player use:
 :- initialization(usage_mu, program).
 %:- initialization(usage_mu, (program)).
 
-
+%:- listing(aXiom/3).
+%:- srv_mu.
+%:- break.

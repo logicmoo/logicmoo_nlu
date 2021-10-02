@@ -101,7 +101,7 @@ throwOnFailure(X):-trace, not(X).
 :- endif.
 
 
-todo(X):-notrace(noteFmt('~q', todo(X))).
+todo(X):-notrace(noteFmt('~q', todo(Agent,X))).
 
 
 printAndThrow(F, A):-sformat(S, F, A), write(user, S), nl(user), flush_output(user), trace, throw(error(representation_error(S), context(printAndThrow/2, S))).
@@ -121,20 +121,19 @@ throwOnFailure(A):-printAndThrow('~n ;; Must ~q ~n', [A]).
 saveCaches:-tell(textCached), listing(textCached), told, tell(recentParses), listing(recentParses), told.
 :-at_halt(saveCaches).
 
-/*
-%:-use_module(library(make)), redefine_system_predicate(make:list_undefined).
+:-use_module(library(make)), redefine_system_predicate(make:list_undefined).
 %:-abolish(make:list_undefined/0).
 %make:list_undefined.
 
-:-abolish(make:list_undefined/1).
-make:list_undefined(_).
+%:-abolish(make:list_undefined/1).
+%make:list_undefined(_).
 
-:-abolish(make:list_undefined_/2).
-make:list_undefined_(_Informational, _Local).
+%:-abolish(make:list_undefined_/2).
+%make:list_undefined_(_Informational, _Local).
 
-:-abolish(list_undefined_/2).
-list_undefined_(_Informational, _Local).
-*/
+%:-abolish(list_undefined_/2).
+%list_undefined_(_Informational, _Local).
+
 
 %:-module_transparent(processRequestHook/1).
 %:-multifile(processRequestHook/1).

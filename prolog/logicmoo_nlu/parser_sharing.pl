@@ -51,8 +51,9 @@ def_nl_pred(M,F,A):-
 nl_call([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
 nl_call(M:P):-!,nl_call_mp(M,P).
 nl_call(P):- nl_call_mp(_,P).
+
 nl_call_mp(M,P):- (nl_pred(P,M,F,A),nl_call_entr(M,F,A,P),      
-   on_x_rtrace((nl_pred(P,M,F,A),M:P)),nl_call_exit(M,F,A,P))*->true;
+   (nl_pred(P,M,F,A),on_x_rtrace((M:P))),nl_call_exit(M,F,A,P))*->true;
   (current_predicate(_,M:P),call(M:P)).
 
 nl_pred(M,F,A):- var(F),!,nlfac:is_nl_pred(M,F,A).
@@ -62,6 +63,23 @@ nl_pred(P,M,F,A):- (var(F),var(P)),!,nlfac:is_nl_pred(M,F,A),functor(P,F,A).
 nl_pred(P,M,F,A):- var(F),!,functor(P,F,A),ignore(nlfac:is_nl_pred(M,F,A)).
 nl_pred(P,M,F,A):- var(P),!,nl_pred(M,F,A),functor(P,F,A).
 nl_pred(P,M,F,A):- functor(P,F,A),!,nl_pred(M,F,A).
+
+
+nl_call_trusted([F|Rest]):- !, nlfac:is_nl_pred(M,F,N),/*var(Rest)->*/length(Rest,N),M:apply(F,Rest).
+nl_call_trusted(M:P):-!,nl_call_trusted_mp(M,P).
+nl_call_trusted(P):- nl_call_trusted_mp(_,P).
+
+nl_call_trusted_mp(M,P):- (nl_pred_trusted(P,M,F,A),nl_call_entr(M,F,A,P),      
+   (nl_pred_trusted(P,M,F,A),on_x_rtrace((M:P))),nl_call_exit(M,F,A,P))*->true;
+  (current_predicate(_,M:P),call(M:P)).
+nl_pred_trusted(M,F,A):- var(F),!,nlfac:is_nl_pred(M,F,A).
+nl_pred_trusted(M,F,A):- (nlfac:is_nl_pred(M,F,A))*->true;(((current_predicate(M:F/A)),def_nl_pred(M,F,A)),!).
+
+nl_pred_trusted(P,M,F,A):- (var(F),var(P)),!,nlfac:is_nl_pred(M,F,A),functor(P,F,A).
+nl_pred_trusted(P,M,F,A):- var(F),!,functor(P,F,A),ignore(nlfac:is_nl_pred(M,F,A)).
+nl_pred_trusted(P,M,F,A):- var(P),!,nl_pred_trusted(M,F,A),functor(P,F,A).
+nl_pred_trusted(P,M,F,A):- functor(P,F,A),!,nl_pred_trusted(M,F,A).
+
 
 
 make_nl_call_stubs:- forall((between(1,7,A),length(List,A),Head =.. [nl_call,F|List], Body =.. [call,M:F|List],   
@@ -85,7 +103,7 @@ nl_call_exit(_M,_F,_A,_P).
 :- module_transparent(each_parser_module/1).
 each_parser_module(M):- no_repeats(M,each_parser_module_0(M)).
 :- module_transparent(each_parser_module_0/1).
-each_parser_module_0(baseKB).
+each_parser_module_0(baseKB):- fail.
 each_parser_module_0(parser_shared).
 each_parser_module_0(parser_all).
 each_parser_module_0(M):- each_parser_module_1(E),default_module(E,M).
@@ -145,18 +163,27 @@ share_mp(_,nil):-!.
 share_mp(M,XY):- pi_splits(XY,X,Y),!,share_mp(M,X),share_mp(M,Y).
 share_mp(CM,(M:P)):- !, atom(M),share_mp(M,P),(CM==M->true;import_and_export(CM,M:P)).
 share_mp(M,PI):- pi_p(PI,P)->PI\==P,!,share_mp(M,P).
-share_mp(M,P):- functor(P,F,A), MFA=M:F/A,   
+share_mp(M,P):- functor(P,F,A), share_mfa(M,F,A).
+
+share_mfa(M,F,A):- MFA=M:F/A,   
    (M:multifile(MFA)), 
    (M:module_transparent(MFA)),
    (M:dynamic(MFA)),
    (M:export(MFA)),
-   (M:public(MFA)),   
+   (M:public(MFA)),  
+   def_nl_pred(M,F,A),
+   share_mfa_pt2(M,F,A).
+
+share_mfa_pt2(system,_,_):-!.
+share_mfa_pt2(M,F,A):- MFA=M:F/A,   
+ must_det_l((
+   format(user_error,'~N% :- ~q.~n',[share_mfa_pt2(M,F,A)]),
    import_and_export(parser_sharing,MFA),
    import_and_export(parser_all,MFA),
    def_nl_pred(M,F,A),
    '$current_source_module'(SM),import_and_export(SM,MFA),
    '$current_typein_module'(CM),import_and_export(CM,MFA),
-   import_and_export(system,MFA),
+   import_and_export(system,MFA))),
    !.
 
 :- share_mp((share_mp)/1).

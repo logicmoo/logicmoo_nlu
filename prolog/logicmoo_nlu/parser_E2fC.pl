@@ -28,7 +28,7 @@ f% ===================================================================
 :- set_prolog_flag(do_renames_sumo,never).
 
 
-% expand_file_search_path(pldata(assertions),From),[module(baseKB),derived_from(From)]
+% expand_file_search_path(pldata(assertions),From),[nop(module( baseKB)),derived_from(From)]
 
 :- baseKB:kb_shared((('abbreviationString-PN'/2),
         ('adjSemTrans-Restricted'/5),
@@ -1030,7 +1030,7 @@ codesToForms(Codes,cyclist,Out):-!,getSurfaceFromChars(Codes,Out, _).
 codesToForms(Codes,cyclistvars,Out:V):-!,getSurfaceFromChars(Codes,Out,V).
 codesToForms(Codes,cycl,Out):-!,getSurfaceFromChars(Codes,O,_V),balanceBinding(O,Out).
 codesToForms(Codes,cyclvars,Out:V):-!,getSurfaceFromChars(Codes,O,V),balanceBinding(O,Out).
-codesToForms(Codes,words,Out):-!,to_word_list(Codes,Out).
+codesToForms(Codes,words,Out):-!,into_lexical_segs(Codes,Out).
 codesToForms(Codes,idioms(D),Out):-!,idioms(D,Codes,Out).
 codesToForms(Codes,Pred,Out):-atom(Pred),!,Call=..[Pred,Codes,Out],!,Call.
 
@@ -1373,7 +1373,7 @@ english2Kif:-english2Kif('i am happy').
 convertToWordage(Var,Var):-var(Var),!.
 convertToWordage([],['True']):-!.
 convertToWordage(Atom,C):- not(is_list(Atom)),!,
-   must_det(to_word_list(Atom,List)),
+   must_det(into_lexical_segs(Atom,List)),
    must_det(convertToWordage(List,C)),!.
 
 convertToWordage(Words,C):- 
@@ -1956,6 +1956,7 @@ eng_subj(Eng,Subj):-!.
 getVarAtomName(Value,Name):-var(Value),!,term_to_atom(Value,Vname),atom_codes(Vname,[95, _|CODES]),atom_codes(Name,CODES),!.
 getVarAtomName('$VAR'(VNUM),Name):-concat_atom([VNUM],Name),!.
 
+% ['h','e','l','l','o'] = "hello" = [104, 101, 108, 108, 111]
 
 phraseNoun_each(Eng,Form,CycL):-posMeans(Eng,'SimpleNoun',Form,CycL).
 phraseNoun_each(Eng,Form,CycL):-posMeans(Eng,'MassNoun',Form,CycL).
@@ -2482,7 +2483,7 @@ sterm_to_pterm_list([S|STERM],[P|PTERM]):-!,
 sterm_to_pterm_list(VAR,[VAR]).
 
 
-atom_junct(Atom,Words):-!,to_word_list(Atom,Words),!.
+atom_junct(Atom,Words):-!,into_lexical_segs(Atom,Words),!.
 
 atom_junct(Atom,Words):-
    concat_atom(Words1,' ',Atom),
@@ -4244,12 +4245,12 @@ end_of_file.
         mpred_pfc:arity/2),
         mpred_pfc:maybe_prepend_mt/3),
         mpred_props:ttPredType/1),
-        mpred_storage:arity/2),
-        mpred_storage:is_known_trew/1),
-        mpred_storage:meta_argtypes/1),
-        mpred_storage:t/1),
-        mpred_storage:tCol/1),
-        mpred_storage:ttExpressionType/1),
+        baseKB:arity/2),
+        baseKB:is_known_trew/1),
+        baseKB:meta_argtypes/1),
+        baseKB:t/1),
+        baseKB:tCol/1),
+        baseKB:ttExpressionType/1),
         mpred_stubs_file_module:constrain_args_pttp/2),
         mpred_stubs_file_module:t/1),
         mpred_type_args:genls/2),

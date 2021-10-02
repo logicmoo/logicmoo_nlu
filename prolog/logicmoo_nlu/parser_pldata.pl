@@ -13,7 +13,7 @@ llf(P):- ensure_loaded(P).
 get_it:- 
  time(ignore((absolute_file_name(library(el_holds/'el_assertions.pl.qlf'),AFN),   
   (exists_file(AFN)->true;(
-    (absolute_file_name(library(el_holds),AFND),sformat( S, 'curl --compressed http://prologmoo.com/devel/LogicmooDeveloperFramework/PrologMUD/pack/pldata_larkc/prolog/el_holds/el_assertions.pl.qlf > ~w/el_assertions.pl.qlf',[AFND]),
+    (absolute_file_name(library(el_holds),AFND),sformat( S, 'curl --compressed http://logicmoo.org/devel/LogicmooDeveloperFramework/PrologMUD/pack/pldata_larkc/prolog/el_holds/el_assertions.pl.qlf > ~w/el_assertions.pl.qlf',[AFND]),
     shell(S))))))).
 
 
@@ -25,9 +25,10 @@ get_it:-
 
 % 6.052 CPU on VMWare I7
 
-:- shared_parser_data(clex_iface:clex_adj/3).
+:- share_mfa(clex_iface,clex_adj,3).
 
 % term_expansion(G,I,GG,O):- compound(I),source_location(File,_),prolog_load_context(module,Module),using_shared_parser_data(Module,File),importing_clause(G,GG) -> G \== GG, I=O.
+
 
 :- 
 %  with_assertions
@@ -49,6 +50,7 @@ get_it:-
 % being in user is just to help debugging from console
 :- reexport(pldata(nl_iface)).
 :- endif.
+
 
 :- fixup_exports.
 

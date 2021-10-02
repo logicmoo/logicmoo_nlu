@@ -1,11 +1,12 @@
 :- module(nl_iface, []).
 
-:- use_module(library(logicmoo_common)).
-
-:- prolog_load_context(file, File),
-   absolute_file_name('.', X, [relative_to(File), file_type(directory)]),
+:- multifile(user:file_search_path/2).
+:- dynamic(user:file_search_path/2).
+:- prolog_load_context(directory, X),
    (user:file_search_path(nldata, X)-> true ; asserta(user:file_search_path(nldata, X))),
    (user:file_search_path(pldata, X)-> true ; asserta(user:file_search_path(pldata, X))).
+
+:- use_module(library(logicmoo_common)).
 
 
 :- export(qcompile_external/1).
@@ -13,54 +14,68 @@ qcompile_external(File) :-
         absolute_file_name(File, R, [access(read), file_type(prolog)]),
         file_directory_name(R, LPWD),
         format(atom(A), 'qcompile(~q)', [R]),
-        process_create(path(swipl),
-                ['-g', A, '-t', halt],
-                [cwd(LPWD), stdout(pipe(Out))]),
-        read_string(Out, _, _Output),
-        close(Out).
+        process_create(path(swipl), ['-g', A, '-t', halt], [cwd(LPWD)]).
+
+
+absolute_file_name_stem(FileName,FileStem):-
+ absolute_file_name(FileName,AFileName,[extensions(['','qlf','qlf']),file_errors(fail)]),
+ file_name_extension(FileStem,_,AFileName),!.
+
 
 
 :- export(rexport_qlf/2).
+
 rexport_qlf(Module, Name):-
+ absolute_file_name_stem(Name,FileName),
   setup_call_cleanup((
-   atom_concat(Name, '.qlf', QLF),
-   atom_concat(Name, '.pl', PLF)),
-   rexport_qlf(Module, Name, PLF, QLF),
-   format(user_error, '~N% Done with ~w. ~n', [Name])).
+   atom_concat(FileName, '.qlf', QLF),
+   atom_concat(FileName, '.pl', PLF)),
+   rexport_qlf(Module, FileName, PLF, QLF),
+   format(user_error, '~N% Done with ~w. ~n', [FileName])).
+
+module_reexport(Module,File):-
+ setup_call_cleanup(
+  open(File,read,In),
+  load_files([],[derived_from('/dev/null'),stream(In),modified(0),
+   if(true),must_be_module(false),module(Module),redefine_module(false),register(false)]),
+  close(In)),!.
+module_reexport(Module,File):-  Module:ensure_loaded(File).
+%module_reexport(Module,File):- Module:reexport(File).
 
 rexport_qlf(Module, _Name, _PLF, QLF):-  exists_source(QLF),
    format(user_error, '~N% Loading ~w  ... ~n', [QLF]),
-   prolog_statistics:time(catch(((Module:reexport(QLF))), E, (dmsg(E-->QLF), fail))), !.
+   import(prolog_statistics:time/1),
+   time(catch(((module_reexport(Module,QLF))), E, (dmsg(E-->QLF), fail))), !.
 rexport_qlf(Module, Name, _PLF, QLF):- \+ exists_source(QLF),
    format(user_error, '~N% Compiling Quickload ~w (this may take 60-120 seconds the very first time) ... ~n', [QLF]),
    %catch((prolog_statistics:time(load_files(PLF, [qcompile(always)]))), E, (dmsg(E-->Nmae), fail)),
    prolog_statistics:time(catch(((nl_iface:qcompile_external(Name))), E, (dmsg(E-->Name), fail))),
    % prolog_statistics:time(qcompile(QLF)),
    format(user_error, '~N% Made ~w ~n', [QLF]),
-   Module:reexport(QLF).
+   module_reexport(Module,QLF).
    %rexport_qlf(Module, Name, PLF, QLF).
 rexport_qlf(_M, _Name, _PLF, QLF):- \+  exists_source(QLF),
    format(user_error, '~N% Missing ~w  ... ~n', [QLF]), fail.
 rexport_qlf(Module, _Name, PLF, _QLF):- exists_source(PLF), !,
    format(user_error, '~N% Loading ~w instead  ... ~n', [PLF]),
-   Module:reexport(PLF).
+   module_reexport(Module,PLF).
 rexport_qlf(Module, Name, _PLF, _QLF):- exists_source(Name), !,
    format(user_error, '~N% Loading Stem ~w instead  ... ~n', [Name]),
-   Module:reexport(Name).
+   module_reexport(Module,Name).
 
 
 :- set_prolog_flag(verbose_load, true).
 
 :- set_prolog_flag(encoding, iso_latin_1).
 
-:- system:reexport(tt0_iface).
-:- system:reexport(ac_xnl_iface).
 :- system:reexport(clex_iface).
 :- system:reexport(talk_db).
 :- system:reexport(verbnet_iface).
 :- system:reexport(framenet).
+:- system:reexport(tt0_iface).
+:- system:reexport(ac_xnl_iface).
 :- system:reexport(nldata_cycl_pos0).
-:- system:reexport(pldata(kb_0988)).
+
 % :- system:reexport(nldata_BRN_WSJ_LEXICON, [text_bpos/2]).
 :- system:load_files(nldata_dictionary_some01, [reexport(true), qcompile(large)]).
 
@@ -89,6 +104,9 @@ set_rel_path_from_here:-
 
 :- nl_iface:rexport_qlf(nl_iface, wn_frames).
 % :- load_wordnet.
+
+%:- system:consult(pldata(kb_0988)).
+ensure_plkb0988_kb:- system:consult(pldata(plkb0988/plkb0988_kb)).
 
 :- fixup_exports.
 

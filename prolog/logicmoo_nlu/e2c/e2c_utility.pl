@@ -6,50 +6,46 @@
 % iterative deeping flag
 plt(A, A):- notrace(plt).
 
-quietly(DCG, S, E):- setup_call_cleanup(quietly(phrase(DCG, S, E)),true,true).
-% quietly(DCG,S,E):- quietly(phrase(DCG,S,E)).
-notrace(DCG,S,E):- quietly(DCG,S,E). %notrace(phrase(DCG,S,E)).
-must(DCG,S,E):- must(phrase(DCG,S,E)).
-ignore_must(DCG,S,E):- ignore_must(phrase(DCG,S,E)).
-
-dcg_peek(DCG,S,S):- phrase(DCG,S,_).
 
 tag(Frame, Tag, iza(Frame, TAG)) --> {atomic(Tag)}, !, [$, TAG], {atom(TAG),downcase_atom(TAG, Start), atom_concat(Tag, _, Start)}.
 tag(Frame, Cmp, N) --> {compound(Cmp),functor(Cmp, F, _)}, tag(Frame, F, N).
 
-%dcg_must_each_det(G, S, E):- phrase(G, S, E), !.
 
-dcg_must_each_det(_, S, _):- S == [], !, fail.
-dcg_must_each_det((G1, G2), S, E):- !, must(phrase(G1, S, M)), !, dcg_must_each_det(G2, M, E), !.
-dcg_must_each_det(G, S, E):- !, must(phrase(G, S, E)), !.
-
-dcg_and(DCG1, DCG2, S, E) :- dcg_condition(DCG1, S, E), phrase(DCG2, S, E), !.
-dcg_unless(DCG1, DCG2, S, E) :- \+ dcg_condition(DCG1, S, _), !, phrase(DCG2, S, E).
-dcg_when(DCG1, DCG2, S, E) :- dcg_condition(DCG1, S, _),!, phrase(DCG2, S, E).
-dcg_length(Len,S,E):- \+ var(Len) -> (length(L,Len), append(L,E,S)); 
-   (length(S,Full),between(Full,0,Len),length(L,Len), append(L,E,S)).
-dcg_from_right(DCG1, DCG2, S, E) :- length(S,Full), between(Full,0,Start), dcg_scan(DCG1,Start,DCG2,S,E).
-dcg_from_left(DCG1,  DCG2, S, E) :- length(S,Full), between(0,Full,Start), dcg_scan(DCG1,Start,DCG2,S,E).
-
-dcg_scan(DCG1,Start2,DCG2,S,E):- 
-  length(Before,Start2), append(Before,Mid,S), \+ \+ phrase(DCG2, Mid, _), 
-  phrase(DCG1, Before, []), phrase(DCG2, Mid, E).
-
-dcg_condition([], S, _):- S \== [], !, fail.
-dcg_condition(DCG, S, E):- phrase(DCG, S, E).
+:- use_module(library(logicmoo/dcg_must)).
 
 % Push a new term onto DCG stack
-dcg_push(List, S, ListS):- is_list(List), !, t_to_w2(List,ListO), append(ListO, S, ListS).
-dcg_push(A, S, [B|S]):- t_to_w2(A,B).
+dcg_push_w2(List, S, ListS):- is_list(List), !, t_to_w2(List,ListO), append(ListO, S, ListS).
+dcg_push_w2(A, S, [B|S]):- t_to_w2(A,B).
 
+theText1(IC, A, B) :- notrace(as_w2_segs(A, C)),!,theText1(IC, C, B).
 theText1(IC)-->notrace(theText11(IC)).
 
-w2txt(W0)--> [w(W0,_)],!.
-w2txt(W0)--> [W0],!.
+w2txt001(IC, A, B) :- notrace(as_w2_segs(A, C)),!,w2txt001(IC, C, B).
+w2txt001(Cmp) --> consume_spans_hack_e2c, % next_as_word_e2c,
+   {!},[Cmp],{assertion(nonvar(Cmp))},consume_spans_hack_e2c.
 
-theText11(IC)--> {var(IC),!},w2txt(W0),notrace(({parser_tokenize:any_nb_to_atom(W0,W1), downcase_atom(W1,IC)})).
+theTextW2(Text,L) --> w2txt001(Cmp),{W2=w(Text,L),(compound(Cmp)->W2=Cmp;(Text=Cmp,L=open)),parser_e2c:add_prev_w2(W2)}.
+
+w2txt01(Text) --> theTextW2(Text,_L),!.
+%w2txt01(Text) --> w2txt001(A), {atomic(A),!,A=Text}.
+%w01(Text) --> w001(A), {Text=A}.
+
+consume_spans_hack_e2c --> [span(NV)],{nonvar(NV),parser_e2c:add_prev_span(span(NV)),!},consume_spans_hack_e2c.
+consume_spans_hack_e2c --> [].
+
+move_ahead_spans_e2c(S1,S2):- partition(\=(span(_)),S1,W,S),!,append(W,S,S2).
+
+next_as_word_e2c(S1,S2):- select(W2,S1,SM),compound(W2),W2=w(_,_),!,S2=[W2|SM].
+next_as_word_e2c(S1,S1).
+
+w2txt(Text) --> consume_spans_hack_e2c,w2txt01(Text),consume_spans_hack_e2c.
+%w2txt(W0)--> [w(W0,_)],!.
+%w2txt(IC)--> [W0],{!,\+compound(W0),IC=W0}.
+
+
+theText11(IC)--> {var(IC),!},w2txt(W0),{notrace((assertion(nonvar(W0);nonvar(IC)), the_text_unif(IC,W0)))}.
 theText11([])--> !, [].
-theText11(IC)--> {atomic(IC),downcase_atom(IC,DC)},w2txt(W0),{parser_tokenize:any_nb_to_atom(W0,W1),(W1=DC;downcase_atom(W1,DC))},!.
+theText11(IC)--> {atomic(IC),!},w2txt(W0),{the_text_unif(IC,W0)},!.
 theText11([H|T])--> theText11(H),!,theText11(T).
 %theText1(Txt)--> [w(Txt,_)].
 
@@ -80,7 +76,7 @@ nvd(N, X):- var(N), nonvar(X), !, nvd(X, N), !.
 nvd(_, X):- nonvar(X), !.
 nvd('&'(N , _), X):- nonvar(N), !, nvd(N, X).    
 nvd(N, X):- compound(N), N=.. [z, F|_], may_debug_var([F, '_Frame'], X).
-nvd(N, X):- atom(N), name(N, Name), last(Name, C), \+ char_type(C, digit), !, gensym(N, NN), !, may_debug_var(NN, X), !.
+nvd(N, X):- atom(N),  name(N, Name), last(Name, C), \+ char_type(C, digit), !, gensym(N, NN), !, may_debug_var(NN, X), !.
 nvd(N, X):- may_debug_var(N, X), !.
 
 into_isa3(I,C,ISA):- notrace(into_isa3_0(I,C,ISA)).
@@ -99,4 +95,5 @@ maybe_toPropercase(X,Y):- first_char_to_upper(X,Y).
 
 conc([], L, L).
 conc([H|T], L, [H|R]) :- conc(T, L, R).
+
 
